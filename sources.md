@@ -33,6 +33,13 @@
 - 三井アウトレットパーク 横浜ベイサイド
 - ブランチ横浜南部市場：https://www.branch-sc.com/yokohama_nanbu/
 
+## 公園（遊具・広場。「会期中ずっと」の遊び場として載せる。公園のイベントも見る）
+- 横浜市 代表的な公園一覧：https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/koen/daihyoteki/kouen003.html
+- 横浜市緑の協会（三ツ沢・金沢自然公園など市の公園の管理者）：https://www.hama-midorinokyokai.or.jp/
+- 神奈川県立公園（三ッ池・四季の森・保土ケ谷など）：https://www.kanagawa-park.or.jp/
+- 横浜市「みんなのいいね」ローラーすべり台まとめ：https://minnano-iine.city.yokohama.lg.jp/article/column/2025_01/27/
+- まだ載せていない候補：久良岐公園、根岸森林公園、舞岡公園、都筑中央公園、横浜市児童遊園地、海の公園、富岡総合公園、本牧市民公園、長坂谷公園、蒔田公園、県立保土ケ谷公園、県立境川遊水地公園
+
 ## まとめサイト（見つけるため。載せる前に公式で確認）
 - いこーよ：https://iko-yo.net/
 - 横浜金沢観光協会のイベント情報：https://yokohama-kanazawakanko.com/
