@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>横浜 週末おでかけ一覧</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* 港の掲示板：冷たい紙色に紺のインク、案内灯のブルー。天気リスクだけ信号色 */
+  --paper: #f3f5f7;
+  --card: #ffffff;
+  --ink: #18222e;
+  --muted: #5b6875;
+  --line: #dde3e9;
+  --accent: #0a6f95;
+  --accent-soft: #e2f0f6;
+  --ok: #2e7d4f;
+  --ok-soft: #e4f3ea;
+  --warn: #9a6400;
+  --warn-soft: #fbf0d9;
+  --bad: #b3372b;
+  --bad-soft: #fbe6e3;
+  --sat: #2f5fb3;
+  --sun: #c23b49;
+  --font-display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #11171e; --card: #19212b; --ink: #e8edf2; --muted: #9aa8b5; --line: #2a3542;
+    --accent: #5cb8dc; --accent-soft: #15303d;
+    --ok: #6cc690; --ok-soft: #173126; --warn: #e5b45a; --warn-soft: #382c14; --bad: #f08a7e; --bad-soft: #3b1c19;
+    --sat: #7fa6ef; --sun: #f08591;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #11171e; --card: #19212b; --ink: #e8edf2; --muted: #9aa8b5; --line: #2a3542;
+  --accent: #5cb8dc; --accent-soft: #15303d;
+  --ok: #6cc690; --ok-soft: #173126; --warn: #e5b45a; --warn-soft: #382c14; --bad: #f08a7e; --bad-soft: #3b1c19;
+  --sat: #7fa6ef; --sun: #f08591;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 980px; margin: 0 auto; padding: 20px 16px 48px; display: grid; gap: 20px; }
+header { display: grid; gap: 6px; }
+h1 { font-family: var(--font-display); font-size: 26px; line-height: 1.3; margin: 0; text-wrap: balance; letter-spacing: .02em; }
+.lede { margin: 0; color: var(--muted); font-size: 14px; }
+.lede strong { color: var(--ink); font-weight: 700; }
+
+/* 天気 */
+.weather { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.wx { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; gap: 14px; }
+.wx .d { font-family: var(--font-display); font-size: 18px; min-width: 64px; }
+.wx .d.sat { color: var(--sat); } .wx .d.sun { color: var(--sun); }
+.wx .t { font-variant-numeric: tabular-nums; font-size: 14px; }
+.wx .t b { font-size: 20px; font-weight: 700; }
+.wx .p { margin-left: auto; font-size: 13px; color: var(--ok); background: var(--ok-soft); padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+.outfit { grid-column: 1 / -1; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.outfit h3 { margin: 0 0 6px; font-family: var(--font-display); font-size: 15px; }
+.scenes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.scene { background: var(--accent-soft); border-radius: 8px; padding: 8px 10px; }
+.scene .sl { margin: 0 0 4px; font-size: 13px; color: var(--muted); }
+.scene .sl b { color: var(--ink, inherit); font-size: 16px; margin-left: 4px; }
+.figs { display: flex; gap: 6px; align-items: flex-end; }
+.figs figure { margin: 0; flex: 1; display: grid; justify-items: center; gap: 4px; }
+.figs figcaption { font-size: 12.5px; text-align: center; line-height: 1.45; }
+.figs figcaption b { display: block; font-size: 12px; color: var(--accent); }
+.scene .sx { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
+.wx-note { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--muted); }
+
+/* フィルタ */
+.filters { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: grid; gap: 12px; }
+.frow { display: grid; grid-template-columns: 72px 1fr; gap: 10px; align-items: start; }
+.flabel { font-size: 13px; color: var(--muted); padding-top: 6px; font-weight: 500; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.opt {
+  font: inherit; font-size: 13.5px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--paper); color: var(--ink);
+  padding: 5px 12px; border-radius: 999px; line-height: 1.4;
+}
+.opt:hover { border-color: var(--accent); }
+.opt[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+:root[data-theme="dark"] .opt[aria-pressed="true"] { color: #0c1a22; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .opt[aria-pressed="true"] { color: #0c1a22; } }
+.opt:focus-visible, .search:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.search { font: inherit; width: 100%; max-width: 360px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); }
+.count { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; font-size: 14px; color: var(--muted); }
+.count b { color: var(--ink); font-size: 18px; font-variant-numeric: tabular-nums; }
+.reset { font: inherit; font-size: 13px; background: none; border: none; color: var(--accent); cursor: pointer; padding: 0; text-decoration: underline; }
+
+/* 一覧 */
+section.group { display: grid; gap: 10px; }
+.group h2 { font-family: var(--font-display); font-size: 18px; margin: 6px 0 0; display: flex; flex-wrap: wrap; column-gap: 10px; row-gap: 2px; align-items: baseline; }
+.group h2 small { font-family: var(--font-body); font-size: 13px; color: var(--muted); font-weight: 400; }
+.list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px 16px 14px 18px; display: grid; gap: 8px; align-content: start; position: relative; overflow: hidden;
+}
+.card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--line); }
+.card.r-ok::before { background: var(--ok); }
+.card.r-check::before { background: var(--warn); }
+.card.r-cancel::before { background: var(--bad); }
+.when { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+.day { font-weight: 700; font-size: 12.5px; padding: 1px 8px; border-radius: 6px; border: 1px solid currentColor; }
+.day.sat { color: var(--sat); } .day.sun, .day.hol { color: var(--sun); }
+.period.wk { background: var(--ok-soft); color: var(--ink, inherit); margin-left: 4px; }
+.period { color: var(--muted); font-size: 12.5px; }
+.card h3 { margin: 0; font-size: 16.5px; line-height: 1.45; font-weight: 700; text-wrap: balance; }
+.where { margin: 0; font-size: 13.5px; color: var(--muted); }
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 5px; }
+.chip { font-size: 12.5px; padding: 1px 9px; border-radius: 6px; background: var(--paper); border: 1px solid var(--line); }
+.chip.free { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 700; }
+.chip.resv { background: var(--warn-soft); border-color: transparent; color: var(--warn); font-weight: 700; }
+.rain { margin: 0; font-size: 13.5px; display: flex; gap: 6px; align-items: flex-start; padding: 6px 10px; border-radius: 8px; }
+.rain svg { flex: none; margin-top: 3px; }
+.rain.ok { background: var(--ok-soft); color: var(--ok); }
+.rain.check { background: var(--warn-soft); color: var(--warn); }
+.rain.cancel { background: var(--bad-soft); color: var(--bad); font-weight: 700; }
+.rain.unknown { background: var(--paper); color: var(--muted); }
+.sum { margin: 0; font-size: 14px; }
+.tip { margin: 0; font-size: 13px; color: var(--muted); }
+.tip::before { content: "ひとこと："; font-weight: 700; color: var(--ink); }
+.more { justify-self: start; font-size: 14px; color: var(--accent); font-weight: 700; text-decoration: none; border-bottom: 1px solid currentColor; }
+.more:hover { opacity: .8; }
+.empty { background: var(--card); border: 1px dashed var(--line); border-radius: 12px; padding: 24px; text-align: center; color: var(--muted); }
+
+
+/* 近くのごはん */
+.food { border-top: 1px dashed var(--line); padding-top: 8px; }
+.food summary { cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--ink); list-style: none; display: flex; align-items: center; gap: 6px; }
+.food summary::-webkit-details-marker { display: none; }
+.food summary::before { content: "＋"; color: var(--accent); font-weight: 700; }
+.food[open] summary::before { content: "−"; }
+.food summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.food .note { margin: 6px 0 0; font-size: 12.5px; color: var(--muted); }
+.shops { display: grid; gap: 8px; margin-top: 8px; }
+.shop { background: var(--paper); border-radius: 8px; padding: 8px 10px; display: grid; gap: 4px; }
+.shop .nm { font-weight: 700; font-size: 14px; }
+.shop .nm a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+.shop .meta { font-size: 12.5px; color: var(--muted); margin: 0; }
+.shop .ds { font-size: 13px; margin: 0; }
+.ktags { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.ktag { font-size: 11.5px; padding: 0 7px; border-radius: 5px; background: var(--ok-soft); color: var(--ok); font-weight: 700; }
+.foodall { display: grid; gap: 14px; }
+.foodall h2 { font-family: var(--font-display); font-size: 18px; margin: 6px 0 0; }
+.foodall .lead { margin: 0; font-size: 13.5px; color: var(--muted); }
+.farea { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; }
+.farea h3 { margin: 0; font-size: 15.5px; }
+.farea .for { margin: 0; font-size: 12.5px; color: var(--muted); }
+
+
+.baby summary::before { content: "＋"; }
+.bspot { background: var(--paper); border-radius: 8px; padding: 8px 10px; display: grid; gap: 4px; }
+.bspot .nm { font-weight: 700; font-size: 14px; }
+.bspot .nm a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+.bicons { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.bi { font-size: 11.5px; padding: 0 7px; border-radius: 5px; font-weight: 700; border: 1px solid transparent; }
+.bi.y { background: var(--accent-soft); color: var(--accent); }
+.bi.n { background: transparent; color: var(--muted); border-color: var(--line); text-decoration: line-through; font-weight: 400; }
+.bi.u { background: transparent; color: var(--muted); border-color: var(--line); border-style: dashed; font-weight: 400; }
+.bspot .ds { font-size: 13px; margin: 0; }
+.bspot .meta { font-size: 12.5px; color: var(--muted); margin: 0; }
+.wear { grid-column: 1 / -1; margin: 0; font-size: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.wear b { font-weight: 700; }
+
+
+.asof { margin: 0; font-size: 12px; color: var(--muted); }
+.asof.old { color: var(--warn); font-weight: 700; }
+
+
+/* みんなの投稿 */
+.posts { display: grid; gap: 14px; }
+.posts h2 { font-family: var(--font-display); font-size: 18px; margin: 6px 0 0; }
+.posts .lead { margin: 0; font-size: 13.5px; color: var(--muted); max-width: 70ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px; font-size: 12.5px; }
+.pform { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: grid; gap: 12px; }
+.pform h3 { margin: 0; font-size: 15.5px; }
+.prow { display: grid; gap: 6px; }
+.prow > label, .prow > .lbl { font-size: 13px; font-weight: 700; }
+.pform select, .pform input[type=text], .pform input[type=month], .pform textarea {
+  font: inherit; font-size: 14px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); width: 100%; max-width: 420px; }
+.pform textarea { min-height: 64px; resize: vertical; }
+.tri { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; font-size: 13.5px; }
+.tri .q { min-width: 92px; font-weight: 500; }
+#tri-rest { display: grid; gap: 8px; } #tri-rest .tri .q { flex-basis: 100%; }
+.tri label { display: inline-flex; gap: 4px; align-items: center; cursor: pointer; }
+.btn { font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; border: none; border-radius: 8px; padding: 8px 16px; background: var(--accent); color: #fff; justify-self: start; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn.sub { background: var(--paper); color: var(--ink); border: 1px solid var(--line); font-weight: 500; padding: 4px 10px; font-size: 12.5px; }
+.pmsg { margin: 0; font-size: 13px; }
+.pmsg.err { color: var(--bad); } .pmsg.ok { color: var(--ok); }
+.ptabs { display: flex; gap: 6px; }
+.fac { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; }
+.fac h4 { margin: 0; font-size: 15px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.fac h4 small { font-size: 12.5px; color: var(--muted); font-weight: 400; }
+.wardh { font-family: var(--font-display); font-size: 16px; margin: 4px 0 0; }
+.stats { display: grid; gap: 4px; }
+.st { font-size: 13px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.st .k { min-width: 84px; font-weight: 500; }
+.badge { font-size: 12px; padding: 1px 8px; border-radius: 6px; font-weight: 700; }
+.badge.staff { background: var(--accent); color: #fff; }
+.badge.conf { background: var(--ok-soft); color: var(--ok); }
+.badge.one { background: var(--paper); color: var(--ink); border: 1px solid var(--line); font-weight: 500; }
+.badge.split { background: var(--warn-soft); color: var(--warn); }
+.badge.none { color: var(--muted); font-weight: 400; }
+.cmts { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.cmts li { font-size: 13px; background: var(--paper); border-radius: 6px; padding: 5px 8px; display: flex; gap: 8px; justify-content: space-between; align-items: start; }
+.cmts .ym { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.own { border-top: 1px dashed var(--line); padding-top: 8px; display: grid; gap: 6px; }
+.own .tri select { width: auto; }
+.usermark { margin: 0; font-size: 12.5px; }
+
+
+.share { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.linebtn { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 700; text-decoration: none; color: #fff; background: #06C755; border-radius: 999px; padding: 6px 14px; }
+.linebtn:hover { opacity: .9; }
+.linebtn.sm { font-size: 12.5px; padding: 3px 10px; justify-self: start; }
+.copybtn { font: inherit; font-size: 13px; cursor: pointer; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 5px 12px; }
+.cardfoot { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.sharenote { margin: 0; font-size: 12.5px; color: var(--muted); }
+
+
+.pack { background: var(--accent-soft); border-radius: 8px; padding: 8px 10px; display: grid; gap: 4px; }
+.pack h4 { margin: 0; font-size: 13.5px; color: var(--accent); }
+.pack ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; }
+.pack li { font-size: 13px; display: flex; gap: 6px; }
+.pack li .m { font-weight: 700; min-width: 4.8em; white-space: nowrap; }
+.pack li.leave .m { color: var(--ok); }
+.pack li.bring .m { color: var(--warn); }
+.pack .note { font-size: 12px; color: var(--muted); margin: 0; }
+.acc { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 13px; }
+.acc summary { cursor: pointer; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.acc ul { margin: 6px 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.acc li { border-left: 3px solid var(--accent-soft); padding-left: 8px; display: grid; gap: 2px; }
+.acc li .ln { font-size: 12px; color: var(--muted); }
+.acc li p, .acc > p { margin: 0; }
+.acc .car { font-weight: 700; }
+.acc .trip, .walk { font-size: 12.5px; margin: 4px 0; }
+.arrl { font-size: 12.5px; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.arrl input { font: inherit; padding: 3px 6px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); color: inherit; }
+.trip .why { font-size: 11.5px; color: var(--muted); }
+.acc .trip { background: var(--ok-soft); border-radius: 6px; padding: 5px 8px; }
+.park { background: var(--card); border: 1px dashed var(--line); border-radius: 8px; padding: 6px 8px; margin: 4px 0; font-size: 13px; }
+.park ul { margin: 4px 0; padding-left: 1.1em; display: grid; gap: 4px; } .park li { display: grid; gap: 1px; }
+.park .m { font-size: 12.5px; } .park .src { font-size: 11px; color: var(--muted); } .park p { margin: 2px 0; }
+.acc .wc ul { margin: 2px 0 0; padding-left: 1.1em; display: grid; gap: 2px; }
+.acc .wc { font-size: 12.5px; background: var(--accent-soft); border-radius: 6px; padding: 3px 6px; }
+.acc .src, .acc .note { font-size: 11.5px; color: var(--muted); }
+.acc .freeday { font-size: 11.5px; background: var(--ok); color: #fff; border-radius: 99px; padding: 1px 8px; }
+.help ul { margin: 0; padding-left: 1.2em; font-size: 13px; }
+.near { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; }
+.near h2 { margin: 0; font-family: var(--font-display); font-size: 16px; }
+.nctl { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.nctl select { font: inherit; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: inherit; }
+.near .note { font-size: 12px; color: var(--muted); margin: 0; }
+.nhead { margin: 0; font-size: 13px; }
+.nwrap { display: grid; grid-template-columns: minmax(0, 300px) 1fr; gap: 12px; align-items: start; }
+@media (max-width: 640px) { .nwrap { grid-template-columns: 1fr; } }
+.nmap { width: 100%; max-width: 300px; justify-self: center; }
+.nlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 420px; overflow: auto; }
+.nlist li { display: flex; gap: 8px; font-size: 13px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.nlist li div { display: grid; gap: 1px; }
+.nlist .m { font-size: 12px; color: var(--muted); }
+.nlist .no { flex: none; width: 20px; height: 20px; border-radius: 50%; color: #fff; font-size: 11px; font-weight: 700; display: grid; place-items: center; }
+.nlist .no.ev { background: var(--accent); } .nlist .no.fd { background: #d98a1f; } .nlist .no.bb { background: var(--ok); }
+.papa { font-size: 12.5px; margin: 3px 0; padding: 3px 6px; border-radius: 6px; background: var(--accent-soft); }
+.papa.men b, .papa.multi b { color: var(--ok); } .papa.women b { color: var(--warn); } .papa.unk b, .papa.room b { color: var(--muted); }
+.chains { margin: 4px 0; padding-left: 1.1em; font-size: 13px; display: grid; gap: 4px; }
+.chains b { margin-right: 6px; }
+.chains .src { font-size: 11.5px; color: var(--muted); }
+.bfood { background: var(--ok-soft); border-radius: 8px; padding: 6px 10px; font-size: 13px; }
+.kfood { background: var(--accent-soft); margin-top: 6px; }
+.ktag { display:inline-block; font-size:11px; padding:1px 6px; margin:2px 3px 0 0; border-radius:8px; background:#fff; border:1px solid var(--line, #ddd); }
+.kfood li, .fcourt li { margin-bottom: 6px; }
+.fcourt { background: #eef6ff; margin-top: 6px; }
+.day.wkday { background: #f1efe8; color: #5a5040; }
+.kfood .note { font-size:11px; color:var(--muted,#666); }
+.bfood ul { margin: 3px 0; padding-left: 1.1em; } .bfood .m { font-size: 12px; color: var(--muted); }
+.bspot.dim { opacity: .55; }
+.route { display: grid; gap: 6px; padding: 6px 0; border-top: 1px dashed var(--line); }
+.route .rt { margin: 0; font-size: 14px; }
+.rwrap { display: block; }
+.rov-box { background: var(--accent-soft); border-radius: 8px; padding: 6px; display: grid; justify-items: center; gap: 2px; }
+.rov { width: 100%; max-width: 260px; max-height: 190px; }
+.rsteps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.rsteps li { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; }
+.rsteps li svg { flex: none; }
+.rsteps .rn { display: block; font-size: 11.5px; font-weight: 700; color: var(--accent); }
+.rsteps li.w > div { background: rgba(226,176,44,.14); border-radius: 6px; padding: 2px 6px; }
+.rsteps li.w .rn { color: var(--warn); }
+.help { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 6px; }
+.help h2 { margin: 0; font-family: var(--font-display); font-size: 16px; }
+.help p { margin: 0; font-size: 13.5px; }
+.help a { color: var(--accent); font-weight: 700; }
+
+
+/* みなとみらいの街並み（オリジナルのイラスト） */
+.hero { position: relative; border-radius: 16px; overflow: hidden; min-height: 210px; display: grid; align-content: start;
+  background: linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 70%, var(--sky3) 100%); }
+.hero svg.city { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 150px; }
+.hero .htext { position: relative; padding: 16px 18px 120px; display: grid; gap: 6px; }
+.hero h1 { color: var(--heroInk); text-shadow: 0 1px 0 rgba(255,255,255,.4); }
+.hero .lede { color: var(--heroInk); opacity: .9; max-width: 60ch; }
+.hero .lede strong { color: var(--heroInk); }
+.city .b { fill: var(--bld); } .city .b2 { fill: var(--bld2); } .city .sea { fill: var(--sea); }
+.city .win { fill: var(--win); } .city .wheel { stroke: var(--bld); fill: none; } .city .bridge { stroke: var(--bld2); fill: none; }
+:root { --sky1:#bfe3f5; --sky2:#e6f4fb; --sky3:#f3f7fa; --bld:#6f8fa6; --bld2:#a9c0cf; --sea:#7fb4d1; --win:rgba(255,255,255,0); --heroInk:#14304a; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --sky1:#0b1730; --sky2:#1d3158; --sky3:#2c3c62; --bld:#4a6488; --bld2:#36507a; --sea:#16304f; --win:#ffd98a; --heroInk:#eef3f8; } }
+:root[data-theme="dark"] { --sky1:#0b1730; --sky2:#1d3158; --sky3:#2c3c62; --bld:#4a6488; --bld2:#36507a; --sea:#16304f; --win:#ffd98a; --heroInk:#eef3f8; }
+@media (max-width: 520px) { .hero .htext { padding-bottom: 110px; } .hero svg.city { height: 120px; } }
+
+
+.hero.day { --sky1:#bfe3f5; --sky2:#e6f4fb; --sky3:#f3f7fa; --bld:#6f8fa6; --bld2:#a9c0cf; --sea:#7fb4d1; --win:rgba(255,255,255,0); --heroInk:#14304a; }
+.hero.night { --sky1:#0b1730; --sky2:#1d3158; --sky3:#2c3c62; --bld:#4a6488; --bld2:#36507a; --sea:#16304f; --win:#ffd98a; --heroInk:#eef3f8; }
+.hero.night h1 { text-shadow: none; }
+
+footer { font-size: 12.5px; color: var(--muted); display: grid; gap: 4px; border-top: 1px solid var(--line); padding-top: 14px; }
+footer p { margin: 0; max-width: 70ch; }
+
+@media (max-width: 520px) {
+  h1 { font-size: 22px; }
+  .frow { grid-template-columns: 1fr; gap: 4px; }
+  .flabel { padding-top: 0; }
+  .list { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="hero">
+      <svg class="city" viewBox="0 0 1000 150" preserveAspectRatio="xMinYMax slice" aria-hidden="true">
+      <path class="bridge" stroke-width="2" d="M690 108 L760 70 L830 108 M760 70 V112 M700 108 H900 M830 108 L880 78 L930 108 M880 78 V112"/>
+      <rect class="b2" x="20" y="92" width="40" height="38"/><rect class="b2" x="70" y="80" width="30" height="50"/>
+      <rect class="b2" x="560" y="86" width="36" height="44"/><rect class="b2" x="610" y="96" width="50" height="34"/>
+      <g class="b"><path d="M120 130 V60 L128 40 L136 32 L150 32 L158 40 L166 60 V130 Z"/>
+        <path d="M180 130 V70 L200 58 V130 Z M205 130 V62 L225 50 V130 Z M230 130 V54 L250 42 V130 Z"/>
+        <path d="M270 130 V96 Q300 52 330 96 V130 Z"/>
+        <rect x="430" y="112" width="70" height="18"/><path d="M430 112 L440 106 H490 L500 112 Z"/>
+        <rect x="510" y="114" width="36" height="16"/>
+        <rect x="345" y="86" width="22" height="44"/></g>
+      <g><circle class="wheel" cx="395" cy="82" r="38" stroke-width="3"/><circle class="wheel" cx="395" cy="82" r="4" stroke-width="3"/>
+        <path class="wheel" stroke-width="1.5" d="M395 44 V120 M357 82 H433 M368 55 L422 109 M422 55 L368 109"/>
+        <path class="b" d="M385 130 L395 84 L405 130 Z"/></g>
+      <g class="win"><rect x="134" y="50" width="3" height="3"/><rect x="146" y="62" width="3" height="3"/><rect x="138" y="80" width="3" height="3"/><rect x="150" y="96" width="3" height="3"/>
+        <rect x="190" y="84" width="3" height="3"/><rect x="214" y="74" width="3" height="3"/><rect x="240" y="66" width="3" height="3"/><rect x="292" y="104" width="3" height="3"/><rect x="308" y="112" width="3" height="3"/><rect x="128" y="58" width="3" height="3"/><rect x="142" y="70" width="3" height="3"/><rect x="132" y="90" width="3" height="3"/><rect x="156" y="108" width="3" height="3"/><rect x="144" y="118" width="3" height="3"/><rect x="196" y="96" width="3" height="3"/><rect x="186" y="110" width="3" height="3"/><rect x="220" y="90" width="3" height="3"/><rect x="210" y="104" width="3" height="3"/><rect x="236" y="80" width="3" height="3"/><rect x="244" y="98" width="3" height="3"/><rect x="276" y="110" width="3" height="3"/><rect x="318" y="104" width="3" height="3"/><rect x="352" y="96" width="3" height="3"/><rect x="358" y="110" width="3" height="3"/><rect x="440" y="118" width="3" height="3"/><rect x="470" y="118" width="3" height="3"/><rect x="520" y="120" width="3" height="3"/><rect x="575" y="100" width="3" height="3"/><rect x="585" y="112" width="3" height="3"/><rect x="620" y="106" width="3" height="3"/><rect x="640" y="114" width="3" height="3"/></g>
+      <rect class="sea" x="0" y="128" width="1000" height="22"/>
+    </svg>
+      <div class="htext">
+    <h1>横浜 週末おでかけ一覧</h1>
+    <p class="lede"><strong>2026年11月の週末・祝日（14日〜29日）</strong>　横浜市内のイベントを0歳から大人まで横断して集めました。各イベントに、近くのおむつ替え・授乳室・調乳のお湯がある場所と、子連れで入りやすいごはん処も付けています。概要だけ載せているので、詳しくは各リンク先で確認してください。</p>
+      </div>
+    </div>
+    <div class="share">
+      <a class="linebtn" id="line-page" href="#" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5 1.1-.5 5.9-3.5 8-5.9C21.4 14.4 22 12.8 22 11c0-4.4-4.5-8-10-8z"/></svg>このページをLINEで送る</a>
+      <button class="copybtn" id="copy-page" type="button">リンクをコピー</button>
+    </div>
+    <p class="sharenote">ページを開けるかどうかは共有の設定によります。各イベントの「LINEで送る」は公式ページのリンク付きなので、誰でも開けます。</p>
+  </header>
+
+  <div class="weather" aria-label="週末の天気予報">
+    <div class="wx"><span class="d sat">11/14 土</span><span class="t"><b>20</b>℃ / 12℃</span><span class="p">降水 0%</span></div>
+    <div class="wx"><span class="d sun">11/15 日</span><span class="t"><b>18</b>℃ / 13℃</span><span class="p">降水 0%</span></div>
+    <p class="wear"><b>服装の目安：</b>日中は18〜20℃なので長袖1枚で過ごせそうです。朝晩は12〜13℃まで下がるので、薄手の上着や子どもの羽織りものがあると安心です。海沿い（みなとみらい・山下公園）は風が出ると体感温度が下がります。花火（14日19時）を見るなら一枚多めに。</p>
+    <div class="outfit" id="outfit"></div>
+    <p class="wx-note">11/10時点の予報です。21日以降の天気は、予報が出しだい追加します。14・15日は今のところ雨の予報はありませんが、変わることがあります。11月下旬はさらに冷え込む日が増えるので、厚手の上着も用意しておくと安心です。赤い印の「雨天中止」イベントは当日の天気を確認してから出かけてください。</p>
+  </div>
+
+  <div class="filters" role="group" aria-label="絞り込み">
+    <div class="frow"><span class="flabel">日にち</span><div class="opts" data-key="day">
+      <button class="opt" id="f-day-all" data-v="all" aria-pressed="true">すべて</button>
+      <button class="opt" id="f-day-14" data-v="11/14" aria-pressed="false">14(土)</button>
+      <button class="opt" id="f-day-15" data-v="11/15" aria-pressed="false">15(日)</button>
+      <button class="opt" id="f-day-21" data-v="11/21" aria-pressed="false">21(土)</button>
+      <button class="opt" id="f-day-22" data-v="11/22" aria-pressed="false">22(日)</button>
+      <button class="opt" id="f-day-23" data-v="11/23" aria-pressed="false">23(月・祝)</button>
+      <button class="opt" id="f-day-28" data-v="11/28" aria-pressed="false">28(土)</button>
+      <button class="opt" id="f-day-29" data-v="11/29" aria-pressed="false">29(日)</button>
+    </div></div>
+    <div class="frow"><span class="flabel">年齢</span><div class="opts" data-key="age">
+      <button class="opt" id="f-age-all" data-v="all" aria-pressed="true">すべて</button>
+      <button class="opt" id="f-age-0" data-v="0-2" aria-pressed="false">0〜2歳</button>
+      <button class="opt" id="f-age-3" data-v="3-5" aria-pressed="false">3〜5歳</button>
+      <button class="opt" id="f-age-6" data-v="6-12" aria-pressed="false">小学生</button>
+      <button class="opt" id="f-age-13" data-v="13-99" aria-pressed="false">中高生・大人</button>
+    </div></div>
+    <div class="frow"><span class="flabel">条件</span><div class="opts" data-key="flags" data-multi="1">
+      <button class="opt" id="f-free" data-v="free" aria-pressed="false">完全無料</button>
+      <button class="opt" id="f-rain" data-v="rain" aria-pressed="false">雨でも行ける</button>
+      <button class="opt" id="f-noresv" data-v="noresv" aria-pressed="false">予約なしで行ける</button>
+      <button class="opt" id="f-limited" data-v="limited" aria-pressed="false">その日だけのイベント</button>
+      <button class="opt" id="f-ride" data-v="ride" aria-pressed="false">🚃 のりもの（電車・はたらく車）</button>
+      <button class="opt" id="f-animal" data-v="animal" aria-pressed="false">🐘 動物・水族館・ふれあい</button>
+      <button class="opt" id="f-freeplay" data-v="freeplay" aria-pressed="false">🆓 無料の遊び場・キッズスペース</button>
+      <button class="opt" id="f-paidplay" data-v="paidplay" aria-pressed="false">🎪 有料の室内遊び場</button>
+      <button class="opt" id="f-weekday" data-v="weekday" aria-pressed="false">📅 平日も行ける</button>
+      <button class="opt" id="f-hot" data-v="hot" aria-pressed="false">近くで調乳のお湯がもらえる</button>
+      <button class="opt" id="f-papa" data-v="papa" aria-pressed="false">👨 パパひとりで連れていく</button>
+    </div></div>
+    <div class="frow"><span class="flabel">エリア</span><div class="opts" data-key="area" id="area-opts"></div></div>
+    <div class="frow"><label class="flabel" for="origin">出発駅</label><div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input class="search" id="origin" type="search" placeholder="例：二俣川、センター南" style="flex:1;min-width:9em"><label class="arrl">着きたい時間 <input type="time" id="arrive" step="300"></label><button class="reset" id="arrive-clear" type="button">開始20分前に戻す</button></div><p class="note" style="margin:4px 0 0;font-size:12px;color:var(--muted)">各カードの「行き方」に乗換案内が出ます。着きたい時間はカードごとにも変えられます（空欄ならイベント開始の20分前）。</p></div></div>
+    <div class="frow"><label class="flabel" for="q">キーワード</label><div><input class="search" id="q" type="search" placeholder="例：花火、工作、動物"></div></div>
+  </div>
+
+  <div class="count"><span><b id="n">0</b> 件を表示（全 <span id="total">0</span> 件）</span><button class="reset" id="reset" type="button">条件をリセット</button></div>
+
+  <div id="results"></div>
+
+  <section class="posts" id="posts" aria-label="みんなの投稿">
+    <h2>みんなの投稿（赤ちゃん設備）</h2>
+    <p class="lead">行った場所の「おむつ替え・授乳室・調乳のお湯」があったかどうかを教えてください。同じ内容の投稿が<b>3</b>件以上集まると「利用者確認済み」になり、運営が現地や電話で確認したものは「運営確認済み」と表示します。投稿者の名前は表示されません。</p>
+    <div class="legend"><span class="badge staff">運営確認済み</span><span class="badge conf">利用者確認済み</span><span class="badge one">利用者の情報</span><span class="badge split">情報が分かれています</span></div>
+
+    <form class="pform" id="pform" novalidate>
+      <h3>投稿する</h3>
+      <div class="prow"><label for="p-fac">場所</label>
+        <select id="p-fac"></select></div>
+      <div class="prow" id="p-other" hidden>
+        <label for="p-oname">場所の名前</label><input type="text" id="p-oname" maxlength="40" placeholder="例：〇〇地区センター">
+        <label for="p-oward">区</label><select id="p-oward"></select></div>
+      <div class="prow"><span class="lbl">設備</span>
+        <div class="tri" id="tri-d"><span class="q">おむつ替え</span></div>
+        <div class="tri" id="tri-f"><span class="q">授乳室</span></div>
+        <div class="tri" id="tri-w"><span class="q">調乳のお湯</span></div>
+        <div class="tri" id="tri-dm"><span class="q">おむつ台の場所</span></div></div>
+      <div class="prow"><span class="lbl">飲食店の場合</span><div id="tri-rest"></div></div>
+      <div class="prow"><label for="p-ym">行った月</label><input type="month" id="p-ym"></div>
+      <div class="prow"><label for="p-note">ひとこと（任意・100文字まで）</label><textarea id="p-note" maxlength="100" placeholder="例：6階のベビー休憩室。ベビーカーごと入れた／男性トイレに台がなく困った"></textarea></div>
+      <button class="btn" id="p-submit" type="submit" disabled>投稿する</button>
+      <p class="pmsg" id="p-msg">投稿の仕組みを読み込んでいます…</p>
+    </form>
+
+    <div class="ptabs opts" role="group" aria-label="まとめ方">
+      <button class="opt" id="v-fac" type="button" aria-pressed="true">施設ごと</button>
+      <button class="opt" id="v-ward" type="button" aria-pressed="false">区ごと</button>
+    </div>
+    <div id="p-list"></div>
+  </section>
+
+  <section class="near" id="near" aria-label="近くで探す">
+    <h2>近くで探す</h2>
+    <div class="nctl"><button class="opt" id="near-here" type="button">📍 現在地から探す</button>
+      <select id="near-st" aria-label="近くの駅"></select></div>
+    <div class="opts" id="near-r"><button class="opt" data-v="500" type="button">500m</button><button class="opt" data-v="1000" type="button">1km</button><button class="opt" data-v="2000" type="button">2km</button><button class="opt" data-v="5000" type="button">5km</button></div>
+    <p class="note" id="near-msg"></p>
+    <div id="near-out"></div>
+  </section>
+
+  <section class="foodall" id="foodall" aria-label="エリア別のごはん"></section>
+
+  <section class="help" aria-label="困ったときの連絡先">
+    <h2>おでかけ中に困ったら</h2>
+    <p><b>子どもが急に具合が悪くなったら：</b>かながわ救急相談センター <b>#7119</b>（24時間365日）。迷ったら電話で相談できます。</p>
+    <p><b>日曜・祝日に子どもが熱を出したら：</b>各区の「休日急患診療所」（内科・小児科）が日曜・祝日の10時〜16時に開いています（青葉区は9〜12時・13〜16時）。行く前に電話して、保険証・医療証・現金を持って。</p>
+    <ul>
+      <li>青葉区 市ケ尾町31-21　045-973-2707</li>
+      <li>旭区 二俣川1-88-16　045-363-2020</li>
+      <li>神奈川区 反町1-8-4 はーと友神奈川3階　045-317-5474</li>
+      <li>金沢区 金沢町48　045-782-8785</li>
+      <li>夜（毎日20〜24時）：横浜市夜間急病センター（桜木町）045-212-3535</li>
+    </ul>
+    <p>ほかの区は<a href="https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/iryo/kyubyo/14248.html" target="_blank" rel="noopener">横浜市の救急医療機関の案内</a>で。（2026年11月10日確認）</p>
+    <p><b>子育ての相談・支援情報：</b>神奈川県のLINE「<a href="https://www.pref.kanagawa.jp/docs/sy8/kosodateps.html" target="_blank" rel="noopener">かながわ子育てパーソナルサポート</a>」で、保健師・助産師などへのオンライン相談や、#7119への案内が使えます。</p>
+    <p><b>お得なサービス：</b>横浜市の「<a href="https://www.city.yokohama.lg.jp/kurashi/kosodate-kyoiku/kosodateshien/default2020091.html" target="_blank" rel="noopener">ハマハグ</a>」（パマトコで登録証を表示）と県の「<a href="https://c.rakuraku.or.jp/k-pass/" target="_blank" rel="noopener">かながわ子育て応援パスポート</a>」は共通で使えます。</p>
+  </section>
+
+  <footer>
+    <p>情報収集日：2026年11月9〜10日。施設・主催者の公式サイト、横浜市・各区の発表、横浜市観光情報サイト、かながわ子育て応援パスポート、子育て支援情報サービスかながわ、地域ニュースなどをもとに要約しています。</p>
+    <p>情報の判断は、①運営の確認・実際に行った人の投稿（新しいもの）、②施設の公式・横浜市や神奈川県の情報、③まとめサイト・ブログの順に重みを付けています。食い違うときは「情報が分かれています」と表示します。</p>
+    <p>内容は変更・中止になることがあります。出かける前に必ず各リンク先の最新情報を確認してください。料金の「入園料のみ」は、催し自体は無料で施設の入場料がかかるものです。</p>
+  </footer>
+</div>
+
+<script>
+// ---- 服装イラスト（気温から自動で切り替え） ----
+const WX = [ { d:"11/14", max:20, min:12 }, { d:"11/15", max:18, min:13 } ];
+function band(t){ return t >= 25 ? 5 : t >= 20 ? 4 : t >= 16 ? 3 : t >= 11 ? 2 : 1; }
+const OUTFIT_TEXT = {
+  adult: { 5:"半袖＋薄いパンツ。日差しが強いので帽子を", 4:"長袖シャツ1枚", 3:"長袖＋カーディガンなど薄手の羽織り", 2:"長袖＋ジャケットやパーカー", 1:"ダウンなど厚手のコート＋マフラー" },
+  child: { 5:"半袖・半ズボン＋帽子", 4:"長袖1枚（動くと暑いので重ね着しすぎない）", 3:"長袖＋脱ぎ着しやすい薄手の上着", 2:"長袖＋ジャンパー（ベビーカーならひざ掛けも）", 1:"ダウン＋ニット帽・手袋（ベビーカーはフットマフも）" }
+};
+function figure(who, b){
+  const A = who === "adult";
+  const cx = 40, hr = A ? 11 : 12.5, hy = A ? 20 : 50, sy = hy + hr + 3, sw = A ? 30 : 26, sh = A ? 44 : 30, ly = sy + sh - 2, lh = A ? 48 : 32, aw = A ? 8 : 7;
+  const C = A ? { t5:"#f2b84b", t4:"#5b8fd1", inner:"#f4efe4", t3:"#c48a5c", t2:"#6e7f5c", t1:"#34507d", pants:"#3e4a5c", shorts:"#6f86a8", hair:"#3b2b24" }
+              : { t5:"#ff9c5b", t4:"#ef7d6b", inner:"#fff6e0", t3:"#7cb7a3", t2:"#e7b13b", t1:"#d65f5f", pants:"#4f6d8f", shorts:"#7fa3c9", hair:"#4a342a" };
+  const skin = "#f1c9a5", top = b >= 4 ? (b === 5 ? C.t5 : C.t4) : C.inner;
+  const lx = cx - sw/2, rx = cx + sw/2, lw = sw * 0.4;
+  let g = "";
+  // 脚
+  const shortL = b === 5 ? lh * 0.42 : lh;
+  g += `<rect x="${cx-lw-1}" y="${ly}" width="${lw}" height="${lh}" rx="3" fill="${skin}"/><rect x="${cx+1}" y="${ly}" width="${lw}" height="${lh}" rx="3" fill="${skin}"/>`;
+  g += `<rect x="${cx-lw-1}" y="${ly}" width="${lw}" height="${shortL}" rx="3" fill="${b===5?C.shorts:C.pants}"/><rect x="${cx+1}" y="${ly}" width="${lw}" height="${shortL}" rx="3" fill="${b===5?C.shorts:C.pants}"/>`;
+  g += `<ellipse cx="${cx-lw/2-1}" cy="${ly+lh}" rx="${lw/2+2}" ry="3.5" fill="#2b2b2b"/><ellipse cx="${cx+lw/2+1}" cy="${ly+lh}" rx="${lw/2+2}" ry="3.5" fill="#2b2b2b"/>`;
+  // 腕（素肌）＋袖
+  const sleeve = b === 5 ? sh * 0.3 : sh * 0.92;
+  g += `<rect x="${lx-aw}" y="${sy+2}" width="${aw}" height="${sh*0.92}" rx="${aw/2}" fill="${skin}"/><rect x="${rx}" y="${sy+2}" width="${aw}" height="${sh*0.92}" rx="${aw/2}" fill="${skin}"/>`;
+  g += `<rect x="${lx-aw}" y="${sy+2}" width="${aw}" height="${sleeve}" rx="${aw/2}" fill="${top}"/><rect x="${rx}" y="${sy+2}" width="${aw}" height="${sleeve}" rx="${aw/2}" fill="${top}"/>`;
+  // 胴
+  g += `<rect x="${lx}" y="${sy}" width="${sw}" height="${sh}" rx="7" fill="${top}"/>`;
+  // 上着
+  if (b <= 3) {
+    const oc = b === 3 ? C.t3 : b === 2 ? C.t2 : C.t1, ext = b === 1 ? (A ? 14 : 8) : 3, ow = b === 1 ? 4 : 2;
+    g += `<rect x="${lx-aw-ow/2}" y="${sy+1}" width="${aw+ow}" height="${sh*0.95}" rx="${(aw+ow)/2}" fill="${oc}"/><rect x="${rx-ow/2}" y="${sy+1}" width="${aw+ow}" height="${sh*0.95}" rx="${(aw+ow)/2}" fill="${oc}"/>`;
+    g += `<rect x="${lx-ow}" y="${sy-1}" width="${sw+ow*2}" height="${sh+ext}" rx="8" fill="${oc}"/>`;
+    if (b >= 2) g += `<rect x="${cx-3.5}" y="${sy}" width="7" height="${sh+ext-2}" fill="${C.inner}"/><line x1="${cx-3.5}" y1="${sy}" x2="${cx-3.5}" y2="${sy+sh+ext-2}" stroke="rgba(0,0,0,.18)"/><line x1="${cx+3.5}" y1="${sy}" x2="${cx+3.5}" y2="${sy+sh+ext-2}" stroke="rgba(0,0,0,.18)"/>`;
+    else { for (let i = 1; i < 4; i++) g += `<line x1="${lx}" y1="${sy+(sh+ext)*i/4}" x2="${rx}" y2="${sy+(sh+ext)*i/4}" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>`;
+           g += `<line x1="${cx}" y1="${sy+2}" x2="${cx}" y2="${sy+sh+ext-2}" stroke="rgba(0,0,0,.25)"/>`; }
+  }
+  // 首・頭
+  g += `<rect x="${cx-3}" y="${hy+hr-2}" width="6" height="6" fill="${skin}"/>`;
+  g += `<circle cx="${cx}" cy="${hy}" r="${hr}" fill="${skin}"/>`;
+  g += `<path d="M${cx-hr} ${hy} a${hr} ${hr} 0 0 1 ${hr*2} 0 q${-hr*0.4} ${-hr*0.55} ${-hr} ${-hr*0.45} q${-hr*0.6} ${hr*0.1} ${-hr} ${hr*0.45}z" fill="${C.hair}"/>`;
+  g += `<circle cx="${cx-hr*0.38}" cy="${hy+hr*0.15}" r="1.3" fill="#2b2b2b"/><circle cx="${cx+hr*0.38}" cy="${hy+hr*0.15}" r="1.3" fill="#2b2b2b"/>`;
+  g += `<path d="M${cx-3} ${hy+hr*0.5} q3 2.5 6 0" stroke="#a5523d" stroke-width="1.3" fill="none" stroke-linecap="round"/>`;
+  if (!A) g += `<circle cx="${cx-hr*0.62}" cy="${hy+hr*0.42}" r="2" fill="#f4a3a0" opacity=".7"/><circle cx="${cx+hr*0.62}" cy="${hy+hr*0.42}" r="2" fill="#f4a3a0" opacity=".7"/>`;
+  // 小物
+  if (b === 5) g += `<ellipse cx="${cx}" cy="${hy-hr*0.55}" rx="${hr*1.55}" ry="${hr*0.28}" fill="#e8d6a8"/><path d="M${cx-hr*0.85} ${hy-hr*0.55} a${hr*0.85} ${hr*0.8} 0 0 1 ${hr*1.7} 0z" fill="#e8d6a8"/>`;
+  if (b === 1) {
+    g += `<path d="M${cx-hr*1.02} ${hy-hr*0.15} a${hr*1.02} ${hr*1.02} 0 0 1 ${hr*2.04} 0z" fill="${A ? "#b9475a" : "#5b8fd1"}"/><circle cx="${cx}" cy="${hy-hr*1.05}" r="${hr*0.28}" fill="#f4efe4"/>`;
+    g += `<rect x="${cx-hr*0.9}" y="${hy+hr-1}" width="${hr*1.8}" height="6" rx="3" fill="${A ? "#e3b23c" : "#f4efe4"}"/><rect x="${cx+hr*0.25}" y="${hy+hr+3}" width="5" height="${A?14:10}" rx="2" fill="${A ? "#e3b23c" : "#f4efe4"}"/>`;
+    g += `<circle cx="${lx-aw/2-1}" cy="${sy+sh*0.95+2}" r="${aw*0.55}" fill="${A ? "#b9475a" : "#5b8fd1"}"/><circle cx="${rx+aw/2+1}" cy="${sy+sh*0.95+2}" r="${aw*0.55}" fill="${A ? "#b9475a" : "#5b8fd1"}"/>`;
+  }
+  return `<svg viewBox="0 0 80 140" width="${A ? 80 : 64}" height="${A ? 140 : 112}" role="img" aria-label="${A ? "大人" : "子ども"}の服装：${OUTFIT_TEXT[who][b]}">${g}</svg>`;
+}
+function scene(label, t, extra){
+  const b = band(t);
+  return `<div class="scene"><p class="sl">${label}<b>${t}℃前後</b></p>
+    <div class="figs"><figure>${figure("adult", b)}<figcaption><b>大人</b>${OUTFIT_TEXT.adult[b]}</figcaption></figure>
+    <figure>${figure("child", b)}<figcaption><b>子ども</b>${OUTFIT_TEXT.child[b]}</figcaption></figure></div>
+    ${extra ? `<p class="sx">${extra}</p>` : ""}</div>`;
+}
+function renderOutfit(){
+  const el = document.getElementById("outfit"); if (!el) return;
+  const day = Math.min(...WX.map(w => w.max)), night = Math.min(...WX.map(w => w.min));
+  el.innerHTML = `<h3>服装イメージ（${WX.map(w => w.d).join("・")}）</h3>
+    <div class="scenes">${scene("日中 ", day, "日なたは暖かい。脱いだ上着をしまえる袋があると楽。")}${scene("朝・夕方・夜 ", night, "海沿い・花火を見るときは風で寒く感じるので、もう1枚。")}</div>`;
+}
+
+const EVENTS = [
+  // ---- 今週末だけ ----
+  { t:"横浜市場まつり2026", days:["11/15"], time:"8:00〜13:30", ward:"神奈川区", venue:"横浜市中央卸売市場本場 水産棟",
+    price:"free", priceText:"入場無料（飲食・買い物は有料）", place:"屋内外", rain:"ok", rainText:"雨でも開催（荒天時は中止）",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"limited", start:480,
+    sum:"ふだん入れない卸売市場が開放される年1回の催し。マグロ解体ショー（9時・11時）、市場グルメ、子ども向けの工作コーナーなど。",
+    tip:"13:30で終わるので朝から。横浜駅東口から無料シャトルバスあり", url:"https://www.city.yokohama.lg.jp/business/kigyoshien/chuoshijo/ichibamatsuri2026.html", src:"横浜市" },
+  { t:"帆船日本丸 総帆展帆（今年最後）", days:["11/15"], time:"展帆 10:30〜12:00頃／畳帆 14:30〜16:00頃", ward:"西区", venue:"日本丸メモリアルパーク",
+    price:"free", priceText:"外から見るのは無料（船内見学は有料）", place:"屋外", rain:"check", rainText:"悪天候だと中止、または一部の帆だけになることあり",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"limited", start:630,
+    sum:"29枚の帆をボランティアが手作業で一斉に広げる、年12回だけの特別な姿。11/15が今年の最終回。",
+    tip:"帆を広げる作業そのものも見どころ", url:"https://www.nippon-maru.or.jp/10585", src:"帆船日本丸記念財団" },
+  { t:"横浜ナイトフラワーズ（花火）", days:["11/14"], time:"19:00〜19:05", ward:"中区", venue:"新港ふ頭（打ち上げ場所）",
+    price:"free", priceText:"無料", place:"屋外", rain:"check", rainText:"天候により変更の場合あり",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"limited", start:1140,
+    sum:"横浜港の夜景と一緒に約5分間の花火が楽しめる定期開催の企画。",
+    tip:"5分間だけなので、少し早めに見る場所を決めておくと安心", url:"https://minatomirai21.com/campaign/112656", src:"みなとみらい21公式" },
+  { t:"ホッチポッチ横浜 ごちゃまぜミュージックフェス", days:["11/14","11/15"], time:"土 12:00〜17:30／日 11:30〜17:30", ward:"中区", venue:"象の鼻パーク",
+    price:"free", priceText:"観覧無料（飲食・物販は有料）", place:"屋外", rain:"unknown", rainText:"雨の日の扱いは主催者の当日案内を確認",
+    resv:false, resvText:"観覧は予約不要", age:[0,99], ageText:"全年齢", kind:"limited", start:690,
+    sum:"横浜ゆかりのアーティストなど30組以上が出演する音楽祭。フードやハンドメイドなど約100店のマーケットも。",
+    tip:"", url:"https://arcship.jp/hotchpotch/", src:"公式サイト" },
+  { t:"横浜STEAM EXPO2026", days:["11/14","11/15"], time:"10:00〜16:00", ward:"中区", venue:"横浜港大さん橋 大さん橋ホール",
+    price:"unknown", priceText:"一部有料の企画あり（公式で確認）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"企画により異なる", age:[6,99], ageText:"小学生〜大人", kind:"limited", start:600,
+    sum:"神奈川県の専門高校の生徒たちが、学んでいる技術やものづくりを紹介するイベント。",
+    tip:"", url:"https://steamexpo.jp/", src:"公式サイト" },
+  { t:"横浜駅東口 まち音（ne）Fes", days:["11/14"], time:"11:00〜16:00", ward:"西区", venue:"横浜駅東口 はまテラス（そごう横浜店前デッキ）",
+    price:"free", priceText:"観覧無料", place:"屋外", rain:"ok", rainText:"雨の日は屋内の「鐘の広場」で実施",
+    resv:null, resvText:"観覧条件は公式で確認", age:[0,99], ageText:"全年齢", kind:"limited", start:660,
+    sum:"学生や地域団体による演奏・ダンスを楽しめる参加型の音楽フェス。",
+    tip:"買い物ついでに立ち寄りやすい", url:"https://www.keikyu.co.jp/report/2026/report2026101901.html", src:"京急電鉄" },
+  { t:"ハンバーガーフェス2026 横浜赤レンガ倉庫", days:["11/14","11/15"], time:"時間は公式で確認", ward:"中区", venue:"横浜赤レンガ倉庫 イベント広場",
+    price:"unknown", priceText:"入場・飲食料金は公式で確認", place:"屋外", rain:"unknown", rainText:"雨の日の扱いは公式で確認",
+    resv:null, resvText:"公式で確認", age:[0,99], ageText:"全年齢", kind:"limited", start:660,
+    sum:"赤レンガ倉庫のイベント広場で2日間開かれるハンバーガーのフードフェス。",
+    tip:"", url:"https://hamburger-fes.com/", src:"公式サイト" },
+  { t:"カムカムどうぶつえんフェスタ in ズーラシア", days:["11/14","11/15"], time:"時間は公式で確認", ward:"旭区", venue:"よこはま動物園ズーラシア",
+    price:"admission", priceText:"入園料のみ（大人800円・小中学生200円・未就学児無料）", place:"屋外", rain:"unknown", rainText:"雨の日の扱いは公式で確認",
+    resv:null, resvText:"公式で確認", age:[0,99], ageText:"全年齢", kind:"limited", start:570,
+    sum:"ズーラシアで2日間開催される特別イベント。内容と時間は公式ページで確認してください。",
+    tip:"土曜は小・中・高校生の入園が無料（学生証などが必要）", url:"https://www.hama-midorinokyokai.or.jp/zoo/zoorasia/details/2026/post-558968.php", src:"ズーラシア公式" },
+  { t:"こどもの国 あそび広場", days:["11/14"], time:"11:00〜15:00（14:45受付終了）", ward:"青葉区", venue:"こどもの国 ふれあい学び館",
+    price:"admission", priceText:"工作は無料（入園料：大人800円・小中学生300円・幼児200円）", place:"屋外", rain:"cancel", rainText:"雨天中止",
+    resv:false, resvText:"予約不要", age:[3,12], ageText:"幼児〜小学生", kind:"limited", start:660,
+    sum:"折り紙の八重かざぐるまやストローとんぼなどの工作を、遊びのボランティアが教えてくれる。",
+    tip:"", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw9065", src:"横浜市観光情報サイト" },
+  { t:"こどもの国 紙飛行機を飛ばそう", days:["11/15"], time:"10:00〜14:00（13:45受付終了）", ward:"青葉区", venue:"こどもの国 ふれあい学び館",
+    price:"admission", priceText:"入園料が必要（参加費は公式で確認）", place:"屋外", rain:"cancel", rainText:"雨天中止",
+    resv:false, resvText:"予約不要", age:[3,12], ageText:"幼児〜小学生", kind:"limited", start:600,
+    sum:"輪ゴムで飛ばす紙飛行機を作って飛ばす。町田紙飛行機倶楽部のスタッフが教えてくれる。",
+    tip:"同じ日の13:00・14:30には紙芝居ライブも", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw9065", src:"横浜市観光情報サイト" },
+  { t:"こどもの国牧場 乳しぼり体験", days:["11/14","11/15"], time:"11:00／14:00", ward:"青葉区", venue:"こどもの国 牧場牛舎前",
+    price:"admission", priceText:"入園料が必要（参加費は公式で確認）", place:"屋外", rain:"cancel", rainText:"雨天中止",
+    resv:false, resvText:"当日整理券（先着60人）", age:[4,99], ageText:"4歳以上", kind:"limited", start:660,
+    sum:"本物の牛の乳しぼりを体験できる。開園時から牧場のエサ売り場で整理券を配布。",
+    tip:"先着順なので開園直後に整理券をもらうのが確実", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw9065", src:"横浜市観光情報サイト" },
+  { t:"こどもの国牧場 バター作り教室", days:["11/15"], time:"10:30", ward:"青葉区", venue:"こどもの国 ミルクプラント1階",
+    price:"paid", priceText:"1組800円（別途入園料）", place:"屋内", rain:"cancel", rainText:"雨天中止",
+    resv:false, resvText:"当日受付（先着10組）", age:[3,99], ageText:"親子向け", kind:"limited", start:630,
+    sum:"牧場の牛乳を使ってバターを手作りする教室。開園時からミルクプラント売店で受付。",
+    tip:"10組だけなので開園と同時に受付へ", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw9065", src:"横浜市観光情報サイト" },
+  { t:"どろん子ふぇすた2026", days:["11/14"], time:"10:00〜15:00", ward:"青葉区", venue:"自然保育園どろん子（寺家町）",
+    price:"unknown", priceText:"料金は問い合わせて確認", place:"屋外", rain:"unknown", rainText:"雨の日の扱いは問い合わせて確認",
+    resv:false, resvText:"予約不要", age:[0,12], ageText:"乳幼児〜小学生", kind:"limited", start:600,
+    sum:"保育園を地域に開く年1回のお祭り。フリマ、アートワークショップ、絵本の読み聞かせ、子ども向けゲームなど。",
+    tip:"問い合わせ：045-961-6682（同園）", url:"https://www.townnews.co.jp/0101/2026/10/31/860075.html", src:"タウンニュース青葉区版" },
+  { t:"親子で自然あそび（都筑区）", days:["11/14"], time:"時間は申込ページで確認", ward:"都筑区", venue:"牛久保公園（センター北周辺）",
+    price:"free", priceText:"無料", place:"屋外", rain:"unknown", rainText:"雨の日の扱いは申込ページで確認",
+    resv:true, resvText:"要予約", age:[0,12], ageText:"未就園児から", kind:"limited", start:600,
+    sum:"月1回、第2土曜に開く親子の外遊び。川に入ったり泥だらけになったり、子どものやりたいことを大切にして遊ぶ。",
+    tip:"汚れてもいい服と着替えがあると安心", url:"https://iko-yo.net/events?area_ids%5B%5D=106&prefecture_ids%5B%5D=14", src:"いこーよ" },
+  { t:"三溪園 手仕事に遊ぶ錦秋 vol.10", days:["11/14","11/15"], time:"10:00〜17:00", ward:"中区", venue:"三溪園 鶴翔閣・白雲邸",
+    price:"admission", priceText:"催しは無料（三溪園の入園料が必要）", place:"屋内", rain:"ok", rainText:"建物内での開催",
+    resv:false, resvText:"予約不要（一部の茶会などは個別条件）", age:[13,99], ageText:"大人向け", kind:"limited", start:600,
+    sum:"作り手21組の手仕事に出会える秋の催し。11/13〜15の3日間。",
+    tip:"同時期に菊花展も開催中", url:"https://www.sankeien.or.jp/event/10816/", src:"三溪園" },
+  { t:"横浜・みなとみらい 朝日クルーズ", days:["11/15"], time:"5:45〜6:30（5:30集合）", ward:"西区", venue:"横浜ハンマーヘッド前 新港さん橋",
+    price:"paid", priceText:"3,500円", place:"屋外", rain:"check", rainText:"荒天時はコース変更・運休の可能性あり",
+    resv:true, resvText:"要予約（販売は11/13 21時まで予定）", age:[13,99], ageText:"大人向け", kind:"limited", start:345,
+    sum:"45分間の早朝クルーズで、海の上から日の出を見る。",
+    tip:"", url:"https://www.hammerhead.co.jp/eventinfo/detail/?cd=000396", src:"横浜ハンマーヘッド" },
+  { t:"THE MOVEUM YOKOHAMA「印象派モネと浮世絵」", days:["11/14"], time:"毎時00分スタート", ward:"中区", venue:"横浜山下ふ頭4号上屋",
+    price:"paid", priceText:"一般3,000円〜（中学生以下無料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"オンライン券あり", age:[13,99], ageText:"大人向け（小学生以下は保護者同伴）", kind:"limited", start:600,
+    sum:"モネの絵画と浮世絵を大画面の映像で体験する没入型の展示。会期は長いが、11/15は一般営業がお休み。",
+    tip:"週末に行くなら14日(土)のみ", url:"https://global.toyota/info/themoveum/events/immersive-monet/", src:"公式サイト" },
+
+  // ---- 期間中に週末を含むもの ----
+  { t:"放送30周年記念「名探偵コナン」展", days:["11/14","11/15"], time:"10:00〜18:30（最終入場18:00）", period:"11/14〜12/6", ward:"中区", venue:"横浜赤レンガ倉庫1号館",
+    price:"paid", priceText:"当日 一般2,200円・学生1,500円（未就学児無料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"前売りは11/13まで・当日券あり", age:[6,99], ageText:"小学生〜大人", kind:"ongoing", start:600,
+    sum:"TVアニメの制作の裏側や名場面を振り返る展覧会。11/14が初日。",
+    tip:"前売りのほうが200円安い", url:"https://www.tvconanten-30th.jp/yokohama_venue.html", src:"公式サイト" },
+  { t:"横浜・みなとみらい Winter Holiday 2026（DQ×FF）", days:["11/14","11/15"], time:"施設の営業時間内", period:"11/11〜2027/1/11", ward:"西区", venue:"ランドマークプラザ・MARK IS みなとみらい ほか",
+    price:"free", priceText:"装飾の観覧は無料（カフェ・工房は有料）", place:"屋内", rain:"ok", rainText:"屋内中心なので雨でもOK",
+    resv:false, resvText:"観覧は予約不要（カフェ・工房は別途予約）", age:[0,99], ageText:"全年齢", kind:"ongoing", start:660,
+    sum:"ドラゴンクエスト×ファイナルファンタジーのクリスマス装飾やツリーを見て回れる冬の企画。",
+    tip:"", url:"https://minatomirai21.com/campaign/155824", src:"みなとみらい21公式" },
+  { t:"アンパンマンたちと楽しむクリスマス", days:["11/14","11/15"], time:"施設の営業時間内", period:"11/1〜12/25", ward:"西区", venue:"横浜アンパンマンこどもミュージアム",
+    price:"paid", priceText:"ミュージアムの入館料が必要", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"入館方法は公式で確認", age:[0,6], ageText:"0歳〜未就学児", kind:"ongoing", start:600,
+    sum:"サンタ姿のアンパンマンやトナカイ姿のばいきんまんに会える期間限定のクリスマス企画。お面工作も。",
+    tip:"", url:"https://minatomirai21.com/campaign/100784", src:"みなとみらい21公式" },
+  { t:"みなとみらいクリスマスマーケット2026", days:["11/14","11/15"], time:"時間は公式で確認", period:"11/13〜12/25", ward:"西区", venue:"グランモール公園「美術の広場」周辺",
+    price:"unknown", priceText:"入場・飲食料金は公式で確認", place:"屋外", rain:"check", rainText:"雨の日は内容が変わる場合あり",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:660,
+    sum:"美術館前の広場に出店が並ぶクリスマスマーケット。11/13に始まったばかり。",
+    tip:"", url:"https://www.welcome.city.yokohama.jp/eventinfo/?flg=WEEK", src:"横浜市観光情報サイト" },
+  { t:"2027春節燈花（中華街イルミネーション）", days:["11/14","11/15"], time:"16:00〜23:00", period:"11/1〜2027/2/20", ward:"中区", venue:"横浜中華街全域",
+    price:"free", priceText:"観覧無料", place:"屋外", rain:"ok", rainText:"屋外だが雨の日も点灯",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:960,
+    sum:"中華街をたくさんのランタンが彩る夜のイルミネーション。",
+    tip:"美食節（中華街の食のフェア）と合わせて夕食がてらに", url:"https://www.chinatown.or.jp/event/event/shunsetsutouka2027/", src:"横浜中華街公式" },
+  { t:"第19回 美食節 横濵中華街フードフェスティバル", days:["11/14","11/15"], time:"各店の営業時間", period:"11/1〜11/30", ward:"中区", venue:"横浜中華街の参加店舗",
+    price:"paid", priceText:"各店の飲食代", place:"屋内", rain:"ok", rainText:"店内なので雨でもOK",
+    resv:null, resvText:"店舗による", age:[0,99], ageText:"全年齢", kind:"ongoing", start:660,
+    sum:"中華街の参加店が特別メニューなどで食文化を紹介する11月の食のフェア。",
+    tip:"", url:"https://www.chinatown.or.jp/event/event/2026_food_festival/", src:"横浜中華街公式" },
+  { t:"三溪園 菊花展2026", days:["11/14","11/15"], time:"9:00〜16:00", period:"10/31〜11/23", ward:"中区", venue:"三溪園 中央広場など",
+    price:"admission", priceText:"観覧無料（三溪園の入園料が必要）", place:"屋外", rain:"check", rainText:"屋外展示あり。天候による変更は公式で確認",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:540,
+    sum:"約240点の菊を展示。愛好家による解説も。",
+    tip:"", url:"https://www.sankeien.or.jp/event/10849/", src:"三溪園" },
+  { t:"マリー・アントワネット・スタイル", days:["11/14","11/15"], time:"10:00〜18:00（14日は20:00まで）", period:"〜11/23", ward:"西区", venue:"横浜美術館",
+    price:"paid", priceText:"一般2,500円（中学生以下無料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"チケットの買い方は公式で確認", age:[13,99], ageText:"大人向け", kind:"ongoing", start:600,
+    sum:"マリー・アントワネットをめぐるファッションと装飾芸術の展覧会。会期は残り約1週間。",
+    tip:"", url:"https://yokohama.art.museum/exhibition/202608_marie2026/", src:"横浜美術館" },
+  { t:"謎解き冒険ラリー 不思議ハンター in 岸根公園", days:["11/14","11/15"], time:"時間は公式で確認", period:"10/31〜11/15", ward:"港北区", venue:"岸根公園",
+    price:"unknown", priceText:"参加費は公式で確認", place:"屋外", rain:"unknown", rainText:"雨の日の扱いは公式で確認",
+    resv:null, resvText:"公式で確認", age:[6,99], ageText:"小学生〜大人", kind:"ongoing", start:600,
+    sum:"公園を歩きながら謎を解いていく冒険ラリー。15日が最終日。",
+    tip:"", url:"https://www.at-yokohama.net/events/6420", src:"アットよこはま" },
+  { t:"かえるのピクルス スタンプラリーin横浜 2026", days:["11/14","11/15"], time:"各スポットの営業時間", period:"11/1〜12/25", ward:"中区", venue:"横浜人形の家、そごう横浜店、アメリカ山公園ほか",
+    price:"unknown", priceText:"参加方法は公式で確認", place:"屋内", rain:"ok", rainText:"屋内のスポットが中心",
+    resv:false, resvText:"予約不要", age:[0,12], ageText:"乳幼児〜小学生", kind:"ongoing", start:600,
+    sum:"かえるのピクルスのスタンプを集めながら元町・山下公園周辺などを巡るラリー。",
+    tip:"", url:"https://www.welcome.city.yokohama.jp/eventinfo/?flg=WEEK&page=3", src:"横浜市観光情報サイト" },
+  { t:"ミナトノアート2026", days:["11/14","11/15"], time:"馬車道駅の展示は始発〜終電", period:"11/6〜11/23", ward:"中区", venue:"馬車道駅構内・象の鼻テラスほか",
+    price:"unknown", priceText:"企画ごとに異なる", place:"屋内", rain:"ok", rainText:"駅構内など屋内会場あり",
+    resv:false, resvText:"馬車道駅の展示は予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:600,
+    sum:"横浜ゆかりの作家による展示を中心にしたアートの企画。",
+    tip:"", url:"https://minatonoart.jp/", src:"公式サイト" },
+  { t:"都市伝説解体センター×横浜マリンタワー 謎解きラリー", days:["11/14","11/15"], time:"施設の営業時間内", period:"11/2〜11/23", ward:"中区", venue:"横浜マリンタワー",
+    price:"paid", priceText:"イベント専用券が必要", place:"屋内", rain:"ok", rainText:"屋内（強風時は展望フロア休業の場合あり）",
+    resv:null, resvText:"専用券を購入", age:[13,99], ageText:"中高生・大人", kind:"ongoing", start:600,
+    sum:"マリンタワーにある絵画の噂を調べていく謎解きラリー。",
+    tip:"", url:"https://marinetower.yokohama/events/202610223826/", src:"横浜マリンタワー" },
+  { t:"開館40周年記念展「横浜人形の家 建築と記憶」", days:["11/14","11/15"], time:"施設の開館時間内", period:"9/5〜11/23", ward:"中区", venue:"横浜人形の家",
+    price:"paid", priceText:"入館料が必要", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[6,99], ageText:"小学生〜大人", kind:"ongoing", start:600,
+    sum:"開館40周年を迎えた横浜人形の家の建物と歩みを振り返る展示。",
+    tip:"", url:"https://www.at-yokohama.net/events/5947", src:"アットよこはま" }
+];
+
+
+const FOOD = {
+  "mm": { name:"みなとみらい・桜木町", note:"大型商業施設が多く、ベビーカーで移動しやすいエリアです。", shops:[
+    { n:"24/7 restaurant（東急スクエア③ 3F）", kind:"レストラン", hours:"11:00〜22:00", tags:["キッズメニュー","小上がり席","ベビーチェア","おむつ交換台"],
+      d:"テラス席から景色が見えるレストラン。ランチのキッズビュッフェは3歳以下無料。授乳室は東急スクエア①4階。", url:"https://www.welcome.city.yokohama.jp/kids/eat.php", src:"横浜市観光情報サイト" },
+    { n:"アロハテーブル コレットマーレみなとみらい", kind:"カフェ", hours:"11:00〜22:00", tags:["ベビーカーOK","キッズメニュー","ベビーチェア","おむつ交換台","授乳室"],
+      d:"ハワイアンカフェ。キッズロコモコなどミニサイズのメニューや、チョコペンでお絵かきできるパンケーキあり。", url:"https://www.welcome.city.yokohama.jp/kids/eat.php", src:"横浜市観光情報サイト" },
+    { n:"モスプレミアム 桜木町クロスゲート店", kind:"ハンバーガー", hours:"10:00〜22:00", tags:["ベビーカーOK","子ども用カトラリー"],
+      d:"桜木町駅すぐ。席の間隔が広く、ベビーカーのまま入りやすい。", url:"https://macaro-ni.jp/174701", src:"macaroni" }
+  ]},
+  "yamashita": { name:"赤レンガ・象の鼻・山下公園・中華街", note:"中華街は店内が狭い店も多いので、ベビーカーなら山下公園側のお店が安心です。", shops:[
+    { n:"THE WHARF HOUSE 山下公園", kind:"カフェ・レストラン", hours:"カフェ 9:00〜17:00／レストラン 17:00〜22:00", tags:["キッズメニュー","キッズスペース","ベビーチェア","おむつ交換台","授乳室"],
+      d:"山下公園の先端にある店。芝生エリアやピクニックセットの貸し出しもあり、外で食べることもできる。", url:"https://wharfhouse-yokohama.zetton.co.jp/", src:"公式サイト" },
+    { n:"象の鼻テラス", kind:"カフェ・休憩所", hours:"10:00〜18:00", tags:["無料休憩所","おむつ交換台","ベビーキープ"],
+      d:"カフェ併設の無料休憩所。ガラス越しに港が見える。ホッチポッチ横浜の会場のすぐ隣。", url:"https://zounohana.com/", src:"公式サイト" }
+  ]},
+  "yokohama-st": { name:"横浜駅周辺", note:"駅直結の百貨店は授乳室やベビーカー貸し出しがあり、雨の日も移動しやすいです。", shops:[
+    { n:"資生堂パーラー 横浜高島屋店（6F）", kind:"洋食・パーラー", hours:"10:00〜20:00", tags:["キッズメニュー","ベビーチェア","おむつ交換台","授乳室"],
+      d:"小学生以下限定のキッズプレートとキッズパフェあり。授乳室とキッズスペースは同じ6階の子ども服売り場に。", url:"https://parlour.shiseido.co.jp/shoplist/yokohamatakashimaya/", src:"公式サイト" }
+  ]},
+  "honmoku": { name:"三溪園", note:"園内は飲食物の持ち込みOK（内苑など一部を除く）。ベビーシートはありますが授乳室はありません。", shops:[
+    { n:"三溪園の茶店（待春軒など）", kind:"園内の茶店", hours:"三溪園の開園時間内", tags:["園内で食べられる","お弁当持ち込みOK"],
+      d:"そば・うどん、季節のお弁当、和のスイーツなど。名物は「三溪麺」。", url:"https://www.gltjp.com/ja/directory/item/11134/", src:"三溪園（施設確認済み情報）" }
+  ]},
+  "kodomonokuni": { name:"こどもの国", note:"周りにお店が少ないので、園内で食べるのが基本です。お弁当の持ち込みもOK。", shops:[
+    { n:"園内のレストラン・売店", kind:"園内", hours:"開園時間内", tags:["ベビーカーOK","お弁当持ち込みOK","授乳室"],
+      d:"レストランと売店が園内にあり、牧場のソフトクリームが名物。授乳室はSL売店そばや自転車乗り場にある。", url:"https://iko-yo.net/facilities/809", src:"いこーよ" }
+  ]},
+  "zoorasia": { name:"ズーラシア", note:"園内は広く、いつでも買える売店は多くありません。小さな子にはすぐ食べられるパンなどがあると安心です。", shops:[
+    { n:"オージーヒルグリル（園内）", kind:"レストラン", hours:"開園時間内", tags:["園内で食べられる","広い店内"],
+      d:"園内で一番大きなレストラン。ラーメン、カレー、オムライスなど。正門・北門のどちらからも同じくらいの距離。", url:"https://castel.jp/p/6547", src:"CASTEL" },
+    { n:"サバンナテラス（園内）", kind:"レストラン", hours:"開園時間内", tags:["園内で食べられる"],
+      d:"「アフリカのサバンナ」ゾーンにあり、アフリカ料理のムアンバライスが食べられる。", url:"https://www.gltjp.com/ja/directory/item/10153/", src:"ズーラシア（施設確認済み情報）" }
+  ]},
+  "centerkita": { name:"センター北", note:"駅前のモザイクモール港北・ノースポートモールに飲食店が集まっています。", shops:[
+    { n:"cafe fredy モザイクモール港北店（1F）", kind:"カフェ", hours:"施設の営業時間", tags:["キッズメニュー","ソファ席"],
+      d:"フレンチトーストが看板のカフェ。食事メニューもある。", url:"https://hamoni.jp/area/kanagawa/yokohama/center-kita/shops/cafe-kissaten", src:"HAMONI" },
+    { n:"木曽路 港北ニュータウン店", kind:"和食", hours:"土 11:00〜15:00／日 11:00〜21:30", tags:["個室あり"],
+      d:"センター北駅から徒歩5分。個室があるので、小さい子連れでも周りを気にせず食べられる。", url:"https://macaro-ni.jp/60677", src:"macaroni" }
+  ]}
+};
+const FOOD_OF = {
+  "横浜市場まつり2026":"yokohama-st", "帆船日本丸 総帆展帆（今年最後）":"mm", "横浜ナイトフラワーズ（花火）":"yamashita",
+  "ホッチポッチ横浜 ごちゃまぜミュージックフェス":"yamashita", "横浜STEAM EXPO2026":"yamashita", "横浜駅東口 まち音（ne）Fes":"yokohama-st",
+  "ハンバーガーフェス2026 横浜赤レンガ倉庫":"yamashita", "カムカムどうぶつえんフェスタ in ズーラシア":"zoorasia",
+  "こどもの国 あそび広場":"kodomonokuni", "こどもの国 紙飛行機を飛ばそう":"kodomonokuni", "こどもの国牧場 乳しぼり体験":"kodomonokuni", "こどもの国牧場 バター作り教室":"kodomonokuni",
+  "親子で自然あそび（都筑区）":"centerkita", "三溪園 手仕事に遊ぶ錦秋 vol.10":"honmoku", "三溪園 菊花展2026":"honmoku",
+  "横浜・みなとみらい 朝日クルーズ":"mm", "THE MOVEUM YOKOHAMA「印象派モネと浮世絵」":"yamashita", "放送30周年記念「名探偵コナン」展":"yamashita",
+  "横浜・みなとみらい Winter Holiday 2026（DQ×FF）":"mm", "アンパンマンたちと楽しむクリスマス":"mm", "みなとみらいクリスマスマーケット2026":"mm",
+  "2027春節燈花（中華街イルミネーション）":"yamashita", "第19回 美食節 横濵中華街フードフェスティバル":"yamashita", "マリー・アントワネット・スタイル":"mm",
+  "かえるのピクルス スタンプラリーin横浜 2026":"yamashita", "ミナトノアート2026":"yamashita", "都市伝説解体センター×横浜マリンタワー 謎解きラリー":"yamashita",
+  "開館40周年記念展「横浜人形の家 建築と記憶」":"yamashita"
+};
+function shopHtml(sh){
+  return `<div class="shop"><span class="nm"><a href="${esc(sh.url)}" target="_blank" rel="noopener">${esc(sh.n)}</a></span>
+    <p class="meta">${esc(sh.kind)}・${esc(sh.hours)}（出典：${esc(sh.src)}）</p>
+    <ul class="ktags">${sh.tags.map(t => `<li class="ktag">${esc(t)}</li>`).join("")}</ul>
+    <p class="ds">${esc(sh.d)}</p>${asofHtml(sh.n)}<div data-spot="${esc(sh.n)}"></div></div>`;
+}
+// ---- ファミレス（チェーン）の目安 ----
+const CHAINS = [
+  { n:"デニーズ", t:"キッズメニューあり。有料の離乳食（7〜8か月ごろ向け）がある", src:"HugKum" },
+  { n:"ガスト・バーミヤン・ジョナサン", t:"キッズメニューに、おもちゃが付く「ラッキーセット」がある", src:"グルメWatch（2024年）" },
+  { n:"サイゼリヤ", t:"子ども用メニューは「終わった」という記事と「ある」という記事があり、情報が分かれています。ミラノ風ドリアやスープは取り分けやすい定番", src:"マカロニ・assist-all" }
+];
+// ---- 離乳食・子ども無料サービス ----
+const BABYFOOD_CHAINS = [
+  { n:"スープストックトーキョー", t:"🥣 離乳食が無料（9〜11か月ごろ向け・100g・店内で食べるときだけ）。テイクアウト専門の「家で食べるスープストックトーキョー」は対象外", src:"マカロニ（2023年4月〜全店）", free:true },
+  { n:"和食さと", t:"🥣 1歳未満は離乳食が1食無料（7か月ごろから）。タッチパネルで注文", src:"グルメWatch（2025年6月〜全店）", free:true },
+  { n:"とんでん", t:"🥣 1歳未満は離乳食が無料", src:"いこーよ（2026年）", free:true },
+  { n:"PISOLA（ピソラ）", t:"未就学児のキッズメニューが無料（2026年1月〜）。離乳食の提供はなし・持ち込みOK", src:"いこーよ（2026年）" },
+  { n:"しゃぶしゃぶ温野菜", t:"未就学児は食べ放題が無料", src:"いこーよ（2026年）" },
+  { n:"ベーカリーレストラン サンマルク", t:"🥖 3歳以下はパン食べ放題とドリンクバーが無料。4歳以上のお子さまパン食べ放題は220円（店舗で違う場合あり）", src:"サンマルク公式メニュー・食べログ（2025年）", free:true },
+  { n:"ベーカリーレストラン バケット", t:"🥖 3歳以下はパン食べ放題とドリンクが無料。離乳食の持ち込み・湯せんでの温めOK", src:"サンマルクHD バケット公式（2026年）", free:true },
+  { n:"デニーズ", t:"離乳食は有料（7〜8か月ごろ向け）。3歳以下はドリンクと誕生月のスイーツが無料", src:"HugKum・いこーよ（2026年）" },
+  { n:"レストラン馬車道", t:"離乳食は有料（7か月・9か月向け）", src:"HugKum" },
+  { n:"ステーキガスト", t:"3歳以下はサラダ・カレー・パンが無料", src:"いこーよ（2026年）" },
+  { n:"しゃぶ葉", t:"未就学児は食べ放題が無料", src:"いこーよ（2026年）" }
+];
+const BABYFOOD_SHOPS = [
+  { n:"スープストックトーキョー 横浜ランドマークプラザ店", g:[35.4555,139.6320], ward:"西区", d:"ランドマークプラザ1階・8:00〜22:00", src:"スープストック公式・ぐるなび" },
+  { n:"スープストックトーキョー CIAL桜木町店", g:[35.4510,139.6312], ward:"中区", d:"JR桜木町駅の北改札を出てすぐ（CIAL桜木町）", src:"ぐるなび・食べログ" },
+  { n:"スープストックトーキョー 横浜ポルタ店", g:[35.4655,139.6240], ward:"西区", d:"横浜駅東口の地下街ポルタ", src:"食べログ・menu" },
+  { n:"スープストックトーキョー FOOD&TIME ISETAN YOKOHAMA店", g:[35.4652,139.6205], ward:"西区", d:"横浜駅西口・相鉄ジョイナス地下1階・7:30〜22:00", src:"食べログ" },
+  { n:"スープストックトーキョー たまプラーザテラス店", g:[35.5770,139.5590], ward:"青葉区", d:"たまプラーザテラス内・たまプラーザ駅すぐ", src:"ぐるなび・ファッションプレス" },
+  { n:"和食さと 富岡店", g:[35.3700,139.6280], ward:"金沢区", d:"金沢区富岡東6-31-11（車向き）", src:"JAFナビ", sato:true }
+];
+function babyFoodNear(e){
+  const g = venueGeo(e); if (!g) return "";
+  const near = BABYFOOD_SHOPS.map(sh => ({ sh, d: distM(g, sh.g) })).filter(x => Math.round(x.d * 1.3 / 70) <= 10).sort((a, b) => a.d - b.d);
+  if (!near.length) return "";
+  return `<div class="bfood"><b>🥣 歩いて10分以内で離乳食が無料でもらえるお店</b><ul>${near.map(x => `<li><b>${esc(x.sh.n)}</b>　<span class="m">${esc(x.sh.d)}・会場からベビーカーで約${Math.max(1, Math.round(x.d * 1.3 / 70))}分（目安）</span></li>`).join("")}</ul><p class="note">9〜11か月ごろ向け・店内で食べるときだけ。提供の有無や中身は時期で変わることがあります。</p></div>`;
+}
+// ---- 歩いて10分以内の子ども向けメニューがあるお店 ----
+const KIDS_SHOPS = [
+  // みなとみらい・桜木町
+  { n:"24/7 restaurant（みなとみらい東急スクエア③ 3F）", g:[35.4565,139.6338], k:"キッズプレート（980円）・3歳以下はランチのキッズビュッフェ無料", tags:["ベビーカーOK","小上がり席・ソファ席","ベビーチェア","予約できる"], src:"マカロニ（2026年2月）・横浜市観光情報" },
+  { n:"アロハテーブル コレットマーレみなとみらい（1F）", g:[35.4515,139.6302], k:"キッズロコモコ・キッズハンバーグプレート", tags:["ベビーカーのまま入店OK","ベビーチェア","おむつ交換台"], src:"横浜市観光情報（2024年）" },
+  { n:"ベーカリーレストラン サンマルク コレットマーレみなとみらい店（6F）", g:[35.4515,139.6302], k:"🥖 3歳以下はパン食べ放題とドリンクバーが無料。お子さまメニュー（カレー・お子さまプレートなど）。4歳以上のお子さまパン食べ放題は220円（店舗で違う場合あり）", tags:["ベビーカーOK（チェーンの案内）","桜木町駅すぐ"], src:"サンマルク公式メニュー・食べログ（神戸学園都市店の例）" },
+  { n:"ダッキーダックキッチン コレットマーレみなとみらい店", g:[35.4515,139.6302], k:"キッズプレート（オムライス・880円）", tags:["桜木町駅すぐ"], src:"マカロニ（2026年2月）" },
+  { n:"モスプレミアム 桜木町クロスゲート店（1F）", g:[35.4503,139.6335], k:"キッズメニューの記載なし（バーガーを切ってくれる・子ども用カトラリーあり）", tags:["ベビーカーのまま入りやすい","席が広い","子ども歓迎"], src:"マカロニ（2026年2月）" },
+  { n:"おぼんdeごはん MARK IS みなとみらい店（4F）", g:[35.4575,139.6330], k:"おぼんdeお子様ランチ（850円）", tags:["和食","ボーネルンドの遊び場の近く"], src:"マカロニ（2026年2月）" },
+  { n:"J.S. PANCAKE CAFE MARK IS みなとみらい店", g:[35.4575,139.6330], k:"取り分けしやすいパンケーキ", tags:["ソファ席","ベビーチェア"], src:"aumo" },
+  { n:"Disney HARVEST MARKET 横浜赤レンガ倉庫店（2号館3F）", g:[35.4527,139.6430], k:"Wow! ミニハンバーガープレート（1,320円）", tags:["ベビーカーで入りやすい","予約がおすすめ"], src:"マカロニ（2026年2月）" },
+  { n:"鎌倉パスタ 横浜ワールドポーターズ店", g:[35.4541,139.6386], k:"お子様パスタ（429円）", tags:["座敷席","半個室のような席"], src:"マカロニ（2026年2月）" },
+  { n:"山下本気うどん 横浜ワールドポーターズ店（フードコート）", g:[35.4541,139.6386], k:"お子さまセット（590円）", tags:["フードコート","気軽に入れる"], src:"マカロニ（2026年2月）" },
+  // 山下公園・中華街・日本大通り
+  { n:"THE WHARF HOUSE 山下公園", g:[35.4458,139.6502], k:"キッズメニュー", tags:["キッズスペース","おもちゃの貸し出し","ベビーチェア","おむつ交換台","授乳室","ミルク用のお湯"], src:"横浜市観光情報（2024年）" },
+  { n:"pignic cafe 横浜店（山下町）", g:[35.4440,139.6455], k:"キッズメニューの記載なし", tags:["キッズスペース（2歳以下無料）","ミルク用のお湯","子ども歓迎"], src:"横浜市観光情報（2024年）" },
+  { n:"象の鼻テラス（カフェ）", g:[35.4510,139.6427], k:"キッズメニューの記載なし", tags:["おむつ交換台","子ども用トイレ","子ども歓迎"], src:"横浜市観光情報（2024年）" },
+  { n:"中華街 桂宮（中華街大通り）", g:[35.4432,139.6462], k:"お子様プレート（予約時に相談）", tags:["個室","子ども歓迎の接客"], src:"オズモールの口コミ（2026年）" },
+  // 横浜駅
+  { n:"鎌倉海街テーブル（そごう横浜 10F）", g:[35.4655,139.6245], k:"ちょっと贅沢なお子様ランチ・離乳食メニュー10種", tags:["ボーネルンド監修キッズスペース","キッズスペース付き個室","駅直結"], src:"マカロニ（2026年2月）・aumo" },
+  { n:"tables cook & LIVING HOUSE（横浜ベイクォーター 4F）", g:[35.4685,139.6258], k:"キッズプレート・キッズパンケーキ", tags:["テラス席","禁煙"], src:"マカロニ（2026年2月）" },
+  { n:"アロハテーブル 横浜ベイクォーター", g:[35.4685,139.6258], k:"お子様ランチ・キッズパンケーキ", tags:["ハワイアン"], src:"マカロニ（2026年2月）" },
+  { n:"京都石塀小路 豆ちゃ 横浜（ルミネ横浜 7F）", g:[35.4645,139.6235], k:"子ばんざい箱御膳（和風お子様御膳）", tags:["半個室・BOX席","和食"], src:"マカロニ（2026年2月）" },
+  { n:"ブリル飯店（ルミネ横浜 7F）", g:[35.4645,139.6235], k:"お子様ラーメン・お子様炒飯", tags:["中華"], src:"マカロニ（2026年2月）" },
+  { n:"和カフェ Tsumugi（FOOD&TIME ISETAN YOKOHAMA 地下1階）", g:[35.4655,139.6210], k:"おにぎりプレート・うどん・カレーなど", tags:["近くに子どもの遊び場","子連れが多い"], src:"食べログの口コミ" },
+  { n:"資生堂パーラー 横浜高島屋店（6F）", g:[35.4648,139.6205], k:"キッズプレート・キッズパフェ（小学生以下）", tags:["ベビーチェア","同じ階に授乳室・キッズスペース"], src:"横浜市観光情報（2024年）" },
+  // ズーラシア・金沢動物園・二俣川
+  { n:"オージーヒルグリル（ズーラシア園内・オセアニアの草原）", g:[35.4950,139.5265], k:"お子様カレー", tags:["キッズチェア","子ども用取り皿","離乳食用の電子レンジ","ミルク用のお湯"], src:"いこーよ（2019年取材・古い情報）" },
+  { n:"金沢動物園 園内のレストラン", g:[35.3620,139.6085], k:"お子様カレー（2019年は800円）", tags:["園内"], src:"いこーよ（2019年取材・古い情報）" },
+  { n:"鎌倉パスタ ジョイナステラス二俣川店（4F）", g:[35.4630,139.5325], k:"キッズメニューはお店に確認（同じチェーンのワールドポーターズ店にはお子様パスタあり）", tags:["駅直結のビル","同じビルにキッズスペース"], src:"ぐるなび・マカロニ" },
+  { n:"和カフェ Tsumugi ジョイナステラス二俣川店", g:[35.4630,139.5325], k:"キッズメニューはお店に確認（同じチェーンの横浜店にはキッズメニューあり）", tags:["駅直結のビル","同じビルにキッズスペース"], src:"AutoReserve・食べログの口コミ" },
+  // トレッサ・ららぽーと
+  { n:"ベーカリーレストラン バケット トレッサ横浜店（南棟2F）", g:[35.5235,139.6445], k:"🥖 3歳以下はパン食べ放題とドリンクが無料。お子さまプレート・カレー・ドリアなど12歳以下のキッズメニュー", tags:["ベビーカーOK","離乳食の持ち込み・湯せんで温めOK","子ども用カトラリー"], src:"サンマルクHD バケット公式・マイナビ子育て" },
+  { n:"回転寿司みさき トレッサ横浜店（南棟2F）", g:[35.5235,139.6445], k:"1皿119円から", tags:["ベビーカーのまま入れた（利用者の情報・2026年11月）","バケットと同じ南棟2F","テーブル席が広い","タッチパネル注文"], src:"利用者の情報・ぐるなび" },
+  { n:"洋麺屋五右衛門 ららぽーと横浜店（3F）", g:[35.5150,139.5590], k:"キッズメニューはお店に確認", tags:["子ども用の椅子あり","禁煙"], src:"ららぽーと横浜 公式ショップガイド" },
+  // センター北
+  { n:"cafe fredy モザイクモール港北店（1F）", g:[35.5465,139.5760], k:"キッズメニュー", tags:["ソファ席","テラス席"], src:"HAMONI" }
+];
+function kidsFoodNear(e){
+  const g = venueGeo(e); if (!g) return [];
+  return KIDS_SHOPS.map(sh => ({ sh, min: Math.max(1, Math.round(distM(g, sh.g) * 1.3 / 70)) })).filter(x => x.min <= 10).sort((a, b) => a.min - b.min);
+}
+function kidsFoodHtml(e){
+  const near = kidsFoodNear(e);
+  if (!near.length) { const g = venueGeo(e); if (!g) return ""; const u = `https://www.google.com/maps/search/${encodeURIComponent("キッズメニュー")}/@${g[0]},${g[1]},16z`; return `<div class="bfood kfood"><b>🍽 子連れで入りやすいお店</b><p class="note">このあたりはまだ調べ中です。会場の中のレストランやフードコートも見てみてください。<a href="${esc(u)}" target="_blank" rel="noopener">会場のまわりの「キッズメニュー」を地図で探す</a>　行ったお店の情報を投稿欄から送ってもらえると、次から表示できます。</p></div>`; }
+  return `<div class="bfood kfood"><b>🍽 歩いて10分以内の子連れで入りやすいお店（キッズメニュー・ベビーカーOK・子ども歓迎）</b><ul>${near.map(x => `<li>${esc(x.sh.n)}　<span class="m">${esc(x.sh.k)}<br>${x.sh.tags.map(t=>`<span class="ktag">${esc(t)}</span>`).join("")}<br>会場からベビーカーで約${x.min}分（目安）（${esc(x.sh.src)}）</span></li>`).join("")}</ul><div class="note">メニュー・値段は記事掲載時点のものです。行く前にお店の情報を確認してください。</div></div>`;
+}
+// ---- 歩いて10分以内のフードコート ----
+const FOOD_COURTS = [
+  { n:"MARK IS みなとみらい フードコート", g:[35.4575,139.6330], f:"館内", seat:"", tags:["赤ちゃん休憩室の近くにテーブルあり","10:00〜20:00（金〜日・祝は21:00まで）"], src:"いこーよの口コミ（2026年5月）・ウォーカープラス" },
+  { n:"横浜ワールドポーターズ フードコート", g:[35.4541,139.6386], f:"館内", seat:"", tags:["山下本気うどん（お子さまセット590円）など"], src:"マカロニ（2026年2月）" },
+  { n:"FOOD&TIME ISETAN YOKOHAMA（ジョイナス地下1階）", g:[35.4655,139.6210], f:"地下1階", seat:"", tags:["横浜駅西口の改札からすぐ","通路が広くベビーカーでも動きやすい","近くに子どもの遊び場"], src:"ローカログ・食べログの口コミ" },
+  { n:"トレッサ横浜 フードコート", g:[35.5235,139.6445], f:"館内", seat:"", tags:["小上がり席","ベビーチェア・キッズチェア","キッズメニューのあるお店が多い","駐車場無料"], src:"トレッサ横浜の施設紹介（いこーよ）・ローカログ" },
+  { n:"ららぽーと横浜 フードコート", g:[35.5150,139.5590], f:"2F", seat:"約720席", tags:["子どもの高さに合わせたキッズエリア","キッズチェア","キッズメニューのあるお店あり"], src:"ららぽーと横浜 公式グルメガイド・神奈川新聞" },
+  { n:"ノースポート・モール フードコート", g:[35.5462,139.5745], f:"3F", seat:"", tags:["小上がり席","ベビーカー置き場","同じ3階に無料の遊び場「のすぽひろば」・授乳室"], src:"いこーよ（2017年リニューアル時）" },
+  { n:"モザイクモール港北 フードコート", g:[35.5465,139.5760], f:"地下1階（相鉄ローゼンの近く）", seat:"約245席", tags:["マクドナルドなど"], src:"食べログ" },
+  { n:"三井アウトレットパーク 横浜ベイサイド フードコート", g:[35.3555,139.6420], f:"Cブロック2F", seat:"", tags:["小上がり席","お湯・調乳器・電子レンジ","キッズメニューあり（公式）","地元の名店が集まる"], src:"三井アウトレットパーク 横浜ベイサイド公式" },
+  { n:"八景島シーパラダイス センターハウス フードコート", g:[35.3380,139.6460], f:"センターハウス1F", seat:"約420席", tags:["子連れ歓迎","島内は食べ物の持ち込みもOK"], src:"食べログ・アソビュー" }
+];
+function foodCourtNear(e){
+  const g = venueGeo(e); if (!g) return [];
+  return FOOD_COURTS.map(c => ({ c, min: Math.max(1, Math.round(distM(g, c.g) * 1.3 / 70)) })).filter(x => x.min <= 10).sort((a, b) => a.min - b.min);
+}
+function foodCourtHtml(e){
+  const near = foodCourtNear(e); if (!near.length) return "";
+  return `<div class="bfood fcourt"><b>🍴 歩いて10分以内のフードコート</b><ul>${near.map(x => `<li><b>${esc(x.c.n)}</b>　<span class="m">${esc(x.c.f)}${x.c.seat ? "・" + esc(x.c.seat) : ""}<br>${x.c.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}<br>会場からベビーカーで約${x.min}分（目安）（${esc(x.c.src)}）</span></li>`).join("")}</ul></div>`;
+}
+function famiresHtml(e){
+  const g = venueGeo(e); if (!g) return "";
+  const q = (w) => `https://www.google.com/maps/search/${encodeURIComponent(w)}/@${g[0]},${g[1]},16z`;
+  return `<details class="food fami"><summary>近くのファミレス・フードコート・離乳食・キッズメニュー${babyFoodNear(e) ? "（🥣無料あり）" : ""}${kidsFoodNear(e).length ? "（🍽子連れOKのお店あり）" : ""}${foodCourtNear(e).length ? "（🍴フードコートあり）" : ""}</summary>
+    ${babyFoodNear(e)}
+    ${foodCourtHtml(e)}
+    ${kidsFoodHtml(e)}
+    <p class="note">会場のまわりのファミレスを地図で探せます：<a href="${esc(q("ファミレス"))}" target="_blank" rel="noopener">ファミレス</a>　<a href="${esc(q("ガスト"))}" target="_blank" rel="noopener">ガスト</a>　<a href="${esc(q("デニーズ"))}" target="_blank" rel="noopener">デニーズ</a>　<a href="${esc(q("サイゼリヤ"))}" target="_blank" rel="noopener">サイゼリヤ</a>　<a href="${esc(q("バーミヤン"))}" target="_blank" rel="noopener">バーミヤン</a>　<a href="${esc(q("スープストックトーキョー"))}" target="_blank" rel="noopener">スープストック</a>　<a href="${esc(q("和食さと"))}" target="_blank" rel="noopener">和食さと</a></p>
+    <p class="for"><b>離乳食・子ども無料のチェーン</b></p><ul class="chains">${BABYFOOD_CHAINS.map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>
+    <p class="for"><b>ファミレスの子ども向けサービス</b></p><ul class="chains">${CHAINS.filter(c => c.n !== "デニーズ").map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>
+    <p class="note">ベビーチェアやおむつ台があるかは、同じチェーンでも店によって違います。行ったお店の情報は投稿欄の「その他」から送ってもらえると、次から表示できます。</p></details>`;
+}
+function foodHtml(e){
+  const k = FOOD_OF[e.t]; if (!k) return "";
+  const a = FOOD[k];
+  return `<details class="food"><summary>近くのごはん（${esc(a.name)}・${a.shops.length}件）</summary>
+    <p class="note">${esc(a.note)}</p><div class="shops">${a.shops.map(shopHtml).join("")}</div></details>`;
+}
+function renderFoodAll(){
+  const html = Object.entries(FOOD).map(([k,a]) => {
+    const evs = EVENTS.filter(e => FOOD_OF[e.t] === k).length;
+    const bb = BABY[k] || [];
+    return `<div class="farea"><h3>${esc(a.name)}</h3><p class="for">このエリアのイベント ${evs}件／${esc(a.note)}</p>
+      <p class="for"><b>おむつ替え・授乳・お湯</b></p><div class="shops">${bb.map(b => bspotHtml(b)).join("")}</div>
+      <p class="for"><b>ごはん</b></p><div class="shops">${a.shops.map(shopHtml).join("")}</div></div>`;
+  }).join("");
+  document.getElementById("foodall").innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>
+    <p class="lead">おむつ替え・授乳室・調乳用のお湯がある場所と、ベビーカーOK・キッズメニューなどが確認できたお店です。印が点線のものは、調べた範囲では確認できなかった設備です。それぞれに「情報の時点」を書いていて、1年以上前の情報や時点が分からないものは黄色で示しています。混み具合や設備は変わることがあるので、行く前に各リンク先を確認してください。</p>${html}`;
+}
+
+
+const BABY = {
+  "mm": [
+    { n:"MARK IS みなとみらい", where:"B2・4Fの赤ちゃん休憩室／3Fキッズルーム「おやこの森」", d:true, f:true, w:true, ex:["電子レンジ（おやこの森）","ベビーカー無料貸出"],
+      note:"各フロアにおむつ替えシートもあり。おやこの森は0〜2歳・3〜6歳で分かれたプレイゾーン付き。", url:"https://iko-yo.net/facilities/19689/attractions/13175", src:"いこーよ" },
+    { n:"横浜ランドマークプラザ", where:"4Fの赤ちゃん休憩室（9:30〜20:30）／バリアフリートイレ", d:true, f:true, w:true, ex:[],
+      note:"4Fの赤ちゃん休憩室におむつ替え台5台と授乳室、調乳用のお湯あり（お湯は利用者の情報・2026年11月）。バリアフリートイレ（3か所）にもおむつ替え台あり。", url:"https://www.welcome.city.yokohama.jp/img_data/781_spot_pdf_1.pdf", src:"横浜市観光情報 バリアフリー情報・ウォーカープラス（2026年1月）・利用者の情報" },
+    { n:"コレットマーレ（桜木町駅前）", where:"館内のお手洗い／2〜4Fの多目的トイレ", d:true, f:null, w:null, ex:[],
+      note:"お手洗いにおむつ替えスペースあり（男性トイレにも・利用者の情報・2026年11月）。2〜4Fには多目的トイレもある（2017年の資料）。授乳室・お湯は未確認。", url:"https://www.yokohamatriennale.jp/2017/ticket/pdf/pdf_sakuragi2.pdf", src:"利用者の情報・横浜トリエンナーレのアクセスガイド（2017年）" },
+    { n:"みなとみらい東急スクエア", where:"館内（授乳室2室・女性トイレにおむつ交換台）", d:true, f:true, w:true, ex:[],
+      note:"お湯の湯沸かし器またはポットあり。ベビーカー貸出はなし。", url:"https://www.welcome.city.yokohama.jp/img_data/861_spot_pdf_1.pdf", src:"横浜市観光情報サイト" },
+    { n:"横浜アンパンマンこどもミュージアム", where:"館内", d:true, f:true, w:true, ex:["キッズスペース","ベビーチェア"],
+      note:"入館しない場合に使えるかは公式で確認してください。", url:"https://www.welcome.city.yokohama.jp/kids/play.php", src:"横浜市観光情報サイト" }
+  ],
+  "yamashita": [
+    { n:"横浜赤レンガ倉庫", where:"授乳室は2号館2階", d:true, f:true, w:null, ex:["ベビーカー貸出"],
+      note:"コナン展・ハンバーガーフェスの会場。調乳用のお湯の有無は確認できませんでした。", url:"https://summer.walkerplus.com/odekake/detail/ar0314s03472/data.html", src:"ウォーカープラス" },
+    { n:"横浜ハンマーヘッド", where:"2階お手洗いに授乳室", d:null, f:true, w:null, ex:[],
+      note:"新港ふ頭（花火の打ち上げ場所）のすぐそば。", url:"https://www.welcome.city.yokohama.jp/hottopics/pawpatrol/pdf/kids.pdf", src:"横浜市観光情報サイト" },
+    { n:"象の鼻テラス", where:"館内", d:true, f:false, w:false, ex:["ベビーキープ","無料休憩所"],
+      note:"ホッチポッチ横浜の会場の隣。授乳室はないので、授乳は赤レンガ倉庫かマリンタワーへ。", url:"https://www.welcome.city.yokohama.jp/kids/eat.php", src:"横浜市観光情報サイト" },
+    { n:"横浜マリンタワー", where:"2階ベビールーム", d:true, f:true, w:false, ex:["ベビーカー貸出（Web予約制）"],
+      note:"おむつ替え・授乳ができる。給水機はないので、お湯は持参を。", url:"https://www.welcome.city.yokohama.jp/hottopics/pawpatrol/pdf/kids.pdf", src:"横浜市観光情報サイト" },
+    { n:"THE WHARF HOUSE 山下公園", where:"店内", d:true, f:true, w:true, ex:["キッズスペース","ベビーチェア"],
+      note:"お店の設備なので、利用するときはお店で食事やお茶を。", url:"https://www.welcome.city.yokohama.jp/kids/eat.php", src:"横浜市観光情報サイト" },
+    { n:"横浜中華街", where:"街なかの多目的トイレ（中華街マップに掲載）", d:true, f:false, w:null, ex:[],
+      note:"中華街の中には授乳室がありません。授乳は山下公園側の施設を使うのが確実です。", url:"https://report.iko-yo.net/articles/14169", src:"いこーよ" }
+  ],
+  "yokohama-st": [
+    { n:"そごう横浜店", where:"ベビー休憩室・授乳室（3室）。フロアは館内案内で確認", d:true, f:true, w:true, ex:["ベビーカー貸出","ベビーカーごと入室OK"],
+      note:"お湯の湯沸かし器またはポットあり、おむつ交換台7台。まち音Fesの会場（はまテラス）のすぐそば。2020年の発表では8階でしたが、今のフロアは確認できていません。", url:"https://www.welcome.city.yokohama.jp/img_data/775_spot_pdf_1.pdf", src:"横浜市観光情報サイト" },
+    { n:"高島屋横浜店 6F（子ども服売り場）", where:"ベビー休憩室（授乳室・キッズスペース）", d:true, f:true, w:true, ex:["ベビーカー貸出（1F）","利用者の情報"],
+      note:"ベビー休憩室でおむつ替えと調乳ができる、と利用した方から情報をもらいました（公式サイトでは未確認）。", url:"https://iko-yo.net/facilities/24775", src:"いこーよ／利用者の情報" }
+  ],
+  "honmoku": [
+    { n:"三溪園", where:"園内", d:true, f:false, w:false, ex:[],
+      note:"ベビーシートはありますが、授乳室はありません（2020年時点の情報）。授乳ケープがあると安心です。", url:"https://www.timesclub.jp/sp/tanomachi_ex/kanagawa/honmoku/002.html", src:"タイムズクラブ" }
+  ],
+  "kodomonokuni": [
+    { n:"こどもの国", where:"授乳室はSL売店・自転車乗り場など", d:true, f:true, w:true, ex:["ベビーカー貸出","ベビーチェア"],
+      note:"園内の休憩スペース「赤ちゃんの家」もあり。坂が多いので、ベビーカーは軽めのものが楽です。", url:"https://kodomonokuni.org/sansaku/img/hikagemap.pdf", src:"こどもの国" }
+  ],
+  "zoorasia": [
+    { n:"よこはま動物園ズーラシア", where:"園内（場所は園内マップで確認）", d:true, f:true, w:true, ex:["ベビーカー貸出","ベビーチェア"],
+      note:"園内に遊具のある遊び場が3か所あります。", url:"https://www.welcome.city.yokohama.jp/kids/play.php", src:"横浜市観光情報サイト" }
+  ],
+  "centerkita": [
+    { n:"モザイクモール港北", where:"館内（授乳室付きファミリールーム）", d:true, f:true, w:null, ex:["ベビーカー貸出"],
+      note:"センター北駅前。牛久保公園からは歩いて行ける距離です。", url:"https://summer.walkerplus.com/odekake/detail/ar0314s11739/data.html", src:"ウォーカープラス" }
+  ]
+};
+function bi(label, v){ const c = v === true ? "y" : v === false ? "n" : "u"; const t = v === null ? label + "？" : label; return `<li class="bi ${c}">${t}</li>`; }
+// ---- 位置（おおよその緯度経度）と徒歩の目安 ----
+const VENUE_GEO = [
+  [/アンパンマン/, [35.4635,139.6300]], [/シンフォステージ/, [35.4603,139.6290]], [/ハンマーヘッド|新港/, [35.4570,139.6436]],
+  [/赤レンガ/, [35.4527,139.6430]], [/象の鼻/, [35.4505,139.6420]], [/大さん橋/, [35.4517,139.6475]],
+  [/日本丸/, [35.4545,139.6322]], [/美術館|グランモール/, [35.4570,139.6310]], [/MARK IS|ランドマーク/, [35.4568,139.6325]],
+  [/CIAL|シァル|桜木町/, [35.4510,139.6310]], [/馬車道/, [35.4505,139.6375]], [/山下ふ頭|山下埠頭/, [35.4460,139.6550]],
+  [/マリンタワー/, [35.4440,139.6510]], [/人形の家/, [35.4432,139.6530]], [/中華街/, [35.4425,139.6460]],
+  [/横浜公園|BASEGATE/, [35.4432,139.6400]], [/はまテラス|横浜駅東口|そごう/, [35.4655,139.6238]],
+  [/卸売市場/, [35.4735,139.6390]], [/三溪園/, [35.4170,139.6620]], [/こどもの国/, [35.5623,139.4914]],
+  [/ズーラシア/, [35.4950,139.5260]], [/岸根/, [35.4975,139.6110]], [/横浜アリーナ/, [35.5120,139.6200]], [/牛久保/, [35.5480,139.5720]], [/ノースポート/, [35.5462,139.5745]], [/二俣川/, [35.4630,139.5325]], [/港南台/, [35.3765,139.5765]], [/東急スクエア/, [35.4565,139.6338]], [/ららぽーと横浜/, [35.5150,139.5590]], [/希望ヶ丘|希望が丘/, [35.4720,139.5240]], [/トレッサ/, [35.5235,139.6445]], [/港北TOKYU/, [35.5440,139.5745]], [/モザイクモール/, [35.5465,139.5760]], [/中央図書館/, [35.4478,139.6280]], [/日産グローバル/, [35.4628,139.6300]], [/野毛山動物園/, [35.4470,139.6250]], [/金沢動物園/, [35.3620,139.6080]], [/京急ミュージアム/, [35.4640,139.6290]], [/原鉄道/, [35.4637,139.6262]], [/市電保存館/, [35.4180,139.6290]], [/防災センター/, [35.4710,139.6150]], [/ワールドポーターズ/, [35.4535,139.6385]], [/瀬谷駅/, [35.4660,139.4980]], [/南部市場/, [35.3625,139.6375]], [/横浜ベイサイド|白帆/, [35.3555,139.6420]], [/八景島/, [35.3380,139.6460]]
+];
+const SPOT_GEO = {
+  "MARK IS みなとみらい":[35.4575,139.6330], "横浜ランドマークプラザ":[35.4552,139.6318], "コレットマーレ（桜木町駅前）":[35.4515,139.6302], "みなとみらい東急スクエア":[35.4565,139.6338], "横浜アンパンマンこどもミュージアム":[35.4635,139.6300],
+  "横浜赤レンガ倉庫":[35.4527,139.6430], "横浜ハンマーヘッド":[35.4575,139.6440], "象の鼻テラス":[35.4507,139.6418],
+  "横浜マリンタワー":[35.4440,139.6510], "THE WHARF HOUSE 山下公園":[35.4458,139.6502], "横浜中華街":[35.4425,139.6460],
+  "そごう横浜店":[35.4655,139.6240], "高島屋横浜店 6F（子ども服売り場）":[35.4648,139.6205], "三溪園":[35.4170,139.6620],
+  "こどもの国":[35.5623,139.4914], "よこはま動物園ズーラシア":[35.4950,139.5260], "モザイクモール港北":[35.5465,139.5760]
+};
+function venueGeo(e){ const s = e.venue + " " + e.t; for (const [re, g] of VENUE_GEO) if (re.test(s)) return g; return null; }
+function walkHtml(e, b){
+  if (!e) return "";
+  const g1 = venueGeo(e), g2 = SPOT_GEO[b.n];
+  const link = `<a href="https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=${encodeURIComponent(e.venue.replace(/（.*?）/g,"")+" 横浜")}&destination=${encodeURIComponent(b.n.replace(/（.*?）/g,"")+" 横浜")}" target="_blank" rel="noopener">徒歩ルートを見る</a>`;
+  if (!g1 || !g2) return `<p class="walk">🚶 会場から：${link}</p>`;
+  const R = 6371000, toR = x => x * Math.PI / 180;
+  const dLa = toR(g2[0]-g1[0]), dLo = toR(g2[1]-g1[1]);
+  const m = 2 * R * Math.asin(Math.sqrt(Math.sin(dLa/2)**2 + Math.cos(toR(g1[0]))*Math.cos(toR(g2[0]))*Math.sin(dLo/2)**2));
+  const min = Math.max(1, Math.round(m * 1.3 / 70));
+  const txt = m < 150 ? "会場の中か、すぐ隣" : m > 2500 ? "歩くと遠い（電車・バスで）" : `ベビーカーで約${min}分（目安）`;
+  return `<p class="walk">🚶 会場から：<b>${txt}</b>　${link}</p>`;
+}
+
+// ---- 出発駅からの乗換案内 ----
+const TRANSIT_TO = { takashima:"新高島", akarenga:"日本大通り", mm:"みなとみらい", anpan:"新高島", yamashita:"元町・中華街", kannai:"関内", sakuragicho:"桜木町",
+  yokohamaEast:"横浜", ichiba:"横浜", shinyokohama:"新横浜", kodomonokuni:"こどもの国", zoorasia:"中山", sankeien:"元町・中華街",
+  hakkeijima:"八景島", seya:"瀬谷", kishine:"岸根公園", centerkita:"センター北" };
+const AFTER_BUS = { zoorasia:"中山駅からバスで約18分", sankeien:"元町・中華街駅からバスで約10分＋徒歩5分", ichiba:"横浜駅東口から無料シャトルバス" };
+let ORIGIN = ""; try { ORIGIN = localStorage.getItem("origin") || ""; } catch(_) {}
+function pad(n){ return String(n).padStart(2,"0"); }
+function tripDate(e){
+  const d = (state.day !== "all" && e.days.includes(state.day)) ? state.day : e.days[0];
+  const [mo, da] = d.split("/").map(Number); return { mo, da, label:d };
+}
+let ARRIVE = ""; try { ARRIVE = localStorage.getItem("arrive") || ""; } catch(_) {}
+const ARR_BY = {};
+function toMin(v){ const m = /^(\d{1,2}):(\d{2})$/.exec(v || ""); return m ? (+m[1]) * 60 + (+m[2]) : null; }
+function tripInner(e, k){
+  const to = TRANSIT_TO[k];
+  if (!ORIGIN) return `🚃 ページ上の「出発駅」を入れると、ここから${esc(to)}駅までの乗換案内（時間つき）が開けます。`;
+  const { mo, da, label } = tripDate(e);
+  const vague = /確認/.test(e.time) || !e.start;
+  const own = toMin(ARR_BY[e.t]), all = toMin(ARRIVE);
+  const t = own != null ? own : all != null ? all : (vague ? 600 : Math.max(0, e.start - 20));
+  const why = own != null ? "このイベントだけ指定" : all != null ? "全体の到着時間" : vague ? "時間は仮" : "開始20分前";
+  const hh = Math.floor(t/60), mi = t % 60;
+  const y = `https://transit.yahoo.co.jp/search/result?from=${encodeURIComponent(ORIGIN)}&to=${encodeURIComponent(to)}&y=2026&m=${pad(mo)}&d=${pad(da)}&hh=${pad(hh)}&m1=${Math.floor(mi/10)}&m2=${mi%10}&type=4&ticket=ic`;
+  const g = `https://www.google.com/maps/dir/?api=1&travelmode=transit&origin=${encodeURIComponent(ORIGIN)}&destination=${encodeURIComponent(e.venue.replace(/（.*?）/g,"")+" 横浜")}`;
+  return `🚃 <b>${esc(ORIGIN)} → ${esc(to)}駅</b>（${label}）<br>
+    <label class="arrl">駅に着きたい時間 <input type="time" class="arr" data-title="${esc(e.t)}" value="${pad(hh)}:${pad(mi)}" step="300"></label> <span class="why">${why}</span>
+    ${AFTER_BUS[k] ? `<br>そのあと：${esc(AFTER_BUS[k])}` : ""}<br>
+    <a href="${esc(y)}" target="_blank" rel="noopener">この時間で乗換を調べる（Yahoo!乗換案内）</a>　<a href="${esc(g)}" target="_blank" rel="noopener">会場まで（Googleマップ）</a>`;
+}
+function transitHtml(e, k){
+  if (!TRANSIT_TO[k]) return "";
+  return `<div class="trip" data-k="${k}" data-title="${esc(e.t)}">${tripInner(e, k)}</div>`;
+}
+document.addEventListener("change", ev => {
+  const el = ev.target; if (!el.classList || !el.classList.contains("arr")) return;
+  const box = el.closest(".trip"), e = EVENTS.find(x => x.t === el.dataset.title); if (!box || !e) return;
+  ARR_BY[e.t] = el.value; box.innerHTML = tripInner(e, box.dataset.k);
+});
+function setArrive(v){ ARRIVE = v; try { localStorage.setItem("arrive", v); } catch(_) {} render(); }
+function setOrigin(v){ ORIGIN = v.trim().replace(/駅$/,""); try { localStorage.setItem("origin", ORIGIN); } catch(_) {} render(); }
+
+// ---- パパひとりでもおむつ替えできるか ----
+const PAPA = {
+  "MARK IS みなとみらい": { v:"men", t:"男性トイレにもおむつ交換台あり（各フロアに折りたたみシート）。赤ちゃん休憩室もあり", src:"横浜市観光情報 バリアフリー情報" },
+  "みなとみらい東急スクエア": { v:"women", t:"おむつ交換台は女性トイレだけ（5台）。多機能トイレはあるが、台があるかは未確認", src:"横浜市観光情報 バリアフリー情報" },
+  "横浜ランドマークプラザ": { v:"multi", t:"バリアフリートイレ（3か所）にもおむつ替え台あり（だれでも入れる）。4Fの赤ちゃん休憩室にパパが入れるかは未確認", src:"横浜市観光情報 バリアフリー情報" },
+  "コレットマーレ（桜木町駅前）": { v:"men", t:"男性トイレにもおむつ替えスペースあり", src:"利用者の情報（2026年11月）" },
+  "横浜中華街": { v:"multi", t:"街なかの多目的トイレにおむつ台（だれでも入れる）", src:"横浜市観光情報（2025年）" },
+  "横浜マリンタワー": { v:"room", t:"2階のベビールーム。パパが入れるかは未確認", src:"横浜市観光情報（2025年）" },
+  "横浜赤レンガ倉庫": { v:"multi", t:"多機能トイレあり・おむつ交換台あり（どのトイレにあるかは未確認）", src:"横浜市観光情報 バリアフリー情報（2024年）" }
+};
+const PAPA_LABEL = { men:"👨 男性トイレOK", multi:"🚻 多機能トイレOK", room:"🍼 ベビールーム", women:"⚠ 女性トイレのみ", unk:"？ 未確認" };
+const PAPA_RANK = { men:0, multi:1, room:2, unk:3, women:4 };
+function papaOf(b){ return PAPA[b.n] || { v:"unk", t:"男性トイレ・多機能トイレのどちらにあるかは未確認" }; }
+function papaHtml(b){
+  const p = papaOf(b);
+  return `<p class="papa ${p.v}"><b>${PAPA_LABEL[p.v]}</b>　${esc(p.t)}${p.src ? `（${esc(p.src)}）` : ""}</p>`;
+}
+function bspotHtml(b, e){
+  return `<div class="bspot${state.flags.has("papa") && papaOf(b).v === "women" ? " dim" : ""}"><span class="nm"><a href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.n)}</a></span>
+    <p class="meta">${esc(b.where)}（出典：${esc(b.src)}）</p>
+    <ul class="bicons">${bi("おむつ替え", b.d)}${bi("授乳室", b.f)}${bi("調乳のお湯", b.w)}${b.ex.map(x => `<li class="bi y">${esc(x)}</li>`).join("")}</ul>
+    <p class="ds">${esc(b.note)}</p>${papaHtml(b)}${walkHtml(e, b)}${asofHtml(b.n)}<div data-spot="${esc(b.n)}"></div></div>`;
+}
+function babyHtml(e){
+  const k = FOOD_OF[e.t]; if (!k || !BABY[k]) return "";
+  let list = BABY[k].slice(); if (state.flags.has("papa")) list.sort((a, b) => PAPA_RANK[papaOf(a).v] - PAPA_RANK[papaOf(b).v]); const hot = list.filter(b => b.w === true).length;
+  return `<details class="food baby"><summary>おむつ替え・授乳・お湯（${list.length}か所${hot ? `・お湯あり${hot}` : ""}）</summary>
+    <div class="shops">${list.map(b => bspotHtml(b, e)).join("")}</div>
+    <p class="note">横浜市内のハマハグ協賛店・かながわ子育て応援パスポートの協力施設では、登録証を見せるとお湯の提供や割引などのサービスが受けられることがあります（<a href="https://www.city.yokohama.lg.jp/kurashi/kosodate-kyoiku/kosodateshien/default2020091.html" target="_blank" rel="noopener">ハマハグについて</a>）。</p></details>`;
+}
+function hasHotWater(e){ const k = FOOD_OF[e.t]; return !!(k && BABY[k] && BABY[k].some(b => b.w === true)); }
+
+
+const NOW_Y = 2026, NOW_M = 11;
+const ASOF = {
+  "MARK IS みなとみらい":null, "横浜ランドマークプラザ":[2026,1,"2026年1月以前の取材"], "コレットマーレ（桜木町駅前）":[2026,11,"2026年11月（利用者の情報）"], "みなとみらい東急スクエア":null, "横浜アンパンマンこどもミュージアム":[2024,3],
+  "横浜赤レンガ倉庫":[2026,1,"2026年1月以前の取材"], "横浜ハンマーヘッド":[2025,5], "象の鼻テラス":[2024,3], "横浜マリンタワー":[2025,5],
+  "THE WHARF HOUSE 山下公園":[2024,3], "横浜中華街":null, "そごう横浜店":null,
+  "高島屋横浜店 6F（子ども服売り場）":[2026,11,"2026年11月（利用者の情報）"], "三溪園":[2020,10], "こどもの国":null,
+  "よこはま動物園ズーラシア":[2024,3], "モザイクモール港北":null,
+  "24/7 restaurant（東急スクエア③ 3F）":[2024,3], "アロハテーブル コレットマーレみなとみらい":[2024,3], "モスプレミアム 桜木町クロスゲート店":null,
+  "資生堂パーラー 横浜高島屋店（6F）":[2024,3], "三溪園の茶店（待春軒など）":null, "園内のレストラン・売店":null,
+  "オージーヒルグリル（園内）":[2022,3], "サバンナテラス（園内）":null, "cafe fredy モザイクモール港北店（1F）":null, "木曽路 港北ニュータウン店":null
+};
+function asofHtml(name){
+  const a = ASOF[name];
+  if (a === undefined) return "";
+  if (a === null) return `<p class="asof old">情報の時点：不明（行く前に公式で確認を）</p>`;
+  const label = a[2] || `${a[0]}年${a[1]}月`;
+  const months = (NOW_Y - a[0]) * 12 + (NOW_M - a[1]);
+  return months >= 12 ? `<p class="asof old">情報の時点：${label}（1年以上前の情報です。行く前に確認を）</p>`
+                      : `<p class="asof">情報の時点：${label}</p>`;
+}
+
+// ===== 11月の残り（21〜23日・28〜29日）=====
+EVENTS.push(
+  { t:"名探偵コナン 芸術花火2026", days:["11/21"], time:"13:00開場・17:00開演", ward:"中区", venue:"横浜・山下ふ頭",
+    price:"paid", priceText:"S席8,900円〜（未就学児は席が不要なら無料）", place:"屋外", rain:"check", rainText:"雨でも開催、荒天時は中止",
+    resv:true, resvText:"チケット制（全席有料・無料観覧エリアなし）", age:[0,99], ageText:"全年齢", kind:"limited", start:780,
+    sum:"コナンの歴代主題歌や劇中音楽に合わせて花火が上がる、TVアニメ30周年記念の一夜限りのショー。",
+    tip:"横浜市民割（先着）もあり。外から見る無料エリアはないので注意", url:"https://www.ytv.co.jp/conanhanabi/", src:"公式サイト" },
+  { t:"花火シンフォニア（八景島）", days:["11/21","11/22"], time:"20:00〜20:10", ward:"金沢区", venue:"横浜・八景島シーパラダイス ボードウォーク周辺",
+    price:"unknown", priceText:"観覧の条件は公式で確認", place:"屋外", rain:"check", rainText:"荒天時は中止",
+    resv:null, resvText:"特別観覧席などは公式で確認", age:[0,99], ageText:"全年齢", kind:"limited", start:1200,
+    sum:"音楽とぴったり合わせて約2,500発の花火が上がる10分間のショー。シーパラで遊んだ日の締めに。",
+    tip:"20時からなので、小さい子は防寒をしっかり", url:"https://kanagawa-kankou.or.jp/event/7114", src:"神奈川県観光協会" },
+  { t:"Vintage & Artisan Market in みなとみらい（蚤の市）", days:["11/21","11/22","11/23"], time:"12:00〜17:00", ward:"西区", venue:"横浜シンフォステージ",
+    price:"free", priceText:"入場無料（買い物・飲食は有料）", place:"屋外", rain:"ok", rainText:"雨でも開催（荒天時は中止）",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"limited", start:720,
+    sum:"古着・アンティーク・クラフト雑貨・焼き菓子など、3日間でのべ500店以上が並ぶ蚤の市。キッチンカーや音楽ライブも。",
+    tip:"出店は日ごとに入れ替わる", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw12725", src:"横浜市観光情報サイト" },
+  { t:"ふるさと港北ふれあいまつり＆秋のヨコアリくんまつり", days:["11/23"], time:"10:00〜15:00（9:30開場）", ward:"港北区", venue:"横浜アリーナ",
+    price:"free", priceText:"入場無料（一部有料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"limited", start:600,
+    sum:"80を超えるブース、ゲームやスポーツの体験コーナー、ステージ、ブースを回って参加できる抽選会など。",
+    tip:"新横浜駅から歩いて行ける", url:"https://www.city.yokohama.lg.jp/kohoku/shokai/bunkakanko/fureaimatsuri/matsuri2026.html", src:"横浜市港北区" },
+  { t:"こどもの国 冬のブラスフェス", days:["11/21"], time:"10:00〜15:30", ward:"青葉区", venue:"こどもの国 平成記念館（屋根付き）",
+    price:"admission", priceText:"入園料のみ（大人800円・小中学生300円・幼児200円）", place:"屋根付き", rain:"unknown", rainText:"雨の日の扱いは公式で確認",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"limited", start:600,
+    sum:"近くの中学・高校の吹奏楽部が集まり、演奏とパフォーマンスを披露する。",
+    tip:"", url:"https://www.kodomonokuni.org/calendar/", src:"こどもの国" },
+  { t:"こどもの国 もみじのかざぐるま", days:["11/21","11/22","11/23"], time:"10:00〜15:00", ward:"青葉区", venue:"こどもの国 ボートのりば前",
+    price:"admission", priceText:"工作は無料（入園料が必要）", place:"屋外", rain:"cancel", rainText:"雨天中止",
+    resv:false, resvText:"予約不要", age:[3,12], ageText:"幼児〜小学生", kind:"limited", start:600,
+    sum:"もみじの形のオリジナルかざぐるまを作れる無料工作。紅葉の白鳥湖を散歩しながら。",
+    tip:"", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw9065", src:"横浜市観光情報サイト" },
+  { t:"こどもの国 自然スタンプビンゴ＜紅葉バージョン＞", days:["11/21","11/22","11/23"], time:"開園〜14:00受付（ゴールは16:00まで）", ward:"青葉区", venue:"こどもの国 正面入口広場（受付）",
+    price:"paid", priceText:"参加費100円（別途入園料）", place:"屋外", rain:"cancel", rainText:"雨天中止",
+    resv:false, resvText:"予約不要", age:[3,12], ageText:"幼児〜小学生", kind:"limited", start:570,
+    sum:"園内を探検しながら秋の自然を見つけてスタンプを集めるビンゴ。",
+    tip:"", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw9065", src:"横浜市観光情報サイト" },
+  { t:"こどもの国 工作教室「ヒツジをつくろう」", days:["11/22","11/23"], time:"時間は公式で確認", ward:"青葉区", venue:"こどもの国",
+    price:"unknown", priceText:"参加費は公式で確認", place:"屋内", rain:"ok", rainText:"屋内の工作教室",
+    resv:true, resvText:"事前申込制", age:[3,12], ageText:"子ども向け", kind:"limited", start:600,
+    sum:"牧場の羊毛を使ってヒツジを作る工作教室。",
+    tip:"", url:"https://www.kodomonokuni.org/calendar/", src:"こどもの国" },
+  { t:"旧横ギャラリー 展示ガイド（中等客車に乗れる）", days:["11/21"], time:"11:00〜14:30", ward:"中区", venue:"CIAL桜木町ANNEX 1F「旧横ギャラリー」",
+    price:"unknown", priceText:"料金は公式で確認", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要（時間内いつでも）", age:[0,99], ageText:"全年齢", kind:"limited", start:660,
+    sum:"鉄道発祥の地・初代横浜駅にちなんだ展示を、JR東日本OBのボランティアガイドが解説。中等客車にも乗れる。",
+    tip:"電車好きの子に", url:"https://minatomirai21.com/campaign/29101", src:"みなとみらい21公式" },
+  { t:"ANAの飛行機に色をぬろう！親子ワークショップ", days:["11/21","11/22"], time:"11:00〜17:00（最終受付16:30）", ward:"中区", venue:"シァル桜木町 市電マップ広場",
+    price:"paid", priceText:"当日シァル桜木町で1,000円以上のレシート＋公式Instagramのフォローが必要", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"当日の整理券（10:30から配布・各日先着50名）", age:[1,12], ageText:"1歳以上", kind:"limited", start:660,
+    sum:"ANAの機内誌の紙で作った飛行機のミニフィギュアに色をぬる知育ワークショップ。",
+    tip:"", url:"https://minatomirai21.com/campaign/156634", src:"みなとみらい21公式" },
+  { t:"日本丸「飾り毛布」作り体験", days:["11/22"], time:"10:30〜12:00頃（受付10:00〜）", ward:"西区", venue:"日本丸メモリアルパーク 訓練センター",
+    price:"paid", priceText:"大人1,500円・小人1,000円（日本丸・みなと博物館の入館券込み）", place:"屋内", rain:"ok", rainText:"屋内での開催",
+    resv:true, resvText:"要予約（メールで先着順、11/15正午締切）", age:[9,99], ageText:"小学4年生以上", kind:"limited", start:630,
+    sum:"船乗りの伝統的なおもてなし「飾り毛布」の歴史を聞いて、実際に作ってみる体験教室。",
+    tip:"わた埃が出るのでマスク持参", url:"https://minatomirai21.com/campaign/156332", src:"みなとみらい21公式" },
+  { t:"みなとみらい熱気球係留搭乗体験会", days:["11/22"], time:"6:30〜8:30", ward:"中区", venue:"横浜ハンマーヘッド第3駐車場",
+    price:"unknown", priceText:"料金は予約ページで確認", place:"屋外", rain:"cancel", rainText:"雨や風で中断・中止になることあり",
+    resv:true, resvText:"要予約（定員に達し次第終了）", age:[0,99], ageText:"全年齢", kind:"limited", start:390,
+    sum:"ロープでつないだ熱気球で地上15〜20mまで上がり、海とみなとみらいを360度見渡せる。",
+    tip:"早朝なので防寒を", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw12467", src:"横浜市観光情報サイト" },
+  { t:"ミーオ・イーオ！フェスタ2026（ごみ焼却工場の見学イベント）", days:["11/22"], time:"10:00〜15:00", ward:"金沢区", venue:"JFE横浜金沢マリンエネルギーセンター（金沢工場）",
+    price:"free", priceText:"入場無料", place:"屋内外", rain:"unknown", rainText:"雨の日の扱いは公式で確認",
+    resv:false, resvText:"申込不要", age:[0,99], ageText:"親子向け", kind:"limited", start:600,
+    sum:"工場探検バスツアー、収集車への体験乗車、電動ミニ収集車の運転体験、クイズラリーなど。",
+    tip:"はたらく車が好きな子に", url:"https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/shigen/2026/1030kanazawafesta.html", src:"横浜市" },
+  { t:"せやマルシェ With GREEN Fes.", days:["11/28"], time:"10:30〜15:00", ward:"瀬谷区", venue:"瀬谷駅北口駅前広場",
+    price:"free", priceText:"入場無料（一部事前予約あり）", place:"屋外", rain:"unknown", rainText:"雨の日の扱いは区のサイトで確認",
+    resv:false, resvText:"申込不要（一部予約あり）", age:[0,99], ageText:"全年齢", kind:"limited", start:630,
+    sum:"瀬谷の野菜の直売や地元食材のお店が並ぶ「農」のイベント。グリーンエクスポの先取り企画も。",
+    tip:"", url:"https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/seya/2026/1102seyamarche.html", src:"横浜市瀬谷区" },
+  { t:"MARK IS みなとみらい アイロンビーズ体験", days:["11/29"], time:"11:00〜18:00（各回30分）", ward:"西区", venue:"MARK IS みなとみらい 1F グランドガレリア",
+    price:"paid", priceText:"700円", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"各回先着20名", age:[3,12], ageText:"子ども向け", kind:"limited", start:660,
+    sum:"アイロンビーズで作品を作る体験。",
+    tip:"", url:"https://www.asobo-yokohama.com/event/", src:"横浜イベント情報" },
+  { t:"こどもの国 エコスポ！フェス2026", days:["11/14","11/15"], time:"時間は公式で確認", ward:"青葉区", venue:"こどもの国",
+    price:"admission", priceText:"入園料が必要（内容は公式で確認）", place:"屋外", rain:"unknown", rainText:"雨の日の扱いは公式で確認",
+    resv:null, resvText:"公式で確認", age:[0,12], ageText:"子ども向け", kind:"limited", start:600,
+    sum:"環境のことを学びながら、いろいろなスポーツを体験できる初開催の2日間。",
+    tip:"", url:"https://www.kodomonokuni.org/calendar/", src:"こどもの国" },
+  // 長期開催
+  { t:"Christmas Market in 横浜赤レンガ倉庫", days:[], from:"11/21", to:"11/29", time:"時間は公式で確認", period:"11/20〜12/25", ward:"中区", venue:"横浜赤レンガ倉庫 イベント広場・赤レンガパーク",
+    price:"unknown", priceText:"入場料は公式で確認（昨年は有料）", place:"屋外", rain:"ok", rainText:"雨でも開催（荒天時は休業の場合あり）",
+    resv:null, resvText:"優先入場チケットあり（公式で確認）", age:[0,99], ageText:"全年齢", kind:"ongoing", start:660,
+    sum:"高さ約11mの生木のツリーと、ドイツから取り寄せた木の小屋が並ぶ本格的なクリスマスマーケット。",
+    tip:"週末の夜は混みやすいので、子連れなら昼が狙い目", url:"https://www.yokohama-akarenga.jp/event/", src:"横浜赤レンガ倉庫" },
+  { t:"BALLPARK Xmas YOKOHAMA KANNAI 2026", days:[], from:"11/21", to:"11/29", time:"時間は公式で確認", period:"11/20〜12/25", ward:"中区", venue:"横浜公園（BASEGATE横浜関内と連携）",
+    price:"free", priceText:"入場無料（一部有料）", place:"屋外", rain:"unknown", rainText:"雨の日の扱いは公式で確認",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:660,
+    sum:"横浜スタジアムのある横浜公園を中心にしたクリスマスイベント。",
+    tip:"", url:"https://www.kanagawa-kankou.or.jp/event/list?particulars=7", src:"神奈川県観光協会" },
+  { t:"アートリンク in 横浜赤レンガ倉庫（屋外スケート）", days:[], from:"11/28", to:"11/29", time:"土日 11:00〜21:00", period:"11/28〜2027/2/14", ward:"中区", venue:"横浜赤レンガ倉庫",
+    price:"paid", priceText:"大人2,000円・3歳〜高校生1,200円（貸靴込み）、付き添い300円", place:"屋外", rain:"check", rainText:"天候により時間変更の可能性あり",
+    resv:null, resvText:"公式で確認", age:[3,99], ageText:"3歳以上", kind:"ongoing", start:660,
+    sum:"赤レンガ倉庫の冬の定番、アート作品と一緒に楽しめる屋外スケートリンク。11/28オープン。",
+    tip:"手袋は必須", url:"https://koubo.jp/article/127798", src:"公募ガイド" }
+);
+const DATES = [
+  { k:"11/14", s:"14", w:"土", c:"sat" }, { k:"11/15", s:"15", w:"日", c:"sun" },
+  { k:"11/21", s:"21", w:"土", c:"sat" }, { k:"11/22", s:"22", w:"日", c:"sun" }, { k:"11/23", s:"23", w:"祝", c:"hol" },
+  { k:"11/28", s:"28", w:"土", c:"sat" }, { k:"11/29", s:"29", w:"日", c:"sun" }
+];
+const DATE_IDX = Object.fromEntries(DATES.map((d,i) => [d.k, i]));
+const WEEKENDS = [
+  { h:"11月14日(土)・15日(日)", ds:["11/14","11/15"] },
+  { h:"11月21日(土)〜23日(月・祝)　三連休", ds:["11/21","11/22","11/23"] },
+  { h:"11月28日(土)・29日(日)", ds:["11/28","11/29"] }
+];
+// 長期開催の会期（11月の対象日に展開）
+EVENTS.push(
+  { t:"京急ミュージアム（本物の電車・ジオラマ・運転シミュレーター）", days:[], time:"10:00〜16:30", ward:"西区", venue:"京急ミュージアム（京急グループ本社1階）",
+    price:"free", priceText:"入館無料（一部の体験は有料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"2025年1月から予約なしで通しで入れるように", age:[0,99], ageText:"全年齢", kind:"ongoing", start:600, ride:true,
+    sum:"昭和の電車「デハ230形」の実物展示、京急の沿線を再現した大きなジオラマ、運転シミュレーター、電車の工作など。火曜休館（祝日なら翌日）。",
+    tip:"横浜駅東口から歩いて約7分。電車好きの子の定番", url:"https://www.keikyu.co.jp/museum/", src:"京急電鉄（2025年1月）・鉄道コム" },
+  { t:"原鉄道模型博物館（世界最大級の鉄道模型ジオラマ）", days:[], time:"10:00〜17:00（最終入館16:30）", ward:"西区", venue:"原鉄道模型博物館（横浜三井ビルディング2階）",
+    price:"admission", priceText:"大人1,000円・中高生700円・4歳以上500円（2026年の大人1,500円という情報もあり、情報が分かれています）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:true, resvText:"事前予約制（公式サイトで確認）", age:[3,99], ageText:"3歳ごろ〜大人", kind:"ongoing", start:600, ride:true,
+    sum:"約310㎡の巨大ジオラマ「いちばんテツモパーク」を、本物そっくりの大きな鉄道模型が走る。火・水曜休館（祝日は開館）。",
+    tip:"新高島駅から歩いて約2分、横浜駅東口から約5分", url:"https://www.hara-mrm.com/", src:"アソビュー・横浜市観光情報" },
+  { t:"横浜市電保存館（昔の路面電車に乗れる）", days:[], time:"土日祝 9:30〜17:00（最終入館16:30）", ward:"磯子区", venue:"横浜市電保存館（磯子区滝頭）",
+    price:"admission", priceText:"大人300円・3歳〜中学生100円（現金のみ）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:570, ride:true,
+    sum:"本物の市電7両が並び、車内に入って座れる。Nゲージの運転コーナーや市電シミュレーターも。水・木曜休館（祝日は開館）。",
+    tip:"JR根岸駅から市営バスで約7分「市電保存館前」すぐ。無料駐車場あり", url:"https://www.shiden.yokohama/", src:"かながわ観光情報・JR東日本（2025年）" },
+  { t:"横浜市民防災センター（防火服・地震体験）", days:[], time:"9:15〜17:00", ward:"神奈川区", venue:"横浜市民防災センター（神奈川区沢渡）",
+    price:"free", priceText:"入館無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"体験ツアーは時間が決まっているので公式で確認", age:[3,99], ageText:"3歳ごろ〜大人", kind:"ongoing", start:555, ride:true,
+    sum:"消防局の体験施設。地震の揺れや火災・水害を体験できる。はたらく車好きの子に。月曜休館（祝日は開館）。",
+    tip:"横浜駅西口から歩いて約10分。12/12(土)には、はしご車の搭乗体験（当日抽選）がある「防災パーク2026」も", url:"https://www.welcome.city.yokohama.jp/spot/details.php?bbid=805", src:"横浜市観光情報" },
+  { t:"防災フェス（消防車の展示・子ども防火服）", days:["11/14","11/15"], time:"日にちは未発表（11月中旬の予定）", ward:"中区", venue:"横浜ワールドポーターズ",
+    price:"free", priceText:"無料の見込み", place:"屋外", rain:"check", rainText:"日程・雨天時は中消防署に確認",
+    resv:false, resvText:"予約不要の見込み", age:[0,99], ageText:"全年齢", kind:"limited", start:600, ride:true,
+    sum:"中消防署による消防車両の展示、子ども用の防火服を着る体験など。県の消防イベントカレンダーで「11月中旬（予定）」とされていて、日にちはまだ分かっていません。",
+    tip:"行く前に中消防署（045-251-0119）で日にちを確認", url:"https://www.pref.kanagawa.jp/documents/101562/1.pdf", src:"神奈川県 消防イベントカレンダー（2026年9〜11月）" }
+);
+for (const e of EVENTS) if (/旧横ギャラリー|ANAの飛行機|熱気球/.test(e.t)) e.ride = true;
+EVENTS.push(
+  { t:"野毛山動物園（入園無料・なかよし広場でふれあい）", days:[], time:"9:30〜16:30（入園は16:00まで）", ward:"西区", venue:"野毛山動物園",
+    price:"free", priceText:"入園無料", place:"屋外", rain:"check", rainText:"ほぼ屋外。屋内の休憩棟あり",
+    resv:null, resvText:"入園は予約不要。なかよし広場（小動物とのふれあい）は事前予約制", age:[0,99], ageText:"全年齢", kind:"ongoing", start:570, animal:true,
+    sum:"キリン・ライオン・レッサーパンダなど。新しくなった「なかよし広場」でモルモットなどの小動物とふれあえる（事前予約制）。月曜休園（祝日なら翌日）。2027年1月からリニューアルで休園予定。",
+    tip:"桜木町駅から歩くと上り坂が長い。ベビーカーなら市営バスで「野毛山動物園前」へ", url:"https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/oshirase/nogeyamarenewal.html", src:"横浜市・鉄道チャンネル（2026年）" },
+  { t:"よこはま動物園ズーラシア", days:[], time:"開園時間は公式で確認", ward:"旭区", venue:"よこはま動物園ズーラシア",
+    price:"admission", priceText:"料金は公式で確認（毎週土曜は高校生以下が無料・未就学児はいつでも無料）", place:"屋外", rain:"check", rainText:"ほぼ屋外",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:570, animal:true,
+    sum:"オカピやゾウなど世界の動物を地域ごとに見て回れる大きな動物園。土曜は高校生以下が無料。開園時間・休園日は公式で確認。",
+    tip:"園内は広くアップダウンがある。ベビーカーと歩きやすい靴で", url:"https://www.welcome.city.yokohama.jp/spot/details.php?bbid=111", src:"横浜市観光情報・かながわ観光" },
+  { t:"金沢動物園（コアラ・オカピ）", days:[], time:"9:30〜16:30（入園は16:00まで）", ward:"金沢区", venue:"金沢動物園（金沢自然公園）",
+    price:"admission", priceText:"大人500円・高校生300円・小中学生200円・未就学児無料（小中高生は毎週土曜無料）", place:"屋外", rain:"check", rainText:"ほぼ屋外",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:570, animal:true,
+    sum:"コアラ・オカピ・インドゾウなど。となりの植物区には100mのローラーすべり台も。月曜休園（祝日なら開園して翌日休み）。",
+    tip:"京急 金沢文庫駅西口からバス。土日祝は急行「金沢動物園」行きで約10分", url:"https://www.hama-midorinokyokai.or.jp/zoo/kanazawa/", src:"横浜市水道局（2026年1月）・All About" },
+  { t:"横浜・八景島シーパラダイス（水族館・ふれあいラグーン）", days:[], time:"9:00〜18:00ごろ（日によって変わる）", ward:"金沢区", venue:"横浜・八景島シーパラダイス",
+    price:"admission", priceText:"水族館4館のアクアリゾーツパス：高校生以上3,500円・小中学生2,200円・4歳以上1,200円（混む日は変わることあり）", place:"屋内", rain:"ok", rainText:"水族館は屋内なので雨でもOK",
+    resv:false, resvText:"入場は予約不要（体験プログラムは事前予約）", age:[0,99], ageText:"全年齢", kind:"ongoing", start:540, animal:true,
+    sum:"アクアミュージアム（イワシの大水槽・ショー）、イルカのドルフィンファンタジー、生き物にさわれる「ふれあいラグーン」、釣り体験の「うみファーム」の4つの水族館。",
+    tip:"シーサイドライン八景島駅から歩いて約10分", url:"https://kanagawa-kankou.or.jp/spot/296", src:"ジョルダン・ファッションプレス（2026年）" }
+);
+for (const e of EVENTS) if (/ズーラシア|牧場|乳しぼり|バター作り/.test(e.t)) e.animal = true;
+EVENTS.push(
+  { t:"ノースポート・モール「のすぽひろば」（無料の遊び場）", days:[], time:"10:00〜21:00", ward:"都筑区", venue:"ノースポート・モール 3階（センター北）",
+    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[0,5], ageText:"0〜5歳", kind:"ongoing", start:600, freeplay:true,
+    sum:"ハイハイエリアとアスレチックエリアに分かれた無料のキッズスペース。見守り用の席あり。同じ階にファミリー休憩室・授乳室・おむつ替えも。",
+    tip:"センター北駅から歩いて約1分。サービスカウンターの横", url:"https://northport.jp/facility/detail/6", src:"ノースポート・モール公式・つづきむつき（2026年）" },
+  { t:"トレッサ横浜 無料キッズスペース（駐車場も無料）", days:[], time:"施設の営業時間内", ward:"港北区", venue:"トレッサ横浜（北棟2階・南棟2階）",
+    price:"free", priceText:"無料（駐車場も全日無料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[0,6], ageText:"0歳〜未就学児", kind:"ongoing", start:600, freeplay:true,
+    sum:"乳幼児向けの小さな遊具とマットの無料キッズスペースが2か所。ベビー休憩室が4か所あり、電子レンジとウォーターサーバー（お湯）も使える。",
+    tip:"車で行くなら一番気楽。週末は駐車場がいっぱいになる時間もある", url:"https://www.kouhokushakyo.or.jp/feature/9581/", src:"港北区社会福祉協議会（2024年）・コズレ" },
+  { t:"港北TOKYU S.C.「赤ちゃん休憩室」内キッズスペース", days:[], time:"施設の営業時間内", ward:"都筑区", venue:"港北TOKYU S.C.（センター南）",
+    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[0,3], ageText:"0〜3歳ごろ", kind:"ongoing", start:600, freeplay:true,
+    sum:"赤ちゃん休憩室の中にある小さなキッズスペース。授乳やおむつ替えのついでに遊ばせられる。",
+    tip:"センター南駅を降りてすぐ", url:"https://www.tsudzuki.mutsuki.yokohama/tsuzuki-shitsunai-asobiba/", src:"つづきむつき（2026年）" },
+  { t:"モザイクモール港北「センターパーク」", days:[], time:"施設の営業時間内", ward:"都筑区", venue:"モザイクモール港北（センター北）",
+    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[0,6], ageText:"0歳〜未就学児", kind:"ongoing", start:600, freeplay:true,
+    sum:"モール内の無料で遊べるスペース。センター北なら「のすぽひろば」とはしごできる。",
+    tip:"センター北駅から歩いて約2分", url:"https://www.tsudzuki.mutsuki.yokohama/tsuzuki-shitsunai-asobiba/", src:"つづきむつき（2026年）" },
+  { t:"のげやま子ども図書館「おやこフロア」（ねころべる絵本の部屋）", days:[], time:"9:30〜17:00", ward:"西区", venue:"横浜市中央図書館 1階（のげやま子ども図書館）",
+    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[0,6], ageText:"0歳〜未就学児", kind:"ongoing", start:570, freeplay:true,
+    sum:"赤ちゃんがねころべるエリアや三角テントがあり、声を出しても過ごしやすい絵本のフロア（約4,200冊）。持ってきたものを食べられる飲食エリアもある。ベビーカーのまま入れる。",
+    tip:"野毛山動物園（無料）のすぐそば。あわせて行ける", url:"https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/central/oyako.html", src:"横浜市（2026年）" },
+  { t:"横浜アンパンマンこどもミュージアム 1階モール（無料エリア）", days:[], time:"施設の営業時間内", ward:"西区", venue:"横浜アンパンマンこどもミュージアム 1階",
+    price:"free", priceText:"1階のショップ・レストラン部分は無料（ミュージアムは有料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"1階は予約不要", age:[0,6], ageText:"0歳〜未就学児", kind:"ongoing", start:600, freeplay:true,
+    sum:"有料のミュージアムに入らなくても、1階のモールでアンパンマンの世界の雰囲気を楽しめる。「有料エリアはまだ早いかも」という1歳ごろに。",
+    tip:"新高島駅から歩いて約3分", url:"https://kyounoko.jp/article/shitsunai-asobi-yokohama", src:"きょうのこ（2026年）" },
+  { t:"日産グローバル本社ギャラリー（車の展示）", days:[], time:"施設の営業時間内", ward:"西区", venue:"日産グローバル本社ギャラリー",
+    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:600, freeplay:true, ride:true,
+    sum:"日産の車がずらりと並ぶ無料のギャラリー。車好きの子に。グッズショップやカフェもある。",
+    tip:"横浜駅東口から歩いて約7分。京急ミュージアムのすぐ近く", url:"https://billion-log.com/kanagawa-yokohama-playground-room/", src:"ビリオンログ（2025年）・鉄道コム" },
+  { t:"各区の「こどもログハウス」（木の大型遊具の館）", days:[], time:"9:00〜17:00（冬季は16:00までの館も）", ward:"緑区", venue:"市内各区のこどもログハウス（例：霧が丘公園）",
+    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[1,15], ageText:"保護者と一緒の幼児・小中学生", kind:"ongoing", start:540, freeplay:true,
+    sum:"公園の中にある木造の遊び場。すべり台やネット登り、地下迷路などがある館も。月1回の点検日（第2か第3月曜など館による）が休み。泉区の館は2027年1月まで工事中。",
+    tip:"駐車場がない館が多い。近くの館は区のホームページで", url:"https://www.city.yokohama.lg.jp/midori/madoguchi-shisetsu/riyoshisetsu/chi-4-shisetsu.html", src:"横浜市（緑区・神奈川区・泉区 2026年）" }
+);
+EVENTS.push(
+  { t:"ボーネルンド あそびのせかい MARK IS みなとみらい店", days:[], time:"施設の営業時間内", ward:"西区", venue:"MARK IS みなとみらい 3階",
+    price:"paid", priceText:"平日60分400円〜（土日祝は料金が変わる。公式で確認）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"混む日は入場制限あり", age:[0,6], ageText:"6か月〜未就学児", kind:"ongoing", start:600, paidplay:true,
+    sum:"おもちゃメーカーのボーネルンドの室内遊び場。0〜3歳が雨の日に体を動かすなら横浜市内で第一候補。",
+    tip:"みなとみらい駅直結。平日は料金が安め", url:"https://kyounoko.jp/article/shitsunai-asobi-yokohama", src:"きょうのこ（2026年）" },
+  { t:"あそびパークPLUS みなとみらい東急スクエア店", days:[], time:"施設の営業時間内", ward:"西区", venue:"みなとみらい東急スクエア",
+    price:"paid", priceText:"料金は公式で確認", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"公式で確認", age:[0,12], ageText:"0歳〜小学生", kind:"ongoing", start:600, paidplay:true,
+    sum:"駅直結の屋内遊び場。雨の日でも濡れずに行ける。",
+    tip:"みなとみらい駅直結。東急スクエアのおむつ台は女性トイレのみなので、パパひとりならMARK ISへ", url:"https://startoo.co/spot/128608/", src:"STARTOO" },
+  { t:"アドベンチャーアイランド ららぽーと横浜", days:[], time:"施設の営業時間内", ward:"都筑区", venue:"ららぽーと横浜 2階",
+    price:"paid", priceText:"料金は公式で確認", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"公式で確認", age:[0,8], ageText:"0歳〜小学2年生", kind:"ongoing", start:600, paidplay:true,
+    sum:"2階建ての立体遊具や電動で動く遊具がある遊び場。",
+    tip:"同じららぽーとに屋内砂場（TOYLO PARK）も", url:"https://asobii.net/142601", src:"あそびい横浜（2026年）" },
+  { t:"TOYLO PARK サンドエリア（屋内の砂場）", days:[], time:"10:00〜17:40", ward:"都筑区", venue:"イトーヨーカドー ららぽーと横浜店 2階",
+    price:"paid", priceText:"子ども 平日200円・土日祝300円（大人は無料で付き添い）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"時間制（平日1時間40分・土日祝40分）", age:[1,12], ageText:"1歳ごろ〜小学生", kind:"ongoing", start:600, paidplay:true,
+    sum:"靴を脱いで遊べる国内最大級の屋内砂場。幼児用と6歳以上用の砂山がある。となりに無料で遊べるおもちゃ売り場も。",
+    tip:"平日のほうが安くて長く遊べる", url:"https://www.lemon8-app.com/experience/%E3%82%89%E3%82%89%E3%81%BD%E3%83%BC%E3%81%A8%E6%A8%AA%E6%B5%9C-%E5%AD%90%E9%80%A3%E3%82%8C?region=jp", src:"利用者の投稿（Lemon8）" },
+  { t:"ちきゅうのにわ 港北店", days:[], time:"施設の営業時間内", ward:"都筑区", venue:"モザイクモール港北（センター北）",
+    price:"paid", priceText:"料金は公式で確認", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"公式で確認", age:[0,12], ageText:"0〜12歳", kind:"ongoing", start:600, paidplay:true,
+    sum:"地球や自然がテーマの、遊んで学べるプレイグラウンド。",
+    tip:"センター北駅から歩いて約2分。無料の「のすぽひろば」とはしごも", url:"https://asobii.net/142601", src:"あそびい横浜（2026年）" },
+  { t:"The Kids 横浜ノースポートモール店", days:[], time:"施設の営業時間内", ward:"都筑区", venue:"ノースポート・モール（センター北）",
+    price:"paid", priceText:"料金は公式で確認", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"公式で確認", age:[0,12], ageText:"0歳〜小学生", kind:"ongoing", start:600, paidplay:true,
+    sum:"0歳から遊べる全天候型の室内遊び場。",
+    tip:"同じモールに無料の「のすぽひろば」もある", url:"https://asobii.net/142601", src:"あそびい横浜（2026年）" },
+  { t:"トレッサ横浜 遊Kids愛ランド／キンダープラッツ", days:[], time:"施設の営業時間内", ward:"港北区", venue:"トレッサ横浜",
+    price:"paid", priceText:"遊Kids愛ランド：平日600円で時間無制限・土日祝1時間600円・保護者無料（2020年の情報なので公式で確認）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"公式で確認", age:[0,8], ageText:"0〜8歳", kind:"ongoing", start:600, paidplay:true,
+    sum:"遊具で体を動かせる屋内遊園地「遊Kids愛ランド」と、フレーベル館の遊び場「キンダープラッツ」。駐車場は全日無料。",
+    tip:"平日なら時間を気にせず遊べる", url:"https://feature.cozre.jp/69969", src:"コズレ（2020年）・こどもと" },
+  { t:"キッズランドUS 横浜希望が丘店", days:[], time:"施設の営業時間内", ward:"旭区", venue:"K-1ショッピングセンター 3階（希望ヶ丘）",
+    price:"paid", priceText:"料金は公式で確認", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"公式で確認", age:[0,12], ageText:"0歳〜小学生", kind:"ongoing", start:600, paidplay:true,
+    sum:"大きなジャングルジム、ボールプール、メリーゴーランド、トランポリン、巨大迷路がある屋内遊園地。ゲーム機は追加料金なしで遊べる。",
+    tip:"相鉄線 希望ヶ丘駅から歩いて約6分", url:"https://www.nap-camp.com/mag/81911", src:"なっぷ（2026年）" }
+);
+EVENTS.push(
+  { t:"アカチャンホンポ 港南台バース店のキッズスペース", days:[], time:"お店の営業時間内", ward:"港南区", venue:"港南台バース（アカチャンホンポ店内）",
+    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[0,6], ageText:"0歳〜未就学児", kind:"ongoing", start:600, freeplay:true,
+    wk:"毎日（お店の休業日を除く）", sum:"お店の中にある小さめのキッズスペース。ベビー用品の買い物ついでにちょっと遊ばせられる。",
+    tip:"港南台駅前。広さや遊具は利用者の情報なので、行く前にお店で確認を", url:"https://www.google.com/maps/search/" + encodeURIComponent("アカチャンホンポ 港南台バース"), src:"利用者の情報（2026年11月）" }
+);
+EVENTS.push(
+  { t:"MARK IS みなとみらい 3階「おやこの森」（無料キッズスペース）", days:[], time:"施設の営業時間内", ward:"西区", venue:"MARK IS みなとみらい 3階",
+    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"予約不要", age:[0,5], ageText:"0〜2歳・3〜5歳でエリアが分かれている", kind:"ongoing", start:600, freeplay:true,
+    wk:"毎日（施設の休館日を除く）", sum:"3階のキッズルーム「おやこの森」に無料で遊べるスペースがあり、0〜2歳と3〜5歳でエリアが分かれている。赤ちゃん休憩室もある。同じ階のトイザらスでは、おもちゃや三輪車を試せる。子ども用のトイレもある。",
+    tip:"みなとみらい駅直結。有料のボーネルンドも同じ3階", url:"https://iko-yo.net/facilities/19689/attractions/13175", src:"いこーよ（施設情報・2026年5月の口コミ）・利用者の情報（年齢の分け方・2026年11月）" }
+);
+EVENTS.push(
+  { t:"ジョイナステラス二俣川のキッズスペース（駅直結）", days:[], time:"10:00〜21:00（物販の営業時間）", ward:"旭区", venue:"ジョイナステラス二俣川（二俣川駅直結）",
+    price:"free", priceText:"無料（現地で確認）", place:"屋内", rain:"ok", rainText:"駅直結なので雨でも濡れずに行ける",
+    resv:false, resvText:"予約不要", age:[0,6], ageText:"0歳〜未就学児", kind:"ongoing", start:600, freeplay:true,
+    wk:"毎日（施設の休館日を除く）", sum:"二俣川駅直結の商業施設にある、子どもが遊べるスペース。開業時の記事では3・4階に子どもの遊び場がつくられたとされ、利用者の情報では大戸屋と同じフロア。",
+    tip:"相鉄線 二俣川駅の改札からそのまま行ける。ズーラシアの帰りにも寄りやすい", url:"https://www.kanaloco.jp/news/economy/entry-29270.html", src:"神奈川新聞（2018年開業時）・利用者の情報（フロア・2026年11月）" }
+);
+EVENTS.push(
+  { t:"三井アウトレットパーク 横浜ベイサイド（ベビーラウンジ・中庭・くじらの広場）", days:[], time:"物販10:00〜20:00／フードコート10:30〜21:00", ward:"金沢区", venue:"三井アウトレットパーク 横浜ベイサイド（シーサイドライン 鳥浜駅）",
+    price:"free", priceText:"入場無料", place:"屋内外", rain:"ok", rainText:"「くじらの大屋根広場」は屋根付きの全天候型",
+    resv:false, resvText:"予約不要", age:[0,6], ageText:"0歳〜（ベビーラウンジは0〜1歳半）", kind:"ongoing", start:600, freeplay:true,
+    wk:"毎日（不定休）", sum:"海沿いのアウトレット。Aブロック1Fに0〜1歳半向けのハイハイ・つかまり立ちスペース「ベビーラウンジ うみのもり」、2,000㎡超の中庭「セントラルコート」、Cブロック1Fにくじら型の人工芝がある屋根付きの「くじらの大屋根広場」。Cブロック2Fのフードコートには小上がり席と、お湯・調乳器・電子レンジがある。",
+    tip:"ベビーカーは100円リターン式で貸し出し（生後4か月〜4歳未満・予約不可）。個室の授乳室mamaroとキッズトイレはAブロック1F。八景島の行き帰りにも寄りやすい", url:"https://mitsui-shopping-park.com/mop/yokohama/special/oyako_navi", src:"三井アウトレットパーク 横浜ベイサイド公式「おやこなび」", asof:"2026年11月11日" }
+);
+EVENTS.push(
+  { t:"親子でちょっと早いクリスマス（ブランチ横浜南部市場）", days:["11/19"], time:"10:30〜12:30", ward:"金沢区", venue:"ブランチ横浜南部市場（シーサイドライン 南部市場駅すぐ）",
+    price:"free", priceText:"アプリ「マイコミュ」で事前予約すると無料（予約なしは1,000円）", place:"屋内", rain:"ok", rainText:"屋内（NANBU BASE）",
+    resv:true, resvText:"アプリで事前予約・先着100組", age:[0,12], ageText:"親子向け", kind:"limited", start:630,
+    sum:"キラキラバスボム作りやフォトブースなどを楽しめる親子向けのクリスマスイベント。事前予約した人には、おかしのつかみどりか野菜の詰め合わせのプレゼントあり。平日（木曜）の開催。",
+    tip:"先着100組なので早めに予約を。駐車場は混みやすいのでシーサイドラインが便利", url:"https://www.branch-sc.com/yokohama_nanbu/shop/pop-eventnews.jsp?id=8200", src:"ブランチ横浜南部市場 公式", asof:"2026年11月11日" },
+  { t:"こども縁日（ブランチ横浜南部市場）", days:["11/28","11/29"], time:"10:00〜17:00", ward:"金沢区", venue:"ブランチ横浜南部市場 食堂ストリート（南部市場駅すぐ）",
+    price:"unknown", priceText:"料金は公式ページに記載なし（屋台ごとに有料の見込み）", place:"屋外", rain:"check", rainText:"強風や雨のときは中止・変更あり",
+    resv:false, resvText:"予約不要", age:[2,12], ageText:"子ども向け", kind:"limited", start:600,
+    sum:"キャラクター人形すくい、輪投げ、ヨーヨー釣り、金魚すくい、くじ引きなどのお祭り屋台が並ぶ。",
+    tip:"市場の食堂でお昼も食べられる。三井アウトレットパーク横浜ベイサイドもシーサイドラインで2駅", url:"https://www.branch-sc.com/yokohama_nanbu/shop/pop-eventnews.jsp?id=5559", src:"ブランチ横浜南部市場 公式", asof:"2026年11月11日" },
+  { t:"大道芸パフォーマンスショー（ブランチ横浜南部市場）", days:[], time:"週末に不定期", ward:"金沢区", venue:"ブランチ横浜南部市場 海辺広場（南部市場駅すぐ）",
+    price:"unknown", priceText:"料金は公式ページに記載なし", place:"屋外", rain:"check", rainText:"荒天のときは中止",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:600,
+    sum:"週末に海辺広場（こもれび広場）で大道芸のショー。出演者や時間は日によって変わる。",
+    tip:"時間は公式に出ていないので、行く前に公式SNSか電話（045-374-5392）で確認を", url:"https://www.branch-sc.com/yokohama_nanbu/shop/pop-eventnews.jsp?id=5070", src:"ブランチ横浜南部市場 公式", asof:"2026年11月11日" }
+);
+const WK = {
+  "京急ミュージアム（本物の電車・ジオラマ・運転シミュレーター）":"火曜休み（祝日なら翌日）",
+  "原鉄道模型博物館（世界最大級の鉄道模型ジオラマ）":"火・水曜休み（祝日は開館）",
+  "横浜市電保存館（昔の路面電車に乗れる）":"平日は10:00〜16:00・水・木曜休み",
+  "横浜市民防災センター（防火服・地震体験）":"月曜休み（祝日なら次の平日）",
+  "野毛山動物園（入園無料・なかよし広場でふれあい）":"月曜休み（祝日なら翌日）",
+  "よこはま動物園ズーラシア":"休園日は公式で確認",
+  "金沢動物園（コアラ・オカピ）":"月曜休み（祝日なら開園して翌日休み）",
+  "横浜・八景島シーパラダイス（水族館・ふれあいラグーン）":"平日も営業（時間は日によって違う）",
+  "ノースポート・モール「のすぽひろば」（無料の遊び場）":"毎日 10:00〜21:00",
+  "トレッサ横浜 無料キッズスペース（駐車場も無料）":"毎日（施設の休館日を除く）",
+  "港北TOKYU S.C.「赤ちゃん休憩室」内キッズスペース":"毎日（施設の休館日を除く）",
+  "モザイクモール港北「センターパーク」":"毎日（施設の休館日を除く）",
+  "のげやま子ども図書館「おやこフロア」（ねころべる絵本の部屋）":"毎日9:30〜17:00（月1回の点検日などは休み）",
+  "横浜アンパンマンこどもミュージアム 1階モール（無料エリア）":"毎日（施設の休館日を除く）",
+  "日産グローバル本社ギャラリー（車の展示）":"営業日は公式で確認",
+  "各区の「こどもログハウス」（木の大型遊具の館）":"月1回の点検日（館による）以外は毎日"
+};
+for (const e of EVENTS) {
+  if (WK[e.t]) e.wk = WK[e.t];
+  if (e.paidplay) e.wk = e.wk || "毎日（施設の休館日を除く）・平日は空いていることが多い";
+  if (e.wk) e.period = "いつでも（通年の施設）";
+}
+const RANGE = {
+  "放送30周年記念「名探偵コナン」展":{}, "横浜・みなとみらい Winter Holiday 2026（DQ×FF）":{}, "アンパンマンたちと楽しむクリスマス":{},
+  "みなとみらいクリスマスマーケット2026":{}, "2027春節燈花（中華街イルミネーション）":{}, "第19回 美食節 横濵中華街フードフェスティバル":{},
+  "三溪園 菊花展2026":{to:"11/23"}, "マリー・アントワネット・スタイル":{to:"11/23"}, "謎解き冒険ラリー 不思議ハンター in 岸根公園":{to:"11/15"},
+  "かえるのピクルス スタンプラリーin横浜 2026":{}, "ミナトノアート2026":{to:"11/23"}, "都市伝説解体センター×横浜マリンタワー 謎解きラリー":{to:"11/23"},
+  "開館40周年記念展「横浜人形の家 建築と記憶」":{to:"11/23"}
+};
+for (const e of EVENTS) {
+  if (e.t === "THE MOVEUM YOKOHAMA「印象派モネと浮世絵」") { e.kind = "ongoing"; e.period = "2026/10/24〜2027/3/31（11/15は一般営業休止）"; e.closed = ["11/15"]; e.sum = "モネの絵画と浮世絵を大画面の映像で体験する没入型の展示。"; e.tip = "11/15は一般営業がお休み"; }
+  if (e.t === "こどもの国 あそび広場") e.days = ["11/14","11/21"];
+  if (e.t === "こどもの国牧場 乳しぼり体験") { e.kind = "ongoing"; e.period = "毎週土日祝"; }
+  if (e.t === "こどもの国牧場 バター作り教室") { e.kind = "ongoing"; e.period = "毎週日曜"; e.only = ["11/15","11/22","11/29"]; }
+  if (e.kind === "ongoing") {
+    const r = RANGE[e.t] || {};
+    const from = DATE_IDX[e.from || r.from || "11/14"], to = DATE_IDX[e.to || r.to || "11/29"];
+    let ds = DATES.slice(from, to + 1).map(d => d.k);
+    if (e.only) ds = e.only;
+    if (e.closed) ds = ds.filter(d => !e.closed.includes(d));
+    e.days = ds;
+    if (!e.period) e.period = `〜${(r.to || "11/29")}（11月の週末はすべて）`;
+  }
+}
+Object.assign(FOOD_OF, {
+  "名探偵コナン 芸術花火2026":"yamashita", "Vintage & Artisan Market in みなとみらい（蚤の市）":"mm",
+  "こどもの国 冬のブラスフェス":"kodomonokuni", "こどもの国 もみじのかざぐるま":"kodomonokuni", "こどもの国 自然スタンプビンゴ＜紅葉バージョン＞":"kodomonokuni",
+  "こどもの国 工作教室「ヒツジをつくろう」":"kodomonokuni", "こどもの国 エコスポ！フェス2026":"kodomonokuni",
+  "旧横ギャラリー 展示ガイド（中等客車に乗れる）":"mm", "ANAの飛行機に色をぬろう！親子ワークショップ":"mm", "日本丸「飾り毛布」作り体験":"mm",
+  "みなとみらい熱気球係留搭乗体験会":"yamashita", "MARK IS みなとみらい アイロンビーズ体験":"mm",
+  "Christmas Market in 横浜赤レンガ倉庫":"yamashita", "BALLPARK Xmas YOKOHAMA KANNAI 2026":"yamashita", "アートリンク in 横浜赤レンガ倉庫（屋外スケート）":"yamashita"
+});
+function dayChips(e){
+  if (e.kind === "ongoing") return `<span class="period">${e.wk ? "" : "会期 "}${esc(e.period)}</span>${e.wk ? `<span class="period wk">平日：${esc(e.wk)}</span>` : ""}`;
+  return e.days.map(k => { const d = DATES[DATE_IDX[k]]; if (!d) { const [m, dd] = k.split("/").map(Number); const w = "日月火水木金土"[new Date(2026, m - 1, dd).getDay()]; return `<span class="day wkday">${m}/${dd}(${w})</span>`; } return `<span class="day ${d.c}">${d.s}(${d.w})</span>`; }).join("");
+}
+
+const PAGE_URL = "https://claude.ai/artifact/A59EZRXKqLMm8iTEMLzkaQ";
+function lineUrl(text){ return "https://line.me/R/share?text=" + encodeURIComponent(text); }
+function eventText(e){
+  const when = e.kind === "ongoing" ? `会期 ${e.period}` : e.days.map(k => { const d = DATES[DATE_IDX[k]]; if (!d) { const [m, dd] = k.split("/").map(Number); return `${m}/${dd}(${"日月火水木金土"[new Date(2026, m - 1, dd).getDay()]})`; } return `11/${d.s}(${d.w})`; }).join("・");
+  return `【${e.t}】\n${when}　${e.time}\n場所：${e.ward}・${e.venue}\n料金：${e.priceText}\n雨の日：${RAIN_LABEL[e.rain]}（${e.rainText}）\n詳細：${e.url}`;
+}
+
+// ===== 持ち物チェック =====
+function packHtml(e){
+  const k = FOOD_OF[e.t]; if (!k) return "";
+  const bb = BABY[k] || [], shops = (FOOD[k] || {}).shops || [];
+  if (!bb.length && !shops.length) return "";
+  if (e.age[0] >= 9) return "";
+  const names = arr => arr.slice(0,2).map(b => b.n.replace(/（.*?）/g,"")).join("、");
+  const items = [];
+  const hot = bb.filter(b => b.w === true);
+  if (hot.length) items.push(["leave","いらない",`魔法瓶のお湯（調乳のお湯がもらえる：${names(hot)}）`]);
+  else items.push(["bring","持参",`調乳用のお湯（近くでお湯がもらえる場所は確認できず）`]);
+  const nurse = bb.filter(b => b.f === true);
+  if (!nurse.length) items.push(["bring","持参","授乳ケープ（近くに授乳室が確認できず）"]);
+  const stroller = bb.filter(b => b.ex.some(x => x.includes("ベビーカー貸出")));
+  if (stroller.length) items.push(["leave","置いてOK",`ベビーカー（貸し出しあり：${names(stroller)}）※台数に限りあり`]);
+  const micro = bb.filter(b => b.ex.some(x => x.includes("電子レンジ")));
+  if (micro.length) items.push(["leave","温め可",`離乳食はその場で温められる（${names(micro)}）`]);
+  const kidsfood = shops.filter(sh => sh.tags.some(t => t.includes("キッズメニュー") || t.includes("園内で食べられる")));
+  const bento = shops.some(sh => sh.tags.includes("お弁当持ち込みOK")) || bb.some(b => b.ex.includes("お弁当持ち込みOK"));
+  if (kidsfood.length) items.push(["leave","なくてOK",`お弁当（子連れで食べられるお店あり：${names(kidsfood)}）`]);
+  if (bento) items.push(["leave","持参OK","お弁当の持ち込みができる"]);
+  const diaper = bb.filter(b => b.d === true);
+  if (!diaper.length) items.push(["bring","持参","おむつ替えシート（おむつ替えの場所が確認できず）"]);
+  return `<div class="pack"><h4>持ち物チェック（赤ちゃん連れ）</h4><ul>${items.map(([c,m,t]) => `<li class="${c}"><span class="m">${m}</span><span>${esc(t)}</span></li>`).join("")}</ul>
+    <p class="note">近くの施設情報からの目安です。情報の時点が古いものもあるので、下の「おむつ替え・授乳・お湯」で確認してください。</p></div>`;
+}
+
+const state = { day:"all", age:"all", flags:new Set(), area:"all", q:"" };
+const RAIN_ICON = {
+  ok:'<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6.2 11.6 2.8 8.2l1.1-1.1 2.3 2.3 5.9-5.9 1.1 1.1z"/></svg>',
+  check:'<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1 15 14H1zm-.8 5v4h1.6V6zm0 5v1.6h1.6V11z"/></svg>',
+  cancel:'<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1a6 6 0 0 1 6 6H8.8v5.2a2 2 0 0 1-4 0h1.6a.4.4 0 0 0 .8 0V7H2a6 6 0 0 1 6-6z"/></svg>',
+  unknown:'<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path fill="currentColor" d="M7.2 10.6h1.6v1.6H7.2zM8 3.8c1.5 0 2.6 1 2.6 2.3 0 1.6-1.8 1.8-1.8 3.4H7.2c0-2.2 1.8-2.3 1.8-3.4 0-.5-.4-.8-1-.8s-1 .4-1 .9H5.4C5.4 4.8 6.5 3.8 8 3.8z"/></svg>'
+};
+const RAIN_LABEL = { ok:"雨でもOK", check:"天気に注意", cancel:"雨天中止", unknown:"雨の日は要確認" };
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function matches(e){
+  if (state.day !== "all" && !e.days.includes(state.day)) return false;
+  if (state.age !== "all") {
+    const [lo, hi] = state.age.split("-").map(Number);
+    if (!(e.age[0] <= hi && e.age[1] >= lo)) return false;
+  }
+  if (state.flags.has("free") && e.price !== "free") return false;
+  if (state.flags.has("rain") && e.rain !== "ok") return false;
+  if (state.flags.has("noresv") && e.resv !== false) return false;
+  if (state.flags.has("limited") && e.kind !== "limited") return false;
+  if (state.flags.has("ride") && !e.ride) return false;
+  if (state.flags.has("animal") && !e.animal) return false;
+  if (state.flags.has("freeplay") && !e.freeplay) return false;
+  if (state.flags.has("paidplay") && !e.paidplay) return false;
+  if (state.flags.has("weekday") && !e.wk) return false;
+  if (state.flags.has("hot") && !hasHotWater(e)) return false;
+  if (state.area !== "all" && e.ward !== state.area) return false;
+  if (state.q) {
+    const hay = (e.t + e.sum + e.venue + e.ward + (e.tip||"")).toLowerCase();
+    if (!hay.includes(state.q.toLowerCase())) return false;
+  }
+  return true;
+}
+
+// ---- 行き方・ベビーカー動線（情報の時点：2026年11月10日） ----
+// 号車は「10両編成の号車〔8両編成の号車〕」。出典は各項目に記載。
+const ACCESS = {
+  akarenga: { name:"赤レンガ倉庫・象の鼻・大さん橋・新港ふ頭",
+    st:[
+      { line:"みなとみらい線", st:"日本大通り駅", car:"5号車（10両なら1〜9号車に乗る：ホームが狭い）", route:"改札を出て左へ。通路の突き当たり右のエレベーターで地上（県庁前）へ。象の鼻まで平らで約3分、赤レンガまで約6分。", src:"みなとみらい線停車位置まとめ（2023年）・施設案内" },
+      { line:"みなとみらい線", st:"馬車道駅", car:"7号車〔5号車〕", route:"改札→左→エレベーターを2回乗り継いで6番出口の地上へ。赤レンガまで約6分、万国橋の手前にゆるい上り坂あり。", src:"みなとみらい線停車位置まとめ（2023年）・施設案内" },
+      { line:"JR京浜東北線", st:"桜木町駅", car:"6号車（どちら方面も）", route:"エレベーターで改札へ。汽車道を歩いて約15分。段差なしで平ら、風が強い日は寒い。", src:"JR東日本（2025年9月）" }
+    ], toilet:"赤レンガ倉庫1号館・2号館に多機能トイレ（ベビーチェア・おむつ台あり）。途中なら日本大通り駅の改札内・神奈川県庁新庁舎・象の鼻パーク、馬車道側なら馬車道駅の改札内・ワールドポーターズにも多目的トイレあり。（横浜市観光バリアフリー情報 2024年・横浜トリエンナーレのアクセスガイド）", park:"赤レンガ倉庫の駐車場は休日すぐ満車になりがち。周辺の時間貸しも高め。電車がおすすめ。", rainAlt:"雨なら赤レンガ倉庫の館内（1号館・2号館）、大さん橋の屋根付きエリア。" },
+  mm: { name:"みなとみらい中心部（MARK IS・ランドマーク・美術館・日本丸）",
+    st:[
+      { line:"みなとみらい線", st:"みなとみらい駅", car:"4号車", route:"エレベーターで「けやき通り口（出口5）」方面へ。MARK IS・クイーンズスクエアと地下でつながっていて雨でも濡れない。", src:"みなとみらい線停車位置まとめ（2023年）" },
+      { line:"JR京浜東北線", st:"桜木町駅", car:"6号車（どちら方面も）", route:"エレベーターで改札へ。駅前から動く歩道でランドマークプラザまで段差なし。日本丸は駅から約5分。", src:"JR東日本（2025年9月）" }
+    ], park:"MARK IS・ランドマークは30分350円で上限なし（買い物で1〜3時間無料）。休日の昼前後は入庫待ちになりやすい。", rainAlt:"雨ならMARK IS（屋内遊び場あり・有料）、ランドマークプラザ、横浜美術館。" },
+  anpan: { name:"アンパンマンこどもミュージアム",
+    st:[
+      { line:"みなとみらい線", st:"新高島駅", car:"4号車", route:"エレベーターで改札へ。4番「臨港パーク口」のエレベーター（2023年に新しくなった）で地上へ。ミュージアムまで約3分。", src:"みなとみらい線停車位置まとめ（2023年）・駅のお知らせ" },
+      { line:"みなとみらい線", st:"みなとみらい駅", car:"4号車", route:"けやき通り口（出口5）方面のエレベーター→地上を約8分。", src:"みなとみらい線停車位置まとめ（2023年）" }
+    ], toilet:"ミュージアムの館内と、向かいのMARK ISにおむつ替えできる設備あり。ベビーカーのまま入れるトイレの位置は未確認。", park:"ミュージアム提携の駐車場は休日すぐ満車。周辺の時間貸しを使うことが多い。", rainAlt:"館内中心なので雨でも楽しめる。混雑時は向かいのMARK ISへ。" },
+  yamashita: { name:"山下公園・山下ふ頭・マリンタワー・中華街",
+    st:[
+      { line:"みなとみらい線", st:"元町・中華街駅", car:"3号車〔2号車〕：山下公園口・中華街口方面／10号車〔8号車〕：元町口・アメリカ山公園方面", route:"山下公園・マリンタワー・山下ふ頭へは3号車〔2号車〕側のエレベーター。元町側の改札からはエレベーターで6番出口（アメリカ山公園）の上にも出られる。", src:"みなとみらい線停車位置まとめ（2023年）" },
+      { line:"JR京浜東北線（根岸線）", st:"石川町駅", car:"8〜9号車：中華街側のエレベーター／2号車：元町側のエレベーター", route:"中華街の西門側に出る。山下公園までは中華街を抜けて約15分（人が多いので休日の昼はベビーカーだと進みにくい）。", src:"JR東日本（2025年9月）" }
+    ], toilet:"山下公園の多目的トイレは「石のステージ」付近（おむつ台・ベビーチェアあり）。公園の地下駐車場から「世界の広場」へのエレベーターは8:30〜17:00。マリンタワー2階にベビールーム、横浜人形の家・中華街の多目的トイレにもおむつ台あり。（横浜市バリアフリー情報 2023年・横浜市観光情報 2025年）", park:"山下公園周辺は地下駐車場あり。イベント日・花火の日は周辺道路も混む。", rainAlt:"雨ならマリンタワー、横浜人形の家、中華街の屋内店舗。" },
+  kannai: { name:"関内・横浜公園",
+    st:[
+      { line:"JR京浜東北線（根岸線）", st:"関内駅", car:"8号車か9号車（どちら方面も）", route:"エレベーターで改札へ。南口から横浜公園まで約3分。", src:"JR東日本（2025年9月）" },
+      { line:"みなとみらい線", st:"日本大通り駅", car:"5号車", route:"エレベーターで地上（県庁前）へ。横浜公園まで約5分。", src:"みなとみらい線停車位置まとめ（2023年）" }
+    ], toilet:"山下公園側へ歩くなら「石のステージ」付近の多目的トイレ（おむつ台あり）。（横浜市バリアフリー情報 2023年）", park:"BASEGATE横浜関内・周辺の時間貸しあり。イベント日は混む。", rainAlt:"雨ならBASEGATE横浜関内の館内、マリンタワー。" },
+  sakuragicho: { name:"桜木町駅まわり",
+    st:[
+      { line:"JR京浜東北線", st:"桜木町駅", car:"6号車（どちら方面も）", route:"エレベーターで改札へ。CIAL桜木町は駅直結、日本丸は約5分。", src:"JR東日本（2025年9月）" },
+      { line:"ブルーライン", st:"桜木町駅", car:"構内図で確認", route:"地下から地上へエレベーターあり。JR駅まで地上を約2分。", src:"" }
+    ], park:"CIAL桜木町・コレットマーレの駐車場（買い物で割引）。", rainAlt:"雨ならCIAL桜木町・コレットマーレの館内。" },
+  takashima: { name:"京急ミュージアム・原鉄道模型博物館（高島）",
+    st:[
+      { line:"みなとみらい線", st:"新高島駅", car:"4号車", route:"エレベーターで改札へ。地上に出て、原鉄道模型博物館は約2分、京急ミュージアムは約5分。", src:"みなとみらい線停車位置まとめ（2023年）" },
+      { line:"JR京浜東北線", st:"横浜駅", car:"大船方面行き：2号車のいちばん前のドア／大宮方面行き：3号車のいちばん後ろのドア", route:"エレベーターで中央南改札へ。東口に出て、はまみらいウォーク（歩道橋）を渡ると京急ミュージアムまで約7分。", src:"JR横浜駅停車位置まとめ" }
+    ], park:"周辺のビルに時間貸し駐車場あり。", rainAlt:"どちらも屋内。近くのアンパンマンこどもミュージアムも屋内中心。" },
+  yokohamaEast: { name:"横浜駅東口（そごう・はまテラス）",
+    st:[
+      { line:"JR京浜東北線", st:"横浜駅", car:"大船方面行き：2号車のいちばん前のドア／大宮方面行き：3号車のいちばん後ろのドア", route:"エレベーターで地下の「中央南改札」へ。改札を出て右（東口）へ進むと、ポルタ経由でそごう・はまテラスまで段差なし。", src:"JR横浜駅停車位置まとめ" },
+      { line:"みなとみらい線（東急東横線から直通）", st:"横浜駅", car:"4号車〔3号車〕", route:"エレベーターで正面改札へ。東口へは中央通路を通って約5分。", src:"みなとみらい線停車位置まとめ（2023年）" }
+    ], park:"そごう横浜店の駐車場（買い物で割引）。週末は入庫待ちになりやすい。", rainAlt:"雨なら、まち音Fesは屋内の「鐘の広場」で実施。そごう・ポルタも屋内。" },
+  ichiba: { name:"横浜市中央卸売市場（市場まつり）",
+    st:[
+      { line:"無料シャトルバス", st:"横浜駅東口から", car:"", route:"市場まつりの日は横浜駅東口から無料シャトルバスあり（ベビーカーは畳むことがあるので抱っこひもがあると安心）。JR横浜駅の乗車位置は「横浜駅東口」の行き方と同じ。", src:"横浜市" }
+    ], park:"一般向け駐車場は限られる。公共交通・シャトルバスがおすすめ。", rainAlt:"水産棟などは屋内。雨でも開催（荒天時は中止）。" },
+  shinyokohama: { name:"新横浜（横浜アリーナ）",
+    st:[
+      { line:"ブルーライン", st:"新横浜駅", car:"2号車（湘南台方面・あざみ野方面とも）", route:"2号車付近のエレベーターで「中央改札（出口5〜8）」へ。横浜アリーナは出口8側から地上を約5分。6号車付近のエレベーターは日産スタジアム改札（出口10）につながる。", src:"ブルーライン停車位置まとめ" },
+      { line:"相鉄・東急新横浜線", st:"新横浜駅", car:"構内図で確認", route:"アリーナに近いのは北改札（出口7・8）。エレベーターなどのバリアフリールートは南改札側にあるので、ベビーカーは南改札から地上へ。", src:"駅の構内案内" }
+    ], park:"アリーナ公演日は周辺駐車場がすぐ埋まる。電車がおすすめ。", rainAlt:"" },
+  kodomonokuni: { name:"こどもの国",
+    st:[
+      { line:"東急こどもの国線（長津田から）", st:"こどもの国駅", car:"2両編成なのでどの車両でもOK", route:"駅は終日無人（困ったらインターホン）。駅を出て正面入口まで約3分。", src:"東急電鉄・こどもの国", map:"https://www.tokyu.co.jp/railway/station/info/Pid=97.html" }
+    ], toilet:"こどもの国駅にはトイレがない（改札の中にも外にもなし）。入園してから園内のトイレを使う。（らくらくおでかけネット）", park:"駐車場あり（約1,520台・普通車1日1,000円）。紅葉シーズンの休日は午前中に満車になることも。", rainAlt:"雨ならこどもの国の屋内施設（平成記念館など）か、青葉区の地域子育て支援拠点（未就学児・日曜祝日は休みが多い）。" },
+  zoorasia: { name:"よこはま動物園ズーラシア",
+    st:[
+      { line:"バス", st:"中山駅（JR横浜線・グリーンライン）南口から", car:"", route:"「よこはま動物園」行きバスで約18分、終点で降りてすぐ正門。", src:"横浜市観光情報" },
+      { line:"バス", st:"鶴ヶ峰駅・三ツ境駅（相鉄線）北口から", car:"", route:"「よこはま動物園」行きバスで約15分。休日はバスが混むので、ベビーカーは畳めるように。", src:"横浜市観光情報" }
+    ], toilet:"園内に男女別のバリアフリートイレ（自動ドア）あり。一般トイレにはベビーカーごと入れる大きめの個室がないので、ベビーカーのままなら多機能トイレへ。一般トイレの個室には子ども用のいすあり。（横浜市観光情報 バリアフリーPDF）", park:"駐車場あり（約2,200台・1日1回1,000円）。入園前に精算機で先払いしておくと帰りが楽。", free:"毎週土曜日は高校生以下が無料（学生証などが必要）。未就学児はいつでも無料。", rainAlt:"園内はほぼ屋外。雨の日は旭区の地域子育て支援拠点「ひなたぼっこ」（二俣川・未就学児）など。" },
+  sankeien: { name:"三溪園",
+    st:[
+      { line:"バス", st:"横浜駅東口・桜木町駅・元町・中華街駅から", car:"", route:"市営バスで「三溪園入口」下車、徒歩約5分。元町・中華街駅は3号車〔2号車〕側のエレベーターで山下公園口へ出るとバス停が近い。", src:"施設案内" }
+    ], toilet:"車いすのまま入れる広いトイレが園内4か所（正門駐車場内・南門入口付近・中央広場・三溪記念館）。（かながわ観光情報）", park:"駐車場あり（最初の2時間1,000円、以降30分ごと200円）。", rainAlt:"園内は砂利道が多く、ベビーカーより抱っこひもが楽。雨なら三溪記念館（屋内）。" },
+  hakkeijima: { name:"八景島シーパラダイス",
+    st:[
+      { line:"シーサイドライン", st:"八景島駅", car:"構内図で確認", route:"京急 金沢八景駅かJR 新杉田駅で乗り換え。駅から橋を渡って島内へ徒歩約5分。", src:"施設案内" }
+    ], park:"八景島周辺に駐車場が5か所。島の中には車で入れない。", rainAlt:"雨なら水族館（アクアミュージアムなど）中心に。" },
+  seya: { name:"瀬谷駅", st:[ { line:"相鉄線", st:"瀬谷駅", car:"構内図で確認", route:"会場は北口駅前広場。駅を出てすぐ。", src:"" } ], park:"駅周辺の時間貸し。", rainAlt:"" },
+  kishine: { name:"岸根公園", st:[ { line:"ブルーライン", st:"岸根公園駅", car:"構内図で確認", route:"駅を出てすぐ公園。園内は坂が多い。", src:"" } ], park:"公園の駐車場あり（台数は少なめ）。", rainAlt:"" },
+  centerkita: { name:"センター北", st:[ { line:"ブルーライン・グリーンライン", st:"センター北駅", car:"構内図で確認", route:"駅の両側に商業施設があり、エレベーターで地上へ。", src:"" } ], park:"商業施設の駐車場（買い物で割引）。", rainAlt:"雨ならノースポート・モールやモザイクモール港北の館内。" }
+};
+const STATION_WC = {
+  "日本大通り駅": ["改札の中：多目的トイレあり（おむつ台の有無は未確認）"],
+  "馬車道駅": ["改札の中：多目的トイレあり（おむつ台の有無は未確認）"],
+  "桜木町駅|JR京浜東北線": ["改札の中：多目的トイレあり（おむつ台の有無は未確認）", "駅を出てすぐ：コレットマーレ（2〜4階）・ランドマークプラザ（1〜5階）に多目的トイレ"],
+  "みなとみらい駅": ["駅とつながるMARK IS：各フロアのトイレに折りたたみのおむつ替えシート、地下2階・4階に赤ちゃん休憩室（ベビーベッド・お湯）", "駅の中のトイレのおむつ台は未確認"],
+  "元町・中華街駅": ["元町側の改札の中：◎ おむつ替えコーナーあり（2026年4月に改装）。ベビーカーのまま入れる広い個室も", "山下公園口側の改札の中：未確認"],
+  "横浜駅|JR京浜東北線": [
+    "中央南改札の中：◎ 多機能トイレにベビーシート、男性トイレにもベビーシートの個室",
+    "南改札の中：◎ 多機能トイレにベビーシート、男性トイレにもベビーシートの個室",
+    "中央北改札の中：◎ 多機能トイレにベビーシート、男性トイレにもベビーシートの個室",
+    "北改札の中：◎ 多機能トイレにベビーシート（ただしこの改札はエレベーターがないのでベビーカーは避ける）",
+    "授乳・おむつ替えの部屋：改札の中の通路、カフェ「リフレスタ」の隣（中央南側／中央北側と情報が分かれています）"
+  ],
+  "横浜駅|みなとみらい線（東急東横線から直通）": ["改札の中：◎ ベビーシートのあるトイレあり。多機能トイレのほかに男女どちらでも使える広めの個室も2か所（2020年に改装）"],
+  "新横浜駅|相鉄・東急新横浜線": ["改札の中：◎ ベビーシートのあるトイレあり"],
+  "センター北駅": ["改札の中：◎ 個室型のベビーケアルーム（授乳・おむつ替え）"],
+  "こどもの国駅": ["× トイレなし（改札の中にも外にもない）", "乗り換えの長津田駅も、ベビーシートのあるトイレは改札の外。こどもの国に入ってから園内のトイレを使うのが確実"]
+};
+const STATION_WC_SRC = "出典：JR横浜駅はトイレ設備まとめサイト（2026年）とNAVITIME、東急線は東急電鉄のバリアフリー設備一覧、元町・中華街はみなとみらい線（2026年4月）、センター北は横浜市交通局、こどもの国はらくらくおでかけネット、桜木町・日本大通り・馬車道は横浜トリエンナーレのアクセスガイド（2017年）";
+function stationWc(x){ return STATION_WC[x.st + "|" + x.line] || STATION_WC[x.st] || null; }
+// ---- 近くの駐車場 ----
+const PARK_LOTS = {
+  mm: [
+    { n:"MARK IS みなとみらい駐車場（900台・地下）", fee:"30分350円（1日の上限なし）", note:"MARK IS・ランドマークプラザ・クイーンズタワーAの買い物を合算して、2,500円以上で1時間・5,000円以上で2時間・10,000円以上で3時間無料。高さ2.1mまで。8:45〜23:00", src:"MARK IS公式・横浜市駐車場案内システム" },
+    { n:"ランドマーク駐車場（1,400台・地下）", fee:"30分350円（1日の上限なし）", note:"MARK ISと同じ買い物サービスが使える。24時間営業", src:"ランドマーク公式・横浜市駐車場案内システム" },
+    { n:"クイーンズスクエア横浜地下駐車場（1,700台）", fee:"30分280円、上限は平日1,600円・土日祝2,000円", note:"上限があるので長くとめるならここが安心。7:00〜24:00", src:"MARK IS公式（料金）・特P（2026年5月・上限）" },
+    { n:"横浜美術館駐車場（約157台・平面）", fee:"最初の90分500円、以降30分250円", note:"美術館・グランモール公園のすぐ横。木曜は休み", src:"駐車場の神様（2025年）" }
+  ],
+  sakuragicho: [
+    { n:"ランドマーク駐車場（1,400台・地下）", fee:"30分350円（1日の上限なし）", note:"ランドマークプラザ・MARK ISの買い物で1〜3時間無料", src:"ランドマーク公式" }
+  ],
+  anpan: [
+    { n:"アンパンマンこどもミュージアム 第1駐車場（128台）", fee:"最初の1時間600円、以降30分300円", note:"一番近いが上限なし。休日はすぐ満車になりやすい", src:"るるぶ" },
+    { n:"オーケーみなとみらいビル駐車場（555台）", fee:"平日30分300円・上限2,000円／土日祝は30分600〜1,000円で上限なし（情報が分かれています）", note:"ミュージアムまで歩いて約5分。高さ2.25mまで。土日は割高なので予約駐車場も検討を", src:"おでかけ7・akippa（2026年）" }
+  ],
+  akarenga: [
+    { n:"横浜赤レンガ倉庫駐車場（第一83台・第二96台）", fee:"最初の1時間500円、以降30分ごと250円（1日の上限なし）", note:"1店舗で3,000円以上買うと1時間無料（お店どうしの合算はできない・屋外イベントは対象外）。長くとめるなら上限のある周辺の駐車場が安い", src:"おでかけ7（公式サイトから引用）" },
+    { n:"横浜ワールドポーターズ駐車場（約1,000台）", fee:"30分330円、平日の上限1,500円（土日祝は上限なし）", note:"赤レンガまで歩いて約5分。高さ2.2mまで", src:"akippa・おでかけノート（2026年）" }
+  ],
+  yamashita: [
+    { n:"横浜市山下町地下駐車場（193台）", fee:"平日20分200円・土日祝30分400円、当日最大2,000円", note:"元町・中華街駅に直結。高さ2.1mまで。地下なので雨の日も楽", src:"タイムズ（駐車場情報）" },
+    { n:"山下公園駐車場（222台）", fee:"平日30分300円・土日祝30分400円（料金は改定されることあり）", note:"マリンタワーまで歩いて約2分。公園の地下にあり、地上へのエレベーターは8:30〜17:00", src:"おでかけ7（公式サイトから引用）・横浜市" }
+  ],
+  kannai: [
+    { n:"横浜市山下町地下駐車場（193台）", fee:"平日20分200円・土日祝30分400円、当日最大2,000円", note:"横浜公園までは少し歩く。高さ2.1mまで", src:"タイムズ（駐車場情報）" }
+  ],
+  hakkeijima: [
+    { n:"八景島A駐車場（約1,500台）", fee:"1日定額（平日・土日で料金が違う。公式で確認）", note:"島の中には車で入れないので、島に一番近い大きな駐車場", src:"かいぶつブログ（2026年）" },
+    { n:"八景島B・C駐車場", fee:"入庫から24時間まで1,500円", note:"シーパラまで歩いて約6分", src:"akippa" }
+  ],
+  kodomonokuni: [ { n:"こどもの国 駐車場（約1,520台）", fee:"普通車1日1,000円", note:"紅葉シーズンの休日は午前中に満車になることも", src:"こどもの国" } ],
+  zoorasia: [ { n:"ズーラシア 駐車場（約2,200台）", fee:"1日1回1,000円", note:"入園前に精算機で先払いしておくと帰りが楽", src:"かながわ観光" } ],
+  sankeien: [ { n:"三溪園 駐車場", fee:"最初の2時間1,000円、以降30分ごと200円", note:"", src:"施設案内" } ]
+};
+const PARK_VENUE = [
+  [/野毛山動物園|中央図書館/, [
+    { n:"野毛山自動車駐車場", fee:"料金は現地で確認（上限なし・休日は混みやすい）", note:"動物園のいちばん近く。坂がきついので、近くにとめたいなら朝早めに", src:"おでかけ7" },
+    { n:"タイムズ西戸部町（7台）", fee:"20分110円、上限は平日770円・土日祝1,210円", note:"動物園まで歩いて約4分（坂あり）", src:"おでかけ7" } ]]
+];
+const PARK_FREE = { "トレッサ横浜":"トレッサ横浜の駐車場は全日無料（約2,700台・土日は約450台増）。週末は満車待ちになる時間も" };
+const PARK_RESERVE = { nogeyama:"https://www.akippa.com/kanto/kanagawa/nogeyamazoo", akarenga:"https://www.akippa.com/kanto/kanagawa/yokohamaakarenga", mm:"https://www.akippa.com/kanto/kanagawa/114538", anpan:"https://www.akippa.com/kanto/kanagawa/114538", hakkeijima:"https://www.akippa.com/kanto/kanagawa/seaparadise" };
+function parkHtml(e, k){
+  const g = venueGeo(e);
+  const pv = PARK_VENUE.find(([re]) => re.test(e.venue + e.t));
+  const lots = (k && PARK_LOTS[k]) || (pv ? pv[1] : []);
+  const free = Object.entries(PARK_FREE).find(([n]) => (e.venue + e.t).includes(n));
+  const map = g ? `https://www.google.com/maps/search/${encodeURIComponent("駐車場")}/@${g[0]},${g[1]},16z` : `https://www.google.com/maps/search/${encodeURIComponent(e.venue.replace(/（.*?）/g,"") + " 駐車場")}`;
+  return `<div class="park"><b>🅿 近くの駐車場</b>
+    ${free ? `<p>${esc(free[1])}</p>` : ""}
+    ${lots.length ? `<ul>${lots.map(l => `<li><b>${esc(l.n)}</b><span class="m">${esc(l.fee)}</span>${l.note ? `<span class="m">${esc(l.note)}</span>` : ""}<span class="src">出典：${esc(l.src)}</span></li>`).join("")}</ul>` : ""}
+    <p class="links"><a href="${esc(map)}" target="_blank" rel="noopener">会場のまわりの駐車場を地図で見る</a>${k && PARK_RESERVE[k] ? `　<a href="${esc(PARK_RESERVE[k])}" target="_blank" rel="noopener">予約できる駐車場を探す（akippa）</a>` : ""}</p>
+    <p class="note">料金は変わることがあります。イベントの日は満車になりやすいので、予約できる駐車場か電車がおすすめです。</p></div>`;
+}
+function accessKey(e){
+  const s = e.t + " " + e.venue;
+  if (/京急ミュージアム|原鉄道/.test(s)) return "takashima";
+  if (/アンパンマン/.test(s)) return "anpan";
+  if (/市場まつり|卸売市場/.test(s)) return "ichiba";
+  if (/八景島/.test(s)) return "hakkeijima";
+  if (/赤レンガ|象の鼻|大さん橋|新港|ハンマーヘッド|ナイトフラワーズ|コナン芸術花火|花火シンフォニア/.test(s)) return "akarenga";
+  if (/桜木町|シァル|CIAL/.test(s)) return "sakuragicho";
+  if (/MARK IS|ランドマーク|日本丸|美術館|グランモール|シンフォステージ|みなとみらい/.test(s)) return "mm";
+  if (/横浜公園|関内|BASEGATE|BALLPARK/.test(s)) return "kannai";
+  if (/山下|マリンタワー|人形の家|中華街|MOVEUM|ミナトノアート|かえるのピクルス/.test(s)) return "yamashita";
+  if (/横浜駅東口|はまテラス|そごう/.test(s)) return "yokohamaEast";
+  if (/横浜アリーナ|新横浜/.test(s)) return "shinyokohama";
+  if (/こどもの国/.test(s)) return "kodomonokuni";
+  if (/ズーラシア/.test(s)) return "zoorasia";
+  if (/三溪園/.test(s)) return "sankeien";
+  if (/瀬谷/.test(s)) return "seya";
+  if (/岸根/.test(s)) return "kishine";
+  if (/センター北|牛久保|都筑/.test(s)) return "centerkita";
+  return null;
+}
+function mapsUrl(e){ return "https://www.google.com/maps/dir/?api=1&travelmode=transit&destination=" + encodeURIComponent(e.venue.replace(/（.*?）/g,"") + " 横浜"); }
+function accessHtml(e){
+  const k = accessKey(e);
+  const go = `<a class="more" href="${esc(mapsUrl(e))}" target="_blank" rel="noopener">経路を調べる（Googleマップ）</a>`;
+  if (!k) return `<details class="acc"><summary>行き方・ベビーカー動線・トイレ</summary><p class="note">この会場の動線とトイレはまだ調べていません。${go}</p>${parkHtml(e, null)}</details>`;
+  const a = ACCESS[k];
+  const sat = a.free && e.days.some(d => (DATES.find(x => x.k === d) || {}).w === "土");
+  const rows = a.st.map(s => `<li><b>${esc(s.st)}</b><span class="ln">${esc(s.line)}</span>
+      ${s.car ? `<p class="car">🚃 ${esc(s.car)}</p>` : ""}<p>${esc(s.route)}</p>
+      ${stationWc(s) ? `<div class="wc"><b>🚻 駅のトイレ・おむつ替え</b><ul>${stationWc(s).map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+      ${s.map ? `<a href="${esc(s.map)}" target="_blank" rel="noopener">駅の構内図</a>` : ""}${s.src ? `<span class="src">出典：${esc(s.src)}</span>` : ""}</li>`).join("");
+  return `<details class="acc"><summary>行き方・ベビーカー動線・トイレ${sat ? `<span class="freeday">土曜は高校生以下無料</span>` : ""}</summary>
+    ${transitHtml(e, k)}
+    <ul>${rows}</ul>
+    <p><b>🚻 ベビーカーで入れるトイレ：</b>${esc(a.toilet || "駅・商業施設の多目的トイレ（だれでもトイレ）が使えることが多いです。この会場の場所はまだ調べていません。")}</p>
+    <p><b>🅿 駐車場：</b>${esc(a.park)}</p>
+    ${parkHtml(e, k)}
+    ${a.free ? `<p><b>無料の日：</b>${esc(a.free)}</p>` : ""}
+    ${a.rainAlt ? `<p><b>☔ 雨なら：</b>${esc(a.rainAlt)}</p>` : ""}
+    <p class="note">号車は10両編成のとき〔 〕内は8両編成のとき。エレベーターは点検で止まることがあるので、駅の案内も見てください。情報の時点：2026年11月10日。◎はおむつ替えできると確認できたところ。${esc(STATION_WC_SRC)}</p>
+    ${go}</details>`;
+}
+
+// ---- ベビーカールート図（方向音痴でも分かるナビ風） ----
+// t: start/left/right/straight/ev/cross/up/down/arrive  w: 注意
+const ROUTES = {
+  nihonodori_renga: { title:"日本大通り駅 → 赤レンガ倉庫1号館", min:"約6分", src:"横浜トリエンナーレ「車椅子やベビーカーで来場する方のためのアクセスガイド」（2017年）",
+    wc:"日本大通り駅の改札の中・神奈川県庁新庁舎・象の鼻パーク・赤レンガ倉庫1号館/2号館", steps:[
+    { t:"start", s:"みなとみらい線は5号車に乗る（10両の電車なら1〜9号車）" },
+    { t:"left", s:"改札を出たら左へ" },
+    { t:"ev", turn:"right", s:"通路の突き当たりを右。エレベーターで地上へ" },
+    { t:"right", s:"エレベーターを降りたら右へ。最初の交差点（県庁前）は渡らずに右へ" },
+    { t:"cross", s:"歩道を進み、県庁の渡り廊下の手前の横断歩道を渡る。渡ったら同じ方向（右）へ" },
+    { t:"up", s:"歩道を道なりに。ゆるい上り坂がしばらく続く", w:true },
+    { t:"down", s:"橋のてっぺんから下り坂。右奥に赤レンガ倉庫が見えてくる" },
+    { t:"cross", s:"赤レンガ倉庫の交差点の横断歩道を渡る。向かって右の小さいほうの倉庫が1号館" },
+    { t:"arrive", s:"建物の右端にあるスロープから入る。左側（入口側）は階段なので注意", w:true } ] },
+  bashamichi_renga: { title:"馬車道駅 → 赤レンガ倉庫1号館", min:"約6分", src:"横浜トリエンナーレ「車椅子やベビーカーで来場する方のためのアクセスガイド」（2017年）",
+    wc:"馬車道駅の改札の中・横浜ワールドポーターズ・横浜第二合同庁舎1階・赤レンガ倉庫1号館/2号館", steps:[
+    { t:"start", s:"みなとみらい線は7号車に乗る（8両の電車なら5号車）" },
+    { t:"left", s:"改札を出たら左へ。エレベーターで地下1階へ" },
+    { t:"ev", turn:"right", s:"地下1階の右奥のエレベーターで「B中1階」へ" },
+    { t:"ev", turn:"left", s:"左奥の「6番出口」行きのエレベーターで地上へ" },
+    { t:"left", s:"地上に出たら左へ。歩道をまっすぐ" },
+    { t:"up", s:"万国橋のまん中まで上り坂が続く", w:true },
+    { t:"cross", s:"万国橋の交差点で、正面の横断歩道を渡る" },
+    { t:"right", s:"渡ったら右へ。奥に赤レンガ倉庫が見える" },
+    { t:"cross", s:"赤レンガ倉庫の交差点を渡る。向かって右の小さいほうの倉庫が1号館" },
+    { t:"arrive", s:"建物の右端にあるスロープから入る。左側（入口側）は階段なので注意", w:true } ] },
+  sakuragicho_museum: { title:"JR桜木町駅 → 横浜美術館・グランモール公園", min:"約10分", src:"横浜トリエンナーレ「車椅子やベビーカーで来場する方のためのアクセスガイド」（2017年）",
+    wc:"JR桜木町駅の改札の中・コレットマーレ（2〜4階）・ランドマークプラザ（1〜5階）・MARK IS・横浜美術館（2・3階）", steps:[
+    { t:"start", s:"JR京浜東北線は6号車に乗る" },
+    { t:"left", s:"南改札を出たら左（東口側）へ" },
+    { t:"left", s:"駅前広場に出たら左手へ。ランドマークタワーの方向に進む" },
+    { t:"ev", s:"コレットマーレと動く歩道をつなぐ歩道橋の柱にあるエレベーターで2階へ" },
+    { t:"straight", s:"動く歩道で進む。継ぎ目に段差があるので注意", w:true },
+    { t:"right", s:"ランドマークプラザ3階に入ったら右へ。エレベーターホールへ" },
+    { t:"ev", s:"エレベーターで「2階」へ（1階からは外に出られない）", w:true },
+    { t:"left", s:"ステンレスの彫刻（ワクワクモクモクヨコハマヨーヨー）の手前を左へ。出口に段差あり", w:true },
+    { t:"arrive", s:"まっすぐ陸橋を渡ると、左側が横浜美術館。前の広場がグランモール公園" } ] },
+  minatomirai_museum: { title:"みなとみらい駅 → 横浜美術館・グランモール公園", min:"約5分", src:"横浜トリエンナーレ「車椅子やベビーカーで来場する方のためのアクセスガイド」（2017年）",
+    wc:"MARK IS みなとみらい（各階）・横浜美術館（2・3階）", steps:[
+    { t:"start", s:"みなとみらい線はまん中あたりの車両（4号車）に乗る" },
+    { t:"ev", s:"ホームからエレベーターで改札の階へ" },
+    { t:"right", s:"改札を出たら右奥の「MARK IS みなとみらい連絡口」へ" },
+    { t:"ev", s:"「南エレベーター」で1階へ（朝10時より前は動いていない）", w:true },
+    { t:"left", s:"MARK ISの中を左へ。オレンジの矢印に沿って外に出る" },
+    { t:"right", s:"外に出たら右奥へ" },
+    { t:"arrive", s:"公園のまん中のステージ横のスロープを通ると、美術館の正面" } ] }
+};
+const ROUTE_LABEL = { start:"スタート", left:"左へ", right:"右へ", straight:"まっすぐ", ev:"エレベーター", cross:"横断歩道", up:"上り坂", down:"下り坂", arrive:"到着" };
+function stepIcon(t){
+  const A = (d) => `<svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="9" fill="var(--accent-soft)"/>${d}</svg>`;
+  const ar = `stroke="var(--accent)" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"`;
+  switch (t) {
+    case "left": return A(`<path d="M26 32 V18 a4 4 0 0 0 -4 -4 H12" ${ar}/><path d="M17 8 L11 14 L17 20" ${ar}/>`);
+    case "right": return A(`<path d="M14 32 V18 a4 4 0 0 1 4 -4 H28" ${ar}/><path d="M23 8 L29 14 L23 20" ${ar}/>`);
+    case "straight": return A(`<path d="M20 32 V10" ${ar}/><path d="M13 16 L20 9 L27 16" ${ar}/>`);
+    case "ev": return A(`<rect x="10" y="7" width="20" height="26" rx="2" fill="none" stroke="var(--accent)" stroke-width="3"/><line x1="20" y1="7" x2="20" y2="33" stroke="var(--accent)" stroke-width="2"/><path d="M13 16 l3 -4 l3 4 M21 24 l3 4 l3 -4" stroke="var(--accent)" stroke-width="2.4" fill="none"/>`);
+    case "cross": return A(`${[9,15,21,27].map(x => `<rect x="${x}" y="8" width="4" height="24" fill="var(--accent)"/>`).join("")}`);
+    case "up": return A(`<path d="M7 31 L33 13 V31 Z" fill="var(--warn)" opacity=".85"/><path d="M12 22 l7 -5" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>`);
+    case "down": return A(`<path d="M7 13 L33 31 H7 Z" fill="var(--accent)" opacity=".7"/>`);
+    case "arrive": return A(`<path d="M20 7 l3.8 7.7 8.5 1.2 -6.2 6 1.5 8.4 -7.6 -4 -7.6 4 1.5 -8.4 -6.2 -6 8.5 -1.2z" fill="#e2b02c"/>`);
+    default: return A(`<circle cx="20" cy="20" r="9" fill="#e2483d"/><text x="20" y="24" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">駅</text>`);
+  }
+}
+function routeOverview(r){
+  // 曲がり方だけを表した全体図（上が進む方向のスタート）
+  let x = 0, y = 0, h = 0; const pts = [[0,0]], marks = [];
+  const L = 34, dirs = [[0,-1],[1,0],[0,1],[-1,0]];
+  r.steps.forEach((st, i) => {
+    const tn = st.turn || (st.t === "left" || st.t === "right" ? st.t : null);
+    if (tn === "left") h = (h + 3) % 4; if (tn === "right") h = (h + 1) % 4;
+    if (i > 0) { x += dirs[h][0] * L; y += dirs[h][1] * L; pts.push([x, y]); }
+    marks.push({ x, y, t: st.t, n: i, w: st.w });
+  });
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  const pad = 22, minX = Math.min(...xs) - pad, minY = Math.min(...ys) - pad, W = Math.max(...xs) - minX + pad, H = Math.max(...ys) - minY + pad;
+  const dots = marks.map(m => {
+    const c = m.t === "start" ? "#e2483d" : m.t === "arrive" ? "#e2b02c" : m.w ? "var(--warn)" : "var(--accent)";
+    return `<circle cx="${m.x}" cy="${m.y}" r="10" fill="${c}" stroke="#fff" stroke-width="2"/><text x="${m.x}" y="${m.y + 4}" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fff">${m.t === "start" ? "駅" : m.t === "arrive" ? "★" : m.n}</text>`;
+  }).join("");
+  return `<svg class="rov" viewBox="${minX} ${minY} ${W} ${H}" role="img" aria-label="${esc(r.title)}の曲がり方の全体図">
+    <polyline points="${pts.map(p => p.join(",")).join(" ")}" fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".35"/>
+    <polyline points="${pts.map(p => p.join(",")).join(" ")}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 4"/>${dots}</svg>`;
+}
+function routeCard(id){
+  const r = ROUTES[id];
+  return `<div class="route"><p class="rt"><b>🗺 ${esc(r.title)}</b>（ベビーカーで${esc(r.min)}）</p>
+    <div class="rov-box"><span class="note">曲がる順番の全体図（駅→★）</span>${routeOverview(r)}</div><div class="rwrap">
+    <ol class="rsteps">${r.steps.map((st, i) => `<li class="${st.w ? "w" : ""}">${stepIcon(st.t)}<div><span class="rn">${st.t === "start" || st.t === "arrive" ? ROUTE_LABEL[st.t] : i + "・" + ROUTE_LABEL[st.t]}${st.turn ? "（" + ROUTE_LABEL[st.turn] + "曲がる）" : ""}${st.w ? "・注意" : ""}</span>${esc(st.s)}</div></li>`).join("")}</ol></div>
+    <p class="note">🚻 途中の多目的トイレ：${esc(r.wc)}</p>
+    <p class="note">全体図は曲がる順番だけを表した図で、実際の距離や形とは違います。道順の出典：${esc(r.src)}。工事などで変わっていることがあるので、現地の案内も見てください。</p></div>`;
+}
+function routesFor(e){
+  const s = e.t + " " + e.venue;
+  if (/赤レンガ/.test(s)) return ["nihonodori_renga", "bashamichi_renga"];
+  if (/美術館|グランモール|クリスマスマーケット2026/.test(s)) return ["minatomirai_museum", "sakuragicho_museum"];
+  return [];
+}
+function routeHtml(e){
+  const ids = routesFor(e); if (!ids.length) return "";
+  return `<details class="food rmap"><summary>🗺 ベビーカールート図（${ids.length}ルート）</summary>${ids.map(routeCard).join("")}</details>`;
+}
+
+function card(e){
+  const days = dayChips(e);
+  const priceChip = e.price === "free" ? `<li class="chip free">無料</li>`
+    : e.price === "admission" ? `<li class="chip">入園料のみ</li>`
+    : e.price === "paid" ? `<li class="chip">有料</li>` : `<li class="chip">料金要確認</li>`;
+  const resvChip = e.resv === true ? `<li class="chip resv">要予約</li>` : e.resv === false ? `<li class="chip">予約不要</li>` : `<li class="chip">予約は要確認</li>`;
+  return `<article class="card r-${e.rain}">
+    <div class="when">${days}<span>${esc(e.time)}</span></div>
+    <h3>${esc(e.t)}</h3>
+    <p class="where">${esc(e.ward)}・${esc(e.venue)}</p>
+    <ul class="chips">${priceChip}<li class="chip">${esc(e.ageText)}</li><li class="chip">${esc(e.place)}</li>${resvChip}</ul>
+    <p class="rain ${e.rain}">${RAIN_ICON[e.rain]}<span><b>${RAIN_LABEL[e.rain]}</b>　${esc(e.rainText)}</span></p>
+    <p class="sum">${esc(e.sum)}</p>
+    <p class="tip" style="display:${e.tip ? "block" : "none"}">${esc(e.tip || "")}</p>
+    <p class="where">料金：${esc(e.priceText)}／予約：${esc(e.resvText)}</p>
+    <p class="asof">情報の時点：${esc(e.asof || "2026年11月9日")}</p>
+    <div class="cardfoot"><a class="more" href="${esc(e.url)}" target="_blank" rel="noopener">詳細はこちら（${esc(e.src)}）</a>
+      <a class="linebtn sm" href="${esc(lineUrl(eventText(e)))}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5 1.1-.5 5.9-3.5 8-5.9C21.4 14.4 22 12.8 22 11c0-4.4-4.5-8-10-8z"/></svg>LINEで送る</a></div>
+    ${routeHtml(e)}
+    ${accessHtml(e)}
+    ${packHtml(e)}
+    ${babyHtml(e)}
+    ${foodHtml(e)}
+    ${famiresHtml(e)}
+  </article>`;
+}
+
+function sortKey(e, ds){ const vague = /確認/.test(e.time) ? 50000 : 0; const first = (ds ? e.days.filter(d => ds.includes(d)) : e.days)[0]; return vague + (DATE_IDX[first] || 0) * 2000 + e.start; }
+
+// ---- 近くで探す（現在地・駅から○m圏内） ----
+const ST_GEO = { "横浜":[35.4658,139.6223], "桜木町":[35.4510,139.6310], "みなとみらい":[35.4578,139.6325], "新高島":[35.4615,139.6290],
+  "馬車道":[35.4500,139.6370], "日本大通り":[35.4467,139.6425], "元町・中華街":[35.4428,139.6505], "関内":[35.4440,139.6370], "石川町":[35.4390,139.6430],
+  "新横浜":[35.5070,139.6170], "岸根公園":[35.4935,139.6135], "センター北":[35.5460,139.5750], "中山":[35.5150,139.5390], "こどもの国":[35.5597,139.4890],
+  "瀬谷":[35.4660,139.4980], "八景島":[35.3370,139.6450] };
+const near = { c:null, label:"", r:1000 };
+function distM(a, b){ const R=6371000, t=x=>x*Math.PI/180, dLa=t(b[0]-a[0]), dLo=t(b[1]-a[1]);
+  return 2*R*Math.asin(Math.sqrt(Math.sin(dLa/2)**2+Math.cos(t(a[0]))*Math.cos(t(b[0]))*Math.sin(dLo/2)**2)); }
+function fmtD(m){ return m < 1000 ? `${Math.round(m/10)*10}m` : `${(m/1000).toFixed(1)}km`; }
+function renderNear(){
+  const out = document.getElementById("near-out"); if (!out) return;
+  document.querySelectorAll("#near-r .opt").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.v === near.r)));
+  if (!near.c) { out.innerHTML = `<p class="note">「現在地から探す」を押すか、近くの駅を選んでください。</p>`; return; }
+  const items = [];
+  EVENTS.filter(matches).forEach(e => { const g = venueGeo(e); if (g) { const d = distM(near.c, g); if (d <= near.r) items.push({ kind:"ev", e, g, d }); } });
+  Object.entries(SPOT_GEO).forEach(([n, g]) => { const d = distM(near.c, g); if (d <= near.r) items.push({ kind:"baby", n, g, d }); });
+  BABYFOOD_SHOPS.forEach(x => { const d = distM(near.c, x.g); if (d <= near.r) items.push({ kind:"food", n:x.n, g:x.g, d, sub:x.d }); });
+  items.sort((a, b) => a.d - b.d);
+  // 地図（自前のSVG。上が北）
+  const S = 300, sc = (S/2 - 18) / near.r, mPerLat = 111320, mPerLon = 111320 * Math.cos(near.c[0]*Math.PI/180);
+  const pos = g => [S/2 + (g[1]-near.c[1]) * mPerLon * sc, S/2 - (g[0]-near.c[0]) * mPerLat * sc];
+  let pins = "", n = 0; const seen = {};
+  items.forEach(it => { n++; it.no = n; let [x, y] = pos(it.g); const kk = Math.round(x/6)+","+Math.round(y/6), c = seen[kk] = (seen[kk]||0) + 1;
+    if (c > 1) { const a = c * 2.1, r = 7 + c * 2.2; x += Math.cos(a) * r; y += Math.sin(a) * r; }
+    pins += `<g><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="${it.kind==="ev" ? "var(--accent)" : it.kind==="food" ? "#d98a1f" : "var(--ok)"}" stroke="#fff" stroke-width="1.5"/><text x="${x.toFixed(1)}" y="${(y+3.5).toFixed(1)}" text-anchor="middle" font-size="9.5" fill="#fff" font-weight="700">${n}</text></g>`; });
+  const map = `<svg class="nmap" viewBox="0 0 ${S} ${S}" role="img" aria-label="${esc(near.label)}から${fmtD(near.r)}圏内の地図">
+    <circle cx="${S/2}" cy="${S/2}" r="${S/2-18}" fill="var(--accent-soft)" stroke="var(--line)"/>
+    <circle cx="${S/2}" cy="${S/2}" r="${(S/2-18)/2}" fill="none" stroke="var(--line)" stroke-dasharray="3 3"/>
+    <text x="${S/2}" y="12" text-anchor="middle" font-size="10" fill="var(--muted)">北</text>
+    <text x="${S/2+(S/2-18)/2+3}" y="${S/2-3}" font-size="9" fill="var(--muted)">${fmtD(near.r/2)}</text>
+    ${pins}<circle cx="${S/2}" cy="${S/2}" r="6" fill="#e2483d" stroke="#fff" stroke-width="2"/></svg>`;
+  const list = items.length ? items.map(it => {
+    const walk = Math.max(1, Math.round(it.d * 1.3 / 70));
+    const gm = `https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=${it.g ? encodeURIComponent(near.c.join(",")) : ""}&destination=${encodeURIComponent(it.g.join(","))}`;
+    return it.kind === "ev"
+      ? `<li><span class="no ev">${it.no}</span><div><b>${esc(it.e.t)}</b><span class="m">${esc(it.e.venue)}・${dayChipsText(it.e)} ${esc(it.e.time)}</span><span class="m">${fmtD(it.d)}・ベビーカーで約${walk}分（目安）　<a href="${esc(gm)}" target="_blank" rel="noopener">徒歩ルート</a>　<a href="${esc(it.e.url)}" target="_blank" rel="noopener">詳細</a></span></div></li>`
+      : `<li><span class="no ${it.kind==="food" ? "fd" : "bb"}">${it.no}</span><div><b>${esc(it.n)}</b><span class="m">${it.kind==="food" ? "🥣 離乳食が無料・" + esc(it.sub) : "おむつ替え・授乳など"}</span><span class="m">${fmtD(it.d)}・ベビーカーで約${walk}分（目安）　<a href="${esc(gm)}" target="_blank" rel="noopener">徒歩ルート</a></span></div></li>`;
+  }).join("") : `<li class="none">この範囲には見つかりませんでした。範囲を広げてみてください。</li>`;
+  out.innerHTML = `<p class="nhead"><b>${esc(near.label)}</b>から${fmtD(near.r)}以内：イベント${items.filter(i=>i.kind==="ev").length}件・赤ちゃん設備${items.filter(i=>i.kind==="baby").length}か所・離乳食無料のお店${items.filter(i=>i.kind==="food").length}店（上の日付・年齢などの絞り込みも反映）</p>
+    <div class="nwrap">${map}<ol class="nlist">${list}</ol></div>
+    <p class="note"><span style="color:#e2483d">●</span>赤い点が現在地（または選んだ駅）、<span style="color:var(--accent)">●</span>イベント、<span style="color:var(--ok)">●</span>おむつ替え・授乳、<span style="color:#d98a1f">●</span>離乳食が無料のお店。距離はまっすぐ測った目安で、徒歩の分数は道なりを考えて少し多めにしています。</p>`;
+}
+function dayChipsText(e){ return e.days.length > 3 ? `${e.days[0]}〜${e.days[e.days.length-1]}` : e.days.join("・"); }
+function useHere(){
+  const msg = document.getElementById("near-msg");
+  if (!navigator.geolocation) { msg.textContent = "この画面では現在地が使えません。近くの駅を選んでください。"; return; }
+  msg.textContent = "現在地を確認しています…";
+  try {
+    navigator.geolocation.getCurrentPosition(p => { near.c = [p.coords.latitude, p.coords.longitude]; near.label = "現在地"; msg.textContent = ""; renderNear(); },
+      () => { msg.textContent = "現在地を取得できませんでした（この画面では使えないことがあります）。近くの駅を選んでください。"; },
+      { enableHighAccuracy:false, timeout:8000, maximumAge:300000 });
+  } catch(_) { msg.textContent = "この画面では現在地が使えません。近くの駅を選んでください。"; }
+}
+function initNear(){
+  const sel = document.getElementById("near-st"); if (!sel) return;
+  sel.innerHTML = `<option value="">駅を選ぶ</option>` + Object.keys(ST_GEO).map(k => `<option>${k}</option>`).join("");
+  sel.addEventListener("change", () => { if (!sel.value) return; near.c = ST_GEO[sel.value]; near.label = sel.value + "駅"; renderNear(); });
+  document.getElementById("near-here").addEventListener("click", useHere);
+  document.querySelectorAll("#near-r .opt").forEach(b => b.addEventListener("click", () => { near.r = +b.dataset.v; renderNear(); }));
+  renderNear();
+}
+
+function render(){
+  const hit = EVENTS.filter(matches);
+  if (typeof renderNear === "function" && near.c) setTimeout(renderNear, 0);
+  document.getElementById("n").textContent = hit.length;
+  let html = "";
+  const secs = [];
+  const dkey = d => { const [m, dd] = d.split("/").map(Number); return m * 100 + dd; };
+  for (const w of WEEKENDS) {
+    const ds = state.day === "all" ? w.ds : w.ds.filter(d => d === state.day);
+    if (!ds.length) continue;
+    const list = hit.filter(e => e.kind === "limited" && e.days.some(d => ds.includes(d))).sort((a,b) => sortKey(a,ds) - sortKey(b,ds));
+    if (!list.length) continue;
+    secs.push([dkey(ds[0]), `<section class="group"><h2>${w.h}<small>${list.length}件・この日だけのイベント</small></h2><div class="list">${list.map(card).join("")}</div></section>`]);
+  }
+  if (state.day === "all") {
+    const wkAll = WEEKENDS.flatMap(w => w.ds);
+    const byDay = {};
+    for (const e of hit.filter(e => e.kind === "limited" && e.days.length && e.days.every(d => !wkAll.includes(d)))) for (const d of e.days) (byDay[d] = byDay[d] || []).push(e);
+    for (const d of Object.keys(byDay)) {
+      const [m, dd] = d.split("/").map(Number); const yb = "日月火水木金土"[new Date(2026, m - 1, dd).getDay()];
+      secs.push([dkey(d), `<section class="group"><h2>平日 ${m}月${dd}日(${yb})<small>${byDay[d].length}件・平日だけのイベント</small></h2><div class="list">${byDay[d].map(card).join("")}</div></section>`]);
+    }
+  }
+  html += secs.sort((x, y) => x[0] - y[0]).map(x => x[1]).join("");
+  const on = hit.filter(e => e.kind === "ongoing").sort((a,b) => sortKey(a) - sortKey(b));
+  if (on.length) html += `<section class="group"><h2>会期中ずっとやっているもの<small>${on.length}件・選んだ日も開催中</small></h2><div class="list">${on.map(card).join("")}</div></section>`;
+  document.getElementById("results").innerHTML = html || `<div class="empty">条件に合うイベントがありません。条件を減らしてみてください。</div>`;
+}
+
+function setupAreas(){
+  const wards = [...new Set(EVENTS.map(e => e.ward))];
+  const order = ["中区","西区","神奈川区","港北区","都筑区","青葉区","緑区","港南区","旭区","瀬谷区","磯子区","金沢区"];
+  wards.sort((a,b) => order.indexOf(a) - order.indexOf(b));
+  const box = document.getElementById("area-opts");
+  box.innerHTML = `<button class="opt" id="f-area-all" data-v="all" aria-pressed="true">すべて</button>` +
+    wards.map((w,i) => `<button class="opt" id="f-area-${i}" data-v="${w}" aria-pressed="false">${w}</button>`).join("");
+}
+
+function bind(){
+  document.querySelectorAll(".opts[data-key]").forEach(box => {
+    box.addEventListener("click", ev => {
+      const b = ev.target.closest(".opt"); if (!b) return;
+      const key = box.dataset.key, v = b.dataset.v;
+      if (box.dataset.multi) {
+        const on = b.getAttribute("aria-pressed") !== "true";
+        b.setAttribute("aria-pressed", on);
+        on ? state.flags.add(v) : state.flags.delete(v);
+      } else {
+        box.querySelectorAll(".opt").forEach(o => o.setAttribute("aria-pressed", o === b));
+        state[key] = v;
+      }
+      render();
+    });
+  });
+  document.getElementById("q").addEventListener("input", e => { state.q = e.target.value.trim(); render(); });
+  document.getElementById("reset").addEventListener("click", () => {
+    state.day = "all"; state.age = "all"; state.area = "all"; state.q = ""; state.flags.clear();
+    document.getElementById("q").value = "";
+    document.querySelectorAll(".opts[data-key]").forEach(box => box.querySelectorAll(".opt").forEach(o => {
+      o.setAttribute("aria-pressed", box.dataset.multi ? "false" : String(o.dataset.v === "all"));
+    }));
+    render();
+  });
+}
+
+
+// ===== みんなの投稿 =====
+const CONFIRM = 3;
+const WARDS = ["鶴見区","神奈川区","西区","中区","南区","港南区","保土ケ谷区","旭区","磯子区","金沢区","港北区","緑区","青葉区","都筑区","戸塚区","栄区","泉区","瀬谷区"];
+const FAC = [
+  ["markis","MARK IS みなとみらい","西区"], ["tqs","みなとみらい東急スクエア","西区"], ["anpan","横浜アンパンマンこどもミュージアム","西区"],
+  ["sogo","そごう横浜店","西区"], ["takashimaya","高島屋横浜店 6F（子ども服売り場）","西区"],
+  ["akarenga","横浜赤レンガ倉庫","中区"], ["hammerhead","横浜ハンマーヘッド","中区"], ["zounohana","象の鼻テラス","中区"],
+  ["marinetower","横浜マリンタワー","中区"], ["wharf","THE WHARF HOUSE 山下公園","中区"], ["chinatown","横浜中華街","中区"],
+  ["sankeien","三溪園","中区"], ["ichiba","横浜市中央卸売市場本場","神奈川区"], ["kodomonokuni","こどもの国","青葉区"],
+  ["zoorasia","よこはま動物園ズーラシア","旭区"], ["mosaic","モザイクモール港北","都筑区"], ["kishine","岸根公園","港北区"]
+];
+{ const AREA_WARD = { mm:"西区", yamashita:"中区", "yokohama-st":"西区", honmoku:"中区", kodomonokuni:"青葉区", zoorasia:"旭区", centerkita:"都筑区" };
+  const seen = new Set(FAC.map(f => f[1]));
+  Object.entries(FOOD).forEach(([k, a]) => (a.shops || []).forEach(sh => { if (!seen.has(sh.n)) { seen.add(sh.n); FAC.push(["r" + hashKey(sh.n), sh.n, AREA_WARD[k] || "西区", "food"]); } }));
+  BABYFOOD_SHOPS.forEach(sh => { if (!seen.has(sh.n)) { seen.add(sh.n); FAC.push(["r" + hashKey(sh.n), sh.n, sh.ward || "西区", "food"]); } }); }
+const FAC_BY_NAME = Object.fromEntries(FAC.map(f => [f[1], f[0]]));
+const ITEMS = [["d","おむつ替え"],["f","授乳室"],["w","調乳のお湯"]];
+const R_ITEMS = [
+  ["bc","ベビーチェア", "あった", "なかった"], ["zs","座敷・ソファ席", "あった", "なかった"],
+  ["bk","ベビーカーのまま入店", "入れた", "入れなかった"], ["mo","離乳食の持ち込み", "OKだった", "断られた"],
+  ["wm","離乳食の温め", "してくれた", "断られた"]
+];
+const DM_OPTS = [["men","男性トイレにあった"],["nomen","男性トイレにはなかった"],["multi","多機能トイレにあった"],["room","ベビールームにパパも入れた"],["women","女性トイレだけだった"],["unk","分からない"]];
+function dmSummary(fac){
+  const c = {}; fac.reps.forEach(r => { if (r.dm && r.dm !== "unk") c[r.dm] = (c[r.dm] || 0) + 1; });
+  const parts = DM_OPTS.filter(([v]) => c[v]).map(([v,l]) => `${l} ${c[v]}件`);
+  if (!parts.length) return null;
+  const papaOk = (c.men || 0) + (c.multi || 0) + (c.room || 0), ng = (c.nomen || 0) + (c.women || 0);
+  const cls = papaOk >= CONFIRM && papaOk >= ng * 2 ? "conf" : (papaOk && ng) ? "split" : "one";
+  return { cls, text: parts.join("・") };
+}
+let REPORTS = [], VERIFIED = {}, MYDOC = null, DB = null, UID = null, IS_OWNER = false, VIEW = "fac", CAN_WRITE = true;
+
+function ymLabel(ym){ if (!ym) return ""; const [y,m] = ym.split("-"); return `${y}年${Number(m)}月`; }
+function nowYM(){ const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`; }
+function hashKey(str){ let h = 0; for (const c of str) h = (h*31 + c.codePointAt(0)) >>> 0; return "o" + h.toString(36); }
+function facInfo(r){ return { key:r.fk, name:r.fname, ward:r.ward }; }
+
+function aggregate(){
+  const map = {};
+  for (const f of FAC) map[f[0]] = { key:f[0], name:f[1], ward:f[2], reps:[] };
+  for (const r of REPORTS) { if (!map[r.fk]) map[r.fk] = { key:r.fk, name:r.fname, ward:r.ward, reps:[] }; map[r.fk].reps.push(r); }
+  return map;
+}
+function itemStatus(fac, k){
+  const v = VERIFIED[fac.key];
+  if (v && (v[k] === "yes" || v[k] === "no")) return { cls:"staff", text:`運営確認済み・${v[k]==="yes"?"あり":"なし"}（${ymLabel(v.ym)}）`, yes:v[k]==="yes" };
+  const yes = fac.reps.filter(r => r[k] === "yes"), no = fac.reps.filter(r => r[k] === "no");
+  const latest = arr => arr.map(r => r.ym || "").sort().pop();
+  if (!yes.length && !no.length) return { cls:"none", text:"まだ投稿がありません", yes:null };
+  if (yes.length >= CONFIRM && yes.length >= no.length * 2) return { cls:"conf", text:`利用者確認済み・あり（${yes.length}件・${ymLabel(latest(yes))}現在）`, yes:true };
+  if (no.length >= CONFIRM && no.length >= yes.length * 2) return { cls:"conf", text:`利用者確認済み・なし（${no.length}件・${ymLabel(latest(no))}現在）`, yes:false };
+  if (yes.length && no.length) return { cls:"split", text:`情報が分かれています（あり${yes.length}件・なし${no.length}件）`, yes:null };
+  const arr = yes.length ? yes : no;
+  return { cls:"one", text:`利用者の情報・${yes.length?"あり":"なし"}（${arr.length}件・${ymLabel(latest(arr))}）`, yes:!!yes.length };
+}
+
+function rStatus(fac, it){
+  const [k, l, y, n] = it; const st = itemStatus(fac, k); if (st.cls === "none" || st.cls === "staff") return null;
+  return { cls: st.cls, text: st.text.replace("・あり", "・" + y).replace("・なし", "・" + n).replace("（あり", "（" + y).replace("なし", n).replace("あり", y) };
+}
+function facCard(fac){
+  const dms = dmSummary(fac);
+  const stats = ITEMS.map(([k,l]) => { const s = itemStatus(fac,k); return `<div class="st"><span class="k">${l}</span><span class="badge ${s.cls}">${esc(s.text)}</span></div>`; }).join("")
+    + (dms ? `<div class="st"><span class="k">おむつ台の場所</span><span class="badge ${dms.cls}">${esc(dms.text)}</span></div>` : "")
+    + R_ITEMS.map(it => { const r = rStatus(fac, it); return r ? `<div class="st"><span class="k">${it[1]}</span><span class="badge ${r.cls}">${esc(r.text)}</span></div>` : ""; }).join("");
+  const cm = fac.reps.filter(r => r.note).sort((a,b) => (b.at||"").localeCompare(a.at||"")).slice(0,5);
+  const cmts = cm.length ? `<ul class="cmts">${cm.map(r => `<li><span>${esc(r.note)}</span><span class="ym">${esc(ymLabel(r.ym))}${IS_OWNER ? ` <button class="btn sub" data-del="${esc(r.uid)}|${esc(r.id)}" type="button">削除</button>` : ""}</span></li>`).join("")}</ul>` : "";
+  const v = VERIFIED[fac.key] || {};
+  const sel = (k) => `<label>${ITEMS.find(i=>i[0]===k)[1]} <select data-vk="${k}"><option value="">未確認</option><option value="yes"${v[k]==="yes"?" selected":""}>あり</option><option value="no"${v[k]==="no"?" selected":""}>なし</option></select></label>`;
+  const own = IS_OWNER ? `<div class="own" data-fk="${esc(fac.key)}"><div class="tri"><span class="q">運営確認</span>${sel("d")}${sel("f")}${sel("w")}<label>確認した月 <input type="month" data-vym value="${esc(v.ym || nowYM())}"></label></div><button class="btn sub" data-save type="button">運営確認として保存</button></div>` : "";
+  return `<div class="fac"><h4>${esc(fac.name)}<small>${esc(fac.ward)}・投稿${fac.reps.length}件</small></h4><div class="stats">${stats}</div>${cmts}${own}</div>`;
+}
+
+function renderPosts(){
+  const map = aggregate();
+  const facs = Object.values(map).sort((a,b) => b.reps.length - a.reps.length || WARDS.indexOf(a.ward) - WARDS.indexOf(b.ward));
+  const box = document.getElementById("p-list");
+  const has = f => f.reps.length || VERIFIED[f.key];
+  const rest = fs => { const e = fs.filter(f => !has(f)); return e.length ? `<p class="lead">まだ投稿がない場所：${e.map(f => esc(f.name)).join("、")}</p>` : ""; };
+  const cards = fs => { const h = fs.filter(has); return h.length ? `<div class="foodall">${h.map(facCard).join("")}</div>` : ""; };
+  if (VIEW === "fac") box.innerHTML = (cards(facs) || `<p class="lead">まだ投稿はありません。最初の1件をお待ちしています。</p>`) + rest(facs);
+  else {
+    const wards = WARDS.filter(w => facs.some(f => f.ward === w));
+    box.innerHTML = wards.map(w => { const fs = facs.filter(f => f.ward === w); const n = fs.reduce((a,f)=>a+f.reps.length,0);
+      return `<h3 class="wardh">${w}（${fs.length}か所・投稿${n}件）</h3>${cards(fs)}${rest(fs)}`; }).join("");
+  }
+  // カード内の赤ちゃん設備にも反映
+  document.querySelectorAll("[data-spot]").forEach(el => {
+    const key = FAC_BY_NAME[el.dataset.spot]; const fac = key && map[key]; if (!fac) return;
+    const parts = ITEMS.map(([k,l]) => { const s = itemStatus(fac,k); return s.cls === "none" ? "" : `<span class="badge ${s.cls}">${l}：${esc(s.text)}</span>`; }).filter(Boolean);
+    const dms = dmSummary(fac); if (dms) parts.push(`<span class="badge ${dms.cls}">おむつ台の場所：${esc(dms.text)}</span>`);
+    R_ITEMS.forEach(it => { const r = rStatus(fac, it); if (r) parts.push(`<span class="badge ${r.cls}">${it[1]}：${esc(r.text)}</span>`); });
+    el.innerHTML = parts.length ? `<p class="usermark">みんなの投稿：</p><div class="legend">${parts.join("")}</div>` : "";
+  });
+}
+
+function buildForm(){
+  const fsel = document.getElementById("p-fac");
+  fsel.innerHTML = `<option value="">選んでください</option>` + WARDS.filter(w => FAC.some(f=>f[2]===w)).map(w =>
+    `<optgroup label="${w}">${FAC.filter(f=>f[2]===w && !f[3]).map(f=>`<option value="${f[0]}">${esc(f[1])}</option>`).join("")}</optgroup>`).join("")
+    + `<optgroup label="飲食店">${FAC.filter(f=>f[3]==="food").map(f=>`<option value="${f[0]}">${esc(f[1])}</option>`).join("")}</optgroup>` + `<option value="__other">その他（リストにない場所・お店）</option>`;
+  document.getElementById("p-oward").innerHTML = WARDS.map(w=>`<option>${w}</option>`).join("");
+  for (const [k] of ITEMS) document.getElementById("tri-"+k).insertAdjacentHTML("beforeend",
+    [["yes","あった"],["no","なかった"],["unk","分からない"]].map(([v,l]) => `<label><input type="radio" name="r-${k}" id="r-${k}-${v}" value="${v}"${v==="unk"?" checked":""}>${l}</label>`).join(""));
+  document.getElementById("tri-rest").innerHTML = R_ITEMS.map(([k,l,y,n]) => `<div class="tri"><span class="q">${l}</span>` +
+    [["yes",y],["no",n],["unk","分からない"]].map(([v,t]) => `<label><input type="radio" name="r-${k}" value="${v}"${v==="unk"?" checked":""}>${t}</label>`).join("") + `</div>`).join("");
+  document.getElementById("tri-dm").insertAdjacentHTML("beforeend",
+    DM_OPTS.map(([v,l]) => `<label><input type="radio" name="r-dm" value="${v}"${v==="unk"?" checked":""}>${l}</label>`).join(""));
+  document.getElementById("p-ym").value = nowYM();
+  fsel.addEventListener("change", () => { document.getElementById("p-other").hidden = fsel.value !== "__other"; });
+}
+
+function setMsg(t, cls){ const m = document.getElementById("p-msg"); m.textContent = t; m.className = "pmsg " + (cls||""); }
+
+async function submitReport(ev){
+  ev.preventDefault();
+  if (!DB || !UID) return;
+  const fsel = document.getElementById("p-fac").value;
+  let fk, fname, ward;
+  if (!fsel) { setMsg("場所を選んでください。", "err"); return; }
+  if (fsel === "__other") {
+    fname = document.getElementById("p-oname").value.trim(); ward = document.getElementById("p-oward").value;
+    if (!fname) { setMsg("場所の名前を入れてください。", "err"); return; }
+    fk = hashKey(fname + "|" + ward);
+  } else { const f = FAC.find(x => x[0] === fsel); fk = f[0]; fname = f[1]; ward = f[2]; }
+  const val = k => document.querySelector(`input[name="r-${k}"]:checked`).value;
+  const r = { id: Date.now().toString(36), fk, fname, ward, d:val("d"), f:val("f"), w:val("w"), dm:(document.querySelector('input[name="r-dm"]:checked') || {}).value || "unk", ...Object.fromEntries(R_ITEMS.map(([k]) => [k, (document.querySelector(`input[name="r-${k}"]:checked`) || {}).value || "unk"])),
+    ym: document.getElementById("p-ym").value || nowYM(), note: document.getElementById("p-note").value.trim().slice(0,100), at: new Date().toISOString() };
+  if (r.d === "unk" && r.f === "unk" && r.w === "unk" && r.dm === "unk" && R_ITEMS.every(([k]) => r[k] === "unk") && !r.note) { setMsg("どれか1つは「あった／なかった」を選んでください。", "err"); return; }
+  const btn = document.getElementById("p-submit"); btn.disabled = true; setMsg("送信しています…");
+  try {
+    const items = (MYDOC && Array.isArray(MYDOC.items)) ? MYDOC.items.slice() : [];
+    items.push(r);
+    await DB.doc("reports/" + UID).set({ items: items.slice(-200) });
+    setMsg("投稿しました。ありがとうございます！", "ok");
+    document.getElementById("p-note").value = "";
+  } catch (e) {
+    if (e && e.code === "invalid_argument") { CAN_WRITE = false; setMsg("この共有のされ方では投稿できません。ページの持ち主に「投稿できる」権限で共有してもらってください。", "err"); }
+    else if (e && e.code === "quota_exceeded") setMsg("保存できる量の上限に達しました。ページの持ち主に知らせてください。", "err");
+    else setMsg("送信できませんでした。少し時間をおいてもう一度お試しください。", "err");
+  } finally { btn.disabled = !CAN_WRITE; }
+}
+
+async function saveVerified(wrap){
+  const fk = wrap.dataset.fk; const data = { ym: wrap.querySelector("[data-vym]").value || nowYM() };
+  wrap.querySelectorAll("[data-vk]").forEach(s => { data[s.dataset.vk] = s.value || null; });
+  try { await DB.doc("verified/" + fk).set(data); } catch (e) { alertBox("保存できませんでした。"); }
+}
+async function deleteReport(uid, id){
+  try {
+    const snap = await DB.doc("reports/" + uid).get(); if (!snap.exists) return;
+    const items = (snap.data().items || []).filter(r => r.id !== id);
+    await DB.doc("reports/" + uid).set({ items });
+  } catch (e) { alertBox("削除できませんでした。"); }
+}
+function alertBox(t){ setMsg(t, "err"); }
+
+async function initPosts(){
+  buildForm();
+  document.getElementById("pform").addEventListener("submit", submitReport);
+  document.getElementById("v-fac").addEventListener("click", () => { VIEW="fac"; document.getElementById("v-fac").setAttribute("aria-pressed","true"); document.getElementById("v-ward").setAttribute("aria-pressed","false"); renderPosts(); });
+  document.getElementById("v-ward").addEventListener("click", () => { VIEW="ward"; document.getElementById("v-ward").setAttribute("aria-pressed","true"); document.getElementById("v-fac").setAttribute("aria-pressed","false"); renderPosts(); });
+  document.getElementById("p-list").addEventListener("click", e => {
+    const save = e.target.closest("[data-save]"); if (save) { saveVerified(save.closest(".own")); return; }
+    const del = e.target.closest("[data-del]"); if (del) { const [u,i] = del.dataset.del.split("|"); deleteReport(u,i); }
+  });
+  renderPosts();
+  if (!window.claude || !window.claude.use) { setMsg("投稿はClaudeのページとして開いたときに使えます。"); return; }
+  const timer = setTimeout(() => setMsg("投稿データにまだつながりません。少し待つか、開き直してください。", "err"), 10000);
+  let user = null;
+  try { [DB, user] = await Promise.all([claude.use("db"), claude.use("user")]); } catch (e) { DB = null; }
+  if (!DB) { clearTimeout(timer); setMsg("投稿はClaudeにログインして開いたときに使えます。"); return; }
+  try { UID = user ? await user.id() : null; IS_OWNER = user ? !!(await Promise.resolve(user.isOwner())) : false;
+        const cw = user ? await Promise.resolve(user.can("data.write")) : null; if (cw === false && !IS_OWNER) CAN_WRITE = false; } catch (e) {}
+  DB.collection("reports").onSnapshot(snap => {
+    clearTimeout(timer);
+    const all = [];
+    for (const d of snap.docs) { const items = (d.data() || {}).items; if (Array.isArray(items)) for (const r of items) if (r && r.fk) all.push({ ...r, uid: d.id }); if (d.id === UID) MYDOC = d.data(); }
+    REPORTS = all; renderPosts();
+    if (!UID) setMsg("投稿するにはClaudeにログインしてください。");
+    else if (!CAN_WRITE) setMsg("このページは閲覧のみで共有されています。投稿するには「投稿できる」権限で共有してもらってください。");
+    else { document.getElementById("p-submit").disabled = false; if (document.getElementById("p-msg").textContent.includes("読み込んで")) setMsg(""); }
+  }, e => { clearTimeout(timer); setMsg("投稿データを読み込めませんでした。開き直してください。", "err"); });
+  DB.collection("verified").onSnapshot(snap => { const v = {}; for (const d of snap.docs) v[d.id] = d.data(); VERIFIED = v; renderPosts(); }, () => {});
+}
+
+
+document.getElementById("line-page").href = lineUrl("横浜の週末おでかけ一覧（11月）\nイベント・天気・近くのごはん・授乳室がまとめて見られるよ\n" + PAGE_URL);
+document.getElementById("copy-page").addEventListener("click", async (ev) => {
+  const b = ev.currentTarget;
+  try { await navigator.clipboard.writeText(PAGE_URL); b.textContent = "コピーしました"; }
+  catch (e) { b.textContent = PAGE_URL; }
+});
+
+// 背景：7:00〜19:00は昼、19:01〜6:59は夜（見ている人の端末の時刻）
+function setHeroTime(){
+  const h = document.querySelector(".hero"); if (!h) return;
+  const d = new Date(), m = d.getHours() * 60 + d.getMinutes();
+  const day = m >= 420 && m <= 1140;
+  h.classList.toggle("day", day); h.classList.toggle("night", !day);
+}
+setHeroTime(); setInterval(setHeroTime, 60000);
+setupAreas();
+document.getElementById("total").textContent = EVENTS.length;
+bind();
+render();
+renderFoodAll();
+initPosts();
+{ const o = document.getElementById("origin"); if (o) { o.value = ORIGIN; o.addEventListener("change", ev => setOrigin(ev.target.value)); } }
+{ const a = document.getElementById("arrive"); if (a) { a.value = ARRIVE; a.addEventListener("change", ev => setArrive(ev.target.value)); document.getElementById("arrive-clear").addEventListener("click", () => { a.value = ""; setArrive(""); }); } }
+initNear();
+renderOutfit();
+</script>
+</body>
+</html>
