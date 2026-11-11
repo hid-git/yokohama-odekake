@@ -361,6 +361,13 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 .totop { position: fixed; right: 14px; bottom: 16px; z-index: 30; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: #fff !important; text-decoration: none; font-size: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
 .tabs a.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 [hidden] { display: none !important; }
+.odchips { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 8px; }
+.odchip { font: inherit; font-size: 13px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+.odchip.rainy { border-color: #6f95cc; }
+.odchip.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.odsum { margin: 0 0 8px; font-size: 14px; }
+.scene.wet { box-shadow: inset 0 0 0 1px #6f95cc; }
+.wx { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -543,7 +550,7 @@ const OUTFIT_TEXT = {
   adult: { 5:"半袖＋薄いパンツ。日差しが強いので帽子を", 4:"長袖シャツ1枚", 3:"長袖＋カーディガンなど薄手の羽織り", 2:"長袖＋ジャケットやパーカー", 1:"ダウンなど厚手のコート＋マフラー" },
   child: { 5:"半袖・半ズボン＋帽子", 4:"長袖1枚（動くと暑いので重ね着しすぎない）", 3:"長袖＋脱ぎ着しやすい薄手の上着", 2:"長袖＋ジャンパー（ベビーカーならひざ掛けも）", 1:"ダウン＋ニット帽・手袋（ベビーカーはフットマフも）" }
 };
-function figure(who, b){
+function figure(who, b, rain){
   const A = who === "adult";
   const cx = 40, hr = A ? 11 : 12.5, hy = A ? 20 : 50, sy = hy + hr + 3, sw = A ? 30 : 26, sh = A ? 44 : 30, ly = sy + sh - 2, lh = A ? 48 : 32, aw = A ? 8 : 7;
   const C = A ? { t5:"#f2b84b", t4:"#5b8fd1", inner:"#f4efe4", t3:"#c48a5c", t2:"#6e7f5c", t1:"#34507d", pants:"#3e4a5c", shorts:"#6f86a8", hair:"#3b2b24" }
@@ -585,13 +592,23 @@ function figure(who, b){
     g += `<rect x="${cx-hr*0.9}" y="${hy+hr-1}" width="${hr*1.8}" height="6" rx="3" fill="${A ? "#e3b23c" : "#f4efe4"}"/><rect x="${cx+hr*0.25}" y="${hy+hr+3}" width="5" height="${A?14:10}" rx="2" fill="${A ? "#e3b23c" : "#f4efe4"}"/>`;
     g += `<circle cx="${lx-aw/2-1}" cy="${sy+sh*0.95+2}" r="${aw*0.55}" fill="${A ? "#b9475a" : "#5b8fd1"}"/><circle cx="${rx+aw/2+1}" cy="${sy+sh*0.95+2}" r="${aw*0.55}" fill="${A ? "#b9475a" : "#5b8fd1"}"/>`;
   }
-  return `<svg viewBox="0 0 80 140" width="${A ? 80 : 64}" height="${A ? 140 : 112}" role="img" aria-label="${A ? "大人" : "子ども"}の服装：${OUTFIT_TEXT[who][b]}">${g}</svg>`;
+  if (rain) {
+    if (A) { // 傘
+      const ux = rx + aw/2, uy = 6;
+      g += `<line x1="${ux}" y1="${uy+4}" x2="${ux}" y2="${sy+sh*0.6}" stroke="#555" stroke-width="2"/>`;
+      g += `<path d="M${ux-24} ${uy+16} a24 16 0 0 1 48 0 q-6 -4 -12 0 q-6 -4 -12 0 q-6 -4 -12 0 q-6 -4 -12 0z" fill="#3b6fb6"/>`;
+    } else { // 黄色いレインコートのフードと長ぐつ
+      g += `<path d="M${cx-hr-2} ${hy+2} a${hr+2} ${hr+2} 0 0 1 ${(hr+2)*2} 0 l0 ${hr*0.6} l-3 0 a${hr-1} ${hr-1} 0 0 0 ${-(hr-1)*2-0} 0 l-3 0z" fill="#f2c230"/>`;
+      g += `<rect x="${cx-lw-2}" y="${ly+lh-9}" width="${lw+2}" height="10" rx="2" fill="#f2c230"/><rect x="${cx}" y="${ly+lh-9}" width="${lw+2}" height="10" rx="2" fill="#f2c230"/>`;
+    }
+  }
+  return `<svg viewBox="0 0 80 140" width="${A ? 80 : 64}" height="${A ? 140 : 112}" role="img" aria-label="${A ? "大人" : "子ども"}の服装：${OUTFIT_TEXT[who][b]}${rain ? (A ? "、傘" : "、レインコートと長ぐつ") : ""}">${g}</svg>`;
 }
-function scene(label, t, extra){
+function scene(label, t, extra, rain){
   const b = band(t);
-  return `<div class="scene"><p class="sl">${label}<b>${t}℃前後</b></p>
-    <div class="figs"><figure>${figure("adult", b)}<figcaption><b>大人</b>${OUTFIT_TEXT.adult[b]}</figcaption></figure>
-    <figure>${figure("child", b)}<figcaption><b>子ども</b>${OUTFIT_TEXT.child[b]}</figcaption></figure></div>
+  return `<div class="scene${rain ? " wet" : ""}"><p class="sl">${label}<b>${t}℃前後</b></p>
+    <div class="figs"><figure>${figure("adult", b, rain)}<figcaption><b>大人</b>${OUTFIT_TEXT.adult[b]}${rain ? "＋傘" : ""}</figcaption></figure>
+    <figure>${figure("child", b, rain)}<figcaption><b>子ども</b>${OUTFIT_TEXT.child[b]}${rain ? "＋レインコート・長ぐつ" : ""}</figcaption></figure></div>
     ${extra ? `<p class="sx">${extra}</p>` : ""}</div>`;
 }
 const SKY_ICON = { "晴":"☀️", "曇":"☁️", "雨":"☔", "雪":"⛄" };
@@ -602,7 +619,7 @@ function skyIcons(sky){
 function isRainy(w){ return /雨|雪/.test(w.sky) || w.pop >= 50; }
 function renderWeather(){
   const row = document.getElementById("wxrow"); if (!row) return;
-  row.innerHTML = WX.map(w => `<div class="wx${isRainy(w) ? " rainy" : ""}"><span class="d ${w.w === "土" ? "sat" : w.w === "日" ? "sun" : "hol"}">${w.d} ${w.w}</span><span class="sky"><span class="ic" aria-hidden="true">${skyIcons(w.sky)}</span>${esc(w.sky.replace(/晴/g,"晴れ").replace(/曇/g,"くもり"))}</span><span class="t"><b>${w.max}</b>℃ / ${w.min}℃</span><span class="p${w.pop >= 50 ? " hi" : ""}">降水 ${w.pop}%</span></div>`).join("");
+  row.innerHTML = WX.map((w, i) => `<div class="wx${isRainy(w) ? " rainy" : ""}" data-i="${i}" title="この日の服装を見る"><span class="d ${w.w === "土" ? "sat" : w.w === "日" ? "sun" : "hol"}">${w.d} ${w.w}</span><span class="sky"><span class="ic" aria-hidden="true">${skyIcons(w.sky)}</span>${esc(w.sky.replace(/晴/g,"晴れ").replace(/曇/g,"くもり"))}</span><span class="t"><b>${w.max}</b>℃ / ${w.min}℃</span><span class="p${w.pop >= 50 ? " hi" : ""}">降水 ${w.pop}%</span></div>`).join("");
   const wk = WX.filter(w => WEEKENDS[0].ds.includes(w.d));
   const base = wk.length ? wk : WX.slice(0, 2);
   const hi = Math.max(...base.map(w => w.max)), lo = Math.min(...base.map(w => w.min));
@@ -611,14 +628,20 @@ function renderWeather(){
   if (rainy.length) txt += `<br><b>☔ ${rainy.map(w => w.d + "(" + w.w + ")").join("・")}は雨の予報：</b>折りたたみ傘か子どものレインコート、ベビーカーのレインカバー、足元が濡れたときの替えの靴下とタオルがあると安心。雨の日は屋内のイベントや「雨でもOK」で絞り込むのがおすすめです。`;
   else if (base.some(w => /曇/.test(w.sky))) txt += `くもりの時間は日差しがなく、予報の気温より肌寒く感じやすいので、羽織りものを一枚多めに。`;
   document.getElementById("wear").innerHTML = txt;
+  row.querySelectorAll(".wx").forEach(d => d.addEventListener("click", () => { OUTFIT_DAY = +d.dataset.i; renderOutfit(); document.getElementById("outfit").scrollIntoView({ behavior: "smooth", block: "nearest" }); }));
   document.getElementById("wxnote").textContent = `${WX_ASOF}の予報です。予報は毎日の更新で新しくします。変わることがあるので、出かける前にも確認してください。赤い印の「雨天中止」イベントは当日の天気を確認してから出かけてください。`;
 }
+let OUTFIT_DAY = 0;
 function renderOutfit(){
-  const el = document.getElementById("outfit"); if (!el) return;
-  const wk0 = WX.filter(w => WEEKENDS[0].ds.includes(w.d)); const B = wk0.length ? wk0 : WX.slice(0, 2);
-  const day = Math.min(...B.map(w => w.max)), night = Math.min(...B.map(w => w.min));
-  el.innerHTML = `<h3>服装イメージ（${B.map(w => w.d).join("・")}）</h3>
-    <div class="scenes">${scene("日中 ", day, "日なたは暖かい。脱いだ上着をしまえる袋があると楽。")}${scene("朝・夕方・夜 ", night, "海沿い・花火を見るときは風で寒く感じるので、もう1枚。")}</div>`;
+  const el = document.getElementById("outfit"); if (!el || !WX.length) return;
+  if (OUTFIT_DAY >= WX.length) OUTFIT_DAY = 0;
+  const w = WX[OUTFIT_DAY], rain = isRainy(w);
+  const chips = WX.map((x, i) => `<button type="button" class="odchip${i === OUTFIT_DAY ? " on" : ""}${isRainy(x) ? " rainy" : ""}" data-i="${i}" aria-pressed="${i === OUTFIT_DAY}">${x.d}(${x.w}) ${skyIcons(x.sky)}</button>`).join("");
+  const dayNote = rain ? `雨の予報（降水${w.pop}%）。ベビーカーはレインカバーを。替えの靴下とタオルがあると安心。` : /曇/.test(w.sky) ? "くもりで日差しが少ないので、気温より肌寒く感じやすい。羽織りを一枚多めに。" : "日なたは暖かい。脱いだ上着をしまえる袋があると楽。";
+  el.innerHTML = `<h3>服装イメージ</h3><div class="odchips" role="group" aria-label="日にちを選ぶ">${chips}</div>
+    <p class="odsum">${w.d}(${w.w})　${skyIcons(w.sky)} ${esc(w.sky.replace(/晴/g,"晴れ").replace(/曇/g,"くもり"))}　最高${w.max}℃／最低${w.min}℃</p>
+    <div class="scenes">${scene("日中 ", w.max, dayNote, rain && !/のち雨/.test(w.sky) || /^雨/.test(w.sky))}${scene("朝・夕方・夜 ", w.min, "海沿い・花火を見るときは風で寒く感じるので、もう1枚。", rain && /のち雨|雨/.test(w.sky.split(/のち/).pop()))}</div>`;
+  el.querySelectorAll(".odchip").forEach(btn => btn.addEventListener("click", () => { OUTFIT_DAY = +btn.dataset.i; renderOutfit(); }));
 }
 
 const EVENTS = [
@@ -2251,6 +2274,12 @@ initNear();
 })();
 renderWeather();
 renderOutfit();
+// 絞り込みの日付ボタンを押したら、その日の服装イメージに切り替える
+document.addEventListener("click", ev => {
+  const b = ev.target.closest('button[id^="f-day-"]'); if (!b) return;
+  const i = WX.findIndex(w => w.d === b.dataset.v); if (i < 0) return;
+  OUTFIT_DAY = i; renderOutfit();
+});
 // ---- ページの切り替え（タブ） ----
 const TABS = { events:[".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], help:["#help"], contact:["#contact"] };
 function showTab(name, scroll){
