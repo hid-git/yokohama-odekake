@@ -105,6 +105,8 @@ h1 { font-family: var(--font-display); font-size: 26px; line-height: 1.3; margin
 .frow { display: grid; grid-template-columns: 72px 1fr; gap: 10px; align-items: start; }
 .flabel { font-size: 13px; color: var(--muted); padding-top: 6px; font-weight: 500; }
 .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.mrow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; flex-basis: 100%; }
+.mlab { font-size: 12px; color: var(--muted); min-width: 4.5em; }
 .opt {
   font: inherit; font-size: 13.5px; cursor: pointer;
   border: 1px solid var(--line); background: var(--paper); color: var(--ink);
@@ -416,7 +418,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     </svg>
       <div class="htext">
     <h1>横浜 週末おでかけ一覧</h1>
-    <p class="lede"><strong>2026年11月の週末・祝日（14日〜29日）</strong>　横浜市内のイベントを0歳から大人まで横断して集めました。各イベントに、近くのおむつ替え・授乳室・調乳のお湯がある場所と、子連れで入りやすいごはん処も付けています。概要だけ載せているので、詳しくは各リンク先で確認してください。</p>
+    <p class="lede"><strong>2026年11月14日〜2027年1月11日の週末・祝日（クリスマス・年末年始の平日も）</strong>　横浜市内のイベントを0歳から大人まで横断して集めました。各イベントに、近くのおむつ替え・授乳室・調乳のお湯がある場所と、子連れで入りやすいごはん処も付けています。概要だけ載せているので、詳しくは各リンク先で確認してください。</p>
       </div>
     </div>
     <div class="share">
@@ -443,13 +445,9 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
   <div class="filters" id="events" role="group" aria-label="絞り込み">
     <div class="frow"><span class="flabel">日にち</span><div class="opts" data-key="day">
       <button class="opt" id="f-day-all" data-v="all" aria-pressed="true">すべて</button>
-      <button class="opt" id="f-day-14" data-v="11/14" aria-pressed="false">14(土)</button>
-      <button class="opt" id="f-day-15" data-v="11/15" aria-pressed="false">15(日)</button>
-      <button class="opt" id="f-day-21" data-v="11/21" aria-pressed="false">21(土)</button>
-      <button class="opt" id="f-day-22" data-v="11/22" aria-pressed="false">22(日)</button>
-      <button class="opt" id="f-day-23" data-v="11/23" aria-pressed="false">23(月・祝)</button>
-      <button class="opt" id="f-day-28" data-v="11/28" aria-pressed="false">28(土)</button>
-      <button class="opt" id="f-day-29" data-v="11/29" aria-pressed="false">29(日)</button>
+      <span class="mrow"><span class="mlab">11月</span><button class="opt" id="f-day-11-14" data-v="11/14" aria-pressed="false">14(土)</button><button class="opt" id="f-day-11-15" data-v="11/15" aria-pressed="false">15(日)</button><button class="opt" id="f-day-11-21" data-v="11/21" aria-pressed="false">21(土)</button><button class="opt" id="f-day-11-22" data-v="11/22" aria-pressed="false">22(日)</button><button class="opt" id="f-day-11-23" data-v="11/23" aria-pressed="false">23(月・祝)</button><button class="opt" id="f-day-11-28" data-v="11/28" aria-pressed="false">28(土)</button><button class="opt" id="f-day-11-29" data-v="11/29" aria-pressed="false">29(日)</button></span>
+      <span class="mrow"><span class="mlab">12月</span><button class="opt" id="f-day-12-5" data-v="12/5" aria-pressed="false">5(土)</button><button class="opt" id="f-day-12-6" data-v="12/6" aria-pressed="false">6(日)</button><button class="opt" id="f-day-12-12" data-v="12/12" aria-pressed="false">12(土)</button><button class="opt" id="f-day-12-13" data-v="12/13" aria-pressed="false">13(日)</button><button class="opt" id="f-day-12-19" data-v="12/19" aria-pressed="false">19(土)</button><button class="opt" id="f-day-12-20" data-v="12/20" aria-pressed="false">20(日)</button><button class="opt" id="f-day-12-26" data-v="12/26" aria-pressed="false">26(土)</button><button class="opt" id="f-day-12-27" data-v="12/27" aria-pressed="false">27(日)</button></span>
+      <span class="mrow"><span class="mlab">2027年1月</span><button class="opt" id="f-day-1-1" data-v="1/1" aria-pressed="false">1(金・祝)</button><button class="opt" id="f-day-1-2" data-v="1/2" aria-pressed="false">2(土)</button><button class="opt" id="f-day-1-3" data-v="1/3" aria-pressed="false">3(日)</button><button class="opt" id="f-day-1-9" data-v="1/9" aria-pressed="false">9(土)</button><button class="opt" id="f-day-1-10" data-v="1/10" aria-pressed="false">10(日)</button><button class="opt" id="f-day-1-11" data-v="1/11" aria-pressed="false">11(月・祝)</button></span>
     </div></div>
     <div class="frow"><span class="flabel">年齢</span><div class="opts" data-key="age">
       <button class="opt" id="f-age-all" data-v="all" aria-pressed="true">すべて</button>
@@ -588,7 +586,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
   <a class="totop" href="#" aria-label="ページの先頭へ">↑</a>
 
   <footer>
-    <p>情報収集日：2026年11月9〜10日。施設・主催者の公式サイト、横浜市・各区の発表、横浜市観光情報サイト、かながわ子育て応援パスポート、子育て支援情報サービスかながわ、地域ニュースなどをもとに要約しています。</p>
+    <p>情報収集日：2026年11月9〜12日（11月12日に対象期間を2027年1月11日までに延長）。施設・主催者の公式サイト、横浜市・各区の発表、横浜市観光情報サイト、かながわ子育て応援パスポート、子育て支援情報サービスかながわ、地域ニュースなどをもとに要約しています。</p>
     <p>情報の判断は、①運営の確認・実際に行った人の投稿（新しいもの）、②施設の公式・横浜市や神奈川県の情報、③まとめサイト・ブログの順に重みを付けています。食い違うときは「情報が分かれています」と表示します。</p>
     <p>内容は変更・中止になることがあります。出かける前に必ず各リンク先の最新情報を確認してください。料金の「入園料のみ」は、催し自体は無料で施設の入場料がかかるものです。</p>
   </footer>
@@ -1149,7 +1147,7 @@ function bi(label, v){ const c = v === true ? "y" : v === false ? "n" : "u"; con
 // ---- 位置（おおよその緯度経度）と徒歩の目安 ----
 const VENUE_GEO = [
   [/アンパンマン/, [35.4635,139.6300]], [/シンフォステージ/, [35.4603,139.6290]], [/ハンマーヘッド|新港/, [35.4570,139.6436]],
-  [/赤レンガ/, [35.4527,139.6430]], [/象の鼻/, [35.4505,139.6420]], [/大さん橋/, [35.4517,139.6475]], [/かなっく/, [35.4785,139.6330]], [/関内ホール/, [35.4440,139.6340]], [/みなとみらいホール/, [35.4575,139.6330]], [/宇宙科学館/, [35.3888,139.5968]], [/三ッ池/, [35.5230,139.6625]], [/三ツ沢公園/, [35.4760,139.6020]], [/こども自然公園/, [35.4580,139.5300]], [/金沢自然公園/, [35.3620,139.6080]], [/四季の森/, [35.5100,139.5170]], [/境川遊水地/, [35.3990,139.4920]], [/中スポーツセンター/, [35.4365,139.6560]], [/谷本公園/, [35.5530,139.5250]], [/瀬谷スポーツセンター/, [35.4690,139.4890]], [/寺家/, [35.5600,139.5000]], [/間門/, [35.4120,139.6420]], [/ふれ～ゆ/, [35.4950,139.6880]], [/大黒海づり/, [35.4620,139.6830]], [/ソラトス/, [35.4130,139.5110]], [/金沢図書館/, [35.3380,139.6230]], [/弘明寺/, [35.4245,139.5960]], [/二俣川二丁目/, [35.4585,139.5310]], [/高島水際線/, [35.4610,139.6300]], [/あーすぷらざ/, [35.3800,139.5560]], [/パシフィコ/, [35.4590,139.6370]],
+  [/赤レンガ/, [35.4527,139.6430]], [/ベイクォーター/, [35.4680,139.6245]], [/ボッシュ ホール|都筑区民文化センター/, [35.5466,139.5763]], [/緑区役所/, [35.5143,139.5397]], [/象の鼻/, [35.4505,139.6420]], [/大さん橋/, [35.4517,139.6475]], [/かなっく/, [35.4785,139.6330]], [/関内ホール/, [35.4440,139.6340]], [/みなとみらいホール/, [35.4575,139.6330]], [/宇宙科学館/, [35.3888,139.5968]], [/三ッ池/, [35.5230,139.6625]], [/三ツ沢公園/, [35.4760,139.6020]], [/こども自然公園/, [35.4580,139.5300]], [/金沢自然公園/, [35.3620,139.6080]], [/四季の森/, [35.5100,139.5170]], [/境川遊水地/, [35.3990,139.4920]], [/中スポーツセンター/, [35.4365,139.6560]], [/谷本公園/, [35.5530,139.5250]], [/瀬谷スポーツセンター/, [35.4690,139.4890]], [/寺家/, [35.5600,139.5000]], [/間門/, [35.4120,139.6420]], [/ふれ～ゆ/, [35.4950,139.6880]], [/大黒海づり/, [35.4620,139.6830]], [/ソラトス/, [35.4130,139.5110]], [/金沢図書館/, [35.3380,139.6230]], [/弘明寺/, [35.4245,139.5960]], [/二俣川二丁目/, [35.4585,139.5310]], [/高島水際線/, [35.4610,139.6300]], [/あーすぷらざ/, [35.3800,139.5560]], [/パシフィコ/, [35.4590,139.6370]],
   [/日本丸/, [35.4545,139.6322]], [/美術館|グランモール/, [35.4570,139.6310]], [/MARK IS|ランドマーク/, [35.4568,139.6325]],
   [/CIAL|シァル|桜木町/, [35.4510,139.6310]], [/馬車道/, [35.4505,139.6375]], [/山下ふ頭|山下埠頭/, [35.4460,139.6550]],
   [/マリンタワー/, [35.4440,139.6510]], [/人形の家/, [35.4432,139.6530]], [/中華街/, [35.4425,139.6460]],
@@ -1346,7 +1344,7 @@ EVENTS.push(
     resv:false, resvText:"申込不要（一部予約あり）", age:[0,99], ageText:"全年齢", kind:"limited", start:630,
     sum:"瀬谷の野菜の直売や地元食材のお店が並ぶ「農」のイベント。グリーンエクスポの先取り企画も。",
     tip:"", url:"https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/seya/2026/1102seyamarche.html", src:"横浜市瀬谷区" },
-  { t:"MARK IS みなとみらい アイロンビーズ体験", days:["11/29"], time:"11:00〜18:00（各回30分）", ward:"西区", venue:"MARK IS みなとみらい 1F グランドガレリア",
+  { t:"MARK IS みなとみらい アイロンビーズ体験", days:["11/29","12/6","12/13","12/20"], time:"11:00〜18:00（各回30分）", ward:"西区", venue:"MARK IS みなとみらい 1F グランドガレリア",
     price:"paid", priceText:"700円", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
     resv:false, resvText:"各回先着20名", age:[3,12], ageText:"子ども向け", kind:"limited", start:660,
     sum:"アイロンビーズで作品を作る体験。",
@@ -1357,34 +1355,177 @@ EVENTS.push(
     sum:"環境のことを学びながら、いろいろなスポーツを体験できる初開催の2日間。",
     tip:"", url:"https://www.kodomonokuni.org/calendar/", src:"こどもの国" },
   // 長期開催
-  { t:"Christmas Market in 横浜赤レンガ倉庫", days:[], from:"11/21", to:"11/29", time:"時間は公式で確認", period:"11/20〜12/25", ward:"中区", venue:"横浜赤レンガ倉庫 イベント広場・赤レンガパーク",
+  { t:"Christmas Market in 横浜赤レンガ倉庫", days:[], time:"時間は公式で確認", period:"11/20〜12/25", ward:"中区", venue:"横浜赤レンガ倉庫 イベント広場・赤レンガパーク",
     price:"unknown", priceText:"入場料は公式で確認（昨年は有料）", place:"屋外", rain:"ok", rainText:"雨でも開催（荒天時は休業の場合あり）",
     resv:null, resvText:"優先入場チケットあり（公式で確認）", age:[0,99], ageText:"全年齢", kind:"ongoing", start:660,
     sum:"高さ約11mの生木のツリーと、ドイツから取り寄せた木の小屋が並ぶ本格的なクリスマスマーケット。",
-    tip:"週末の夜は混みやすいので、子連れなら昼が狙い目", url:"https://www.yokohama-akarenga.jp/event/", src:"横浜赤レンガ倉庫" },
-  { t:"BALLPARK Xmas YOKOHAMA KANNAI 2026", days:[], from:"11/21", to:"11/29", time:"時間は公式で確認", period:"11/20〜12/25", ward:"中区", venue:"横浜公園（BASEGATE横浜関内と連携）",
+    tip:"週末の夜は混みやすいので、子連れなら昼が狙い目。入口の新港中央広場には、ウッドチップの砂場や木の遊具で遊べる無料のキッズガーデン「HELLO WOOD！」もある（11:00〜）", url:"https://www.yokohama-akarenga.jp/christmas/", src:"横浜赤レンガ倉庫・株式会社横浜赤レンガ 発表（2026年11月5日）" },
+  { t:"BALLPARK Xmas YOKOHAMA KANNAI 2026", days:[], time:"時間は公式で確認", period:"11/20〜12/25", ward:"中区", venue:"横浜公園（BASEGATE横浜関内と連携）",
     price:"free", priceText:"入場無料（一部有料）", place:"屋外", rain:"unknown", rainText:"雨の日の扱いは公式で確認",
     resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:660,
     sum:"横浜スタジアムのある横浜公園を中心にしたクリスマスイベント。",
     tip:"", url:"https://www.kanagawa-kankou.or.jp/event/list?particulars=7", src:"神奈川県観光協会" },
-  { t:"アートリンク in 横浜赤レンガ倉庫（屋外スケート）", days:[], from:"11/28", to:"11/29", time:"土日 11:00〜21:00", period:"11/28〜2027/2/14", ward:"中区", venue:"横浜赤レンガ倉庫",
+  { t:"アートリンク in 横浜赤レンガ倉庫（屋外スケート）", days:[], time:"土日 11:00〜21:00", period:"11/28〜2027/2/14", ward:"中区", venue:"横浜赤レンガ倉庫",
     price:"paid", priceText:"大人2,000円・3歳〜高校生1,200円（貸靴込み）、付き添い300円", place:"屋外", rain:"check", rainText:"天候により時間変更の可能性あり",
     resv:null, resvText:"公式で確認", age:[3,99], ageText:"3歳以上", kind:"ongoing", start:660,
     sum:"赤レンガ倉庫の冬の定番、アート作品と一緒に楽しめる屋外スケートリンク。11/28オープン。",
     tip:"手袋は必須", url:"https://koubo.jp/article/127798", src:"公募ガイド" }
 );
+// ===== 12月〜1月（クリスマス・お正月・冬休み）2026年11月12日追加 =====
+EVENTS.push(
+  { t:"こどもの国 お正月クイズラリー＆ジャンボ鏡もち", days:["12/28","12/29","1/2","1/3","1/4","1/5","1/9","1/10","1/11"], time:"シート販売は開園〜14:00、ゴールは16:00まで", ward:"青葉区", venue:"こどもの国（受付：正面入口案内所）",
+    price:"paid", priceText:"シート1枚100円（ペグシル・景品つき）＋入園料", place:"屋外", rain:"check", rainText:"雨の日の扱いは公式ページに記載なし",
+    resv:false, resvText:"予約不要（正面入口案内所でシートを買う）", age:[3,12], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:570,
+    sum:"園内のクイズを解いて、ひみつの言葉を探すお正月のラリー。12/27〜1/11は正面の陸橋下に高さ約2.5mのジャンボ鏡もちも。",
+    tip:"12/31・1/1と水曜（12/30・1/6）は休園", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=189", src:"こどもの国 公式", asof:"2026年11月12日" },
+  { t:"こどもの国 ジャンボカルタとり大会", days:["1/2","1/3"], time:"11:00／13:30", ward:"青葉区", venue:"こどもの国 中央広場（雨天は平成記念館）",
+    price:"admission", priceText:"入園料のみ（参加費は公式ページに記載なし）", place:"屋外", rain:"ok", rainText:"雨天は平成記念館で。強風時は中止",
+    resv:false, resvText:"受付なし・出入り自由", age:[3,12], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:660,
+    sum:"約1m四方の大きないろはかるたや百人一首で遊ぶ、お正月恒例のかるたとり。",
+    tip:"出入り自由なので途中からでも参加できる", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=101", src:"こどもの国 公式（2027年1月のカレンダーで日付を確認）", asof:"2026年11月12日" },
+  { t:"こどもの国 どんど焼き", days:["1/10"], time:"13:00〜15:00（短冊の受付は開園〜12:50）", ward:"青葉区", venue:"こどもの国 中央広場",
+    price:"admission", priceText:"入園料のみ（焼き芋は先着300人の子どもに配布）", place:"屋外", rain:"check", rainText:"雨・強風のときは延期（予備日は公式ページで確認）",
+    resv:false, resvText:"予約不要。焼き芋の整理券は開園後に中央広場で配布", age:[0,12], ageText:"制限なし", kind:"limited", start:780,
+    sum:"お正月飾りや書き初めをたき上げる伝統行事。願いごとの短冊も一緒に燃やし、あとで焼き芋が配られる。",
+    tip:"焼き芋の整理券は開園してすぐにもらいに行くと安心", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=100", src:"こどもの国 公式（2027年1月のカレンダーで日付を確認）", asof:"2026年11月12日" },
+  { t:"こどもの国 アイススケート（屋外リンク）", days:["12/19","12/20","12/24","12/25","12/26","12/27","12/28","12/29","1/2","1/3","1/4","1/5","1/9","1/10","1/11"], time:"10:00〜16:00（最終入場15:30）", ward:"青葉区", venue:"こどもの国 アイススケート場",
+    price:"paid", priceText:"セット券（入園料＋入場料＋貸靴）大人1,700円・高校生1,500円・小中学生900円・3歳以上800円", place:"屋外", rain:"check", rainText:"屋外リンク。雨の日の扱いは公式ページに記載なし",
+    resv:false, resvText:"予約の記載なし（セット券は15:00まで販売）", age:[3,99], ageText:"子ども用の二枚刃スケートも借りられる", kind:"limited", start:600,
+    sum:"冬だけ開く屋外のスケートリンク。今シーズンは12/19〜2/28で、水曜と12/31・1/1は休み。",
+    tip:"指先まで覆う手袋がないと滑れないので必ず持って行く", url:"https://www.kodomonokuni.org/sports/skate.html", src:"こどもの国 公式", asof:"2026年11月12日" },
+  { t:"こどもの国 工作教室「スノードーム」", days:["12/6","12/13"], time:"10:30／13:00／14:30（各約45分）", ward:"青葉区", venue:"こどもの国 児童センター",
+    price:"paid", priceText:"1個700円（現金）＋入園料", place:"屋内", rain:"ok", rainText:"屋内の教室",
+    resv:true, resvText:"要予約（11/30 9:30ごろからWebで先着順・各回12組）", age:[3,12], ageText:"小学3年生以下は保護者と一緒に", kind:"limited", start:630,
+    sum:"自分だけのスノードームを作る冬の工作教室。",
+    tip:"申込はWebで1組1回だけ。遅れると参加できない", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=96", src:"こどもの国 公式", asof:"2026年11月12日" },
+  { t:"こどもの国 ミニかどまつ作り", days:["12/27"], time:"10:30／13:30（各約1時間30分）", ward:"青葉区", venue:"こどもの国 児童センター",
+    price:"paid", priceText:"1組800円＋入園料", place:"屋内・屋外", rain:"check", rainText:"外で作業することもあるので暖かい服で",
+    resv:true, resvText:"要申込・抽選（12/7 9:30ごろ〜12/13 17:00にWebで。各回10組）", age:[3,99], ageText:"家族など2〜5人で1組。小学3年生以下は保護者と一緒に", kind:"limited", start:630,
+    sum:"竹を切って縄を巻き、ミニサイズの門松を1対作る年末の教室。",
+    tip:"すべらない軍手と持ち帰り用の袋を持って行く", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=91", src:"こどもの国 公式", asof:"2026年11月12日" },
+  { t:"こどもの国 紙芝居ライブ", days:["11/15","12/20"], time:"13:00／14:30", ward:"青葉区", venue:"こどもの国 ふれあい学び館",
+    price:"admission", priceText:"入園料のみ（参加費は公式ページに記載なし）", place:"屋外", rain:"cancel", rainText:"雨天中止",
+    resv:null, resvText:"公式ページに記載なし", age:[2,10], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:780,
+    sum:"紙芝居の会のメンバーによる紙芝居の実演。",
+    tip:"同じ日に紙飛行機の教室もある", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=186", src:"こどもの国 公式", asof:"2026年11月12日" },
+  { t:"こどもの国 紙飛行機を飛ばそう", days:["11/15","12/20"], time:"10:00〜14:00（受付は13:45まで）", ward:"青葉区", venue:"こどもの国 ふれあい学び館",
+    price:"admission", priceText:"入園料のみ（参加費は公式ページに記載なし）", place:"屋外", rain:"cancel", rainText:"雨天中止",
+    resv:false, resvText:"当日受付", age:[4,12], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:600,
+    sum:"紙飛行機クラブの人に教わりながら、ゴムで飛ばす紙飛行機を作って飛ばす。",
+    tip:"受付は13:45まで", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=52", src:"こどもの国 公式", asof:"2026年11月12日" },
+  { t:"こどもの国 フィールドゲーム＜冬バージョン＞", days:[], time:"用紙の販売は開園〜14:00（ゴールは16:00まで）", period:"12/5〜2027/2/28（水曜・12/31・1/1は休園）", ward:"青葉区", venue:"こどもの国（正面入口案内所で販売）",
+    price:"paid", priceText:"1枚100円（鉛筆つき・完走で景品）＋入園料", place:"屋外", rain:"check", rainText:"雨の日の扱いは公式ページに記載なし",
+    resv:false, resvText:"個人は予約不要", age:[4,12], ageText:"対象年齢は公式ページに記載なし", kind:"ongoing", start:570, closed:["1/1"],
+    sum:"園内のポイントを回る冬のオリエンテーリング。段差の少ない「鳥さんぽ」と「探検」の2コース。",
+    tip:"小さい子連れなら段差の少ない「鳥さんぽ」コースがおすすめ", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=95", src:"こどもの国 公式", asof:"2026年11月12日" },
+  { t:"トーマスと出会う、ウィンターホリデー（原鉄道模型博物館）", days:["12/19","12/20","12/24","12/25","12/26","12/27","1/9","1/10","1/11"], time:"10:00〜17:00（最終入館16:30）", ward:"西区", venue:"原鉄道模型博物館（横浜三井ビルディング）",
+    price:"paid", priceText:"大人1,500円・中高生1,000円・4歳以上750円（日時指定券）", place:"屋内", rain:"ok", rainText:"屋内",
+    resv:true, resvText:"日時指定の入館券を事前に購入（e+・ファミリーマート）", age:[2,12], ageText:"3歳以下は無料", kind:"limited", start:600, ride:true,
+    sum:"12/17〜1/11、トーマスと仲間たちの模型がジオラマを走る。12/25まではクリスマスの飾りも。",
+    tip:"火・水曜は休館。年末年始の休館日はまだ発表されていないので、12/28〜1/3に行くなら公式で確認を", url:"https://www.hara-mrm.com/news/detail.php?id=88", src:"原鉄道模型博物館 公式", asof:"2026年11月12日" },
+  { t:"ズーラシア 折り紙でつくる熱帯林のどうぶつたち", days:["11/28"], time:"10:00〜15:00", ward:"旭区", venue:"よこはま動物園ズーラシア ころこロッジ",
+    price:"admission", priceText:"参加無料（入園料は別。土曜は高校生以下無料）", place:"屋内", rain:"ok", rainText:"ロッジ内で開催",
+    resv:false, resvText:"申込不要", age:[3,99], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:600, animal:true,
+    sum:"マレーバクなど熱帯林の動物を折り紙で作りながら、森を守ることを学ぶ。",
+    tip:"土曜は高校生以下の入園が無料", url:"https://www.hama-midorinokyokai.or.jp/zoo/zoorasia/details/2026/post-558993.php", src:"ズーラシア 公式", asof:"2026年11月12日" },
+  { t:"コウノトリまつり in ズーラシア", days:["11/14","11/15"], time:"ブース 14日11:30〜16:30・15日10:30〜16:00／特別ガイド 各日13:30〜", ward:"旭区", venue:"よこはま動物園ズーラシア みんなのはらっぱ大テント・コウノトリ展示場前",
+    price:"admission", priceText:"催しの料金は公式ページに記載なし（入園料は別）", place:"屋内・屋外", rain:"check", rainText:"ブースはテント内。雨の日の扱いは公式ページに記載なし",
+    resv:null, resvText:"公式ページに記載なし", age:[0,99], ageText:"全年齢", kind:"limited", start:630, animal:true,
+    sum:"コウノトリにゆかりのある自治体や団体のブース、体験、飼育員の特別ガイドなど。",
+    tip:"同じ週末の「カムカムどうぶつえんフェスタ」と一緒に回れる", url:"https://www.hama-midorinokyokai.or.jp/zoo/zoorasia/details/2026/20260923.php", src:"ズーラシア 公式", asof:"2026年11月12日" },
+  { t:"市場探検隊（横浜市中央卸売市場の一般開放）", days:["11/21"], time:"受付8:00〜・探検8:45〜（一般開放は8:00〜10:00）", ward:"神奈川区", venue:"横浜市中央卸売市場本場 水産物部（受付は魚河岸処）",
+    price:"paid", priceText:"探検隊200円（小学生以下無料）。買い物は有料", place:"屋内", rain:"ok", rainText:"屋内なので雨でも実施",
+    resv:false, resvText:"当日受付・先着20名", age:[0,99], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:525,
+    sum:"マイナス40度の冷蔵庫の見学や、せりのまねを体験できる市場の探検。同じ朝、仲卸のお店で魚も買える。",
+    tip:"11/28（土）も一般開放あり（探検隊はなし）。売り切れで早く閉まる店もあるので早めに", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13199", src:"横浜市観光情報（公式）", asof:"2026年11月12日" },
+  { t:"つづきでミニオペラ！〜歌と音楽でめぐる、クリスマスの物語〜", days:["12/6"], time:"14:00開演（13:30開場）", ward:"都筑区", venue:"ボッシュ ホール（都筑区民文化センター）",
+    price:"paid", priceText:"990円（全席指定）。2歳以下はひざの上なら無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:true, resvText:"チケット制（窓口・電話045-530-5084）", age:[0,99], ageText:"未就学児も入場できる", kind:"limited", start:840,
+    sum:"フェリス女学院大学とボッシュ ホールによる、歌と音楽でクリスマスの物語をたどる短いオペラ。",
+    tip:"センター北駅のそば", url:"https://tsuzuki-wcc.jp/6940/", src:"ボッシュ ホールの発表（プレスリリース）", asof:"2026年11月12日" },
+  { t:"緑区役所 クリスマス ハンドベル ロビーコンサート", days:["12/23"], time:"12:10〜12:45（11:40開場）", ward:"緑区", venue:"緑区役所 1階ロビー（中山駅）",
+    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"申込不要・当日先着30名", age:[0,99], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:730,
+    sum:"東洋英和女学院大学のハンドベル部がクリスマスの曲を演奏する、お昼の短いコンサート。",
+    tip:"席は30だけなので早めに", url:"https://www.city.yokohama.lg.jp/midori/kurashi/kyodo_manabi/manabi/bunka/midori_geibun.files/20261223.pdf", src:"横浜市緑区", asof:"2026年11月12日" },
+  { t:"ディノグランプリ！（恐竜をぬって走らせるデジタル体験）", days:["11/28","11/29"], time:"10:00〜17:00（1回約15分）", ward:"都筑区", venue:"ららぽーと横浜 3F ノースカーブモール",
+    price:"free", priceText:"無料（三井ショッピングパークアプリのキッズクラブ会員。当日入会可）", place:"屋内", rain:"ok", rainText:"館内なので雨でもOK",
+    resv:false, resvText:"予約なし・先着で1日300名、1人1回", age:[3,12], ageText:"3〜12歳（3歳未満は保護者のサポートがあれば参加可）", kind:"limited", start:600,
+    sum:"色をぬった恐竜をスキャンすると画面に現れ、足元のパネルで友だちの恐竜と競走できる。",
+    tip:"先着300名なので早めの時間に", url:"https://mitsui-shopping-park.com/lalaport/yokohama/event/3656802.html", src:"ららぽーと横浜 公式", asof:"2026年11月12日" },
+  { t:"パウ・パトロール シールラリー＆ステージショー", days:["11/22","11/23"], time:"22日 シールラリー 9:30〜16:00（受付15:30まで）／23日 ショー 13:00・15:00", ward:"金沢区", venue:"三井アウトレットパーク 横浜ベイサイド（ショーはCブロック1F くじらの大屋根広場）",
+    price:"free", priceText:"無料", place:"屋外", rain:"check", rainText:"雨の日の扱いは公式ページに記載なし",
+    resv:false, resvText:"ラリーは先着1,000名。ショーの座席は当日10:00から整理券（各回50組）、立ち見は整理券なし", age:[0,12], ageText:"子ども向け（座席整理券は小学生以上に必要、未就学児はひざの上）", kind:"limited", start:570,
+    sum:"22日は館内をめぐるシールラリー、23日はチェイスとスカイが出るクイズやダンスのステージ。",
+    tip:"ショーは撮影禁止、握手・撮影会もなし", url:"https://mitsui-shopping-park.com/mop/yokohama/event/3667559.html", src:"三井アウトレットパーク 横浜ベイサイド 公式", asof:"2026年11月12日" },
+  { t:"サンタクロースがやってくる（横浜ベイクォーター）", days:["12/19","12/20"], time:"11:00〜17:00", ward:"神奈川区", venue:"横浜ベイクォーター 3F ベイパークほか",
+    price:"unknown", priceText:"公式ページに記載なし", place:"屋外", rain:"check", rainText:"雨の日の扱いは公式ページに記載なし",
+    resv:null, resvText:"公式ページに記載なし", age:[0,12], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:660,
+    sum:"サンタが館内を歩き、いっしょに写真を撮れる。",
+    tip:"横浜駅東口から歩いてすぐ", url:"https://www.yokohama-bayquarter.com/event/detail/151", src:"横浜ベイクォーター 公式", asof:"2026年11月12日" },
+  { t:"スライム・チョコボの素焼き色ぬり体験（MARK IS）", days:["11/28","12/5","12/12","12/19"], time:"11:00〜18:00（1回30分・最終回17:30）", ward:"西区", venue:"MARK IS みなとみらい 1F グランドガレリア",
+    price:"paid", priceText:"1,800円（付き添いは無料）", place:"屋内", rain:"ok", rainText:"館内なので雨でもOK",
+    resv:false, resvText:"当日10:00から会場で参加券を配布（各回20名）", age:[3,12], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:660,
+    sum:"スライムかチョコボの素焼き人形に色をぬるワークショップ（Winter Holiday 2026の企画）。",
+    tip:"絵の具が服につくことがあるので汚れてもいい服で", url:"https://yokohama-landmark.jp/lp/winterholiday2026/", src:"横浜・みなとみらい Winter Holiday 2026 公式", asof:"2026年11月12日" },
+  { t:"MARK IS「みんなの庭」週末イベント（収穫体験・ミニランタン・オーナメント作り）", days:["11/14","11/15","11/21","11/22","11/23","11/28","11/29"], time:"公式ページに記載なし", ward:"西区", venue:"MARK IS みなとみらい 5F 屋上庭園「みんなの庭」",
+    price:"free", priceText:"無料", place:"屋外", rain:"check", rainText:"雨の日の扱いは公式ページに記載なし",
+    resv:null, resvText:"内容によって参加方法・定員が違う（公式ページに記載なし）", age:[0,12], ageText:"だれでも。小学生以下は保護者と一緒に", kind:"limited", start:600,
+    sum:"屋上の庭で、14・15日は秋の収穫体験、21〜23日はミニランタン作り、28・29日は植物のクリスマスオーナメント作り。",
+    tip:"日によって内容が違うので出かける前に確認を", url:"https://www.mec-markis.jp/mm/event/markis.html", src:"MARK IS みなとみらい 公式", asof:"2026年11月12日" },
+  { t:"ストライダー無料体験会（モザイクモール港北）", days:["11/14","11/15"], time:"10:00〜13:00／14:00〜16:00（最終受付15:50）", ward:"都筑区", venue:"モザイクモール港北 モザイク入口広場",
+    price:"free", priceText:"無料", place:"屋外", rain:"check", rainText:"雨の日の扱いは公式ページに記載なし",
+    resv:false, resvText:"予約不要", age:[1,7], ageText:"ストライダーに乗ったことのない1歳半〜7歳ごろ", kind:"limited", start:600, ride:true,
+    sum:"ペダルのない自転車ストライダーに、スタッフに教わりながら乗ってみられる。",
+    tip:"動きやすい服と靴で", url:"https://www.mosaicmall.jp/events/list.html", src:"モザイクモール港北 公式", asof:"2026年11月12日" },
+  { t:"イラストレーターと作るアドベントカレンダー（モザイクモール港北）", days:["11/23"], time:"10:30〜12:30", ward:"都筑区", venue:"モザイクモール港北 1F バンケットルーム",
+    price:"paid", priceText:"1組3,500円", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:true, resvText:"予約制・先着15組（11/20 10:00まで）", age:[3,99], ageText:"親子で（対象年齢は公式ページに記載なし）", kind:"limited", start:630,
+    sum:"イラストレーターといっしょに、クリスマスまでの日を数えるアドベントカレンダーを作る。",
+    tip:"15組だけなので早めに予約を", url:"https://www.mosaicmall.jp/events/list.html", src:"モザイクモール港北 公式", asof:"2026年11月12日" },
+  { t:"子ども縁日（ワールドポーターズ屋上）", days:["11/14","11/15"], time:"11:00〜18:00", ward:"中区", venue:"横浜ワールドポーターズ 屋上 マーケット広場",
+    price:"paid", priceText:"射的などの料金は公式ページに記載なし（現金・PayPay）", place:"屋外", rain:"check", rainText:"雨の日の扱いは公式ページに記載なし",
+    resv:false, resvText:"公式ページに記載なし", age:[0,12], ageText:"中学生までの子ども向け", kind:"limited", start:660,
+    sum:"屋上で射的やすくいなどの縁日あそびができる。",
+    tip:"防災フェスと同じ週末なら一緒に回れる", url:"https://www.yim.co.jp/news/detail/5174", src:"横浜ワールドポーターズ 公式", asof:"2026年11月12日" },
+  { t:"チョコクロ キッズ手作り体験教室（ワールドポーターズ）", days:["11/23"], time:"11:30〜12:00／15:00〜15:30（受付は各30分前）", ward:"中区", venue:"横浜ワールドポーターズ 2F 汽車道側正面ゲート前",
+    price:"paid", priceText:"900円（当日現金のみ）", place:"屋内", rain:"ok", rainText:"館内の特設会場",
+    resv:true, resvText:"Web予約（当日枠もあり）。各回20名", age:[3,12], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:690,
+    sum:"サンマルクカフェのチョコクロを好きなようにデコレーションする体験。",
+    tip:"支払いは現金だけ", url:"https://www.yim.co.jp/news/detail/5151", src:"横浜ワールドポーターズ 公式", asof:"2026年11月12日" },
+  { t:"クリスマスリースづくり（ワールドポーターズ）", days:["11/23"], time:"11:00・13:00・14:00・15:00・16:00", ward:"中区", venue:"横浜ワールドポーターズ 6F イベントホールA",
+    price:"unknown", priceText:"公式ページに記載なし", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:false, resvText:"当日10:00から整理券（イオンモールアプリの登録が必要）", age:[3,12], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:660,
+    sum:"もみの木の枝と好きな花でクリスマスリースを作る。",
+    tip:"アプリの登録は前もって済ませておく", url:"https://www.yim.co.jp/news/detail/5217", src:"横浜ワールドポーターズ 公式", asof:"2026年11月12日" },
+  { t:"わくわくアイスワールド（トレッサ横浜の屋内スケートリンク）", days:[], time:"土日祝と12/26〜1/6 11:00〜19:30（12/31は17:00まで）／平日14:00〜19:00", period:"11/4〜2027/2/23", ward:"港北区", venue:"トレッサ横浜 南棟1F イベント広場",
+    price:"paid", priceText:"子ども（3歳〜小学生）1,300円・大人1,500円・親子ペア2,600円（貸し靴込み）", place:"屋内", rain:"ok", rainText:"館内のリンク",
+    resv:false, resvText:"予約なし。混むと入場制限あり", age:[3,12], ageText:"3歳から（未就学児は保護者が付き添い）", kind:"ongoing", start:660,
+    sum:"冬だけ館内にできるスケートリンク。土日祝は45分ずつの入れ替え制。",
+    tip:"指先まで覆う手袋と靴下が必要。1/1の営業は公式で確認を", url:"https://www.tressa-yokohama.jp/event/item_eventnews.jsp?id=764", src:"トレッサ横浜 公式", asof:"2026年11月12日" }
+);
 const DATES = [
-  { k:"11/14", s:"14", w:"土", c:"sat" }, { k:"11/15", s:"15", w:"日", c:"sun" },
-  { k:"11/21", s:"21", w:"土", c:"sat" }, { k:"11/22", s:"22", w:"日", c:"sun" }, { k:"11/23", s:"23", w:"祝", c:"hol" },
-  { k:"11/28", s:"28", w:"土", c:"sat" }, { k:"11/29", s:"29", w:"日", c:"sun" }
+  { k:"11/14", s:"11/14", w:"土", c:"sat" }, { k:"11/15", s:"11/15", w:"日", c:"sun" }, { k:"11/21", s:"11/21", w:"土", c:"sat" }, { k:"11/22", s:"11/22", w:"日", c:"sun" }, { k:"11/23", s:"11/23", w:"祝", c:"hol" }, { k:"11/28", s:"11/28", w:"土", c:"sat" }, { k:"11/29", s:"11/29", w:"日", c:"sun" },
+  { k:"12/5", s:"12/5", w:"土", c:"sat" }, { k:"12/6", s:"12/6", w:"日", c:"sun" }, { k:"12/12", s:"12/12", w:"土", c:"sat" }, { k:"12/13", s:"12/13", w:"日", c:"sun" }, { k:"12/19", s:"12/19", w:"土", c:"sat" }, { k:"12/20", s:"12/20", w:"日", c:"sun" }, { k:"12/26", s:"12/26", w:"土", c:"sat" }, { k:"12/27", s:"12/27", w:"日", c:"sun" },
+  { k:"1/1", s:"1/1", w:"祝", c:"hol" }, { k:"1/2", s:"1/2", w:"土", c:"sat" }, { k:"1/3", s:"1/3", w:"日", c:"sun" }, { k:"1/9", s:"1/9", w:"土", c:"sat" }, { k:"1/10", s:"1/10", w:"日", c:"sun" }, { k:"1/11", s:"1/11", w:"祝", c:"hol" }
 ];
 const DATE_IDX = Object.fromEntries(DATES.map((d,i) => [d.k, i]));
 const WEEKENDS = [
   { h:"11月14日(土)・15日(日)", ds:["11/14","11/15"] },
   { h:"11月21日(土)〜23日(月・祝)　三連休", ds:["11/21","11/22","11/23"] },
-  { h:"11月28日(土)・29日(日)", ds:["11/28","11/29"] }
+  { h:"11月28日(土)・29日(日)", ds:["11/28","11/29"] },
+  { h:"12月5日(土)・6日(日)", ds:["12/5","12/6"] },
+  { h:"12月12日(土)・13日(日)", ds:["12/12","12/13"] },
+  { h:"12月19日(土)・20日(日)", ds:["12/19","12/20"] },
+  { h:"12月26日(土)・27日(日)", ds:["12/26","12/27"] },
+  { h:"2027年1月1日(金・祝)〜3日(日)　お正月", ds:["1/1","1/2","1/3"] },
+  { h:"2027年1月9日(土)〜11日(月・祝)　三連休（成人の日）", ds:["1/9","1/10","1/11"] }
 ];
-// 長期開催の会期（11月の対象日に展開）
+// 日付の並び順（1〜3月は2027年）
+function dyear(m){ return m < 4 ? 2027 : 2026; }
+function dnum(k){ const [m, d] = k.split("/").map(Number); return dyear(m) * 10000 + m * 100 + d; }
+function dlabel(k){ const [m, d] = k.split("/").map(Number); return `${m}/${d}(${"日月火水木金土"[new Date(dyear(m), m - 1, d).getDay()]})`; }
+// 長期開催の会期（対象期間の週末・祝日に展開）
 EVENTS.push(
   { t:"京急ミュージアム（本物の電車・ジオラマ・運転シミュレーター）", days:[], time:"10:00〜16:30", ward:"西区", venue:"京急ミュージアム（京急グループ本社1階）",
     price:"free", priceText:"入館無料（一部の体験は有料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
@@ -1417,7 +1558,7 @@ EVENTS.push(
   { t:"野毛山動物園（入園無料・なかよし広場でふれあい）", days:[], time:"9:30〜16:30（入園は16:00まで）", ward:"西区", venue:"野毛山動物園",
     price:"free", priceText:"入園無料", place:"屋外", rain:"check", rainText:"ほぼ屋外。屋内の休憩棟あり",
     resv:null, resvText:"入園は予約不要。なかよし広場（小動物とのふれあい）は事前予約制", age:[0,99], ageText:"全年齢", kind:"ongoing", start:570, animal:true,
-    sum:"キリン・ライオン・レッサーパンダなど。新しくなった「なかよし広場」でモルモットなどの小動物とふれあえる（事前予約制）。月曜休園（祝日なら翌日）。2027年1月からリニューアルで休園予定。",
+    sum:"キリン・ライオン・レッサーパンダなど。新しくなった「なかよし広場」でモルモットなどの小動物とふれあえる（事前予約制）。月曜休園（祝日なら翌日）。2027年1月7日からリニューアル工事で休園予定（再開は2029年の予定）。年末年始は12/29〜1/1休園。",
     tip:"桜木町駅から歩くと上り坂が長い。ベビーカーなら市営バスで「野毛山動物園前」へ", url:"https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/oshirase/nogeyamarenewal.html", src:"横浜市・鉄道チャンネル（2026年）" },
   { t:"よこはま動物園ズーラシア", days:[], time:"開園時間は公式で確認", ward:"旭区", venue:"よこはま動物園ズーラシア",
     price:"admission", priceText:"料金は公式で確認（毎週土曜は高校生以下が無料・未就学児はいつでも無料）", place:"屋外", rain:"check", rainText:"ほぼ屋外",
@@ -1795,6 +1936,12 @@ for (const e of EVENTS) {
   if (e.paidplay) e.wk = e.wk || "毎日（施設の休館日を除く）・平日は空いていることが多い";
   if (e.wk) e.period = "いつでも（通年の施設）";
 }
+// 年末年始の休み（公式で分かっている日だけ。2026年11月12日確認）
+const YEAREND_CLOSED = {
+  "野毛山動物園（入園無料・なかよし広場でふれあい）":["1/1","1/9","1/10","1/11"], "よこはま動物園ズーラシア":["1/1"], "金沢動物園（コアラ・オカピ）":["1/1"],
+  "横浜アンパンマンこどもミュージアム 1階モール（無料エリア）":["1/1","1/2"], "横浜市電保存館（昔の路面電車に乗れる）":["1/1","1/2","1/3"], "横浜市民防災センター（防火服・地震体験）":["1/1","1/2","1/3"]
+};
+for (const e of EVENTS) if (YEAREND_CLOSED[e.t]) e.closed = (e.closed || []).concat(YEAREND_CLOSED[e.t]);
 const RANGE = {
   "放送30周年記念「名探偵コナン」展":{}, "横浜・みなとみらい Winter Holiday 2026（DQ×FF）":{}, "アンパンマンたちと楽しむクリスマス":{},
   "みなとみらいクリスマスマーケット2026":{}, "2027春節燈花（中華街イルミネーション）":{}, "第19回 美食節 横濵中華街フードフェスティバル":{},
@@ -1804,17 +1951,21 @@ const RANGE = {
 };
 for (const e of EVENTS) {
   if (e.t === "THE MOVEUM YOKOHAMA「印象派モネと浮世絵」") { e.kind = "ongoing"; e.period = "2026/10/24〜2027/3/31（11/15は一般営業休止）"; e.closed = ["11/15"]; e.sum = "モネの絵画と浮世絵を大画面の映像で体験する没入型の展示。"; e.tip = "11/15は一般営業がお休み"; }
-  if (e.t === "こどもの国 あそび広場") e.days = ["11/14","11/21"];
+  if (e.t === "こどもの国 あそび広場") e.days = ["11/14","11/21","12/5","12/12","12/19"];
   if (e.t === "こどもの国牧場 乳しぼり体験") { e.kind = "ongoing"; e.period = "毎週土日祝"; }
-  if (e.t === "こどもの国牧場 バター作り教室") { e.kind = "ongoing"; e.period = "毎週日曜"; e.only = ["11/15","11/22","11/29"]; }
+  if (e.t === "こどもの国牧場 バター作り教室") { e.kind = "ongoing"; e.period = "毎週日曜"; e.only = DATES.filter(d => d.w === "日").map(d => d.k); }
   if (e.kind === "ongoing") {
     const r = RANGE[e.t] || {};
-    const from = DATE_IDX[e.from || r.from || "11/14"], to = DATE_IDX[e.to || r.to || "11/29"];
-    let ds = DATES.slice(from, to + 1).map(d => d.k);
+    // 会期（period の「M/D〜M/D」）から対象日を決める。from/to や RANGE があればそちらを優先
+    const pm = (e.period || "").match(/^(?:(\d{4})\/)?(\d{1,2})\/(\d{1,2})〜/), qm = (e.period || "").match(/〜(?:(\d{4})\/)?(\d{1,2})\/(\d{1,2})/);
+    const pnum = (y, m, d) => (y ? +y : dyear(+m)) * 10000 + (+m) * 100 + (+d);
+    const lo = e.from || r.from ? dnum(e.from || r.from) : pm ? pnum(pm[1], pm[2], pm[3]) : 0;
+    const hi = e.to || r.to ? dnum(e.to || r.to) : qm ? pnum(qm[1], qm[2], qm[3]) : 99999999;
+    let ds = DATES.filter(d => dnum(d.k) >= lo && dnum(d.k) <= hi).map(d => d.k);
     if (e.only) ds = e.only;
     if (e.closed) ds = ds.filter(d => !e.closed.includes(d));
     e.days = ds;
-    if (!e.period) e.period = `〜${(r.to || "11/29")}（11月の週末はすべて）`;
+    if (!e.period) e.period = r.to ? `〜${r.to}` : "対象期間の週末・祝日はすべて";
   }
 }
 Object.assign(FOOD_OF, {
@@ -1827,13 +1978,13 @@ Object.assign(FOOD_OF, {
 });
 function dayChips(e){
   if (e.kind === "ongoing") return `<span class="period">${e.wk ? "" : "会期 "}${esc(e.period)}</span>${e.wk ? `<span class="period wk">平日：${esc(e.wk)}</span>` : ""}`;
-  return e.days.map(k => { const d = DATES[DATE_IDX[k]]; if (!d) { const [m, dd] = k.split("/").map(Number); const w = "日月火水木金土"[new Date(2026, m - 1, dd).getDay()]; return `<span class="day wkday">${m}/${dd}(${w})</span>`; } return `<span class="day ${d.c}">${d.s}(${d.w})</span>`; }).join("");
+  return e.days.map(k => { const d = DATES[DATE_IDX[k]]; if (!d) return `<span class="day wkday">${dlabel(k)}</span>`; return `<span class="day ${d.c}">${d.s}(${d.w})</span>`; }).join("");
 }
 
 const PAGE_URL = "https://claude.ai/artifact/A59EZRXKqLMm8iTEMLzkaQ";
 function lineUrl(text){ return "https://line.me/R/share?text=" + encodeURIComponent(text); }
 function eventText(e){
-  const when = e.kind === "ongoing" ? `会期 ${e.period}` : e.days.map(k => { const d = DATES[DATE_IDX[k]]; if (!d) { const [m, dd] = k.split("/").map(Number); return `${m}/${dd}(${"日月火水木金土"[new Date(2026, m - 1, dd).getDay()]})`; } return `11/${d.s}(${d.w})`; }).join("・");
+  const when = e.kind === "ongoing" ? `会期 ${e.period}` : e.days.map(k => { const d = DATES[DATE_IDX[k]]; if (!d) return dlabel(k); return `${d.k}(${d.w})`; }).join("・");
   return `【${e.t}】\n${when}　${e.time}\n場所：${e.ward}・${e.venue}\n料金：${e.priceText}\n雨の日：${RAIN_LABEL[e.rain]}（${e.rainText}）\n詳細：${e.url}`;
 }
 
@@ -2322,7 +2473,7 @@ function render(){
   document.getElementById("n").textContent = hit.length;
   let html = "";
   const secs = [];
-  const dkey = d => { const [m, dd] = d.split("/").map(Number); return m * 100 + dd; };
+  const dkey = dnum;
   for (const w of WEEKENDS) {
     const ds = state.day === "all" ? w.ds : w.ds.filter(d => d === state.day);
     if (!ds.length) continue;
@@ -2335,11 +2486,12 @@ function render(){
     const byDay = {};
     for (const e of hit.filter(e => e.kind === "limited" && e.days.some(d => !wkAll.includes(d)))) for (const d of e.days.filter(d => !wkAll.includes(d))) (byDay[d] = byDay[d] || []).push(e);
     for (const d of Object.keys(byDay)) {
-      const [m, dd] = d.split("/").map(Number); const dow = new Date(m < 10 ? 2027 : 2026, m - 1, dd).getDay(); const yb = "日月火水木金土"[dow];
+      const [m, dd] = d.split("/").map(Number); const dow = new Date(dyear(m), m - 1, dd).getDay(); const yb = "日月火水木金土"[dow];
       const isWe = dow === 0 || dow === 6;
-      secs.push([(m < 10 ? 1200 : 0) + dkey(d), `<section class="group"><h2>${isWe ? "" : "平日 "}${m}月${dd}日(${yb})<small>${byDay[d].length}件・${isWe ? "この日のイベント" : "平日だけのイベント"}</small></h2><div class="list">${byDay[d].map(card).join("")}</div></section>`]);
+      secs.push([dkey(d), `<section class="group"><h2>${isWe ? "" : "平日 "}${m}月${dd}日(${yb})<small>${byDay[d].length}件・${isWe ? "この日のイベント" : "平日だけのイベント"}</small></h2><div class="list">${byDay[d].map(card).join("")}</div></section>`]);
     }
   }
+  if (["12/26","12/27","1/1","1/2","1/3"].includes(state.day)) html += `<p class="note">年末年始は休館・休園や営業時間の変更が多い時期です。分かっている休みの日は外していますが、出かける前に各施設の公式ページで確認してください。</p>`;
   html += secs.sort((x, y) => x[0] - y[0]).map(x => x[1]).join("");
   const on = hit.filter(e => e.kind === "ongoing").sort((a,b) => sortKey(a) - sortKey(b));
   if (on.length) html += `<section class="group"><h2>会期中ずっとやっているもの<small>${on.length}件・選んだ日も開催中</small></h2><div class="list">${on.map(card).join("")}</div></section>`;
@@ -2581,7 +2733,7 @@ async function initPosts(){
 }
 
 
-document.getElementById("line-page").href = lineUrl("横浜の週末おでかけ一覧（11月）\nイベント・天気・近くのごはん・授乳室がまとめて見られるよ\n" + PAGE_URL);
+document.getElementById("line-page").href = lineUrl("横浜の週末おでかけ一覧（11月〜1月）\nイベント・天気・近くのごはん・授乳室がまとめて見られるよ\n" + PAGE_URL);
 document.getElementById("copy-page").addEventListener("click", async (ev) => {
   const b = ev.currentTarget;
   try { await navigator.clipboard.writeText(PAGE_URL); b.textContent = "コピーしました"; }
