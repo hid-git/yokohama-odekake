@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hid-git.github.io/yokohama-odekake/sitemap.xml
