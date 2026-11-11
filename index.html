@@ -63,7 +63,7 @@ h1 { font-family: var(--font-display); font-size: 26px; line-height: 1.3; margin
 
 /* 天気 */
 .weather { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
-.wx { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; gap: 14px; }
+.wx { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; gap: 10px 14px; flex-wrap: wrap; }
 .wx .d { font-family: var(--font-display); font-size: 18px; min-width: 64px; }
 .wx .d.sat { color: var(--sat); } .wx .d.sun { color: var(--sun); }
 .wx .t { font-variant-numeric: tabular-nums; font-size: 14px; }
@@ -80,6 +80,12 @@ h1 { font-family: var(--font-display); font-size: 26px; line-height: 1.3; margin
 .figs figcaption { font-size: 12.5px; text-align: center; line-height: 1.45; }
 .figs figcaption b { display: block; font-size: 12px; color: var(--accent); }
 .scene .sx { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
+.wxrow { grid-column: 1 / -1; display: grid; gap: 8px; }
+.wx .sky { font-size: 14px; display: inline-flex; align-items: center; gap: 4px; min-width: 104px; }
+.wx .sky .ic { font-size: 16px; letter-spacing: 1px; }
+.wx .d.hol { color: var(--sun); }
+.wx .p.hi { color: #fff; background: #3b6fb6; }
+.wx.rainy { border-color: #9db8de; background: #f2f6fc; }
 .wx-note { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--muted); }
 
 /* フィルタ */
@@ -380,11 +386,10 @@ footer p { margin: 0; max-width: 70ch; }
   </header>
 
   <div class="weather" aria-label="週末の天気予報">
-    <div class="wx"><span class="d sat">11/14 土</span><span class="t"><b>20</b>℃ / 12℃</span><span class="p">降水 0%</span></div>
-    <div class="wx"><span class="d sun">11/15 日</span><span class="t"><b>18</b>℃ / 13℃</span><span class="p">降水 0%</span></div>
-    <p class="wear"><b>服装の目安：</b>日中は18〜20℃なので長袖1枚で過ごせそうです。朝晩は12〜13℃まで下がるので、薄手の上着や子どもの羽織りものがあると安心です。海沿い（みなとみらい・山下公園）は風が出ると体感温度が下がります。花火（14日19時）を見るなら一枚多めに。</p>
+    <div class="wxrow" id="wxrow"></div>
+    <p class="wear" id="wear"></p>
     <div class="outfit" id="outfit"></div>
-    <p class="wx-note">11/10時点の予報です。21日以降の天気は、予報が出しだい追加します。14・15日は今のところ雨の予報はありませんが、変わることがあります。11月下旬はさらに冷え込む日が増えるので、厚手の上着も用意しておくと安心です。赤い印の「雨天中止」イベントは当日の天気を確認してから出かけてください。</p>
+    <p class="wx-note" id="wxnote"></p>
   </div>
 
   <div class="filters" role="group" aria-label="絞り込み">
@@ -506,7 +511,14 @@ footer p { margin: 0; max-width: 70ch; }
 
 <script>
 // ---- 服装イラスト（気温から自動で切り替え） ----
-const WX = [ { d:"11/14", max:20, min:12 }, { d:"11/15", max:18, min:13 } ];
+const WX_ASOF = "11月11日14時発表（日本気象協会 tenki.jp・横浜市）";
+const WX = [
+  { d:"11/14", w:"土", sky:"晴のち曇", max:20, min:11, pop:40 },
+  { d:"11/15", w:"日", sky:"曇のち雨", max:18, min:15, pop:70 },
+  { d:"11/21", w:"土", sky:"晴", max:19, min:9, pop:20 },
+  { d:"11/22", w:"日", sky:"晴時々曇", max:19, min:9, pop:20 },
+  { d:"11/23", w:"祝", sky:"曇のち晴", max:18, min:8, pop:40 }
+];
 function band(t){ return t >= 25 ? 5 : t >= 20 ? 4 : t >= 16 ? 3 : t >= 11 ? 2 : 1; }
 const OUTFIT_TEXT = {
   adult: { 5:"半袖＋薄いパンツ。日差しが強いので帽子を", 4:"長袖シャツ1枚", 3:"長袖＋カーディガンなど薄手の羽織り", 2:"長袖＋ジャケットやパーカー", 1:"ダウンなど厚手のコート＋マフラー" },
@@ -563,10 +575,30 @@ function scene(label, t, extra){
     <figure>${figure("child", b)}<figcaption><b>子ども</b>${OUTFIT_TEXT.child[b]}</figcaption></figure></div>
     ${extra ? `<p class="sx">${extra}</p>` : ""}</div>`;
 }
+const SKY_ICON = { "晴":"☀️", "曇":"☁️", "雨":"☔", "雪":"⛄" };
+function skyIcons(sky){
+  const parts = sky.split(/(のち|時々|一時)/);
+  return parts.map(x => x === "のち" ? "→" : (x === "時々" || x === "一時") ? "/" : (SKY_ICON[x[0]] || "")).join("");
+}
+function isRainy(w){ return /雨|雪/.test(w.sky) || w.pop >= 50; }
+function renderWeather(){
+  const row = document.getElementById("wxrow"); if (!row) return;
+  row.innerHTML = WX.map(w => `<div class="wx${isRainy(w) ? " rainy" : ""}"><span class="d ${w.w === "土" ? "sat" : w.w === "日" ? "sun" : "hol"}">${w.d} ${w.w}</span><span class="sky"><span class="ic" aria-hidden="true">${skyIcons(w.sky)}</span>${esc(w.sky.replace(/晴/g,"晴れ").replace(/曇/g,"くもり"))}</span><span class="t"><b>${w.max}</b>℃ / ${w.min}℃</span><span class="p${w.pop >= 50 ? " hi" : ""}">降水 ${w.pop}%</span></div>`).join("");
+  const wk = WX.filter(w => WEEKENDS[0].ds.includes(w.d));
+  const base = wk.length ? wk : WX.slice(0, 2);
+  const hi = Math.max(...base.map(w => w.max)), lo = Math.min(...base.map(w => w.min));
+  const rainy = base.filter(isRainy);
+  let txt = `<b>服装の目安（${base.map(w => w.d).join("・")}）：</b>日中は${Math.min(...base.map(w => w.max))}〜${hi}℃なので長袖1枚で過ごせそうです。朝晩は${lo}℃前後まで下がるので、薄手の上着や子どもの羽織りものがあると安心です。海沿い（みなとみらい・山下公園）は風が出ると体感温度が下がります。`;
+  if (rainy.length) txt += `<br><b>☔ ${rainy.map(w => w.d + "(" + w.w + ")").join("・")}は雨の予報：</b>折りたたみ傘か子どものレインコート、ベビーカーのレインカバー、足元が濡れたときの替えの靴下とタオルがあると安心。雨の日は屋内のイベントや「雨でもOK」で絞り込むのがおすすめです。`;
+  else if (base.some(w => /曇/.test(w.sky))) txt += `くもりの時間は日差しがなく、予報の気温より肌寒く感じやすいので、羽織りものを一枚多めに。`;
+  document.getElementById("wear").innerHTML = txt;
+  document.getElementById("wxnote").textContent = `${WX_ASOF}の予報です。予報は毎日の更新で新しくします。変わることがあるので、出かける前にも確認してください。赤い印の「雨天中止」イベントは当日の天気を確認してから出かけてください。`;
+}
 function renderOutfit(){
   const el = document.getElementById("outfit"); if (!el) return;
-  const day = Math.min(...WX.map(w => w.max)), night = Math.min(...WX.map(w => w.min));
-  el.innerHTML = `<h3>服装イメージ（${WX.map(w => w.d).join("・")}）</h3>
+  const wk0 = WX.filter(w => WEEKENDS[0].ds.includes(w.d)); const B = wk0.length ? wk0 : WX.slice(0, 2);
+  const day = Math.min(...B.map(w => w.max)), night = Math.min(...B.map(w => w.min));
+  el.innerHTML = `<h3>服装イメージ（${B.map(w => w.d).join("・")}）</h3>
     <div class="scenes">${scene("日中 ", day, "日なたは暖かい。脱いだ上着をしまえる袋があると楽。")}${scene("朝・夕方・夜 ", night, "海沿い・花火を見るときは風で寒く感じるので、もう1枚。")}</div>`;
 }
 
@@ -2176,6 +2208,7 @@ initPosts();
 { const o = document.getElementById("origin"); if (o) { o.value = ORIGIN; o.addEventListener("change", ev => setOrigin(ev.target.value)); } }
 { const a = document.getElementById("arrive"); if (a) { a.value = ARRIVE; a.addEventListener("change", ev => setArrive(ev.target.value)); document.getElementById("arrive-clear").addEventListener("click", () => { a.value = ""; setArrive(""); }); } }
 initNear();
+renderWeather();
 renderOutfit();
 </script>
 </body>
