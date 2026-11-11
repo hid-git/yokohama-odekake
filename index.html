@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<script>try { document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") === "dark" ? "dark" : "light"); } catch (_) { document.documentElement.setAttribute("data-theme", "light"); }</script>
+<script>try { const t = localStorage.getItem("theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (_) {}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>横浜 週末おでかけ一覧</title>
@@ -351,6 +351,14 @@ footer p { margin: 0; max-width: 70ch; }
 .contact ul { margin: 6px 0 8px 1.2em; padding: 0; }
 .contact .note { font-size: 12px; color: var(--muted, #666); }
 .contactbtn { display: inline-block; margin-top: 4px; padding: 10px 16px; border-radius: 999px; background: var(--accent, #1f6f5c); color: #fff !important; text-decoration: none; font-weight: 600; }
+.jump { position: sticky; top: 0; z-index: 20; display: flex; gap: 6px; overflow-x: auto; padding: 8px 2px; margin: 0 0 10px; background: var(--paper); scrollbar-width: none; }
+.jump::-webkit-scrollbar { display: none; }
+.jump a { flex: none; font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); text-decoration: none; white-space: nowrap; }
+.jump a:hover { border-color: var(--accent); color: var(--accent); }
+section[id], div[id="events"] { scroll-margin-top: 56px; }
+.more-hidden { display: none !important; }
+.morebtn { display: block; width: 100%; margin: 10px 0 4px; padding: 10px; border-radius: 10px; border: 1px dashed var(--accent); background: var(--accent-soft); color: var(--accent); font: inherit; font-weight: 600; cursor: pointer; }
+.totop { position: fixed; right: 14px; bottom: 16px; z-index: 30; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: #fff !important; text-decoration: none; font-size: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
 </style>
 </head>
 <body>
@@ -394,7 +402,11 @@ footer p { margin: 0; max-width: 70ch; }
     <p class="wx-note" id="wxnote"></p>
   </div>
 
-  <div class="filters" role="group" aria-label="絞り込み">
+  <nav class="jump" aria-label="ページ内の移動">
+    <a href="#events">イベント</a><a href="#near">近くで探す</a><a href="#foodall">ごはん・おむつ</a><a href="#posts">みんなの投稿</a><a href="#help">困ったとき</a><a href="#contact">お問い合わせ</a>
+  </nav>
+
+  <div class="filters" id="events" role="group" aria-label="絞り込み">
     <div class="frow"><span class="flabel">日にち</span><div class="opts" data-key="day">
       <button class="opt" id="f-day-all" data-v="all" aria-pressed="true">すべて</button>
       <button class="opt" id="f-day-14" data-v="11/14" aria-pressed="false">14(土)</button>
@@ -476,7 +488,7 @@ footer p { margin: 0; max-width: 70ch; }
 
   <section class="foodall" id="foodall" aria-label="エリア別のごはん"></section>
 
-  <section class="help" aria-label="困ったときの連絡先">
+  <section class="help" id="help" aria-label="困ったときの連絡先">
     <h2>おでかけ中に困ったら</h2>
     <p><b>子どもが急に具合が悪くなったら：</b>かながわ救急相談センター <b>#7119</b>（24時間365日）。迷ったら電話で相談できます。</p>
     <p><b>日曜・祝日に子どもが熱を出したら：</b>各区の「休日急患診療所」（内科・小児科）が日曜・祝日の10時〜16時に開いています（青葉区は9〜12時・13〜16時）。行く前に電話して、保険証・医療証・現金を持って。</p>
@@ -503,6 +515,8 @@ footer p { margin: 0; max-width: 70ch; }
     <p class="note">営業・勧誘・SEO業者などのご連絡にはお返事しません。送信にはGoogleアカウントでのログインが必要です。</p>
     <p><a class="contactbtn" href="https://docs.google.com/forms/d/e/1FAIpQLScTopnJJYWuDWb-9Sj9zWCmwuf8U7jZfzNxx1ernm2VaXLfSw/viewform" target="_blank" rel="noopener">お問い合わせフォームを開く</a></p>
   </section>
+
+  <a class="totop" href="#" aria-label="ページの先頭へ">↑</a>
 
   <footer>
     <p>情報収集日：2026年11月9〜10日。施設・主催者の公式サイト、横浜市・各区の発表、横浜市観光情報サイト、かながわ子育て応援パスポート、子育て支援情報サービスかながわ、地域ニュースなどをもとに要約しています。</p>
@@ -1959,6 +1973,16 @@ function render(){
   const on = hit.filter(e => e.kind === "ongoing").sort((a,b) => sortKey(a) - sortKey(b));
   if (on.length) html += `<section class="group"><h2>会期中ずっとやっているもの<small>${on.length}件・選んだ日も開催中</small></h2><div class="list">${on.map(card).join("")}</div></section>`;
   document.getElementById("results").innerHTML = html || `<div class="empty">条件に合うイベントがありません。条件を減らしてみてください。</div>`;
+  const SHOW = 6;
+  document.querySelectorAll("#results .group").forEach(g => {
+    const cards = [...g.querySelectorAll(".list > .card")];
+    if (cards.length <= SHOW + 2) return;
+    cards.slice(SHOW).forEach(c => c.classList.add("more-hidden"));
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "morebtn"; b.textContent = `残り${cards.length - SHOW}件を見る`;
+    b.addEventListener("click", () => { cards.forEach(c => c.classList.remove("more-hidden")); b.remove(); });
+    g.appendChild(b);
+  });
 }
 
 function setupAreas(){
@@ -2212,10 +2236,11 @@ initPosts();
 initNear();
 (function(){
   const btn = document.getElementById("theme-btn"); if (!btn) return;
-  const label = () => { btn.textContent = document.documentElement.getAttribute("data-theme") === "dark" ? "☀️ 明るい表示にする" : "🌙 暗い表示にする"; };
+  const cur = () => document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const label = () => { btn.textContent = cur() === "dark" ? "☀️ 明るい表示にする" : "🌙 暗い表示にする"; };
   label();
   btn.addEventListener("click", () => {
-    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    const next = cur() === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     try { localStorage.setItem("theme", next); } catch (_) {}
     label();
