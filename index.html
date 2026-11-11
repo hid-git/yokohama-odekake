@@ -325,6 +325,8 @@ section.group { display: grid; gap: 10px; }
 .help h2 { margin: 0; font-family: var(--font-display); font-size: 16px; }
 .help p { margin: 0; font-size: 13.5px; }
 .help a { color: var(--accent); font-weight: 700; }
+.life h3 { margin: 8px 0 0; font-size: 14px; }
+.life li { margin: 4px 0; }
 
 
 /* みなとみらいの街並み（オリジナルのイラスト） */
@@ -426,7 +428,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
   </header>
 
   <nav class="jump tabs" id="tabs" aria-label="ページの切り替え">
-    <a href="#events" data-tab="events">📅 イベント</a><a href="#near" data-tab="near">📍 近くで探す</a><a href="#foodall" data-tab="foodall">🍽 ごはん・おむつ</a><a href="#posts" data-tab="posts">✏️ みんなの投稿</a><a href="#help" data-tab="help">🏥 困ったとき</a><a href="#contact" data-tab="contact">✉️ お問い合わせ</a>
+    <a href="#events" data-tab="events">📅 イベント</a><a href="#near" data-tab="near">📍 近くで探す</a><a href="#foodall" data-tab="foodall">🍽 ごはん・おむつ</a><a href="#posts" data-tab="posts">✏️ みんなの投稿</a><a href="#life" data-tab="life">🧺 くらし</a><a href="#help" data-tab="help">🏥 困ったとき</a><a href="#contact" data-tab="contact">✉️ お問い合わせ</a>
   </nav>
 
   <div class="areabar evarea" id="evarea" role="group" aria-label="エリアでイベントを絞る"></div>
@@ -534,6 +536,41 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <p>ほかの区は<a href="https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/iryo/kyubyo/14248.html" target="_blank" rel="noopener">横浜市の救急医療機関の案内</a>で。（2026年11月10日確認）</p>
     <p><b>子育ての相談・支援情報：</b>神奈川県のLINE「<a href="https://www.pref.kanagawa.jp/docs/sy8/kosodateps.html" target="_blank" rel="noopener">かながわ子育てパーソナルサポート</a>」で、保健師・助産師などへのオンライン相談や、#7119への案内が使えます。</p>
     <p><b>お得なサービス：</b>横浜市の「<a href="https://www.city.yokohama.lg.jp/kurashi/kosodate-kyoiku/kosodateshien/default2020091.html" target="_blank" rel="noopener">ハマハグ</a>」（パマトコで登録証を表示）と県の「<a href="https://c.rakuraku.or.jp/k-pass/" target="_blank" rel="noopener">かながわ子育て応援パスポート</a>」は共通で使えます。</p>
+  </section>
+
+  <section class="help life" id="life" aria-label="子育てに役立つ横浜のくらし情報">
+    <h2>子育てに役立つ くらしの情報</h2>
+    <p class="small">横浜市の子育て応援マガジン「<a href="https://minnano-iine.city.yokohama.lg.jp/article/?tag=event" target="_blank" rel="noopener">みんなのいいね</a>」などで紹介された子育てに役立つサービスを短くまとめています。使う前にリンク先で最新情報を確認してください。（2026年11月11日確認）</p>
+    <h3>おでかけの移動</h3>
+    <ul>
+      <li><b>子育てタクシー</b>：講習を受けたドライバーが、チャイルドシートの取り付けやベビーカーの積み込みを手伝ってくれるタクシー。市内18区で使える。コースによって事前登録が必要。<a href="https://www.kosodate-taxi.com/" target="_blank" rel="noopener">全国子育てタクシー協会</a>／<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2026_04/04/" target="_blank" rel="noopener">紹介記事</a></li>
+      <li><b>シーバス（水上バス）</b>：横浜駅東口・ハンマーヘッド・赤レンガ倉庫・山下公園を結ぶ船。予約不要で、ベビーカーと飲食物の持ち込みOK、船内トイレあり（おむつ替えはないので乗る前に）。横浜駅東口の乗り場には船員の制服を着られるコーナーも。<a href="https://www.yokohama-cruising.jp/contents/seabass.html" target="_blank" rel="noopener">時刻表・料金</a>／<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2026_02/01/" target="_blank" rel="noopener">紹介記事</a></li>
+    </ul>
+    <h3>ベビー・キッズ用品をゆずる・もらう</h3>
+    <ul>
+      <li><b>ジモティースポット横浜</b>（井土ヶ谷店・中山店）：使わなくなったベビーカーやチャイルドシート、子ども用自転車、おもちゃを無料・申込不要で引き取ってもらえる。店の品物は安く買える。<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2025_10/04/" target="_blank" rel="noopener">紹介記事</a></li>
+      <li><b>SDGsロッカー</b>：まだ食べられるのに捨てられがちなパンなどを、お得な値段で買える無人ロッカー。駅や商業施設など市内に約10台。<a href="https://minnano-iine.city.yokohama.lg.jp/assets/images/article/column/2025_12/05/sdgslocker.pdf" target="_blank" rel="noopener">設置場所（PDF）</a></li>
+    </ul>
+    <h3>パパ・ママ向けの講座や体験</h3>
+    <ul>
+      <li><b>父親育児支援講座</b>：パパと子どものふれあい遊びや夫婦の話し合いなど、0〜3歳の親向けの講座。地域ケアプラザや親子の広場などでときどき開催。<a href="https://pamatoco.city.yokohama.lg.jp/ctz/contents/a045j00000PUNRxAAP/%E7%88%B6%E8%A6%AA%E8%82%B2%E5%85%90%E6%94%AF%E6%8F%B4" target="_blank" rel="noopener">パマトコの案内</a></li>
+      <li><b>消防署での子ども向け体験</b>（保育園などの団体向け）：防火衣の試着、消火器や煙の中を歩く体験など。無料・各消防署に事前相談。<a href="https://minnano-iine.city.yokohama.lg.jp/article/special/2025_09/01/" target="_blank" rel="noopener">紹介記事</a></li>
+      <li><b>横浜市民防災センター</b>（神奈川区）：ガイド付きツアーや防災の体験プログラム。年4回、縁日やクリスマスと組み合わせた親子イベントもある。</li>
+    </ul>
+    <h3>いざというときの準備</h3>
+    <ul>
+      <li><b>災害用伝言ダイヤル 171</b>：家族の無事や避難先を声で残せる。毎月1日と15日は練習で使える日。</li>
+      <li><b>地域防災拠点の訓練</b>：近くの小中学校などで年に数回。だれでも参加できる。</li>
+    </ul>
+    <h3>アプリ・割引</h3>
+    <ul>
+      <li><b>パマトコ</b>（横浜市の子育て応援アプリ）：手続きやイベントの情報、ハマハグの登録証の表示など。<a href="https://pamatoco.city.yokohama.lg.jp/ctz/" target="_blank" rel="noopener">パマトコ</a></li>
+      <li><b>横浜グリーンエクスポのこども招待</b>：2027年3〜9月の国際園芸博覧会に、市内在住の4〜18歳は1回無料で入れる（3歳以下は無料）。パマトコで申請し、来場日の予約も必要。<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2026_11/02/" target="_blank" rel="noopener">紹介記事</a></li>
+    </ul>
+    <h3>子連れにやさしい商店街</h3>
+    <ul>
+      <li><b>洪福寺松原商店街</b>（天王町駅から歩いて6分）：毎日12〜18時は歩行者天国で、無料の買い物カートあり。約60店。11〜12月は福引大売り出し。<a href="https://kofukuji-matsubara.com/" target="_blank" rel="noopener">公式</a>／<a href="https://minnano-iine.city.yokohama.lg.jp/article/special/2025_12/01/" target="_blank" rel="noopener">紹介記事</a></li>
+    </ul>
   </section>
 
   <section class="contact" id="contact">
@@ -1112,7 +1149,7 @@ function bi(label, v){ const c = v === true ? "y" : v === false ? "n" : "u"; con
 // ---- 位置（おおよその緯度経度）と徒歩の目安 ----
 const VENUE_GEO = [
   [/アンパンマン/, [35.4635,139.6300]], [/シンフォステージ/, [35.4603,139.6290]], [/ハンマーヘッド|新港/, [35.4570,139.6436]],
-  [/赤レンガ/, [35.4527,139.6430]], [/象の鼻/, [35.4505,139.6420]], [/大さん橋/, [35.4517,139.6475]], [/かなっく/, [35.4785,139.6330]], [/関内ホール/, [35.4440,139.6340]], [/みなとみらいホール/, [35.4575,139.6330]], [/宇宙科学館/, [35.3888,139.5968]], [/三ッ池/, [35.5230,139.6625]], [/三ツ沢公園/, [35.4760,139.6020]], [/こども自然公園/, [35.4580,139.5300]], [/金沢自然公園/, [35.3620,139.6080]], [/四季の森/, [35.5100,139.5170]], [/境川遊水地/, [35.3990,139.4920]], [/中スポーツセンター/, [35.4365,139.6560]], [/谷本公園/, [35.5530,139.5250]], [/瀬谷スポーツセンター/, [35.4690,139.4890]], [/寺家/, [35.5600,139.5000]], [/間門/, [35.4120,139.6420]], [/ふれ～ゆ/, [35.4950,139.6880]], [/大黒海づり/, [35.4620,139.6830]], [/ソラトス/, [35.4130,139.5110]], [/金沢図書館/, [35.3380,139.6230]], [/パシフィコ/, [35.4590,139.6370]],
+  [/赤レンガ/, [35.4527,139.6430]], [/象の鼻/, [35.4505,139.6420]], [/大さん橋/, [35.4517,139.6475]], [/かなっく/, [35.4785,139.6330]], [/関内ホール/, [35.4440,139.6340]], [/みなとみらいホール/, [35.4575,139.6330]], [/宇宙科学館/, [35.3888,139.5968]], [/三ッ池/, [35.5230,139.6625]], [/三ツ沢公園/, [35.4760,139.6020]], [/こども自然公園/, [35.4580,139.5300]], [/金沢自然公園/, [35.3620,139.6080]], [/四季の森/, [35.5100,139.5170]], [/境川遊水地/, [35.3990,139.4920]], [/中スポーツセンター/, [35.4365,139.6560]], [/谷本公園/, [35.5530,139.5250]], [/瀬谷スポーツセンター/, [35.4690,139.4890]], [/寺家/, [35.5600,139.5000]], [/間門/, [35.4120,139.6420]], [/ふれ～ゆ/, [35.4950,139.6880]], [/大黒海づり/, [35.4620,139.6830]], [/ソラトス/, [35.4130,139.5110]], [/金沢図書館/, [35.3380,139.6230]], [/弘明寺/, [35.4245,139.5960]], [/二俣川二丁目/, [35.4585,139.5310]], [/高島水際線/, [35.4610,139.6300]], [/パシフィコ/, [35.4590,139.6370]],
   [/日本丸/, [35.4545,139.6322]], [/美術館|グランモール/, [35.4570,139.6310]], [/MARK IS|ランドマーク/, [35.4568,139.6325]],
   [/CIAL|シァル|桜木町/, [35.4510,139.6310]], [/馬車道/, [35.4505,139.6375]], [/山下ふ頭|山下埠頭/, [35.4460,139.6550]],
   [/マリンタワー/, [35.4440,139.6510]], [/人形の家/, [35.4432,139.6530]], [/中華街/, [35.4425,139.6460]],
@@ -1700,6 +1737,33 @@ EVENTS.push(
     resv:false, resvText:"予約不要", age:[0,12], ageText:"0歳〜小学生", kind:"ongoing", start:600, freeplay:true,
     sum:"2026年にリニューアルした図書館。おしゃべりOKで、靴を脱いでごろごろできるスペースがある。金沢は海をイメージした青いこどもフロア、戸塚は「きりかぶひろば」や絵本クイズのロボットあり。",
     tip:"雨の日の行き先に。図書館なので休館日は行く前に確認を", url:"https://yokohamacity-edu.note.jp/n/nc0e77c69b237", src:"横浜市「みんなのいいね」（2026年11月）・横浜市教育委員会", asof:"2026年11月11日" }
+);
+EVENTS.push(
+  { t:"のげやま子ども図書館 おやこフロア（未就学児と保護者専用）", days:[], time:"開館時間は公式ページで確認", ward:"西区", venue:"横浜市中央図書館（桜木町駅から歩いて約10分）",
+    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内",
+    resv:false, resvText:"予約不要", age:[0,6], ageText:"未就学児と保護者", kind:"ongoing", start:600, freeplay:true,
+    sum:"2025年にできた未就学児と保護者だけのフロア。靴を脱いでハイハイやごろごろできる赤ちゃんエリア、三角テント、読み聞かせスペースがある。泣いてもOK。授乳室・子ども用トイレ・持ち込みOKの飲食スペースあり。",
+    tip:"野毛山動物園（無料）とセットで回りやすい", url:"https://yokohamacity-edu.note.jp/n/n0f39e95cb0f0", src:"横浜市「みんなのいいね」（2025年11月）・横浜市教育委員会", asof:"2026年11月11日" },
+  { t:"シーバス（水上バスで横浜の海をおさんぽ）", days:[], time:"毎日運航（時刻は公式ページで確認）", ward:"西区・中区", venue:"横浜駅東口（ベイクォーター）・ハンマーヘッド・赤レンガ倉庫・山下公園の乗り場",
+    price:"paid", priceText:"運賃は公式ページで確認", place:"屋内外", rain:"check", rainText:"荒天のときは運休・行き先変更あり",
+    resv:false, resvText:"予約不要（乗り場で乗船券を購入）", age:[0,99], ageText:"全年齢", kind:"ongoing", start:600, ride:true,
+    sum:"横浜駅〜山下公園を約20〜45分で結ぶ船。ベビーカー・飲食物の持ち込みOKで船内トイレあり（おむつ替えはなし）。横浜駅東口の乗り場近くに船員の制服を着られるコーナー。",
+    tip:"冬はクリスマス・カウントダウンのクルーズもある（要予約）。船の上は風が冷たいので上着を", url:"https://www.yokohama-cruising.jp/contents/seabass.html", src:"横浜市「みんなのいいね」（2026年2月）", asof:"2026年11月11日" },
+  { t:"弘明寺公園（大型遊具と電車が見える陸橋）", days:[], time:"いつでも", ward:"南区", venue:"弘明寺公園（京急 弘明寺駅すぐ）",
+    price:"free", priceText:"無料", place:"屋外", rain:"cancel", rainText:"屋外の公園",
+    resv:false, resvText:"予約不要", age:[1,12], ageText:"1歳〜小学生", kind:"ongoing", start:600, freeplay:true, ride:true,
+    sum:"大型遊具や丘の上の展望台がある公園。駅の南側の階段を上がった陸橋から京急線がよく見える。運がよければ黄色い電車にも会える。",
+    tip:"坂と階段が多いので、小さい子は抱っこひもが楽", url:"https://minnano-iine.city.yokohama.lg.jp/article/special/2025_03/03/", src:"横浜市「みんなのいいね」（2025年3月）", asof:"2026年11月11日" },
+  { t:"二俣川二丁目公園（目の前を新幹線が通る）", days:[], time:"いつでも", ward:"旭区", venue:"二俣川二丁目公園（二俣川駅南口から歩いて約12分）",
+    price:"free", priceText:"無料", place:"屋外", rain:"cancel", rainText:"屋外の公園",
+    resv:false, resvText:"予約不要", age:[1,12], ageText:"1歳〜小学生", kind:"ongoing", start:600, freeplay:true, ride:true,
+    sum:"フェンスのすぐ向こうを東海道新幹線が数分おきに通る公園。新幹線の形の遊具もある。",
+    tip:"新幹線好きの子に。二俣川駅のジョイナステラスでごはん・おむつ替えができる", url:"https://minnano-iine.city.yokohama.lg.jp/article/special/2025_03/03/", src:"横浜市「みんなのいいね」（2025年3月）", asof:"2026年11月11日" },
+  { t:"高島水際線公園（貨物列車が見える橋）", days:[], time:"いつでも", ward:"西区", venue:"高島水際線公園（新高島駅3番出口から歩いて約3分）",
+    price:"free", priceText:"無料", place:"屋外", rain:"cancel", rainText:"屋外の公園",
+    resv:false, resvText:"予約不要", age:[0,12], ageText:"0歳〜小学生", kind:"ongoing", start:600, ride:true,
+    sum:"水辺の遊歩道につながる公園。公園の連絡橋の上から、石油タンクを運ぶJR高島線の貨物列車が見える。ベンチ・エレベーターあり。",
+    tip:"横浜駅やみなとみらいから歩ける", url:"https://www.city.yokohama.lg.jp/nishi/kurashi/machizukuri_kankyo/jimusho/koen/koenshisetsu/ta/takasimasuisaisen.html", src:"横浜市「みんなのいいね」（2025年3月）・横浜市西区", asof:"2026年11月11日" }
 );
 const WK = {
   "京急ミュージアム（本物の電車・ジオラマ・運転シミュレーター）":"火曜休み（祝日なら翌日）",
@@ -2569,7 +2633,7 @@ document.addEventListener("click", ev => {
   OUTFIT_DAY = i; renderOutfit();
 });
 // ---- ページの切り替え（タブ） ----
-const TABS = { events:["#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], help:["#help"], contact:["#contact"] };
+const TABS = { events:["#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], life:["#life"], help:["#help"], contact:["#contact"] };
 function showTab(name, scroll){
   if (!TABS[name]) name = "events";
   for (const [k, sels] of Object.entries(TABS)) sels.forEach(sel => document.querySelectorAll(sel).forEach(el => { el.hidden = k !== name; }));
