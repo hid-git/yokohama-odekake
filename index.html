@@ -1101,7 +1101,7 @@ function bi(label, v){ const c = v === true ? "y" : v === false ? "n" : "u"; con
 // ---- 位置（おおよその緯度経度）と徒歩の目安 ----
 const VENUE_GEO = [
   [/アンパンマン/, [35.4635,139.6300]], [/シンフォステージ/, [35.4603,139.6290]], [/ハンマーヘッド|新港/, [35.4570,139.6436]],
-  [/赤レンガ/, [35.4527,139.6430]], [/象の鼻/, [35.4505,139.6420]], [/大さん橋/, [35.4517,139.6475]],
+  [/赤レンガ/, [35.4527,139.6430]], [/象の鼻/, [35.4505,139.6420]], [/大さん橋/, [35.4517,139.6475]], [/かなっく/, [35.4785,139.6330]], [/関内ホール/, [35.4440,139.6340]], [/パシフィコ/, [35.4590,139.6370]],
   [/日本丸/, [35.4545,139.6322]], [/美術館|グランモール/, [35.4570,139.6310]], [/MARK IS|ランドマーク/, [35.4568,139.6325]],
   [/CIAL|シァル|桜木町/, [35.4510,139.6310]], [/馬車道/, [35.4505,139.6375]], [/山下ふ頭|山下埠頭/, [35.4460,139.6550]],
   [/マリンタワー/, [35.4440,139.6510]], [/人形の家/, [35.4432,139.6530]], [/中華街/, [35.4425,139.6460]],
@@ -1516,6 +1516,38 @@ EVENTS.push(
     resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"ongoing", start:600,
     sum:"週末に海辺広場（こもれび広場）で大道芸のショー。出演者や時間は日によって変わる。",
     tip:"時間は公式に出ていないので、行く前に公式SNSか電話（045-374-5392）で確認を", url:"https://www.branch-sc.com/yokohama_nanbu/shop/pop-eventnews.jsp?id=5070", src:"ブランチ横浜南部市場 公式", asof:"2026年11月11日" }
+);
+EVENTS.push(
+  { t:"ヨルノヨ YOKOHAMA NIGHT FLOWERS 2026（夜景の光と音の演出）", days:["12/5","12/6","12/12","12/13","12/19","12/20","12/24","12/25","12/26","12/27"], time:"17:00〜21:05（12/4〜12/30 毎日）", ward:"中区・西区", venue:"大さん橋・山下公園・日本丸メモリアルパークなど 横浜都心臨海部",
+    price:"free", priceText:"無料", place:"屋外", rain:"check", rainText:"屋外。荒天のときは演出の中止・変更あり",
+    resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"limited", start:1020,
+    sum:"12月4日〜30日の毎晩、港の夜景を光と音で彩るイベント。会期中は毎日やっているので、土日やクリスマスに合わせて見に行ける。",
+    tip:"暗くなるのが早いので17時台なら小さい子も見やすい。海沿いは風が冷たいので防寒をしっかり", url:"https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/bunka/2026/1106yorunoyo2026.html", src:"横浜市 記者発表（2026年11月6日）", asof:"2026年11月11日" },
+  { t:"防災パーク2026（はしご車搭乗体験・消防車両展示）", days:["12/12"], time:"10:00〜15:00", ward:"神奈川区", venue:"横浜市民防災センター・沢渡中央公園（横浜駅西口から歩いて約10分）",
+    price:"free", priceText:"無料", place:"屋内外", rain:"cancel", rainText:"荒天のときは中止",
+    resv:false, resvText:"予約不要。はしご車搭乗は当日抽選（午前・午後 各10組。整理券 10:00〜10:30／13:00〜13:30）", age:[0,12], ageText:"親子向け", kind:"limited", start:600, ride:true,
+    sum:"消防車両の展示、はしご車の搭乗体験、スタンプラリー、消防音楽隊の演奏などが楽しめる防災イベント。",
+    tip:"はしご車に乗りたいなら整理券の時間に合わせて到着を", url:"https://www.city.yokohama.lg.jp/bousai-kyukyu-bohan/shobo/shokainado/bousen/1212ibento.html", src:"横浜市 消防局 公式", asof:"2026年11月11日" },
+  { t:"野毛山動物園 キリン「バックヤードツアー」", days:["12/5","12/19"], time:"14:00〜14:30（13:50 動物園入口集合）", ward:"西区", venue:"野毛山動物園（桜木町駅から歩いて約15分）",
+    price:"paid", priceText:"小学生以上500円、未就学児無料（入園は無料）", place:"屋外", rain:"check", rainText:"天候による変更は公式で確認",
+    resv:true, resvText:"事前申込（抽選）・各日20名。12月分の申込は11月7日9:30〜11月21日16:30。当選者にだけ連絡あり", age:[0,12], ageText:"子ども向け（小学生以下は中学生以上と一緒に申込）", kind:"limited", start:840, animal:true,
+    sum:"ふだんは入れないキリン舎の裏側を見学できるツアー。抽選なので申込が必要。",
+    tip:"申込締切は11月21日。野毛山動物園は入園無料なので、ツアーの前後にほかの動物も見られる", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13393", src:"横浜市観光情報（公式）", asof:"2026年11月11日" },
+  { t:"0歳からのクリスマスコンサート「星の音楽絵本」", days:["12/16"], time:"14:00開演（13:30開場・約60分）", ward:"神奈川区", venue:"かなっくホール（東神奈川駅から歩いて1分）",
+    price:"paid", priceText:"前売 大人2,000円・子ども（2歳〜中学生）1,000円。0・1歳はひざ上なら無料", place:"屋内", rain:"ok", rainText:"屋内",
+    resv:true, resvText:"チケット購入（eプラス）・全席自由", age:[0,15], ageText:"0歳から", kind:"limited", start:840,
+    sum:"ディズニー・ジブリ・童謡・クリスマスソングを物語仕立てで聞ける親子コンサート。赤ちゃんが泣いても大丈夫な公演。平日（水曜）の開催。",
+    tip:"当日券は200円高い。前売が売り切れると当日券なし", url:"https://iko-yo.net/events/606049", src:"いこーよ（主催者 ライズサーチの掲載情報）", asof:"2026年11月11日" },
+  { t:"0歳からのわくわくコンサート「クリスマス★パーティ」", days:["12/19"], time:"①11:30開演 ②14:30開演（各約60分）", ward:"中区", venue:"関内ホール（関内駅から歩いて約5分）",
+    price:"paid", priceText:"前売 大人2,700円・子ども（2歳〜中学生）1,500円。0・1歳はひざ上なら無料", place:"屋内", rain:"ok", rainText:"屋内",
+    resv:true, resvText:"チケット購入（eプラス）・全席指定", age:[0,15], ageText:"0歳から", kind:"limited", start:690,
+    sum:"ディズニーソングとクリスマスソング、クラシックを生演奏で楽しむ親子コンサート。泣いたら演奏中でも出入り自由。",
+    tip:"当日券は大人2,900円・子ども1,800円", url:"https://iko-yo.net/events/606045", src:"いこーよ（主催者 ライズサーチの掲載情報）・eプラス", asof:"2026年11月11日" },
+  { t:"お城EXPO 2026", days:["12/19","12/20"], time:"19日 9:30〜17:30／20日 9:30〜17:00（最終入場は30分前）", ward:"西区", venue:"パシフィコ横浜 ノースほか（みなとみらい駅から歩いて約10分）",
+    price:"paid", priceText:"入場料は公式ページで確認（子どもの料金は未確認）", place:"屋内", rain:"ok", rainText:"屋内",
+    resv:false, resvText:"チケットはローチケなどで販売・当日も購入可", age:[6,99], ageText:"小学生〜（お城・歴史好きの子に）", kind:"limited", start:570,
+    sum:"全国のお城の展示、武将隊やご当地キャラのステージ、城の自由研究コンテストの作品展などがある日本最大級のお城イベント。",
+    tip:"講演は大人向けが中心。子どもは武将隊のステージや展示ゾーンが楽しみやすい", url:"https://www.shiroexpo.jp/", src:"お城EXPO事務局 発表（PR TIMES）・ローチケ", asof:"2026年11月11日" }
 );
 const WK = {
   "京急ミュージアム（本物の電車・ジオラマ・運転シミュレーター）":"火曜休み（祝日なら翌日）",
@@ -2080,8 +2112,9 @@ function render(){
     const byDay = {};
     for (const e of hit.filter(e => e.kind === "limited" && e.days.length && e.days.every(d => !wkAll.includes(d)))) for (const d of e.days) (byDay[d] = byDay[d] || []).push(e);
     for (const d of Object.keys(byDay)) {
-      const [m, dd] = d.split("/").map(Number); const yb = "日月火水木金土"[new Date(2026, m - 1, dd).getDay()];
-      secs.push([dkey(d), `<section class="group"><h2>平日 ${m}月${dd}日(${yb})<small>${byDay[d].length}件・平日だけのイベント</small></h2><div class="list">${byDay[d].map(card).join("")}</div></section>`]);
+      const [m, dd] = d.split("/").map(Number); const dow = new Date(m < 10 ? 2027 : 2026, m - 1, dd).getDay(); const yb = "日月火水木金土"[dow];
+      const isWe = dow === 0 || dow === 6;
+      secs.push([(m < 10 ? 1200 : 0) + dkey(d), `<section class="group"><h2>${isWe ? "" : "平日 "}${m}月${dd}日(${yb})<small>${byDay[d].length}件・${isWe ? "この日のイベント" : "平日だけのイベント"}</small></h2><div class="list">${byDay[d].map(card).join("")}</div></section>`]);
     }
   }
   html += secs.sort((x, y) => x[0] - y[0]).map(x => x[1]).join("");
