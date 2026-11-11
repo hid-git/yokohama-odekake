@@ -385,6 +385,8 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 .evarea { margin: 0 0 10px; align-items: center; }
 .evarea .albl { font-size: 13px; color: var(--muted); }
 .count { scroll-margin-top: 56px; }
+.bikes { margin-top: 8px; padding: 8px 10px; border-radius: 8px; background: var(--ok-soft); }
+.bikes .note { font-size: 12px; margin: 6px 0 0; }
 .flist { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: 13.5px; }
 .flist .m { font-size: 12px; color: var(--muted); }
 </style>
@@ -1777,6 +1779,38 @@ const PARK_VENUE = [
 ];
 const PARK_FREE = { "トレッサ横浜":"トレッサ横浜の駐車場は全日無料（約2,700台・土日は約450台増）。週末は満車待ちになる時間も" };
 const PARK_RESERVE = { nogeyama:"https://www.akippa.com/kanto/kanagawa/nogeyamazoo", akarenga:"https://www.akippa.com/kanto/kanagawa/yokohamaakarenga", mm:"https://www.akippa.com/kanto/kanagawa/114538", anpan:"https://www.akippa.com/kanto/kanagawa/114538", hakkeijima:"https://www.akippa.com/kanto/kanagawa/seaparadise" };
+// ---- 歩いて10分以内の駐輪場 ----
+const BIKE_LOTS = [
+  { n:"みなとみらい駅自転車駐車場（市営）", g:[35.4578,139.6318], fee:"1日100円・日曜祝日と年末年始は無料", tags:["屋根あり","24時間","約360台"], src:"NAVITIME・MapCycle" },
+  { n:"MARK IS みなとみらい 駐輪場", g:[35.4575,139.6330], fee:"最初の3時間無料、以降1時間100円", tags:["施設の駐輪場"], src:"駐輪場まとめサイト（2025年）" },
+  { n:"ランドマークプラザ 駐輪場（エコステーション21）", g:[35.4552,139.6318], fee:"最初の3時間無料、以降1時間110円", tags:["屋外","24時間","約130台"], src:"駐輪場まとめサイト（2026年）" },
+  { n:"クイーンズスクエア横浜 駐輪場", g:[35.4590,139.6340], fee:"最初の3時間無料、以降1時間100円", tags:["さくら通り沿い","屋根なし"], src:"駐輪場まとめサイト" },
+  { n:"コレットマーレ 駐輪場", g:[35.4515,139.6302], fee:"最初の3時間無料（以降の料金は現地で確認）", tags:["桜木町駅前"], src:"駐輪場まとめサイト（2024年）" },
+  { n:"CIAL桜木町 駐輪場", g:[35.4510,139.6312], fee:"最初の90分無料、以降24時間ごと80円", tags:["24時間","桜木町駅すぐ"], src:"地域ブログ（2022年）" },
+  { n:"横浜ベイクォーター 駐輪場", g:[35.4685,139.6258], fee:"自転車は最初の3時間無料、以降1時間100円", tags:["屋内","8:00〜24:00","約180台"], src:"駐輪場まとめサイト（2025年）" },
+  { n:"横浜駅東口 第2・第5自転車駐車場（市営）", g:[35.4650,139.6265], fee:"1日80円・日曜祝日と年末年始は無料", tags:["24時間"], src:"NAVITIME・MapCycle" },
+  { n:"横浜駅西口 第十二自転車駐車場（市営）", g:[35.4648,139.6195], fee:"1日80円・日曜祝日は無料", tags:["24時間"], src:"駐輪場まとめサイト（2025年）" },
+  { n:"赤レンガ倉庫の自転車置き場", g:[35.4525,139.6433], fee:"無料", tags:["新港1丁目"], src:"地域ブログ（2021年）" },
+  { n:"山下公園西 駐輪場", g:[35.4455,139.6475], fee:"最初の2時間無料、以降4時間ごと100円", tags:["24時間","自転車のみ"], src:"NAVITIME" },
+  { n:"山下公園 利用者専用の自転車置き場", g:[35.4460,139.6505], fee:"公園利用者は無料", tags:["平日9〜17時・土日祝は終日"], src:"駐輪場まとめサイト（2025年）" },
+  { n:"元町・中華街駅自転車駐車場（市営）", g:[35.4425,139.6505], fee:"1日100円・日曜祝日は無料", tags:["屋内","24時間","約370台"], src:"駐輪場まとめサイト（2025年）" },
+  { n:"モザイクモール港北 無料駐輪場", g:[35.5465,139.5760], fee:"利用客は無料", tags:["屋内","6:00〜23:00","約400台"], src:"駐輪場まとめサイト（2025年）" },
+  { n:"ノースポート・モール 駐輪場（A〜Cエリア）", g:[35.5462,139.5745], fee:"最初の2時間無料、以降エリアにより3〜12時間ごと100円", tags:["Bエリアは屋内","24時間"], src:"駐輪場まとめサイト（2025年）・地域ブログ" },
+  { n:"ズーラシア 正門前の駐輪場", g:[35.4958,139.5272], fee:"無料", tags:["正門の道向かい、観光バス駐車場の奥","公式に案内なし"], src:"利用者のブログ（2022年）" },
+  { n:"八景島駅前（八景島入口）の駐輪場", g:[35.3392,139.6438], fee:"無料", tags:["一部高架下","八景島に渡る橋の手前"], src:"駐輪場情報サイト（2023年）・ポタリングよこはマップ" }
+];
+function bikeNear(e){
+  const g = venueGeo(e); if (!g) return [];
+  return BIKE_LOTS.map(b => ({ b, min: Math.max(1, Math.round(distM(g, b.g) * 1.3 / 70)) })).filter(x => x.min <= 10).sort((a, b) => a.min - b.min);
+}
+function bikeHtml(e){
+  const near = bikeNear(e);
+  const g = venueGeo(e);
+  const map = g ? `<a href="https://www.google.com/maps/search/${encodeURIComponent("駐輪場")}/@${g[0]},${g[1]},16z" target="_blank" rel="noopener">地図で近くの駐輪場を探す</a>` : "";
+  if (!near.length) return g ? `<div class="bikes"><b>🚲 駐輪場</b><p class="note">このあたりの駐輪場はまだ調べていません。${map}</p></div>` : "";
+  return `<div class="bikes"><b>🚲 歩いて10分以内の駐輪場</b><ul class="flist">${near.map(x => `<li><b>${esc(x.b.n)}</b><br><span class="m">${esc(x.b.fee)}<br>${x.b.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}<br>会場まで歩いて約${x.min}分（目安）（${esc(x.b.src)}）</span></li>`).join("")}</ul>
+    <p class="note">子乗せ自転車は2段ラックの上段に入らないことが多いので、平置きか下段の空きを探してください。みなとみらいの遊歩道や公園の中は自転車に乗って走れない場所が多く、押して歩きます。料金は変わることがあるので、現地の表示を確認してください。${map}</p></div>`;
+}
 function parkHtml(e, k){
   const g = venueGeo(e);
   const pv = PARK_VENUE.find(([re]) => re.test(e.venue + e.t));
@@ -1814,7 +1848,7 @@ function mapsUrl(e){ return "https://www.google.com/maps/dir/?api=1&travelmode=t
 function accessHtml(e){
   const k = accessKey(e);
   const go = `<a class="more" href="${esc(mapsUrl(e))}" target="_blank" rel="noopener">経路を調べる（Googleマップ）</a>`;
-  if (!k) return `<details class="acc"><summary>行き方・ベビーカー動線・トイレ</summary><p class="note">この会場の動線とトイレはまだ調べていません。${go}</p>${parkHtml(e, null)}</details>`;
+  if (!k) return `<details class="acc"><summary>行き方・ベビーカー動線・トイレ・駐車場・駐輪場</summary><p class="note">この会場の動線とトイレはまだ調べていません。${go}</p>${parkHtml(e, null)}${bikeHtml(e)}</details>`;
   const a = ACCESS[k];
   const sat = a.free && e.days.some(d => (DATES.find(x => x.k === d) || {}).w === "土");
   const rows = a.st.map(s => `<li><b>${esc(s.st)}</b><span class="ln">${esc(s.line)}</span>
@@ -1827,6 +1861,7 @@ function accessHtml(e){
     <p><b>🚻 ベビーカーで入れるトイレ：</b>${esc(a.toilet || "駅・商業施設の多目的トイレ（だれでもトイレ）が使えることが多いです。この会場の場所はまだ調べていません。")}</p>
     <p><b>🅿 駐車場：</b>${esc(a.park)}</p>
     ${parkHtml(e, k)}
+    ${bikeHtml(e)}
     ${a.free ? `<p><b>無料の日：</b>${esc(a.free)}</p>` : ""}
     ${a.rainAlt ? `<p><b>☔ 雨なら：</b>${esc(a.rainAlt)}</p>` : ""}
     <p class="note">号車は10両編成のとき〔 〕内は8両編成のとき。エレベーターは点検で止まることがあるので、駅の案内も見てください。情報の時点：2026年11月10日。◎はおむつ替えできると確認できたところ。${esc(STATION_WC_SRC)}</p>
