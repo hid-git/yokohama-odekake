@@ -40,6 +40,9 @@
 - 横浜市「みんなのいいね」ローラーすべり台まとめ：https://minnano-iine.city.yokohama.lg.jp/article/column/2025_01/27/
 - まだ載せていない候補：久良岐公園、根岸森林公園、舞岡公園、都筑中央公園、横浜市児童遊園地、海の公園、富岡総合公園、本牧市民公園、長坂谷公園、蒔田公園、県立保土ケ谷公園、県立境川遊水地公園
 
+## 横浜市の子育て情報サイト
+- 横浜市「みんなのいいね」（こども青少年局）：https://minnano-iine.city.yokohama.lg.jp/article/?tag=event （記事一覧は後から読み込まれるので、個別の記事を検索で見つけて読む。タグ：event / odekake / kouen）
+
 ## まとめサイト（見つけるため。載せる前に公式で確認）
 - いこーよ：https://iko-yo.net/
 - 横浜金沢観光協会のイベント情報：https://yokohama-kanazawakanko.com/
