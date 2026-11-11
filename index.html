@@ -368,6 +368,14 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 .odsum { margin: 0 0 8px; font-size: 14px; }
 .scene.wet { box-shadow: inset 0 0 0 1px #6f95cc; }
 .wx { cursor: pointer; }
+.areabar { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0 10px; }
+.achip { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+.achip.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.evarea { margin: 0 0 10px; align-items: center; }
+.evarea .albl { font-size: 13px; color: var(--muted); }
+.count { scroll-margin-top: 56px; }
+.flist { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: 13.5px; }
+.flist .m { font-size: 12px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -408,6 +416,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <a href="#events" data-tab="events">📅 イベント</a><a href="#near" data-tab="near">📍 近くで探す</a><a href="#foodall" data-tab="foodall">🍽 ごはん・おむつ</a><a href="#posts" data-tab="posts">✏️ みんなの投稿</a><a href="#help" data-tab="help">🏥 困ったとき</a><a href="#contact" data-tab="contact">✉️ お問い合わせ</a>
   </nav>
 
+  <div class="areabar evarea" id="evarea" role="group" aria-label="エリアでイベントを絞る"></div>
   <div class="weather" aria-label="週末の天気予報">
     <div class="wxrow" id="wxrow"></div>
     <p class="wear" id="wear"></p>
@@ -978,16 +987,50 @@ function foodHtml(e){
   return `<details class="food"><summary>近くのごはん（${esc(a.name)}・${a.shops.length}件）</summary>
     <p class="note">${esc(a.note)}</p><div class="shops">${a.shops.map(shopHtml).join("")}</div></details>`;
 }
+const FOOD_AREAS = [
+  { k:"mm", c:[35.4560,139.6320], r:900 },
+  { k:"yamashita", c:[35.4465,139.6470], r:900 },
+  { k:"yokohama", name:"横浜駅", c:[35.4657,139.6225], r:900, note:"駅直結の商業施設（そごう・ルミネ・ジョイナス・ベイクォーター）にお店が集まっています。" },
+  { k:"honmoku", c:[35.4170,139.6620], r:1500 },
+  { k:"tressa", name:"トレッサ横浜（港北）", c:[35.5235,139.6445], r:1500, note:"駐車場無料の大型モール。フードコートに小上がり席があります。" },
+  { k:"centerkita", c:[35.5463,139.5755], r:1200 },
+  { k:"lalaport", name:"ららぽーと横浜（鴨居）", c:[35.5150,139.5590], r:1200, note:"2Fに約720席のフードコートがあります。" },
+  { k:"futamatagawa", name:"二俣川", c:[35.4630,139.5325], r:1200, note:"駅直結のジョイナステラス二俣川にお店とキッズスペースがあります。" },
+  { k:"zoorasia", c:[35.4950,139.5265], r:1500 },
+  { k:"kodomonokuni", c:[35.5400,139.4930], r:1500 },
+  { k:"kanazawa", name:"八景島・金沢（アウトレット・南部市場・動物園）", c:[35.3480,139.6380], r:4000, note:"三井アウトレットパーク 横浜ベイサイドのフードコートには、お湯・調乳器・電子レンジがあります。" }
+];
+function nearestArea(g){
+  let best = null, bd = Infinity;
+  for (const A of FOOD_AREAS) { const d = distM(A.c, g); if (d <= A.r && d < bd) { bd = d; best = A.k; } }
+  return best;
+}
+let FOOD_PICK = "all";
 function renderFoodAll(){
-  const html = Object.entries(FOOD).map(([k,a]) => {
-    const evs = EVENTS.filter(e => FOOD_OF[e.t] === k).length;
-    const bb = BABY[k] || [];
-    return `<div class="farea"><h3>${esc(a.name)}</h3><p class="for">このエリアのイベント ${evs}件／${esc(a.note)}</p>
-      <p class="for"><b>おむつ替え・授乳・お湯</b></p><div class="shops">${bb.map(b => bspotHtml(b)).join("")}</div>
-      <p class="for"><b>ごはん</b></p><div class="shops">${a.shops.map(shopHtml).join("")}</div></div>`;
+  const areas = FOOD_AREAS.map(A => {
+    const f = FOOD[A.k] || {};
+    const kids = typeof KIDS_SHOPS !== "undefined" ? KIDS_SHOPS.filter(x => nearestArea(x.g) === A.k) : [];
+    const courts = typeof FOOD_COURTS !== "undefined" ? FOOD_COURTS.filter(x => nearestArea(x.g) === A.k) : [];
+    const free = typeof BABYFOOD_SHOPS !== "undefined" ? BABYFOOD_SHOPS.filter(x => x.g && nearestArea(x.g) === A.k) : [];
+    return { k:A.k, name: f.name || A.name, note: f.note || A.note || "", shops: f.shops || [], baby: BABY[A.k] || [], kids, courts, free };
+  }).filter(a => a.shops.length || a.baby.length || a.kids.length || a.courts.length || a.free.length);
+  const pick = areas.some(a => a.k === FOOD_PICK) ? FOOD_PICK : "all";
+  const chips = `<div class="areabar" role="group" aria-label="エリアを選ぶ"><button type="button" class="achip${pick === "all" ? " on" : ""}" data-k="all">すべて</button>${areas.map(a => `<button type="button" class="achip${pick === a.k ? " on" : ""}" data-k="${a.k}">${esc(a.name.split("（")[0].split("・").slice(0, 2).join("・"))}</button>`).join("")}</div>`;
+  const li = (n, sub) => `<li><b>${esc(n)}</b>${sub ? `<br><span class="m">${sub}</span>` : ""}</li>`;
+  const html = areas.filter(a => pick === "all" || a.k === pick).map(a => {
+    const evs = EVENTS.filter(e => FOOD_OF[e.t] === a.k).length;
+    let h = `<div class="farea" data-k="${a.k}"><h3>${esc(a.name)}</h3><p class="for">${evs ? `このエリアのイベント ${evs}件／` : ""}${esc(a.note)}</p>`;
+    if (a.baby.length) h += `<p class="for"><b>おむつ替え・授乳・お湯</b></p><div class="shops">${a.baby.map(b => bspotHtml(b)).join("")}</div>`;
+    if (a.courts.length) h += `<p class="for"><b>🍴 フードコート</b></p><ul class="flist">${a.courts.map(c => li(c.n, `${esc(c.f)}${c.seat ? "・" + esc(c.seat) : ""}<br>${c.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(c.src)}）`)).join("")}</ul>`;
+    if (a.free.length) h += `<p class="for"><b>🥣 離乳食が無料でもらえるお店</b></p><ul class="flist">${a.free.map(x => li(x.n, `${esc(x.d || "")}（${esc(x.src || "")}）`)).join("")}</ul>`;
+    if (a.kids.length) h += `<p class="for"><b>🍽 子連れで入りやすいお店（キッズメニュー・ベビーカーOK・子ども歓迎）</b></p><ul class="flist">${a.kids.map(x => li(x.n, `${esc(x.k)}<br>${x.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(x.src)}）`)).join("")}</ul>`;
+    if (a.shops.length) h += `<p class="for"><b>ごはん</b></p><div class="shops">${a.shops.map(shopHtml).join("")}</div>`;
+    return h + `</div>`;
   }).join("");
-  document.getElementById("foodall").innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>
-    <p class="lead">おむつ替え・授乳室・調乳用のお湯がある場所と、ベビーカーOK・キッズメニューなどが確認できたお店です。印が点線のものは、調べた範囲では確認できなかった設備です。それぞれに「情報の時点」を書いていて、1年以上前の情報や時点が分からないものは黄色で示しています。混み具合や設備は変わることがあるので、行く前に各リンク先を確認してください。</p>${html}`;
+  const el = document.getElementById("foodall");
+  el.innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>${chips}
+    <p class="lead">おむつ替え・授乳室・調乳用のお湯がある場所と、フードコート、ベビーカーOK・キッズメニューなどが確認できたお店です。印が点線のものは、調べた範囲では確認できなかった設備です。それぞれに「情報の時点」を書いていて、1年以上前の情報や時点が分からないものは黄色で示しています。混み具合や設備は変わることがあるので、行く前に各リンク先を確認してください。</p>${html}`;
+  el.querySelectorAll(".achip").forEach(btn => btn.addEventListener("click", () => { FOOD_PICK = btn.dataset.k; renderFoodAll(); }));
 }
 
 
@@ -2274,6 +2317,20 @@ initNear();
 })();
 renderWeather();
 renderOutfit();
+// イベントのエリア早見ボタン（押すと絞り込んで一覧までスクロール）
+function renderEvArea(){
+  const box = document.getElementById("evarea"); if (!box) return;
+  const src = [...document.querySelectorAll("#area-opts .opt")];
+  box.innerHTML = `<span class="albl">エリア：</span>` + src.map(b => `<button type="button" class="achip${b.getAttribute("aria-pressed") === "true" ? " on" : ""}" data-id="${b.id}">${esc(b.textContent)}</button>`).join("");
+  box.querySelectorAll(".achip").forEach(c => c.addEventListener("click", () => {
+    const o = document.getElementById(c.dataset.id); if (o) o.click();
+    renderEvArea();
+    const r = document.querySelector(".count"); if (r) r.scrollIntoView({ behavior: "smooth", block: "start" });
+  }));
+}
+document.getElementById("area-opts").addEventListener("click", () => setTimeout(renderEvArea, 0));
+document.getElementById("reset") && document.getElementById("reset").addEventListener("click", () => setTimeout(renderEvArea, 0));
+renderEvArea();
 // 絞り込みの日付ボタンを押したら、その日の服装イメージに切り替える
 document.addEventListener("click", ev => {
   const b = ev.target.closest('button[id^="f-day-"]'); if (!b) return;
@@ -2281,7 +2338,7 @@ document.addEventListener("click", ev => {
   OUTFIT_DAY = i; renderOutfit();
 });
 // ---- ページの切り替え（タブ） ----
-const TABS = { events:[".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], help:["#help"], contact:["#contact"] };
+const TABS = { events:["#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], help:["#help"], contact:["#contact"] };
 function showTab(name, scroll){
   if (!TABS[name]) name = "events";
   for (const [k, sels] of Object.entries(TABS)) sels.forEach(sel => document.querySelectorAll(sel).forEach(el => { el.hidden = k !== name; }));
