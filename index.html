@@ -359,6 +359,8 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 .more-hidden { display: none !important; }
 .morebtn { display: block; width: 100%; margin: 10px 0 4px; padding: 10px; border-radius: 10px; border: 1px dashed var(--accent); background: var(--accent-soft); color: var(--accent); font: inherit; font-weight: 600; cursor: pointer; }
 .totop { position: fixed; right: 14px; bottom: 16px; z-index: 30; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: #fff !important; text-decoration: none; font-size: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+.tabs a.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+[hidden] { display: none !important; }
 </style>
 </head>
 <body>
@@ -395,6 +397,10 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <p class="sharenote">ページを開けるかどうかは共有の設定によります。各イベントの「LINEで送る」は公式ページのリンク付きなので、誰でも開けます。</p>
   </header>
 
+  <nav class="jump tabs" id="tabs" aria-label="ページの切り替え">
+    <a href="#events" data-tab="events">📅 イベント</a><a href="#near" data-tab="near">📍 近くで探す</a><a href="#foodall" data-tab="foodall">🍽 ごはん・おむつ</a><a href="#posts" data-tab="posts">✏️ みんなの投稿</a><a href="#help" data-tab="help">🏥 困ったとき</a><a href="#contact" data-tab="contact">✉️ お問い合わせ</a>
+  </nav>
+
   <div class="weather" aria-label="週末の天気予報">
     <div class="wxrow" id="wxrow"></div>
     <p class="wear" id="wear"></p>
@@ -402,9 +408,6 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <p class="wx-note" id="wxnote"></p>
   </div>
 
-  <nav class="jump" aria-label="ページ内の移動">
-    <a href="#events">イベント</a><a href="#near">近くで探す</a><a href="#foodall">ごはん・おむつ</a><a href="#posts">みんなの投稿</a><a href="#help">困ったとき</a><a href="#contact">お問い合わせ</a>
-  </nav>
 
   <div class="filters" id="events" role="group" aria-label="絞り込み">
     <div class="frow"><span class="flabel">日にち</span><div class="opts" data-key="day">
@@ -2248,6 +2251,24 @@ initNear();
 })();
 renderWeather();
 renderOutfit();
+// ---- ページの切り替え（タブ） ----
+const TABS = { events:[".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], help:["#help"], contact:["#contact"] };
+function showTab(name, scroll){
+  if (!TABS[name]) name = "events";
+  for (const [k, sels] of Object.entries(TABS)) sels.forEach(sel => document.querySelectorAll(sel).forEach(el => { el.hidden = k !== name; }));
+  document.querySelectorAll("#tabs a").forEach(a => { const on = a.dataset.tab === name; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  if (name === "near" && typeof renderNear === "function" && near && near.c) renderNear();
+  if (scroll) { const nav = document.getElementById("tabs"); const y = nav.getBoundingClientRect().top + window.scrollY; if (window.scrollY > y) window.scrollTo({ top: y }); }
+}
+document.getElementById("tabs").addEventListener("click", ev => {
+  const a = ev.target.closest("a[data-tab]"); if (!a) return;
+  ev.preventDefault();
+  try { history.replaceState(null, "", "#" + a.dataset.tab); } catch (_) {}
+  showTab(a.dataset.tab, true);
+});
+window.addEventListener("hashchange", () => showTab(location.hash.slice(1), true));
+showTab(location.hash.slice(1), false);
+
 </script>
 </body>
 </html>
