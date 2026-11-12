@@ -106,8 +106,10 @@ h1 { font-family: var(--font-display); font-size: 26px; line-height: 1.3; margin
 .flabel { font-size: 13px; color: var(--muted); padding-top: 6px; font-weight: 500; }
 .opts { display: flex; flex-wrap: wrap; gap: 6px; }
 .gen { font-size: 12px; color: var(--muted); margin-left: 6px; }
-.tob { display: inline-block; font-size: 11px; padding: 1px 7px; margin-left: 6px; border-radius: 999px; background: #fff1dc; color: #8a4b00; white-space: nowrap; }
+.tob { display: inline-block; font-size: 11px; padding: 1px 7px; margin: 2px 4px 0 0; border-radius: 999px; background: #fff1dc; color: #8a4b00; white-space: nowrap; }
 .tob.only { background: #f1efe8; color: #5a5040; }
+.fbs { display: block; margin-top: 2px; }
+.fb { display: inline-block; font-size: 11px; padding: 1px 7px; margin: 2px 4px 0 0; border-radius: 999px; background: var(--accent-soft); white-space: nowrap; }
 :root[data-theme="dark"] .tob { background: #4a3215; color: #ffd9a8; } :root[data-theme="dark"] .tob.only { background: #3a362e; color: #e0d8c8; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tob { background: #4a3215; color: #ffd9a8; } :root:not([data-theme="light"]) .tob.only { background: #3a362e; color: #e0d8c8; } }
 .kd summary { font-size: 12px; color: var(--accent); cursor: pointer; }
@@ -1045,10 +1047,19 @@ function kidsFoodNear(e){
 // お店の一覧：基本はお店で食べる。テイクアウトできるかは印で出す。多いときは店名とジャンルだけにして「くわしく」で開く
 function isTO(sh){ return sh.tags.some(t => /テイクアウト/.test(t)); }
 function isTOonly(sh){ return sh.tags.some(t => /テイクアウトのみ/.test(t)); }
+function featBadges(sh){
+  const t = sh.tags.join(" "), k = sh.k || "";
+  const out = [];
+  if (!/記載なし|お店に確認/.test(k) && /キッズ|お子様|お子さま|子ども用ワンプレート|ハーフサイズ|子ばんざい/.test(k + " " + t)) out.push("🧒 キッズメニュー");
+  if (/ベビーカー(OK|のまま|で入|ごと)/.test(t)) out.push("👶 ベビーカーOK");
+  if (/お子さまシート|子ども用(の)?(いす|椅子)|キッズチェア|ベビーチェア|チャイルドシート/.test(t)) out.push("🪑 子ども用いす");
+  if (/離乳食/.test(t + " " + k)) out.push("🥣 離乳食OK");
+  return out.map(x => `<span class="fb">${x}</span>`).join("");
+}
 function toBadge(sh){ return isTOonly(sh) ? `<span class="tob only">🥡 テイクアウトのみ</span>` : isTO(sh) ? `<span class="tob">🥡 テイクアウトもOK</span>` : ""; }
 const SHOP_COMPACT = 8;
 function shopLi(sh, detail, compact){
-  const head = `<b>${esc(sh.n)}</b>${sh.gen ? `<span class="gen">${esc(sh.gen)}</span>` : ""}${toBadge(sh)}`;
+  const head = `<b>${esc(sh.n)}</b>${sh.gen ? `<span class="gen">${esc(sh.gen)}</span>` : ""}<span class="fbs">${featBadges(sh)}${toBadge(sh)}</span>`;
   return compact ? `<li class="kl">${head}<details class="kd"><summary>くわしく</summary><span class="m">${detail}</span></details></li>` : `<li class="kl">${head}<br><span class="m">${detail}</span></li>`;
 }
 function shopSort(list, key){ return list.slice().sort((a, b) => (isTOonly(key ? key(a) : a) - isTOonly(key ? key(b) : b))); }
@@ -1056,7 +1067,7 @@ function kidsFoodHtml(e){
   const near = kidsFoodNear(e);
   if (!near.length) { const g = venueGeo(e); if (!g) return ""; const u = `https://www.google.com/maps/search/${encodeURIComponent("キッズメニュー")}/@${g[0]},${g[1]},16z`; return `<div class="bfood kfood"><b>🍽 子連れで入りやすいお店</b><p class="note">このあたりはまだ調べ中です。会場の中のレストランやフードコートも見てみてください。<a href="${esc(u)}" target="_blank" rel="noopener">会場のまわりの「キッズメニュー」を地図で探す</a>　行ったお店の情報を投稿欄から送ってもらえると、次から表示できます。</p></div>`; }
   const cp = near.length > SHOP_COMPACT, list = shopSort(near, x => x.sh);
-  return `<div class="bfood kfood"><b>🍽 歩いて10分以内の子連れで入りやすいお店（${near.length}店・🥡はテイクアウトもできるお店）</b><ul>${list.map(x => shopLi(x.sh, `${esc(x.sh.k)}<br>${x.sh.tags.map(t=>`<span class="ktag">${esc(t)}</span>`).join("")}<br>会場からベビーカーで約${x.min}分（目安）（${esc(x.sh.src)}）`, cp)).join("")}</ul><div class="note">メニュー・値段は記事掲載時点のものです。行く前にお店の情報を確認してください。</div></div>`;
+  return `<div class="bfood kfood"><b>🍽 歩いて10分以内の子連れで入りやすいお店（${near.length}店）</b><ul>${list.map(x => shopLi(x.sh, `${esc(x.sh.k)}<br>${x.sh.tags.map(t=>`<span class="ktag">${esc(t)}</span>`).join("")}<br>会場からベビーカーで約${x.min}分（目安）（${esc(x.sh.src)}）`, cp)).join("")}</ul><div class="note">メニュー・値段は記事掲載時点のものです。行く前にお店の情報を確認してください。</div></div>`;
 }
 // ---- 歩いて10分以内のフードコート ----
 const FOOD_COURTS = [
@@ -1134,7 +1145,7 @@ function renderFoodAll(){
     if (a.baby.length) h += `<p class="for"><b>おむつ替え・授乳・お湯</b></p><div class="shops">${a.baby.map(b => bspotHtml(b)).join("")}</div>`;
     if (a.courts.length) h += `<p class="for"><b>🍴 フードコート</b></p><ul class="flist">${a.courts.map(c => li(c.n, `${esc(c.f)}${c.seat ? "・" + esc(c.seat) : ""}<br>${c.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(c.src)}）`)).join("")}</ul>`;
     if (a.free.length) h += `<p class="for"><b>🥣 離乳食が無料でもらえるお店</b></p><ul class="flist">${a.free.map(x => li(x.n, `${esc(x.d || "")}（${esc(x.src || "")}）`)).join("")}</ul>`;
-    if (a.kids.length) h += `<p class="for"><b>🍽 子連れで入りやすいお店（${a.kids.length}店・🥡はテイクアウトもできるお店）</b></p><ul class="flist">${shopSort(a.kids).map(x => shopLi(x, `${esc(x.k)}<br>${x.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(x.src)}）`, a.kids.length > SHOP_COMPACT)).join("")}</ul>`;
+    if (a.kids.length) h += `<p class="for"><b>🍽 子連れで入りやすいお店（${a.kids.length}店）</b></p><ul class="flist">${shopSort(a.kids).map(x => shopLi(x, `${esc(x.k)}<br>${x.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(x.src)}）`, a.kids.length > SHOP_COMPACT)).join("")}</ul>`;
     if (a.shops.length) h += `<p class="for"><b>ごはん</b></p><div class="shops">${a.shops.map(shopHtml).join("")}</div>`;
     return h + `</div>`;
   }).join("");
