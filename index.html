@@ -105,6 +105,12 @@ h1 { font-family: var(--font-display); font-size: 26px; line-height: 1.3; margin
 .frow { display: grid; grid-template-columns: 72px 1fr; gap: 10px; align-items: start; }
 .flabel { font-size: 13px; color: var(--muted); padding-top: 6px; font-weight: 500; }
 .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.fmode { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.fmode button { font: inherit; font-size: 13px; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: inherit; cursor: pointer; }
+.fmode button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.fm-eat .kl.to-only, .fm-to .kl:not(.to) { display: none; }
+.fm-none { display: none; }
+.fm-eat .fm-none.eat, .fm-to .fm-none.to { display: block; }
 .mrow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; flex-basis: 100%; }
 .mlab { font-size: 12px; color: var(--muted); min-width: 4.5em; }
 .opt {
@@ -1035,10 +1041,28 @@ function kidsFoodNear(e){
   const g = venueGeo(e); if (!g) return [];
   return KIDS_SHOPS.map(sh => ({ sh, min: Math.max(1, Math.round(distM(g, sh.g) * 1.3 / 70)) })).filter(x => x.min <= 10).sort((a, b) => a.min - b.min);
 }
+// お店で食べる／テイクアウトの切り替え（ページ全体で共通）
+let FOOD_MODE = "all";
+function isTO(sh){ return sh.tags.some(t => /テイクアウト/.test(t)); }
+function isTOonly(sh){ return sh.tags.some(t => /テイクアウトのみ/.test(t)); }
+function klClass(sh){ return "kl" + (isTO(sh) ? " to" : "") + (isTOonly(sh) ? " to-only" : ""); }
+function fmodeBar(list){
+  const nTo = list.filter(isTO).length, nEat = list.filter(x => !isTOonly(x)).length;
+  const b = (v, l) => `<button type="button" data-fm="${v}" aria-pressed="${FOOD_MODE === v}">${l}</button>`;
+  return `<div class="fmode" role="group" aria-label="食べ方で絞り込む">${b("all", `すべて ${list.length}`)}${b("eat", `お店で食べる ${nEat}`)}${b("to", `テイクアウト ${nTo}`)}</div>`
+    + (nTo ? "" : `<p class="note fm-none to">このあたりのテイクアウトのお店はまだ調べていません。</p>`) + (nEat ? "" : `<p class="note fm-none eat">このあたりのお店で食べられるお店はまだ調べていません。</p>`);
+}
+function fmClass(){ return FOOD_MODE === "all" ? "" : " fm-" + FOOD_MODE; }
+document.addEventListener("click", ev => {
+  const b = ev.target.closest(".fmode button[data-fm]"); if (!b) return;
+  FOOD_MODE = b.dataset.fm;
+  document.querySelectorAll(".fmwrap").forEach(w => { w.classList.remove("fm-eat", "fm-to"); if (FOOD_MODE !== "all") w.classList.add("fm-" + FOOD_MODE); });
+  document.querySelectorAll(".fmode button[data-fm]").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.fm === FOOD_MODE)));
+});
 function kidsFoodHtml(e){
   const near = kidsFoodNear(e);
   if (!near.length) { const g = venueGeo(e); if (!g) return ""; const u = `https://www.google.com/maps/search/${encodeURIComponent("キッズメニュー")}/@${g[0]},${g[1]},16z`; return `<div class="bfood kfood"><b>🍽 子連れで入りやすいお店</b><p class="note">このあたりはまだ調べ中です。会場の中のレストランやフードコートも見てみてください。<a href="${esc(u)}" target="_blank" rel="noopener">会場のまわりの「キッズメニュー」を地図で探す</a>　行ったお店の情報を投稿欄から送ってもらえると、次から表示できます。</p></div>`; }
-  return `<div class="bfood kfood"><b>🍽 歩いて10分以内の子連れで入りやすいお店（キッズメニュー・ベビーカーOK・子ども歓迎・テイクアウト）</b><ul>${near.map(x => `<li>${esc(x.sh.n)}　<span class="m">${esc(x.sh.k)}<br>${x.sh.tags.map(t=>`<span class="ktag">${esc(t)}</span>`).join("")}<br>会場からベビーカーで約${x.min}分（目安）（${esc(x.sh.src)}）</span></li>`).join("")}</ul><div class="note">メニュー・値段は記事掲載時点のものです。行く前にお店の情報を確認してください。</div></div>`;
+  return `<div class="bfood kfood fmwrap${fmClass()}"><b>🍽 歩いて10分以内の子連れで入りやすいお店（キッズメニュー・ベビーカーOK・子ども歓迎・テイクアウト）</b>${fmodeBar(near.map(x => x.sh))}<ul>${near.map(x => `<li class="${klClass(x.sh)}">${esc(x.sh.n)}　<span class="m">${esc(x.sh.k)}<br>${x.sh.tags.map(t=>`<span class="ktag">${esc(t)}</span>`).join("")}<br>会場からベビーカーで約${x.min}分（目安）（${esc(x.sh.src)}）</span></li>`).join("")}</ul><div class="note">メニュー・値段は記事掲載時点のものです。行く前にお店の情報を確認してください。</div></div>`;
 }
 // ---- 歩いて10分以内のフードコート ----
 const FOOD_COURTS = [
@@ -1116,7 +1140,7 @@ function renderFoodAll(){
     if (a.baby.length) h += `<p class="for"><b>おむつ替え・授乳・お湯</b></p><div class="shops">${a.baby.map(b => bspotHtml(b)).join("")}</div>`;
     if (a.courts.length) h += `<p class="for"><b>🍴 フードコート</b></p><ul class="flist">${a.courts.map(c => li(c.n, `${esc(c.f)}${c.seat ? "・" + esc(c.seat) : ""}<br>${c.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(c.src)}）`)).join("")}</ul>`;
     if (a.free.length) h += `<p class="for"><b>🥣 離乳食が無料でもらえるお店</b></p><ul class="flist">${a.free.map(x => li(x.n, `${esc(x.d || "")}（${esc(x.src || "")}）`)).join("")}</ul>`;
-    if (a.kids.length) h += `<p class="for"><b>🍽 子連れで入りやすいお店（キッズメニュー・ベビーカーOK・子ども歓迎・テイクアウト）</b></p><ul class="flist">${a.kids.map(x => li(x.n, `${esc(x.k)}<br>${x.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(x.src)}）`)).join("")}</ul>`;
+    if (a.kids.length) h += `<div class="fmwrap${fmClass()}"><p class="for"><b>🍽 子連れで入りやすいお店（キッズメニュー・ベビーカーOK・子ども歓迎・テイクアウト）</b></p>${fmodeBar(a.kids)}<ul class="flist">${a.kids.map(x => li(x.n, `${esc(x.k)}<br>${x.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(x.src)}）`).replace("<li>", `<li class="${klClass(x)}">`)).join("")}</ul></div>`;
     if (a.shops.length) h += `<p class="for"><b>ごはん</b></p><div class="shops">${a.shops.map(shopHtml).join("")}</div>`;
     return h + `</div>`;
   }).join("");
