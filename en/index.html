@@ -138,7 +138,8 @@ footer { padding:30px 16px 40px; font-size:13px; color:var(--sub); }
   </section>
 </main>
 <footer>
-  <p>Summaries are written by this site based on official pages; always check the official link for the latest hours and prices. Japanese version (more local events): <a href="../" hreflang="ja">横浜 子連れおでかけ一覧</a>.</p>
+  <p>Summaries are written by this site based on official pages; always check the official link for the latest hours and prices. Japanese version (more local events): <a href="../" hreflang="ja">KidsTrip 横浜の子連れおでかけ・イベント一覧</a>.</p>
+  <p>To improve the site, we count which filters, links and buttons are used, without names or other personal information. No cookies; only a random number is kept in your browser so repeat visits can be counted together.</p>
 </footer>
 <script>
 const ASOF = "Last checked: November 12, 2026";
@@ -201,14 +202,44 @@ function render(){
   chips("type-chips", TYPES, () => TYPE, v => TYPE = v);
   const list = SPOTS.filter(s => (!AREA || s.a === AREA) && (!TYPE || s.ty.includes(TYPE)));
   document.getElementById("count").textContent = `${list.length} spots`;
-  document.getElementById("spot-list").innerHTML = list.map(s => `<article class="card"><h3><span class="ico" aria-hidden="true">${icon(s.ty)}</span>${esc(s.n)}</h3>
+  document.getElementById("spot-list").innerHTML = list.map(s => `<article class="card" data-ev="${esc(s.n)}"><h3><span class="ico" aria-hidden="true">${icon(s.ty)}</span>${esc(s.n)}</h3>
     <div class="ja" lang="ja">${esc(s.ja)}</div><div class="meta">${esc(AREAS[s.a])} · ${esc(s.hours)}</div>
     <div class="tags">${s.ty.map(t => `<span class="tag${t === "free" ? " free" : ""}">${esc(TYPES[t])}</span>`).join("")}</div>
     <p>${esc(s.d)}</p><p class="meta"><b>Price:</b> ${esc(s.price)}</p><p class="tip">💡 ${esc(s.tip)}</p>${link(s.url)}</article>`).join("") || "<p>No spots match.</p>";
 }
 render();
-document.getElementById("event-list").innerHTML = EVENTS.map(e => `<article class="card"><h3><span class="ico" aria-hidden="true">${/Christmas|Thomas/.test(e.n) ? "🎄" : /skat/i.test(e.n) ? "⛸️" : /lantern/i.test(e.n) ? "🏮" : "✨"}</span>${esc(e.n)}</h3><div class="ja" lang="ja">${esc(e.ja)}</div><div class="meta">📅 ${esc(e.when)}</div><p>${esc(e.d)}</p><p class="tip">💡 ${esc(e.tip)}</p>${link(e.url)}</article>`).join("");
-document.getElementById("baby-list").innerHTML = BABY.map(b => `<article class="card"><h3><span class="ico" aria-hidden="true">🍼</span>${esc(b.n)}</h3><div class="ja" lang="ja">${esc(b.ja)}</div><p>${esc(b.d)}</p>${link(b.url)}</article>`).join("");
+document.getElementById("event-list").innerHTML = EVENTS.map(e => `<article class="card" data-ev="${esc(e.n)}"><h3><span class="ico" aria-hidden="true">${/Christmas|Thomas/.test(e.n) ? "🎄" : /skat/i.test(e.n) ? "⛸️" : /lantern/i.test(e.n) ? "🏮" : "✨"}</span>${esc(e.n)}</h3><div class="ja" lang="ja">${esc(e.ja)}</div><div class="meta">📅 ${esc(e.when)}</div><p>${esc(e.d)}</p><p class="tip">💡 ${esc(e.tip)}</p>${link(e.url)}</article>`).join("");
+document.getElementById("baby-list").innerHTML = BABY.map(b => `<article class="card" data-ev="${esc(b.n)}"><h3><span class="ico" aria-hidden="true">🍼</span>${esc(b.n)}</h3><div class="ja" lang="ja">${esc(b.ja)}</div><p>${esc(b.d)}</p>${link(b.url)}</article>`).join("");
+// ---- usage recording (anonymous, same spreadsheet as the Japanese page; see tools/tracking-apps-script.gs). Do not remove. ----
+const TRACK_URL = "https://script.google.com/macros/s/AKfycbzTQDSVJWNXkSCzBTNv07i0hz2qDVfjTcs9yaQc7MTx4A9kC9GE5dM4Bj-Yq251PJXN/exec";
+const TRACK_ON = !!TRACK_URL && /(github\.io|kidstrip\.jp)$/.test(location.hostname);
+let TRACK_VID = ""; try { TRACK_VID = localStorage.getItem("vid") || ""; if (!TRACK_VID) { TRACK_VID = Math.random().toString(36).slice(2, 10); localStorage.setItem("vid", TRACK_VID); } } catch (_) {}
+const UA = navigator.userAgent;
+const TRACK_DEV = /iPhone|iPod/.test(UA) ? "iPhone" : /iPad/.test(UA) ? "iPad" : /Android/.test(UA) ? (/Mobile/.test(UA) ? "Androidスマホ" : "Androidタブレット") : "PC";
+const TRACK_APP = /\bLine\//i.test(UA) ? "LINEアプリ内" : /Instagram/.test(UA) ? "Instagramアプリ内" : /FBAN|FBAV/.test(UA) ? "Facebookアプリ内" : "ブラウザ";
+let TRACK_TZ = ""; try { TRACK_TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (_) {}
+const TRACK_LANG = (navigator.language || "").slice(0, 10);
+const TRACK_JP = TRACK_TZ ? (TRACK_TZ === "Asia/Tokyo" ? "日本" : "海外") : "";
+function track(type, value, target){
+  if (!TRACK_ON) return;
+  const qs = new URLSearchParams(location.search);
+  let ref = qs.get("utm_source") || qs.get("ref") || ""; if (!ref) { try { ref = document.referrer ? new URL(document.referrer).hostname : ""; } catch (_) {} }
+  const body = JSON.stringify({ type, value: String(value || "").slice(0, 200), target: String(target || "").slice(0, 200), dev: TRACK_DEV, app: TRACK_APP, ref: ref.slice(0, 100), vid: TRACK_VID, page: "en" + (location.hash || "").slice(0, 37), lang: TRACK_LANG, tz: TRACK_TZ.slice(0, 40), jp: TRACK_JP });
+  try { if (navigator.sendBeacon) navigator.sendBeacon(TRACK_URL, new Blob([body], { type: "text/plain" })); else fetch(TRACK_URL, { method: "POST", body, mode: "no-cors", keepalive: true }); } catch (_) {}
+}
+track("pageview", "EN: " + document.title);
+document.addEventListener("click", ev => {
+  if (!TRACK_ON) return;
+  const chip = ev.target.closest(".chips .chip");
+  if (chip) { const box = chip.closest(".chips"); return track("filter", "EN " + (box.id === "area-chips" ? "area" : "type") + ":" + chip.textContent.trim()); }
+  const a = ev.target.closest("a"); if (!a) return;
+  const where = ev.target.closest("[data-ev]"), name = where ? where.dataset.ev : "";
+  const href = a.getAttribute("href") || "";
+  if (/^tel:/.test(href)) return track("tel", href.slice(4), name || "EN help");
+  if (/google\.[^/]+\/maps/.test(href)) return track("route", "EN Map", name);
+  if (where) return track("official", a.href, name);
+  if (/^https?:/.test(href) && !href.includes(location.hostname)) return track("outlink", a.href, name);
+});
 </script>
 </body>
 </html>
