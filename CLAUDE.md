@@ -25,7 +25,7 @@
 6. **反映**：変更があれば `sitemap.xml` の `lastmod` を今日の日付にして、main に commit して push。変更がなければ何もしない。
 
 ## 守ること
-- `<head>` の `google-site-verification` のmetaタグは Google Search Console の確認用。消さない。
+- `<head>` の `google-site-verification` のmetaタグ（2つ：古いアドレス用と kidstrip.jp 用）は Google Search Console の確認用。消さない。
 - 公式の情報を優先。まとめサイトで見つけたものは公式で確かめてから載せる。食い違うときは「情報が分かれています」と書く。
 - 利用者から聞いた情報は「利用者の情報（○年○月）」と書いて残す。消さない。
 - 料金・時間・予約が分からないときは推測で書かず「公式ページに記載なし」とする。
