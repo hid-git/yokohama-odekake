@@ -6,19 +6,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="N2Nwd6cLEVw2993x78rHUQfu9vzUWECgev35iF3Aql0" />
 <meta name="google-site-verification" content="1K0JUz5NtZc6ygjap1Di2kj63RDkbuqqZ1DVB86Tquo" />
-<title>横浜 子連れおでかけ・イベント一覧｜週末・平日の親子イベント、おむつ替え・授乳室・子連れランチ情報</title>
+<title>横浜 子連れおでかけ・イベント一覧｜週末・平日の親子イベント、授乳室・子連れランチ｜KidsTrip</title>
 <meta name="description" content="横浜市内の子ども・親子向けイベントを週末・平日ごとに毎日更新でまとめています。無料の遊び場、動物園・水族館、乗り物イベント、雨の日の行き先、近くのおむつ替え・授乳室・ミルクのお湯、キッズメニューやベビーカーOKのお店、フードコート、天気と服装の目安も。">
 <link rel="canonical" href="https://kidstrip.jp/">
 <link rel="alternate" hreflang="ja" href="https://kidstrip.jp/">
 <link rel="alternate" hreflang="en" href="https://kidstrip.jp/en/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="横浜 週末おでかけ一覧">
-<meta property="og:title" content="横浜 子連れおでかけ・イベント一覧">
+<meta property="og:site_name" content="KidsTrip（キッズトリップ）">
+<meta property="og:title" content="KidsTrip｜横浜の子連れおでかけ・イベント一覧">
 <meta property="og:description" content="横浜の親子向けイベントを毎日更新。おむつ替え・授乳室、子連れランチ、天気と服装の目安も一緒にチェックできます。">
 <meta property="og:url" content="https://kidstrip.jp/">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"横浜 週末おでかけ一覧","url":"https://kidstrip.jp/","inLanguage":"ja","description":"横浜市内の子ども・親子向けイベントと、子連れのおでかけに役立つ情報のまとめ"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"KidsTrip","alternateName":["キッズトリップ","横浜の子連れおでかけ・イベント一覧"],"url":"https://kidstrip.jp/","inLanguage":"ja","description":"横浜市内の子ども・親子向けイベントと、子連れのおでかけに役立つ情報のまとめ"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@700&display=swap" rel="stylesheet">
@@ -364,6 +364,9 @@ section.group { display: grid; gap: 10px; }
 .hero.day { --sky1:#bfe3f5; --sky2:#e6f4fb; --sky3:#f3f7fa; --bld:#6f8fa6; --bld2:#a9c0cf; --sea:#7fb4d1; --win:rgba(255,255,255,0); --heroInk:#14304a; }
 .hero.night { --sky1:#0b1730; --sky2:#1d3158; --sky3:#2c3c62; --bld:#4a6488; --bld2:#36507a; --sea:#16304f; --win:#ffd98a; --heroInk:#eef3f8; }
 .hero.night h1 { text-shadow: none; }
+h1.brand { font-size: 32px; letter-spacing: .03em; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; }
+h1.brand .yomi { font-size: 13px; font-weight: 500; letter-spacing: .08em; opacity: .8; }
+.tagline { margin: 2px 0 6px; font-weight: 700; font-size: 16px; color: var(--heroInk); }
 
 footer { font-size: 12.5px; color: var(--muted); display: grid; gap: 4px; border-top: 1px solid var(--line); padding-top: 14px; }
 footer p { margin: 0; max-width: 70ch; }
@@ -431,7 +434,8 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
       <rect class="sea" x="0" y="128" width="1000" height="22"/>
     </svg>
       <div class="htext">
-    <h1>横浜 週末おでかけ一覧</h1>
+    <h1 class="brand">KidsTrip<span class="yomi">キッズトリップ</span></h1>
+    <p class="tagline">横浜の子連れおでかけ・イベント一覧</p>
     <p class="enlink"><a href="en/" hreflang="en" lang="en">English (for visitors)</a></p>
     <p class="lede"><strong>2026年11月14日〜2027年1月11日の週末・祝日（クリスマス・年末年始の平日も）</strong>　横浜市内のイベントを0歳から大人まで横断して集めました。各イベントに、近くのおむつ替え・授乳室・調乳のお湯がある場所と、子連れで入りやすいごはん処も付けています。概要だけ載せているので、詳しくは各リンク先で確認してください。</p>
       </div>
@@ -2951,7 +2955,7 @@ async function initPosts(){
 }
 
 
-document.getElementById("line-page").href = lineUrl("横浜の週末おでかけ一覧（11月〜1月）\nイベント・天気・近くのごはん・授乳室がまとめて見られるよ\n" + PAGE_URL);
+document.getElementById("line-page").href = lineUrl("KidsTrip（キッズトリップ）横浜の子連れおでかけ・イベント一覧\nイベント・天気・近くのごはん・授乳室がまとめて見られるよ\n" + PAGE_URL);
 document.getElementById("copy-page").addEventListener("click", async (ev) => {
   const b = ev.currentTarget;
   try { await navigator.clipboard.writeText(PAGE_URL); b.textContent = "コピーしました"; }
