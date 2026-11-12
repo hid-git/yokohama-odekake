@@ -224,6 +224,14 @@ details.fold > .fbody > :first-child { margin-top: 0; }
 .bspot .nm { font-weight: 700; font-size: 14px; }
 .bspot .nm a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
 .bicons { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.bmatrix { width: 100%; border-collapse: collapse; font-size: 13px; margin: 6px 0 2px; background: var(--card); }
+.bmatrix th, .bmatrix td { border-bottom: 1px solid var(--line); padding: 6px 4px; }
+.bmatrix thead th { font-size: 11.5px; color: var(--muted); font-weight: 700; text-align: center; white-space: nowrap; }
+.bmatrix thead th:first-child, .bmatrix tbody th { text-align: left; }
+.bmatrix tbody th { font-weight: 700; line-height: 1.35; }
+.bmatrix td.mk { text-align: center; width: 4.2em; font-weight: 700; font-size: 15px; }
+.bmatrix td.y { color: var(--ok); } .bmatrix td.n { color: var(--bad); } .bmatrix td.u { color: var(--muted); font-weight: 400; }
+.mlegend { margin: 2px 0 8px; font-size: 11.5px; color: var(--muted); }
 .bi { font-size: 11.5px; padding: 0 7px; border-radius: 5px; font-weight: 700; border: 1px solid transparent; }
 .bi.y { background: var(--accent-soft); color: var(--accent); }
 .bi.n { background: transparent; color: var(--muted); border-color: var(--line); text-decoration: line-through; font-weight: 400; }
@@ -1242,11 +1250,12 @@ function renderFoodAll(){
     const nm = b => b.n.replace(/[（(].*$/, "").trim(), few = xs => xs.slice(0, 3).map(nm).join("・") + (xs.length > 3 ? ` ほか${xs.length - 3}` : "");
     const hot = a.baby.filter(b => b.w === true), fed = a.baby.filter(b => b.f === true), nofed = a.baby.filter(b => b.f === false);
     const pts = [];
-    if (a.baby.length) pts.push(["🍼", hot.length ? `お湯あり：${few(hot)}` : "調乳のお湯は確認できていません（お湯は持参が安心）"]);
-    if (a.baby.length) pts.push(["🚼", (fed.length ? `授乳室あり：${fed.length}か所` : "授乳室は確認できていません") + (nofed.length ? `（授乳室なし：${few(nofed)}）` : "")]);
+    // おむつ替え・授乳室・お湯は下の一覧表（○×？）で見せるので、要点には入れない
+    if (a.baby.length && !hot.length) pts.push(["🍼", "調乳のお湯は確認できていません（お湯は持参が安心）"]);
     const eat = [a.courts.length ? `フードコート${a.courts.length}` : "", a.free.length ? `離乳食無料${a.free.length}` : "", a.kids.length || a.shops.length ? `子連れで入りやすいお店${a.kids.length + a.shops.length}` : ""].filter(Boolean);
     if (eat.length) pts.push(["🍽", eat.join("・")]);
     if (pts.length) h += `<ul class="points">${pts.map(([i, t]) => `<li><span class="pi">${i}</span><span>${esc(t)}</span></li>`).join("")}</ul>`;
+    if (a.baby.length) h += matrixHtml(a.baby);
     h += `<details class="fold"${pick !== "all" ? " open" : ""}><summary>くわしく見る（施設${a.baby.length}・お店${a.courts.length + a.free.length + a.kids.length + a.shops.length}）</summary><div class="fbody">`;
     if (a.baby.length) h += `<p class="for"><b>おむつ替え・授乳・お湯</b></p><div class="shops">${a.baby.map(b => bspotHtml(b)).join("")}</div>`;
     if (a.courts.length) h += `<p class="for"><b>🍴 フードコート</b></p><ul class="flist">${a.courts.map(c => li(c.n, `${esc(c.f)}${c.seat ? "・" + esc(c.seat) : ""}<br>${c.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(c.src)}）`)).join("")}</ul>`;
@@ -1491,6 +1500,13 @@ function papaHtml(b){
   const p = papaOf(b);
   return `<p class="papa ${p.v}"><b>${PAPA_LABEL[p.v]}</b>　${esc(p.t)}${p.src ? `（${esc(p.src)}）` : ""}</p>`;
 }
+// 設備の一覧表（おむつ替え・授乳室・お湯を ○ × ？ で並べる）
+function bmark(v){ return v === true ? `<td class="mk y" aria-label="あり">○</td>` : v === false ? `<td class="mk n" aria-label="なし">×</td>` : `<td class="mk u" aria-label="未確認">？</td>`; }
+function matrixHtml(list){
+  if (!list.length) return "";
+  return `<table class="bmatrix"><thead><tr><th scope="col">場所</th><th scope="col">おむつ替え</th><th scope="col">授乳室</th><th scope="col">お湯</th></tr></thead><tbody>${list.map(b => `<tr><th scope="row">${esc(b.n.replace(/[（(].*$/, "").trim())}</th>${bmark(b.d)}${bmark(b.f)}${bmark(b.w)}</tr>`).join("")}</tbody></table>
+    <p class="mlegend">○ あり　× なし　？ 調べた範囲で確認できず</p>`;
+}
 function bspotHtml(b, e){
   return `<div class="bspot${state.flags.has("papa") && papaOf(b).v === "women" ? " dim" : ""}"><span class="nm"><a href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.n)}</a></span>
     <p class="meta">${esc(b.where)}（出典：${esc(b.src)}）</p>
@@ -1501,6 +1517,7 @@ function babyHtml(e){
   const k = FOOD_OF[e.t]; if (!k || !BABY[k]) return "";
   let list = BABY[k].slice(); if (state.flags.has("papa")) list.sort((a, b) => PAPA_RANK[papaOf(a).v] - PAPA_RANK[papaOf(b).v]); const hot = list.filter(b => b.w === true).length;
   return `<details class="food baby"><summary>おむつ替え・授乳・お湯（${list.length}か所${hot ? `・お湯あり${hot}` : ""}）</summary>
+    ${matrixHtml(list)}
     <div class="shops">${list.map(b => bspotHtml(b, e)).join("")}</div>
     <p class="note">横浜市内のハマハグ協賛店・かながわ子育て応援パスポートの協力施設では、登録証を見せるとお湯の提供や割引などのサービスが受けられることがあります（<a href="https://www.city.yokohama.lg.jp/kurashi/kosodate-kyoiku/kosodateshien/default2020091.html" target="_blank" rel="noopener">ハマハグについて</a>）。</p></details>`;
 }
