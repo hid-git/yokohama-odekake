@@ -23,7 +23,7 @@ h1 { font-size:26px; line-height:1.25; margin:0 0 6px; }
 h2 { font-size:20px; margin:28px 0 10px; }
 h3 { font-size:16px; margin:0 0 4px; }
 .lede { color:var(--sub); margin:0 0 10px; }
-.lang { float:right; font-size:14px; }
+
 a { color:var(--accent); }
 nav.jump { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0; }
 nav.jump a { padding:6px 12px; border-radius:999px; background:var(--accent-soft); text-decoration:none; font-size:14px; font-weight:600; }
@@ -42,14 +42,50 @@ nav.jump a { padding:6px 12px; border-radius:999px; background:var(--accent-soft
 .box li { margin:4px 0; }
 .small { font-size:13px; color:var(--sub); }
 .count { font-size:14px; color:var(--sub); }
+/* Minato Mirai skyline (original illustration, same as the Japanese site) */
+.hero { position: relative; border-radius: 16px; overflow: hidden; min-height: 210px; margin-top: 12px;
+  background: linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 70%, var(--sky3) 100%); }
+.hero svg.city { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 150px; }
+.hero .htext { position: relative; padding: 16px 18px 120px; }
+.hero h1 { color: var(--heroInk); text-shadow: 0 1px 0 rgba(255,255,255,.4); }
+.hero .lede { color: var(--heroInk); opacity: .9; max-width: 60ch; }
+.city .b { fill: var(--bld); } .city .b2 { fill: var(--bld2); } .city .sea { fill: var(--sea); }
+.city .win { fill: var(--win); } .city .wheel { stroke: var(--bld); fill: none; } .city .bridge { stroke: var(--bld2); fill: none; }
+.hero.day { --sky1:#bfe3f5; --sky2:#e6f4fb; --sky3:#f3f7fa; --bld:#6f8fa6; --bld2:#a9c0cf; --sea:#7fb4d1; --win:rgba(255,255,255,0); --heroInk:#14304a; }
+.hero.night { --sky1:#0b1730; --sky2:#1d3158; --sky3:#2c3c62; --bld:#4a6488; --bld2:#36507a; --sea:#16304f; --win:#ffd98a; --heroInk:#eef3f8; }
+.hero.night h1 { text-shadow: none; }
+.hero .lang { position: relative; float: right; margin: 12px 14px 0 0; color: var(--heroInk); font-weight: 700; }
+@media (max-width: 520px) { .hero .htext { padding-bottom: 110px; } .hero svg.city { height: 120px; } }
+.ico { font-size: 22px; margin-right: 6px; vertical-align: -3px; }
 footer { padding:30px 16px 40px; font-size:13px; color:var(--sub); }
 </style>
 </head>
 <body>
 <header>
-  <a class="lang" href="../" hreflang="ja" lang="ja">日本語</a>
-  <h1>Yokohama with Kids</h1>
-  <p class="lede">A family guide for visitors to Yokohama, Japan — places little ones love, seasonal events, and the practical stuff: nursing rooms, diaper changing, strollers and kids' menus.</p>
+  <div class="hero">
+      <svg class="city" viewBox="0 0 1000 150" preserveAspectRatio="xMinYMax slice" aria-hidden="true">
+      <path class="bridge" stroke-width="2" d="M690 108 L760 70 L830 108 M760 70 V112 M700 108 H900 M830 108 L880 78 L930 108 M880 78 V112"/>
+      <rect class="b2" x="20" y="92" width="40" height="38"/><rect class="b2" x="70" y="80" width="30" height="50"/>
+      <rect class="b2" x="560" y="86" width="36" height="44"/><rect class="b2" x="610" y="96" width="50" height="34"/>
+      <g class="b"><path d="M120 130 V60 L128 40 L136 32 L150 32 L158 40 L166 60 V130 Z"/>
+        <path d="M180 130 V70 L200 58 V130 Z M205 130 V62 L225 50 V130 Z M230 130 V54 L250 42 V130 Z"/>
+        <path d="M270 130 V96 Q300 52 330 96 V130 Z"/>
+        <rect x="430" y="112" width="70" height="18"/><path d="M430 112 L440 106 H490 L500 112 Z"/>
+        <rect x="510" y="114" width="36" height="16"/>
+        <rect x="345" y="86" width="22" height="44"/></g>
+      <g><circle class="wheel" cx="395" cy="82" r="38" stroke-width="3"/><circle class="wheel" cx="395" cy="82" r="4" stroke-width="3"/>
+        <path class="wheel" stroke-width="1.5" d="M395 44 V120 M357 82 H433 M368 55 L422 109 M422 55 L368 109"/>
+        <path class="b" d="M385 130 L395 84 L405 130 Z"/></g>
+      <g class="win"><rect x="134" y="50" width="3" height="3"/><rect x="146" y="62" width="3" height="3"/><rect x="138" y="80" width="3" height="3"/><rect x="150" y="96" width="3" height="3"/>
+        <rect x="190" y="84" width="3" height="3"/><rect x="214" y="74" width="3" height="3"/><rect x="240" y="66" width="3" height="3"/><rect x="292" y="104" width="3" height="3"/><rect x="308" y="112" width="3" height="3"/><rect x="128" y="58" width="3" height="3"/><rect x="142" y="70" width="3" height="3"/><rect x="132" y="90" width="3" height="3"/><rect x="156" y="108" width="3" height="3"/><rect x="144" y="118" width="3" height="3"/><rect x="196" y="96" width="3" height="3"/><rect x="186" y="110" width="3" height="3"/><rect x="220" y="90" width="3" height="3"/><rect x="210" y="104" width="3" height="3"/><rect x="236" y="80" width="3" height="3"/><rect x="244" y="98" width="3" height="3"/><rect x="276" y="110" width="3" height="3"/><rect x="318" y="104" width="3" height="3"/><rect x="352" y="96" width="3" height="3"/><rect x="358" y="110" width="3" height="3"/><rect x="440" y="118" width="3" height="3"/><rect x="470" y="118" width="3" height="3"/><rect x="520" y="120" width="3" height="3"/><rect x="575" y="100" width="3" height="3"/><rect x="585" y="112" width="3" height="3"/><rect x="620" y="106" width="3" height="3"/><rect x="640" y="114" width="3" height="3"/></g>
+      <rect class="sea" x="0" y="128" width="1000" height="22"/>
+    </svg>
+    <a class="lang" href="../" hreflang="ja" lang="ja">日本語</a>
+    <div class="htext">
+      <h1>Yokohama with Kids</h1>
+      <p class="lede">A family guide for visitors to Yokohama, Japan — places little ones love, seasonal events, and the practical stuff: nursing rooms, diaper changing, strollers and kids' menus.</p>
+    </div>
+  </div>
   <p class="small" id="asof"></p>
   <nav class="jump"><a href="#tips">Before you go</a><a href="#spots">Spots</a><a href="#events">Winter events</a><a href="#baby">Nursing & diapers</a><a href="#help">Help & emergencies</a></nav>
 </header>
@@ -138,9 +174,14 @@ const BABY = [
   { n:"Tressa Yokohama", ja:"トレッサ横浜", d:"Four baby rooms with microwaves and hot water.", url:"https://tressa-yokohama.jp/" },
   { n:"Mitsui Outlet Park Yokohama Bayside", ja:"三井アウトレットパーク 横浜ベイサイド", d:"Private nursing pod (mamaro) and kids' toilet in Block A 1F; food court with hot water and microwave.", url:"https://mitsui-shopping-park.com/mop/yokohama/special/oyako_navi" },
 ];
+const ICON = { animal:"🦁", train:"🚂", play:"🛝", rain:"☔", free:"🎈" };
+const icon = ty => ICON[["animal","train","play","rain","free"].find(k => ty.includes(k))] || "📍";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
 const link = u => `<a href="${esc(u)}" target="_blank" rel="noopener">${/google\.com\/maps/.test(u) ? "Map" : "Official site"}</a>`;
 document.getElementById("asof").textContent = ASOF;
+// day sky 7:00–19:00, night sky otherwise (viewer's clock)
+function setHeroTime(){ const h = document.querySelector(".hero"); if (!h) return; const d = new Date(), m = d.getHours() * 60 + d.getMinutes(), day = m >= 420 && m <= 1140; h.classList.toggle("day", day); h.classList.toggle("night", !day); }
+setHeroTime(); setInterval(setHeroTime, 60000);
 let AREA = "", TYPE = "";
 function chips(id, map, get, set){
   const box = document.getElementById(id);
@@ -153,14 +194,14 @@ function render(){
   chips("type-chips", TYPES, () => TYPE, v => TYPE = v);
   const list = SPOTS.filter(s => (!AREA || s.a === AREA) && (!TYPE || s.ty.includes(TYPE)));
   document.getElementById("count").textContent = `${list.length} spots`;
-  document.getElementById("spot-list").innerHTML = list.map(s => `<article class="card"><h3>${esc(s.n)}</h3>
+  document.getElementById("spot-list").innerHTML = list.map(s => `<article class="card"><h3><span class="ico" aria-hidden="true">${icon(s.ty)}</span>${esc(s.n)}</h3>
     <div class="ja" lang="ja">${esc(s.ja)}</div><div class="meta">${esc(AREAS[s.a])} · ${esc(s.hours)}</div>
     <div class="tags">${s.ty.map(t => `<span class="tag${t === "free" ? " free" : ""}">${esc(TYPES[t])}</span>`).join("")}</div>
     <p>${esc(s.d)}</p><p class="meta"><b>Price:</b> ${esc(s.price)}</p><p class="tip">💡 ${esc(s.tip)}</p>${link(s.url)}</article>`).join("") || "<p>No spots match.</p>";
 }
 render();
-document.getElementById("event-list").innerHTML = EVENTS.map(e => `<article class="card"><h3>${esc(e.n)}</h3><div class="ja" lang="ja">${esc(e.ja)}</div><div class="meta">📅 ${esc(e.when)}</div><p>${esc(e.d)}</p><p class="tip">💡 ${esc(e.tip)}</p>${link(e.url)}</article>`).join("");
-document.getElementById("baby-list").innerHTML = BABY.map(b => `<article class="card"><h3>${esc(b.n)}</h3><div class="ja" lang="ja">${esc(b.ja)}</div><p>${esc(b.d)}</p>${link(b.url)}</article>`).join("");
+document.getElementById("event-list").innerHTML = EVENTS.map(e => `<article class="card"><h3><span class="ico" aria-hidden="true">${/Christmas|Thomas/.test(e.n) ? "🎄" : /skat/i.test(e.n) ? "⛸️" : /lantern/i.test(e.n) ? "🏮" : "✨"}</span>${esc(e.n)}</h3><div class="ja" lang="ja">${esc(e.ja)}</div><div class="meta">📅 ${esc(e.when)}</div><p>${esc(e.d)}</p><p class="tip">💡 ${esc(e.tip)}</p>${link(e.url)}</article>`).join("");
+document.getElementById("baby-list").innerHTML = BABY.map(b => `<article class="card"><h3><span class="ico" aria-hidden="true">🍼</span>${esc(b.n)}</h3><div class="ja" lang="ja">${esc(b.ja)}</div><p>${esc(b.d)}</p>${link(b.url)}</article>`).join("");
 </script>
 </body>
 </html>
