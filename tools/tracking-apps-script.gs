@@ -22,7 +22,7 @@
 
 const TZ = "Asia/Tokyo";
 const HEADER = ["日時", "種類", "内容", "イベント・お店", "端末", "アプリ", "来た場所", "訪問者ID", "タブ", "地域", "地域の区分", "言語", "時間帯の設定", "日本・海外"];
-const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク", origin:"出発駅", near:"近くで探す", detail:"くわしくを開いた", more:"残りを見る" };
+const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク", origin:"出発駅", near:"近くで探す", detail:"くわしくを開いた", more:"残りを見る", fav:"お気に入り", copy_link:"リンクを送る・コピー", open_link:"送られたリンクから来た" };
 
 function doPost(e) {
   try {

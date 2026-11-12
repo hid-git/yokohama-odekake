@@ -283,6 +283,13 @@ details.fold > .fbody > :first-child { margin-top: 0; }
 .linebtn { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 700; text-decoration: none; color: #fff; background: #06C755; border-radius: 999px; padding: 6px 14px; }
 .linebtn:hover { opacity: .9; }
 .linebtn.sm { font-size: 12.5px; padding: 3px 10px; justify-self: start; }
+.favbtn { margin-left: auto; font: inherit; font-size: 13px; display: inline-flex; align-items: center; gap: 3px; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--muted); cursor: pointer; }
+.favbtn[aria-pressed="true"] { color: #b7791f; border-color: #e7b54a; background: #fff6e0; }
+.favbtn span { font-size: 12px; }
+.sharebtn { font: inherit; font-size: 12.5px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--accent); background: var(--card); color: var(--accent); cursor: pointer; }
+.card.linked { outline: 3px solid #e7b54a; outline-offset: 2px; }
+.linkflag { margin: 0 0 4px; font-size: 12.5px; font-weight: 700; color: #b7791f; }
+.linknote { margin: 8px 0; padding: 10px 12px; border-radius: 12px; background: var(--warn-soft); color: var(--warn); font-size: 14px; }
 .copybtn { font: inherit; font-size: 13px; cursor: pointer; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 5px 12px; }
 .cardfoot { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .sharenote { margin: 0; font-size: 12.5px; color: var(--muted); }
@@ -505,6 +512,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     </div></div>
     <details class="fold" id="more-filters"><summary>もっと絞る（無料・雨・のりもの・エリア・出発駅など）<span class="sel" id="more-sel"></span></summary><div class="fbody">
     <div class="frow"><span class="flabel">条件</span><div class="opts" data-key="flags" data-multi="1">
+      <button class="opt" id="f-fav" data-v="fav" aria-pressed="false">★ お気に入り</button>
       <button class="opt" id="f-free" data-v="free" aria-pressed="false">完全無料</button>
       <button class="opt" id="f-rain" data-v="rain" aria-pressed="false">雨でも行ける</button>
       <button class="opt" id="f-noresv" data-v="noresv" aria-pressed="false">予約なしで行ける</button>
@@ -2252,10 +2260,61 @@ function dayChips(e){
 }
 
 const PAGE_URL = "https://claude.ai/artifact/A59EZRXKqLMm8iTEMLzkaQ";
+// ---- イベントごとのリンク（https://kidstrip.jp/?e=ID）とお気に入り ----
+// ID は e.id があればそれ、なければイベント名から作る短い記号（名前を変えると変わるので、名前はなるべく変えない）
+const SITE_URL = "https://kidstrip.jp/";
+function hashId(t){ let h = 0x811c9dc5; for (const ch of t) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619) >>> 0; } return h.toString(36); }
+{ const used = {}; EVENTS.forEach(e => { let id = e.id || hashId(e.t); if (used[id]) id += "-" + (++used[id]); else used[id] = 1; e.id = id; }); }
+const EV_BY_ID = Object.fromEntries(EVENTS.map(e => [e.id, e]));
+function evLink(e){ return SITE_URL + "?e=" + encodeURIComponent(e.id); }
+let FAVS = new Set(); try { FAVS = new Set(JSON.parse(localStorage.getItem("favs") || "[]")); } catch (_) {}
+function saveFavs(){ try { localStorage.setItem("favs", JSON.stringify([...FAVS])); } catch (_) {} }
+function favBtn(e){ const on = FAVS.has(e.id); return `<button type="button" class="favbtn" data-fav="${esc(e.id)}" aria-pressed="${on}" aria-label="${on ? "お気に入りから外す" : "お気に入りに入れる"}">${on ? "★" : "☆"}<span>${on ? "お気に入り" : "お気に入り"}</span></button>`; }
+document.addEventListener("click", async ev => {
+  const f = ev.target.closest(".favbtn");
+  if (f) {
+    const id = f.dataset.fav, on = !FAVS.has(id);
+    on ? FAVS.add(id) : FAVS.delete(id); saveFavs();
+    document.querySelectorAll(`.favbtn[data-fav="${id}"]`).forEach(b => { b.setAttribute("aria-pressed", on); b.firstChild.textContent = on ? "★" : "☆"; b.setAttribute("aria-label", on ? "お気に入りから外す" : "お気に入りに入れる"); });
+    if (typeof track === "function") track("fav", on ? "入れた" : "外した", EV_BY_ID[id] ? EV_BY_ID[id].t : id);
+    if (state.flags.has("fav")) render(); else renderEvPoints();
+    return;
+  }
+  const sh = ev.target.closest(".sharebtn"); if (!sh) return;
+  const e = EV_BY_ID[sh.dataset.share]; if (!e) return;
+  const url = evLink(e), title = e.t;
+  if (navigator.share) {
+    try { await navigator.share({ title, text: `${title}（KidsTrip）`, url }); if (typeof track === "function") track("copy_link", "共有メニュー", title); } catch (_) {}
+    return;
+  }
+  let ok = false;
+  try { await navigator.clipboard.writeText(url); ok = true; } catch (_) {
+    try { const ta = document.createElement("textarea"); ta.value = url; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); ta.remove(); } catch (_) {}
+  }
+  const old = sh.textContent; sh.textContent = ok ? "コピーしました" : url; setTimeout(() => { sh.textContent = old; }, 2000);
+  if (typeof track === "function") track("copy_link", "コピー", title);
+});
+// ?e=ID で開いたとき：条件をリセットして、そのイベントのカードまで移動して目立たせる
+function openFromLink(){
+  let id = ""; try { id = new URLSearchParams(location.search).get("e") || ""; } catch (_) {}
+  if (!id) return;
+  const e = EV_BY_ID[id];
+  const box = document.getElementById("results");
+  if (!e) {
+    if (box) box.insertAdjacentHTML("afterbegin", `<p class="linknote">送られたリンクのイベントは、掲載が終わっています（終了した可能性があります）。ほかのイベントを見てみてください。</p>`);
+    setTimeout(() => track("open_link", "掲載終了", id), 0);
+    return;
+  }
+  const c = document.querySelector(`#results .card[data-eid="${e.id}"]`); if (!c) return;
+  c.classList.remove("more-hidden"); c.classList.add("linked");
+  c.insertAdjacentHTML("afterbegin", `<p class="linkflag">🔗 送られたイベント</p>`);
+  setTimeout(() => { const y = c.getBoundingClientRect().top + window.scrollY - 70; window.scrollTo({ top: y }); }, 50);
+  setTimeout(() => track("open_link", "開いた", e.t), 0);
+}
 function lineUrl(text){ return "https://line.me/R/share?text=" + encodeURIComponent(text); }
 function eventText(e){
   const when = e.kind === "ongoing" ? `会期 ${e.period}` : e.days.map(k => { const d = DATES[DATE_IDX[k]]; if (!d) return dlabel(k); return `${d.k}(${d.w})`; }).join("・");
-  return `【${e.t}】\n${when}　${e.time}\n場所：${e.ward}・${e.venue}\n料金：${e.priceText}\n雨の日：${RAIN_LABEL[e.rain]}（${e.rainText}）\n詳細：${e.url}`;
+  return `【${e.t}】\n${when}　${e.time}\n場所：${e.ward}・${e.venue}\n料金：${e.priceText}\n雨の日：${RAIN_LABEL[e.rain]}（${e.rainText}）\nKidsTripで見る：${evLink(e)}\n公式：${e.url}`;
 }
 
 // ===== 持ち物チェック =====
@@ -2303,7 +2362,7 @@ function renderEvPoints(){
   const n = f => wk.filter(f).length;
   const chip = (v, label, c) => `<button type="button" class="pchip" data-flag="${v}" aria-pressed="${state.flags.has(v)}">${label} ${c}件</button>`;
   box.innerHTML = `<li><span class="pi">📅</span><span>直近の週末（${esc(W.h.replace(/\s.*$/, ""))}）は <b>${wk.length}件</b>。下の日にちボタンで日を選べます。</span></li>
-    <li><span class="pi">👆</span><span>よく使う条件（全期間で絞ります）<span class="pchips">${chip("rain", "☔ 雨でもOK", EVENTS.filter(e => e.rain === "ok").length)}${chip("free", "🆓 完全無料", EVENTS.filter(e => e.price === "free").length)}${chip("noresv", "🎟 予約なし", EVENTS.filter(e => e.resv === false).length)}</span></span></li>
+    <li><span class="pi">👆</span><span>よく使う条件（全期間で絞ります）<span class="pchips">${FAVS.size ? chip("fav", "★ お気に入り", EVENTS.filter(e => FAVS.has(e.id)).length) : ""}${chip("rain", "☔ 雨でもOK", EVENTS.filter(e => e.rain === "ok").length)}${chip("free", "🆓 完全無料", EVENTS.filter(e => e.price === "free").length)}${chip("noresv", "🎟 予約なし", EVENTS.filter(e => e.resv === false).length)}</span></span></li>
     <li><span class="pi">🍼</span><span>各カードの「くわしく」に、近くのおむつ替え・授乳室・ごはんがあります。</span></li>`;
   const sel = document.getElementById("more-sel"); if (sel) { const k = state.flags.size + (state.area !== "all" ? 1 : 0); sel.textContent = k ? `（${k}個選択中）` : ""; }
 }
@@ -2318,6 +2377,7 @@ function matches(e){
     const [lo, hi] = state.age.split("-").map(Number);
     if (!(e.age[0] <= hi && e.age[1] >= lo)) return false;
   }
+  if (state.flags.has("fav") && !FAVS.has(e.id)) return false;
   if (state.flags.has("free") && e.price !== "free") return false;
   if (state.flags.has("rain") && e.rain !== "ok") return false;
   if (state.flags.has("noresv") && e.resv !== false) return false;
@@ -2670,8 +2730,8 @@ function card(e){
     : e.price === "admission" ? `<li class="chip">入園料のみ</li>`
     : e.price === "paid" ? `<li class="chip">有料</li>` : `<li class="chip">料金要確認</li>`;
   const resvChip = e.resv === true ? `<li class="chip resv">要予約</li>` : e.resv === false ? `<li class="chip">予約不要</li>` : `<li class="chip">予約は要確認</li>`;
-  return `<article class="card r-${e.rain}" data-ev="${esc(e.t)}">
-    <div class="when">${days}<span>${esc(e.time)}</span></div>
+  return `<article class="card r-${e.rain}" data-eid="${esc(e.id)}" data-ev="${esc(e.t)}">
+    <div class="when">${days}<span>${esc(e.time)}</span>${favBtn(e)}</div>
     <h3>${esc(e.t)}</h3>
     <p class="where">${esc(e.ward)}・${esc(e.venue)}</p>
     <ul class="chips">${priceChip}<li class="chip">${esc(e.ageText)}</li><li class="chip">${esc(e.place)}</li>${resvChip}</ul>
@@ -2681,6 +2741,7 @@ function card(e){
     <p class="where">料金：${esc(e.priceText)}／予約：${telify(esc(e.resvText))}</p>
     <p class="asof">情報の時点：${esc(e.asof || "2026年11月9日")}</p>
     <div class="cardfoot"><a class="more" data-act="official" href="${esc(e.url)}" target="_blank" rel="noopener">詳細はこちら（${esc(e.src)}）</a>${e.resvUrl ? `<a class="more" data-act="resv" href="${esc(e.resvUrl)}" target="_blank" rel="noopener">予約ページへ</a>` : ""}
+      <button type="button" class="sharebtn" data-share="${esc(e.id)}">🔗 リンクを送る・コピー</button>
       <a class="linebtn sm" href="${esc(lineUrl(eventText(e)))}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5 1.1-.5 5.9-3.5 8-5.9C21.4 14.4 22 12.8 22 11c0-4.4-4.5-8-10-8z"/></svg>LINEで送る</a></div>
     ${routeHtml(e)}
     ${accessHtml(e)}
@@ -3043,6 +3104,7 @@ setupAreas();
 document.getElementById("total").textContent = EVENTS.length;
 bind();
 render();
+openFromLink();
 renderFoodAll();
 initPosts();
 // カードの「くわしく」（ごはん・おむつ・行き方など）を開いたとき
