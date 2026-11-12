@@ -1138,6 +1138,7 @@ const FOOD_AREAS = [
   { k:"totsuka", name:"戸塚", c:[35.4005,139.5340], r:900 },
   { k:"aobadai", name:"青葉台", c:[35.5430,139.5170], r:900 },
   { k:"tsunashima", name:"綱島", c:[35.5365,139.6345], r:900 },
+  { k:"higashitotsuka", name:"東戸塚", c:[35.4185,139.5580], r:900 },
   { k:"other", name:"そのほかの地域", c:[35.45,139.58], r:40000, fallback:true, note:"エリアにまとめきれていないお店です。" },
 ];
 function nearestArea(g){
@@ -1245,6 +1246,8 @@ const BABY = {
       note:"ベビー休憩室におむつ替え・着替え・授乳スペース。調乳器はmamaro・Cブロック1F・Cブロック2Fフードコート。", url:"https://mitsui-shopping-park.com/mop/yokohama/special/oyako_navi", src:"三井アウトレットパーク 横浜ベイサイド公式「おやこなび」" }
   ],
   "yokohama": [
+    { n:"ニュウマン横浜", where:"5F 授乳室／おむつ替え台と子ども用補助便座：多目的トイレ（2F・3F・4F・5F・7F・8F・9F・10F）", d:true, f:true, w:false, ex:["ベビーカー貸出（1F インフォメーション）"],
+      note:"お湯（給湯器）は公式ページに記載なし。JR横浜タワーにお客さま用駐車場はなく、提携駐車場（横浜駅西口地下駐車場・JR横浜パーキング）が当日のお買い物金額に応じて無料に。", url:"https://www.newoman.jp/yokohama/information/", src:"ニュウマン横浜 公式（2026年11月・画面の情報）" },
     { n:"ルミネ横浜", where:"5F ベビー休憩室（給湯設備あり）／おむつ交換台：女子トイレB2・1〜4F・6F・7F（北側）、男子トイレ6F・7F（北側）", d:true, f:true, w:true, ex:["ベビーカー貸出（B1インフォメーション・平日10:00〜21:00、土日祝10:00〜20:30）"],
       note:"男子トイレのおむつ交換台は6F・7Fの北側だけ。授乳室の記載は公式ページになく、5Fのベビー休憩室で確認を。", url:"https://www.lumine.ne.jp/yokohama/information/", src:"ルミネ横浜 公式（2026年11月）" },
     { n:"そごう横浜店", where:"5Fのベビー休憩室／屋上を除く各階のトイレにベビーシート", d:true, f:true, w:true, ex:["ベビーカー貸出（B2F シースルーエレベーター前）","ベビーカーで入れるトイレ（B2F・1F・3F・4F）"],
@@ -1301,6 +1304,10 @@ const BABY = {
   "tsunashima": [
     { n:"アピタテラス横浜綱島", where:"2F ベビールーム（授乳・おむつ替え・純水給湯器）", d:true, f:true, w:true, ex:["ベビーカー・キャラクターカート無料貸出（100円硬貨が必要・返却時に戻る）"],
       note:"お湯の出る純水給湯器あり。電子レンジ・キッズトイレは公式ページに記載なし。", url:"https://apita-terrace.com/guide/", src:"アピタテラス横浜綱島 公式（2026年11月）" }
+  ],
+  "higashitotsuka": [
+    { n:"西武東戸塚S.C.（西武館・モール館）", where:"西武館6F ベビー休憩室（おむつ替え・授乳ルーム・抗菌ベビーベッド・調乳用の浄水給湯器）", d:true, f:true, w:true, ex:["ベビーカー無料貸出（一人乗りA型・B型、10:00〜19:50）","キッズスペース（モール館7F・フードコートの隣、汽車の乗り物あり、10:00〜21:00）","各階に子ども同伴化粧室（ベビーカーごと入れる・ベビーシートとベビーキープ）"],
+      note:"ベビー休憩室は無料・10:00〜20:00。電子レンジは公式ページに記載なし。", url:"https://www.sogo-seibu.jp/higashitotsuka/service-guide", src:"西武東戸塚S.C. 公式（2026年11月）" }
   ]
 };
 function bi(label, v){ const c = v === true ? "y" : v === false ? "n" : "u"; const t = v === null ? label + "？" : label; return `<li class="bi ${c}">${t}</li>`; }
