@@ -3,7 +3,8 @@
  *
  * サイト（GitHub Pages）から送られた記録を、このスプレッドシートにためます。
  * - 月ごとに「2026-11」のような名前のシートを自動で作って、1行ずつ追記します。
- * - 「まとめ」シートに、月ごとの合計と、よく検索された言葉・よく見られたイベントを毎日書き出します。
+ * - 「まとめ」シートに、月ごとの合計と、よく検索された言葉・よく見られたイベント・出発駅などを毎日書き出します。
+ * - 経路検索の「内容」には出発駅と、イベント当日に調べたか（当日／前もって）が入ります。
  *
  * 使い方（最初の1回だけ）
  * 1. 新しいGoogleスプレッドシートを作る → メニュー「拡張機能」→「Apps Script」
@@ -17,7 +18,7 @@
 
 const TZ = "Asia/Tokyo";
 const HEADER = ["日時", "種類", "内容", "イベント・お店", "端末", "アプリ", "来た場所", "訪問者ID", "タブ"];
-const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク" };
+const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク", origin:"出発駅", near:"近くで探す" };
 
 function doPost(e) {
   try {
@@ -73,7 +74,7 @@ function updateSummary() {
   if (!latest) return;
   // 最新の月のランキング
   const top = (type, col) => { const c = {}; latest.v.filter(r => r[1] === type).forEach(r => { const k = r[col]; if (k) c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };
-  const blocks = [["よく検索された言葉", top("検索", 2)], ["公式サイトがよく開かれたイベント", top("公式サイト", 3)], ["経路検索が多いイベント", top("経路検索", 3)], ["よく使われた絞り込み", top("絞り込み", 2)], ["来た場所", top("ページ表示", 6)], ["端末", top("ページ表示", 4)], ["アプリ", top("ページ表示", 5)]];
+  const blocks = [["よく検索された言葉", top("検索", 2)], ["公式サイトがよく開かれたイベント", top("公式サイト", 3)], ["経路検索が多いイベント", top("経路検索", 3)], ["よく使われた絞り込み", top("絞り込み", 2)], ["入力された出発駅", top("出発駅", 2)], ["近くで探す（駅・現在地）", top("近くで探す", 2)], ["来た場所", top("ページ表示", 6)], ["端末", top("ページ表示", 4)], ["アプリ", top("ページ表示", 5)]];
   let r0 = rows.length + 4;
   sum.getRange(r0 - 1, 1).setValue(latest.m + " のランキング").setFontWeight("bold");
   blocks.forEach(([title, list], i) => {

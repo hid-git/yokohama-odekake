@@ -2944,10 +2944,18 @@ document.addEventListener("click", ev => {
   if (a.dataset.act === "official") return track("official", a.href, name);
   if (a.dataset.act === "resv") return track("resv", a.href, name);
   if (/^tel:/.test(href)) return track("tel", href.slice(4), name);
-  if (/google\.[^/]+\/maps|transit\.yahoo/.test(href)) return track("route", /transit\.yahoo/.test(href) ? "Yahoo!乗換案内" : /travelmode=walking/.test(href) ? "徒歩ルート" : "Googleマップ", name);
+  if (/google\.[^/]+\/maps|transit\.yahoo/.test(href)) {
+    const kind = /transit\.yahoo/.test(href) ? "Yahoo!乗換案内" : /travelmode=walking/.test(href) ? "徒歩ルート" : "Googleマップ";
+    const ev2 = name && EVENTS.find(x => x.t === name), td = new Date(), tk = `${td.getMonth() + 1}/${td.getDate()}`;
+    const when = ev2 ? (ev2.days.includes(tk) ? "・当日" : "・前もって") : "";
+    return track("route", `${kind}（出発：${ORIGIN || "未入力"}${when}）`, name);
+  }
   if (/line\.me\/R\/share/.test(href)) return track("line_share", name ? "イベント" : "ページ", name);
   if (/^https?:/.test(href) && !href.includes(location.hostname)) return track("outlink", a.href, name);
 });
+{ const o = document.getElementById("origin"); if (o) o.addEventListener("change", () => { const v = o.value.trim(); if (v) track("origin", v.replace(/駅$/, "")); });
+  const ns = document.getElementById("near-st"); if (ns) ns.addEventListener("change", () => { if (ns.value) track("near", "駅：" + ns.value); });
+  const nh = document.getElementById("near-here"); if (nh) nh.addEventListener("click", () => track("near", "現在地から探す")); }
 { let tq = null, last = ""; const q = document.getElementById("q");
   if (q) q.addEventListener("input", () => { clearTimeout(tq); tq = setTimeout(() => { const v = q.value.trim(); if (v && v !== last) { last = v; track("search", v, document.getElementById("n") ? document.getElementById("n").textContent + "件" : ""); } }, 1500); }); }
 // ---- ページの切り替え（タブ） ----
