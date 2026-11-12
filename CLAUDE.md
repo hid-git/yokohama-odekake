@@ -1,6 +1,7 @@
 # KidsTrip（キッズトリップ）横浜の子連れおでかけ・イベント一覧 — 更新のしかた
 
 サイト名は「KidsTrip」（KとTは大文字、読みはキッズトリップ。全部小文字の「kidstrip」はアドレスだけ。kid strip と読まれないよう、表示では必ず KidsTrip と書く）。説明は「横浜の子連れおでかけ・イベント一覧」。
+ロゴは `img/logo.webp`（全地域で共通。景色は地域ごとの背景で出す）。ファビコンは `img/favicon.png`・`img/apple-touch-icon.png`、LINEなどで送ったときの画像は `img/ogp.jpg`。`img/` のファイルは消さない。
 
 公開サイト：https://kidstrip.jp/ （GitHub Pages、main ブランチの直下。独自ドメイン kidstrip.jp。ドメインは Xserverドメインで管理、`CNAME` ファイルは消さない。古いアドレス https://hid-git.github.io/yokohama-odekake/ からは自動で移る）
 中身は `index.html` 1ファイルだけ。データもこの中にある。英語版（観光で来る子連れ家族向け）は `en/index.html` で、観光客が行きやすい場所と大きなイベントだけを英語で載せている。
