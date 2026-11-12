@@ -98,8 +98,9 @@ h1 { font-family: var(--font-display); font-size: 26px; line-height: 1.3; margin
 .scene { background: var(--accent-soft); border-radius: 8px; padding: 8px 10px; }
 .scene .sl { margin: 0 0 4px; font-size: 13px; color: var(--muted); }
 .scene .sl b { color: var(--ink, inherit); font-size: 16px; margin-left: 4px; }
-.figs { display: flex; gap: 6px; align-items: flex-end; }
-.figs figure { margin: 0; flex: 1; display: grid; justify-items: center; gap: 4px; }
+.figs { display: flex; gap: 6px; align-items: flex-start; }
+.figs figure { margin: 0; flex: 1; display: grid; grid-template-rows: 140px auto; justify-items: center; gap: 4px; }
+.figs figure svg { align-self: end; }
 .figs figcaption { font-size: 12.5px; text-align: center; line-height: 1.45; }
 .figs figcaption b { display: block; font-size: 12px; color: var(--accent); }
 .scene .sx { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
@@ -699,13 +700,13 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 
 <script>
 // ---- 服装イラスト（気温から自動で切り替え） ----
-const WX_ASOF = "11月11日14時発表（日本気象協会 tenki.jp・横浜市）";
+const WX_ASOF = "11月12日20時発表（日本気象協会 tenki.jp・横浜市）";
 const WX = [
-  { d:"11/14", w:"土", sky:"晴のち曇", max:20, min:11, pop:40 },
-  { d:"11/15", w:"日", sky:"曇のち雨", max:18, min:15, pop:70 },
-  { d:"11/21", w:"土", sky:"晴", max:19, min:9, pop:20 },
-  { d:"11/22", w:"日", sky:"晴時々曇", max:19, min:9, pop:20 },
-  { d:"11/23", w:"祝", sky:"曇のち晴", max:18, min:8, pop:40 }
+  { d:"11/14", w:"土", sky:"晴のち曇", max:21, min:11, pop:20 },
+  { d:"11/15", w:"日", sky:"曇のち雨", max:15, min:14, pop:90 },
+  { d:"11/21", w:"土", sky:"晴", max:18, min:8, pop:10 },
+  { d:"11/22", w:"日", sky:"晴", max:17, min:7, pop:20 },
+  { d:"11/23", w:"祝", sky:"晴のち曇", max:17, min:8, pop:20 }
 ];
 function band(t){ return t >= 25 ? 5 : t >= 20 ? 4 : t >= 16 ? 3 : t >= 11 ? 2 : 1; }
 const OUTFIT_TEXT = {
@@ -714,57 +715,127 @@ const OUTFIT_TEXT = {
 };
 function figure(who, b, rain){
   const A = who === "adult";
-  const cx = 40, hr = A ? 11 : 12.5, hy = A ? 20 : 50, sy = hy + hr + 3, sw = A ? 30 : 26, sh = A ? 44 : 30, ly = sy + sh - 2, lh = A ? 48 : 32, aw = A ? 8 : 7;
-  const C = A ? { t5:"#f2b84b", t4:"#5b8fd1", inner:"#f4efe4", t3:"#c48a5c", t2:"#6e7f5c", t1:"#34507d", pants:"#3e4a5c", shorts:"#6f86a8", hair:"#3b2b24" }
-              : { t5:"#ff9c5b", t4:"#ef7d6b", inner:"#fff6e0", t3:"#7cb7a3", t2:"#e7b13b", t1:"#d65f5f", pants:"#4f6d8f", shorts:"#7fa3c9", hair:"#4a342a" };
-  const skin = "#f1c9a5", top = b >= 4 ? (b === 5 ? C.t5 : C.t4) : C.inner;
-  const lx = cx - sw/2, rx = cx + sw/2, lw = sw * 0.4;
-  let g = "";
-  // 脚
-  const shortL = b === 5 ? lh * 0.42 : lh;
-  g += `<rect x="${cx-lw-1}" y="${ly}" width="${lw}" height="${lh}" rx="3" fill="${skin}"/><rect x="${cx+1}" y="${ly}" width="${lw}" height="${lh}" rx="3" fill="${skin}"/>`;
-  g += `<rect x="${cx-lw-1}" y="${ly}" width="${lw}" height="${shortL}" rx="3" fill="${b===5?C.shorts:C.pants}"/><rect x="${cx+1}" y="${ly}" width="${lw}" height="${shortL}" rx="3" fill="${b===5?C.shorts:C.pants}"/>`;
-  g += `<ellipse cx="${cx-lw/2-1}" cy="${ly+lh}" rx="${lw/2+2}" ry="3.5" fill="#2b2b2b"/><ellipse cx="${cx+lw/2+1}" cy="${ly+lh}" rx="${lw/2+2}" ry="3.5" fill="#2b2b2b"/>`;
-  // 腕（素肌）＋袖
-  const sleeve = b === 5 ? sh * 0.3 : sh * 0.92;
-  g += `<rect x="${lx-aw}" y="${sy+2}" width="${aw}" height="${sh*0.92}" rx="${aw/2}" fill="${skin}"/><rect x="${rx}" y="${sy+2}" width="${aw}" height="${sh*0.92}" rx="${aw/2}" fill="${skin}"/>`;
-  g += `<rect x="${lx-aw}" y="${sy+2}" width="${aw}" height="${sleeve}" rx="${aw/2}" fill="${top}"/><rect x="${rx}" y="${sy+2}" width="${aw}" height="${sleeve}" rx="${aw/2}" fill="${top}"/>`;
-  // 胴
-  g += `<rect x="${lx}" y="${sy}" width="${sw}" height="${sh}" rx="7" fill="${top}"/>`;
+  // 体の比率（子どもは頭が大きく、手足が短い）
+  const P = A ? { hy:25, hr:11.5, sy:42, hip:88, sw:32, ww:27, lw:10.5, aw:8, gy:140 }
+              : { hy:55, hr:15.5, sy:76, hip:108, sw:29, ww:27, lw:10, aw:7.5, gy:140 };
+  const cx = 50, { hy, hr, sy, hip, sw, ww, lw, gy } = P;
+  const C = A ? { t5:"#f2b84b", t4:"#5b8fd1", inner:"#f4efe4", t3:"#c48a5c", t2:"#6e7f5c", t1:"#34507d", pants:"#3e4a5c", shorts:"#6f86a8", hair:"#3b2b24", shoe:"#4a3b33", acc:"#b9475a" }
+              : { t5:"#ff9c5b", t4:"#ef7d6b", inner:"#fff6e0", t3:"#7cb7a3", t2:"#e7b13b", t1:"#d65f5f", pants:"#4f6d8f", shorts:"#7fa3c9", hair:"#4a342a", shoe:"#e05a4f", acc:"#5b8fd1" };
+  const skin = "#f3cba8", skinD = "#e2b28d", line = "rgba(40,30,25,.22)";
+  const puffy = b === 1, aw = P.aw + (puffy ? 3 : b <= 2 ? 1.2 : 0);
+  const top = b === 5 ? C.t5 : b === 4 ? C.t4 : C.inner;
+  const outer = b === 3 ? C.t3 : b === 2 ? C.t2 : b === 1 ? C.t1 : null;
+  const coat = rain && !A ? "#f2c230" : outer;           // 子どもの雨の日は黄色いレインコート
+  const coatLen = rain && !A ? 12 : b === 1 ? (A ? 22 : 8) : b === 2 ? 4 : b === 3 ? (A ? 10 : 3) : 0;
+  const S = (d, c, w, cap) => `<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="${cap || "round"}" stroke-linejoin="round"/>`;
+  const torso = (w1, w2, y1, y2, r) => `M${cx-w1/2} ${y1+r} Q${cx-w1/2} ${y1} ${cx-w1/2+r} ${y1} L${cx+w1/2-r} ${y1} Q${cx+w1/2} ${y1} ${cx+w1/2} ${y1+r} L${cx+w2/2} ${y2-3} Q${cx+w2/2} ${y2} ${cx+w2/2-3} ${y2} L${cx-w2/2+3} ${y2} Q${cx-w2/2} ${y2} ${cx-w2/2} ${y2-3}Z`;
+  let g = `<ellipse cx="${cx}" cy="${gy+3}" rx="${A ? 22 : 18}" ry="3" fill="rgba(0,0,0,.08)"/>`;
+  // 腕の通り道（肩→ひじ→手）。雨の日の大人は右手で傘を持つ
+  const armL = [[cx-sw/2+aw/2-1, sy+aw/2], [cx-sw/2-4, (sy+hip)/2], [cx-sw/2-3, hip-2]];
+  const umb = rain && A;
+  const armR = umb ? [[cx+sw/2-aw/2+1, sy+aw/2], [cx+sw/2+7, (sy+hip)/2+2], [cx+sw/2+1, sy+16]]
+                   : [[cx+sw/2-aw/2+1, sy+aw/2], [cx+sw/2+4, (sy+hip)/2], [cx+sw/2+3, hip-2]];
+  const ap = a => `M${a[0][0]} ${a[0][1]} Q${a[1][0]} ${a[1][1]} ${a[2][0]} ${a[2][1]}`;
+  const part = (a, t) => { // 二次ベジエを t で切った前半
+    const [p0, p1, p2] = a, q0 = [p0[0]+(p1[0]-p0[0])*t, p0[1]+(p1[1]-p0[1])*t], q1 = [p1[0]+(p2[0]-p1[0])*t, p1[1]+(p2[1]-p1[1])*t];
+    const e = [q0[0]+(q1[0]-q0[0])*t, q0[1]+(q1[1]-q0[1])*t];
+    return [p0, q0, e];
+  };
+  // 傘（体の後ろに柄、上に布）
+  if (umb) {
+    const hx = armR[2][0], ux = hx, uy = 9;
+    g += S(`M${hx} ${armR[2][1]+4} L${ux} ${uy}`, "#6b5a4e", 2);
+    g += S(`M${hx} ${armR[2][1]+4} q0 6 -4 6`, "#6b5a4e", 2);
+  }
+  // 脚とくつ
+  const legX = [cx - ww/4 - 0.5, cx + ww/4 + 0.5], ankle = gy - 4;
+  const pantsLen = b === 5 ? (ankle - hip) * 0.38 : ankle - hip + 2;
+  for (const x of legX) {
+    const dx = x < cx ? -1 : 1;
+    g += S(`M${x} ${hip-4} L${x+dx*0.8} ${ankle}`, skin, lw - 2.5, "butt");
+    g += `<rect x="${x-lw/2}" y="${hip-6}" width="${lw}" height="${pantsLen+6}" rx="${b===5?3:2.5}" fill="${b===5?C.shorts:C.pants}"/>`;
+    if (b < 5) g += `<line x1="${x-lw/2+0.5}" y1="${hip+pantsLen-1.5}" x2="${x+lw/2-0.5}" y2="${hip+pantsLen-1.5}" stroke="${line}"/>`;
+    const boot = rain && !A;
+    if (boot) g += `<rect x="${x-lw/2-0.5}" y="${ankle-11}" width="${lw+1}" height="13" rx="2.5" fill="#f2c230"/><line x1="${x-lw/2}" y1="${ankle-9}" x2="${x+lw/2}" y2="${ankle-9}" stroke="rgba(0,0,0,.15)"/>`;
+    g += `<path d="M${x-lw/2-0.5+(dx>0?0:-2)} ${gy+1} Q${x-lw/2-0.5+(dx>0?0:-2)} ${ankle-1} ${x} ${ankle-1} Q${x+lw/2+0.5+(dx>0?2:0)} ${ankle-1} ${x+lw/2+0.5+(dx>0?3:0)} ${gy+1}Z" fill="${boot ? "#e2ad1c" : C.shoe}"/>`;
+    if (!boot) g += `<rect x="${x-lw/2-0.5+(dx>0?0:-2)}" y="${gy}" width="${lw+3.5}" height="1.6" rx=".8" fill="rgba(255,255,255,.55)"/>`;
+  }
+  // 腕（素肌→袖）
+  const sleeveT = b === 5 ? 0.28 : 0.86;
+  for (const a of [armL, armR]) {
+    g += S(ap(a), skin, P.aw - 1);
+    g += `<circle cx="${a[2][0]}" cy="${a[2][1]+1}" r="${P.aw*0.48}" fill="${skin}"/>`;
+    g += S(ap(part(a, sleeveT)), top, P.aw);
+  }
+  // 胴（中の服）
+  g += `<path d="${torso(sw, ww, sy, hip, 7)}" fill="${top}"/>`;
+  if (!coat) { // えり元
+    g += b === 5 ? `<path d="M${cx-5} ${sy} q5 5 10 0" fill="none" stroke="${line}" stroke-width="1.4"/>`
+                 : `<path d="M${cx-5.5} ${sy} l5.5 5 l5.5 -5" fill="${C.inner}" stroke="${line}" stroke-width=".8"/>`;
+    if (b === 5 && !A) g += `<circle cx="${cx-6}" cy="${sy+12}" r="3" fill="#fff" opacity=".55"/><circle cx="${cx+5}" cy="${sy+16}" r="2" fill="#fff" opacity=".55"/>`;
+  }
   // 上着
-  if (b <= 3) {
-    const oc = b === 3 ? C.t3 : b === 2 ? C.t2 : C.t1, ext = b === 1 ? (A ? 14 : 8) : 3, ow = b === 1 ? 4 : 2;
-    g += `<rect x="${lx-aw-ow/2}" y="${sy+1}" width="${aw+ow}" height="${sh*0.95}" rx="${(aw+ow)/2}" fill="${oc}"/><rect x="${rx-ow/2}" y="${sy+1}" width="${aw+ow}" height="${sh*0.95}" rx="${(aw+ow)/2}" fill="${oc}"/>`;
-    g += `<rect x="${lx-ow}" y="${sy-1}" width="${sw+ow*2}" height="${sh+ext}" rx="8" fill="${oc}"/>`;
-    if (b >= 2) g += `<rect x="${cx-3.5}" y="${sy}" width="7" height="${sh+ext-2}" fill="${C.inner}"/><line x1="${cx-3.5}" y1="${sy}" x2="${cx-3.5}" y2="${sy+sh+ext-2}" stroke="rgba(0,0,0,.18)"/><line x1="${cx+3.5}" y1="${sy}" x2="${cx+3.5}" y2="${sy+sh+ext-2}" stroke="rgba(0,0,0,.18)"/>`;
-    else { for (let i = 1; i < 4; i++) g += `<line x1="${lx}" y1="${sy+(sh+ext)*i/4}" x2="${rx}" y2="${sy+(sh+ext)*i/4}" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>`;
-           g += `<line x1="${cx}" y1="${sy+2}" x2="${cx}" y2="${sy+sh+ext-2}" stroke="rgba(0,0,0,.25)"/>`; }
-  }
-  // 首・頭
-  g += `<rect x="${cx-3}" y="${hy+hr-2}" width="6" height="6" fill="${skin}"/>`;
-  g += `<circle cx="${cx}" cy="${hy}" r="${hr}" fill="${skin}"/>`;
-  g += `<path d="M${cx-hr} ${hy} a${hr} ${hr} 0 0 1 ${hr*2} 0 q${-hr*0.4} ${-hr*0.55} ${-hr} ${-hr*0.45} q${-hr*0.6} ${hr*0.1} ${-hr} ${hr*0.45}z" fill="${C.hair}"/>`;
-  g += `<circle cx="${cx-hr*0.38}" cy="${hy+hr*0.15}" r="1.3" fill="#2b2b2b"/><circle cx="${cx+hr*0.38}" cy="${hy+hr*0.15}" r="1.3" fill="#2b2b2b"/>`;
-  g += `<path d="M${cx-3} ${hy+hr*0.5} q3 2.5 6 0" stroke="#a5523d" stroke-width="1.3" fill="none" stroke-linecap="round"/>`;
-  if (!A) g += `<circle cx="${cx-hr*0.62}" cy="${hy+hr*0.42}" r="2" fill="#f4a3a0" opacity=".7"/><circle cx="${cx+hr*0.62}" cy="${hy+hr*0.42}" r="2" fill="#f4a3a0" opacity=".7"/>`;
-  // 小物
-  if (b === 5) g += `<ellipse cx="${cx}" cy="${hy-hr*0.55}" rx="${hr*1.55}" ry="${hr*0.28}" fill="#e8d6a8"/><path d="M${cx-hr*0.85} ${hy-hr*0.55} a${hr*0.85} ${hr*0.8} 0 0 1 ${hr*1.7} 0z" fill="#e8d6a8"/>`;
-  if (b === 1) {
-    g += `<path d="M${cx-hr*1.02} ${hy-hr*0.15} a${hr*1.02} ${hr*1.02} 0 0 1 ${hr*2.04} 0z" fill="${A ? "#b9475a" : "#5b8fd1"}"/><circle cx="${cx}" cy="${hy-hr*1.05}" r="${hr*0.28}" fill="#f4efe4"/>`;
-    g += `<rect x="${cx-hr*0.9}" y="${hy+hr-1}" width="${hr*1.8}" height="6" rx="3" fill="${A ? "#e3b23c" : "#f4efe4"}"/><rect x="${cx+hr*0.25}" y="${hy+hr+3}" width="5" height="${A?14:10}" rx="2" fill="${A ? "#e3b23c" : "#f4efe4"}"/>`;
-    g += `<circle cx="${lx-aw/2-1}" cy="${sy+sh*0.95+2}" r="${aw*0.55}" fill="${A ? "#b9475a" : "#5b8fd1"}"/><circle cx="${rx+aw/2+1}" cy="${sy+sh*0.95+2}" r="${aw*0.55}" fill="${A ? "#b9475a" : "#5b8fd1"}"/>`;
-  }
-  if (rain) {
-    if (A) { // 傘
-      const ux = rx + aw/2, uy = 6;
-      g += `<line x1="${ux}" y1="${uy+4}" x2="${ux}" y2="${sy+sh*0.6}" stroke="#555" stroke-width="2"/>`;
-      g += `<path d="M${ux-24} ${uy+16} a24 16 0 0 1 48 0 q-6 -4 -12 0 q-6 -4 -12 0 q-6 -4 -12 0 q-6 -4 -12 0z" fill="#3b6fb6"/>`;
-    } else { // 黄色いレインコートのフードと長ぐつ
-      g += `<path d="M${cx-hr-2} ${hy+2} a${hr+2} ${hr+2} 0 0 1 ${(hr+2)*2} 0 l0 ${hr*0.6} l-3 0 a${hr-1} ${hr-1} 0 0 0 ${-(hr-1)*2-0} 0 l-3 0z" fill="#f2c230"/>`;
-      g += `<rect x="${cx-lw-2}" y="${ly+lh-9}" width="${lw+2}" height="10" rx="2" fill="#f2c230"/><rect x="${cx}" y="${ly+lh-9}" width="${lw+2}" height="10" rx="2" fill="#f2c230"/>`;
+  if (coat) {
+    const cw1 = sw + (puffy ? 6 : 3), cw2 = ww + (puffy ? 8 : 4) + (rain && !A ? 6 : 0), cy2 = hip + coatLen;
+    for (const a of [armL, armR]) {
+      g += S(ap(part(a, 0.9)), coat, aw + 1.5);
+      const e = part(a, 0.9)[2];
+      if (puffy) g += `<circle cx="${e[0]}" cy="${e[1]+2}" r="${P.aw*0.62}" fill="${C.acc}"/>`; // 手ぶくろ
+    }
+    if (puffy) for (const a of [armL, armR]) for (const t of [0.35, 0.62]) { const p = part(a, t)[2]; g += `<line x1="${p[0]-aw/2}" y1="${p[1]}" x2="${p[0]+aw/2}" y2="${p[1]}" stroke="rgba(255,255,255,.3)" stroke-width="1.2"/>`; }
+    if (b === 2 && !(rain && !A)) g += `<path d="M${cx-12} ${sy+3} q12 -12 24 0 q-12 5 -24 0z" fill="${coat}" stroke="${line}" stroke-width=".8"/>`; // フード
+    g += `<path d="${torso(cw1, cw2, sy - 1, cy2, puffy ? 10 : 8)}" fill="${coat}"/>`;
+    if (puffy) { // ダウンのキルト
+      for (let i = 1; i < 5; i++) { const y = sy + (cy2 - sy) * i / 5; g += `<path d="M${cx-cw2/2+1.5} ${y} q${cw2/4} 2.5 ${cw2/2-1.5} 0 q${cw2/4} 2.5 ${cw2/2-1.5} 0" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.3"/>`; }
+      g += `<line x1="${cx}" y1="${sy+2}" x2="${cx}" y2="${cy2-1}" stroke="rgba(0,0,0,.25)" stroke-width="1.2"/>`;
+    } else if (b === 3 && !(rain && !A)) { // カーディガン：前を開けて中が見える
+      g += `<path d="M${cx-4} ${sy-1} L${cx-2} ${cy2} L${cx+2} ${cy2} L${cx+4} ${sy-1}Z" fill="${top}"/>`;
+      g += `<path d="M${cx-4} ${sy-1} L${cx-2} ${cy2}" stroke="${line}" fill="none"/><path d="M${cx+4} ${sy-1} L${cx+2} ${cy2}" stroke="${line}" fill="none"/>`;
+      for (let i = 0; i < 3; i++) g += `<circle cx="${cx-4.6}" cy="${sy+9+i*((cy2-sy-14)/2)}" r="1.1" fill="rgba(0,0,0,.3)"/>`;
+    } else { // ジャンパー・レインコート：ファスナーとポケット
+      g += `<line x1="${cx}" y1="${sy+1}" x2="${cx}" y2="${cy2-1}" stroke="rgba(0,0,0,.22)" stroke-width="1.2"/>`;
+      const py = cy2 - (A ? 16 : 13);
+      g += `<path d="M${cx-cw2/2+4} ${py} h7" stroke="rgba(0,0,0,.2)" stroke-width="1.2"/><path d="M${cx+cw2/2-11} ${py} h7" stroke="rgba(0,0,0,.2)" stroke-width="1.2"/>`;
+      if (rain && !A) for (let i = 0; i < 3; i++) g += `<circle cx="${cx+3}" cy="${sy+7+i*9}" r="1.2" fill="#c99a14"/>`;
     }
   }
-  return `<svg viewBox="0 0 80 140" width="${A ? 80 : 64}" height="${A ? 140 : 112}" role="img" aria-label="${A ? "大人" : "子ども"}の服装：${OUTFIT_TEXT[who][b]}${rain ? (A ? "、傘" : "、レインコートと長ぐつ") : ""}">${g}</svg>`;
+  // 首・頭
+  g += `<rect x="${cx-3.2}" y="${hy+hr-3}" width="6.4" height="${sy-hy-hr+4}" fill="${skinD}"/>`;
+  if (rain && !A) g += `<circle cx="${cx}" cy="${hy+1}" r="${hr+3.5}" fill="#f2c230"/>`; // フード（後ろ）
+  g += `<circle cx="${cx-hr+0.5}" cy="${hy+2}" r="2.6" fill="${skinD}"/><circle cx="${cx+hr-0.5}" cy="${hy+2}" r="2.6" fill="${skinD}"/>`; // 耳
+  g += `<circle cx="${cx}" cy="${hy}" r="${hr}" fill="${skin}"/>`;
+  // 髪
+  g += A ? `<path d="M${cx-hr-0.5} ${hy+2} C${cx-hr-1} ${hy-hr*1.42} ${cx+hr+1} ${hy-hr*1.42} ${cx+hr+0.5} ${hy+2} C${cx+hr*0.7} ${hy-hr*0.35} ${cx-hr*0.1} ${hy-hr*0.55} ${cx-hr*0.55} ${hy-hr*0.25} C${cx-hr*0.75} ${hy-hr*0.05} ${cx-hr*0.9} ${hy+0.5} ${cx-hr-0.5} ${hy+2}Z" fill="${C.hair}"/>`
+         : `<path d="M${cx-hr-0.5} ${hy+3} C${cx-hr-1.5} ${hy-hr*1.45} ${cx+hr+1.5} ${hy-hr*1.45} ${cx+hr+0.5} ${hy+3} Q${cx+hr*0.6} ${hy-hr*0.3} ${cx+hr*0.25} ${hy-hr*0.38} Q${cx} ${hy-hr*0.2} ${cx-hr*0.2} ${hy-hr*0.38} Q${cx-hr*0.6} ${hy-hr*0.3} ${cx-hr-0.5} ${hy+3}Z" fill="${C.hair}"/>`;
+  // 顔
+  const ey = hy + hr * (A ? 0.12 : 0.2), ex = hr * (A ? 0.4 : 0.38);
+  g += `<ellipse cx="${cx-ex}" cy="${ey}" rx="1.4" ry="${A ? 1.7 : 2}" fill="#2b2220"/><ellipse cx="${cx+ex}" cy="${ey}" rx="1.4" ry="${A ? 1.7 : 2}" fill="#2b2220"/>`;
+  if (!A) g += `<circle cx="${cx-ex+0.5}" cy="${ey-0.7}" r=".5" fill="#fff"/><circle cx="${cx+ex+0.5}" cy="${ey-0.7}" r=".5" fill="#fff"/>`;
+  g += `<path d="M${cx-3} ${hy+hr*0.5} q3 ${A ? 2.5 : 3.2} 6 0" stroke="#a5523d" stroke-width="1.3" fill="${A ? "none" : "#e37b6c"}" stroke-linecap="round"/>`;
+  g += `<circle cx="${cx-hr*0.62}" cy="${hy+hr*0.45}" r="${A ? 1.8 : 2.4}" fill="#f4a3a0" opacity="${A ? .4 : .7}"/><circle cx="${cx+hr*0.62}" cy="${hy+hr*0.45}" r="${A ? 1.8 : 2.4}" fill="#f4a3a0" opacity="${A ? .4 : .7}"/>`;
+  // 小物
+  if (rain && !A) g += `<path d="M${cx-hr-3.5} ${hy+1} A${hr+3.5} ${hr+3.5} 0 0 1 ${cx+hr+3.5} ${hy+1} Q${cx} ${hy-hr*0.75} ${cx-hr-3.5} ${hy+1}Z" fill="#f2c230"/>`; // フードのふち
+  else if (b === 5) g += A
+    ? `<ellipse cx="${cx}" cy="${hy-hr*0.5}" rx="${hr*1.7}" ry="${hr*0.3}" fill="#e8d6a8"/><path d="M${cx-hr*0.9} ${hy-hr*0.5} q0 ${-hr*0.95} ${hr*0.9} ${-hr*0.95} q${hr*0.9} 0 ${hr*0.9} ${hr*0.95}z" fill="#e8d6a8"/><rect x="${cx-hr*0.9}" y="${hy-hr*0.78}" width="${hr*1.8}" height="${hr*0.22}" fill="#c48a5c"/>`
+    : `<path d="M${cx-hr*1.25} ${hy-hr*0.28} Q${cx} ${hy-hr*0.55} ${cx+hr*1.25} ${hy-hr*0.28} L${cx+hr*0.85} ${hy-hr*0.6} Q${cx+hr*0.8} ${hy-hr*1.25} ${cx} ${hy-hr*1.25} Q${cx-hr*0.8} ${hy-hr*1.25} ${cx-hr*0.85} ${hy-hr*0.6}Z" fill="#8fc6e8"/>`;
+  if (b === 1 && !(rain && !A)) {
+    g += `<path d="M${cx-hr*1.04} ${hy-hr*0.12} C${cx-hr*1.1} ${hy-hr*1.35} ${cx+hr*1.1} ${hy-hr*1.35} ${cx+hr*1.04} ${hy-hr*0.12}Z" fill="${C.acc}"/>`;
+    g += `<rect x="${cx-hr*1.06}" y="${hy-hr*0.32}" width="${hr*2.12}" height="${hr*0.3}" rx="${hr*0.15}" fill="${C.acc}" stroke="rgba(255,255,255,.35)"/>`;
+    g += `<circle cx="${cx}" cy="${hy-hr*1.08}" r="${hr*0.27}" fill="#f4efe4"/>`;
+    const sc = A ? "#e3b23c" : "#f4efe4";
+    g += `<path d="M${cx-hr*0.95} ${sy-3} Q${cx} ${sy+3} ${cx+hr*0.95} ${sy-3} L${cx+hr*0.95} ${sy+1} Q${cx} ${sy+7} ${cx-hr*0.95} ${sy+1}Z" fill="${sc}"/>`;
+    g += `<rect x="${cx+hr*0.25}" y="${sy+1}" width="5" height="${A ? 15 : 10}" rx="2" fill="${sc}"/>`;
+  }
+  if (umb) { // 傘の布と、持っている手
+    const ux = armR[2][0], uy = 9, R = 27;
+    g += `<path d="M${ux-R} ${uy+13} Q${ux-R} ${uy-6} ${ux} ${uy-6} Q${ux+R} ${uy-6} ${ux+R} ${uy+13} q${-R/4} -4 ${-R/2} 0 q${-R/4} -4 ${-R/2} 0 q${-R/4} -4 ${-R/2} 0 q${-R/4} -4 ${-R/2} 0z" fill="#3b6fb6"/>`;
+    g += `<path d="M${ux} ${uy-6} Q${ux-R/2.3} ${uy} ${ux-R/2} ${uy+13} M${ux} ${uy-6} Q${ux+R/2.3} ${uy} ${ux+R/2} ${uy+13}" stroke="rgba(255,255,255,.3)" fill="none"/>`;
+    g += `<circle cx="${ux}" cy="${uy-7}" r="1.6" fill="#6b5a4e"/>`;
+    g += `<circle cx="${armR[2][0]}" cy="${armR[2][1]+1}" r="${P.aw*0.5}" fill="${skin}"/>`;
+  }
+  if (rain) g += `<g stroke="#7ea6d8" stroke-width="1.3" stroke-linecap="round" opacity=".7"><line x1="8" y1="${A?40:62}" x2="6" y2="${A?46:68}"/><line x1="16" y1="${A?70:90}" x2="14" y2="${A?76:96}"/><line x1="90" y1="${A?62:70}" x2="88" y2="${A?68:76}"/><line x1="10" y1="${A?100:116}" x2="8" y2="${A?106:122}"/><line x1="92" y1="${A?96:104}" x2="90" y2="${A?102:110}"/></g>`;
+  const label = `${A ? "大人" : "子ども"}の服装：${OUTFIT_TEXT[who][b]}${rain ? (A ? "、傘" : "、レインコートと長ぐつ") : ""}`;
+  return `<svg viewBox="0 0 100 146" width="${A ? 96 : 74}" height="${A ? 140 : 108}" role="img" aria-label="${label}">${g}</svg>`;
 }
 function scene(label, t, extra, rain){
   const b = band(t);
