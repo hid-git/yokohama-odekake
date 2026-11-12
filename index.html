@@ -391,7 +391,9 @@ details.fold > .fbody > :first-child { margin-top: 0; }
 .hero.night .brand img.logo { filter: drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 0 3px rgba(255,255,255,.6)); }
 .brand .yomi { font-size: 13px; font-weight: 500; letter-spacing: .08em; opacity: .8; }
 /* ページでいちばん大事な見出し（H1）。見た目はロゴの下の説明の行 */
-h1.tagline, .hero h1.tagline { margin: 2px 0 6px; font-family: inherit; font-weight: 700; font-size: 16px; line-height: 1.5; letter-spacing: 0; text-shadow: none; color: var(--heroInk); }
+h1.tagline, .hero h1.tagline { margin: 2px 0 6px; font-family: inherit; font-weight: 700; font-size: 22px; line-height: 1.4; letter-spacing: .02em; text-shadow: none; color: var(--heroInk); text-wrap: balance; }
+h1.tagline .nw { display: inline-block; }
+@media (max-width: 520px) { h1.tagline, .hero h1.tagline { font-size: 20px; } }
 
 footer { font-size: 12.5px; color: var(--muted); display: grid; gap: 4px; border-top: 1px solid var(--line); padding-top: 14px; }
 footer p { margin: 0; max-width: 70ch; }
@@ -459,8 +461,8 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
       <rect class="sea" x="0" y="128" width="1000" height="22"/>
     </svg>
       <div class="htext">
-    <div class="brand"><img class="logo" src="img/logo.webp" width="900" height="268" alt="KidsTrip（キッズトリップ）"><span class="yomi">キッズトリップ</span></div>
-    <h1 class="tagline">横浜の子連れおでかけ・イベント一覧</h1>
+    <div class="brand"><img class="logo" src="img/logo.webp" width="640" height="191" alt="KidsTrip（キッズトリップ）"><span class="yomi">キッズトリップ</span></div>
+    <h1 class="tagline"><span class="nw">横浜の子連れおでかけ・</span><span class="nw">イベント一覧</span></h1>
     <p class="enlink"><a href="en/" hreflang="en" lang="en">English (for visitors)</a></p>
     <p class="lede"><strong>2026年11月14日〜2027年1月11日の週末・祝日（クリスマス・年末年始の平日も）</strong>　横浜市内のイベントを0歳から大人まで横断して集めました。各イベントに、近くのおむつ替え・授乳室・調乳のお湯がある場所と、子連れで入りやすいごはん処も付けています。概要だけ載せているので、詳しくは各リンク先で確認してください。</p>
       </div>
