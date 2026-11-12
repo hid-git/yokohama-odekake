@@ -206,6 +206,7 @@ details.fold > summary { cursor: pointer; padding: 10px 12px; font-weight: 700; 
 details.fold > summary::-webkit-details-marker { display: none; }
 details.fold > summary::before { content: "▸"; transition: transform .15s; }
 details.fold[open] > summary::before { transform: rotate(90deg); }
+details.fold > summary h3.fsum, .life details.fold > summary h3.fsum { display: inline; margin: 0; padding: 0; border: 0; font: inherit; color: inherit; background: none; }
 details.fold > .fbody { padding: 0 12px 10px; }
 details.fold > .fbody > :first-child { margin-top: 0; }
 .filters details.fold { margin: 4px 0; }
@@ -609,28 +610,28 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
       <li><span class="pi">♻️</span><span>ベビー用品：ジモティースポット横浜で、無料・申込不要で引き取ってもらえる。</span></li>
       <li><span class="pi">🎟</span><span>2027年のグリーンエクスポ：市内の4〜18歳は1回無料（パマトコで申請）。</span></li></ul>
     <p class="small">横浜市の子育て応援マガジン「<a href="https://minnano-iine.city.yokohama.lg.jp/article/?tag=event" target="_blank" rel="noopener">みんなのいいね</a>」などで紹介された子育てに役立つサービスを短くまとめています。使う前にリンク先で最新情報を確認してください。（2026年11月11日確認）</p>
-    <details class="fold"><summary>おでかけの移動</summary><div class="fbody"><ul>
+    <details class="fold"><summary><h3 class="fsum">おでかけの移動</h3></summary><div class="fbody"><ul>
       <li><b>子育てタクシー</b>：講習を受けたドライバーが、チャイルドシートの取り付けやベビーカーの積み込みを手伝ってくれるタクシー。市内18区で使える。コースによって事前登録が必要。<a href="https://www.kosodate-taxi.com/" target="_blank" rel="noopener">全国子育てタクシー協会</a>／<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2026_04/04/" target="_blank" rel="noopener">紹介記事</a></li>
       <li><b>シーバス（水上バス）</b>：横浜駅東口・ハンマーヘッド・赤レンガ倉庫・山下公園を結ぶ船。予約不要で、ベビーカーと飲食物の持ち込みOK、船内トイレあり（おむつ替えはないので乗る前に）。横浜駅東口の乗り場には船員の制服を着られるコーナーも。<a href="https://www.yokohama-cruising.jp/contents/seabass.html" target="_blank" rel="noopener">時刻表・料金</a>／<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2026_02/01/" target="_blank" rel="noopener">紹介記事</a></li>
     </ul></div></details>
-    <details class="fold"><summary>ベビー・キッズ用品をゆずる・もらう</summary><div class="fbody"><ul>
+    <details class="fold"><summary><h3 class="fsum">ベビー・キッズ用品をゆずる・もらう</h3></summary><div class="fbody"><ul>
       <li><b>ジモティースポット横浜</b>（井土ヶ谷店・中山店）：使わなくなったベビーカーやチャイルドシート、子ども用自転車、おもちゃを無料・申込不要で引き取ってもらえる。店の品物は安く買える。<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2025_10/04/" target="_blank" rel="noopener">紹介記事</a></li>
       <li><b>SDGsロッカー</b>：まだ食べられるのに捨てられがちなパンなどを、お得な値段で買える無人ロッカー。駅や商業施設など市内に約10台。<a href="https://minnano-iine.city.yokohama.lg.jp/assets/images/article/column/2025_12/05/sdgslocker.pdf" target="_blank" rel="noopener">設置場所（PDF）</a></li>
     </ul></div></details>
-    <details class="fold"><summary>パパ・ママ向けの講座や体験</summary><div class="fbody"><ul>
+    <details class="fold"><summary><h3 class="fsum">パパ・ママ向けの講座や体験</h3></summary><div class="fbody"><ul>
       <li><b>父親育児支援講座</b>：パパと子どものふれあい遊びや夫婦の話し合いなど、0〜3歳の親向けの講座。地域ケアプラザや親子の広場などでときどき開催。<a href="https://pamatoco.city.yokohama.lg.jp/ctz/contents/a045j00000PUNRxAAP/%E7%88%B6%E8%A6%AA%E8%82%B2%E5%85%90%E6%94%AF%E6%8F%B4" target="_blank" rel="noopener">パマトコの案内</a></li>
       <li><b>消防署での子ども向け体験</b>（保育園などの団体向け）：防火衣の試着、消火器や煙の中を歩く体験など。無料・各消防署に事前相談。<a href="https://minnano-iine.city.yokohama.lg.jp/article/special/2025_09/01/" target="_blank" rel="noopener">紹介記事</a></li>
       <li><b>横浜市民防災センター</b>（神奈川区）：ガイド付きツアーや防災の体験プログラム。年4回、縁日やクリスマスと組み合わせた親子イベントもある。</li>
     </ul></div></details>
-    <details class="fold"><summary>いざというときの準備</summary><div class="fbody"><ul>
+    <details class="fold"><summary><h3 class="fsum">いざというときの準備</h3></summary><div class="fbody"><ul>
       <li><b>災害用伝言ダイヤル 171</b>：家族の無事や避難先を声で残せる。毎月1日と15日は練習で使える日。</li>
       <li><b>地域防災拠点の訓練</b>：近くの小中学校などで年に数回。だれでも参加できる。</li>
     </ul></div></details>
-    <details class="fold"><summary>アプリ・割引</summary><div class="fbody"><ul>
+    <details class="fold"><summary><h3 class="fsum">アプリ・割引</h3></summary><div class="fbody"><ul>
       <li><b>パマトコ</b>（横浜市の子育て応援アプリ）：手続きやイベントの情報、ハマハグの登録証の表示など。<a href="https://pamatoco.city.yokohama.lg.jp/ctz/" target="_blank" rel="noopener">パマトコ</a></li>
       <li><b>横浜グリーンエクスポのこども招待</b>：2027年3〜9月の国際園芸博覧会に、市内在住の4〜18歳は1回無料で入れる（3歳以下は無料）。パマトコで申請し、来場日の予約も必要。<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2026_11/02/" target="_blank" rel="noopener">紹介記事</a></li>
     </ul></div></details>
-    <details class="fold"><summary>子連れにやさしい商店街</summary><div class="fbody"><ul>
+    <details class="fold"><summary><h3 class="fsum">子連れにやさしい商店街</h3></summary><div class="fbody"><ul>
       <li><b>洪福寺松原商店街</b>（天王町駅から歩いて6分）：毎日12〜18時は歩行者天国で、無料の買い物カートあり。約60店。11〜12月は福引大売り出し。<a href="https://kofukuji-matsubara.com/" target="_blank" rel="noopener">公式</a>／<a href="https://minnano-iine.city.yokohama.lg.jp/article/special/2025_12/01/" target="_blank" rel="noopener">紹介記事</a></li>
     </ul></div></details>
   </section>
