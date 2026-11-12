@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yokohama with Kids — Family Guide to Spots, Events, Nursing Rooms & Strollers</title>
+<meta name="description" content="A family travel guide to Yokohama, Japan: kid-friendly spots, seasonal events, nursing rooms, diaper-changing spots, stroller access and kids' menus. Updated regularly from official sources.">
+<link rel="canonical" href="https://hid-git.github.io/yokohama-odekake/en/">
+<link rel="alternate" hreflang="ja" href="https://hid-git.github.io/yokohama-odekake/">
+<link rel="alternate" hreflang="en" href="https://hid-git.github.io/yokohama-odekake/en/">
+<meta property="og:title" content="Yokohama with Kids — Family Guide">
+<meta property="og:description" content="Kid-friendly spots, events, nursing rooms and stroller tips in Yokohama, Japan.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<style>
+:root { --paper:#f8fafc; --card:#fff; --ink:#1f2937; --sub:#5b6472; --line:#e3e7ee; --accent:#0e7490; --accent-soft:#e0f2f7; --warn:#b45309; }
+@media (prefers-color-scheme: dark) { :root { --paper:#0f172a; --card:#1e293b; --ink:#e5e7eb; --sub:#a3acb9; --line:#334155; --accent:#5ec5dc; --accent-soft:#16384a; --warn:#f59e0b; } }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+header, main, footer { max-width:860px; margin:0 auto; padding:0 16px; }
+header { padding-top:20px; }
+h1 { font-size:26px; line-height:1.25; margin:0 0 6px; }
+h2 { font-size:20px; margin:28px 0 10px; }
+h3 { font-size:16px; margin:0 0 4px; }
+.lede { color:var(--sub); margin:0 0 10px; }
+.lang { float:right; font-size:14px; }
+a { color:var(--accent); }
+nav.jump { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0; }
+nav.jump a { padding:6px 12px; border-radius:999px; background:var(--accent-soft); text-decoration:none; font-size:14px; font-weight:600; }
+.chips { display:flex; gap:6px; flex-wrap:wrap; margin:6px 0 12px; }
+.chip { border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; padding:5px 12px; font:inherit; font-size:14px; cursor:pointer; }
+.chip.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+.card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin:10px 0; }
+.meta { font-size:14px; color:var(--sub); margin:2px 0 6px; }
+.tags { display:flex; gap:6px; flex-wrap:wrap; margin:6px 0; }
+.tag { font-size:12.5px; padding:2px 8px; border-radius:6px; background:var(--accent-soft); }
+.tag.free { background:#dcfce7; color:#166534; }
+@media (prefers-color-scheme: dark) { .tag.free { background:#14532d; color:#bbf7d0; } }
+.ja { font-size:13px; color:var(--sub); }
+.tip { font-size:14px; }
+.box { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 16px; }
+.box li { margin:4px 0; }
+.small { font-size:13px; color:var(--sub); }
+.count { font-size:14px; color:var(--sub); }
+footer { padding:30px 16px 40px; font-size:13px; color:var(--sub); }
+</style>
+</head>
+<body>
+<header>
+  <a class="lang" href="../" hreflang="ja" lang="ja">日本語</a>
+  <h1>Yokohama with Kids</h1>
+  <p class="lede">A family guide for visitors to Yokohama, Japan — places little ones love, seasonal events, and the practical stuff: nursing rooms, diaper changing, strollers and kids' menus.</p>
+  <p class="small" id="asof"></p>
+  <nav class="jump"><a href="#tips">Before you go</a><a href="#spots">Spots</a><a href="#events">Winter events</a><a href="#baby">Nursing & diapers</a><a href="#help">Help & emergencies</a></nav>
+</header>
+<main>
+  <section id="tips">
+    <h2>Before you go</h2>
+    <div class="box"><ul>
+      <li><b>Nursing rooms & diaper changing are everywhere</b> in Japanese malls, big stations and museums — look for signs saying <span lang="ja">授乳室</span> (nursing room) or <span lang="ja">ベビー休憩室</span> / <span lang="ja">赤ちゃん休憩室</span> (baby room). Many have hot water for formula and a microwave.</li>
+      <li><b>Strollers:</b> stations have elevators, but in Minato Mirai the walkways and malls are the easiest. Some malls lend strollers for free or for a small coin deposit.</li>
+      <li><b>Cash:</b> cards and IC cards (Suica, PASMO) work widely, but small rides and some ticket machines are cash only — carry some coins.</li>
+      <li><b>Kids' menus:</b> look for <span lang="ja">お子様メニュー</span> or <span lang="ja">キッズメニュー</span>. Family restaurants and food courts are the easiest with small kids.</li>
+      <li><b>Under-6s are often free:</b> many zoos and museums here are free for preschoolers. Nogeyama Zoo is free for everyone.</li>
+      <li><b>Hours change:</b> many places close one weekday a week and over New Year (around Dec 29 – Jan 3). Check the official link before you go.</li>
+    </ul></div>
+  </section>
+
+  <section id="spots">
+    <h2>Spots kids love</h2>
+    <div class="chips" id="area-chips" role="group" aria-label="Filter by area"></div>
+    <div class="chips" id="type-chips" role="group" aria-label="Filter by type"></div>
+    <p class="count" id="count"></p>
+    <div id="spot-list"></div>
+  </section>
+
+  <section id="events">
+    <h2>Winter events (Nov 2026 – Jan 2027)</h2>
+    <div id="event-list"></div>
+  </section>
+
+  <section id="baby">
+    <h2>Nursing rooms & diaper changing in big malls</h2>
+    <div id="baby-list"></div>
+  </section>
+
+  <section id="help">
+    <h2>Help & emergencies</h2>
+    <div class="box"><ul>
+      <li><b>Ambulance / fire: 119</b> &nbsp; <b>Police: 110</b> (free from any phone)</li>
+      <li><b>Japan Visitor Hotline: <a href="tel:+815038162787">050-3816-2787</a></b> (from overseas +81-50-3816-2787) — 24 hours a day, 365 days a year, in English, Chinese and Korean. Help with accidents, illness, disasters and general tourist information. <a href="https://www.japan.travel/en/plan/hotline/" target="_blank" rel="noopener">JNTO</a></li>
+      <li><b>Night clinic:</b> Yokohama Night Emergency Center near Sakuragicho Station is open every night 20:00–24:00 (045-212-3535). Call before you go.</li>
+      <li><b>Find a hospital with English support:</b> <a href="https://www.jnto.go.jp/emergency/eng/mi_guide.html" target="_blank" rel="noopener">JNTO medical guide</a></li>
+    </ul></div>
+  </section>
+</main>
+<footer>
+  <p>Summaries are written by this site based on official pages; always check the official link for the latest hours and prices. Japanese version (more local events): <a href="../" hreflang="ja">横浜 子連れおでかけ一覧</a>.</p>
+</footer>
+<script>
+const ASOF = "Last checked: November 12, 2026";
+const AREAS = { mm:"Minato Mirai & Yokohama Sta.", kannai:"Chinatown, Yamashita & Kannai", zoo:"Zoos & aquariums", park:"Big parks", north:"North Yokohama (Kohoku)", south:"South Yokohama (Kanazawa)" };
+const TYPES = { free:"Free", rain:"Rainy-day OK", train:"Trains & cars", animal:"Animals", play:"Playgrounds" };
+// a: area, ty: types, ja: Japanese name (to show taxi drivers / search maps)
+const SPOTS = [
+  { n:"Cosmo World", ja:"よこはまコスモワールド", a:"mm", ty:["free","play"], hours:"From 11:00; mostly closed Thursdays", price:"Free entry; pay per ride (kids' rides ¥100–400, cash tickets)", d:"Free-entry amusement park by the big Ferris wheel. The Kids Carnival Zone has a merry-go-round, mini bullet train and battery cars for little ones.", tip:"Rides under ¥200 are cash only. No unlimited-ride pass.", url:"https://cosmoworld.jp/attraction-list/" },
+  { n:"Yokohama Anpanman Children's Museum (1F mall)", ja:"横浜アンパンマンこどもミュージアム", a:"mm", ty:["free","rain"], hours:"Facility hours", price:"1F shops & restaurants free; the museum (2F–3F) needs a timed web ticket", d:"Japan's favorite toddler character. Even without a museum ticket, the 1F shopping street is fun for 1–2 year olds.", tip:"Museum tickets go on sale 28 days ahead at 10:00. Nursing rooms on 1F and 3F; microwave at the 1F Family Station.", url:"https://www.yokohama-anpanman.jp/" },
+  { n:"Hara Model Railway Museum", ja:"原鉄道模型博物館", a:"mm", ty:["train","rain"], hours:"10:00–17:00; closed Tue & Wed (open on holidays)", price:"Check official site (timed tickets)", d:"One of the world's largest model railway layouts, with big, realistic trains running through a 310 m² diorama.", tip:"Thomas & Friends runs on the layout Dec 17 – Jan 11 (see events).", url:"https://www.hara-mrm.com/" },
+  { n:"Keikyu Museum", ja:"京急ミュージアム", a:"mm", ty:["free","train","rain"], hours:"10:00–16:30; closed Tue", price:"Free (some activities paid)", d:"A real vintage train car, a big diorama of the Keikyu line and driving simulators. 7 min walk from Yokohama Station east exit.", tip:"Nissan's free car gallery is right next door.", url:"https://www.keikyu.co.jp/museum/" },
+  { n:"Nissan Global HQ Gallery", ja:"日産グローバル本社ギャラリー", a:"mm", ty:["free","train","rain"], hours:"Facility hours", price:"Free", d:"A free showroom full of Nissan cars — a hit with car-loving kids. Café and goods shop.", tip:"Next to Keikyu Museum.", url:"https://www.google.com/maps/search/?api=1&query=%E6%97%A5%E7%94%A3%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%90%E3%83%AB%E6%9C%AC%E7%A4%BE%E3%82%AE%E3%83%A3%E3%83%A9%E3%83%AA%E3%83%BC" },
+  { n:"Yokohama Museum of Art — free area", ja:"横浜美術館 じゆうエリア", a:"mm", ty:["free","rain"], hours:"10:00–18:00; closed Thursdays", price:"Free (exhibitions extra)", d:"The grand entrance hall is free to use. There's a shoes-off corner for reading picture books together, and the art library has picture books too.", tip:"Three nursing rooms inside.", url:"https://yokohama.art.museum/" },
+  { n:"MARK IS Minato Mirai — Oyako no Mori (3F)", ja:"MARK IS みなとみらい おやこの森", a:"mm", ty:["free","rain","play"], hours:"Mall hours", price:"Free", d:"Free indoor kids' space split for ages 0–2 and 3+, plus a baby room with nursing rooms, diaper beds, hot water, a microwave and kids' toilets.", tip:"Directly connected to Minatomirai Station. Paid play area Børnelund is on the same floor.", url:"https://www.mec-markis.jp/mm/" },
+  { n:"Sea Bass water bus", ja:"シーバス", a:"mm", ty:["train"], hours:"Daily; see timetable", price:"See official site", d:"A boat linking Yokohama Station east exit, Minato Mirai, Red Brick Warehouse and Yamashita Park in 20–45 minutes. Strollers and food OK; toilet on board (no changing table).", tip:"Change diapers before boarding. It gets windy on deck.", url:"https://www.yokohama-cruising.jp/contents/seabass.html" },
+  { n:"Nogeyama Zoo", ja:"野毛山動物園", a:"zoo", ty:["free","animal"], hours:"9:30–16:30; closed Mon. Closing for renovation from Jan 7, 2027", price:"Free", d:"Small free zoo with giraffes, lions and red pandas. The petting corner with guinea pigs needs a reservation.", tip:"Long uphill walk from Sakuragicho — with a stroller, take the city bus to Nogeyama Dobutsuen-mae. Visit before it closes for renovation in January 2027.", url:"https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/oshirase/nogeyamarenewal.html" },
+  { n:"Zoorasia (Yokohama Zoological Gardens)", ja:"よこはま動物園ズーラシア", a:"zoo", ty:["animal"], hours:"Check official site", price:"Preschoolers always free; high-school age and under free on Saturdays", d:"A large zoo arranged by world regions — okapis, elephants and more.", tip:"Big and hilly: bring a stroller and comfy shoes.", url:"https://www.welcome.city.yokohama.jp/spot/details.php?bbid=111" },
+  { n:"Kanazawa Zoo & 100 m roller slide", ja:"金沢動物園・金沢自然公園", a:"zoo", ty:["animal","play"], hours:"9:30–16:30; closed Mon", price:"Adults ¥500, ages 6–15 ¥200, under 6 free (school kids free on Saturdays)", d:"Koalas, okapis and elephants. The park next door has a 100 m roller slide winding through the trees — free.", tip:"Wear thick trousers or bring a slide mat — the rollers get hot on little bottoms.", url:"https://www.hama-midorinokyokai.or.jp/zoo/kanazawa/" },
+  { n:"Hakkeijima Sea Paradise", ja:"横浜・八景島シーパラダイス", a:"zoo", ty:["animal","rain"], hours:"Around 9:00–18:00 (varies)", price:"4-aquarium pass: adults ¥3,500, ages 6–15 ¥2,200, ages 4+ ¥1,200", d:"Four aquariums on an island: big shows, dolphins, a touch pool and a fishing experience.", tip:"10 min walk from Hakkeijima Station (Seaside Line). Mitsui Outlet Park is two stops away.", url:"https://www.seaparadise.co.jp/" },
+  { n:"Kodomonokuni (Children's Land)", ja:"こどもの国", a:"north", ty:["animal","play"], hours:"Closed Wednesdays and Dec 31 – Jan 1", price:"Adults ¥800, ages 6–15 ¥300, ages 3+ ¥200", d:"A huge park built for children, with a dairy farm (milking & butter-making), playgrounds and an outdoor ice rink in winter.", tip:"Bring gloves that cover your fingers for the ice rink.", url:"https://www.kodomonokuni.org/" },
+  { n:"Tressa Yokohama", ja:"トレッサ横浜", a:"north", ty:["free","rain","play"], hours:"Mall hours", price:"Free (parking free too)", d:"Big mall with two free kids' spaces, four baby rooms with microwaves and hot water, and a food court.", tip:"Easiest by car.", url:"https://tressa-yokohama.jp/" },
+  { n:"Mitsui Outlet Park Yokohama Bayside", ja:"三井アウトレットパーク 横浜ベイサイド", a:"south", ty:["free","play"], hours:"Shops 10:00–20:00", price:"Free entry", d:"Seaside outlet mall with a crawling area for babies (0–18 months), a big courtyard and a covered whale-shaped lawn area. The food court has raised floor seating, hot water and a microwave.", tip:"Coin-return strollers (4 months – 4 years). Easy to combine with Hakkeijima.", url:"https://mitsui-shopping-park.com/mop/yokohama/" },
+  { n:"Earth Plaza — Children's Fantasy Room", ja:"あーすぷらざ", a:"south", ty:["rain","play"], hours:"9:00–17:00; closed Mon (open on holidays)", price:"Adults ¥400, ages 6–15 ¥100, preschoolers free", d:"Indoor play with a big jungle gym, a baby area and world-culture exhibits where kids can sit in a Thai tuk-tuk.", tip:"Right by Hongodai Station (JR Negishi Line).", url:"http://www.earthplaza.jp/" },
+  { n:"Mitsuzawa Park — roller slide (44 m)", ja:"三ツ沢公園", a:"park", ty:["free","play"], hours:"Anytime", price:"Free", d:"Adventure playground with a 44 m roller slide, rope swing and climbing frames renewed in 2023.", tip:"Very busy on J-League match days at the stadium next door.", url:"https://www.hama-midorinokyokai.or.jp/park/mitsuzawa/scroll.php" },
+  { n:"Shiki-no-Mori Park — giant slide (54 m)", ja:"県立四季の森公園", a:"park", ty:["free","play"], hours:"Anytime", price:"Free", d:"Woodland park with a 54 m giant slide, toddler area and playground.", tip:"15 min walk from Nakayama Station.", url:"https://www.pref.kanagawa.jp/docs/tu5/cnt/f6599/p19709.html" },
+  { n:"Kodomo Shizen Park — fort & mini zoo", ja:"こども自然公園", a:"park", ty:["free","play","animal"], hours:"Anytime (mini zoo 9:30–16:30, closed Mon)", price:"Free", d:"A big fort-style playground with a 40 m roller slide, plus a free mini zoo with guinea pigs.", tip:"7 min walk from Minami-Makigahara Station (Sotetsu Line).", url:"https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/koen/daihyoteki/ko-sizen.html" },
+];
+const EVENTS = [
+  { n:"Christmas Market at Red Brick Warehouse", ja:"横浜赤レンガ倉庫 クリスマスマーケット", when:"Nov 20 – Dec 25", d:"An 11 m real tree and German-style wooden stalls. Entry fee: check the official site.", tip:"Go in the daytime with little ones — evenings get crowded. A free wooden play garden is nearby.", url:"https://www.yokohama-akarenga.jp/christmas/" },
+  { n:"Yorunoyo — night light show", ja:"ヨルノヨ", when:"Dec 4 – 30, 17:00–21:05 nightly", d:"Light and sound shows across the waterfront (Osanbashi Pier, Yamashita Park, Nippon Maru). Free.", tip:"It gets dark early — the 17:00 hour is easy for small kids. Dress warmly by the sea.", url:"https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/bunka/2026/1106yorunoyo2026.html" },
+  { n:"Winter Wonder Park — skating in Yamashita Park", ja:"Winter Wonder Park Yokohama", when:"Dec 5, 2026 – Feb 28, 2027", d:"An outdoor ice rink with flowers and lights. Free to enter the venue; skating adults ¥1,200, ages 3–15 ¥1,000, parent-child set ¥2,000.", tip:"Bring gloves. Check hours on the official site.", url:"https://winterwonderpark.yokohama" },
+  { n:"Chinatown lantern festival", ja:"2027春節燈花", when:"Nov 1 – Feb 20, 16:00–23:00", d:"Chinatown lit up with lanterns. Free.", tip:"Combine with dinner in Chinatown.", url:"https://www.chinatown.or.jp/event/event/shunsetsutouka2027/" },
+  { n:"Thomas & Friends at Hara Model Railway Museum", ja:"トーマスと出会う、ウィンターホリデー", when:"Dec 17 – Jan 11 (closed Tue & Wed)", d:"Thomas and friends run on the giant layout, with Christmas decorations until Dec 25. Adults ¥1,500, ages 12–17 ¥1,000, ages 4+ ¥750; 3 and under free.", tip:"Timed tickets must be bought in advance.", url:"https://www.hara-mrm.com/news/detail.php?id=88" },
+  { n:"Ice skating at Kodomonokuni", ja:"こどもの国 アイススケート", when:"Dec 19 – Feb 28 (closed Wed, Dec 31, Jan 1), 10:00–16:00", d:"Outdoor rink; double-blade skates for small kids. Set ticket incl. entry & skates: adults ¥1,700, ages 6–15 ¥900, ages 3+ ¥800.", tip:"Gloves covering the fingers are required.", url:"https://www.kodomonokuni.org/sports/skate.html" },
+];
+const BABY = [
+  { n:"MARK IS Minato Mirai", ja:"MARK IS みなとみらい", d:"Baby rooms on B2 and 4F (nursing rooms, baby beds, hot water). 3F Oyako no Mori: nursing room, diaper beds, microwave, kids' toilets. Free strollers B4–1F (under 3).", url:"https://www.mec-markis.jp/mm/statics/mama_is/" },
+  { n:"Yokohama World Porters", ja:"横浜ワールドポーターズ", d:"2F milk room (Ferris-wheel side) with two changing tables, microwave, formula hot water and private nursing booths. Diaper rooms on 3F and 4F; kids' toilet on 1F. Stroller rental.", url:"https://www.yim.co.jp/" },
+  { n:"Yokohama Anpanman Children's Museum", ja:"横浜アンパンマンこどもミュージアム", d:"Nursing rooms and diaper changing on 1F and 3F; microwave at the 1F Family Station. No strollers inside the 3F museum (OK on 1F).", url:"https://www.yokohama-anpanman.jp/qa/" },
+  { n:"Tressa Yokohama", ja:"トレッサ横浜", d:"Four baby rooms with microwaves and hot water.", url:"https://tressa-yokohama.jp/" },
+  { n:"Mitsui Outlet Park Yokohama Bayside", ja:"三井アウトレットパーク 横浜ベイサイド", d:"Private nursing pod (mamaro) and kids' toilet in Block A 1F; food court with hot water and microwave.", url:"https://mitsui-shopping-park.com/mop/yokohama/special/oyako_navi" },
+];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+const link = u => `<a href="${esc(u)}" target="_blank" rel="noopener">${/google\.com\/maps/.test(u) ? "Map" : "Official site"}</a>`;
+document.getElementById("asof").textContent = ASOF;
+let AREA = "", TYPE = "";
+function chips(id, map, get, set){
+  const box = document.getElementById(id);
+  const all = [["", "All"]].concat(Object.entries(map));
+  box.innerHTML = all.map(([k, v]) => `<button type="button" class="chip${get() === k ? " on" : ""}" data-k="${k}">${esc(v)}</button>`).join("");
+  box.onclick = e => { const b = e.target.closest(".chip"); if (!b) return; set(b.dataset.k); render(); };
+}
+function render(){
+  chips("area-chips", Object.fromEntries(Object.entries(AREAS).filter(([k]) => SPOTS.some(x => x.a === k))), () => AREA, v => AREA = v);
+  chips("type-chips", TYPES, () => TYPE, v => TYPE = v);
+  const list = SPOTS.filter(s => (!AREA || s.a === AREA) && (!TYPE || s.ty.includes(TYPE)));
+  document.getElementById("count").textContent = `${list.length} spots`;
+  document.getElementById("spot-list").innerHTML = list.map(s => `<article class="card"><h3>${esc(s.n)}</h3>
+    <div class="ja" lang="ja">${esc(s.ja)}</div><div class="meta">${esc(AREAS[s.a])} · ${esc(s.hours)}</div>
+    <div class="tags">${s.ty.map(t => `<span class="tag${t === "free" ? " free" : ""}">${esc(TYPES[t])}</span>`).join("")}</div>
+    <p>${esc(s.d)}</p><p class="meta"><b>Price:</b> ${esc(s.price)}</p><p class="tip">💡 ${esc(s.tip)}</p>${link(s.url)}</article>`).join("") || "<p>No spots match.</p>";
+}
+render();
+document.getElementById("event-list").innerHTML = EVENTS.map(e => `<article class="card"><h3>${esc(e.n)}</h3><div class="ja" lang="ja">${esc(e.ja)}</div><div class="meta">📅 ${esc(e.when)}</div><p>${esc(e.d)}</p><p class="tip">💡 ${esc(e.tip)}</p>${link(e.url)}</article>`).join("");
+document.getElementById("baby-list").innerHTML = BABY.map(b => `<article class="card"><h3>${esc(b.n)}</h3><div class="ja" lang="ja">${esc(b.ja)}</div><p>${esc(b.d)}</p>${link(b.url)}</article>`).join("");
+</script>
+</body>
+</html>

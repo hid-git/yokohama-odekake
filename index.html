@@ -8,6 +8,8 @@
 <title>横浜 子連れおでかけ・イベント一覧｜週末・平日の親子イベント、おむつ替え・授乳室・子連れランチ情報</title>
 <meta name="description" content="横浜市内の子ども・親子向けイベントを週末・平日ごとに毎日更新でまとめています。無料の遊び場、動物園・水族館、乗り物イベント、雨の日の行き先、近くのおむつ替え・授乳室・ミルクのお湯、キッズメニューやベビーカーOKのお店、フードコート、天気と服装の目安も。">
 <link rel="canonical" href="https://hid-git.github.io/yokohama-odekake/">
+<link rel="alternate" hreflang="ja" href="https://hid-git.github.io/yokohama-odekake/">
+<link rel="alternate" hreflang="en" href="https://hid-git.github.io/yokohama-odekake/en/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="横浜 週末おでかけ一覧">
 <meta property="og:title" content="横浜 子連れおでかけ・イベント一覧">
@@ -336,6 +338,8 @@ section.group { display: grid; gap: 10px; }
 .help h2 { margin: 0; font-family: var(--font-display); font-size: 16px; }
 .help p { margin: 0; font-size: 13.5px; }
 .help a { color: var(--accent); font-weight: 700; }
+.enlink { margin: 0 0 4px; font-size: 13px; }
+.enlink a { color: inherit; font-weight: 700; }
 .life h3 { margin: 8px 0 0; font-size: 14px; }
 .life li { margin: 4px 0; }
 
@@ -427,6 +431,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     </svg>
       <div class="htext">
     <h1>横浜 週末おでかけ一覧</h1>
+    <p class="enlink"><a href="en/" hreflang="en" lang="en">English (for visitors)</a></p>
     <p class="lede"><strong>2026年11月14日〜2027年1月11日の週末・祝日（クリスマス・年末年始の平日も）</strong>　横浜市内のイベントを0歳から大人まで横断して集めました。各イベントに、近くのおむつ替え・授乳室・調乳のお湯がある場所と、子連れで入りやすいごはん処も付けています。概要だけ載せているので、詳しくは各リンク先で確認してください。</p>
       </div>
     </div>
@@ -1996,11 +2001,6 @@ EVENTS.push(
     tip:"雨の日の行き先に。図書館なので休館日は行く前に確認を", url:"https://yokohamacity-edu.note.jp/n/nc0e77c69b237", src:"横浜市「みんなのいいね」（2026年11月）・横浜市教育委員会", asof:"2026年11月11日" }
 );
 EVENTS.push(
-  { t:"のげやま子ども図書館 おやこフロア（未就学児と保護者専用）", days:[], time:"開館時間は公式ページで確認", ward:"西区", venue:"横浜市中央図書館（桜木町駅から歩いて約10分）",
-    price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内",
-    resv:false, resvText:"予約不要", age:[0,6], ageText:"未就学児と保護者", kind:"ongoing", start:600, freeplay:true,
-    sum:"2025年にできた未就学児と保護者だけのフロア。靴を脱いでハイハイやごろごろできる赤ちゃんエリア、三角テント、読み聞かせスペースがある。泣いてもOK。授乳室・子ども用トイレ・持ち込みOKの飲食スペースあり。",
-    tip:"野毛山動物園（無料）とセットで回りやすい", url:"https://yokohamacity-edu.note.jp/n/n0f39e95cb0f0", src:"横浜市「みんなのいいね」（2025年11月）・横浜市教育委員会", asof:"2026年11月11日" },
   { t:"シーバス（水上バスで横浜の海をおさんぽ）", days:[], time:"毎日運航（時刻は公式ページで確認）", ward:"西区・中区", venue:"横浜駅東口（ベイクォーター）・ハンマーヘッド・赤レンガ倉庫・山下公園の乗り場",
     price:"paid", priceText:"運賃は公式ページで確認", place:"屋内外", rain:"check", rainText:"荒天のときは運休・行き先変更あり",
     resv:false, resvText:"予約不要（乗り場で乗船券を購入）", age:[0,99], ageText:"全年齢", kind:"ongoing", start:600, ride:true,

@@ -1,7 +1,7 @@
 # 横浜おでかけ一覧 — 更新のしかた
 
 公開サイト：https://hid-git.github.io/yokohama-odekake/ （GitHub Pages、main ブランチの直下）
-中身は `index.html` 1ファイルだけ。データもこの中にある。
+中身は `index.html` 1ファイルだけ。データもこの中にある。英語版（観光で来る子連れ家族向け）は `en/index.html` で、観光客が行きやすい場所と大きなイベントだけを英語で載せている。
 
 ## 毎日の更新でやること
 
@@ -20,7 +20,8 @@
    - 遊び場・動物・乗り物などは既存のフラグ（`freeplay` `paidplay` `animal` `ride` `wk`）を付ける。
    - 会場の位置が `VENUE_GEO` にないときは、正規表現と緯度経度を足す（近くのごはん・トイレ・フードコートの「歩いて10分以内」に使う）。
 4. **確認**：Playwright（`/usr/bin/google-chrome`）でページを開き、JSのエラーが0件で、各見出しにカードが出ることを確かめる。
-5. **反映**：変更があれば `sitemap.xml` の `lastmod` を今日の日付にして、main に commit して push。変更がなければ何もしない。
+5. **英語版**：`en/index.html` の `EVENTS`（冬のイベントなど）から終わったものを外し、海外の家族に向く大きなイベント（みなとみらい・中華街・山下公園・動物園など）が始まるときは英語で足す。`SPOTS` の料金・時間が日本語版で変わったら合わせる。`ASOF` の日付も直す。区のおはなし会のような地元向けのものは入れない。
+6. **反映**：変更があれば `sitemap.xml` の `lastmod` を今日の日付にして、main に commit して push。変更がなければ何もしない。
 
 ## 守ること
 - `<head>` の `google-site-verification` のmetaタグは Google Search Console の確認用。消さない。
