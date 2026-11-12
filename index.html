@@ -194,6 +194,21 @@ section.group { display: grid; gap: 10px; }
 .ktags { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; margin: 0; padding: 0; }
 .ktag { font-size: 11.5px; padding: 0 7px; border-radius: 5px; background: var(--ok-soft); color: var(--ok); font-weight: 700; }
 .foodall { display: grid; gap: 14px; }
+/* 各タブの「要点」（3行で分かるまとめ）と、たたんだ「くわしく見る」 */
+.points { list-style: none; margin: 8px 0 10px; padding: 10px 12px; background: var(--accent-soft); border-radius: 12px; display: grid; gap: 6px; font-size: 14px; line-height: 1.55; }
+.points li { display: flex; gap: 8px; align-items: baseline; }
+.points li > .pi { flex: none; width: 1.4em; text-align: center; }
+.points .pchips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.points .pchip { font: inherit; font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--accent); background: var(--card); color: var(--accent); cursor: pointer; }
+.points .pchip[aria-pressed="true"] { background: var(--accent); color: #fff; }
+details.fold { border: 1px solid var(--line); border-radius: 12px; background: var(--card); margin: 6px 0; }
+details.fold > summary { cursor: pointer; padding: 10px 12px; font-weight: 700; color: var(--accent); list-style: none; display: flex; align-items: center; gap: 8px; }
+details.fold > summary::-webkit-details-marker { display: none; }
+details.fold > summary::before { content: "▸"; transition: transform .15s; }
+details.fold[open] > summary::before { transform: rotate(90deg); }
+details.fold > .fbody { padding: 0 12px 10px; }
+details.fold > .fbody > :first-child { margin-top: 0; }
+.filters details.fold { margin: 4px 0; }
 .foodall h2 { font-family: var(--font-display); font-size: 18px; margin: 6px 0 0; }
 .foodall .lead { margin: 0; font-size: 13.5px; color: var(--muted); }
 .farea { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; }
@@ -461,6 +476,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <a href="#events" data-tab="events">📅 イベント</a><a href="#near" data-tab="near">📍 近くで探す</a><a href="#foodall" data-tab="foodall">🍽 ごはん・おむつ</a><a href="#posts" data-tab="posts">✏️ みんなの投稿</a><a href="#life" data-tab="life">🧺 くらし</a><a href="#chains" data-tab="chains">🥣 チェーン店の子ども特典</a><a href="#help" data-tab="help">🏥 困ったとき</a><a href="#contact" data-tab="contact">✉️ お問い合わせ</a>
   </nav>
 
+  <ul class="points" id="ev-points" aria-label="イベントの要点"></ul>
   <div class="areabar evarea" id="evarea" role="group" aria-label="エリアでイベントを絞る"></div>
   <div class="weather" aria-label="週末の天気予報">
     <div class="wxrow" id="wxrow"></div>
@@ -484,6 +500,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
       <button class="opt" id="f-age-6" data-v="6-12" aria-pressed="false">小学生</button>
       <button class="opt" id="f-age-13" data-v="13-99" aria-pressed="false">中高生・大人</button>
     </div></div>
+    <details class="fold" id="more-filters"><summary>もっと絞る（無料・雨・のりもの・エリア・出発駅など）<span class="sel" id="more-sel"></span></summary><div class="fbody">
     <div class="frow"><span class="flabel">条件</span><div class="opts" data-key="flags" data-multi="1">
       <button class="opt" id="f-free" data-v="free" aria-pressed="false">完全無料</button>
       <button class="opt" id="f-rain" data-v="rain" aria-pressed="false">雨でも行ける</button>
@@ -499,6 +516,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     </div></div>
     <div class="frow"><span class="flabel">エリア</span><div class="opts" data-key="area" id="area-opts"></div></div>
     <div class="frow"><label class="flabel" for="origin">出発駅</label><div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input class="search" id="origin" type="search" placeholder="例：二俣川、センター南" style="flex:1;min-width:9em"><label class="arrl">着きたい時間 <input type="time" id="arrive" step="300"></label><button class="reset" id="arrive-clear" type="button">開始20分前に戻す</button></div><p class="note" style="margin:4px 0 0;font-size:12px;color:var(--muted)">各カードの「行き方」に乗換案内が出ます。着きたい時間はカードごとにも変えられます（空欄ならイベント開始の20分前）。</p></div></div>
+    </div></details>
     <div class="frow"><label class="flabel" for="q">キーワード</label><div><input class="search" id="q" type="search" placeholder="例：花火、工作、動物"></div></div>
   </div>
 
@@ -508,7 +526,9 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 
   <section class="posts" id="posts" aria-label="みんなの投稿">
     <h2>みんなの投稿（赤ちゃん設備）</h2>
-    <p class="lead">行った場所の「おむつ替え・授乳室・調乳のお湯」があったかどうかを教えてください。同じ内容の投稿が<b>3</b>件以上集まると「利用者確認済み」になり、運営が現地や電話で確認したものは「運営確認済み」と表示します。投稿者の名前は表示されません。</p>
+    <ul class="points"><li><span class="pi">✏️</span><span>行った場所に「おむつ替え・授乳室・調乳のお湯」があったか教えてください。</span></li>
+      <li><span class="pi">✅</span><span>同じ内容が<b>3</b>件集まると「利用者確認済み」、運営が現地や電話で確かめたものは「運営確認済み」になります。</span></li>
+      <li><span class="pi">🙈</span><span>投稿者の名前は表示されません。</span></li></ul>
     <div class="legend"><span class="badge staff">運営確認済み</span><span class="badge conf">利用者確認済み</span><span class="badge one">利用者の情報</span><span class="badge split">情報が分かれています</span></div>
 
     <form class="pform" id="pform" novalidate>
@@ -539,6 +559,9 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 
   <section class="near" id="near" aria-label="近くで探す">
     <h2>近くで探す</h2>
+    <ul class="points"><li><span class="pi">📍</span><span>「現在地から探す」か駅を選ぶと、近くのおむつ替え・授乳室・ごはんが出ます。</span></li>
+      <li><span class="pi">📏</span><span>範囲は500m〜5kmから選べます。</span></li>
+      <li><span class="pi">🔒</span><span>現在地はこの画面の中で使うだけで、記録するのは「横浜市のあたり」などの大まかな区分だけです。</span></li></ul>
     <div class="nctl"><button class="opt" id="near-here" type="button">📍 現在地から探す</button>
       <select id="near-st" aria-label="近くの駅"></select></div>
     <div class="opts" id="near-r"><button class="opt" data-v="500" type="button">500m</button><button class="opt" data-v="1000" type="button">1km</button><button class="opt" data-v="2000" type="button">2km</button><button class="opt" data-v="5000" type="button">5km</button></div>
@@ -550,12 +573,21 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 
   <section class="help" id="chains" aria-label="チェーン店の子ども向けサービス">
     <h2>チェーン店の子ども向けサービス</h2>
+    <ul class="points"><li><span class="pi">🥣</span><span>離乳食が無料：スープストックトーキョー・和食さと・とんでん</span></li>
+      <li><span class="pi">🍽</span><span>未就学児が無料：PISOLA（キッズメニュー）、しゃぶしゃぶ温野菜・しゃぶ葉（食べ放題）</span></li>
+      <li><span class="pi">🥖</span><span>3歳以下のパン食べ放題が無料：サンマルク・バケット</span></li></ul>
+    <details class="fold"><summary>くわしく見る（全チェーンと注意点）</summary><div class="fbody">
     <p class="small">離乳食が無料・子どもの料金が無料などのサービスがあるチェーン店です。お店の場所とは関係なく、参考としてまとめています。近くにお店があるかは地図で確認してください。ベビーチェアやおむつ台があるかは、同じチェーンでも店によって違います。</p>
     <div id="chains-body"></div>
+    </div></details>
   </section>
 
   <section class="help" id="help" aria-label="困ったときの連絡先">
     <h2>おでかけ中に困ったら</h2>
+    <ul class="points"><li><span class="pi">📞</span><span>具合が悪い・救急車を呼ぶか迷ったら：<a href="tel:#7119"><b>#7119</b></a>（24時間）</span></li>
+      <li><span class="pi">🏥</span><span>日曜・祝日の昼：各区の休日急患診療所（10〜16時、行く前に電話）</span></li>
+      <li><span class="pi">🌙</span><span>夜20〜24時：横浜市夜間急病センター（桜木町）<a href="tel:0452123535">045-212-3535</a></span></li></ul>
+    <details class="fold"><summary>くわしく見る（区ごとの診療所・子育て相談・お得なサービス）</summary><div class="fbody">
     <p><b>子どもが急に具合が悪くなったら：</b>かながわ救急相談センター <b>#7119</b>（24時間365日）。迷ったら電話で相談できます。</p>
     <p><b>日曜・祝日に子どもが熱を出したら：</b>各区の「休日急患診療所」（内科・小児科）が日曜・祝日の10時〜16時に開いています（青葉区は9〜12時・13〜16時）。行く前に電話して、保険証・医療証・現金を持って。</p>
     <ul>
@@ -568,41 +600,39 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <p>ほかの区は<a href="https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/iryo/kyubyo/14248.html" target="_blank" rel="noopener">横浜市の救急医療機関の案内</a>で。（2026年11月10日確認）</p>
     <p><b>子育ての相談・支援情報：</b>神奈川県のLINE「<a href="https://www.pref.kanagawa.jp/docs/sy8/kosodateps.html" target="_blank" rel="noopener">かながわ子育てパーソナルサポート</a>」で、保健師・助産師などへのオンライン相談や、#7119への案内が使えます。</p>
     <p><b>お得なサービス：</b>横浜市の「<a href="https://www.city.yokohama.lg.jp/kurashi/kosodate-kyoiku/kosodateshien/default2020091.html" target="_blank" rel="noopener">ハマハグ</a>」（パマトコで登録証を表示）と県の「<a href="https://c.rakuraku.or.jp/k-pass/" target="_blank" rel="noopener">かながわ子育て応援パスポート</a>」は共通で使えます。</p>
+  </div></details>
   </section>
 
   <section class="help life" id="life" aria-label="子育てに役立つ横浜のくらし情報">
     <h2>子育てに役立つ くらしの情報</h2>
+    <ul class="points"><li><span class="pi">🚕</span><span>移動：子育てタクシーはチャイルドシートやベビーカーを手伝ってくれる。シーバスはベビーカーのまま乗れる。</span></li>
+      <li><span class="pi">♻️</span><span>ベビー用品：ジモティースポット横浜で、無料・申込不要で引き取ってもらえる。</span></li>
+      <li><span class="pi">🎟</span><span>2027年のグリーンエクスポ：市内の4〜18歳は1回無料（パマトコで申請）。</span></li></ul>
     <p class="small">横浜市の子育て応援マガジン「<a href="https://minnano-iine.city.yokohama.lg.jp/article/?tag=event" target="_blank" rel="noopener">みんなのいいね</a>」などで紹介された子育てに役立つサービスを短くまとめています。使う前にリンク先で最新情報を確認してください。（2026年11月11日確認）</p>
-    <h3>おでかけの移動</h3>
-    <ul>
+    <details class="fold"><summary>おでかけの移動</summary><div class="fbody"><ul>
       <li><b>子育てタクシー</b>：講習を受けたドライバーが、チャイルドシートの取り付けやベビーカーの積み込みを手伝ってくれるタクシー。市内18区で使える。コースによって事前登録が必要。<a href="https://www.kosodate-taxi.com/" target="_blank" rel="noopener">全国子育てタクシー協会</a>／<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2026_04/04/" target="_blank" rel="noopener">紹介記事</a></li>
       <li><b>シーバス（水上バス）</b>：横浜駅東口・ハンマーヘッド・赤レンガ倉庫・山下公園を結ぶ船。予約不要で、ベビーカーと飲食物の持ち込みOK、船内トイレあり（おむつ替えはないので乗る前に）。横浜駅東口の乗り場には船員の制服を着られるコーナーも。<a href="https://www.yokohama-cruising.jp/contents/seabass.html" target="_blank" rel="noopener">時刻表・料金</a>／<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2026_02/01/" target="_blank" rel="noopener">紹介記事</a></li>
-    </ul>
-    <h3>ベビー・キッズ用品をゆずる・もらう</h3>
-    <ul>
+    </ul></div></details>
+    <details class="fold"><summary>ベビー・キッズ用品をゆずる・もらう</summary><div class="fbody"><ul>
       <li><b>ジモティースポット横浜</b>（井土ヶ谷店・中山店）：使わなくなったベビーカーやチャイルドシート、子ども用自転車、おもちゃを無料・申込不要で引き取ってもらえる。店の品物は安く買える。<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2025_10/04/" target="_blank" rel="noopener">紹介記事</a></li>
       <li><b>SDGsロッカー</b>：まだ食べられるのに捨てられがちなパンなどを、お得な値段で買える無人ロッカー。駅や商業施設など市内に約10台。<a href="https://minnano-iine.city.yokohama.lg.jp/assets/images/article/column/2025_12/05/sdgslocker.pdf" target="_blank" rel="noopener">設置場所（PDF）</a></li>
-    </ul>
-    <h3>パパ・ママ向けの講座や体験</h3>
-    <ul>
+    </ul></div></details>
+    <details class="fold"><summary>パパ・ママ向けの講座や体験</summary><div class="fbody"><ul>
       <li><b>父親育児支援講座</b>：パパと子どものふれあい遊びや夫婦の話し合いなど、0〜3歳の親向けの講座。地域ケアプラザや親子の広場などでときどき開催。<a href="https://pamatoco.city.yokohama.lg.jp/ctz/contents/a045j00000PUNRxAAP/%E7%88%B6%E8%A6%AA%E8%82%B2%E5%85%90%E6%94%AF%E6%8F%B4" target="_blank" rel="noopener">パマトコの案内</a></li>
       <li><b>消防署での子ども向け体験</b>（保育園などの団体向け）：防火衣の試着、消火器や煙の中を歩く体験など。無料・各消防署に事前相談。<a href="https://minnano-iine.city.yokohama.lg.jp/article/special/2025_09/01/" target="_blank" rel="noopener">紹介記事</a></li>
       <li><b>横浜市民防災センター</b>（神奈川区）：ガイド付きツアーや防災の体験プログラム。年4回、縁日やクリスマスと組み合わせた親子イベントもある。</li>
-    </ul>
-    <h3>いざというときの準備</h3>
-    <ul>
+    </ul></div></details>
+    <details class="fold"><summary>いざというときの準備</summary><div class="fbody"><ul>
       <li><b>災害用伝言ダイヤル 171</b>：家族の無事や避難先を声で残せる。毎月1日と15日は練習で使える日。</li>
       <li><b>地域防災拠点の訓練</b>：近くの小中学校などで年に数回。だれでも参加できる。</li>
-    </ul>
-    <h3>アプリ・割引</h3>
-    <ul>
+    </ul></div></details>
+    <details class="fold"><summary>アプリ・割引</summary><div class="fbody"><ul>
       <li><b>パマトコ</b>（横浜市の子育て応援アプリ）：手続きやイベントの情報、ハマハグの登録証の表示など。<a href="https://pamatoco.city.yokohama.lg.jp/ctz/" target="_blank" rel="noopener">パマトコ</a></li>
       <li><b>横浜グリーンエクスポのこども招待</b>：2027年3〜9月の国際園芸博覧会に、市内在住の4〜18歳は1回無料で入れる（3歳以下は無料）。パマトコで申請し、来場日の予約も必要。<a href="https://minnano-iine.city.yokohama.lg.jp/article/column/2026_11/02/" target="_blank" rel="noopener">紹介記事</a></li>
-    </ul>
-    <h3>子連れにやさしい商店街</h3>
-    <ul>
+    </ul></div></details>
+    <details class="fold"><summary>子連れにやさしい商店街</summary><div class="fbody"><ul>
       <li><b>洪福寺松原商店街</b>（天王町駅から歩いて6分）：毎日12〜18時は歩行者天国で、無料の買い物カートあり。約60店。11〜12月は福引大売り出し。<a href="https://kofukuji-matsubara.com/" target="_blank" rel="noopener">公式</a>／<a href="https://minnano-iine.city.yokohama.lg.jp/article/special/2025_12/01/" target="_blank" rel="noopener">紹介記事</a></li>
-    </ul>
+    </ul></div></details>
   </section>
 
   <section class="contact" id="contact">
@@ -1183,16 +1213,26 @@ function renderFoodAll(){
   const html = areas.filter(a => pick === "all" || a.k === pick).map(a => {
     const evs = EVENTS.filter(e => FOOD_OF[e.t] === a.k).length;
     let h = `<div class="farea" data-k="${a.k}"><h3>${esc(a.name)}</h3><p class="for">${evs ? `このエリアのイベント ${evs}件／` : ""}${esc(a.note)}</p>`;
+    // 要点（データから自動で作る）
+    const nm = b => b.n.replace(/[（(].*$/, "").trim(), few = xs => xs.slice(0, 3).map(nm).join("・") + (xs.length > 3 ? ` ほか${xs.length - 3}` : "");
+    const hot = a.baby.filter(b => b.w === true), fed = a.baby.filter(b => b.f === true), nofed = a.baby.filter(b => b.f === false);
+    const pts = [];
+    if (a.baby.length) pts.push(["🍼", hot.length ? `お湯あり：${few(hot)}` : "調乳のお湯は確認できていません（お湯は持参が安心）"]);
+    if (a.baby.length) pts.push(["🚼", (fed.length ? `授乳室あり：${fed.length}か所` : "授乳室は確認できていません") + (nofed.length ? `（授乳室なし：${few(nofed)}）` : "")]);
+    const eat = [a.courts.length ? `フードコート${a.courts.length}` : "", a.free.length ? `離乳食無料${a.free.length}` : "", a.kids.length || a.shops.length ? `子連れで入りやすいお店${a.kids.length + a.shops.length}` : ""].filter(Boolean);
+    if (eat.length) pts.push(["🍽", eat.join("・")]);
+    if (pts.length) h += `<ul class="points">${pts.map(([i, t]) => `<li><span class="pi">${i}</span><span>${esc(t)}</span></li>`).join("")}</ul>`;
+    h += `<details class="fold"${pick !== "all" ? " open" : ""}><summary>くわしく見る（施設${a.baby.length}・お店${a.courts.length + a.free.length + a.kids.length + a.shops.length}）</summary><div class="fbody">`;
     if (a.baby.length) h += `<p class="for"><b>おむつ替え・授乳・お湯</b></p><div class="shops">${a.baby.map(b => bspotHtml(b)).join("")}</div>`;
     if (a.courts.length) h += `<p class="for"><b>🍴 フードコート</b></p><ul class="flist">${a.courts.map(c => li(c.n, `${esc(c.f)}${c.seat ? "・" + esc(c.seat) : ""}<br>${c.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(c.src)}）`)).join("")}</ul>`;
     if (a.free.length) h += `<p class="for"><b>🥣 離乳食が無料でもらえるお店</b></p><ul class="flist">${a.free.map(x => li(x.n, `${esc(x.d || "")}（${esc(x.src || "")}）`)).join("")}</ul>`;
     if (a.kids.length) h += `<p class="for"><b>🍽 子連れで入りやすいお店（${a.kids.length}店）</b></p><ul class="flist">${shopSort(a.kids).map(x => shopLi(x, `${esc(x.k)}<br>${x.tags.map(t => `<span class="ktag">${esc(t)}</span>`).join("")}（${esc(x.src)}）`, a.kids.length > SHOP_COMPACT)).join("")}</ul>`;
     if (a.shops.length) h += `<p class="for"><b>ごはん</b></p><div class="shops">${a.shops.map(shopHtml).join("")}</div>`;
-    return h + `</div>`;
+    return h + `</div></details></div>`;
   }).join("");
   const el = document.getElementById("foodall");
   el.innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>${chips}
-    <p class="lead">おむつ替え・授乳室・調乳用のお湯がある場所と、フードコート、ベビーカーOK・キッズメニューなどが確認できたお店です。印が点線のものは、調べた範囲では確認できなかった設備です。それぞれに「情報の時点」を書いていて、1年以上前の情報や時点が分からないものは黄色で示しています。混み具合や設備は変わることがあるので、行く前に各リンク先を確認してください。</p>${html}`;
+    <details class="fold"><summary>この一覧の見方（点線の印・情報の時点）</summary><div class="fbody"><p class="lead">おむつ替え・授乳室・調乳用のお湯がある場所と、フードコート、ベビーカーOK・キッズメニューなどが確認できたお店です。印が点線のものは、調べた範囲では確認できなかった設備です。それぞれに「情報の時点」を書いていて、1年以上前の情報や時点が分からないものは黄色で示しています。混み具合や設備は変わることがあるので、行く前に各リンク先を確認してください。</p></div></details>${html}`;
   el.querySelectorAll(".achip").forEach(btn => btn.addEventListener("click", () => { FOOD_PICK = btn.dataset.k; renderFoodAll(); }));
 }
 
@@ -2253,6 +2293,22 @@ const RAIN_LABEL = { ok:"雨でもOK", check:"天気に注意", cancel:"雨天�
 
 function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 
+// イベントタブの要点：今週末の件数と、よく使う条件（押すとその条件で絞る）
+function renderEvPoints(){
+  const box = document.getElementById("ev-points"); if (!box || !WEEKENDS.length) return;
+  const W = WEEKENDS[0], wk = EVENTS.filter(e => e.days.some(d => W.ds.includes(d)));
+  const n = f => wk.filter(f).length;
+  const chip = (v, label, c) => `<button type="button" class="pchip" data-flag="${v}" aria-pressed="${state.flags.has(v)}">${label} ${c}件</button>`;
+  box.innerHTML = `<li><span class="pi">📅</span><span>直近の週末（${esc(W.h.replace(/\s.*$/, ""))}）は <b>${wk.length}件</b>。下の日にちボタンで日を選べます。</span></li>
+    <li><span class="pi">👆</span><span>よく使う条件（全期間で絞ります）<span class="pchips">${chip("rain", "☔ 雨でもOK", EVENTS.filter(e => e.rain === "ok").length)}${chip("free", "🆓 完全無料", EVENTS.filter(e => e.price === "free").length)}${chip("noresv", "🎟 予約なし", EVENTS.filter(e => e.resv === false).length)}</span></span></li>
+    <li><span class="pi">🍼</span><span>各カードの「くわしく」に、近くのおむつ替え・授乳室・ごはんがあります。</span></li>`;
+  const sel = document.getElementById("more-sel"); if (sel) { const k = state.flags.size + (state.area !== "all" ? 1 : 0); sel.textContent = k ? `（${k}個選択中）` : ""; }
+}
+document.addEventListener("click", ev => {
+  const c = ev.target.closest("#ev-points .pchip"); if (!c) return;
+  const b = document.querySelector(`.opts[data-key="flags"] .opt[data-v="${c.dataset.flag}"]`); if (b) b.click();
+});
+
 function matches(e){
   if (state.day !== "all" && !e.days.includes(state.day)) return false;
   if (state.age !== "all") {
@@ -2697,6 +2753,7 @@ function initNear(){
 }
 
 function render(){
+  if (typeof renderEvPoints === "function") renderEvPoints();
   const hit = EVENTS.filter(matches);
   if (typeof renderNear === "function" && near.c) setTimeout(renderNear, 0);
   document.getElementById("n").textContent = hit.length;
@@ -3086,7 +3143,7 @@ document.addEventListener("click", ev => {
 { let tq = null, last = ""; const q = document.getElementById("q");
   if (q) q.addEventListener("input", () => { clearTimeout(tq); tq = setTimeout(() => { const v = q.value.trim(); if (v && v !== last) { last = v; track("search", v, document.getElementById("n") ? document.getElementById("n").textContent + "件" : ""); } }, 1500); }); }
 // ---- ページの切り替え（タブ） ----
-const TABS = { events:["#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], life:["#life"], chains:["#chains"], help:["#help"], contact:["#contact"] };
+const TABS = { events:["#ev-points","#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], life:["#life"], chains:["#chains"], help:["#help"], contact:["#contact"] };
 { const cb = document.getElementById("chains-body"); if (cb) cb.innerHTML = `<h3>離乳食・子ども無料のチェーン</h3><ul class="chains">${BABYFOOD_CHAINS.map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>
   <h3>ファミレスの子ども向けサービス</h3><ul class="chains">${CHAINS.filter(c => c.n !== "デニーズ").map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>`; }
 function showTab(name, scroll){
