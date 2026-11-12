@@ -1040,7 +1040,7 @@ function famiresHtml(e){
 }
 function foodHtml(e){
   const k = FOOD_OF[e.t]; if (!k) return "";
-  const a = FOOD[k];
+  const a = FOOD[k]; if (!a || !a.shops.length) return "";
   return `<details class="food"><summary>近くのごはん（${esc(a.name)}・${a.shops.length}件）</summary>
     <p class="note">${esc(a.note)}</p><div class="shops">${a.shops.map(shopHtml).join("")}</div></details>`;
 }
@@ -1141,6 +1141,10 @@ const BABY = {
   "centerkita": [
     { n:"モザイクモール港北", where:"館内（授乳室付きファミリールーム）", d:true, f:true, w:null, ex:["ベビーカー貸出"],
       note:"センター北駅前。牛久保公園からは歩いて行ける距離です。", url:"https://summer.walkerplus.com/odekake/detail/ar0314s11739/data.html", src:"ウォーカープラス" }
+  ],
+  "tressa": [
+    { n:"トレッサ横浜", where:"ベビー休憩室4か所：北棟3F「森の授乳室」・南棟3F「ベビールーム」・南棟2F「グルメタウン」・南棟1F「オリーブ広場」", d:true, f:true, w:true, ex:["ベビーカー・車型カート貸出（100円返却式）","キッズトイレ（北棟3F・南棟2F）","一時預かり託児所（南棟1F）"],
+      note:"4か所とも個室の授乳室と温水サーバーあり。食事スペースは北棟3Fの森の授乳室だけ。紙おむつの自販機は南棟3F。ベビーカーは2か月〜4歳（北棟2F・南棟2F）、車型カートは1〜4歳未満（北棟3F）、返却は19:45まで。", url:"https://www.tressa-yokohama.jp/shop/page.jsp?id=10", src:"トレッサ横浜 公式" }
   ]
 };
 function bi(label, v){ const c = v === true ? "y" : v === false ? "n" : "u"; const t = v === null ? label + "？" : label; return `<li class="bi ${c}">${t}</li>`; }
@@ -1160,7 +1164,7 @@ const SPOT_GEO = {
   "横浜赤レンガ倉庫":[35.4527,139.6430], "横浜ハンマーヘッド":[35.4575,139.6440], "象の鼻テラス":[35.4507,139.6418],
   "横浜マリンタワー":[35.4440,139.6510], "THE WHARF HOUSE 山下公園":[35.4458,139.6502], "横浜中華街":[35.4425,139.6460],
   "そごう横浜店":[35.4655,139.6240], "高島屋横浜店 6F（子ども服売り場）":[35.4648,139.6205], "三溪園":[35.4170,139.6620],
-  "こどもの国":[35.5623,139.4914], "よこはま動物園ズーラシア":[35.4950,139.5260], "モザイクモール港北":[35.5465,139.5760]
+  "こどもの国":[35.5623,139.4914], "よこはま動物園ズーラシア":[35.4950,139.5260], "モザイクモール港北":[35.5465,139.5760], "トレッサ横浜":[35.5235,139.6445]
 };
 function venueGeo(e){ const s = e.venue + " " + e.t; for (const [re, g] of VENUE_GEO) if (re.test(s)) return g; return null; }
 function walkHtml(e, b){
@@ -1257,7 +1261,7 @@ const ASOF = {
   "横浜赤レンガ倉庫":[2026,1,"2026年1月以前の取材"], "横浜ハンマーヘッド":[2025,5], "象の鼻テラス":[2024,3], "横浜マリンタワー":[2025,5],
   "THE WHARF HOUSE 山下公園":[2024,3], "横浜中華街":null, "そごう横浜店":null,
   "高島屋横浜店 6F（子ども服売り場）":[2026,11,"2026年11月（利用者の情報）"], "三溪園":[2020,10], "こどもの国":null,
-  "よこはま動物園ズーラシア":[2024,3], "モザイクモール港北":null,
+  "よこはま動物園ズーラシア":[2024,3], "モザイクモール港北":null, "トレッサ横浜":[2026,11,"2026年11月（公式ページ）"],
   "24/7 restaurant（東急スクエア③ 3F）":[2024,3], "アロハテーブル コレットマーレみなとみらい":[2024,3], "モスプレミアム 桜木町クロスゲート店":null,
   "資生堂パーラー 横浜高島屋店（6F）":[2024,3], "三溪園の茶店（待春軒など）":null, "園内のレストラン・売店":null,
   "オージーヒルグリル（園内）":[2022,3], "サバンナテラス（園内）":null, "cafe fredy モザイクモール港北店（1F）":null, "木曽路 港北ニュータウン店":null
@@ -1587,7 +1591,7 @@ EVENTS.push(
     price:"free", priceText:"無料（駐車場も全日無料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
     resv:false, resvText:"予約不要", age:[0,6], ageText:"0歳〜未就学児", kind:"ongoing", start:600, freeplay:true,
     sum:"乳幼児向けの小さな遊具とマットの無料キッズスペースが2か所。ベビー休憩室が4か所あり、電子レンジとウォーターサーバー（お湯）も使える。",
-    tip:"車で行くなら一番気楽。週末は駐車場がいっぱいになる時間もある", url:"https://www.kouhokushakyo.or.jp/feature/9581/", src:"港北区社会福祉協議会（2024年）・コズレ" },
+    tip:"車で行くなら一番気楽。週末は駐車場がいっぱいになる時間もある。授乳室・ベビーカー貸出などは公式の「小さなお子様をお連れのご家族へ」にまとまっている", url:"https://www.kouhokushakyo.or.jp/feature/9581/", src:"港北区社会福祉協議会（2024年）・コズレ・トレッサ横浜 公式（2026年11月）" },
   { t:"港北TOKYU S.C.「赤ちゃん休憩室」内キッズスペース", days:[], time:"施設の営業時間内", ward:"都筑区", venue:"港北TOKYU S.C.（センター南）",
     price:"free", priceText:"無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
     resv:false, resvText:"予約不要", age:[0,3], ageText:"0〜3歳ごろ", kind:"ongoing", start:600, freeplay:true,
@@ -1969,6 +1973,7 @@ for (const e of EVENTS) {
   }
 }
 Object.assign(FOOD_OF, {
+  "トレッサ横浜 無料キッズスペース（駐車場も無料）":"tressa", "トレッサ横浜 遊Kids愛ランド／キンダープラッツ":"tressa", "わくわくアイスワールド（トレッサ横浜の屋内スケートリンク）":"tressa",
   "名探偵コナン 芸術花火2026":"yamashita", "Vintage & Artisan Market in みなとみらい（蚤の市）":"mm",
   "こどもの国 冬のブラスフェス":"kodomonokuni", "こどもの国 もみじのかざぐるま":"kodomonokuni", "こどもの国 自然スタンプビンゴ＜紅葉バージョン＞":"kodomonokuni",
   "こどもの国 工作教室「ヒツジをつくろう」":"kodomonokuni", "こどもの国 エコスポ！フェス2026":"kodomonokuni",
