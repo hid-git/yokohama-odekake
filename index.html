@@ -486,7 +486,11 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <a href="#events" data-tab="events">📅 イベント</a><a href="#near" data-tab="near">📍 近くで探す</a><a href="#foodall" data-tab="foodall">🍽 ごはん・おむつ</a><a href="#posts" data-tab="posts">✏️ みんなの投稿</a><a href="#life" data-tab="life">🧺 くらし</a><a href="#chains" data-tab="chains">🥣 チェーン店の子ども特典</a><a href="#help" data-tab="help">🏥 困ったとき</a><a href="#contact" data-tab="contact">✉️ お問い合わせ</a>
   </nav>
 
-  <ul class="points" id="ev-points" aria-label="イベントの要点"></ul>
+  <ul class="points" id="ev-points" aria-label="イベントの要点">
+    <li><span class="pi">📅</span><span>日にちと年齢で絞れます。週末・祝日に加えて、クリスマスや年末年始の平日も載せています。</span></li>
+    <li><span class="pi">☔</span><span>雨でもOK・完全無料・予約なし・のりもの・動物などの条件でも絞れます。</span></li>
+    <li><span class="pi">🍼</span><span>各イベントに、近くのおむつ替え・授乳室・調乳のお湯と、子連れで入りやすいごはんを付けています。</span></li>
+  </ul>
   <div class="areabar evarea" id="evarea" role="group" aria-label="エリアでイベントを絞る"></div>
   <div class="weather" aria-label="週末の天気予報">
     <div class="wxrow" id="wxrow"></div>
@@ -533,7 +537,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 
   <div class="count"><span><b id="n">0</b> 件を表示（全 <span id="total">0</span> 件）</span><button class="reset" id="reset" type="button">条件をリセット</button></div>
 
-  <div id="results"></div>
+  <div id="results"><noscript><p class="linknote">イベントの一覧はJavaScriptで表示しています。ブラウザの設定でJavaScriptを有効にしてください。</p></noscript></div>
 
   <section class="posts" id="posts" aria-label="みんなの投稿">
     <h2>みんなの投稿（赤ちゃん設備）</h2>
@@ -580,7 +584,15 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <div id="near-out"></div>
   </section>
 
-  <section class="foodall" id="foodall" aria-label="エリア別のごはん"></section>
+  <section class="foodall" id="foodall" aria-label="エリア別のごはん">
+    <h2>エリア別 赤ちゃん設備とごはん</h2>
+    <ul class="points static">
+      <li><span class="pi">🍼</span><span>エリアごとに、おむつ替え・授乳室・調乳のお湯があるかを分けて載せています。</span></li>
+      <li><span class="pi">🍽</span><span>フードコート、離乳食が無料のお店、キッズメニューやベビーカーOKのお店もまとめています。</span></li>
+      <li><span class="pi">📍</span><span>エリアを選ぶとそのエリアだけ見られます。お湯のある場所の近くのイベントは、イベントのタブの「近くで調乳のお湯がもらえる」で探せます。</span></li>
+    </ul>
+    <noscript><p class="linknote">施設とお店の一覧はJavaScriptで表示しています。</p></noscript>
+  </section>
 
   <section class="help" id="chains" aria-label="チェーン店の子ども向けサービス">
     <h2>チェーン店の子ども向けサービス</h2>
@@ -1242,7 +1254,8 @@ function renderFoodAll(){
     return h + `</div></details></div>`;
   }).join("");
   const el = document.getElementById("foodall");
-  el.innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>${chips}
+  const sp = el.querySelector(".points.static"), spHtml = sp ? sp.outerHTML : "";
+  el.innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>${spHtml}${chips}
     <details class="fold"><summary>この一覧の見方（点線の印・情報の時点）</summary><div class="fbody"><p class="lead">おむつ替え・授乳室・調乳用のお湯がある場所と、フードコート、ベビーカーOK・キッズメニューなどが確認できたお店です。印が点線のものは、調べた範囲では確認できなかった設備です。それぞれに「情報の時点」を書いていて、1年以上前の情報や時点が分からないものは黄色で示しています。混み具合や設備は変わることがあるので、行く前に各リンク先を確認してください。</p></div></details>${html}`;
   el.querySelectorAll(".achip").forEach(btn => btn.addEventListener("click", () => { FOOD_PICK = btn.dataset.k; renderFoodAll(); }));
 }
