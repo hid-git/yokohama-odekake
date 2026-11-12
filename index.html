@@ -2921,7 +2921,7 @@ document.addEventListener("click", ev => {
 // ---- 使われ方の記録（自分のGoogleスプレッドシートに匿名でためる。公開サイトでだけ動く） ----
 // TRACK_URL は Apps Script の「ウェブアプリ」のURL（tools/tracking-apps-script.gs を参照）。空なら何も送らない。
 const TRACK_URL = "";
-const TRACK_ON = !!TRACK_URL && /github\.io$/.test(location.hostname);
+const TRACK_ON = !!TRACK_URL && /(github\.io|kidstrip\.jp)$/.test(location.hostname);
 let TRACK_VID = ""; try { TRACK_VID = localStorage.getItem("vid") || ""; if (!TRACK_VID) { TRACK_VID = Math.random().toString(36).slice(2, 10); localStorage.setItem("vid", TRACK_VID); } } catch (_) {}
 const TRACK_DEV = /iPhone|iPod/.test(navigator.userAgent) ? "iPhone" : /iPad/.test(navigator.userAgent) ? "iPad" : /Android/.test(navigator.userAgent) ? (/Mobile/.test(navigator.userAgent) ? "Androidスマホ" : "Androidタブレット") : "PC";
 const TRACK_APP = /\bLine\//i.test(navigator.userAgent) ? "LINEアプリ内" : /Instagram/.test(navigator.userAgent) ? "Instagramアプリ内" : /FBAN|FBAV/.test(navigator.userAgent) ? "Facebookアプリ内" : "ブラウザ";
