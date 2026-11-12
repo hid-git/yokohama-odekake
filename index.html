@@ -439,7 +439,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
   </header>
 
   <nav class="jump tabs" id="tabs" aria-label="ページの切り替え">
-    <a href="#events" data-tab="events">📅 イベント</a><a href="#near" data-tab="near">📍 近くで探す</a><a href="#foodall" data-tab="foodall">🍽 ごはん・おむつ</a><a href="#posts" data-tab="posts">✏️ みんなの投稿</a><a href="#life" data-tab="life">🧺 くらし</a><a href="#help" data-tab="help">🏥 困ったとき</a><a href="#contact" data-tab="contact">✉️ お問い合わせ</a>
+    <a href="#events" data-tab="events">📅 イベント</a><a href="#near" data-tab="near">📍 近くで探す</a><a href="#foodall" data-tab="foodall">🍽 ごはん・おむつ</a><a href="#posts" data-tab="posts">✏️ みんなの投稿</a><a href="#life" data-tab="life">🧺 くらし</a><a href="#chains" data-tab="chains">🥣 チェーン店の子ども特典</a><a href="#help" data-tab="help">🏥 困ったとき</a><a href="#contact" data-tab="contact">✉️ お問い合わせ</a>
   </nav>
 
   <div class="areabar evarea" id="evarea" role="group" aria-label="エリアでイベントを絞る"></div>
@@ -528,6 +528,12 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
   </section>
 
   <section class="foodall" id="foodall" aria-label="エリア別のごはん"></section>
+
+  <section class="help" id="chains" aria-label="チェーン店の子ども向けサービス">
+    <h2>チェーン店の子ども向けサービス</h2>
+    <p class="small">離乳食が無料・子どもの料金が無料などのサービスがあるチェーン店です。お店の場所とは関係なく、参考としてまとめています。近くにお店があるかは地図で確認してください。ベビーチェアやおむつ台があるかは、同じチェーンでも店によって違います。</p>
+    <div id="chains-body"></div>
+  </section>
 
   <section class="help" id="help" aria-label="困ったときの連絡先">
     <h2>おでかけ中に困ったら</h2>
@@ -1150,11 +1156,7 @@ function renderFoodAll(){
   }).join("");
   const el = document.getElementById("foodall");
   el.innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>${chips}
-    <p class="lead">おむつ替え・授乳室・調乳用のお湯がある場所と、フードコート、ベビーカーOK・キッズメニューなどが確認できたお店です。印が点線のものは、調べた範囲では確認できなかった設備です。それぞれに「情報の時点」を書いていて、1年以上前の情報や時点が分からないものは黄色で示しています。混み具合や設備は変わることがあるので、行く前に各リンク先を確認してください。</p>${html}
-    <details class="food chainref"><summary>チェーン店の子ども向けサービス（参考・お店の場所とは関係ありません）</summary>
-    <p class="for"><b>離乳食・子ども無料のチェーン</b></p><ul class="chains">${BABYFOOD_CHAINS.map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>
-    <p class="for"><b>ファミレスの子ども向けサービス</b></p><ul class="chains">${CHAINS.filter(c => c.n !== "デニーズ").map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>
-    <p class="note">近くにお店があるかは地図で確認してください。ベビーチェアやおむつ台があるかは、同じチェーンでも店によって違います。</p></details>`;
+    <p class="lead">おむつ替え・授乳室・調乳用のお湯がある場所と、フードコート、ベビーカーOK・キッズメニューなどが確認できたお店です。印が点線のものは、調べた範囲では確認できなかった設備です。それぞれに「情報の時点」を書いていて、1年以上前の情報や時点が分からないものは黄色で示しています。混み具合や設備は変わることがあるので、行く前に各リンク先を確認してください。</p>${html}`;
   el.querySelectorAll(".achip").forEach(btn => btn.addEventListener("click", () => { FOOD_PICK = btn.dataset.k; renderFoodAll(); }));
 }
 
@@ -2912,7 +2914,9 @@ document.addEventListener("click", ev => {
   OUTFIT_DAY = i; renderOutfit();
 });
 // ---- ページの切り替え（タブ） ----
-const TABS = { events:["#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], life:["#life"], help:["#help"], contact:["#contact"] };
+const TABS = { events:["#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], life:["#life"], chains:["#chains"], help:["#help"], contact:["#contact"] };
+{ const cb = document.getElementById("chains-body"); if (cb) cb.innerHTML = `<h3>離乳食・子ども無料のチェーン</h3><ul class="chains">${BABYFOOD_CHAINS.map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>
+  <h3>ファミレスの子ども向けサービス</h3><ul class="chains">${CHAINS.filter(c => c.n !== "デニーズ").map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>`; }
 function showTab(name, scroll){
   if (!TABS[name]) name = "events";
   for (const [k, sels] of Object.entries(TABS)) sels.forEach(sel => document.querySelectorAll(sel).forEach(el => { el.hidden = k !== name; }));
