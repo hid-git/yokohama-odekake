@@ -1476,6 +1476,11 @@ EVENTS.push(
     resv:false, resvText:"当日10:00から会場で参加券を配布（各回20名）", age:[3,12], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:660,
     sum:"スライムかチョコボの素焼き人形に色をぬるワークショップ（Winter Holiday 2026の企画）。",
     tip:"絵の具が服につくことがあるので汚れてもいい服で", url:"https://yokohama-landmark.jp/lp/winterholiday2026/", src:"横浜・みなとみらい Winter Holiday 2026 公式", asof:"2026年11月12日" },
+  { t:"抱っこdeシネマ（赤ちゃん連れで見られる映画の回・MARK IS 5F）", days:["11/19","11/26"], time:"上映時間は劇場のページで確認（ふつう木曜）", ward:"西区", venue:"ローソン・ユナイテッドシネマ STYLE-S みなとみらい（MARK IS みなとみらい 5F）",
+    price:"paid", priceText:"通常料金。3歳未満は原則無料（座席を使う場合や一部の作品は有料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
+    resv:null, resvText:"劇場のホームページか窓口でチケットを買う", age:[0,2], ageText:"赤ちゃん・小さな子と保護者（親が見る映画の回）", kind:"limited", start:600,
+    sum:"音を小さめにして照明を完全には消さない、赤ちゃん連れ向けの上映回。親が見たい映画を赤ちゃんと一緒に見られる。11/19は「ゴジラ-0.0」、11/26は「映画ちいかわ 人魚の島のひみつ」。",
+    tip:"みなとみらいで上映するか・時間は劇場ごとに違うので、作品ページの「上映劇場・上映時間」で確認を。ベビーカーは入場時にスタッフに預けられる", url:"https://www.unitedcinemas.jp/dakko_de_cinema/", src:"ユナイテッド・シネマ 公式・MARK IS 公式「ママイズ」", asof:"2026年11月12日" },
   { t:"みんなの庭 秋の収穫体験（東京ガスのキッチンで試食・MARK IS）", days:["11/14","11/15"], time:"10:00〜12:00／14:00〜16:00", ward:"西区", venue:"MARK IS みなとみらい 5F屋上「みんなの庭」・4F 東京ガス横浜ショールーム",
     price:"free", priceText:"無料", place:"屋内・屋外", rain:"check", rainText:"天気が悪いと内容変更、荒天は中止",
     resv:true, resvText:"事前申込・先着（東京ガス横浜ショールームのイベントページから）。各回6組12名", age:[4,12], ageText:"4歳〜小学生と保護者の2人1組", kind:"limited", start:600,
@@ -1997,6 +2002,7 @@ for (const e of EVENTS) {
   }
 }
 Object.assign(FOOD_OF, {
+  "抱っこdeシネマ（赤ちゃん連れで見られる映画の回・MARK IS 5F）":"mm",
   "みんなの庭 秋の収穫体験（東京ガスのキッチンで試食・MARK IS）":"mm", "みんなの庭 秋のミニランタン作り（MARK IS）":"mm", "みんなの庭 植物のクリスマスオーナメント作り（MARK IS）":"mm",
   "アドベンチャーアイランド ららぽーと横浜":"lalaport", "ディノグランプリ！（恐竜をぬって走らせるデジタル体験）":"lalaport",
   "よこはまコスモワールド（入園無料・キッズカーニバル・ゾーン）":"mm", "横浜美術館「じゆうエリア」（無料・親子で絵本の「くつぬぎスポット」）":"mm",
