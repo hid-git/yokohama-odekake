@@ -2164,7 +2164,7 @@ function matches(e){
   if (state.flags.has("paidplay") && !e.paidplay) return false;
   if (state.flags.has("weekday") && !e.wk) return false;
   if (state.flags.has("hot") && !hasHotWater(e)) return false;
-  if (state.area !== "all" && e.ward !== state.area) return false;
+  if (state.area !== "all" && !e.ward.split("・").includes(state.area)) return false;
   if (state.q) {
     const hay = (e.t + e.sum + e.venue + e.ward + (e.tip||"")).toLowerCase();
     if (!hay.includes(state.q.toLowerCase())) return false;
@@ -2631,9 +2631,11 @@ function render(){
 }
 
 function setupAreas(){
-  const wards = [...new Set(EVENTS.map(e => e.ward))];
-  const order = ["中区","西区","神奈川区","港北区","都筑区","青葉区","緑区","港南区","旭区","瀬谷区","磯子区","金沢区"];
-  wards.sort((a,b) => order.indexOf(a) - order.indexOf(b));
+  // 「中区・西区」のように複数の区にまたがるイベントは、それぞれの区で出す
+  const wards = [...new Set(EVENTS.flatMap(e => e.ward.split("・")))];
+  const order = ["中区","西区","神奈川区","鶴見区","港北区","都筑区","青葉区","緑区","保土ケ谷区","旭区","瀬谷区","泉区","戸塚区","栄区","港南区","南区","磯子区","金沢区"];
+  const oi = w => { const i = order.indexOf(w); return i < 0 ? 99 : i; };
+  wards.sort((a,b) => oi(a) - oi(b));
   const box = document.getElementById("area-opts");
   box.innerHTML = `<button class="opt" id="f-area-all" data-v="all" aria-pressed="true">すべて</button>` +
     wards.map((w,i) => `<button class="opt" id="f-area-${i}" data-v="${w}" aria-pressed="false">${w}</button>`).join("");
