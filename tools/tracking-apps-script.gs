@@ -5,6 +5,8 @@
  * - 月ごとに「2026-11」のような名前のシートを自動で作って、1行ずつ追記します。
  * - 「まとめ」シートに、月ごとの合計と、よく検索された言葉・よく見られたイベント・出発駅などを毎日書き出します。
  * - 経路検索の「内容」には出発駅と、イベント当日に調べたか（当日／前もって）が入ります。
+ * - 全部の記録に、端末の言語と時間帯の設定（例：Asia/Tokyo）から出した「日本・海外」のめやすを付けます（位置は使いません）。
+ * - 0件だった検索、カードの「くわしく」を開いた回数、「残りを見る」が押された回数もまとめに出します。
  * - 出発駅・近くで探すの駅から「地域」（例：神奈川県横浜市中区）と「横浜市内／神奈川県内／県外」を出します。
  *   現在地は位置を送らず、サイト側で「横浜市のあたり／神奈川県内／県外」の大まかな区分にしてから送ります。
  *
@@ -19,8 +21,8 @@
  */
 
 const TZ = "Asia/Tokyo";
-const HEADER = ["日時", "種類", "内容", "イベント・お店", "端末", "アプリ", "来た場所", "訪問者ID", "タブ", "地域", "地域の区分"];
-const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク", origin:"出発駅", near:"近くで探す" };
+const HEADER = ["日時", "種類", "内容", "イベント・お店", "端末", "アプリ", "来た場所", "訪問者ID", "タブ", "地域", "地域の区分", "言語", "時間帯の設定", "日本・海外"];
+const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク", origin:"出発駅", near:"近くで探す", detail:"くわしくを開いた", more:"残りを見る" };
 
 function doPost(e) {
   try {
@@ -30,7 +32,7 @@ function doPost(e) {
     const now = new Date();
     const sh = monthSheet_(Utilities.formatDate(now, TZ, "yyyy-MM"));
     const area = areaOf_(d.type, cut(d.value, 200));
-    sh.appendRow([Utilities.formatDate(now, TZ, "yyyy/MM/dd HH:mm:ss"), TYPES[d.type], cut(d.value, 200), cut(d.target, 200), cut(d.dev, 20), cut(d.app, 20), cut(d.ref, 100), cut(d.vid, 12), cut(d.page, 40), area[0], area[1]]);
+    sh.appendRow([Utilities.formatDate(now, TZ, "yyyy/MM/dd HH:mm:ss"), TYPES[d.type], cut(d.value, 200), cut(d.target, 200), cut(d.dev, 20), cut(d.app, 20), cut(d.ref, 100), cut(d.vid, 12), cut(d.page, 40), area[0], area[1], cut(d.lang, 10), cut(d.tz, 40), cut(d.jp, 4)]);
     return out_("ok");
   } catch (err) {
     return out_("error");
@@ -109,7 +111,13 @@ function updateSummary() {
   const top = (type, col) => { const c = {}; latest.v.filter(r => r[1] === type).forEach(r => { const k = r[col]; if (k) c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };
   const top2_ = () => { const c = {}; latest.v.filter(r => r[10]).forEach(r => c[r[10]] = (c[r[10]] || 0) + 1); return Object.entries(c).sort((a, b) => b[1] - a[1]); };
   const top3_ = () => { const c = {}; latest.v.filter(r => r[9]).forEach(r => c[r[9]] = (c[r[9]] || 0) + 1); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };
-  const blocks = [["よく検索された言葉", top("検索", 2)], ["公式サイトがよく開かれたイベント", top("公式サイト", 3)], ["経路検索が多いイベント", top("経路検索", 3)], ["よく使われた絞り込み", top("絞り込み", 2)], ["入力された出発駅", top("出発駅", 2)], ["近くで探す（駅・現在地）", top("近くで探す", 2)], ["見ている人の地域の区分（出発駅・近くで探すから）", top2_()], ["見ている人の地域（市区町村）", top3_()], ["来た場所", top("ページ表示", 6)], ["端末", top("ページ表示", 4)], ["アプリ", top("ページ表示", 5)]];
+  const count_ = list => { const c = {}; list.forEach(k => { if (k) c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };
+  const zero_ = () => count_(latest.v.filter(r => r[1] === "検索" && r[3] === "0件").map(r => r[2]));
+  // 訪問者ごとに1回だけ数える：日本・海外、言語
+  const perVisitor_ = col => { const seen = {}; latest.v.forEach(r => { if (r[7] && r[col] && !seen[r[7]]) seen[r[7]] = r[col]; }); return count_(Object.values(seen)); };
+  // 出発駅・近くで探すから地域が分かった訪問者だけ、訪問者ごとに1回数える
+  const visitorArea_ = () => { const seen = {}; latest.v.forEach(r => { if (r[7] && r[10] && r[10] !== "分からない") seen[r[7]] = r[10]; }); return count_(Object.values(seen)); };
+  const blocks = [["日本・海外（訪問者数・端末の時間帯の設定から）", perVisitor_(13)], ["訪問者の地域（出発駅・近くで探すを使った人）", visitorArea_()], ["言語（訪問者数）", perVisitor_(11)], ["0件だった検索（載せていないもの）", zero_()], ["よく開かれた「くわしく」", top("くわしくを開いた", 2)], ["「残りを見る」が押された見出し", top("残りを見る", 2)], ["よく検索された言葉", top("検索", 2)], ["公式サイトがよく開かれたイベント", top("公式サイト", 3)], ["経路検索が多いイベント", top("経路検索", 3)], ["よく使われた絞り込み", top("絞り込み", 2)], ["入力された出発駅", top("出発駅", 2)], ["近くで探す（駅・現在地）", top("近くで探す", 2)], ["見ている人の地域の区分（出発駅・近くで探すから）", top2_()], ["見ている人の地域（市区町村）", top3_()], ["来た場所", top("ページ表示", 6)], ["端末", top("ページ表示", 4)], ["アプリ", top("ページ表示", 5)]];
   let r0 = rows.length + 4;
   sum.getRange(r0 - 1, 1).setValue(latest.m + " のランキング").setFontWeight("bold");
   blocks.forEach(([title, list], i) => {

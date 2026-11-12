@@ -2881,6 +2881,18 @@ bind();
 render();
 renderFoodAll();
 initPosts();
+// カードの「くわしく」（ごはん・おむつ・行き方など）を開いたとき
+document.addEventListener("toggle", ev => {
+  if (!TRACK_ON) return;
+  const d = ev.target; if (!d || d.tagName !== "DETAILS" || !d.open) return;
+  const sm = d.querySelector("summary"), label = sm ? sm.textContent.replace(/[（(].*$/, "").trim().slice(0, 40) : "";
+  const where = d.closest("[data-ev]"); track("detail", label, where ? where.dataset.ev : "");
+}, true);
+document.addEventListener("click", ev => {
+  if (!TRACK_ON) return;
+  const b = ev.target.closest(".morebtn"); if (!b) return;
+  const g = b.closest("section"), h = g && g.querySelector("h2"); track("more", h ? h.firstChild.textContent.trim().slice(0, 40) : "");
+});
 { const o = document.getElementById("origin"); if (o) { o.value = ORIGIN; o.addEventListener("change", ev => setOrigin(ev.target.value)); } }
 { const a = document.getElementById("arrive"); if (a) { a.value = ARRIVE; a.addEventListener("change", ev => setArrive(ev.target.value)); document.getElementById("arrive-clear").addEventListener("click", () => { a.value = ""; setArrive(""); }); } }
 initNear();
@@ -2924,6 +2936,10 @@ const TRACK_URL = "";
 const TRACK_ON = !!TRACK_URL && /(github\.io|kidstrip\.jp)$/.test(location.hostname);
 let TRACK_VID = ""; try { TRACK_VID = localStorage.getItem("vid") || ""; if (!TRACK_VID) { TRACK_VID = Math.random().toString(36).slice(2, 10); localStorage.setItem("vid", TRACK_VID); } } catch (_) {}
 const TRACK_DEV = /iPhone|iPod/.test(navigator.userAgent) ? "iPhone" : /iPad/.test(navigator.userAgent) ? "iPad" : /Android/.test(navigator.userAgent) ? (/Mobile/.test(navigator.userAgent) ? "Androidスマホ" : "Androidタブレット") : "PC";
+let TRACK_TZ = ""; try { TRACK_TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (_) {}
+const TRACK_LANG = (navigator.language || "").slice(0, 10);
+// 端末の時間帯の設定から、日本か海外かのめやすを出す（位置は使わない）
+const TRACK_JP = TRACK_TZ ? (TRACK_TZ === "Asia/Tokyo" ? "日本" : "海外") : "";
 const TRACK_APP = /\bLine\//i.test(navigator.userAgent) ? "LINEアプリ内" : /Instagram/.test(navigator.userAgent) ? "Instagramアプリ内" : /FBAN|FBAV/.test(navigator.userAgent) ? "Facebookアプリ内" : "ブラウザ";
 // 現在地は送らず、「横浜市のあたり／神奈川県内／県外」の大まかな区分だけにする（範囲は目安）
 function coarseArea(c){
@@ -2936,7 +2952,7 @@ function track(type, value, target){
   if (!TRACK_ON) return;
   const qs = new URLSearchParams(location.search);
   let ref = qs.get("utm_source") || qs.get("ref") || ""; if (!ref) { try { ref = document.referrer ? new URL(document.referrer).hostname : ""; } catch (_) {} }
-  const body = JSON.stringify({ type, value: String(value || "").slice(0, 200), target: String(target || "").slice(0, 200), dev: TRACK_DEV, app: TRACK_APP, ref: ref.slice(0, 100), vid: TRACK_VID, page: (location.hash || "#events").slice(0, 40) });
+  const body = JSON.stringify({ type, value: String(value || "").slice(0, 200), target: String(target || "").slice(0, 200), dev: TRACK_DEV, app: TRACK_APP, ref: ref.slice(0, 100), vid: TRACK_VID, page: (location.hash || "#events").slice(0, 40), lang: TRACK_LANG, tz: TRACK_TZ.slice(0, 40), jp: TRACK_JP });
   try { if (navigator.sendBeacon) navigator.sendBeacon(TRACK_URL, new Blob([body], { type: "text/plain" })); else fetch(TRACK_URL, { method: "POST", body, mode: "no-cors", keepalive: true }); } catch (_) {}
 }
 track("pageview", document.title);
