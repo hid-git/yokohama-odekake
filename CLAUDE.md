@@ -19,6 +19,7 @@
    - 1件ずつ `EVENTS.push(...)` で追加。項目：`t, days, time, ward, venue, price("free"/"paid"/"admission"/"unknown"), priceText, place, rain("ok"/"cancel"/"check"), rainText, resv, resvText, age:[下,上], ageText, kind("limited"/"ongoing"), start(分), sum, tip, url, src, asof:"2026年○月○日"`。
    - 遊び場・動物・乗り物などは既存のフラグ（`freeplay` `paidplay` `animal` `ride` `wk`）を付ける。
    - 会場の位置が `VENUE_GEO` にないときは、正規表現と緯度経度を足す（近くのごはん・トイレ・フードコートの「歩いて10分以内」に使う）。
+   - `sources.md` の「ショッピングモールの子連れ設備」の候補から、毎日1〜3か所ずつ公式で調べて `BABY` に足す（まだ載っていないモールを優先）。
 4. **確認**：Playwright（`/usr/bin/google-chrome`）でページを開き、JSのエラーが0件で、各見出しにカードが出ることを確かめる。
 5. **英語版**：`en/index.html` の `EVENTS`（冬のイベントなど）から終わったものを外し、海外の家族に向く大きなイベント（みなとみらい・中華街・山下公園・動物園など）が始まるときは英語で足す。`SPOTS` の料金・時間が日本語版で変わったら合わせる。`ASOF` の日付も直す。区のおはなし会のような地元向けのものは入れない。
 6. **反映**：変更があれば `sitemap.xml` の `lastmod` を今日の日付にして、main に commit して push。変更がなければ何もしない。
