@@ -47,6 +47,11 @@
 
 - 足したら、この候補から消す。
 
+## 区ごとの無料の室内遊び場（2026年11月に全区ぶん入れた）
+- 地域子育て支援拠点（各区＋サテライト、28か所）：https://www.city.yokohama.lg.jp/kosodate-kyoiku/kosodateshien/asobiba/support.html 。休館・移転（こっころサテライトの代わりのひろばなど）が変わったら直す。
+- 地区センターのプレイルーム（2024年度にリニューアルした27館）：https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/chiikishisetsu/playroom.html 。プレイルームは市内79館にあるので、ほかの地区センターも区の公式で見つけたら足す。
+- 各拠点の開館日・時間、授乳室・お湯は、拠点の公式サイトで確かめて `sum`・`time` に足していく（まだ「公式で確認」のまま）。
+
 ## 公園（遊具・広場。「会期中ずっと」の遊び場として載せる。公園のイベントも見る）
 - 横浜市 代表的な公園一覧：https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/koen/daihyoteki/kouen003.html
 - 横浜市緑の協会（三ツ沢・金沢自然公園など市の公園の管理者）：https://www.hama-midorinokyokai.or.jp/
