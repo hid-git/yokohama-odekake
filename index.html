@@ -3048,22 +3048,23 @@ function mapsUrl(e){ return "https://www.google.com/maps/dir/?api=1&travelmode=t
 function accessHtml(e){
   const k = accessKey(e);
   const go = `<a class="more" href="${esc(mapsUrl(e))}" target="_blank" rel="noopener">経路を調べる（Googleマップ）</a>`;
-  if (!k) return `<details class="acc"><summary>行き方・ベビーカー動線・トイレ・駐車場・駐輪場</summary>${accPoints(e, null, null)}<p class="note">この会場の動線とトイレはまだ調べていません。${go}</p>${parkHtml(e, null)}${bikeHtml(e)}</details>`;
+  if (!k) return `<details class="acc"><summary>行き方・ベビーカー動線・トイレ・駐車場・駐輪場</summary>${accPoints(e, null, null)}<p class="note">この会場の駅からの動線とトイレはまだ調べていません。${go}</p>${(() => { const bk = bikeHtml(e); return pickHtml([{ label: "🚗 車で", html: parkHtml(e, null) }, ...(bk ? [{ label: "🚲 自転車で", html: bk }] : [])]); })()}</details>`;
   const a = ACCESS[k];
   const sat = a.free && e.days.some(d => (DATES.find(x => x.k === d) || {}).w === "土");
-  const rows = pickHtml(a.st.map(s => ({ label: s.st, html: `<li><b>${esc(s.st)}</b><span class="ln">${esc(s.line)}</span>
+  const stItems = a.st.map(s => ({ label: "🚃 " + s.st, html: `<ul><li><b>${esc(s.st)}</b><span class="ln">${esc(s.line)}</span>
       ${s.car ? `<p class="car">🚃 ${esc(s.car)}</p>` : ""}<p>${esc(s.route)}</p>
       ${stationWc(s) ? `<div class="wc"><b>🚻 駅のトイレ・おむつ替え</b><ul>${stationWc(s).map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
-      ${s.map ? `<a href="${esc(s.map)}" target="_blank" rel="noopener">駅の構内図</a>` : ""}${s.src ? `<span class="src">出典：${esc(s.src)}</span>` : ""}</li>` })), h => `<ul>${h}</ul>`);
+      ${s.map ? `<a href="${esc(s.map)}" target="_blank" rel="noopener">駅の構内図</a>` : ""}${s.src ? `<span class="src">出典：${esc(s.src)}</span>` : ""}</li></ul>` }));
+  const pk = parkHtml(e, k), bk = bikeHtml(e);
+  const rows = pickHtml([...stItems,
+    { label: "🚗 車で", html: `<p><b>🅿 駐車場：</b>${esc(a.park)}</p>${pk}` },
+    ...(bk ? [{ label: "🚲 自転車で", html: bk }] : [])]);
   return `<details class="acc"><summary>行き方・ベビーカー動線・トイレ${sat ? `<span class="freeday">土曜は高校生以下無料</span>` : ""}</summary>
     ${accPoints(e, k, a)}
     ${transitHtml(e, k)}
-    ${a.st.length > 1 ? `<p class="note">駅を選ぶと、乗る号車・エレベーター・駅のトイレが出ます。</p>` : ""}
+    <p class="note">来かたを選ぶと、駅なら乗る号車・エレベーター・駅のトイレ、車なら駐車場、自転車なら駐輪場が出ます。</p>
     ${rows}
-    <p><b>🚻 ベビーカーで入れるトイレ：</b>${esc(a.toilet || "駅・商業施設の多目的トイレ（だれでもトイレ）が使えることが多いです。この会場の場所はまだ調べていません。")}</p>
-    <p><b>🅿 駐車場：</b>${esc(a.park)}</p>
-    ${parkHtml(e, k)}
-    ${bikeHtml(e)}
+    <p><b>🚻 会場まわりのベビーカーで入れるトイレ：</b>${esc(a.toilet || "駅・商業施設の多目的トイレ（だれでもトイレ）が使えることが多いです。この会場の場所はまだ調べていません。")}</p>
     ${a.free ? `<p><b>無料の日：</b>${esc(a.free)}</p>` : ""}
     ${a.rainAlt ? `<p><b>☔ 雨なら：</b>${esc(a.rainAlt)}</p>` : ""}
     <p class="note">号車は10両編成のとき〔 〕内は8両編成のとき。エレベーターは点検で止まることがあるので、駅の案内も見てください。情報の時点：2026年11月10日。◎はおむつ替えできると確認できたところ。${esc(STATION_WC_SRC)}</p>
