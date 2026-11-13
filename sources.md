@@ -48,6 +48,7 @@
 - 足したら、この候補から消す。
 
 ## 区ごとの無料の室内遊び場（2026年11月に全区ぶん入れた）
+- 各拠点のイベント（トミカの日・ベビーマッサージなど）は「横浜市地域子育て支援拠点システム」 https://kosodatekyoten.city.yokohama.lg.jp/csm/ に載っている（横浜市のドメイン＝公式）。記事ページ（`?id=kb_article_view&sysparm_article=KB…`）を検索で見つけて、申込不要・自由参加のもの、または週末のものを中心に足す。
 - 地域子育て支援拠点（各区＋サテライト、28か所）：https://www.city.yokohama.lg.jp/kosodate-kyoiku/kosodateshien/asobiba/support.html 。休館・移転（こっころサテライトの代わりのひろばなど）が変わったら直す。
 - 地区センターのプレイルーム（2024年度にリニューアルした27館）：https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/chiikishisetsu/playroom.html 。プレイルームは市内79館にあるので、ほかの地区センターも区の公式で見つけたら足す。
 - 各拠点の開館日・時間、授乳室・お湯は、拠点の公式サイトで確かめて `sum`・`time` に足していく（まだ「公式で確認」のまま）。
