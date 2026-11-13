@@ -11,6 +11,7 @@
 <link rel="canonical" href="https://kidstrip.jp/">
 <link rel="alternate" hreflang="ja" href="https://kidstrip.jp/">
 <link rel="alternate" hreflang="en" href="https://kidstrip.jp/en/">
+<link rel="alternate" hreflang="x-default" href="https://kidstrip.jp/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KidsTrip（キッズトリップ）">
 <meta property="og:title" content="KidsTrip｜横浜の子連れおでかけ・イベント一覧">
@@ -511,7 +512,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
   <div class="weather" aria-label="週末の天気予報">
     <div class="wxrow" id="wxrow"></div>
     <p class="wear" id="wear"></p>
-    <div class="outfit" id="outfit"></div>
+    <details class="fold outfitfold"><summary>服装イメージ（天気から自動で）</summary><div class="fbody"><div class="outfit" id="outfit"></div></div></details>
     <p class="wx-note" id="wxnote"></p>
   </div>
 
@@ -691,8 +692,11 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
   <a class="totop" href="#" aria-label="ページの先頭へ">↑</a>
 
   <footer>
+    <p class="aboutlink"><a href="about/">このサイトについて（運営方針・出典・記録・お問い合わせ）</a></p>
+    <details class="fold"><summary>情報の集め方と判断のしかた</summary><div class="fbody">
     <p>情報収集日：2026年11月9〜13日（11月12日に対象期間を2027年1月11日までに延長）。施設・主催者の公式サイト、横浜市・各区の発表、横浜市観光情報サイト、かながわ子育て応援パスポート、子育て支援情報サービスかながわ、地域ニュースなどをもとに要約しています。</p>
-    <p>情報の判断は、①運営の確認・実際に行った人の投稿（新しいもの）、②施設の公式・横浜市や神奈川県の情報、③まとめサイト・ブログの順に重みを付けています。食い違うときは「情報が分かれています」と表示します。</p>
+    <p>情報の判断は、①運営の確認・実際に行った人の投稿（新しいもの）、②施設・主催者の公式と横浜市・神奈川県などの行政の情報、③新聞・地域ニュースの順に重みを付けています。まとめサイトやブログは見つけるきっかけにだけ使い、公式で確かめてから載せます。食い違うときは「情報が分かれています」と表示します。</p>
+    </div></details>
     <p>サイトをよくするため、検索した言葉や押されたボタン・リンクの回数を、名前などの個人情報なしで記録しています。Cookieは使わず、同じ人の訪問をまとめて数えるためにランダムな番号だけをブラウザに保存しています。</p>
     <p>内容は変更・中止になることがあります。出かける前に必ず各リンク先の最新情報を確認してください。料金の「入園料のみ」は、催し自体は無料で施設の入場料がかかるものです。</p>
   </footer>

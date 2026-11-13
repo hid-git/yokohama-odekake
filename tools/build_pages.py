@@ -107,6 +107,7 @@ if(a.hasAttribute("data-share"))return t("copy_link","個別ページ",n);if(a.d
 
 def page(title, desc, path, body, ld, noindex=False, track_url="", tpage=""):
     url = SITE + path
+    up = "../" * path.strip("/").count("/") + "../"
     robots = '<meta name="robots" content="noindex">\n' if noindex else ""
     lds = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>\n' for x in ld)
     return f"""<!DOCTYPE html>
@@ -117,7 +118,7 @@ def page(title, desc, path, body, ld, noindex=False, track_url="", tpage=""):
 <title>{E(title)}</title>
 <meta name="description" content="{E(desc)}">
 {robots}<link rel="canonical" href="{url}">
-<meta property="og:type" content="article">
+<meta property="og:type" content="{"website" if path == "about/" else "article"}">
 <meta property="og:site_name" content="KidsTrip">
 <meta property="og:title" content="{E(title)}">
 <meta property="og:description" content="{E(desc)}">
@@ -127,13 +128,13 @@ def page(title, desc, path, body, ld, noindex=False, track_url="", tpage=""):
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="KidsTrip（キッズトリップ）のロゴ。観覧車やお城を背景に、両手を広げて喜ぶ4人家族のイラスト">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="../../img/favicon.png">
-<link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
+<link rel="icon" href="{up}img/favicon.png">
+<link rel="apple-touch-icon" href="{up}img/apple-touch-icon.png">
 {lds}<style>{CSS}</style>
 </head>
 <body>
 <div class="wrap">
-<div class="top"><a href="/"><img src="../../img/logo.webp" width="640" height="191" alt="KidsTrip（キッズトリップ）トップへ"></a><a class="btn" href="/">イベント一覧へ</a></div>
+<div class="top"><a href="/"><img src="{up}img/logo.webp" width="640" height="191" alt="KidsTrip（キッズトリップ）トップへ"></a><a class="btn" href="/">イベント一覧へ</a></div>
 {body}
 <footer><p>KidsTrip（キッズトリップ）横浜の子連れおでかけ・イベント一覧。施設・主催者の公式情報などをもとに要約しています。内容は変わることがあるので、出かける前に必ず公式ページで確認してください。</p>
 <p>サイトをよくするため、押されたボタン・リンクの回数を、名前などの個人情報なしで記録しています。</p></footer>
@@ -262,11 +263,48 @@ def ended_page(kind, pid, name):
     return path, page(f"{name}（掲載終了）｜KidsTrip", f"{name}の掲載は終わりました。いまのイベントはKidsTripのトップから探せます。", path, body, [], noindex=True)
 
 
+ABOUT_BODY = """<p class="crumb"><a href="/">トップ</a> ＞ このサイトについて</p>
+<article class="card">
+<h1>このサイトについて</h1>
+<p>KidsTrip（キッズトリップ）は、横浜で子どもと出かける家族のための、イベントとおでかけ情報の一覧です。週末・祝日を中心に、0歳から小学生くらいまでの親子が楽しめる催しと、近くのおむつ替え・授乳室・調乳のお湯、子連れで入りやすいごはんをまとめています。毎日情報を見直しています。</p>
+<h2>情報の集め方</h2>
+<ul>
+<li>出典にするのは、①施設・お店・主催者の公式、②横浜市・区・神奈川県などの行政、③新聞・地域ニュース、④実際に行った人から直接聞いた情報（「利用者の情報」と書きます）です。</li>
+<li>まとめサイトやブログ、SNSは見つけるきっかけにだけ使い、公式で確かめてから載せます。確かめられないものは載せません。</li>
+<li>料金・時間・予約が分からないときは、推測で書かずに「公式ページに記載なし」とします。情報が食い違うときは「情報が分かれています」と書きます。</li>
+<li>グルメサイトなどの機械的な収集はしていません。</li>
+</ul>
+<h2>内容について</h2>
+<p>各ページの文章は、元のページをもとにこのサイトが短くまとめたものです。必ず元のページへのリンクを付けています。内容は予告なく変わったり、中止になったりすることがあります。出かける前に、必ず公式ページで最新の情報を確かめてください。このサイトの情報を使って生じた損害について、運営者は責任を負いかねます。</p>
+<h2>文章と画像の扱い</h2>
+<p>他のサイトの文章を長く写したり、写真を転載したりはしていません。このサイトの文章・イラストを使いたいときは、お問い合わせからご連絡ください。</p>
+<h2>投稿の扱い</h2>
+<p>いまは、このサイトで投稿を受け付けていません。設備の情報の追加・訂正は、お問い合わせフォームからお送りください。いただいた情報は、確かめたうえで「利用者の情報（○年○月）」として載せることがあります。送ってくださった方の名前などは載せません。事実と違うもの、ほかの人の権利を傷つけるもの、宣伝だけのものは載せません。</p>
+<h2>使われ方の記録</h2>
+<p>サイトをよくするため、表示されたページ、検索した言葉、押されたボタン・リンク、端末の種類（スマホ・PCなど）、どのサイトから来たか、日本からのアクセスかどうか（時間帯の設定から判定）を記録しています。名前・メールアドレス・正確な位置などの個人情報は記録しません。Cookieは使わず、同じ人の訪問をまとめて数えるために、ランダムな番号だけをブラウザに保存しています。「近くで探す」の現在地は、画面の中で距離を計算するためだけに使い、記録するのは「横浜市のあたり」などの大まかな区分だけです。</p>
+<h2>お問い合わせ・掲載のご相談</h2>
+<p>イベント情報の追加・訂正、掲載や協賛のご相談、サイトへのご質問は、お問い合わせフォームからどうぞ（Googleアカウントでのログインが必要です）。</p>
+<div class="btns"><a class="btn main" href="FORM_URL" target="_blank" rel="noopener">お問い合わせフォーム</a><a class="btn" href="/">イベント一覧へ</a><a class="btn" href="/en/">English</a></div>
+</article>"""
+
+
+def about_page(track_url, form_url):
+    path = "about/"
+    ld = {"@context": "https://schema.org", "@type": "AboutPage", "name": "KidsTrip について", "url": SITE + path, "inLanguage": "ja",
+          "publisher": {"@type": "Organization", "name": "KidsTrip", "url": SITE, "logo": SITE + "img/logo.webp"}}
+    return path, page("このサイトについて｜KidsTrip（キッズトリップ）", "KidsTrip（キッズトリップ）の運営方針。情報の集め方と出典、内容の扱い、使われ方の記録、お問い合わせについて。",
+                      path, ABOUT_BODY.replace("FORM_URL", E(form_url)), [ld], track_url=track_url, tpage=path)
+
+
 def main():
     d = load_data()
     src = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
     m = TRACK_URL_RE.search(src)
     track_url = m.group(1) if m else ""
+    fm = re.search(r'class="contactbtn" href="([^"]+)"', src)
+    ap, ah = about_page(track_url, fm.group(1) if fm else "/")
+    os.makedirs(os.path.join(ROOT, ap), exist_ok=True)
+    open(os.path.join(ROOT, ap, "index.html"), "w", encoding="utf-8").write(ah)
     man = json.load(open(MANIFEST, encoding="utf-8")) if os.path.exists(MANIFEST) else {"event": {}, "spot": {}}
     # 施設（BABY）：名前ごとに1ページ。最初に出てきたエリアを使う
     spots, spot_ids = {}, {}
@@ -304,7 +342,7 @@ def main():
     json.dump(new_man, open(MANIFEST, "w", encoding="utf-8"), ensure_ascii=False, indent=1, sort_keys=True)
 
     # sitemap
-    urls = [(SITE, today, "daily"), (SITE + "en/", man.get("_en", today), "weekly")]
+    urls = [(SITE, today, "daily"), (SITE + "en/", man.get("_en", today), "weekly"), (SITE + "about/", "2026-11-13", "monthly")]
     for kind in ("event", "spot"):
         for pid, v in sorted(new_man[kind].items()):
             if not v.get("ended"):
