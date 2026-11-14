@@ -347,6 +347,9 @@ details.fold > .fbody > :first-child { margin-top: 0; }
 .pchip { border: 1px solid var(--accent); background: transparent; color: var(--accent); border-radius: 999px; padding: 4px 10px; font-size: 12.5px; cursor: pointer; font-family: inherit; }
 .pchip.on { background: var(--accent); color: var(--card); font-weight: 700; }
 .pbody > ul { margin-top: 0; }
+.acc .car .m, .acc .wc .m { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+details.srcs { margin-top: 8px; font-size: 12px; color: var(--muted); }
+details.srcs summary { cursor: pointer; }
 .acc .wc { font-size: 12.5px; background: var(--accent-soft); border-radius: 6px; padding: 3px 6px; }
 .acc .src, .acc .note { font-size: 11.5px; color: var(--muted); }
 .acc .freeday { font-size: 11.5px; background: var(--ok); color: #fff; border-radius: 99px; padding: 1px 8px; }
@@ -3089,8 +3092,8 @@ function accessHtml(e){
   const a = ACCESS[k];
   const sat = a.free && e.days.some(d => (DATES.find(x => x.k === d) || {}).w === "土");
   const stItems = a.st.map(s => ({ label: "🚃 " + s.st, html: `<ul><li><b>${esc(s.st)}</b><span class="ln">${esc(s.line)}</span>
-      ${s.car ? `<p class="car">🚃 ${esc(s.car)}</p>` : ""}<p>${esc(s.route)}</p>
-      ${stationWc(s) ? `<div class="wc"><b>🚻 駅のトイレ・おむつ替え</b><ul>${stationWc(s).map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+      ${s.car ? `<p class="car">🚃 ${esc(s.car)}${/〔/.test(s.car) ? `<span class="m">〔 〕内は8両編成のとき</span>` : ""}</p>` : ""}<p>${esc(s.route)}</p>
+      ${stationWc(s) ? `<div class="wc"><b>🚻 駅のトイレ・おむつ替え</b><ul>${stationWc(s).map(x => `<li>${esc(x)}</li>`).join("")}</ul>${stationWc(s).some(x => /◎/.test(x)) ? `<span class="m">◎はおむつ替えできると確認できたところ</span>` : ""}</div>` : ""}
       ${s.map ? `<a href="${esc(s.map)}" target="_blank" rel="noopener">駅の構内図</a>` : ""}${s.src ? `<span class="src">出典：${esc(s.src)}</span>` : ""}</li></ul>` }));
   const pk = parkHtml(e, k), bk = bikeHtml(e);
   const rows = pickHtml([...stItems,
@@ -3104,8 +3107,8 @@ function accessHtml(e){
     <p><b>🚻 会場まわりのベビーカーで入れるトイレ：</b>${esc(a.toilet || "駅・商業施設の多目的トイレ（だれでもトイレ）が使えることが多いです。この会場の場所はまだ調べていません。")}</p>
     ${a.free ? `<p><b>無料の日：</b>${esc(a.free)}</p>` : ""}
     ${a.rainAlt ? `<p><b>☔ 雨なら：</b>${esc(a.rainAlt)}</p>` : ""}
-    <p class="note">号車は10両編成のとき〔 〕内は8両編成のとき。エレベーターは点検で止まることがあるので、駅の案内も見てください。情報の時点：2026年11月10日。◎はおむつ替えできると確認できたところ。${esc(STATION_WC_SRC)}</p>
-    ${go}</details>`;
+    ${go}
+    <details class="srcs"><summary>駅の情報の出典・時点</summary><p class="note">エレベーターは点検で止まることがあるので、駅の案内も見てください。情報の時点：2026年11月10日。${esc(STATION_WC_SRC)}</p></details></details>`;
 }
 
 // ---- ベビーカールート図（方向音痴でも分かるナビ風） ----
