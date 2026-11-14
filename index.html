@@ -3094,7 +3094,8 @@ function accessHtml(e){
   const stItems = a.st.map(s => ({ label: "🚃 " + s.st, html: `<ul><li><b>${esc(s.st)}</b><span class="ln">${esc(s.line)}</span>
       ${s.car ? `<p class="car">🚃 ${esc(s.car)}${/〔/.test(s.car) ? `<span class="m">〔 〕内は8両編成のとき</span>` : ""}</p>` : ""}<p>${esc(s.route)}</p>
       ${stationWc(s) ? `<div class="wc"><b>🚻 駅のトイレ・おむつ替え</b><ul>${stationWc(s).map(x => `<li>${esc(x)}</li>`).join("")}</ul>${stationWc(s).some(x => /◎/.test(x)) ? `<span class="m">◎はおむつ替えできると確認できたところ</span>` : ""}</div>` : ""}
-      ${s.map ? `<a href="${esc(s.map)}" target="_blank" rel="noopener">駅の構内図</a>` : ""}${s.src ? `<span class="src">出典：${esc(s.src)}</span>` : ""}</li></ul>` }));
+      ${s.map ? `<a href="${esc(s.map)}" target="_blank" rel="noopener">駅の構内図</a>` : ""}${s.src ? `<span class="src">出典：${esc(s.src)}</span>` : ""}
+      <details class="srcs"><summary>駅のトイレ情報の出典・時点</summary><p class="note">エレベーターは点検で止まることがあるので、駅の案内も見てください。情報の時点：2026年11月10日。${esc(STATION_WC_SRC)}</p></details></li></ul>` }));
   const pk = parkHtml(e, k), bk = bikeHtml(e);
   const rows = pickHtml([...stItems,
     { label: "🚗 車で", html: `<p><b>🅿 駐車場：</b>${esc(a.park)}</p>${pk}` },
@@ -3107,8 +3108,7 @@ function accessHtml(e){
     <p><b>🚻 会場まわりのベビーカーで入れるトイレ：</b>${esc(a.toilet || "駅・商業施設の多目的トイレ（だれでもトイレ）が使えることが多いです。この会場の場所はまだ調べていません。")}</p>
     ${a.free ? `<p><b>無料の日：</b>${esc(a.free)}</p>` : ""}
     ${a.rainAlt ? `<p><b>☔ 雨なら：</b>${esc(a.rainAlt)}</p>` : ""}
-    ${go}
-    <details class="srcs"><summary>駅の情報の出典・時点</summary><p class="note">エレベーターは点検で止まることがあるので、駅の案内も見てください。情報の時点：2026年11月10日。${esc(STATION_WC_SRC)}</p></details></details>`;
+    ${go}</details>`;
 }
 
 // ---- ベビーカールート図（方向音痴でも分かるナビ風） ----
