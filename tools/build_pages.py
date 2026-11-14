@@ -327,7 +327,7 @@ def main():
             h = hashlib.sha1(re.sub(r"情報の時点：[^<]*", "", htmltext).encode()).hexdigest()[:12]
             old = man.get(kind, {}).get(pid, {})
             lm = old.get("lastmod", today) if old.get("hash") == h and not old.get("ended") else today
-            new_man[kind][pid] = {"name": name, "hash": h, "lastmod": lm}
+            new_man[kind][pid] = {"name": name, "hash": h, "lastmod": lm, "added": old.get("added") or (old.get("lastmod") if old else today)}
             out = os.path.join(ROOT, path, "index.html")
             os.makedirs(os.path.dirname(out), exist_ok=True)
             open(out, "w", encoding="utf-8").write(htmltext)
@@ -359,6 +359,23 @@ def main():
     item_list = {"@context": "https://schema.org", "@type": "ItemList", "name": "横浜の子連れイベント一覧", "numberOfItems": len(ev_live),
                  "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(ev_live)]}
     org = {"@context": "https://schema.org", "@type": "Organization", "name": "KidsTrip", "alternateName": "キッズトリップ", "url": SITE, "logo": SITE + "img/logo.webp"}
+    # 新着イベント（載せた日が新しい順に20件）：トップから個別ページへの静的リンク
+    def dlabel(e):
+        ds = e.get("days") or []
+        return (ds[0] + ("〜" if len(ds) > 1 else "")) if ds else ("開催中" if e.get("kind") == "ongoing" else "")
+    def dkey(e):
+        ds = e.get("days") or []
+        if not ds: return 9999
+        mo, dd = map(int, ds[0].split("/"))
+        return (mo + (12 if mo < TODAY.month - 1 else 0)) * 40 + dd
+    # 載せた日が新しい順。同じ日なら、日にちのあるイベント（近い順）→ いつでも行ける場所
+    newest = sorted(ev_live, key=lambda e: (-int(new_man["event"][e["id"]]["added"].replace("-", "")), e.get("kind") != "limited", dkey(e), e["id"]))[:20]
+    def nli(e):
+        dl = dlabel(e)
+        return f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a>' + (f'<span class="d">{E(dl)}</span>' if dl else "") + "</li>"
+    newhtml = ('<section class="newev" id="newev" aria-label="新着イベント"><h2>🆕 新しく載せたイベント</h2><ul>' + "".join(nli(e) for e in newest[:5]) + "</ul>"
+               '<details class="fold"><summary>ほかの新着（あと' + str(len(newest[5:])) + '件）</summary><div class="fbody"><ul>' + "".join(nli(e) for e in newest[5:]) + "</ul></div></details></section>")
+    src = re.sub(r"<!--NEW:START-->.*?<!--NEW:END-->", lambda _: f"<!--NEW:START-->{newhtml}<!--NEW:END-->", src, flags=re.S)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (org, item_list))
     src = re.sub(r"<!--PAGES:START-->.*?<!--PAGES:END-->", lambda _: f"<!--PAGES:START-->{links}<!--PAGES:END-->", src, flags=re.S)
     src = re.sub(r"<!--LD:START-->.*?<!--LD:END-->", lambda _: f"<!--LD:START-->{ld}<!--LD:END-->", src, flags=re.S)

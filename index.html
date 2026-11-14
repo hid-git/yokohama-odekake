@@ -237,6 +237,10 @@ details.fold > .fbody > :first-child { margin-top: 0; }
 .pagelinks h3 { font-size: 14px; margin: 8px 0 4px; }
 .plinks { columns: 2 14em; column-gap: 18px; padding-left: 1.1em; margin: 0; font-size: 13px; }
 .plinks li { break-inside: avoid; margin: 2px 0; }
+.newev { font-size: 13px; margin: 2px 0 4px; }
+.newev h2 { font-size: 14px; margin: 0 0 4px; }
+.newev ul { margin: 0; padding-left: 1.1em; display: grid; gap: 2px; }
+.newev .d { color: var(--muted); font-size: 12px; margin-left: 4px; }
 .bmatrix tbody th a { color: inherit; }
 .mlegend { margin: 2px 0 8px; font-size: 11.5px; color: var(--muted); }
 .bi { font-size: 11.5px; padding: 0 7px; border-radius: 5px; font-weight: 700; border: 1px solid transparent; }
@@ -515,6 +519,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <li><span class="pi">☔</span><span>雨でもOK・完全無料・予約なし・のりもの・動物などの条件でも絞れます。</span></li>
     <li><span class="pi">🍼</span><span>各イベントに、近くのおむつ替え・授乳室・調乳のお湯と、子連れで入りやすいごはんを付けています。</span></li>
   </ul>
+  <!--NEW:START--><section class="newev" id="newev" aria-label="新着イベント"><h2>🆕 新しく載せたイベント</h2><ul><li><a href="/event/1ic3bk2/">Winter Market Yokohama（MMテラスの冬のマーケット）</a><span class="d">12/5〜</span></li><li><a href="/event/opnnov/">YOKOHAMA STYLE FESTIVAL（日本大通りの歩行者天国・親子の体験も）</a><span class="d">12/12〜</span></li><li><a href="/event/16fqabv/">SEAPARADISE Christmas（八景島シーパラダイスのクリスマス）</a><span class="d">11/14〜</span></li><li><a href="/event/1okmc70/">クイーンズスクエア横浜クリスマス2026（音と光のショータイム）</a><span class="d">11/14〜</span></li><li><a href="/event/12n8o01/">戸塚西公園（戸塚区の公園）</a><span class="d">開催中</span></li></ul><details class="fold"><summary>ほかの新着（あと15件）</summary><div class="fbody"><ul><li><a href="/event/166laq/">親と子の休憩室 はあとハウス（戸塚駅・サクラス戸塚1階）</a><span class="d">開催中</span></li><li><a href="/event/16g1pne/">秋葉台公園（戸塚区の公園）</a><span class="d">開催中</span></li><li><a href="/event/1f51s1e/">新横浜公園の遊具広場（港北区）</a><span class="d">開催中</span></li><li><a href="/event/1k8l80v/">芝口果樹園 みかん食べ放題（戸塚区影取町）</a><span class="d">開催中</span></li><li><a href="/event/1kyvg17/">日吉地区センターのプレイルーム（港北区）</a><span class="d">開催中</span></li><li><a href="/event/1lr6ok5/">谷矢部池公園（戸塚区の公園）</a><span class="d">開催中</span></li><li><a href="/event/1p48qip/">永田みなみ台公園こどもログハウス「わんぱくハウス」（南区）</a><span class="d">開催中</span></li><li><a href="/event/1pcaldj/">品濃中央公園（戸塚区の公園）</a><span class="d">開催中</span></li><li><a href="/event/1qniy5k/">川戸農園 さつまいも掘り（戸塚区東俣野町）</a><span class="d">開催中</span></li><li><a href="/event/1qsn4xr/">大正地区センターのプレイルーム（戸塚区）</a><span class="d">開催中</span></li><li><a href="/event/2njad4/">風のファーム さつまいも収穫（戸塚区東俣野町）</a><span class="d">開催中</span></li><li><a href="/event/3co2nr/">戸塚地区センターのプレイルーム（戸塚区）</a><span class="d">開催中</span></li><li><a href="/event/5hocv2/">戸塚公園（戸塚区の公園）</a><span class="d">開催中</span></li><li><a href="/event/5l30nq/">新田地区センター 2階の幼児の遊び場（港北区）</a><span class="d">開催中</span></li><li><a href="/event/a6m8e3/">踊場公園こどもログハウス（戸塚区）</a><span class="d">開催中</span></li></ul></div></details></section><!--NEW:END-->
   <div class="areabar evarea" id="evarea" role="group" aria-label="エリアでイベントを絞る"></div>
   <div class="weather" aria-label="週末の天気予報">
     <div class="wxrow" id="wxrow"></div>
@@ -3676,7 +3681,7 @@ document.addEventListener("click", ev => {
 { let tq = null, last = ""; const q = document.getElementById("q");
   if (q) q.addEventListener("input", () => { clearTimeout(tq); tq = setTimeout(() => { const v = q.value.trim(); if (v && v !== last) { last = v; track("search", v, document.getElementById("n") ? document.getElementById("n").textContent + "件" : ""); } }, 1500); }); }
 // ---- ページの切り替え（タブ） ----
-const TABS = { events:["#ev-points","#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], life:["#life"], chains:["#chains"], help:["#help"], contact:["#contact"] };
+const TABS = { events:["#ev-points","#newev","#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], posts:["#posts"], life:["#life"], chains:["#chains"], help:["#help"], contact:["#contact"] };
 { const cb = document.getElementById("chains-body"); if (cb) cb.innerHTML = `<h3>離乳食・子ども無料のチェーン</h3><ul class="chains">${BABYFOOD_CHAINS.map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>
   <h3>ファミレスの子ども向けサービス</h3><ul class="chains">${CHAINS.filter(c => c.n !== "デニーズ").map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>`; }
 function showTab(name, scroll){
