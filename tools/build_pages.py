@@ -105,7 +105,7 @@ t("pageview",document.title);document.addEventListener("click",function(ev){var 
 if(a.hasAttribute("data-share"))return t("copy_link","個別ページ",n);if(a.dataset.act)return t(a.dataset.act,a.href,n);if(/line\\.me\\/R\\/share/.test(h))return t("line_share","個別ページ",n);if(/^https?:/.test(h)&&h.indexOf(location.hostname)<0)return t("outlink",a.href,n)})})();""" % (json.dumps(track_url), json.dumps(page))
 
 
-def page(title, desc, path, body, ld, noindex=False, track_url="", tpage=""):
+def page(title, desc, path, body, ld, noindex=False, track_url="", tpage="", og=None, og_alt=None):
     url = SITE + path
     up = "../" * path.strip("/").count("/") + "../"
     robots = '<meta name="robots" content="noindex">\n' if noindex else ""
@@ -123,10 +123,10 @@ def page(title, desc, path, body, ld, noindex=False, track_url="", tpage=""):
 <meta property="og:title" content="{E(title)}">
 <meta property="og:description" content="{E(desc)}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{SITE}img/ogp.jpg">
+<meta property="og:image" content="{SITE}{og or "img/ogp.jpg"}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="KidsTrip（キッズトリップ）のロゴ。観覧車やお城を背景に、両手を広げて喜ぶ4人家族のイラスト">
+<meta property="og:image:alt" content="{E(og_alt) if og_alt else "KidsTrip（キッズトリップ）のロゴ。観覧車やお城を背景に、両手を広げて喜ぶ4人家族のイラスト"}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{up}img/favicon.png">
 <link rel="apple-touch-icon" href="{up}img/apple-touch-icon.png">
@@ -170,6 +170,62 @@ def crumbs(items):
     ld = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "name": n, **({"item": SITE + u.lstrip("/")} if u else {})} for i, (n, u) in enumerate(items)]}
     return f'<p class="crumb">{html_}</p>', ld
+
+
+def og_when(e):
+    ds = sorted(iso(k) for k in (e.get("days") or []))
+    if e.get("kind") == "ongoing" or not ds:
+        return "いつでも行ける" if e.get("kind") == "ongoing" else "日にちは公式で確認"
+    f = lambda x: f"{x.month}/{x.day}（{'月火水木金土日'[x.weekday()]}）"
+    return f(ds[0]) if len(ds) == 1 else f"{f(ds[0])}〜{f(ds[-1])}"
+
+
+OG_HTML = """<!doctype html><html lang="ja"><head><meta charset="utf-8"><style>
+html,body{margin:0;width:1200px;height:630px;font-family:"Noto Sans CJK JP","Noto Sans JP",sans-serif}
+.w{box-sizing:border-box;width:1200px;height:630px;padding:56px 64px;display:flex;flex-direction:column;justify-content:space-between;
+background:linear-gradient(135deg,#e2f0f6 0%,#fff6e5 100%);border:18px solid #0a6f95}
+.tag{display:inline-block;background:#0a6f95;color:#fff;font-size:30px;font-weight:700;padding:6px 18px;border-radius:999px}
+.t{font-size:TSIZEpx;font-weight:900;line-height:1.25;color:#17324a;margin:18px 0 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.m{font-size:38px;font-weight:700;color:#0a6f95}
+.v{font-size:28px;color:#3b5266;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.f{display:flex;align-items:center;justify-content:space-between}
+.f img{height:84px}.f span{font-size:26px;color:#3b5266}
+</style></head><body><div class="w"><div><span class="tag">TAG</span><div class="t">TITLE</div></div>
+<div><div class="m">WHEN</div><div class="v">VENUE</div></div>
+<div class="f"><img src="LOGO"><span>横浜の子連れおでかけ・イベント一覧</span></div></div></body></html>"""
+
+
+def render_og(events, man_og):
+    """イベントごとのOG画像（1200x630のJPEG）を og/ID.jpg に作る。中身が変わったものだけ作り直す。"""
+    os.makedirs(os.path.join(ROOT, "og"), exist_ok=True)
+    todo = []
+    new = {}
+    for e in events:
+        w = (e.get("ward") or "").split("・")[0]
+        tag = ("無料" if e["price"] == "free" else "") + ("　" if e["price"] == "free" else "") + (w or "横浜市")
+        key = hashlib.sha1("|".join([e["t"], og_when(e), tag, e["venue"], "v2"]).encode()).hexdigest()[:12]
+        new[e["id"]] = key
+        if man_og.get(e["id"]) != key or not os.path.exists(os.path.join(ROOT, "og", e["id"] + ".jpg")):
+            todo.append((e, tag))
+    if todo:
+        logo = "file://" + os.path.join(ROOT, "img", "logo.webp")
+        with sync_playwright() as p:
+            b = p.chromium.launch(executable_path="/usr/bin/google-chrome")
+            pg = b.new_page(viewport={"width": 1200, "height": 630})
+            for e, tag in todo:
+                n = len(e["t"])
+                size = 72 if n <= 18 else 62 if n <= 28 else 54 if n <= 40 else 46
+                html_s = (OG_HTML.replace("TSIZE", str(size)).replace("TAG", E(tag)).replace("TITLE", E(e["t"]))
+                          .replace("WHEN", E(og_when(e) + ("　" + e["time"] if e.get("kind") == "limited" and len(e.get("time", "")) <= 14 else "")))
+                          .replace("VENUE", E(e["venue"])).replace("LOGO", logo))
+                tmp = os.path.join(ROOT, "og", "_tmp.html")
+                open(tmp, "w", encoding="utf-8").write(html_s)
+                pg.goto("file://" + tmp)
+                pg.wait_for_timeout(50)
+                pg.screenshot(path=os.path.join(ROOT, "og", e["id"] + ".jpg"), type="jpeg", quality=78)
+            b.close()
+        os.remove(os.path.join(ROOT, "og", "_tmp.html"))
+    return new, len(todo)
 
 
 def event_page(e, d, spot_ids, track_url):
@@ -222,7 +278,18 @@ def event_page(e, d, spot_ids, track_url):
               "location": {"@type": "Place", "name": e["venue"], "address": {"@type": "PostalAddress", "addressLocality": "横浜市" + ward1, "addressRegion": "神奈川県", "addressCountry": "JP"}},
               "description": e["sum"], "image": [SITE + "img/ogp.jpg"], "url": url, "isAccessibleForFree": e["price"] == "free", "inLanguage": "ja"}
         ld.append(ev)
-    return path, page(title, desc, path, body, ld, track_url=track_url, tpage=path), e["t"]
+    elif e["kind"] == "ongoing":
+        # 通年の施設・遊び場・公園：Event ではなく場所として出す（公園は Park）
+        typ = "Park" if re.search(r"公園|広場|ふるさと村", e["t"]) and e.get("place", "").startswith("屋外") else "TouristAttraction"
+        pl = {"@context": "https://schema.org", "@type": typ, "name": e["t"], "description": e["sum"], "url": url, "image": [SITE + "img/ogp.jpg"],
+              "address": {"@type": "PostalAddress", "streetAddress": e["venue"], "addressLocality": "横浜市" + ward1, "addressRegion": "神奈川県", "addressCountry": "JP"},
+              "isAccessibleForFree": e["price"] == "free", "publicAccess": True, "touristType": "子ども連れの家族", "inLanguage": "ja"}
+        ld.append(pl)
+    og = f"og/{e['id']}.jpg"
+    for x in ld:
+        if "image" in x: x["image"] = [SITE + og]
+    return path, page(title, desc, path, body, ld, track_url=track_url, tpage=path, og=og,
+                      og_alt=f"{e['t']}（{og_when(e)}・{ward1 or '横浜市'}）"), e["t"]
 
 
 def spot_page(b, area, d, spot_ids, track_url):
@@ -339,6 +406,7 @@ def main():
             os.makedirs(os.path.dirname(out), exist_ok=True)
             open(out, "w", encoding="utf-8").write(htmltext)
             new_man[kind][pid] = dict(old, ended=True, lastmod=old.get("lastmod", today) if old.get("ended") else today)
+    new_man["og"], og_made = render_og(d["events"], man.get("og", {}))
     json.dump(new_man, open(MANIFEST, "w", encoding="utf-8"), ensure_ascii=False, indent=1, sort_keys=True)
 
     # sitemap
@@ -380,7 +448,7 @@ def main():
     src = re.sub(r"<!--PAGES:START-->.*?<!--PAGES:END-->", lambda _: f"<!--PAGES:START-->{links}<!--PAGES:END-->", src, flags=re.S)
     src = re.sub(r"<!--LD:START-->.*?<!--LD:END-->", lambda _: f"<!--LD:START-->{ld}<!--LD:END-->", src, flags=re.S)
     open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(src)
-    print(f"event {len(built['event'])}  spot {len(built['spot'])}  ended {sum(1 for k in ('event','spot') for v in new_man[k].values() if v.get('ended'))}  sitemap {len(urls)}")
+    print(f"og {og_made}  event {len(built['event'])}  spot {len(built['spot'])}  ended {sum(1 for k in ('event','spot') for v in new_man[k].values() if v.get('ended'))}  sitemap {len(urls)}")
 
 
 if __name__ == "__main__":
