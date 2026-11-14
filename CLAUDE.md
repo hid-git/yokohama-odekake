@@ -17,7 +17,7 @@
    - `RANGE` と、長期開催を展開する処理の既定値（"11/14"・"11/29" など）
    - `const WX` と `WX_ASOF`（天気。対象期間の週末・祝日のうち予報が出ている日だけ。形式：`{ d:"11/14", w:"土", sky:"晴のち曇", max:20, min:11, pop:40 }`。`sky` は「晴」「曇」「雨」「雪」と「のち」「時々」「一時」の組み合わせで書く。出典は日本気象協会 tenki.jp の横浜市の予報など。`WX_ASOF` に発表日時と出典を書く。分からない日は入れない）
 2. **終わったイベントを外す**：日付がすべて今日より前の `kind:"limited"` は消す。会期が終わった `ongoing` も消す。
-3. **新しいイベントを探して足す**：`sources.md` の順に見る。0歳〜小学生の親子が楽しめるものを中心に、対象期間内のものだけ。
+3. **新しいイベントを探して足す**：まず `python3 tools/pending.py` で「未発表」「見込み」のままのイベントを出し、近いものから公式のお知らせで確かめ直す。そのあと `sources.md` の順に見る。0歳〜小学生の親子が楽しめるものを中心に、対象期間内のものだけ。
    - 平日のイベントも載せてよい（`days` に平日の日付を入れると「平日 ○月○日」の見出しで出る）。
    - 1件ずつ `EVENTS.push(...)` で追加。項目：`t, days, time, ward, venue, price("free"/"paid"/"admission"/"unknown"), priceText, place, rain("ok"/"cancel"/"check"), rainText, resv, resvText, age:[下,上], ageText, kind("limited"/"ongoing"), start(分), sum, tip, url, src, asof:"2026年○月○日"`。
    - 遊び場・動物・乗り物などは既存のフラグ（`freeplay` `paidplay` `animal` `ride` `wk`）を付ける。
