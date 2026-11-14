@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """日にち・時間・料金が「未発表」「見込み」「予定」のままのイベントを、近い日付の順に出す。
-毎日の更新で、ここに出たものを公式（施設・主催者のお知らせ）で確かめ直す。"""
+毎日の更新で、ここに出たものを会場・主催者の公式サイトのお知らせで確かめ直す（出典がカレンダーやまとめなら、会場のサイトまで行く）。"""
 import re, datetime, pathlib
 s = pathlib.Path(__file__).resolve().parent.parent.joinpath("index.html").read_text()
 today = datetime.date.today()
@@ -18,8 +18,9 @@ for m in pat.finditer(s):
         if dt >= today and (first is None or dt < first): first = dt
     if ds and first is None: continue
     url = re.search(r'url:"([^"]+)"', body)
-    rows.append((first or datetime.date.max, t, sorted(set(flag)), url.group(1) if url else ""))
+    venue = re.search(r'venue:"([^"]+)"', body)
+    rows.append((first or datetime.date.max, t, sorted(set(flag)), url.group(1) if url else "", venue.group(1) if venue else ""))
 rows.sort()
-for d, t, f, u in rows:
-    print(f'{"いつでも" if d == datetime.date.max else d.strftime("%m/%d")}\t{t}\t{"・".join(f)}\t{u}')
+for d, t, f, u, v in rows:
+    print(f'{"いつでも" if d == datetime.date.max else d.strftime("%m/%d")}\t{t}\t会場：{v}\t{"・".join(f)}\t出典：{u}')
 print(f"--- {len(rows)}件")
