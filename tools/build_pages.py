@@ -67,7 +67,8 @@ def jp_date(k):
 def when_text(e):
     if e["kind"] == "ongoing":
         return (e["period"] if ("確認" in e["period"] or "いつでも" in e["period"]) else "会期 " + e["period"]) if e.get("period") else "開催中"
-    return "・".join(jp_date(k) for k in e["days"])
+    st = e.get("stop") or {}
+    return "・".join(jp_date(k) + (f"（{st[k]}）" if k in st else "") for k in e["days"])
 
 
 CSS = """

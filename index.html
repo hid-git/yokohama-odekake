@@ -173,6 +173,9 @@ section.group { display: grid; gap: 10px; }
 .rain.ok { background: var(--ok-soft); color: var(--ok); }
 .rain.check { background: var(--warn-soft); color: var(--warn); }
 .rain.cancel { background: var(--bad-soft); color: var(--bad); font-weight: 700; }
+.stopnote { margin: 6px 0; padding: 5px 10px; border-radius: 8px; background: var(--bad-soft); color: var(--bad); font-weight: 800; border: 1.5px solid var(--bad); }
+.day.stopped { text-decoration: line-through; opacity: .75; }
+.card.allstop { opacity: .8; }
 .rain.unknown { background: var(--paper); color: var(--muted); }
 .sum { margin: 0; font-size: 14px; }
 .tip { margin: 0; font-size: 13px; color: var(--muted); }
@@ -1943,16 +1946,16 @@ EVENTS.push(
     resv:true, resvText:"要申込・抽選（12/7 9:30ごろ〜12/13 17:00にWebで。各回10組）", age:[3,99], ageText:"家族など2〜5人で1組。小学3年生以下は保護者と一緒に", kind:"limited", start:630,
     sum:"竹を切って縄を巻き、ミニサイズの門松を1対作る年末の教室。",
     tip:"すべらない軍手と持ち帰り用の袋を持って行く", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=91", src:"こどもの国 公式", asof:"2026年11月12日" },
-  { t:"こどもの国 紙芝居ライブ", days:["12/20"], time:"13:00／14:30", ward:"青葉区", venue:"こどもの国 ふれあい学び館",
+  { t:"こどもの国 紙芝居ライブ", days:["11/15","12/20"], stop:{"11/15":"雨で中止"}, time:"13:00／14:30", ward:"青葉区", venue:"こどもの国 ふれあい学び館",
     price:"admission", priceText:"入園料のみ（参加費は公式ページに記載なし）", place:"屋外", rain:"cancel", rainText:"雨天中止",
     resv:null, resvText:"公式ページに記載なし", age:[2,10], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:780,
     sum:"紙芝居の会のメンバーによる紙芝居の実演。",
-    tip:"同じ日に紙飛行機の教室もある。11/15は雨天のため中止になった。1/17にもある", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=186", src:"こどもの国 公式", asof:"2026年11月15日" },
-  { t:"こどもの国 紙飛行機を飛ばそう", days:["12/20"], time:"10:00〜14:00（受付は13:45まで）", ward:"青葉区", venue:"こどもの国 ふれあい学び館",
+    tip:"同じ日に紙飛行機の教室もある。1/17にもある", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=186", src:"こどもの国 公式", asof:"2026年11月15日" },
+  { t:"こどもの国 紙飛行機を飛ばそう", days:["11/15","12/20"], stop:{"11/15":"雨で中止"}, time:"10:00〜14:00（受付は13:45まで）", ward:"青葉区", venue:"こどもの国 ふれあい学び館",
     price:"admission", priceText:"入園料のみ（参加費は公式ページに記載なし）", place:"屋外", rain:"cancel", rainText:"雨天中止",
     resv:false, resvText:"当日受付", age:[4,12], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:600,
     sum:"紙飛行機クラブの人に教わりながら、ゴムで飛ばす紙飛行機を作って飛ばす。",
-    tip:"受付は13:45まで。11/15は雨天のため中止になった", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=52", src:"こどもの国 公式", asof:"2026年11月15日" },
+    tip:"受付は13:45まで", url:"https://www.kodomonokuni.org/event_topics/detail.html?id=52", src:"こどもの国 公式", asof:"2026年11月15日" },
   { t:"こどもの国 フィールドゲーム＜冬バージョン＞", days:[], time:"用紙の販売は開園〜14:00（ゴールは16:00まで）", period:"12/5〜2027/2/28（水曜・12/31・1/1は休園）", ward:"青葉区", venue:"こどもの国（正面入口案内所で販売）",
     price:"paid", priceText:"1枚100円（鉛筆つき・完走で景品）＋入園料", place:"屋外", rain:"check", rainText:"雨の日の扱いは公式ページに記載なし",
     resv:false, resvText:"個人は予約不要", age:[4,12], ageText:"対象年齢は公式ページに記載なし", kind:"ongoing", start:570, closed:["1/1"],
@@ -2622,7 +2625,7 @@ Object.assign(FOOD_OF, {
 });
 function dayChips(e){
   if (e.kind === "ongoing") return `<span class="period">${e.wk || /確認|要確認|以外|いつでも/.test(e.period) ? "" : "会期 "}${esc(e.period)}</span>${e.wk ? `<span class="period wk">平日：${esc(e.wk)}</span>` : ""}`;
-  return e.days.map(k => { const d = DATES[DATE_IDX[k]]; if (!d) return `<span class="day wkday">${dlabel(k)}</span>`; return `<span class="day ${d.c}">${d.s}(${d.w})</span>`; }).join("");
+  return e.days.map(k => { const st = e.stop && e.stop[k] ? " stopped" : ""; const d = DATES[DATE_IDX[k]]; if (!d) return `<span class="day wkday${st}">${dlabel(k)}</span>`; return `<span class="day ${d.c}${st}">${d.s}(${d.w})</span>`; }).join("");
 }
 
 const PAGE_URL = "https://kidstrip.jp/";
@@ -3225,9 +3228,13 @@ function card(e){
     : e.price === "admission" ? `<li class="chip">入園料のみ</li>`
     : e.price === "paid" ? `<li class="chip">有料</li>` : `<li class="chip">料金要確認</li>`;
   const resvChip = e.resv === true ? `<li class="chip resv">要予約</li>` : e.resv === false ? `<li class="chip">予約不要</li>` : `<li class="chip">予約は要確認</li>`;
-  return `<article class="card r-${e.rain}" data-eid="${esc(e.id)}" data-ev="${esc(e.t)}">
+  // 中止が分かった日（e.stop = { "11/15":"雨で中止" }）は赤で表示する
+  const stops = Object.entries(e.stop || {});
+  const stopNote = stops.map(([k, why]) => `<p class="stopnote">⛔ ${dlabel(k)}は${esc(why)}</p>`).join("");
+  const allStop = stops.length && e.days.length && e.days.every(k => e.stop[k]);
+  return `<article class="card r-${e.rain}${allStop ? " allstop" : ""}" data-eid="${esc(e.id)}" data-ev="${esc(e.t)}">
     <div class="when">${days}<span>${esc(e.time)}</span>${favBtn(e)}</div>
-    <h3>${esc(e.t)}</h3>
+    ${stopNote}<h3>${esc(e.t)}</h3>
     <p class="where">${esc(e.ward)}・${esc(e.venue)}</p>
     <ul class="chips">${priceChip}<li class="chip">${esc(e.ageText)}</li><li class="chip">${esc(e.place)}</li>${resvChip}</ul>
     <p class="rain ${e.rain}">${RAIN_ICON[e.rain]}<span><b>${RAIN_LABEL[e.rain]}</b>　${esc(e.rainText)}</span></p>
