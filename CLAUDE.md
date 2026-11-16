@@ -23,6 +23,7 @@
    - 平日のイベントも載せてよい（`days` に平日の日付を入れると「平日 ○月○日」の見出しで出る）。
    - 1件ずつ `EVENTS.push(...)` で追加。項目：`t, days, time, ward, venue, price("free"/"paid"/"admission"/"unknown"), priceText, place, rain("ok"/"cancel"/"check"), rainText, resv, resvText, age:[下,上], ageText, kind("limited"/"ongoing"), start(分), sum, tip, url, src, asof:"2026年○月○日"`。
    - 遊び場・動物・乗り物などは既存のフラグ（`freeplay` `paidplay` `animal` `ride` `wk`）を付ける。`kind:"ongoing"`・`price:"free"` で `freeplay`／`animal`／`ride` のどれかがあるものは、タブ「🛝 無料の遊び場」に区ごとに自動で出る（種類はイベント名から：地区センター→プレイルーム、地域子育て支援拠点、ログハウス、屋外・公園→公園、ほか→モール・施設）。`tools/build_pages.py` が `<!--PLAY:…-->` の間に静的な一覧も書く。
+   - 地区センターの「サークル紹介」に載っている**子ども・親子が対象のサークル**は、その地区センターの項目に `circles:[{n:"名前", what:"内容", when:"活動日", age:"対象"}]`・`circlesUrl`（サークル紹介のページ）・`circlesAsof` で入れる（無料の遊び場タブで開くと出る）。代表者の名前・電話は書かず、問い合わせは地区センターへ。大人向けのサークルは入れない。
    - 会場の位置が `VENUE_GEO` にないときは、正規表現と緯度経度を足す（近くのごはん・トイレ・フードコートの「歩いて10分以内」に使う）。
    - `sources.md` の「ショッピングモールの子連れ設備」の候補から、毎日1〜3か所ずつ公式で調べて `BABY` に足す（まだ載っていないモールを優先）。
    - `sources.md` の「出典の決まり」に合わない出典（いこーよ・グルメサイト・ブログなど）の項目を、毎日3〜5件ずつ公式で確かめ直して差しかえる。

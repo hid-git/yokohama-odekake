@@ -1252,7 +1252,7 @@ function playMatch(e, skip){
     if (PLAY.age === "out" && !/屋外/.test(pl)) return false;
   }
   if (PLAY.q) {
-    const hay = [e.t, e.venue, e.ward, e.sum, e.tip, e.time, playType(e)].join(" ");
+    const hay = [e.t, e.venue, e.ward, e.sum, e.tip, e.time, playType(e), ...(e.circles || []).map(c => c.n + c.what + "サークル")].join(" ");
     if (!PLAY.q.split(/\s+/).every(w => hay.includes(w))) return false;
   }
   return true;
@@ -1268,9 +1268,10 @@ function renderPlay(){
   document.getElementById("play-age").innerHTML = opt("age", "", "すべての年齢・場所") + [["baby","0〜2歳"],["pre","3〜6歳"],["sch","小学生"],["in","屋内"],["out","屋外"]].map(([v, l]) => opt("age", v, l)).join("");
   const hit = all.filter(e => playMatch(e));
   document.getElementById("play-n").textContent = `${hit.length}か所` + (PLAY.ward || PLAY.type || PLAY.age || PLAY.q ? `（全${all.length}か所から絞り込み）` : "");
-  const li = e => `<li><details><summary><b>${esc(playName(e))}</b><span class="chip free">${esc(playType(e))}</span><span class="chip">${esc((e.place || "").replace(/（.*/, ""))}</span><span class="chip">${esc(e.ageText || "")}</span></summary>
+  const li = e => `<li><details><summary><b>${esc(playName(e))}</b><span class="chip free">${esc(playType(e))}</span><span class="chip">${esc((e.place || "").replace(/（.*/, ""))}</span><span class="chip">${esc(e.ageText || "")}</span>${e.circles && e.circles.length ? `<span class="chip">👟 サークル${e.circles.length}</span>` : ""}</summary>
     <div class="pld"><div>📍 ${esc(e.venue || "")}</div>${e.time ? `<div>🕘 ${esc(e.time)}</div>` : ""}${e.period ? `<div>📆 ${esc(e.period)}</div>` : (e.wk ? `<div>📆 ${esc(e.wk)}</div>` : "")}
     ${e.sum ? `<div>${esc(e.sum)}</div>` : ""}${e.tip ? `<div>💡 ${esc(e.tip)}</div>` : ""}
+    ${e.circles && e.circles.length ? `<div class="plc"><b>👟 子ども向けサークル（地区センターで活動）</b><ul>${e.circles.map(c => `<li>${esc(c.n)}：${esc(c.what)}／${esc(c.when)}／${esc(c.age)}</li>`).join("")}</ul><span class="plw">活動日は団体の登録時の情報で、変わっていることがあります。入会・見学は地区センターに問い合わせ。${e.circlesUrl ? `<a href="${esc(e.circlesUrl)}" target="_blank" rel="noopener" data-play-out="${esc(e.id)}">サークル紹介 ↗</a>` : ""}（${esc(e.circlesAsof || "")}）</span></div>` : ""}
     <div class="lk"><a href="${esc(e.url)}" target="_blank" rel="noopener" data-play-out="${esc(e.id)}">公式ページ ↗</a><a href="?e=${encodeURIComponent(e.id)}#events">近くのおむつ替え・ごはん</a><a href="${esc(evLink(e))}">この場所のページ</a>${favBtn(e)}</div>
     <div class="plw">出典：${esc(e.src || "")}（${esc(e.asof || "")}時点）</div></div></details></li>`;
   const groups = PLAY.ward ? [PLAY.ward] : [...WARD_ORDER, "市内のまとめ"];
