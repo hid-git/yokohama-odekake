@@ -199,7 +199,7 @@ function shopLi(sh, detail, compact){
 function shopSort(list, key){ return list.slice().sort((a, b) => (isTOonly(key ? key(a) : a) - isTOonly(key ? key(b) : b))); }
 function kidsFoodHtml(e){
   const near = kidsFoodNear(e);
-  if (!near.length) { const g = venueGeo(e); if (!g) return ""; const u = `https://www.google.com/maps/search/${encodeURIComponent("キッズメニュー")}/@${g[0]},${g[1]},16z`; return `<div class="bfood kfood"><b>🍽 子連れで入りやすいお店</b><p class="note">このあたりはまだ調べ中です。会場の中のレストランやフードコートも見てみてください。<a href="${esc(u)}" target="_blank" rel="noopener">会場のまわりの「キッズメニュー」を地図で探す</a>　行ったお店の情報を投稿欄から送ってもらえると、次から表示できます。</p></div>`; }
+  if (!near.length) { const g = venueGeo(e); if (!g) return ""; const u = `https://www.google.com/maps/search/${encodeURIComponent("キッズメニュー")}/@${g[0]},${g[1]},16z`; return `<div class="bfood kfood"><b>🍽 子連れで入りやすいお店</b><p class="note">このあたりはまだ調べ中です。会場の中のレストランやフードコートも見てみてください。<a href="${esc(u)}" target="_blank" rel="noopener">会場のまわりの「キッズメニュー」を地図で探す</a>　行ったお店の情報をお問い合わせから送ってもらえると、確かめて載せます。</p></div>`; }
   const cp = near.length > SHOP_COMPACT, list = shopSort(near, x => x.sh);
   return `<div class="bfood kfood"><b>🍽 歩いて10分以内の子連れで入りやすいお店（${near.length}店）</b><ul>${list.map(x => shopLi(x.sh, `${esc(x.sh.k)}<br>${x.sh.tags.map(t=>`<span class="ktag">${esc(t)}</span>`).join("")}<br>会場からベビーカーで約${x.min}分（目安）（${esc(x.sh.src)}）`, cp)).join("")}</ul><div class="note">メニュー・値段は記事掲載時点のものです。行く前にお店の情報を確認してください。</div></div>`;
 }
@@ -1056,6 +1056,7 @@ async function deleteReport(uid, id){
 function alertBox(t){ setMsg(t, "err"); }
 
 async function initPosts(){
+  if (!document.getElementById("posts")) return; // 投稿の受付は休止中
   buildForm();
   document.getElementById("pform").addEventListener("submit", submitReport);
   document.getElementById("v-fac").addEventListener("click", () => { VIEW="fac"; document.getElementById("v-fac").setAttribute("aria-pressed","true"); document.getElementById("v-ward").setAttribute("aria-pressed","false"); renderPosts(); });

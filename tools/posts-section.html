@@ -1,0 +1,34 @@
+<!-- 休止中の「みんなの投稿」タブのHTML。再開するときは index.html の「近くで探す」の後ろに戻し、TABS に posts:["#posts"] とタブのリンクを足す -->
+<!-- 投稿の受付は休止中（2026年11月）。再開するときは hidden を外し、TABS とタブのリンクを戻す -->
+  <section class="posts" id="posts" aria-label="みんなの投稿" hidden>
+    <h2>みんなの投稿（赤ちゃん設備）</h2>
+    <ul class="points"><li><span class="pi">✏️</span><span>行った場所に「おむつ替え・授乳室・調乳のお湯」があったか教えてください。</span></li>
+      <li><span class="pi">✅</span><span>同じ内容が<b>3</b>件集まると「利用者確認済み」、運営が現地や電話で確かめたものは「運営確認済み」になります。</span></li>
+      <li><span class="pi">🙈</span><span>投稿者の名前は表示されません。</span></li></ul>
+    <div class="legend"><span class="badge staff">運営確認済み</span><span class="badge conf">利用者確認済み</span><span class="badge one">利用者の情報</span><span class="badge split">情報が分かれています</span></div>
+
+    <form class="pform" id="pform" novalidate>
+      <h3>投稿する</h3>
+      <div class="prow"><label for="p-fac">場所</label>
+        <select id="p-fac"></select></div>
+      <div class="prow" id="p-other" hidden>
+        <label for="p-oname">場所の名前</label><input type="text" id="p-oname" maxlength="40" placeholder="例：〇〇地区センター">
+        <label for="p-oward">区</label><select id="p-oward"></select></div>
+      <div class="prow"><span class="lbl">設備</span>
+        <div class="tri" id="tri-d"><span class="q">おむつ替え</span></div>
+        <div class="tri" id="tri-f"><span class="q">授乳室</span></div>
+        <div class="tri" id="tri-w"><span class="q">調乳のお湯</span></div>
+        <div class="tri" id="tri-dm"><span class="q">おむつ台の場所</span></div></div>
+      <div class="prow"><span class="lbl">飲食店の場合</span><div id="tri-rest"></div></div>
+      <div class="prow"><label for="p-ym">行った月</label><input type="month" id="p-ym"></div>
+      <div class="prow"><label for="p-note">ひとこと（任意・100文字まで）</label><textarea id="p-note" maxlength="100" placeholder="例：6階のベビー休憩室。ベビーカーごと入れた／男性トイレに台がなく困った"></textarea></div>
+      <button class="btn" id="p-submit" type="submit" disabled>投稿する</button>
+      <p class="pmsg" id="p-msg">投稿の仕組みを読み込んでいます…</p>
+    </form>
+
+    <div class="ptabs opts" role="group" aria-label="まとめ方">
+      <button class="opt" id="v-fac" type="button" aria-pressed="true">施設ごと</button>
+      <button class="opt" id="v-ward" type="button" aria-pressed="false">区ごと</button>
+    </div>
+    <div id="p-list"></div>
+  </section>
