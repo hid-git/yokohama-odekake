@@ -799,7 +799,44 @@ function initNear(){
   renderNear();
 }
 
+// 前回の絞り込み（日にち・年齢・区・こだわり・検索語）をこの端末に覚えておき、次に開いたときに戻す
+function saveState(){
+  try { localStorage.setItem("evstate", JSON.stringify({ day: state.day, age: state.age, area: state.area, q: state.q, flags: [...state.flags], at: Date.now() })); } catch (_) {}
+}
+function stateLabel(){
+  const p = [];
+  if (state.day !== "all") p.push(dlabel(state.day));
+  if (state.area !== "all") p.push(state.area);
+  if (state.age !== "all") { const b = document.querySelector(`.opts[data-key="age"] .opt[data-v="${state.age}"]`); p.push(b ? b.textContent.trim() : state.age); }
+  state.flags.forEach(f => { const b = document.querySelector(`.opts[data-key="flags"] .opt[data-v="${f}"]`); p.push(b ? b.textContent.trim() : f); });
+  if (state.q) p.push(`「${state.q}」`);
+  return p.join("・");
+}
+function restoreState(){
+  if (new URLSearchParams(location.search).get("e")) return;      // 送られたリンクで開いたときは戻さない
+  let sv = null; try { sv = JSON.parse(localStorage.getItem("evstate") || "null"); } catch (_) {}
+  if (!sv || Date.now() - (sv.at || 0) > 60 * 864e5) return;      // 60日より前のものは使わない
+  const has = (key, v) => !!document.querySelector(`.opts[data-key="${key}"] .opt[data-v="${CSS.escape(v)}"]`);
+  if (sv.day && sv.day !== "all" && has("day", sv.day)) state.day = sv.day;   // 過ぎた日は戻さない
+  if (sv.age && sv.age !== "all" && has("age", sv.age)) state.age = sv.age;
+  if (sv.area && sv.area !== "all" && has("area", sv.area)) state.area = sv.area;
+  (sv.flags || []).forEach(f => { if (has("flags", f)) state.flags.add(f); });
+  if (sv.q) { state.q = sv.q; const qi = document.getElementById("q"); if (qi) qi.value = sv.q; }
+  document.querySelectorAll(".opts[data-key]").forEach(box => box.querySelectorAll(".opt").forEach(o => {
+    const key = box.dataset.key;
+    o.setAttribute("aria-pressed", box.dataset.multi ? String(state.flags.has(o.dataset.v)) : String(o.dataset.v === state[key]));
+  }));
+  const lb = stateLabel(); if (!lb) return;
+  const bar = document.createElement("div"); bar.className = "restored"; bar.id = "restored";
+  bar.innerHTML = `<span>前回の条件で表示中：<b>${esc(lb)}</b></span><button type="button" id="restored-x">リセット</button>`;
+  const cnt = document.querySelector(".count"); if (cnt) cnt.parentNode.insertBefore(bar, cnt);
+  bar.querySelector("#restored-x").addEventListener("click", () => { document.getElementById("reset").click(); });
+  if (typeof track === "function") setTimeout(() => track("restore", lb), 1500);
+}
+
 function render(){
+  saveState();
+  { const rb = document.getElementById("restored"); if (rb) { const lb = stateLabel(); if (!lb) rb.remove(); else rb.querySelector("b").textContent = lb; } }
   if (typeof renderEvPoints === "function") renderEvPoints();
   const hit = EVENTS.filter(matches);
   if (typeof renderNear === "function" && near.c) setTimeout(renderNear, 0);
@@ -1066,6 +1103,7 @@ setHeroTime(); setInterval(setHeroTime, 60000);
 setupAreas();
 document.getElementById("total").textContent = EVENTS.length;
 bind();
+restoreState();
 render();
 openFromLink();
 renderFoodAll();
