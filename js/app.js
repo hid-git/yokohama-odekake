@@ -1223,3 +1223,73 @@ document.getElementById("tabs").addEventListener("click", ev => {
 });
 window.addEventListener("hashchange", () => showTab(location.hash.slice(1), true));
 showTab(location.hash.slice(1), false);
+
+// ---- 区ごとの無料の遊び場（タブ「🛝 無料の遊び場」）----
+// 載せる条件：いつでも行ける（ongoing）・無料・遊び場／動物／乗り物のフラグがあるもの。build_pages.py の play_ok と同じ条件にする。
+const WARD_ORDER = ["鶴見区","神奈川区","西区","中区","南区","港南区","保土ケ谷区","旭区","磯子区","金沢区","港北区","緑区","青葉区","都筑区","戸塚区","栄区","泉区","瀬谷区"];
+const PLAY_TYPES = ["プレイルーム","支援拠点","ログハウス","公園","モール・施設"];
+function playOk(e){ return e.kind === "ongoing" && e.price === "free" && (e.freeplay || e.animal || e.ride); }
+function playType(e){
+  if (/地域子育て支援拠点/.test(e.t)) return "支援拠点";
+  if (/地区センター|コミュニティハウス/.test(e.t)) return "プレイルーム";
+  if (/ログハウス/.test(e.t)) return "ログハウス";
+  if (/屋外/.test(e.place || "") || /公園|広場|ふるさと村/.test(e.t)) return "公園";
+  return "モール・施設";
+}
+function playWards(e){ return /^各区/.test(e.t) ? ["市内のまとめ"] : String(e.ward || "").split("・"); }
+function playName(e){ return e.t.replace(/（[^（）]*区）$/, "").replace(/（([^（）]*区)の地域子育て支援拠点）$/, "（子育て支援拠点）"); }
+const PLAY = { q: "", ward: "", type: "", age: "" };
+try { const sv = JSON.parse(localStorage.getItem("playstate") || "null"); if (sv) Object.assign(PLAY, { ward: sv.ward || "", type: sv.type || "", age: sv.age || "" }); } catch (_) {}
+function playMatch(e, skip){
+  if (skip !== "ward" && PLAY.ward && !playWards(e).includes(PLAY.ward)) return false;
+  if (skip !== "type" && PLAY.type && playType(e) !== PLAY.type) return false;
+  if (skip !== "age" && PLAY.age) {
+    const a = e.age || [0, 99], pl = e.place || "";
+    if (PLAY.age === "baby" && a[0] > 2) return false;
+    if (PLAY.age === "pre" && !(a[0] <= 6 && a[1] >= 3)) return false;
+    if (PLAY.age === "sch" && a[1] < 7) return false;
+    if (PLAY.age === "in" && !/屋内/.test(pl)) return false;
+    if (PLAY.age === "out" && !/屋外/.test(pl)) return false;
+  }
+  if (PLAY.q) {
+    const hay = [e.t, e.venue, e.ward, e.sum, e.tip, e.time, playType(e)].join(" ");
+    if (!PLAY.q.split(/\s+/).every(w => hay.includes(w))) return false;
+  }
+  return true;
+}
+function renderPlay(){
+  const out = document.getElementById("play-out"); if (!out) return;
+  const all = EVENTS.filter(playOk);
+  const opt = (k, v, label, n) => `<button type="button" class="opt" data-k="${k}" data-v="${esc(v)}" aria-pressed="${PLAY[k] === v}">${esc(label)}${n === undefined ? "" : ` <small>${n}</small>`}</button>`;
+  const wards = [...WARD_ORDER, "市内のまとめ"].filter(w => all.some(e => playWards(e).includes(w)));
+  const cnt = (k, f) => all.filter(e => playMatch(e, k) && f(e)).length;
+  document.getElementById("play-ward").innerHTML = opt("ward", "", "すべての区") + wards.map(w => { const n = cnt("ward", e => playWards(e).includes(w)); return n ? opt("ward", w, w.replace(/区$/, ""), n) : ""; }).join("");
+  document.getElementById("play-type").innerHTML = opt("type", "", "すべての種類") + PLAY_TYPES.map(t => { const n = cnt("type", e => playType(e) === t); return n ? opt("type", t, t, n) : ""; }).join("");
+  document.getElementById("play-age").innerHTML = opt("age", "", "すべての年齢・場所") + [["baby","0〜2歳"],["pre","3〜6歳"],["sch","小学生"],["in","屋内"],["out","屋外"]].map(([v, l]) => opt("age", v, l)).join("");
+  const hit = all.filter(e => playMatch(e));
+  document.getElementById("play-n").textContent = `${hit.length}か所` + (PLAY.ward || PLAY.type || PLAY.age || PLAY.q ? `（全${all.length}か所から絞り込み）` : "");
+  const li = e => `<li><details><summary><b>${esc(playName(e))}</b><span class="chip free">${esc(playType(e))}</span><span class="chip">${esc((e.place || "").replace(/（.*/, ""))}</span><span class="chip">${esc(e.ageText || "")}</span></summary>
+    <div class="pld"><div>📍 ${esc(e.venue || "")}</div>${e.time ? `<div>🕘 ${esc(e.time)}</div>` : ""}${e.period ? `<div>📆 ${esc(e.period)}</div>` : (e.wk ? `<div>📆 ${esc(e.wk)}</div>` : "")}
+    ${e.sum ? `<div>${esc(e.sum)}</div>` : ""}${e.tip ? `<div>💡 ${esc(e.tip)}</div>` : ""}
+    <div class="lk"><a href="${esc(e.url)}" target="_blank" rel="noopener" data-play-out="${esc(e.id)}">公式ページ ↗</a><a href="?e=${encodeURIComponent(e.id)}#events">近くのおむつ替え・ごはん</a><a href="${esc(evLink(e))}">この場所のページ</a>${favBtn(e)}</div>
+    <div class="plw">出典：${esc(e.src || "")}（${esc(e.asof || "")}時点）</div></div></details></li>`;
+  const groups = PLAY.ward ? [PLAY.ward] : [...WARD_ORDER, "市内のまとめ"];
+  const html = groups.map(w => { const xs = hit.filter(e => playWards(e).includes(w)); if (!xs.length) return "";
+    xs.sort((a, b) => PLAY_TYPES.indexOf(playType(a)) - PLAY_TYPES.indexOf(playType(b)) || a.t.localeCompare(b.t, "ja"));
+    return `<h3>${esc(w)}（${xs.length}）</h3><ul class="pl">${xs.map(li).join("")}</ul>`; }).join("");
+  out.innerHTML = html || `<p class="note">条件に合う場所がありません。条件を減らしてみてください。</p>`;
+}
+{ const sec = document.getElementById("play");
+  if (sec) {
+    let tq = null;
+    sec.addEventListener("click", ev => {
+      const b = ev.target.closest("button.opt[data-k]"); if (b) { const k = b.dataset.k, v = b.dataset.v; PLAY[k] = PLAY[k] === v ? "" : v;
+        try { localStorage.setItem("playstate", JSON.stringify({ ward: PLAY.ward, type: PLAY.type, age: PLAY.age })); } catch (_) {}
+        renderPlay(); if (v) track("play", k + "：" + v, document.getElementById("play-n").textContent); return; }
+      const a = ev.target.closest("a[data-play-out]"); if (a) track("play_open", a.dataset.playOut);
+    });
+    const q = document.getElementById("play-q");
+    q.addEventListener("input", () => { PLAY.q = q.value.trim(); renderPlay(); clearTimeout(tq); tq = setTimeout(() => { if (PLAY.q) track("play", "検索：" + PLAY.q, document.getElementById("play-n").textContent); }, 1500); });
+    renderPlay();
+  }
+}

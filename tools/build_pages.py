@@ -444,9 +444,18 @@ def main():
         return f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a>' + (f'<span class="d">{E(dl)}</span>' if dl else "") + "</li>"
     newhtml = ('<section class="newev" id="newev" aria-label="新着イベント"><h2>🆕 新しく載せたイベント</h2><ul>' + "".join(nli(e) for e in newest[:5]) + "</ul>"
                '<details class="fold"><summary>ほかの新着（あと' + str(len(newest[5:])) + '件）</summary><div class="fbody"><ul>' + "".join(nli(e) for e in newest[5:]) + "</ul></div></details></section>")
+    # 区ごとの無料の遊び場（タブ「🛝 無料の遊び場」）：JSが動く前・検索エンジン向けの静的な一覧。js/app.js の playOk と同じ条件
+    WARD_ORDER = ["鶴見区","神奈川区","西区","中区","南区","港南区","保土ケ谷区","旭区","磯子区","金沢区","港北区","緑区","青葉区","都筑区","戸塚区","栄区","泉区","瀬谷区"]
+    play = [e for e in ev_live if e.get("kind") == "ongoing" and e.get("price") == "free" and (e.get("freeplay") or e.get("animal") or e.get("ride"))]
+    def pwards(e): return ["市内のまとめ"] if e["t"].startswith("各区") else str(e.get("ward") or "").split("・")
+    def pname(e): return re.sub(r"（([^（）]*区)の地域子育て支援拠点）$", "（子育て支援拠点）", re.sub(r"（[^（）]*区）$", "", e["t"]))
+    playhtml = '<div id="play-static">' + "".join(
+        f'<h3>{w}（{len(xs)}）</h3><ul>' + "".join(f'<li><a href="/event/{e["id"]}/">{E(pname(e))}</a></li>' for e in sorted(xs, key=lambda e: e["t"])) + "</ul>"
+        for w in WARD_ORDER + ["市内のまとめ"] for xs in [[e for e in play if w in pwards(e)]] if xs) + "</div>"
     # js/app.js の ?v= を中身のハッシュに合わせる（変えたときだけブラウザが読み直す）
     appv = hashlib.sha1(open(os.path.join(ROOT, "js", "app.js"), "rb").read()).hexdigest()[:10]
     src = re.sub(r'src="js/app\.js\?v=[0-9a-f]*"', f'src="js/app.js?v={appv}"', src)
+    src = re.sub(r"<!--PLAY:START-->.*?<!--PLAY:END-->", lambda _: f"<!--PLAY:START-->{playhtml}<!--PLAY:END-->", src, flags=re.S)
     src = re.sub(r"<!--NEW:START-->.*?<!--NEW:END-->", lambda _: f"<!--NEW:START-->{newhtml}<!--NEW:END-->", src, flags=re.S)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (org, item_list))
     src = re.sub(r"<!--PAGES:START-->.*?<!--PAGES:END-->", lambda _: f"<!--PAGES:START-->{links}<!--PAGES:END-->", src, flags=re.S)
