@@ -45,6 +45,36 @@ def load_data():
           baby: BABY,
           areas: Object.fromEntries(FOOD_AREAS.map(a => [a.k, (FOOD[a.k] && FOOD[a.k].name) || a.name || ""])),
           rain: RAIN_LABEL,
+          // 個別ページを厚くするための、データから出せる周りの情報（推測はしない）
+          extra: (() => {
+            const strip = h => (h || "").split(/<[^>]+>/).map(x => x.trim()).filter(Boolean);
+            const mins = (a, b) => Math.max(1, Math.round(distM(a, b) * 1.3 / 70));
+            const ev = {}, sp = {};
+            // 施設の位置：SPOT_GEO にないものは、会場の位置（VENUE_GEO）の名前で引く
+            const SPOT_GEO_ALL = {};
+            Object.values(BABY).forEach(list => list.forEach(b => { const g = SPOT_GEO[b.n] || (VENUE_GEO.find(([re]) => re.test(b.n)) || [])[1]; if (g) SPOT_GEO_ALL[b.n] = g; }));
+            EVENTS.forEach(e => {
+              const k = accessKey(e), a = k ? ACCESS[k] : null, g = venueGeo(e);
+              ev[e.id] = {
+                acc: strip(accPoints(e, k, a)),
+                food: kidsFoodNear(e).slice(0, 8).map(x => ({ n: x.sh.n, gen: x.sh.gen || "", min: x.min, tags: x.sh.tags.slice(0, 3) })),
+                courts: foodCourtNear(e).slice(0, 3).map(x => ({ n: x.c.n, min: x.min })),
+                spots: g ? Object.entries(SPOT_GEO_ALL).map(([n, sg]) => ({ n, min: mins(g, sg) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 6) : [],
+              };
+            });
+            const seen = new Set();
+            Object.values(BABY).forEach(list => list.forEach(b => {
+              if (seen.has(b.n)) return; seen.add(b.n);
+              const g = SPOT_GEO[b.n] || (VENUE_GEO.find(([re]) => re.test(b.n)) || [])[1]; const p = PAPA[b.n];
+              sp[b.n] = {
+                papa: p ? { label: PAPA_LABEL[p.v] || "", t: p.t || "" } : null,
+                food: g ? KIDS_SHOPS.map(sh => ({ n: sh.n, gen: sh.gen || "", min: mins(g, sh.g), tags: sh.tags.slice(0, 3) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 8) : [],
+                courts: g ? FOOD_COURTS.map(c => ({ n: c.n, min: mins(g, c.g) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 3) : [],
+                events: g ? EVENTS.map(e => ({ e, g2: venueGeo(e) })).filter(x => x.g2 && mins(g, x.g2) <= 15).map(x => ({ id: x.e.id, min: mins(g, x.g2) })).sort((p, q) => p.min - q.min).slice(0, 10) : [],
+              };
+            }));
+            return { ev, sp };
+          })(),
         })""")
         b.close()
     return d
@@ -86,7 +116,7 @@ table.info{width:100%;border-collapse:collapse;font-size:14.5px}table.info th{wi
 .btn.main{background:var(--accent);color:#fff}.btn.line{background:#06c755;border-color:#06c755;color:#fff}
 table.bm{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card)}table.bm th,table.bm td{border-bottom:1px solid var(--line);padding:6px 4px}table.bm thead th{font-size:12px;color:var(--muted);text-align:center}table.bm thead th:first-child,table.bm tbody th{text-align:left}
 td.y{color:var(--ok);text-align:center;font-weight:700}td.n{color:var(--bad);text-align:center;font-weight:700}td.u{color:var(--muted);text-align:center}
-.legend,.small{font-size:12px;color:var(--muted)}ul.links{padding-left:1.2em}ul.links li{margin:4px 0}
+.legend,.small{font-size:12px;color:var(--muted)}ul.food .tag{font-size:11.5px;margin-left:6px;padding:1px 7px;border-radius:999px;background:#f1f4f7;color:#3b5266}ul.links{padding-left:1.2em}ul.links li{margin:4px 0}
 .chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:8px 0}.chips li{font-size:12.5px;padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700}
 footer{margin:28px 0 8px;font-size:12px;color:var(--muted)}
 """
@@ -259,6 +289,33 @@ def render_og_spots(spots, spot_ids, areas, man_og):
     return new, len(todo)
 
 
+WARD_ORDER_ALL = ["鶴見区","神奈川区","西区","中区","南区","港南区","保土ケ谷区","旭区","磯子区","金沢区","港北区","緑区","青葉区","都筑区","戸塚区","栄区","泉区","瀬谷区"]
+
+
+def play_ok(x):
+    return x.get("kind") == "ongoing" and x.get("price") == "free" and (x.get("freeplay") or x.get("animal") or x.get("ride"))
+
+
+def food_list(food, courts):
+    if not food and not courts:
+        return ""
+    li = "".join(f'<li><b>{E(f["n"])}</b>' + (f'（{E(f["gen"])}）' if f.get("gen") else "") + f'　ベビーカーで約{f["min"]}分' +
+                 ("".join(f'<span class="tag">{E(t)}</span>' for t in f.get("tags") or [])) + "</li>" for f in food)
+    li += "".join(f'<li><b>{E(c["n"])}</b>（フードコート）　ベビーカーで約{c["min"]}分</li>' for c in courts)
+    return (f'<h2>歩いて10分以内の子連れで入りやすいごはん</h2><ul class="links food">{li}</ul>'
+            '<p class="small">時間はベビーカーで歩いたときのめやす（直線距離から計算）。メニューや営業時間は行く前にお店で確かめてください。</p>')
+
+
+def circles_html(x):
+    cs = x.get("circles") or []
+    if not cs:
+        return ""
+    li = "".join(f'<li><b>{E(c["n"])}</b>：{E(c["what"])}／{E(c["when"])}／対象：{E(c["age"])}</li>' for c in cs)
+    link = f'<a href="{E(x["circlesUrl"])}" target="_blank" rel="noopener">サークル紹介</a>' if x.get("circlesUrl") else "サークル紹介"
+    return (f'<h2>ここで活動している子ども向けサークル</h2><ul class="links">{li}</ul>'
+            f'<p class="small">活動日は団体の登録時の情報で、変わっていることがあります。入会・見学は施設に問い合わせてください（{link}・{E(x.get("circlesAsof", ""))}）。</p>')
+
+
 def event_page(e, d, spot_ids, track_url):
     path = f"event/{e['id']}/"
     ward1 = e["ward"].split("・")[0]
@@ -273,6 +330,24 @@ def event_page(e, d, spot_ids, track_url):
     url = SITE + path
     share_text = f"【{e['t']}】\n{when_text(e)}　{e['time']}\n場所：{e['ward']}・{e['venue']}\n{url}"
     others = [x for x in d["events"] if x.get("area") == area and area and x["id"] != e["id"]][:8]
+    ex = d["extra"]["ev"].get(e["id"], {})
+    spot_rows = [b for nm in [x["n"] for x in ex.get("spots", [])] for b in [d["_spot_by_name"].get(nm)] if b]
+    near_spots_html = ('<h2>歩いて10分以内のおむつ替え・授乳室・お湯</h2>' + matrix(spot_rows, spot_ids)) if spot_rows else ""
+    acc_html = ('<h2>行き方のめやす</h2><ul class="links">' + "".join(f"<li>{E(x)}</li>" for x in ex["acc"]) + "</ul>") if ex.get("acc") else ""
+    food_html = food_list(ex.get("food", []), ex.get("courts", []))
+    w1 = (e.get("ward") or "").split("・")[0]
+    plays = [x for x in d["events"] if play_ok(x) and x["id"] != e["id"] and w1 and w1 in (x.get("ward") or "")]
+    plays.sort(key=lambda x: (not str(x.get("place", "")).startswith("屋内"), x["t"]))
+    play_html = (f'<h2>{E(w1)}の無料で遊べる場所（雨の日は屋内から）</h2><ul class="links">' + "".join(
+        f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(str(x.get("place", "")).replace("（", "・").split("・")[0])}）</li>' for x in plays[:8]) + "</ul>") if plays else ""
+    sameday_html = ""
+    if e["kind"] == "limited" and e.get("days"):
+        d0 = e["days"][0]
+        same = [x for x in d["events"] if x["id"] != e["id"] and x["kind"] == "limited" and d0 in (x.get("days") or [])]
+        same.sort(key=lambda x: (w1 not in (x.get("ward") or ""), x["t"]))
+        if same:
+            sameday_html = (f'<h2>{E(jp_date(d0))}に開かれるほかの親子イベント</h2><ul class="links">' + "".join(
+                f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(x["ward"])}）</li>' for x in same[:8]) + "</ul>")
     body = f"""{ch}
 <article class="card">
 <h1>{E(e['t'])}</h1>
@@ -294,7 +369,12 @@ def event_page(e, d, spot_ids, track_url):
 <button type="button" class="btn" data-share="1">🔗 リンクを送る・コピー</button>
 <a class="btn line" href="{E(line_url(share_text))}" target="_blank" rel="noopener">LINEで送る</a></div>
 </article>
-{f'<h2>近くのおむつ替え・授乳室・お湯（{E(d["areas"].get(area, ""))}）</h2>' + matrix(babies, spot_ids) if babies else ''}
+{f'<h2>近くのおむつ替え・授乳室・お湯（{E(d["areas"].get(area, ""))}）</h2>' + matrix(babies, spot_ids) if babies else near_spots_html}
+{acc_html}
+{food_html}
+{circles_html(e)}
+{play_html}
+{sameday_html}
 {('<h2>近くのほかのイベント</h2><ul class="links">' + ''.join(f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(when_text(x)[:30])}）</li>' for x in others) + '</ul>') if others else ''}
 """
     ld = [cld]
@@ -331,6 +411,13 @@ def spot_page(b, area, d, spot_ids, track_url):
     desc = f"{short(b['n'])}（{d['areas'].get(area, '')}）の赤ちゃん設備。" + ("・".join(has) + "あり。" if has else "") + (b.get("where") or "")
     ch, cld = crumbs([("トップ", "/"), ("ごはん・おむつ", "/#foodall"), (short(b["n"]), "")])
     evs = [x for x in d["events"] if x.get("area") == area][:10]
+    sx = d["extra"]["sp"].get(b["n"], {})
+    pp = sx.get("papa")
+    papa_html = f'<h2>パパも使える？</h2><p><b>{E(pp["label"])}</b>　{E(pp["t"])}</p>' if pp and pp.get("label") else ""
+    ev_by_id = {x["id"]: x for x in d["events"]}
+    geo_ev = [ev_by_id[x["id"]] for x in sx.get("events", []) if x["id"] in ev_by_id and ev_by_id[x["id"]] not in evs]
+    near_ev_html = ('<h2>歩いて15分くらいで行けるイベント・遊び場</h2><ul class="links">' + "".join(
+        f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(when_text(x)[:30])}）</li>' for x in geo_ev[:8]) + "</ul>") if geo_ev else ""
     near = [x for x in d["baby"].get(area, []) if x["n"] != b["n"]]
     ex = "".join(f"<li>{E(x)}</li>" for x in b.get("ex") or [])
     body = f"""{ch}
@@ -346,7 +433,10 @@ def spot_page(b, area, d, spot_ids, track_url):
 <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query={E(short(b['n']))}" target="_blank" rel="noopener">地図で見る</a>
 <button type="button" class="btn" data-share="1">🔗 リンクを送る・コピー</button></div>
 </article>
+{papa_html}
+{food_list(sx.get("food", []), sx.get("courts", []))}
 {('<h2>同じエリアのほかの赤ちゃん設備</h2>' + matrix(near, spot_ids)) if near else ''}
+{near_ev_html}
 {('<h2>このあたりのイベント</h2><ul class="links">' + ''.join(f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(when_text(x)[:30])}）</li>' for x in evs) + '</ul>') if evs else ''}
 """
     feats = [{"@type": "LocationFeatureSpecification", "name": n, "value": v} for n, v in (("おむつ替え", b.get("d")), ("授乳室", b.get("f")), ("調乳のお湯", b.get("w"))) if isinstance(v, bool)]
@@ -474,6 +564,7 @@ def main():
             if b["n"] not in spots:
                 spots[b["n"]] = (b, area)
                 spot_ids[b["n"]] = hash_id(b["n"])
+    d["_spot_by_name"] = {n: b for n, (b, area) in spots.items()}
     built = {"event": {}, "spot": {}}
     for e in d["events"]:
         path, htmltext, name = event_page(e, d, spot_ids, track_url)
