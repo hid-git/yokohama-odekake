@@ -444,6 +444,9 @@ def main():
         return f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a>' + (f'<span class="d">{E(dl)}</span>' if dl else "") + "</li>"
     newhtml = ('<section class="newev" id="newev" aria-label="新着イベント"><h2>🆕 新しく載せたイベント</h2><ul>' + "".join(nli(e) for e in newest[:5]) + "</ul>"
                '<details class="fold"><summary>ほかの新着（あと' + str(len(newest[5:])) + '件）</summary><div class="fbody"><ul>' + "".join(nli(e) for e in newest[5:]) + "</ul></div></details></section>")
+    # js/app.js の ?v= を中身のハッシュに合わせる（変えたときだけブラウザが読み直す）
+    appv = hashlib.sha1(open(os.path.join(ROOT, "js", "app.js"), "rb").read()).hexdigest()[:10]
+    src = re.sub(r'src="js/app\.js\?v=[0-9a-f]*"', f'src="js/app.js?v={appv}"', src)
     src = re.sub(r"<!--NEW:START-->.*?<!--NEW:END-->", lambda _: f"<!--NEW:START-->{newhtml}<!--NEW:END-->", src, flags=re.S)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (org, item_list))
     src = re.sub(r"<!--PAGES:START-->.*?<!--PAGES:END-->", lambda _: f"<!--PAGES:START-->{links}<!--PAGES:END-->", src, flags=re.S)

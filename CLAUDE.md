@@ -4,7 +4,7 @@
 ロゴは `img/logo.webp`（全地域で共通。景色は地域ごとの背景で出す）。ファビコンは `img/favicon.png`・`img/apple-touch-icon.png`、LINEなどで送ったときの画像は `img/ogp.jpg`。`img/` のファイルは消さない。
 
 公開サイト：https://kidstrip.jp/ （GitHub Pages、main ブランチの直下。独自ドメイン kidstrip.jp。ドメインは Xserverドメインで管理、`CNAME` ファイルは消さない。古いアドレス https://hid-git.github.io/yokohama-odekake/ からは自動で移る）
-中身は `index.html` 1ファイルだけ。データもこの中にある。英語版（観光で来る子連れ家族向け）は `en/index.html` で、観光客が行きやすい場所と大きなイベントだけを英語で載せている。
+データ（`EVENTS`・`BABY`・`KIDS_SHOPS`・`ACCESS` など、毎日足したり直したりするもの）は `index.html` の中の `<script>` にある。表示や絞り込みなどの動きのコード（関数）は `js/app.js` に分けてあり、`index.html` を読んだあとに `defer` で動く（2回目からはブラウザのキャッシュで速く開く）。毎日の更新で触るのは `index.html` のデータだけで、`js/app.js` は動きを変えるときだけ直す。`js/app.js` の `?v=` は `tools/build_pages.py` が中身に合わせて付け直す。イベントは `index.html` の「// ---- 区ごとの無料の室内遊び場」の行より上に足す（長期開催の展開などの処理は、データをすべて読んだあとに `js/app.js` で一度に行われる）。英語版（観光で来る子連れ家族向け）は `en/index.html` で、観光客が行きやすい場所と大きなイベントだけを英語で載せている。
 
 ## 毎日の更新でやること
 
