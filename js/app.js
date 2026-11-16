@@ -1121,6 +1121,7 @@ document.addEventListener("click", ev => {
 });
 const TRACK_ON = !!TRACK_URL && /(github\.io|kidstrip\.jp)$/.test(location.hostname);
 let TRACK_VID = ""; try { TRACK_VID = localStorage.getItem("vid") || ""; if (!TRACK_VID) { TRACK_VID = Math.random().toString(36).slice(2, 10); localStorage.setItem("vid", TRACK_VID); } } catch (_) {}
+try { const q = new URLSearchParams(location.search).get("me"); if (q === "1") localStorage.setItem("me", "1"); if (q === "0") localStorage.removeItem("me"); if (q === "1" || q === "0") setTimeout(() => { const d = document.createElement("div"); d.textContent = q === "1" ? "この端末からの記録に「自分_」の印を付けます（やめるときは ?me=0 を開く）" : "この端末の「自分」の印を外しました"; d.style.cssText = "position:fixed;left:12px;right:12px;bottom:12px;z-index:99;background:#17324a;color:#fff;padding:10px 12px;border-radius:10px;font-size:14px"; document.body.appendChild(d); setTimeout(() => d.remove(), 5000); }, 300); if (localStorage.getItem("me") === "1") TRACK_VID = "自分_" + TRACK_VID; } catch (_) {}
 const TRACK_DEV = /iPhone|iPod/.test(navigator.userAgent) ? "iPhone" : /iPad/.test(navigator.userAgent) ? "iPad" : /Android/.test(navigator.userAgent) ? (/Mobile/.test(navigator.userAgent) ? "Androidスマホ" : "Androidタブレット") : "PC";
 let TRACK_TZ = ""; try { TRACK_TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (_) {}
 const TRACK_LANG = (navigator.language || "").slice(0, 10);
