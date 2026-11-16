@@ -1177,7 +1177,7 @@ function track(type, value, target){
   if (!TRACK_ON) return;
   const qs = new URLSearchParams(location.search);
   let ref = qs.get("utm_source") || qs.get("ref") || ""; if (!ref) { try { ref = document.referrer ? new URL(document.referrer).hostname : ""; } catch (_) {} }
-  const body = JSON.stringify({ type, value: String(value || "").slice(0, 200), target: String(target || "").slice(0, 200), dev: TRACK_DEV, app: TRACK_APP, ref: ref.slice(0, 100), vid: TRACK_VID, page: (location.hash || "#events").slice(0, 40), lang: TRACK_LANG, tz: TRACK_TZ.slice(0, 40), jp: TRACK_JP });
+  const body = JSON.stringify({ type, value: String(value || "").slice(0, 200), target: String(target || "").slice(0, 200), dev: TRACK_DEV, app: TRACK_APP, ref: ref.slice(0, 100), vid: TRACK_VID, page: (location.hash || "#events").slice(0, 40), lang: TRACK_LANG, tz: TRACK_TZ.slice(0, 40), jp: TRACK_JP, ua: navigator.userAgent.slice(0, 160), bot: navigator.webdriver ? "1" : "" });
   try { if (navigator.sendBeacon) navigator.sendBeacon(TRACK_URL, new Blob([body], { type: "text/plain" })); else fetch(TRACK_URL, { method: "POST", body, mode: "no-cors", keepalive: true }); } catch (_) {}
 }
 track("pageview", document.title);

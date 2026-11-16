@@ -101,7 +101,7 @@ def track_js(track_url, page):
         return ""
     return """(function(){var U=%s;if(!/(github\\.io|kidstrip\\.jp)$/.test(location.hostname))return;var v="";try{v=localStorage.getItem("vid")||"";if(!v){v=Math.random().toString(36).slice(2,10);localStorage.setItem("vid",v)}}catch(_){}try{if(localStorage.getItem("me")==="1")v="自分_"+v}catch(_){}
 var ua=navigator.userAgent,dev=/iPhone|iPod/.test(ua)?"iPhone":/iPad/.test(ua)?"iPad":/Android/.test(ua)?(/Mobile/.test(ua)?"Androidスマホ":"Androidタブレット"):"PC",app=/\\bLine\\//i.test(ua)?"LINEアプリ内":/Instagram/.test(ua)?"Instagramアプリ内":/FBAN|FBAV/.test(ua)?"Facebookアプリ内":"ブラウザ",tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(_){}
-function t(type,value,target){var ref="";try{ref=document.referrer?new URL(document.referrer).hostname:""}catch(_){}var body=JSON.stringify({type:type,value:String(value||"").slice(0,200),target:String(target||"").slice(0,200),dev:dev,app:app,ref:ref.slice(0,100),vid:v,page:%s,lang:(navigator.language||"").slice(0,10),tz:tz.slice(0,40),jp:tz?(tz==="Asia/Tokyo"?"日本":"海外"):""});try{navigator.sendBeacon?navigator.sendBeacon(U,new Blob([body],{type:"text/plain"})):fetch(U,{method:"POST",body:body,mode:"no-cors",keepalive:true})}catch(_){}}
+function t(type,value,target){var ref="";try{ref=document.referrer?new URL(document.referrer).hostname:""}catch(_){}var body=JSON.stringify({type:type,value:String(value||"").slice(0,200),target:String(target||"").slice(0,200),dev:dev,app:app,ref:ref.slice(0,100),vid:v,page:%s,lang:(navigator.language||"").slice(0,10),tz:tz.slice(0,40),jp:tz?(tz==="Asia/Tokyo"?"日本":"海外"):"",ua:ua.slice(0,160),bot:navigator.webdriver?"1":""});try{navigator.sendBeacon?navigator.sendBeacon(U,new Blob([body],{type:"text/plain"})):fetch(U,{method:"POST",body:body,mode:"no-cors",keepalive:true})}catch(_){}}
 t("pageview",document.title);document.addEventListener("click",function(ev){var a=ev.target.closest("a,[data-share]");if(!a)return;var h=a.getAttribute("href")||"",n=document.querySelector("h1")?document.querySelector("h1").textContent:"";
 if(a.hasAttribute("data-share"))return t("copy_link","個別ページ",n);if(a.dataset.act)return t(a.dataset.act,a.href,n);if(/line\\.me\\/R\\/share/.test(h))return t("line_share","個別ページ",n);if(/^https?:/.test(h)&&h.indexOf(location.hostname)<0)return t("outlink",a.href,n)})})();""" % (json.dumps(track_url), json.dumps(page))
 
@@ -138,7 +138,8 @@ def page(title, desc, path, body, ld, noindex=False, track_url="", tpage="", og=
 <div class="top"><a href="/"><img src="{up}img/logo.webp" width="640" height="191" alt="KidsTrip（キッズトリップ）トップへ"></a><a class="btn" href="/">イベント一覧へ</a></div>
 {body}
 <footer><p>KidsTrip（キッズトリップ）横浜の子連れおでかけ・イベント一覧。施設・主催者の公式情報などをもとに要約しています。内容は変わることがあるので、出かける前に必ず公式ページで確認してください。</p>
-<p>サイトをよくするため、押されたボタン・リンクの回数を、名前などの個人情報なしで記録しています。</p></footer>
+<p>サイトをよくするため、押されたボタン・リンクの回数を、名前などの個人情報なしで記録しています。</p>
+<p class="small"><a href="/about/">このサイトについて</a>　<a href="/privacy/">プライバシーポリシー</a></p></footer>
 </div>
 <script>{SHARE_JS}{track_js(track_url, tpage)}</script>
 </body>
@@ -226,6 +227,35 @@ def render_og(events, man_og):
                 pg.screenshot(path=os.path.join(ROOT, "og", e["id"] + ".jpg"), type="jpeg", quality=78)
             b.close()
         os.remove(os.path.join(ROOT, "og", "_tmp.html"))
+    return new, len(todo)
+
+
+def render_og_spots(spots, spot_ids, areas, man_og):
+    """赤ちゃん設備のある施設ごとのOG画像（og/spot-ID.jpg）。名前・設備の○×？・エリアが変わったものだけ作り直す。"""
+    sym = lambda v: "○" if v is True else "×" if v is False else "？"
+    todo, new = [], {}
+    for n, (b, area) in spots.items():
+        sid = spot_ids[n]
+        when = f"おむつ替え{sym(b.get('d'))}　授乳室{sym(b.get('f'))}　お湯{sym(b.get('w'))}"
+        venue = areas.get(area, "") + ("・" + b["where"] if b.get("where") else "")
+        key = hashlib.sha1("|".join([n, when, venue, "s1"]).encode()).hexdigest()[:12]
+        new[sid] = key
+        if man_og.get(sid) != key or not os.path.exists(os.path.join(ROOT, "og", f"spot-{sid}.jpg")):
+            todo.append((sid, short(n) + "の授乳室・おむつ替え", when, venue))
+    if todo:
+        logo = "file://" + os.path.join(ROOT, "img", "logo.webp")
+        tmp = os.path.join(ROOT, "og", "_tmp.html")
+        with sync_playwright() as p:
+            br = p.chromium.launch(executable_path="/usr/bin/google-chrome")
+            pg = br.new_page(viewport={"width": 1200, "height": 630})
+            for sid, t, when, venue in todo:
+                size = 72 if len(t) <= 18 else 62 if len(t) <= 28 else 54
+                open(tmp, "w", encoding="utf-8").write(OG_HTML.replace("TSIZE", str(size)).replace("TAG", "赤ちゃん設備").replace("TITLE", E(t))
+                                                     .replace("WHEN", E(when)).replace("VENUE", E(venue)).replace("LOGO", logo))
+                pg.goto("file://" + tmp); pg.wait_for_timeout(50)
+                pg.screenshot(path=os.path.join(ROOT, "og", f"spot-{sid}.jpg"), type="jpeg", quality=78)
+            br.close()
+        os.remove(tmp)
     return new, len(todo)
 
 
@@ -319,7 +349,15 @@ def spot_page(b, area, d, spot_ids, track_url):
 {('<h2>同じエリアのほかの赤ちゃん設備</h2>' + matrix(near, spot_ids)) if near else ''}
 {('<h2>このあたりのイベント</h2><ul class="links">' + ''.join(f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(when_text(x)[:30])}）</li>' for x in evs) + '</ul>') if evs else ''}
 """
-    return path, page(title, desc, path, body, [cld], track_url=track_url, tpage=path), b["n"]
+    feats = [{"@type": "LocationFeatureSpecification", "name": n, "value": v} for n, v in (("おむつ替え", b.get("d")), ("授乳室", b.get("f")), ("調乳のお湯", b.get("w"))) if isinstance(v, bool)]
+    og = f"og/spot-{sid}.jpg"
+    place = {"@context": "https://schema.org", "@type": "Place", "name": short(b["n"]), "description": desc, "url": SITE + path, "image": [SITE + og],
+             "address": {"@type": "PostalAddress", "addressLocality": "横浜市", "addressRegion": "神奈川県", "addressCountry": "JP"},
+             "amenityFeature": feats, "publicAccess": True}
+    if b.get("url"): place["sameAs"] = b["url"]
+    if b.get("where"): place["hasMap"] = "https://www.google.com/maps/search/?api=1&query=" + short(b["n"])
+    return path, page(title, desc, path, body, [cld, place], track_url=track_url, tpage=path, og=og,
+                      og_alt=f"{short(b['n'])}の赤ちゃん設備（おむつ替え・授乳室・お湯）"), b["n"]
 
 
 def ended_page(kind, pid, name):
@@ -344,16 +382,68 @@ ABOUT_BODY = """<p class="crumb"><a href="/">トップ</a> ＞ このサイト�
 </ul>
 <h2>内容について</h2>
 <p>各ページの文章は、元のページをもとにこのサイトが短くまとめたものです。必ず元のページへのリンクを付けています。内容は予告なく変わったり、中止になったりすることがあります。出かける前に、必ず公式ページで最新の情報を確かめてください。このサイトの情報を使って生じた損害について、運営者は責任を負いかねます。</p>
+<h2>運営者</h2>
+<p>KidsTrip 運営事務局。ご連絡はお問い合わせフォームからお願いします。</p>
 <h2>文章と画像の扱い</h2>
 <p>他のサイトの文章を長く写したり、写真を転載したりはしていません。このサイトの文章・イラストを使いたいときは、お問い合わせからご連絡ください。</p>
 <h2>投稿の扱い</h2>
 <p>いまは、このサイトで投稿を受け付けていません。設備の情報の追加・訂正は、お問い合わせフォームからお送りください。いただいた情報は、確かめたうえで「利用者の情報（○年○月）」として載せることがあります。送ってくださった方の名前などは載せません。事実と違うもの、ほかの人の権利を傷つけるもの、宣伝だけのものは載せません。</p>
 <h2>使われ方の記録</h2>
-<p>サイトをよくするため、表示されたページ、検索した言葉、押されたボタン・リンク、端末の種類（スマホ・PCなど）、どのサイトから来たか、日本からのアクセスかどうか（時間帯の設定から判定）を記録しています。名前・メールアドレス・正確な位置などの個人情報は記録しません。Cookieは使わず、同じ人の訪問をまとめて数えるために、ランダムな番号だけをブラウザに保存しています。「近くで探す」の現在地は、画面の中で距離を計算するためだけに使い、記録するのは「横浜市のあたり」などの大まかな区分だけです。</p>
+<p>サイトをよくするため、表示されたページ、検索した言葉、押されたボタン・リンク、端末とブラウザの種類（スマホ・PCなど。機械による自動アクセスを分けるため）、どのサイトから来たか、日本からのアクセスかどうか（時間帯の設定から判定）を記録しています。名前・メールアドレス・正確な位置などの個人情報は記録しません。Cookieは使わず、同じ人の訪問をまとめて数えるために、ランダムな番号だけをブラウザに保存しています。「近くで探す」の現在地は、画面の中で距離を計算するためだけに使い、記録するのは「横浜市のあたり」などの大まかな区分だけです。広告とCookieの扱いを含め、くわしくは<a href="/privacy/">プライバシーポリシー</a>をご覧ください。</p>
 <h2>お問い合わせ・掲載のご相談</h2>
 <p>イベント情報の追加・訂正、掲載や協賛のご相談、サイトへのご質問は、お問い合わせフォームからどうぞ（Googleアカウントでのログインが必要です）。</p>
 <div class="btns"><a class="btn main" href="FORM_URL" target="_blank" rel="noopener">お問い合わせフォーム</a><a class="btn" href="/">イベント一覧へ</a><a class="btn" href="/en/">English</a></div>
 </article>"""
+
+
+PRIVACY_BODY = """<p class="crumb"><a href="/">トップ</a> ＞ プライバシーポリシー</p>
+<article class="card">
+<h1>プライバシーポリシー</h1>
+<p>KidsTrip（キッズトリップ、以下「このサイト」）は、利用する方の情報を次のとおり扱います。</p>
+<h2>1. 集める情報と使い道</h2>
+<p>サイトをよくするために、次の情報を記録しています。名前・メールアドレス・電話番号・正確な位置など、個人を特定できる情報は記録しません。</p>
+<ul>
+<li>表示されたページ、検索した言葉、使った絞り込み、押されたボタン・リンク</li>
+<li>端末の種類（スマホ・PCなど）と、ブラウザの種類（ユーザーエージェント。機械による自動アクセスと人のアクセスを分けるため）</li>
+<li>どのサイトから来たか（参照元のドメイン）</li>
+<li>端末の言語と時間帯の設定（日本からのアクセスかどうかのめやす）</li>
+<li>「近くで探す」「出発駅」で選んだ駅、または「横浜市のあたり」などの大まかな区分（現在地の座標は送りません）</li>
+</ul>
+<p>記録は運営者のGoogleスプレッドシートにため、どのページや機能がよく使われているかを調べて、掲載内容や使いやすさを直すためだけに使います。法令にもとづく場合を除き、第三者に渡しません。</p>
+<h2>2. ブラウザに保存する情報</h2>
+<p>このサイトは、次の情報を利用する方のブラウザの中（ローカルストレージ）に保存します。運営者のサーバーには送られません（1の記録で使う番号を除く）。ブラウザの設定から、いつでも消せます。</p>
+<ul>
+<li>同じ人の訪問をまとめて数えるための、ランダムな番号</li>
+<li>お気に入り（☆）に入れたイベント</li>
+<li>前回の検索・絞り込みの条件（60日で消えます）</li>
+</ul>
+<h2>3. 広告について</h2>
+<p>このサイトでは、第三者配信の広告サービス（Google アドセンスなど）を利用することがあります。広告配信事業者は、利用する方の興味に合わせた広告を表示するため、Cookie（クッキー）を使うことがあります。Cookieを使うことで、このサイトや他のサイトへの過去のアクセス情報にもとづいた広告が表示されます。Cookieには、名前・住所・メールアドレス・電話番号は含まれません。</p>
+<ul>
+<li>Google がCookieを使って広告を配信するしくみ：<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener">広告 – ポリシーと規約 – Google</a></li>
+<li>パーソナライズ広告は、<a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google の広告設定</a>で無効にできます。また、<a href="https://www.aboutads.info/" target="_blank" rel="noopener">www.aboutads.info</a> で、第三者配信事業者のCookieを無効にできます。</li>
+</ul>
+<h2>4. 外部のサービスとリンク</h2>
+<p>お問い合わせにはGoogleフォームを、地図・経路にはGoogleマップへのリンクを使っています。これらのサービスでの情報の扱いは、各サービスの方針に従います。このサイトから移動した先のサイトの内容や情報の扱いについて、このサイトは責任を負いません。</p>
+<h2>5. 免責</h2>
+<p>このサイトの情報は、施設・主催者の公式情報などをもとに、できるだけ正確になるよう確かめて載せていますが、正確さ・新しさを保証するものではありません。出かける前に、必ず公式ページで最新の情報を確かめてください。このサイトの情報を使って生じた損害について、運営者は責任を負いかねます。</p>
+<h2>6. 著作権</h2>
+<p>このサイトの文章・イラストの著作権は運営者にあります。引用の範囲をこえて使いたいときは、お問い合わせからご連絡ください。</p>
+<h2>7. このポリシーの変更</h2>
+<p>このポリシーは、必要に応じて予告なく変えることがあります。変えたときは、このページでお知らせします。</p>
+<h2>8. お問い合わせ</h2>
+<p>このポリシーについてのお問い合わせは、お問い合わせフォームからどうぞ。</p>
+<p class="small">制定日：2026年11月16日</p>
+<div class="btns"><a class="btn main" href="FORM_URL" target="_blank" rel="noopener">お問い合わせフォーム</a><a class="btn" href="/about/">このサイトについて</a><a class="btn" href="/">イベント一覧へ</a></div>
+</article>"""
+
+
+def privacy_page(track_url, form_url):
+    path = "privacy/"
+    ld = {"@context": "https://schema.org", "@type": "WebPage", "name": "プライバシーポリシー｜KidsTrip", "url": SITE + path, "inLanguage": "ja",
+          "publisher": {"@type": "Organization", "name": "KidsTrip", "url": SITE, "logo": SITE + "img/logo.webp"}}
+    return path, page("プライバシーポリシー｜KidsTrip（キッズトリップ）", "KidsTrip（キッズトリップ）のプライバシーポリシー。集める情報と使い道、ブラウザに保存する情報、広告（Cookie）、外部サービス、免責について。",
+                      path, PRIVACY_BODY.replace("FORM_URL", E(form_url)), [ld], track_url=track_url, tpage=path)
 
 
 def about_page(track_url, form_url):
@@ -373,6 +463,9 @@ def main():
     ap, ah = about_page(track_url, fm.group(1) if fm else "/")
     os.makedirs(os.path.join(ROOT, ap), exist_ok=True)
     open(os.path.join(ROOT, ap, "index.html"), "w", encoding="utf-8").write(ah)
+    pp, ph = privacy_page(track_url, fm.group(1) if fm else "/")
+    os.makedirs(os.path.join(ROOT, pp), exist_ok=True)
+    open(os.path.join(ROOT, pp, "index.html"), "w", encoding="utf-8").write(ph)
     man = json.load(open(MANIFEST, encoding="utf-8")) if os.path.exists(MANIFEST) else {"event": {}, "spot": {}}
     # 施設（BABY）：名前ごとに1ページ。最初に出てきたエリアを使う
     spots, spot_ids = {}, {}
@@ -408,10 +501,12 @@ def main():
             open(out, "w", encoding="utf-8").write(htmltext)
             new_man[kind][pid] = dict(old, ended=True, lastmod=old.get("lastmod", today) if old.get("ended") else today)
     new_man["og"], og_made = render_og(d["events"], man.get("og", {}))
+    new_man["og_spot"], og_spot = render_og_spots(spots, spot_ids, d["areas"], man.get("og_spot", {}))
+    og_made += og_spot
     json.dump(new_man, open(MANIFEST, "w", encoding="utf-8"), ensure_ascii=False, indent=1, sort_keys=True)
 
     # sitemap
-    urls = [(SITE, today, "daily"), (SITE + "en/", man.get("_en", today), "weekly"), (SITE + "about/", "2026-11-13", "monthly")]
+    urls = [(SITE, today, "daily"), (SITE + "en/", man.get("_en", today), "weekly"), (SITE + "about/", "2026-11-16", "monthly"), (SITE + "privacy/", "2026-11-16", "yearly")]
     for kind in ("event", "spot"):
         for pid, v in sorted(new_man[kind].items()):
             if not v.get("ended"):

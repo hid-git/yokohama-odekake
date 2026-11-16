@@ -7,6 +7,9 @@
  * - 経路検索の「内容」には出発駅と、イベント当日に調べたか（当日／前もって）が入ります。
  * - 全部の記録に、端末の言語と時間帯の設定（例：Asia/Tokyo）から出した「日本・海外」のめやすを付けます（位置は使いません）。
  * - 0件だった検索、カードの「くわしく」を開いた回数、「残りを見る」が押された回数もまとめに出します。
+ * - ブラウザ情報（ユーザーエージェント）と「区分」（人／自分／ボット）も記録します。まとめは「人」だけで数えます。
+ *   「自分」は、サイトを ?me=1 で開いた端末（訪問者IDが「自分_」で始まる）と、下の OWN_VIDS に入れたID。
+ *   「ボット」は、ブラウザ情報に bot・crawler などが入っているものや、自動操作のブラウザ。
  * - 出発駅・近くで探すの駅から「地域」（例：神奈川県横浜市中区）と「横浜市内／神奈川県内／県外」を出します。
  *   現在地は位置を送らず、サイト側で「横浜市のあたり／神奈川県内／県外」の大まかな区分にしてから送ります。
  *
@@ -21,7 +24,16 @@
  */
 
 const TZ = "Asia/Tokyo";
-const HEADER = ["日時", "種類", "内容", "イベント・お店", "端末", "アプリ", "来た場所", "訪問者ID", "タブ", "地域", "地域の区分", "言語", "時間帯の設定", "日本・海外"];
+const HEADER = ["日時", "種類", "内容", "イベント・お店", "端末", "アプリ", "来た場所", "訪問者ID", "タブ", "地域", "地域の区分", "言語", "時間帯の設定", "日本・海外", "ブラウザ情報", "区分"];
+// 自分の端末の訪問者ID（「自分_」の印を付ける前の記録も、自分として除くため）
+const OWN_VIDS = ["1wj62hoy", "rmxuelmd"];
+const BOT_RE = /bot|crawl|spider|slurp|mediapartners|adsbot|headless|lighthouse|pagespeed|facebookexternalhit|python|curl|wget|preview/i;
+function kindOf_(vid, ua, bot) {
+  vid = String(vid || "");
+  if (/^自分_/.test(vid) || OWN_VIDS.indexOf(vid) >= 0) return "自分";
+  if (bot === "1" || BOT_RE.test(String(ua || ""))) return "ボット";
+  return "人";
+}
 const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク", origin:"出発駅", near:"近くで探す", detail:"くわしくを開いた", more:"残りを見る", fav:"お気に入り", copy_link:"リンクを送る・コピー", open_link:"送られたリンクから来た" };
 
 function doPost(e) {
@@ -32,7 +44,7 @@ function doPost(e) {
     const now = new Date();
     const sh = monthSheet_(Utilities.formatDate(now, TZ, "yyyy-MM"));
     const area = areaOf_(d.type, cut(d.value, 200));
-    sh.appendRow([Utilities.formatDate(now, TZ, "yyyy/MM/dd HH:mm:ss"), TYPES[d.type], cut(d.value, 200), cut(d.target, 200), cut(d.dev, 20), cut(d.app, 20), cut(d.ref, 100), cut(d.vid, 12), cut(d.page, 40), area[0], area[1], cut(d.lang, 10), cut(d.tz, 40), cut(d.jp, 4)]);
+    sh.appendRow([Utilities.formatDate(now, TZ, "yyyy/MM/dd HH:mm:ss"), TYPES[d.type], cut(d.value, 200), cut(d.target, 200), cut(d.dev, 20), cut(d.app, 20), cut(d.ref, 100), cut(d.vid, 12), cut(d.page, 40), area[0], area[1], cut(d.lang, 10), cut(d.tz, 40), cut(d.jp, 4), cut(d.ua, 160), kindOf_(d.vid, d.ua, d.bot)]);
     return out_("ok");
   } catch (err) {
     return out_("error");
@@ -84,6 +96,8 @@ function monthSheet_(name) {
       }
     } finally { lock.releaseLock(); }
   }
+  // 列を足す前に作ったシートは、見出しの行だけ新しくする
+  if (sh.getLastColumn() < HEADER.length) sh.getRange(1, 1, 1, HEADER.length).setValues([HEADER]).setFontWeight("bold");
   return sh;
 }
 
@@ -94,8 +108,12 @@ function updateSummary() {
   const cols = ["ページ表示", "訪問者数", "検索", "公式サイト", "経路検索", "電話", "予約ページ", "LINEで送る", "絞り込み"];
   const rows = [["月"].concat(cols)];
   let latest = null;
+  const excluded = [["月", "除いた行", "うち自分", "うちボット"]];
   months.forEach(m => {
-    const v = ss.getSheetByName(m).getDataRange().getValues().slice(1);
+    const all = ss.getSheetByName(m).getDataRange().getValues().slice(1);
+    // 「人」だけで数える（区分の列がない古い行は、訪問者IDとブラウザ情報から判定）
+    const v = all.filter(r => (r[15] || kindOf_(r[7], r[14], "")) === "人");
+    excluded.push([m, all.length - v.length, all.filter(r => (r[15] || kindOf_(r[7], r[14], "")) === "自分").length, all.filter(r => (r[15] || kindOf_(r[7], r[14], "")) === "ボット").length]);
     const c = {}; const vids = new Set();
     v.forEach(r => { c[r[1]] = (c[r[1]] || 0) + 1; if (r[7]) vids.add(r[7]); });
     rows.push([m].concat(cols.map(k => k === "訪問者数" ? vids.size : (c[k] || 0))));
@@ -103,9 +121,13 @@ function updateSummary() {
   });
   let sum = ss.getSheetByName("まとめ") || ss.insertSheet("まとめ", 0);
   sum.clear();
-  sum.getRange(1, 1).setValue("月ごとの合計（毎日自動で更新）").setFontWeight("bold");
+  sum.getRange(1, 1).setValue("月ごとの合計（毎日自動で更新・自分とボットを除いた「人」だけ）").setFontWeight("bold");
   sum.getRange(2, 1, rows.length, rows[0].length).setValues(rows);
   sum.getRange(2, 1, 1, rows[0].length).setFontWeight("bold");
+  const ec = rows[0].length + 2;
+  sum.getRange(1, ec).setValue("集計から除いた行").setFontWeight("bold");
+  sum.getRange(2, ec, excluded.length, 4).setValues(excluded);
+  sum.getRange(2, ec, 1, 4).setFontWeight("bold");
   if (!latest) return;
   // 最新の月のランキング
   const top = (type, col) => { const c = {}; latest.v.filter(r => r[1] === type).forEach(r => { const k = r[col]; if (k) c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };

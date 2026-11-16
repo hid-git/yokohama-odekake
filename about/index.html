@@ -55,24 +55,27 @@ footer{margin:28px 0 8px;font-size:12px;color:var(--muted)}
 </ul>
 <h2>内容について</h2>
 <p>各ページの文章は、元のページをもとにこのサイトが短くまとめたものです。必ず元のページへのリンクを付けています。内容は予告なく変わったり、中止になったりすることがあります。出かける前に、必ず公式ページで最新の情報を確かめてください。このサイトの情報を使って生じた損害について、運営者は責任を負いかねます。</p>
+<h2>運営者</h2>
+<p>KidsTrip 運営事務局。ご連絡はお問い合わせフォームからお願いします。</p>
 <h2>文章と画像の扱い</h2>
 <p>他のサイトの文章を長く写したり、写真を転載したりはしていません。このサイトの文章・イラストを使いたいときは、お問い合わせからご連絡ください。</p>
 <h2>投稿の扱い</h2>
 <p>いまは、このサイトで投稿を受け付けていません。設備の情報の追加・訂正は、お問い合わせフォームからお送りください。いただいた情報は、確かめたうえで「利用者の情報（○年○月）」として載せることがあります。送ってくださった方の名前などは載せません。事実と違うもの、ほかの人の権利を傷つけるもの、宣伝だけのものは載せません。</p>
 <h2>使われ方の記録</h2>
-<p>サイトをよくするため、表示されたページ、検索した言葉、押されたボタン・リンク、端末の種類（スマホ・PCなど）、どのサイトから来たか、日本からのアクセスかどうか（時間帯の設定から判定）を記録しています。名前・メールアドレス・正確な位置などの個人情報は記録しません。Cookieは使わず、同じ人の訪問をまとめて数えるために、ランダムな番号だけをブラウザに保存しています。「近くで探す」の現在地は、画面の中で距離を計算するためだけに使い、記録するのは「横浜市のあたり」などの大まかな区分だけです。</p>
+<p>サイトをよくするため、表示されたページ、検索した言葉、押されたボタン・リンク、端末とブラウザの種類（スマホ・PCなど。機械による自動アクセスを分けるため）、どのサイトから来たか、日本からのアクセスかどうか（時間帯の設定から判定）を記録しています。名前・メールアドレス・正確な位置などの個人情報は記録しません。Cookieは使わず、同じ人の訪問をまとめて数えるために、ランダムな番号だけをブラウザに保存しています。「近くで探す」の現在地は、画面の中で距離を計算するためだけに使い、記録するのは「横浜市のあたり」などの大まかな区分だけです。広告とCookieの扱いを含め、くわしくは<a href="/privacy/">プライバシーポリシー</a>をご覧ください。</p>
 <h2>お問い合わせ・掲載のご相談</h2>
 <p>イベント情報の追加・訂正、掲載や協賛のご相談、サイトへのご質問は、お問い合わせフォームからどうぞ（Googleアカウントでのログインが必要です）。</p>
 <div class="btns"><a class="btn main" href="https://docs.google.com/forms/d/e/1FAIpQLScTopnJJYWuDWb-9Sj9zWCmwuf8U7jZfzNxx1ernm2VaXLfSw/viewform" target="_blank" rel="noopener">お問い合わせフォーム</a><a class="btn" href="/">イベント一覧へ</a><a class="btn" href="/en/">English</a></div>
 </article>
 <footer><p>KidsTrip（キッズトリップ）横浜の子連れおでかけ・イベント一覧。施設・主催者の公式情報などをもとに要約しています。内容は変わることがあるので、出かける前に必ず公式ページで確認してください。</p>
-<p>サイトをよくするため、押されたボタン・リンクの回数を、名前などの個人情報なしで記録しています。</p></footer>
+<p>サイトをよくするため、押されたボタン・リンクの回数を、名前などの個人情報なしで記録しています。</p>
+<p class="small"><a href="/about/">このサイトについて</a>　<a href="/privacy/">プライバシーポリシー</a></p></footer>
 </div>
 <script>document.addEventListener("click",async ev=>{const b=ev.target.closest("[data-share]");if(!b)return;const url=location.href.split("?")[0],title=document.title;
 if(navigator.share){try{await navigator.share({title,url})}catch(_){}return}
 try{await navigator.clipboard.writeText(url);b.textContent="コピーしました"}catch(_){b.textContent=url}});(function(){var U="https://script.google.com/macros/s/AKfycbzTQDSVJWNXkSCzBTNv07i0hz2qDVfjTcs9yaQc7MTx4A9kC9GE5dM4Bj-Yq251PJXN/exec";if(!/(github\.io|kidstrip\.jp)$/.test(location.hostname))return;var v="";try{v=localStorage.getItem("vid")||"";if(!v){v=Math.random().toString(36).slice(2,10);localStorage.setItem("vid",v)}}catch(_){}try{if(localStorage.getItem("me")==="1")v="自分_"+v}catch(_){}
 var ua=navigator.userAgent,dev=/iPhone|iPod/.test(ua)?"iPhone":/iPad/.test(ua)?"iPad":/Android/.test(ua)?(/Mobile/.test(ua)?"Androidスマホ":"Androidタブレット"):"PC",app=/\bLine\//i.test(ua)?"LINEアプリ内":/Instagram/.test(ua)?"Instagramアプリ内":/FBAN|FBAV/.test(ua)?"Facebookアプリ内":"ブラウザ",tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(_){}
-function t(type,value,target){var ref="";try{ref=document.referrer?new URL(document.referrer).hostname:""}catch(_){}var body=JSON.stringify({type:type,value:String(value||"").slice(0,200),target:String(target||"").slice(0,200),dev:dev,app:app,ref:ref.slice(0,100),vid:v,page:"about/",lang:(navigator.language||"").slice(0,10),tz:tz.slice(0,40),jp:tz?(tz==="Asia/Tokyo"?"日本":"海外"):""});try{navigator.sendBeacon?navigator.sendBeacon(U,new Blob([body],{type:"text/plain"})):fetch(U,{method:"POST",body:body,mode:"no-cors",keepalive:true})}catch(_){}}
+function t(type,value,target){var ref="";try{ref=document.referrer?new URL(document.referrer).hostname:""}catch(_){}var body=JSON.stringify({type:type,value:String(value||"").slice(0,200),target:String(target||"").slice(0,200),dev:dev,app:app,ref:ref.slice(0,100),vid:v,page:"about/",lang:(navigator.language||"").slice(0,10),tz:tz.slice(0,40),jp:tz?(tz==="Asia/Tokyo"?"日本":"海外"):"",ua:ua.slice(0,160),bot:navigator.webdriver?"1":""});try{navigator.sendBeacon?navigator.sendBeacon(U,new Blob([body],{type:"text/plain"})):fetch(U,{method:"POST",body:body,mode:"no-cors",keepalive:true})}catch(_){}}
 t("pageview",document.title);document.addEventListener("click",function(ev){var a=ev.target.closest("a,[data-share]");if(!a)return;var h=a.getAttribute("href")||"",n=document.querySelector("h1")?document.querySelector("h1").textContent:"";
 if(a.hasAttribute("data-share"))return t("copy_link","個別ページ",n);if(a.dataset.act)return t(a.dataset.act,a.href,n);if(/line\.me\/R\/share/.test(h))return t("line_share","個別ページ",n);if(/^https?:/.test(h)&&h.indexOf(location.hostname)<0)return t("outlink",a.href,n)})})();</script>
 </body>
