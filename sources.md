@@ -77,6 +77,13 @@
 
 ## まとめサイト（見つけるため。載せる前に公式で確認）
 - いこーよ：https://iko-yo.net/
+  - 神奈川の7日以内のイベント：https://iko-yo.net/events?prefecture_ids%5B%5D=14&term=7
+- ウォーカープラス 横浜の今週末：https://www.walkerplus.com/event_list/weekend/ar0314100/yokohama/
+- レッツエンジョイ東京 横浜のイベント：https://www.enjoytokyo.jp/event/list/area1401/its06/
+- あそびー 子どもイベント：https://asobii.net/regular-list/event-kodomo
+- こどもと.net 神奈川：https://kodomo-to.net/event/eventlist.php?prefecture=kanagawa
+- rarea 子連れOK：https://rarea.events/tag/withchild
+  （どれも見つけるためだけ。地区センターやケアプラザの小さな催しは、会場の公式のお知らせで確かめてから載せる）
 - 横浜金沢観光協会のイベント情報：https://yokohama-kanazawakanko.com/
 - 地域ニュース（タウンニュース・カナロコ・ヨコハマ経済新聞「見る・遊ぶ」 https://www.hamakei.com/play/archives/1/ ）
 
