@@ -228,14 +228,14 @@ function clothesNear(g){
 }
 function clothesHtml(e){
   const near = clothesNear(venueGeo(e)); if (!near.length) return "";
-  return `<details class="food clothes"><summary>👕 歩いて15分以内でベビー服・子ども服が買えるお店（${near.length}店）</summary><ul>${near.map(x => `<li><a href="${esc(x.c.url)}" target="_blank" rel="noopener"><b>${esc(x.c.n)}</b></a>　<span class="m">${esc(x.c.addr)}／${esc(x.c.hours)}<br>会場からベビーカーで約${x.min}分（目安）</span></li>`).join("")}</ul><p class="note">急なおもらし・汚れの着替え用に。時間は直線距離からのめやすです。在庫・営業時間はお店で確かめてください（${esc(near[0].c.src)}）。</p></details>`;
+  return `<details class="food clothes"><summary>👕 歩いて15分以内でベビー服・子ども服が買えるお店（${near.length}店）</summary><ul>${near.map(x => `<li><a href="${esc(x.c.url)}" target="_blank" rel="noopener"><b>${esc(x.c.n)}</b></a>　<span class="m">${esc(x.c.addr)}／${esc(x.c.hours)}<br>会場からベビーカーで約${x.min}分（目安）</span></li>`).join("")}</ul><p class="note">急なおもらし・汚れの着替え用に。時間は直線距離からのめやすです。在庫・営業時間はお店で確かめてください（出典：各チェーン公式の店舗検索）。</p></details>`;
 }
 function clothesListHtml(){
   if (typeof CLOTHES === "undefined" || !CLOTHES.length) return "";
   const by = {}; CLOTHES.forEach(c => (by[c.ward] = by[c.ward] || []).push(c));
   return `<details class="fold clothes"><summary>👕 ベビー服・子ども服が買えるお店（${CLOTHES.length}店）</summary><div class="fbody">
-    ${Object.entries(by).map(([w, l]) => `<p><b>${esc(w)}</b></p><ul class="flist">${l.map(c => `<li><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.n)}</a>　<span class="small">${esc(c.addr)}／${esc(c.hours)}</span></li>`).join("")}</ul>`).join("")}
-    <p class="small">いまはしまむらグループ（しまむら・バースデイ）の横浜市内のお店です。西松屋・アカチャンホンポなども順に足していきます。出典：${esc(CLOTHES[0].src)}</p></div></details>`;
+    ${Object.entries(by).sort((p, q) => p[0].localeCompare(q[0], "ja")).map(([w, l]) => `<p><b>${esc(w)}</b></p><ul class="flist">${l.map(c => `<li><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.n)}</a>　<span class="small">${esc(c.addr)}／${esc(c.hours)}</span></li>`).join("")}</ul>`).join("")}
+    <p class="small">いまは西松屋・アカチャンホンポ・バースデイ・しまむらの横浜市内のお店です。住所・営業時間は各チェーンの公式の店舗検索から（2026年11月17日確認）。年末年始などは変わることがあるので、行く前にお店で確かめてください。</p></div></details>`;
 }
 function foodHtml(e){
   const k = FOOD_OF[e.t]; if (!k) return "";

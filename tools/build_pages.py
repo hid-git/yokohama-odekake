@@ -313,7 +313,7 @@ def clothes_list(cl):
         return ""
     li = "".join(f'<li><a href="{E(c["url"])}" target="_blank" rel="noopener">{E(c["n"])}</a>　{E(c["hours"])}　ベビーカーで約{c["min"]}分</li>' for c in cl)
     return (f'<h2>歩いて15分以内でベビー服・子ども服が買えるお店</h2><ul class="links">{li}</ul>'
-            '<p class="small">急なおもらし・汚れの着替え用に。時間は直線距離からのめやす。在庫・営業時間はお店で確かめてください（出典：しまむらグループ公式 店舗検索）。</p>')
+            '<p class="small">急なおもらし・汚れの着替え用に。時間は直線距離からのめやす。在庫・営業時間はお店で確かめてください（出典：各チェーン公式の店舗検索）。</p>')
 
 
 def circles_html(x):
