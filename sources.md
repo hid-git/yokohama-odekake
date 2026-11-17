@@ -15,6 +15,7 @@
 - 横浜市 記者発表（経済局・こども青少年局など）：https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/
 - パマトコ（横浜市の子育て応援サイト）：https://pamatoco.city.yokohama.lg.jp/ （利用規約を確認してから読む）
 - 横浜市観光情報 イベント：https://www.welcome.city.yokohama.jp/eventinfo/（「こども向け」で絞り込むと早い：`index.php?inCatCd[]=c003&start_date=2026-11-21&end_date=2026-11-21`、2ページ目は `page=2&` を足す。日付ごとに見る）
+- 横浜市スポーツ協会 イベント：https://yokohama-sport.or.jp/event/ （はつらつキンダーフェスタ・ゆるスポーツ子どもデー・よしお兄さんと遊ぼう・日本丸Sailor体験など、親子のスポーツイベント。採用説明会や大人向けの講座は入れない）
 - 各区のホームページの「イベント」「子育て」ページ（中区・西区・神奈川区・港北区・都筑区・青葉区・緑区・港南区・旭区・瀬谷区・磯子区・金沢区 ほか）
 - 横浜市の地区センター・こどもログハウス・図書館（おはなし会）・地域子育て支援拠点
 
