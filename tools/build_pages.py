@@ -3,7 +3,7 @@
 
   python3 tools/build_pages.py
 
-- index.html をブラウザで開いてデータ（EVENTS・BABY など）を読み、
+- index.html をブラウザで開いてデータ（js/data.js の EVENTS・BABY など）を読み、
   event/<ID>/index.html（イベントごと）と spot/<ID>/index.html（赤ちゃん設備のある施設ごと）を作る。
 - 一覧から外れたイベント・施設のページは消さずに「掲載終了」のページにする（送られたリンクが切れないように）。
 - sitemap.xml を全ページぶん作り直す。lastmod は中身が変わった日だけ新しくする（記録は tools/pages.json）。
@@ -668,7 +668,7 @@ def about_page(track_url, form_url):
 def main():
     d = load_data()
     src = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
-    m = TRACK_URL_RE.search(src)
+    m = TRACK_URL_RE.search(open(os.path.join(ROOT, "js", "data.js"), encoding="utf-8").read()) or TRACK_URL_RE.search(src)
     track_url = m.group(1) if m else ""
     fm = re.search(r'class="contactbtn" href="([^"]+)"', src)
     ap, ah = about_page(track_url, fm.group(1) if fm else "/")
@@ -771,6 +771,8 @@ def main():
     # js/app.js の ?v= を中身のハッシュに合わせる（変えたときだけブラウザが読み直す）
     appv = hashlib.sha1(open(os.path.join(ROOT, "js", "app.js"), "rb").read()).hexdigest()[:10]
     src = re.sub(r'src="js/app\.js\?v=[0-9a-f]*"', f'src="js/app.js?v={appv}"', src)
+    datav = hashlib.sha1(open(os.path.join(ROOT, "js", "data.js"), "rb").read()).hexdigest()[:10]
+    src = re.sub(r'src="js/data\.js\?v=[0-9a-f]*"', f'src="js/data.js?v={datav}"', src)
     src = re.sub(r"<!--PLAY:START-->.*?<!--PLAY:END-->", lambda _: f"<!--PLAY:START-->{playhtml}<!--PLAY:END-->", src, flags=re.S)
     src = re.sub(r"<!--NEW:START-->.*?<!--NEW:END-->", lambda _: f"<!--NEW:START-->{newhtml}<!--NEW:END-->", src, flags=re.S)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (org, item_list))

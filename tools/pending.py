@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """日にち・時間・料金が「未発表」「見込み」「予定」「未確認」のままのイベントを、近い日付の順に出す。
 毎日の更新で、ここに出たものを会場・主催者の公式サイトのお知らせで確かめ直す（出典がカレンダーやまとめなら、会場のサイトまで行く）。
-読むのは index.html の2つの書き方：配列の中の `{ t:"…", days:[…], … }` と、`EVENTS.push({"t": …});`（JSON）。"""
+読むのは js/data.js の2つの書き方：配列の中の `{ t:"…", days:[…], … }` と、`EVENTS.push({"t": …});`（JSON）。"""
 import re, json, datetime, pathlib
-s = pathlib.Path(__file__).resolve().parent.parent.joinpath("index.html").read_text()
+s = pathlib.Path(__file__).resolve().parent.parent.joinpath("js", "data.js").read_text()
 today = datetime.date.today()
 FLAG = re.compile(r'(未発表|未定|見込み|予定\)|（予定|分かっていません|まだ分か|未確認|開けず)')
 
