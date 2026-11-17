@@ -193,8 +193,8 @@ def short(n):
 def matrix(list_, spot_ids):
     if not list_:
         return ""
-    rows = "".join(f'<tr><th scope="row"><a href="/spot/{spot_ids[b["n"]]}/">{E(short(b["n"]))}</a></th>{mark(b.get("d"))}{mark(b.get("f"))}{mark(b.get("w"))}</tr>' for b in list_)
-    return f'<table class="bm"><thead><tr><th>場所</th><th>おむつ替え</th><th>授乳室</th><th>お湯</th></tr></thead><tbody>{rows}</tbody></table><p class="legend">○ あり　× なし　？ 調べた範囲で確認できず</p>'
+    rows = "".join(f'<tr><th scope="row"><a href="/spot/{spot_ids[b["n"]]}/">{E(short(b["n"]))}</a></th>{mark(b.get("d"))}{mark(b.get("f"))}{mark(b.get("w"))}{mark(b.get("mw"))}</tr>' for b in list_)
+    return f'<table class="bm"><thead><tr><th>場所</th><th>おむつ替え</th><th>授乳室</th><th>お湯</th><th>レンジ</th></tr></thead><tbody>{rows}</tbody></table><p class="legend">○ あり　× なし　？ 調べた範囲で確認できず</p>'
 
 
 def crumbs(items):
@@ -406,7 +406,7 @@ def event_page(e, d, spot_ids, track_url):
 def spot_page(b, area, d, spot_ids, track_url):
     sid = spot_ids[b["n"]]
     path = f"spot/{sid}/"
-    has = [n for n, v in (("おむつ替え", b.get("d")), ("授乳室", b.get("f")), ("調乳のお湯", b.get("w"))) if v is True]
+    has = [n for n, v in (("おむつ替え", b.get("d")), ("授乳室", b.get("f")), ("調乳のお湯", b.get("w")), ("離乳食のレンジ", b.get("mw"))) if v is True]
     title = f"{short(b['n'])}の授乳室・おむつ替え・お湯｜KidsTrip"
     desc = f"{short(b['n'])}（{d['areas'].get(area, '')}）の赤ちゃん設備。" + ("・".join(has) + "あり。" if has else "") + (b.get("where") or "")
     ch, cld = crumbs([("トップ", "/"), ("ごはん・おむつ", "/#foodall"), (short(b["n"]), "")])
@@ -423,9 +423,9 @@ def spot_page(b, area, d, spot_ids, track_url):
     body = f"""{ch}
 <article class="card">
 <h1>{E(b['n'])}の授乳室・おむつ替え・お湯</h1>
-<table class="bm"><thead><tr><th>場所</th><th>おむつ替え</th><th>授乳室</th><th>お湯</th></tr></thead><tbody><tr><th>{E(short(b['n']))}</th>{mark(b.get('d'))}{mark(b.get('f'))}{mark(b.get('w'))}</tr></tbody></table>
+<table class="bm"><thead><tr><th>場所</th><th>おむつ替え</th><th>授乳室</th><th>お湯</th><th>レンジ</th></tr></thead><tbody><tr><th>{E(short(b['n']))}</th>{mark(b.get('d'))}{mark(b.get('f'))}{mark(b.get('w'))}{mark(b.get('mw'))}</tr></tbody></table>
 <p class="legend">○ あり　× なし　？ 調べた範囲で確認できず</p>
-<table class="info"><tr><th>場所</th><td>{E(b.get('where'))}</td></tr><tr><th>エリア</th><td>{E(d['areas'].get(area, ''))}</td></tr></table>
+<table class="info"><tr><th>場所</th><td>{E(b.get('where'))}</td></tr><tr><th>エリア</th><td>{E(d['areas'].get(area, ''))}</td></tr>{('<tr><th>電子レンジ</th><td>' + E(b.get('mwText')) + '</td></tr>') if b.get('mwText') else ''}</table>
 {f'<ul class="chips">{ex}</ul>' if ex else ''}
 <p class="sum">{E(b.get('note'))}</p>
 <p class="small">出典：{E(b.get('src'))}</p>
@@ -439,7 +439,7 @@ def spot_page(b, area, d, spot_ids, track_url):
 {near_ev_html}
 {('<h2>このあたりのイベント</h2><ul class="links">' + ''.join(f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(when_text(x)[:30])}）</li>' for x in evs) + '</ul>') if evs else ''}
 """
-    feats = [{"@type": "LocationFeatureSpecification", "name": n, "value": v} for n, v in (("おむつ替え", b.get("d")), ("授乳室", b.get("f")), ("調乳のお湯", b.get("w"))) if isinstance(v, bool)]
+    feats = [{"@type": "LocationFeatureSpecification", "name": n, "value": v} for n, v in (("おむつ替え", b.get("d")), ("授乳室", b.get("f")), ("調乳のお湯", b.get("w")), ("離乳食用の電子レンジ", b.get("mw"))) if isinstance(v, bool)]
     og = f"og/spot-{sid}.jpg"
     place = {"@context": "https://schema.org", "@type": "Place", "name": short(b["n"]), "description": desc, "url": SITE + path, "image": [SITE + og],
              "address": {"@type": "PostalAddress", "addressLocality": "横浜市", "addressRegion": "神奈川県", "addressCountry": "JP"},

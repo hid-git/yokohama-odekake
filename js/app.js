@@ -269,7 +269,7 @@ function renderFoodAll(){
   }).join("");
   const el = document.getElementById("foodall");
   const sp = el.querySelector(".points.static"), spHtml = sp ? sp.outerHTML : "";
-  el.innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>${spHtml}${chips}
+  el.innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>${spHtml}${mwListHtml()}${chips}
     <details class="fold"><summary>この一覧の見方（点線の印・情報の時点）</summary><div class="fbody"><p class="lead">おむつ替え・授乳室・調乳用のお湯がある場所と、フードコート、ベビーカーOK・キッズメニューなどが確認できたお店です。印が点線のものは、調べた範囲では確認できなかった設備です。それぞれに「情報の時点」を書いていて、1年以上前の情報や時点が分からないものは黄色で示しています。混み具合や設備は変わることがあるので、行く前に各リンク先を確認してください。</p></div></details>${html}`;
   el.querySelectorAll(".achip").forEach(btn => btn.addEventListener("click", () => { FOOD_PICK = btn.dataset.k; renderFoodAll(); }));
 }
@@ -331,13 +331,13 @@ function papaHtml(b){
 function bmark(v){ return v === true ? `<td class="mk y" aria-label="あり">○</td>` : v === false ? `<td class="mk n" aria-label="なし">×</td>` : `<td class="mk u" aria-label="未確認">？</td>`; }
 function matrixHtml(list){
   if (!list.length) return "";
-  return `<table class="bmatrix"><thead><tr><th scope="col">場所</th><th scope="col">おむつ替え</th><th scope="col">授乳室</th><th scope="col">お湯</th></tr></thead><tbody>${list.map(b => `<tr><th scope="row"><a href="/spot/${hashId(b.n)}/">${esc(b.n.replace(/[（(].*$/, "").trim())}</a></th>${bmark(b.d)}${bmark(b.f)}${bmark(b.w)}</tr>`).join("")}</tbody></table>
+  return `<table class="bmatrix"><thead><tr><th scope="col">場所</th><th scope="col">おむつ替え</th><th scope="col">授乳室</th><th scope="col">お湯</th><th scope="col">レンジ</th></tr></thead><tbody>${list.map(b => `<tr><th scope="row"><a href="/spot/${hashId(b.n)}/">${esc(b.n.replace(/[（(].*$/, "").trim())}</a></th>${bmark(b.d)}${bmark(b.f)}${bmark(b.w)}${bmark(b.mw === undefined ? null : b.mw)}</tr>`).join("")}</tbody></table>
     <p class="mlegend">○ あり　× なし　？ 調べた範囲で確認できず</p>`;
 }
 function bspotHtml(b, e){
   return `<div class="bspot${state.flags.has("papa") && papaOf(b).v === "women" ? " dim" : ""}"><span class="nm"><a href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.n)}</a></span>
     <p class="meta">${esc(b.where)}（出典：${esc(b.src)}）</p>
-    <ul class="bicons">${bi("おむつ替え", b.d)}${bi("授乳室", b.f)}${bi("調乳のお湯", b.w)}${b.ex.map(x => `<li class="bi y">${esc(x)}</li>`).join("")}</ul>
+    <ul class="bicons">${bi("おむつ替え", b.d)}${bi("授乳室", b.f)}${bi("調乳のお湯", b.w)}${b.mw === true || b.mw === false ? bi("離乳食のレンジ", b.mw) : ""}${b.ex.map(x => `<li class="bi y">${esc(x)}</li>`).join("")}</ul>
     <p class="ds">${esc(b.note)}</p>${papaHtml(b)}${walkHtml(e, b)}${asofHtml(b.n)}<div data-spot="${esc(b.n)}"></div></div>`;
 }
 function babyHtml(e){
@@ -1294,4 +1294,14 @@ function renderPlay(){
     q.addEventListener("input", () => { PLAY.q = q.value.trim(); renderPlay(); clearTimeout(tq); tq = setTimeout(() => { if (PLAY.q) track("play", "検索：" + PLAY.q, document.getElementById("play-n").textContent); }, 1500); });
     renderPlay();
   }
+}
+
+// 離乳食を温められる電子レンジがある施設（エリアをまたいで一覧）
+function mwListHtml(){
+  const all = Object.values(BABY).flat(), yes = all.filter(b => b.mw === true), no = all.filter(b => b.mw === false);
+  if (!yes.length && !no.length) return "";
+  return `<details class="fold mwlist"><summary>🍲 離乳食を温められる電子レンジがある施設（${yes.length}か所）</summary><div class="fbody">
+    <ul class="flist">${yes.map(b => `<li><a href="/spot/${hashId(b.n)}/">${esc(b.n)}</a>　<span class="small">${esc(b.mwText || "")}</span></li>`).join("")}</ul>
+    ${no.length ? `<p class="small">電子レンジがないと分かっている所：${no.map(b => esc(b.n.replace(/[（(].*$/, "").trim())).join("・")}</p>` : ""}
+    <p class="small">表の「レンジ」が「？」の施設は、まだ確かめられていません。順番に公式の情報で確かめて足していきます。</p></div></details>`;
 }
