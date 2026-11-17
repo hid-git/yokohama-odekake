@@ -462,13 +462,122 @@ def spot_page(b, area, d, spot_ids, track_url):
                       og_alt=f"{short(b['n'])}の赤ちゃん設備（おむつ替え・授乳室・お湯）"), b["n"]
 
 
-def ended_page(kind, pid, name):
+MIN_CHARS = 400  # 本文（タグ・スクリプトを除いた文字数）がこれより少ないページは noindex・sitemapから外す
+
+
+def body_chars(htmltext):
+    s = re.sub(r"(?s)<(script|style|head)[^>]*>.*?</\1>", "", htmltext)
+    s = re.sub(r"(?s)<footer.*?</footer>", "", s)
+    return len(re.sub(r"\s+", "", html.unescape(re.sub(r"<[^>]+>", "", s))))
+
+
+def _norm(x):
+    return re.sub(r"[\s　（）()「」『』・〜~\-—:：、。,.!！?？'\"]", "", x or "").lower()
+
+
+def en_links(d, spots, spot_ids):
+    p = os.path.join(ROOT, "en", "index.html")
+    if not os.path.exists(p):
+        return
+    src = open(p, encoding="utf-8").read()
+    jas = []
+    ev0 = src.find("const EVENTS")
+    ev1 = src.find("];", ev0) if ev0 >= 0 else -1
+    for m in re.finditer(r'\bn:\s*"((?:[^"\\]|\\.)*)",\s*ja:\s*"((?:[^"\\]|\\.)*)"', src):
+        is_ev = ev0 <= m.start() <= ev1
+        jas.append((m.group(1).replace('\\"', '"'), m.group(2), "event" if is_ev else "spot"))
+    for m in re.finditer(r'"n": "((?:[^"\\]|\\.)*)", "ja": "((?:[^"\\]|\\.)*)"', src):
+        jas.append((m.group(1).replace('\\"', '"'), m.group(2), "spot"))
+    ev_keys = [(_norm(re.split(r"[（(]", e["t"])[0]), _norm(e["t"]), "event", e["id"], e["t"]) for e in d["events"]]
+    sp_keys = [(_norm(re.split(r"[（(]", n)[0]), _norm(n), "spot", spot_ids[n], short(n)) for n in spots]
+    found, seen = [], set()
+    for en, ja, prefer in jas:
+        j = _norm(ja)
+        if len(j) < 3:
+            continue
+        best = None
+        for core, full, kind, pid, name in sp_keys + ev_keys:
+            if len(core) < 3:
+                continue
+            if j == core or j == full or (len(j) >= 4 and (j in full or core in j)):
+                score = (0 if kind == prefer else 1, abs(len(core) - len(j)))
+                if best is None or score < best[0]:
+                    best = (score, kind, pid, name)
+        if best and (best[1], best[2]) not in seen:
+            seen.add((best[1], best[2]))
+            found.append((en, best[1], best[2], best[3]))
+    items = "".join(f'<li><a href="/{k}/{pid}/" hreflang="ja">{E(en)}</a> <span class="ja" lang="ja">{E(name)}</span></li>' for en, k, pid, name in found)
+    block = ('<!--JA:START--><section id="ja-pages"><h2>More details (in Japanese)</h2>'
+             '<p>Each page below has the official link, access, nearby family restaurants, and nursing rooms / diaper changing within walking distance. Use your browser\'s translate feature.</p>'
+             f'<ul class="jalinks">{items}</ul></section><!--JA:END-->')
+    if "<!--JA:START-->" in src:
+        src = re.sub(r"(?s)<!--JA:START-->.*?<!--JA:END-->", lambda _: block, src)
+    else:
+        src = src.replace('  <section id="baby">', block + '\n  <section id="baby">', 1)
+    open(p, "w", encoding="utf-8").write(src)
+
+
+ENDED_DIR = os.path.join(ROOT, "tools", "ended")
+
+
+def save_ended_body(kind, pid):
+    """一覧から外れた日に、それまでのページの本文（カード）を tools/ended/ に残す（掲載終了ページで「開催時の情報」として見せる）"""
+    out = os.path.join(ENDED_DIR, f"{pid}.html")
+    src = os.path.join(ROOT, kind, pid, "index.html")
+    if os.path.exists(out) or not os.path.exists(src):
+        return
+    s = open(src, encoding="utf-8").read()
+    if "掲載終了" in s:
+        return
+    m = re.search(r'(?s)<article class="card">.*?</article>', s)
+    if m:
+        os.makedirs(ENDED_DIR, exist_ok=True)
+        open(out, "w", encoding="utf-8").write(m.group(0))
+
+
+def ended_page(kind, pid, name, d=None):
     path = f"{kind}/{pid}/"
     what = "イベント" if kind == "event" else "施設の情報"
-    body = f"""<article class="card"><p class="ended">この{what}の掲載は終わりました</p><h1>{E(name)}</h1>
-<p>開催が終わったか、情報を確かめられなくなったため、一覧から外しました。いま行けるイベントや、赤ちゃん設備のある場所はトップから探せます。</p>
-<div class="btns"><a class="btn main" href="/">いまのイベントを見る</a><a class="btn" href="/#foodall">ごはん・おむつを見る</a></div></article>"""
-    return path, page(f"{name}（掲載終了）｜KidsTrip", f"{name}の掲載は終わりました。いまのイベントはKidsTripのトップから探せます。", path, body, [], noindex=True)
+    saved = ""
+    fp = os.path.join(ENDED_DIR, f"{pid}.html")
+    if os.path.exists(fp):
+        saved = open(fp, encoding="utf-8").read()
+    ward = ""
+    past = ""
+    if saved:
+        mw = re.search(r"<th>場所</th><td>([^<・]+区)", saved)
+        ward = mw.group(1) if mw else ""
+        md = re.search(r"<th>日にち</th><td>([^<]*)</td>", saved)
+        last = md.group(1) if md else ""
+        # 開催時のカードから、共有ボタンや一覧へのリンクを外し、公式ページへのボタンだけ残す
+        card = re.sub(r'(?s)^<article class="card">', "", saved)
+        card = re.sub(r'(?s)</article>$', "", card)
+        card = re.sub(r"(?s)<h1>.*?</h1>", "", card)
+        card = re.sub(r'<a class="btn"[^>]*href="/\?e=[^"]*"[^>]*>.*?</a>', "", card)
+        card = re.sub(r'(?s)<button[^>]*data-share[^>]*>.*?</button>', "", card)
+        card = re.sub(r'(?s)<a class="btn line"[^>]*>.*?</a>', "", card)
+        card = card.replace("公式ページで確認", "公式ページ（次の開催のお知らせもここで）")
+        past = f'<h2>開催していたときの情報</h2><p class="small">ここから下は、掲載していたときの内容です（{E(last)}）。次の開催の日にちや料金は変わることがあるので、公式ページで確かめてください。</p>{card}'
+    rel = ""
+    if d is not None and kind == "event":
+        evs = d["events"]
+        same = [e for e in evs if ward and e.get("ward") == ward and e.get("kind") == "limited"][:8]
+        play = [e for e in evs if ward and e.get("ward") == ward and e.get("kind") == "ongoing" and e.get("price") == "free" and (e.get("freeplay") or e.get("animal") or e.get("ride"))][:6]
+        if not same:
+            same = [e for e in evs if e.get("kind") == "limited"][:8]
+        lab = f"{ward}で" if ward and any(e.get("ward") == ward for e in same) else "横浜で"
+        rel += f'<h2>{E(lab)}これから開かれる親子イベント</h2><ul class="links">' + "".join(
+            f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a>（{E(e.get("ward", ""))}）</li>' for e in same) + "</ul>"
+        if play:
+            rel += f'<h2>{E(ward)}の無料で遊べる場所</h2><ul class="links">' + "".join(
+                f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a></li>' for e in play) + "</ul>"
+    body = f"""<p class="crumb"><a href="/">トップ</a> ＞ <a href="/">イベント</a> ＞ {E(name)}（掲載終了）</p>
+<article class="card"><p class="ended">この{what}は終わりました。いまは一覧に出していません</p><h1>{E(name)}</h1>
+<p>開催が終わったか、情報を確かめられなくなったため、一覧から外しました。同じ{E(ward) if ward else "地域"}でこれから開かれるイベントや、無料で遊べる場所を下にまとめています。</p>
+<div class="btns"><a class="btn main" href="/">いまのイベントを見る</a><a class="btn" href="/#foodall">ごはん・おむつを見る</a></div></article>
+{rel}{past}"""
+    og = f"og/{pid}.jpg" if kind == "event" and os.path.exists(os.path.join(ROOT, "og", f"{pid}.jpg")) else None
+    return path, page(f"{name}（掲載終了）｜KidsTrip", f"{name}の掲載は終わりました。開催していたときの情報と、{ward or '横浜'}でこれから開かれる親子イベントをまとめています。", path, body, [], noindex=True, og=og)
 
 
 ABOUT_BODY = """<p class="crumb"><a href="/">トップ</a> ＞ このサイトについて</p>
@@ -588,17 +697,23 @@ def main():
     new_man = {"event": {}, "spot": {}}
     for kind in ("event", "spot"):
         for pid, (path, htmltext, name) in built[kind].items():
+            thin = body_chars(htmltext) < MIN_CHARS
+            if thin and 'name="robots"' not in htmltext:  # 中身が薄いページは、厚くなるまで検索に出さない（sitemapにも入れない）
+                htmltext = htmltext.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">', 1)
             h = hashlib.sha1(re.sub(r"情報の時点：[^<]*", "", htmltext).encode()).hexdigest()[:12]
             old = man.get(kind, {}).get(pid, {})
             lm = old.get("lastmod", today) if old.get("hash") == h and not old.get("ended") else today
             new_man[kind][pid] = {"name": name, "hash": h, "lastmod": lm, "added": old.get("added") or (old.get("lastmod") if old else today)}
+            if thin:
+                new_man[kind][pid]["thin"] = True
             out = os.path.join(ROOT, path, "index.html")
             os.makedirs(os.path.dirname(out), exist_ok=True)
             open(out, "w", encoding="utf-8").write(htmltext)
         for pid, old in man.get(kind, {}).items():  # 一覧から外れたもの
             if pid in built[kind]:
                 continue
-            path, htmltext = ended_page(kind, pid, old.get("name", ""))
+            save_ended_body(kind, pid)
+            path, htmltext = ended_page(kind, pid, old.get("name", ""), d)
             out = os.path.join(ROOT, path, "index.html")
             os.makedirs(os.path.dirname(out), exist_ok=True)
             open(out, "w", encoding="utf-8").write(htmltext)
@@ -612,11 +727,14 @@ def main():
     urls = [(SITE, today, "daily"), (SITE + "en/", man.get("_en", today), "weekly"), (SITE + "about/", "2026-11-16", "monthly"), (SITE + "privacy/", "2026-11-16", "yearly")]
     for kind in ("event", "spot"):
         for pid, v in sorted(new_man[kind].items()):
-            if not v.get("ended"):
+            if not v.get("ended") and not v.get("thin"):
                 urls.append((f"{SITE}{kind}/{pid}/", v["lastmod"], "weekly"))
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
         f"  <url><loc>{u}</loc><lastmod>{lm}</lastmod><changefreq>{cf}</changefreq></url>\n" for u, lm, cf in urls) + "</urlset>\n"
     open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(sm)
+
+    # 英語版：英語で載せている場所・イベント・赤ちゃん設備から、日本語の個別ページへのリンク（<!--JA:START-->〜<!--JA:END-->）
+    en_links(d, spots, spot_ids)
 
     # index.html：ページへのリンク一覧と、構造化データ（ItemList・Organization）
     ev_live = [e for e in d["events"]]
