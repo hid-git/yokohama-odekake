@@ -59,6 +59,7 @@ def load_data():
                 acc: strip(accPoints(e, k, a)),
                 food: kidsFoodNear(e).slice(0, 8).map(x => ({ n: x.sh.n, gen: x.sh.gen || "", min: x.min, tags: x.sh.tags.slice(0, 3) })),
                 courts: foodCourtNear(e).slice(0, 3).map(x => ({ n: x.c.n, min: x.min })),
+                clothes: g ? CLOTHES.filter(c => c.g).map(c => ({ n: c.n, url: c.url, hours: c.hours, min: mins(g, c.g) })).filter(x => x.min <= 15).sort((p, q) => p.min - q.min).slice(0, 5) : [],
                 spots: g ? Object.entries(SPOT_GEO_ALL).map(([n, sg]) => ({ n, min: mins(g, sg) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 6) : [],
               };
             });
@@ -70,6 +71,7 @@ def load_data():
                 papa: p ? { label: PAPA_LABEL[p.v] || "", t: p.t || "" } : null,
                 food: g ? KIDS_SHOPS.map(sh => ({ n: sh.n, gen: sh.gen || "", min: mins(g, sh.g), tags: sh.tags.slice(0, 3) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 8) : [],
                 courts: g ? FOOD_COURTS.map(c => ({ n: c.n, min: mins(g, c.g) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 3) : [],
+                clothes: g ? CLOTHES.filter(c => c.g).map(c => ({ n: c.n, url: c.url, hours: c.hours, min: mins(g, c.g) })).filter(x => x.min <= 15).sort((p, q) => p.min - q.min).slice(0, 5) : [],
                 events: g ? EVENTS.map(e => ({ e, g2: venueGeo(e) })).filter(x => x.g2 && mins(g, x.g2) <= 15).map(x => ({ id: x.e.id, min: mins(g, x.g2) })).sort((p, q) => p.min - q.min).slice(0, 10) : [],
               };
             }));
@@ -306,6 +308,14 @@ def food_list(food, courts):
             '<p class="small">時間はベビーカーで歩いたときのめやす（直線距離から計算）。メニューや営業時間は行く前にお店で確かめてください。</p>')
 
 
+def clothes_list(cl):
+    if not cl:
+        return ""
+    li = "".join(f'<li><a href="{E(c["url"])}" target="_blank" rel="noopener">{E(c["n"])}</a>　{E(c["hours"])}　ベビーカーで約{c["min"]}分</li>' for c in cl)
+    return (f'<h2>歩いて15分以内でベビー服・子ども服が買えるお店</h2><ul class="links">{li}</ul>'
+            '<p class="small">急なおもらし・汚れの着替え用に。時間は直線距離からのめやす。在庫・営業時間はお店で確かめてください（出典：しまむらグループ公式 店舗検索）。</p>')
+
+
 def circles_html(x):
     cs = x.get("circles") or []
     if not cs:
@@ -372,6 +382,7 @@ def event_page(e, d, spot_ids, track_url):
 {f'<h2>近くのおむつ替え・授乳室・お湯（{E(d["areas"].get(area, ""))}）</h2>' + matrix(babies, spot_ids) if babies else near_spots_html}
 {acc_html}
 {food_html}
+{clothes_list(ex.get("clothes", []))}
 {circles_html(e)}
 {play_html}
 {sameday_html}
@@ -435,6 +446,7 @@ def spot_page(b, area, d, spot_ids, track_url):
 </article>
 {papa_html}
 {food_list(sx.get("food", []), sx.get("courts", []))}
+{clothes_list(sx.get("clothes", []))}
 {('<h2>同じエリアのほかの赤ちゃん設備</h2>' + matrix(near, spot_ids)) if near else ''}
 {near_ev_html}
 {('<h2>このあたりのイベント</h2><ul class="links">' + ''.join(f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(when_text(x)[:30])}）</li>' for x in evs) + '</ul>') if evs else ''}

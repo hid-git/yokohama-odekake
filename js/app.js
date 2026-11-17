@@ -222,6 +222,21 @@ function famiresHtml(e){
     <p class="note">会場のまわりのファミレスを地図で探せます：<a href="${esc(q("ファミレス"))}" target="_blank" rel="noopener">ファミレス</a>　<a href="${esc(q("ガスト"))}" target="_blank" rel="noopener">ガスト</a>　<a href="${esc(q("デニーズ"))}" target="_blank" rel="noopener">デニーズ</a>　<a href="${esc(q("サイゼリヤ"))}" target="_blank" rel="noopener">サイゼリヤ</a>　<a href="${esc(q("バーミヤン"))}" target="_blank" rel="noopener">バーミヤン</a>　<a href="${esc(q("スープストックトーキョー"))}" target="_blank" rel="noopener">スープストック</a>　<a href="${esc(q("和食さと"))}" target="_blank" rel="noopener">和食さと</a></p>
   </details>`;
 }
+function clothesNear(g){
+  if (!g || typeof CLOTHES === "undefined") return [];
+  return CLOTHES.filter(c => c.g).map(c => ({ c, min: Math.max(1, Math.round(distM(g, c.g) * 1.3 / 70)) })).filter(x => x.min <= 15).sort((a, b) => a.min - b.min);
+}
+function clothesHtml(e){
+  const near = clothesNear(venueGeo(e)); if (!near.length) return "";
+  return `<details class="food clothes"><summary>👕 歩いて15分以内でベビー服・子ども服が買えるお店（${near.length}店）</summary><ul>${near.map(x => `<li><a href="${esc(x.c.url)}" target="_blank" rel="noopener"><b>${esc(x.c.n)}</b></a>　<span class="m">${esc(x.c.addr)}／${esc(x.c.hours)}<br>会場からベビーカーで約${x.min}分（目安）</span></li>`).join("")}</ul><p class="note">急なおもらし・汚れの着替え用に。時間は直線距離からのめやすです。在庫・営業時間はお店で確かめてください（${esc(near[0].c.src)}）。</p></details>`;
+}
+function clothesListHtml(){
+  if (typeof CLOTHES === "undefined" || !CLOTHES.length) return "";
+  const by = {}; CLOTHES.forEach(c => (by[c.ward] = by[c.ward] || []).push(c));
+  return `<details class="fold clothes"><summary>👕 ベビー服・子ども服が買えるお店（${CLOTHES.length}店）</summary><div class="fbody">
+    ${Object.entries(by).map(([w, l]) => `<p><b>${esc(w)}</b></p><ul class="flist">${l.map(c => `<li><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.n)}</a>　<span class="small">${esc(c.addr)}／${esc(c.hours)}</span></li>`).join("")}</ul>`).join("")}
+    <p class="small">いまはしまむらグループ（しまむら・バースデイ）の横浜市内のお店です。西松屋・アカチャンホンポなども順に足していきます。出典：${esc(CLOTHES[0].src)}</p></div></details>`;
+}
 function foodHtml(e){
   const k = FOOD_OF[e.t]; if (!k) return "";
   const a = FOOD[k]; if (!a || !a.shops.length) return "";
@@ -269,7 +284,7 @@ function renderFoodAll(){
   }).join("");
   const el = document.getElementById("foodall");
   const sp = el.querySelector(".points.static"), spHtml = sp ? sp.outerHTML : "";
-  el.innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>${spHtml}${mwListHtml()}${chips}
+  el.innerHTML = `<h2>エリア別 赤ちゃん設備とごはん</h2>${spHtml}${mwListHtml()}${clothesListHtml()}${chips}
     <details class="fold"><summary>この一覧の見方（点線の印・情報の時点）</summary><div class="fbody"><p class="lead">おむつ替え・授乳室・調乳用のお湯がある場所と、フードコート、ベビーカーOK・キッズメニューなどが確認できたお店です。印が点線のものは、調べた範囲では確認できなかった設備です。それぞれに「情報の時点」を書いていて、1年以上前の情報や時点が分からないものは黄色で示しています。混み具合や設備は変わることがあるので、行く前に各リンク先を確認してください。</p></div></details>${html}`;
   el.querySelectorAll(".achip").forEach(btn => btn.addEventListener("click", () => { FOOD_PICK = btn.dataset.k; renderFoodAll(); }));
 }
@@ -738,6 +753,7 @@ function card(e, ctx){
     ${babyHtml(e)}
     ${foodHtml(e)}
     ${famiresHtml(e)}
+    ${clothesHtml(e)}
   </article>`;
 }
 

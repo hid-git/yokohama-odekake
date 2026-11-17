@@ -1033,6 +1033,29 @@ const FOOD_AREAS = [
 ];
 
 
+// ---- ベビー服・子ども服が買えるお店（公式の店舗検索から。g は駅・建物の位置の目安。g がないお店は「歩いて15分以内」の計算に入らない）
+const CLOTHES = [
+  {"n": "バースデイ 西友二俣川店", "chain": "バースデイ", "ward": "旭区", "addr": "横浜市旭区二俣川2-52-1（西友二俣川店3F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_3136.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）", "g": [35.4637, 139.533]},
+  {"n": "バースデイ スーパービバホーム長津田店", "chain": "バースデイ", "ward": "緑区", "addr": "横浜市緑区長津田みなみ台4-6-1（スーパービバホーム長津田2F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_3137.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら 西友二俣川店", "chain": "しまむら", "ward": "旭区", "addr": "横浜市旭区二俣川2-52-1（西友二俣川店3F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0572.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）", "g": [35.4637, 139.533]},
+  {"n": "しまむら スーパービバホーム長津田店", "chain": "しまむら", "ward": "緑区", "addr": "横浜市緑区長津田みなみ台4-6-1（スーパービバホーム長津田2F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0576.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら 上大岡店", "chain": "しまむら", "ward": "港南区", "addr": "横浜市港南区上大岡西1-16-23（富士ショッピングセンター2F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0411.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）", "g": [35.4093, 139.596]},
+  {"n": "しまむら 港北東急S.C.店", "chain": "しまむら", "ward": "都筑区", "addr": "横浜市都筑区茅ヶ崎中央5-1（港北TOKYU S.C. A館3F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0595.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら 新横浜プリンスペペ店", "chain": "しまむら", "ward": "港北区", "addr": "横浜市港北区新横浜3-4（新横浜プリンスペペ4F）", "hours": "10:00〜21:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0558.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）", "g": [35.508, 139.6175]},
+  {"n": "しまむら 綱島東店", "chain": "しまむら", "ward": "港北区", "addr": "横浜市港北区綱島東2-7-15", "hours": "10:00〜19:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0427.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら 戸塚モディ店", "chain": "しまむら", "ward": "戸塚区", "addr": "横浜市戸塚区戸塚町10（戸塚モディ5F）", "hours": "10:30〜21:00（当面は10:30〜20:00と公式にお知らせあり）", "url": "https://www.shimamura.gr.jp/shop/map_detail_0601.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）", "g": [35.401, 139.535]},
+  {"n": "しまむら 東戸塚西口プラザ店", "chain": "しまむら", "ward": "戸塚区", "addr": "横浜市戸塚区川上町87-8（東戸塚西口プラザ2F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0574.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）", "g": [35.4275, 139.5585]},
+  {"n": "しまむら 深谷町店", "chain": "しまむら", "ward": "戸塚区", "addr": "横浜市戸塚区深谷町958-1", "hours": "10:00〜19:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0456.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら 中山店", "chain": "しまむら", "ward": "緑区", "addr": "横浜市緑区台村町225（マルダイスクエア2F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0556.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）", "g": [35.515, 139.5395]},
+  {"n": "しまむら ハーモス荏田店", "chain": "しまむら", "ward": "青葉区", "addr": "横浜市青葉区荏田西2-14-3（ハーモス荏田1F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0488.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら ビアレ横浜店", "chain": "しまむら", "ward": "金沢区", "addr": "横浜市金沢区並木2-13-2（ビアレ横浜新館2F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0486.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら ホームズ新山下店", "chain": "しまむら", "ward": "中区", "addr": "横浜市中区新山下2-12-34（ホームズ新山下2F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0518.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）", "g": [35.4385, 139.656]},
+  {"n": "しまむら ホームズ新川崎店", "chain": "しまむら", "ward": "鶴見区", "addr": "横浜市鶴見区江ヶ崎町15-30（ホームズ新川崎2F）", "hours": "10:00〜20:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0533.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら 和泉町店", "chain": "しまむら", "ward": "泉区", "addr": "横浜市泉区和泉中央南1-22-13", "hours": "10:00〜19:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0586.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら 西が岡店", "chain": "しまむら", "ward": "泉区", "addr": "横浜市泉区桂坂15-6", "hours": "10:00〜19:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0540.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら 笠間店", "chain": "しまむら", "ward": "栄区", "addr": "横浜市栄区小菅ヶ谷2-30-1", "hours": "10:00〜19:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0550.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+  {"n": "しまむら 本郷台店", "chain": "しまむら", "ward": "栄区", "addr": "横浜市栄区小菅ヶ谷4-14-67", "hours": "10:00〜19:00", "url": "https://www.shimamura.gr.jp/shop/map_detail_0459.html", "src": "しまむらグループ公式 店舗検索（2026年11月17日確認）"},
+];
 const BABY = {
   "mm": [
     { n:"横浜美術館", where:"おむつ交換台あり／授乳室あり", d:true, f:true, w:true, ex:["ベビーカー貸出（有料の場合あり）","乳幼児用いす付きの個室","ベビーカー置き場あり"],
@@ -2811,6 +2834,6 @@ const TRACK_URL = "https://script.google.com/macros/s/AKfycbzTQDSVJWNXkSCzBTNv07
 // ---- ページの切り替え（タブ） ----
 const TABS = { play:["#play"], events:["#ev-points","#newev","#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], life:["#life"], chains:["#chains"], help:["#help"], contact:["#contact"] };
 </script>
-<script src="js/app.js?v=5281cdeaa5" defer></script>
+<script src="js/app.js?v=bcb3df2283" defer></script>
 </body>
 </html>
