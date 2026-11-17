@@ -235,7 +235,7 @@ function clothesListHtml(){
   const by = {}; CLOTHES.forEach(c => (by[c.ward] = by[c.ward] || []).push(c));
   return `<details class="fold clothes"><summary>👕 ベビー服・子ども服が買えるお店（${CLOTHES.length}店）</summary><div class="fbody">
     ${Object.entries(by).sort((p, q) => p[0].localeCompare(q[0], "ja")).map(([w, l]) => `<p><b>${esc(w)}</b></p><ul class="flist">${l.map(c => `<li><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.n)}</a>　<span class="small">${esc(c.addr)}／${esc(c.hours)}</span></li>`).join("")}</ul>`).join("")}
-    <p class="small">いまは西松屋・アカチャンホンポ・バースデイ・しまむら・プティマインの横浜市内のお店です。住所・営業時間は各チェーンやモールの公式ページから（2026年11月17日確認）。年末年始などは変わることがあるので、行く前にお店で確かめてください。</p></div></details>`;
+    <p class="small">いまは西松屋・アカチャンホンポ・バースデイ・しまむら・プティマイン・ブリーズの横浜市内のお店です。住所・営業時間は各チェーンやモールの公式ページから（2026年11月17日確認）。年末年始などは変わることがあるので、行く前にお店で確かめてください。</p></div></details>`;
 }
 function foodHtml(e){
   const k = FOOD_OF[e.t]; if (!k) return "";
