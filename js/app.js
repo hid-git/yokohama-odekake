@@ -222,19 +222,19 @@ function famiresHtml(e){
     <p class="note">会場のまわりのファミレスを地図で探せます：<a href="${esc(q("ファミレス"))}" target="_blank" rel="noopener">ファミレス</a>　<a href="${esc(q("ガスト"))}" target="_blank" rel="noopener">ガスト</a>　<a href="${esc(q("デニーズ"))}" target="_blank" rel="noopener">デニーズ</a>　<a href="${esc(q("サイゼリヤ"))}" target="_blank" rel="noopener">サイゼリヤ</a>　<a href="${esc(q("バーミヤン"))}" target="_blank" rel="noopener">バーミヤン</a>　<a href="${esc(q("スープストックトーキョー"))}" target="_blank" rel="noopener">スープストック</a>　<a href="${esc(q("和食さと"))}" target="_blank" rel="noopener">和食さと</a></p>
   </details>`;
 }
-function clothesKinds(c){ return c.kinds ? c.kinds.map(k => `<span class="ktag">${k === "ベビー" ? "👶" : "🧒"}${esc(k)}</span>`).join("") : `<span class="ktag">取り扱いは公式で未確認</span>`; }
+function clothesKinds(c){ return c.kinds ? c.kinds.map(k => `<span class="ktag">${k === "ベビー" ? "👶" : k === "靴" ? "👟子どもの" : "🧒"}${esc(k)}</span>`).join("") : `<span class="ktag">取り扱いは公式で未確認</span>`; }
 function clothesNear(g){
   if (!g || typeof CLOTHES === "undefined") return [];
   return CLOTHES.filter(c => c.g).map(c => ({ c, min: Math.max(1, Math.round(distM(g, c.g) * 1.3 / 70)) })).filter(x => x.min <= 15).sort((a, b) => a.min - b.min);
 }
 function clothesHtml(e){
   const near = clothesNear(venueGeo(e)); if (!near.length) return "";
-  return `<details class="food clothes"><summary>👕 歩いて15分以内でベビー服・子ども服が買えるお店（${near.length}店）</summary><ul>${near.map(x => `<li><a href="${esc(x.c.url)}" target="_blank" rel="noopener"><b>${esc(x.c.n)}</b></a> ${clothesKinds(x.c)}　<span class="m">${esc(x.c.addr)}／${esc(x.c.hours)}<br>会場からベビーカーで約${x.min}分（目安）</span></li>`).join("")}</ul><p class="note">急なおもらし・汚れの着替え用に。時間は直線距離からのめやすです。在庫・営業時間はお店で確かめてください（出典：各チェーン公式の店舗検索）。</p></details>`;
+  return `<details class="food clothes"><summary>👕 歩いて15分以内でベビー服・子ども服・靴が買えるお店（${near.length}店）</summary><ul>${near.map(x => `<li><a href="${esc(x.c.url)}" target="_blank" rel="noopener"><b>${esc(x.c.n)}</b></a> ${clothesKinds(x.c)}　<span class="m">${esc(x.c.addr)}／${esc(x.c.hours)}<br>会場からベビーカーで約${x.min}分（目安）</span></li>`).join("")}</ul><p class="note">急なおもらし・汚れの着替えや、靴を忘れたときに。時間は直線距離からのめやすです。在庫・営業時間はお店で確かめてください（出典：各チェーン公式の店舗検索）。</p></details>`;
 }
 function clothesListHtml(){
   if (typeof CLOTHES === "undefined" || !CLOTHES.length) return "";
   const by = {}; CLOTHES.forEach(c => (by[c.ward] = by[c.ward] || []).push(c));
-  return `<details class="fold clothes"><summary>👕 ベビー服・子ども服が買えるお店（${CLOTHES.length}店）</summary><div class="fbody">
+  return `<details class="fold clothes"><summary>👕 ベビー服・子ども服・靴が買えるお店（${CLOTHES.length}店）</summary><div class="fbody">
     ${Object.entries(by).sort((p, q) => p[0].localeCompare(q[0], "ja")).map(([w, l]) => `<p><b>${esc(w)}</b></p><ul class="flist">${l.map(c => `<li><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.n)}</a> ${clothesKinds(c)}　<span class="small">${esc(c.addr)}／${esc(c.hours)}</span></li>`).join("")}</ul>`).join("")}
     <p class="small">いまは西松屋・アカチャンホンポ・バースデイ・しまむら・プティマイン・ブリーズ・ユニクロ（ベビーを置いているお店）・GU（キッズのみ）・ベビーザらス・無印良品（こども服のあるお店）の横浜市内のお店と、みなとみらいのモール（MARK IS・コレットマーレ・東急スクエア）の子ども服のお店です。住所・営業時間は各チェーンやモールの公式ページから（2026年11月17日確認）。年末年始などは変わることがあるので、行く前にお店で確かめてください。</p></div></details>`;
 }

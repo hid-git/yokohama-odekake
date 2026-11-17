@@ -311,9 +311,9 @@ def food_list(food, courts):
 def clothes_list(cl):
     if not cl:
         return ""
-    li = "".join(f'<li><a href="{E(c["url"])}" target="_blank" rel="noopener">{E(c["n"])}</a>' + (f'<span class="tag">{E("・".join(c["kinds"]))}</span>' if c.get("kinds") else '<span class="tag">取り扱いは公式で未確認</span>') + f'　{E(c["hours"])}　ベビーカーで約{c["min"]}分</li>' for c in cl)
-    return (f'<h2>歩いて15分以内でベビー服・子ども服が買えるお店</h2><ul class="links food">{li}</ul>'
-            '<p class="small">急なおもらし・汚れの着替え用に。時間は直線距離からのめやす。在庫・営業時間はお店で確かめてください（出典：各チェーン公式の店舗検索）。</p>')
+    li = "".join(f'<li><a href="{E(c["url"])}" target="_blank" rel="noopener">{E(c["n"])}</a>' + (f'<span class="tag">{E("・".join("子どもの靴" if x == "靴" else x for x in c["kinds"]))}</span>' if c.get("kinds") else '<span class="tag">取り扱いは公式で未確認</span>') + f'　{E(c["hours"])}　ベビーカーで約{c["min"]}分</li>' for c in cl)
+    return (f'<h2>歩いて15分以内でベビー服・子ども服・靴が買えるお店</h2><ul class="links food">{li}</ul>'
+            '<p class="small">急なおもらし・汚れの着替えや、靴を忘れたときに。時間は直線距離からのめやす。在庫・営業時間はお店で確かめてください（出典：各チェーン公式の店舗検索）。</p>')
 
 
 def circles_html(x):
