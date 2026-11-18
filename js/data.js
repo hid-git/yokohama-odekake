@@ -1453,11 +1453,11 @@ EVENTS.push(
     tip:"駐車場は台数が少なく、土日は混みやすい。直売所（不定期）で季節の野菜も買える", url:"https://minnano-iine.city.yokohama.lg.jp/article/special/2026_11/01/", src:"横浜市「みんなのいいね」（2026年11月）・四季の家", asof:"2026年11月11日" }
 );
 EVENTS.push(
-  { t:"まかどシーマリンパーク 一般公開（小学校の中の水族館）", days:["11/28"], time:"時間は未発表（11/28は「予定」と発表。学校のページで確認を）", ward:"中区", venue:"横浜市立間門小学校（根岸駅からバス「間門小学校前」歩いて約3分）",
+  { t:"まかどシーマリンパーク 一般公開（小学校の中の水族館）", days:["11/28"], time:"一般見学 12:00〜14:00（10:00〜12:00は在校生と保護者向けの土曜参観）", ward:"中区", venue:"横浜市立間門小学校（根岸駅からバス「間門小学校前」歩いて約3分）",
     price:"free", priceText:"入館無料", place:"屋内", rain:"ok", rainText:"屋内",
-    resv:false, resvText:"予約不要", age:[0,12], ageText:"0歳〜小学生", kind:"limited", start:600, animal:true,
+    resv:false, resvText:"予約不要", age:[0,12], ageText:"0歳〜小学生", kind:"limited", start:720, animal:true,
     sum:"間門小学校の中にある水族館。東京湾や本牧の海の生き物約20種を展示していて、年6回ほど一般公開している。ベビーカーで入れて、館内にトイレあり。",
-    tip:"次の公開は2027年3月6日の予定。問い合わせ 045-622-0005", url:"https://www.edu.city.yokohama.lg.jp/school/es/makado/index.cfm/1,0,59,html", src:"横浜市「みんなのいいね」（2026年9月）", asof:"2026年11月15日" },
+    tip:"土曜参観日のため12時までは敷地に入れない。申し込み不要・だれでも見学できる。料金の記載は学校のお知らせになし（これまでは無料）。次の公開は2027年3月6日の予定。問い合わせ 045-622-0005", url:"https://www.edu.city.yokohama.lg.jp/school/es/makado/index.cfm/1,3981,59,html", src:"間門小学校公式「R８ 11月28日（土）一般見学のお知らせ」・横浜市「みんなのいいね」（2026年9月）", asof:"2026年11月18日" },
   { t:"ふれ～ゆ（屋内温水プール・幼児プールあり）", days:[], time:"10〜3月 平日9:00〜18:00・土日祝9:00〜19:00（第2火曜・年末年始休み）", ward:"鶴見区", venue:"ふれ～ゆ（鶴見駅からバス10〜15分・施設前にバス停）",
     price:"paid", priceText:"料金は公式ページで確認", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
     resv:false, resvText:"予約不要", age:[2,12], ageText:"おむつが完全に取れた子から", kind:"ongoing", start:540, paidplay:true,
