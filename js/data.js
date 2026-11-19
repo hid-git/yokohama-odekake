@@ -698,6 +698,8 @@ const BABY = {
       note:"授乳・おむつ替え・搾乳に使える個室。男性も使える。ソファ・スツール・コンセントあり。手続きは不要。", url:"https://www.city.yokohama.lg.jp/kotsu/sub/kosodate.html", src:"横浜市交通局（2026年7月）" }
   ],
   "other": [
+    { n:"カエデウォーク長津田（緑区長津田みなみ台）", where:"2F ダイソー裏の授乳室（授乳・おむつ替え）／多目的トイレ：1F 宮崎眼科横・2F 東口エレベーター横", d:true, f:true, w:null, ex:[],
+      note:"2Fのダイソー裏に授乳室があり、授乳とおむつ替えに使える。お湯・電子レンジ・ベビーカー貸出・男性の利用は公式ページに記載なし。", url:"https://walk-uny.com/kaede-walk/about/facilities.html", src:"カエデウォーク長津田 公式（施設案内・2026年11月19日確認）" },
     { n:"横浜市電保存館", where:"ベビールームにおむつ交換台／授乳室は本館・別館に1室ずつ", d:true, f:true, w:false, ex:["ベビーカー置き場あり"],
       note:"調乳用のお湯はありません。", url:"https://www.welcome.city.yokohama.jp/accessibility/spot/details.php?sid=12", src:"横浜市観光情報サイト バリアフリー情報（2026年10月更新）" },
     { n:"大本山總持寺", where:"おむつ交換台あり／授乳室なし", d:true, f:false, w:null, ex:[],
