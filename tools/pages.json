@@ -6181,7 +6181,7 @@
   "1kec307": "cdee81459366",
   "1kkyo59": "8f6d54161891",
   "1l0g3g5": "f435fa399a62",
-  "1m4z3z8": "a178cc7376c3",
+  "1m4z3z8": "698357502bc1",
   "1n4x9nx": "3a4c742fd316",
   "1ncpds8": "3987eea4f122",
   "1nerc27": "61d178e7cbed",
@@ -6271,7 +6271,7 @@
   "xumbkg": "126d02b0e2c6",
   "yabbyg": "f29b7746912b",
   "ypztsv": "0020d335d923",
-  "zvm9bi": "1bfdcde8d750"
+  "zvm9bi": "fb9add482417"
  },
  "spot": {
   "102eq2v": {
@@ -6668,9 +6668,9 @@
   },
   "1m4z3z8": {
    "added": "2026-11-12",
-   "chars": 692,
-   "hash": "3f08336f9b9e",
-   "lastmod": "2026-11-19",
+   "chars": 880,
+   "hash": "ab9373e774ae",
+   "lastmod": "2026-11-20",
    "links": 3,
    "name": "ゆめが丘ソラトス（ゆめが丘駅直結）",
    "type": "Place"
@@ -7489,12 +7489,11 @@
   },
   "zvm9bi": {
    "added": "2026-11-12",
-   "chars": 288,
-   "hash": "b5e059c68b69",
-   "lastmod": "2026-11-19",
+   "chars": 490,
+   "hash": "b48432c534d4",
+   "lastmod": "2026-11-20",
    "links": 0,
    "name": "たまプラーザ テラス",
-   "thin": true,
    "type": "Place"
   }
  }
