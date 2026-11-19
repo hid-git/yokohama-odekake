@@ -1616,6 +1616,15 @@
    "name": "つどいの広場ぽっけ新横浜（港北区）",
    "type": "TouristAttraction"
   },
+  "1n1numf": {
+   "added": "2026-11-19",
+   "chars": 1514,
+   "hash": "e807f835cb87",
+   "lastmod": "2026-11-19",
+   "links": 11,
+   "name": "SDGs未来都市・環境絵日記展2026（横浜市役所）",
+   "type": "TouristAttraction"
+  },
   "1n3gczd": {
    "added": "2026-11-12",
    "chars": 1088,
@@ -5572,6 +5581,7 @@
   "1n0avwt": "4ef6c66e1a8a",
   "1n0yrie": "670f58036b45",
   "1n1im9r": "908c7edd98a9",
+  "1n1numf": "d1ca97eb987e",
   "1n3gczd": "8b5e4be20933",
   "1n643jq": "bbdc5c9513b3",
   "1nd4qim": "efbca682f9d6",
@@ -6388,8 +6398,8 @@
   },
   "1hr0yvi": {
    "added": "2026-11-16",
-   "chars": 1313,
-   "hash": "8579e813383b",
+   "chars": 1310,
+   "hash": "6516b474b3c2",
    "lastmod": "2026-11-19",
    "links": 9,
    "name": "CIAL鶴見（JR鶴見駅ビル）",
@@ -6406,10 +6416,10 @@
   },
   "1icjes": {
    "added": "2026-11-19",
-   "chars": 2034,
-   "hash": "1ce248278f4e",
+   "chars": 2074,
+   "hash": "cf28c34538ed",
    "lastmod": "2026-11-19",
-   "links": 37,
+   "links": 38,
    "name": "シァル桜木町（桜木町駅直結）",
    "type": "Place"
   },
@@ -6496,8 +6506,8 @@
   },
   "1l0g3g5": {
    "added": "2026-11-19",
-   "chars": 2265,
-   "hash": "7df531ed544a",
+   "chars": 2249,
+   "hash": "5568b1b12437",
    "lastmod": "2026-11-19",
    "links": 38,
    "name": "横浜市役所（桜木町駅前）",
@@ -6559,10 +6569,10 @@
   },
   "1qg4qi4": {
    "added": "2026-11-12",
-   "chars": 2005,
-   "hash": "e94dea139e8b",
+   "chars": 2045,
+   "hash": "0a7781c4cf90",
    "lastmod": "2026-11-19",
-   "links": 36,
+   "links": 37,
    "name": "コレットマーレ（桜木町駅前）",
    "type": "Place"
   },
