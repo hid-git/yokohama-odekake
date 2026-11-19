@@ -27,7 +27,7 @@ const TZ = "Asia/Tokyo";
 const HEADER = ["日時", "種類", "内容", "イベント・お店", "端末", "アプリ", "来た場所", "訪問者ID", "タブ", "地域", "地域の区分", "言語", "時間帯の設定", "日本・海外", "ブラウザ情報", "区分"];
 // 自分の端末の訪問者ID（「自分_」の印を付ける前の記録も、自分として除くため）
 const OWN_VIDS = ["1wj62hoy", "rmxuelmd"];
-const BOT_RE = /bot|crawl|spider|slurp|mediapartners|adsbot|headless|lighthouse|pagespeed|facebookexternalhit|python|curl|wget|preview/i;
+const BOT_RE = /bot|crawl|spider|slurp|mediapartners|adsbot|headless|lighthouse|pagespeed|facebookexternalhit|python|curl|wget|preview|inspectiontool|googleother|google-read-aloud|bytespider|phantom|puppeteer|playwright|selenium/i;
 function kindOf_(vid, ua, bot) {
   vid = String(vid || "");
   if (/^自分_/.test(vid) || OWN_VIDS.indexOf(vid) >= 0) return "自分";
@@ -40,7 +40,8 @@ function doPost(e) {
   try {
     const d = JSON.parse((e && e.postData && e.postData.contents) || "{}");
     if (!TYPES[d.type]) return out_("ignored");
-    const cut = (v, n) => String(v || "").replace(/[\r\n\t]/g, " ").slice(0, n);
+    // 文字のまま入れる（「11月20日」が日付に、「=…」が数式に変わらないよう、先頭に ' を付ける）
+    const cut = (v, n) => { const s = String(v || "").replace(/[\r\n\t]/g, " ").slice(0, n); return s && /^[=+\-@\d０-９'\s]|月\s*\d+\s*日|^\d+\/\d+/.test(s) ? "'" + s : s; };
     const now = new Date();
     const sh = monthSheet_(Utilities.formatDate(now, TZ, "yyyy-MM"));
     const area = areaOf_(d.type, cut(d.value, 200));
@@ -130,10 +131,12 @@ function updateSummary() {
   sum.getRange(2, ec, 1, 4).setFontWeight("bold");
   if (!latest) return;
   // 最新の月のランキング
-  const top = (type, col) => { const c = {}; latest.v.filter(r => r[1] === type).forEach(r => { const k = r[col]; if (k) c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };
+  const txt_ = k => k instanceof Date ? Utilities.formatDate(k, TZ, "M月d日") : k;
+  const top = (type, col) => { const c = {}; latest.v.filter(r => r[1] === type).forEach(r => { const k = txt_(r[col]); if (k) c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };
   const top2_ = () => { const c = {}; latest.v.filter(r => r[10]).forEach(r => c[r[10]] = (c[r[10]] || 0) + 1); return Object.entries(c).sort((a, b) => b[1] - a[1]); };
   const top3_ = () => { const c = {}; latest.v.filter(r => r[9]).forEach(r => c[r[9]] = (c[r[9]] || 0) + 1); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };
-  const count_ = list => { const c = {}; list.forEach(k => { if (k) c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };
+  // 前の版で日付に変わってしまった検索語（例：Fri Nov 20 2026）は、上の txt_ で「11月20日」に戻して数える
+  const count_ = list => { const c = {}; list.forEach(k => { k = txt_(k); if (k) c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };
   const zero_ = () => count_(latest.v.filter(r => r[1] === "検索" && r[3] === "0件").map(r => r[2]));
   // 訪問者ごとに1回だけ数える：日本・海外、言語
   const perVisitor_ = col => { const seen = {}; latest.v.forEach(r => { if (r[7] && r[col] && !seen[r[7]]) seen[r[7]] = r[col]; }); return count_(Object.values(seen)); };

@@ -547,10 +547,23 @@ function matches(e){
   if (state.flags.has("hot") && !hasHotWater(e)) return false;
   if (state.area !== "all" && !e.ward.split("・").includes(state.area)) return false;
   if (state.q) {
-    const hay = (e.t + e.sum + e.venue + e.ward + (e.tip||"")).toLowerCase();
-    if (!hay.includes(state.q.toLowerCase())) return false;
+    const dk = dateKeyQ(state.q);
+    if (dk) { if (!e.days.includes(dk)) return false; }
+    else {
+      const hay = (e.t + e.sum + e.venue + e.ward + (e.tip||"")).toLowerCase();
+      if (!hay.includes(state.q.toLowerCase())) return false;
+    }
   }
   return true;
+}
+// 検索欄に「11月20日」「11/20」「20日」のような日付が入ったら、その日のイベントを出す
+function dateKeyQ(q){
+  const z = String(q).normalize("NFKC").replace(/\s|（.*?）|\(.*?\)|[日月火水木金土祝]曜日?$/g, "");
+  let m = /^(\d{1,2})(?:月|\/)(\d{1,2})日?$/.exec(z);
+  if (m) return `${+m[1]}/${+m[2]}`;
+  m = /^(\d{1,2})日$/.exec(z);
+  if (m) { const t = new Date(), d = +m[1]; const mo = d >= t.getDate() ? t.getMonth() + 1 : (t.getMonth() + 1) % 12 + 1; return `${mo}/${d}`; }
+  return null;
 }
 function stationWc(x){ return STATION_WC[x.st + "|" + x.line] || STATION_WC[x.st] || null; }
 let PICK_N = 0;
