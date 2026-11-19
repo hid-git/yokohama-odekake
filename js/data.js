@@ -2268,6 +2268,6 @@ const R_ITEMS = [
 const DM_OPTS = [["men","男性トイレにあった"],["nomen","男性トイレにはなかった"],["multi","多機能トイレにあった"],["room","ベビールームにパパも入れた"],["women","女性トイレだけだった"],["unk","分からない"]];
 // ---- 使われ方の記録（自分のGoogleスプレッドシートに匿名でためる。公開サイトでだけ動く） ----
 // TRACK_URL は Apps Script の「ウェブアプリ」のURL（tools/tracking-apps-script.gs を参照）。空なら何も送らない。
-const TRACK_URL = "https://script.google.com/macros/s/AKfycbzTQDSVJWNXkSCzBTNv07i0hz2qDVfjTcs9yaQc7MTx4A9kC9GE5dM4Bj-Yq251PJXN/exec";
+const TRACK_URL = "https://script.google.com/macros/s/AKfycbz-8TJu_2Yef6T5p4cB1GSJIDknuU3wyFDDJB8X34TLUm-PQu12v2B5rGiGugMV_2U/exec";
 // ---- ページの切り替え（タブ） ----
 const TABS = { play:["#play"], events:["#ev-points","#newev","#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], life:["#life"], chains:["#chains"], help:["#help"], contact:["#contact"] };

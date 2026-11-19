@@ -243,7 +243,7 @@ document.getElementById("bf-table").innerHTML = Object.entries(AREAS).map(([k, l
 }).join("");
 document.getElementById("baby-list").innerHTML = BABY.map(b => `<article class="card" data-ev="${esc(b.n)}"><h3><span class="ico" aria-hidden="true">🍼</span>${esc(b.n)}</h3><div class="ja" lang="ja">${esc(b.ja)}</div><p>${esc(b.d)}</p>${link(b.url)}</article>`).join("");
 // ---- usage recording (anonymous, same spreadsheet as the Japanese page; see tools/tracking-apps-script.gs). Do not remove. ----
-const TRACK_URL = "https://script.google.com/macros/s/AKfycbzTQDSVJWNXkSCzBTNv07i0hz2qDVfjTcs9yaQc7MTx4A9kC9GE5dM4Bj-Yq251PJXN/exec";
+const TRACK_URL = "https://script.google.com/macros/s/AKfycbz-8TJu_2Yef6T5p4cB1GSJIDknuU3wyFDDJB8X34TLUm-PQu12v2B5rGiGugMV_2U/exec";
 const TRACK_ON = !!TRACK_URL && /(github\.io|kidstrip\.jp)$/.test(location.hostname);
 let TRACK_VID = ""; try { TRACK_VID = localStorage.getItem("vid") || ""; if (!TRACK_VID) { TRACK_VID = Math.random().toString(36).slice(2, 10); localStorage.setItem("vid", TRACK_VID); } } catch (_) {}
 try { const q = new URLSearchParams(location.search).get("me"); if (q === "1") localStorage.setItem("me", "1"); if (q === "0") localStorage.removeItem("me"); if (q === "1" || q === "0") setTimeout(() => { const d = document.createElement("div"); d.textContent = q === "1" ? "この端末からの記録に「自分_」の印を付けます（やめるときは ?me=0 を開く）" : "この端末の「自分」の印を外しました"; d.style.cssText = "position:fixed;left:12px;right:12px;bottom:12px;z-index:99;background:#17324a;color:#fff;padding:10px 12px;border-radius:10px;font-size:14px"; document.body.appendChild(d); setTimeout(() => d.remove(), 5000); }, 300); if (localStorage.getItem("me") === "1") TRACK_VID = "自分_" + TRACK_VID; } catch (_) {}
