@@ -1238,10 +1238,10 @@
   },
   "1hnod6o": {
    "added": "2026-11-17",
-   "chars": 1454,
-   "hash": "1ff36ca80537",
-   "lastmod": "2026-11-19",
-   "links": 14,
+   "chars": 1481,
+   "hash": "1d98c6799d64",
+   "lastmod": "2026-11-20",
+   "links": 15,
    "name": "マルシェ・ド・ノエル（トレッサ横浜のクリスマスマーケット）",
    "type": "Event"
   },
@@ -1274,10 +1274,10 @@
   },
   "1hrvp28": {
    "added": "2026-11-16",
-   "chars": 753,
-   "hash": "12fe17eaec19",
-   "lastmod": "2026-11-19",
-   "links": 13,
+   "chars": 780,
+   "hash": "28a5db36c08e",
+   "lastmod": "2026-11-20",
+   "links": 14,
    "name": "コアラひろば（大岡地区センター）",
    "type": "Event"
   },
@@ -3777,10 +3777,10 @@
   },
   "eecbay": {
    "added": "2026-11-17",
-   "chars": 899,
-   "hash": "ee7c96fc3cf6",
-   "lastmod": "2026-11-19",
-   "links": 13,
+   "chars": 926,
+   "hash": "7bb2f083d318",
+   "lastmod": "2026-11-20",
+   "links": 14,
    "name": "白幡の森プレイパーク（神奈川区）",
    "type": "Event"
   },
@@ -4331,10 +4331,10 @@
   },
   "jkp7kp": {
    "added": "2026-11-17",
-   "chars": 833,
-   "hash": "9cc88eb81f6b",
-   "lastmod": "2026-11-19",
-   "links": 13,
+   "chars": 860,
+   "hash": "0414a3785f86",
+   "lastmod": "2026-11-20",
+   "links": 14,
    "name": "太尾公園つちのこプレイパーク（港北区）",
    "type": "Event"
   },
@@ -5474,6 +5474,15 @@
    "name": "親子であそぼう！（豊田地区センター）",
    "type": "Event"
   },
+  "z5ticf": {
+   "added": "2026-11-20",
+   "chars": 1173,
+   "hash": "65bcafbccb2d",
+   "lastmod": "2026-11-20",
+   "links": 15,
+   "name": "第15回 でんしゃであそぼう！in 大倉山記念館",
+   "type": "Event"
+  },
   "z99p54": {
    "added": "2026-11-17",
    "chars": 872,
@@ -6119,6 +6128,7 @@
   "yq7c00": "f5cef1e27018",
   "yrn7wf": "414159bb9949",
   "z2sk0q": "0c68cabc4535",
+  "z5ticf": "c59f9e509e36",
   "z99p54": "11fa722ba32e",
   "zd9jj6": "9ae303945609",
   "zik3sq": "c5e8003e4f6d",
@@ -7295,10 +7305,10 @@
   },
   "oskd4z": {
    "added": "2026-11-13",
-   "chars": 461,
-   "hash": "d688d3b7effe",
-   "lastmod": "2026-11-19",
-   "links": 10,
+   "chars": 535,
+   "hash": "9fc418547909",
+   "lastmod": "2026-11-20",
+   "links": 11,
    "name": "横浜市大倉山記念館",
    "type": "Place"
   },
