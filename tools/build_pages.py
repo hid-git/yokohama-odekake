@@ -399,6 +399,11 @@ def event_page(e, d, spot_ids, track_url):
               "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
               "location": {"@type": "Place", "name": e["venue"], "address": {"@type": "PostalAddress", "addressLocality": "横浜市" + ward1, "addressRegion": "神奈川県", "addressCountry": "JP"}},
               "description": e["sum"], "image": [SITE + "img/ogp.jpg"], "url": url, "isAccessibleForFree": e["price"] == "free", "inLanguage": "ja"}
+        # 料金（offers）：無料は0円、有料は料金の欄にある「○円」のいちばん安い金額。分からないものは入れない
+        yen = [int(x.replace(",", "")) for x in re.findall(r"(\d[\d,]*)\s*円", e.get("priceText", ""))]
+        if e["price"] == "free" or yen:
+            ev["offers"] = {"@type": "Offer", "price": 0 if e["price"] == "free" else min(yen), "priceCurrency": "JPY", "url": e.get("resvUrl") or e.get("url") or url,
+                            "availability": "https://schema.org/InStock"}
         ld.append(ev)
     elif e["kind"] == "ongoing":
         # 通年の施設・遊び場・公園：Event ではなく場所として出す（公園は Park）
@@ -704,6 +709,10 @@ def main():
             old = man.get(kind, {}).get(pid, {})
             lm = old.get("lastmod", today) if old.get("hash") == h and not old.get("ended") else today
             new_man[kind][pid] = {"name": name, "hash": h, "lastmod": lm, "added": old.get("added") or (old.get("lastmod") if old else today)}
+            # 記録のスプレッドシートで、ページ別の表示回数と並べるための情報（型・本文の字数・ほかの個別ページへのリンク数）
+            tm = re.search(r'"@type": "(Event|TouristAttraction|Park|Place|LocalBusiness|ShoppingCenter)"', htmltext)
+            new_man[kind][pid].update({"type": tm.group(1) if tm else "", "chars": body_chars(htmltext),
+                                       "links": len(set(re.findall(r'href="/(?:event|spot)/[^"/]+/"', htmltext)))})
             if thin:
                 new_man[kind][pid]["thin"] = True
             out = os.path.join(ROOT, path, "index.html")

@@ -2,45 +2,66 @@
  "event": {
   "1018ftk": {
    "added": "2026-11-18",
-   "hash": "7e50dce2c780",
-   "lastmod": "2026-11-18",
-   "name": "ママハピEXPO（ららぽーと横浜）"
+   "chars": 1385,
+   "hash": "426d3263c921",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "ママハピEXPO（ららぽーと横浜）",
+   "type": "Event"
   },
   "103t0z3": {
    "added": "2026-11-17",
-   "hash": "6f72e010e258",
-   "lastmod": "2026-11-17",
-   "name": "あさひプレイパーク みんなの基地（旭区）"
+   "chars": 827,
+   "hash": "b2061352bda5",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "あさひプレイパーク みんなの基地（旭区）",
+   "type": "Event"
   },
   "109zabu": {
    "added": "2026-11-12",
+   "chars": 1081,
    "hash": "32cee0b429b8",
    "lastmod": "2026-11-17",
-   "name": "こども縁日（ブランチ横浜南部市場）"
+   "links": 17,
+   "name": "こども縁日（ブランチ横浜南部市場）",
+   "type": "Event"
   },
   "10gwlgo": {
    "added": "2026-11-17",
-   "hash": "15648094175c",
-   "lastmod": "2026-11-18",
-   "name": "横浜七福神4か所めぐり（中川西地区センター）"
+   "chars": 810,
+   "hash": "f1dd36c8ae74",
+   "lastmod": "2026-11-19",
+   "links": 14,
+   "name": "横浜七福神4か所めぐり（中川西地区センター）",
+   "type": "Event"
   },
   "10h18dd": {
    "added": "2026-11-16",
-   "hash": "e6d0b6f02ccf",
-   "lastmod": "2026-11-17",
-   "name": "赤ちゃんとママのアットホームコンサート（中村地区センター）"
+   "chars": 744,
+   "hash": "f85db115f3b4",
+   "lastmod": "2026-11-19",
+   "links": 10,
+   "name": "赤ちゃんとママのアットホームコンサート（中村地区センター）",
+   "type": "Event"
   },
   "10inafq": {
    "added": "2026-11-12",
+   "chars": 2222,
    "hash": "1cf3275e3d30",
    "lastmod": "2026-11-17",
-   "name": "横浜美術館「じゆうエリア」（無料・親子で絵本の「くつぬぎスポット」）"
+   "links": 36,
+   "name": "横浜美術館「じゆうエリア」（無料・親子で絵本の「くつぬぎスポット」）",
+   "type": "TouristAttraction"
   },
   "10k4i": {
    "added": "2026-11-12",
-   "hash": "7be833ff9709",
-   "lastmod": "2026-11-17",
-   "name": "わくわく！クリスマスコンサート〜絵本で楽しむくるみわり人形"
+   "chars": 2059,
+   "hash": "8813fb2fc102",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "わくわく！クリスマスコンサート〜絵本で楽しむくるみわり人形",
+   "type": "Event"
   },
   "10ktpdd": {
    "added": "2026-11-12",
@@ -58,117 +79,174 @@
   },
   "111mmkz": {
    "added": "2026-11-12",
-   "hash": "ba169a270c56",
-   "lastmod": "2026-11-18",
-   "name": "0歳からのクリスマスコンサート「星の音楽絵本」"
+   "chars": 845,
+   "hash": "b2fda4a14731",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "0歳からのクリスマスコンサート「星の音楽絵本」",
+   "type": "Event"
   },
   "1133m86": {
    "added": "2026-11-12",
+   "chars": 764,
    "hash": "4ea60996fce2",
    "lastmod": "2026-11-17",
-   "name": "県立三ッ池公園（ロングすべり台・冒険の森）"
+   "links": 8,
+   "name": "県立三ッ池公園（ロングすべり台・冒険の森）",
+   "type": "Park"
   },
   "119gyon": {
    "added": "2026-11-17",
+   "chars": 635,
    "hash": "e07f6f72bf25",
    "lastmod": "2026-11-17",
-   "name": "都筑地区センターのプレイルーム（都筑区）"
+   "links": 8,
+   "name": "都筑地区センターのプレイルーム（都筑区）",
+   "type": "TouristAttraction"
   },
   "11nabwu": {
    "added": "2026-11-17",
+   "chars": 663,
    "hash": "3c0e94419971",
    "lastmod": "2026-11-17",
-   "name": "つどいの広場みらいポケット（緑区）"
+   "links": 8,
+   "name": "つどいの広場みらいポケット（緑区）",
+   "type": "TouristAttraction"
   },
   "11q8hw7": {
    "added": "2026-11-12",
+   "chars": 1215,
    "hash": "6d382a654a63",
    "lastmod": "2026-11-17",
-   "name": "モザイクモール港北「センターパーク」"
+   "links": 11,
+   "name": "モザイクモール港北「センターパーク」",
+   "type": "TouristAttraction"
   },
   "11r4wif": {
    "added": "2026-11-12",
+   "chars": 1745,
    "hash": "3ef56f9cc69e",
    "lastmod": "2026-11-17",
-   "name": "MARK IS みなとみらい 3階「おやこの森」（無料キッズスペース）"
+   "links": 14,
+   "name": "MARK IS みなとみらい 3階「おやこの森」（無料キッズスペース）",
+   "type": "TouristAttraction"
   },
   "11szq4i": {
    "added": "2026-11-17",
-   "hash": "817421c8c0a1",
-   "lastmod": "2026-11-18",
-   "name": "吉良剛 生音ギターコンサート（杉田地区センターのロビーコンサート）"
+   "chars": 748,
+   "hash": "a4638beb8c69",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "吉良剛 生音ギターコンサート（杉田地区センターのロビーコンサート）",
+   "type": "Event"
   },
   "11trfwv": {
    "added": "2026-11-17",
+   "chars": 650,
    "hash": "0f569018a330",
    "lastmod": "2026-11-17",
-   "name": "Lico（鶴見区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "Lico（鶴見区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "11vf1cx": {
    "added": "2026-11-17",
-   "hash": "685ee2581d92",
-   "lastmod": "2026-11-17",
-   "name": "ワクワク絵本の会（杉田地区センター）"
+   "chars": 660,
+   "hash": "872eb2724dc9",
+   "lastmod": "2026-11-19",
+   "links": 11,
+   "name": "ワクワク絵本の会（杉田地区センター）",
+   "type": "Event"
   },
   "11w1a89": {
    "added": "2026-11-17",
-   "hash": "93891402a84f",
-   "lastmod": "2026-11-17",
-   "name": "ちくせんDEたにくごと（若葉台地区センター）"
+   "chars": 820,
+   "hash": "5bf5f71a6ed2",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ちくせんDEたにくごと（若葉台地区センター）",
+   "type": "Event"
   },
   "123pe6": {
    "added": "2026-11-17",
+   "chars": 635,
    "hash": "0d8467a5c408",
    "lastmod": "2026-11-17",
-   "name": "子育てキディ・洋光台（磯子区・親と子のつどいの広場）"
+   "links": 4,
+   "name": "子育てキディ・洋光台（磯子区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "123z7z8": {
    "added": "2026-11-17",
+   "chars": 645,
    "hash": "186cacfa109d",
    "lastmod": "2026-11-17",
-   "name": "柏葉公園こどもログハウス「オークロッジ」（中区）"
+   "links": 4,
+   "name": "柏葉公園こどもログハウス「オークロッジ」（中区）",
+   "type": "TouristAttraction"
   },
   "12b01jt": {
    "added": "2026-11-12",
+   "chars": 1053,
    "hash": "bb427c30686a",
    "lastmod": "2026-11-17",
-   "name": "こどもの国 もみじのかざぐるま"
+   "links": 19,
+   "name": "こどもの国 もみじのかざぐるま",
+   "type": "Event"
   },
   "12cjuz1": {
    "added": "2026-11-17",
+   "chars": 731,
    "hash": "6d1f71420391",
    "lastmod": "2026-11-17",
-   "name": "coron（ころん）（鶴見区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "coron（ころん）（鶴見区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "12er667": {
    "added": "2026-11-12",
-   "hash": "2838003f6ed8",
-   "lastmod": "2026-11-18",
-   "name": "親子で楽しむコンサート「音と光の動物園」（コンサートのみの部）"
+   "chars": 2019,
+   "hash": "5459a97c295c",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "親子で楽しむコンサート「音と光の動物園」（コンサートのみの部）",
+   "type": "Event"
   },
   "12hlbgn": {
    "added": "2026-11-17",
-   "hash": "5ef7b9f31893",
-   "lastmod": "2026-11-17",
-   "name": "モグモグキッチン④ チキンのトマト煮込み（中川西地区センター）"
+   "chars": 796,
+   "hash": "2a6955fcacc7",
+   "lastmod": "2026-11-19",
+   "links": 10,
+   "name": "モグモグキッチン④ チキンのトマト煮込み（中川西地区センター）",
+   "type": "Event"
   },
   "12n8468": {
    "added": "2026-11-16",
-   "hash": "9551be32ad84",
-   "lastmod": "2026-11-18",
-   "name": "年越しそばを親子で打とう（上郷地区センター）"
+   "chars": 821,
+   "hash": "48684a68e1db",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "年越しそばを親子で打とう（上郷地区センター）",
+   "type": "Event"
   },
   "12n8o01": {
    "added": "2026-11-14",
+   "chars": 577,
    "hash": "62104a184255",
    "lastmod": "2026-11-17",
-   "name": "戸塚西公園（戸塚区の公園）"
+   "links": 8,
+   "name": "戸塚西公園（戸塚区の公園）",
+   "type": "Park"
   },
   "12siovg": {
    "added": "2026-11-12",
-   "hash": "e6dd34dc59fc",
-   "lastmod": "2026-11-17",
-   "name": "緑区役所 クリスマス ハンドベル ロビーコンサート"
+   "chars": 933,
+   "hash": "99c977b78c20",
+   "lastmod": "2026-11-19",
+   "links": 15,
+   "name": "緑区役所 クリスマス ハンドベル ロビーコンサート",
+   "type": "Event"
   },
   "12xa17m": {
    "added": "2026-11-17",
@@ -179,21 +257,30 @@
   },
   "137ip9p": {
    "added": "2026-11-12",
+   "chars": 718,
    "hash": "72f9739468b8",
    "lastmod": "2026-11-17",
-   "name": "横浜フィッシングピアーズ 大黒海づり施設（道具レンタルあり）"
+   "links": 8,
+   "name": "横浜フィッシングピアーズ 大黒海づり施設（道具レンタルあり）",
+   "type": "TouristAttraction"
   },
   "13a0olz": {
    "added": "2026-11-16",
-   "hash": "3e9ef1956267",
-   "lastmod": "2026-11-17",
-   "name": "おもちゃ病院（永谷地区センター）"
+   "chars": 876,
+   "hash": "cc0ba59ae778",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "おもちゃ病院（永谷地区センター）",
+   "type": "Event"
   },
   "13gt394": {
    "added": "2026-11-18",
+   "chars": 1190,
    "hash": "093c2d64e85f",
    "lastmod": "2026-11-18",
-   "name": "泣いても大丈夫！コンサート（ほどがや地区センター）"
+   "links": 16,
+   "name": "泣いても大丈夫！コンサート（ほどがや地区センター）",
+   "type": "Event"
   },
   "13n12s9": {
    "added": "2026-11-12",
@@ -204,189 +291,282 @@
   },
   "13npv30": {
    "added": "2026-11-12",
-   "hash": "f7dd3f4d13b3",
-   "lastmod": "2026-11-18",
-   "name": "名探偵コナン 芸術花火2026"
+   "chars": 1996,
+   "hash": "1851445f8906",
+   "lastmod": "2026-11-19",
+   "links": 58,
+   "name": "名探偵コナン 芸術花火2026",
+   "type": "Event"
   },
   "13rwldt": {
    "added": "2026-11-18",
-   "hash": "ec96a22ae15b",
-   "lastmod": "2026-11-18",
-   "name": "0歳からのよちよちコンサート（かなっくホール）"
+   "chars": 723,
+   "hash": "541bd8738cbe",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "0歳からのよちよちコンサート（かなっくホール）",
+   "type": "Event"
   },
   "13vtpsv": {
    "added": "2026-11-13",
+   "chars": 623,
    "hash": "985680ae7682",
    "lastmod": "2026-11-17",
-   "name": "城郷小机地区センターのプレイルーム（港北区）"
+   "links": 8,
+   "name": "城郷小机地区センターのプレイルーム（港北区）",
+   "type": "TouristAttraction"
   },
   "13yopf6": {
    "added": "2026-11-17",
+   "chars": 668,
    "hash": "568dd53c09ed",
    "lastmod": "2026-11-17",
-   "name": "ひろば「きりかぶ」（瀬谷区・親と子のつどいの広場）"
+   "links": 6,
+   "name": "ひろば「きりかぶ」（瀬谷区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "141r37i": {
    "added": "2026-11-17",
+   "chars": 801,
    "hash": "b679e58f885e",
    "lastmod": "2026-11-18",
-   "name": "クリスマスのふしぎなはこ（宇宙科学館）"
+   "links": 13,
+   "name": "クリスマスのふしぎなはこ（宇宙科学館）",
+   "type": "Event"
   },
   "14395q9": {
    "added": "2026-11-17",
-   "hash": "c4587700141f",
-   "lastmod": "2026-11-17",
-   "name": "おはなしのへや（能見台地区センター）"
+   "chars": 786,
+   "hash": "f8e5af5cd966",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "おはなしのへや（能見台地区センター）",
+   "type": "Event"
   },
   "14409go": {
    "added": "2026-11-17",
+   "chars": 693,
    "hash": "05516e464266",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場風の子（保土ケ谷区）"
+   "links": 8,
+   "name": "親と子のつどいの広場風の子（保土ケ谷区）",
+   "type": "TouristAttraction"
   },
   "1450nm": {
    "added": "2026-11-12",
-   "hash": "694cbe86299b",
-   "lastmod": "2026-11-17",
-   "name": "サイエンス・ショウ「くるりん 宙がえり」（宇宙科学館）"
+   "chars": 876,
+   "hash": "2ff2f1902771",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "サイエンス・ショウ「くるりん 宙がえり」（宇宙科学館）",
+   "type": "Event"
   },
   "147tiu7": {
    "added": "2026-11-17",
-   "hash": "1da301264c3f",
-   "lastmod": "2026-11-17",
-   "name": "はじめての造形あそび 絵の具コース（横浜美術館）"
+   "chars": 1973,
+   "hash": "37c8362dcda6",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "はじめての造形あそび 絵の具コース（横浜美術館）",
+   "type": "Event"
   },
   "147tqx9": {
    "added": "2026-11-17",
-   "hash": "3dd28a563d1d",
-   "lastmod": "2026-11-17",
-   "name": "ぬいぐるみといっしょのおはなし会＆ぬいぐるみのおとまり会（磯子図書館）"
+   "chars": 818,
+   "hash": "2de913f1b665",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "ぬいぐるみといっしょのおはなし会＆ぬいぐるみのおとまり会（磯子図書館）",
+   "type": "Event"
   },
   "14a80q2": {
    "added": "2026-11-17",
-   "hash": "ffe45c95ffca",
-   "lastmod": "2026-11-17",
-   "name": "瀬谷南台こどものもりプレイパーク（瀬谷区）"
+   "chars": 963,
+   "hash": "73878d08320f",
+   "lastmod": "2026-11-19",
+   "links": 14,
+   "name": "瀬谷南台こどものもりプレイパーク（瀬谷区）",
+   "type": "Event"
   },
   "14d8uk6": {
    "added": "2026-11-13",
+   "chars": 630,
    "hash": "fb5c4d462187",
    "lastmod": "2026-11-17",
-   "name": "とことこ（金沢区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "とことこ（金沢区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "14ncznm": {
    "added": "2026-11-16",
+   "chars": 746,
    "hash": "9a2d1a83ad8c",
    "lastmod": "2026-11-17",
-   "name": "今井地区センターのプレイルーム（保土ケ谷区）"
+   "links": 8,
+   "name": "今井地区センターのプレイルーム（保土ケ谷区）",
+   "type": "TouristAttraction"
   },
   "14yujdq": {
    "added": "2026-11-17",
+   "chars": 2241,
    "hash": "953b525f3eb6",
    "lastmod": "2026-11-17",
-   "name": "すすめ！ぼくらのアンパンマンごう！（アンパンマンこどもミュージアムの冬のステージ）"
+   "links": 11,
+   "name": "すすめ！ぼくらのアンパンマンごう！（アンパンマンこどもミュージアムの冬のステージ）",
+   "type": "TouristAttraction"
   },
   "152ws5g": {
    "added": "2026-11-17",
-   "hash": "10b79e6c1e15",
+   "chars": 831,
+   "hash": "1d7dd16cc8e2",
    "lastmod": "2026-11-19",
-   "name": "子ども料理教室（竹之丸地区センター）"
+   "links": 13,
+   "name": "子ども料理教室（竹之丸地区センター）",
+   "type": "Event"
   },
   "154i32r": {
    "added": "2026-11-16",
+   "chars": 1073,
    "hash": "4c9372a85273",
    "lastmod": "2026-11-17",
-   "name": "ほどがや地区センターのプレイルーム（保土ケ谷区）"
+   "links": 8,
+   "name": "ほどがや地区センターのプレイルーム（保土ケ谷区）",
+   "type": "TouristAttraction"
   },
   "156nmc3": {
    "added": "2026-11-13",
+   "chars": 675,
    "hash": "b85c99d2f1c0",
    "lastmod": "2026-11-17",
-   "name": "こっころ（保土ケ谷区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "こっころ（保土ケ谷区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "15w4yl7": {
    "added": "2026-11-17",
+   "chars": 646,
    "hash": "e3936b0fea53",
    "lastmod": "2026-11-17",
-   "name": "子育てスポットくすくす（磯子区・親と子のつどいの広場）"
+   "links": 4,
+   "name": "子育てスポットくすくす（磯子区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "163zqo": {
    "added": "2026-11-17",
-   "hash": "542d05a551a9",
-   "lastmod": "2026-11-17",
-   "name": "小学生のお習字体験教室（トレッサ横浜）"
+   "chars": 1454,
+   "hash": "eac351a8dff4",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "小学生のお習字体験教室（トレッサ横浜）",
+   "type": "Event"
   },
   "166laq": {
    "added": "2026-11-14",
+   "chars": 1098,
    "hash": "3b027df9b661",
    "lastmod": "2026-11-17",
-   "name": "親と子の休憩室 はあとハウス（戸塚駅・サクラス戸塚1階）"
+   "links": 9,
+   "name": "親と子の休憩室 はあとハウス（戸塚駅・サクラス戸塚1階）",
+   "type": "TouristAttraction"
   },
   "16fqabv": {
    "added": "2026-11-14",
+   "chars": 1004,
    "hash": "b0dce0413200",
    "lastmod": "2026-11-17",
-   "name": "SEAPARADISE Christmas（八景島シーパラダイスのクリスマス）"
+   "links": 9,
+   "name": "SEAPARADISE Christmas（八景島シーパラダイスのクリスマス）",
+   "type": "TouristAttraction"
   },
   "16g1pne": {
    "added": "2026-11-14",
+   "chars": 578,
    "hash": "cc299b961709",
    "lastmod": "2026-11-17",
-   "name": "秋葉台公園（戸塚区の公園）"
+   "links": 8,
+   "name": "秋葉台公園（戸塚区の公園）",
+   "type": "Park"
   },
   "16hcyb3": {
    "added": "2026-11-17",
-   "hash": "5d6f988f8dd0",
-   "lastmod": "2026-11-18",
-   "name": "おもちゃの病院（本牧地区センター）"
+   "chars": 751,
+   "hash": "af20e9bed26f",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "おもちゃの病院（本牧地区センター）",
+   "type": "Event"
   },
   "16m51px": {
    "added": "2026-11-12",
+   "chars": 2680,
    "hash": "9364641001e4",
    "lastmod": "2026-11-18",
-   "name": "Christmas Market in 横浜赤レンガ倉庫"
+   "links": 50,
+   "name": "Christmas Market in 横浜赤レンガ倉庫",
+   "type": "TouristAttraction"
   },
   "16t5vbc": {
    "added": "2026-11-18",
-   "hash": "69e3ad5fa67c",
-   "lastmod": "2026-11-18",
-   "name": "横浜北仲マルシェ（11月）"
+   "chars": 1878,
+   "hash": "0219b0259f06",
+   "lastmod": "2026-11-19",
+   "links": 18,
+   "name": "横浜北仲マルシェ（11月）",
+   "type": "Event"
   },
   "16vbwil": {
    "added": "2026-11-17",
+   "chars": 724,
    "hash": "921c08641ce1",
    "lastmod": "2026-11-17",
-   "name": "おやこひろばてとてと（港南区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "おやこひろばてとてと（港南区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "178yppn": {
    "added": "2026-11-12",
-   "hash": "114d297c1d16",
-   "lastmod": "2026-11-17",
-   "name": "こどもの国 工作教室「スノードーム」"
+   "chars": 965,
+   "hash": "79e4356d9cb8",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "こどもの国 工作教室「スノードーム」",
+   "type": "Event"
   },
   "17cg7if": {
    "added": "2026-11-16",
+   "chars": 596,
    "hash": "455ec8820b17",
    "lastmod": "2026-11-17",
-   "name": "矢向地区センターのプレイルーム（鶴見区）"
+   "links": 8,
+   "name": "矢向地区センターのプレイルーム（鶴見区）",
+   "type": "TouristAttraction"
   },
   "17gozli": {
    "added": "2026-11-13",
+   "chars": 642,
    "hash": "821a1e1da774",
    "lastmod": "2026-11-17",
-   "name": "綱島地区センターのプレイルーム（港北区）"
+   "links": 8,
+   "name": "綱島地区センターのプレイルーム（港北区）",
+   "type": "TouristAttraction"
   },
   "17ip9ii": {
    "added": "2026-11-13",
+   "chars": 703,
    "hash": "cd8dc452d6e7",
    "lastmod": "2026-11-17",
-   "name": "Popola（ポポラ）（都筑区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "Popola（ポポラ）（都筑区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "17t37rl": {
    "added": "2026-11-17",
+   "chars": 693,
    "hash": "c94fc01c6931",
    "lastmod": "2026-11-17",
-   "name": "ほしのひろば（神奈川区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "ほしのひろば（神奈川区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "17vakld": {
    "added": "2026-11-17",
@@ -397,243 +577,363 @@
   },
   "187ew92": {
    "added": "2026-11-12",
+   "chars": 1531,
    "hash": "a113b29b8030",
    "lastmod": "2026-11-17",
-   "name": "ボーネルンド あそびのせかい MARK IS みなとみらい店"
+   "links": 14,
+   "name": "ボーネルンド あそびのせかい MARK IS みなとみらい店",
+   "type": "TouristAttraction"
   },
   "187q16l": {
    "added": "2026-11-15",
-   "hash": "6bc08cefa794",
-   "lastmod": "2026-11-18",
-   "name": "親子で楽しむおはなし会（磯子図書館）"
+   "chars": 754,
+   "hash": "731c60acecb7",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "親子で楽しむおはなし会（磯子図書館）",
+   "type": "Event"
   },
   "189htdg": {
    "added": "2026-11-17",
-   "hash": "f1a0374f7219",
-   "lastmod": "2026-11-18",
-   "name": "片倉うさぎ山プレイパーク（神奈川区）"
+   "chars": 1197,
+   "hash": "f4c51df572c9",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "片倉うさぎ山プレイパーク（神奈川区）",
+   "type": "Event"
   },
   "18agcb5": {
    "added": "2026-11-17",
-   "hash": "aebb4d1b672a",
-   "lastmod": "2026-11-17",
-   "name": "おもちゃの病院（立場地区センター）"
+   "chars": 716,
+   "hash": "3fca22c541ff",
+   "lastmod": "2026-11-19",
+   "links": 15,
+   "name": "おもちゃの病院（立場地区センター）",
+   "type": "Event"
   },
   "18fawo1": {
    "added": "2026-11-17",
-   "hash": "de5025d52626",
+   "chars": 775,
+   "hash": "ac1b3952da72",
    "lastmod": "2026-11-19",
-   "name": "おはなし会（白根地区センター）"
+   "links": 16,
+   "name": "おはなし会（白根地区センター）",
+   "type": "Event"
   },
   "18p7z4": {
    "added": "2026-11-17",
+   "chars": 1135,
    "hash": "f87781f9908f",
    "lastmod": "2026-11-17",
-   "name": "ズーラシア「世界ニホンザルの日」特別ガイド"
+   "links": 17,
+   "name": "ズーラシア「世界ニホンザルの日」特別ガイド",
+   "type": "Event"
   },
   "18qvqqz": {
    "added": "2026-11-12",
+   "chars": 2191,
    "hash": "5d3110d5c424",
    "lastmod": "2026-11-17",
-   "name": "横浜・みなとみらい Winter Holiday 2026（DQ×FF）"
+   "links": 36,
+   "name": "横浜・みなとみらい Winter Holiday 2026（DQ×FF）",
+   "type": "TouristAttraction"
   },
   "18tn2q": {
    "added": "2026-11-17",
+   "chars": 714,
    "hash": "a5114aacc390",
    "lastmod": "2026-11-17",
-   "name": "わかば親と子の広場そらまめ（旭区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "わかば親と子の広場そらまめ（旭区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "18vq0u6": {
    "added": "2026-11-17",
+   "chars": 815,
    "hash": "b5003641fadb",
    "lastmod": "2026-11-17",
-   "name": "神大寺中央公園こどもログハウス「トムソーヤ」（神奈川区）"
+   "links": 8,
+   "name": "神大寺中央公園こどもログハウス「トムソーヤ」（神奈川区）",
+   "type": "TouristAttraction"
   },
   "18wsz1k": {
    "added": "2026-11-17",
+   "chars": 1111,
    "hash": "53d74a99a4e2",
    "lastmod": "2026-11-17",
-   "name": "横浜元町イルミネーション2026（クリスマスイルミネーション）"
+   "links": 11,
+   "name": "横浜元町イルミネーション2026（クリスマスイルミネーション）",
+   "type": "TouristAttraction"
   },
   "190t8uo": {
    "added": "2026-11-17",
-   "hash": "e668d49754b4",
-   "lastmod": "2026-11-17",
-   "name": "おはなしのとびら（神之木地区センター）"
+   "chars": 755,
+   "hash": "d05819fe5c88",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "おはなしのとびら（神之木地区センター）",
+   "type": "Event"
   },
   "19b2g5g": {
    "added": "2026-11-12",
-   "hash": "082a689b0c7e",
-   "lastmod": "2026-11-18",
-   "name": "みなとみらい熱気球係留搭乗体験会"
+   "chars": 2628,
+   "hash": "7815635686b2",
+   "lastmod": "2026-11-19",
+   "links": 58,
+   "name": "みなとみらい熱気球係留搭乗体験会",
+   "type": "Event"
   },
   "19ish9u": {
    "added": "2026-11-13",
-   "hash": "72a5d05229bc",
-   "lastmod": "2026-11-17",
-   "name": "横浜消防出初式2027（パウパトロールのステージ・消防車の展示）"
+   "chars": 2685,
+   "hash": "ea4af74b66cc",
+   "lastmod": "2026-11-19",
+   "links": 58,
+   "name": "横浜消防出初式2027（パウパトロールのステージ・消防車の展示）",
+   "type": "Event"
   },
   "19iv29h": {
    "added": "2026-11-16",
+   "chars": 621,
    "hash": "5bb176c1f292",
    "lastmod": "2026-11-17",
-   "name": "中屋敷地区センターのプレイルーム（瀬谷区）"
+   "links": 5,
+   "name": "中屋敷地区センターのプレイルーム（瀬谷区）",
+   "type": "TouristAttraction"
   },
   "19rnwd8": {
    "added": "2026-11-13",
+   "chars": 563,
    "hash": "4bef1884635c",
    "lastmod": "2026-11-17",
-   "name": "にこてらす（瀬谷区の地域子育て支援拠点）"
+   "links": 5,
+   "name": "にこてらす（瀬谷区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "19thpyb": {
    "added": "2026-11-17",
+   "chars": 915,
    "hash": "f1352d8659b8",
    "lastmod": "2026-11-18",
-   "name": "子ども講座「小さな布で作るミニクリスマスツリー」（白幡地区センター）"
+   "links": 16,
+   "name": "子ども講座「小さな布で作るミニクリスマスツリー」（白幡地区センター）",
+   "type": "Event"
   },
   "19vauzk": {
    "added": "2026-11-16",
-   "hash": "7b8721a05f55",
-   "lastmod": "2026-11-17",
-   "name": "大岡親子クッキング クリスマス（大岡地区センター）"
+   "chars": 1040,
+   "hash": "575cc17be6a5",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "大岡親子クッキング クリスマス（大岡地区センター）",
+   "type": "Event"
   },
   "19xgkhj": {
    "added": "2026-11-17",
+   "chars": 710,
    "hash": "d6411b7cd5ad",
    "lastmod": "2026-11-17",
-   "name": "みどりっこ親子の居場所 はなまる（緑区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "みどりっこ親子の居場所 はなまる（緑区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "19yms9r": {
    "added": "2026-11-17",
+   "chars": 793,
    "hash": "b5461b778f30",
    "lastmod": "2026-11-17",
-   "name": "おやこのたまり場「ママといっしょ！」（神奈川区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "おやこのたまり場「ママといっしょ！」（神奈川区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1a02n43": {
    "added": "2026-11-17",
-   "hash": "c5162f68abd8",
-   "lastmod": "2026-11-17",
-   "name": "ゆめひろば金井公園プレイパーク（栄区）"
+   "chars": 825,
+   "hash": "8c1e9c6fb89d",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "ゆめひろば金井公園プレイパーク（栄区）",
+   "type": "Event"
   },
   "1a50fgy": {
    "added": "2026-11-14",
+   "chars": 1677,
    "hash": "348ed8502373",
    "lastmod": "2026-11-17",
-   "name": "サンサンキッズパーク（ノースポート・モール）"
+   "links": 19,
+   "name": "サンサンキッズパーク（ノースポート・モール）",
+   "type": "Event"
   },
   "1a8qgue": {
    "added": "2026-11-18",
-   "hash": "dd89a5486236",
-   "lastmod": "2026-11-18",
-   "name": "0歳から大歓迎！図書館デビューDAY（中央図書館）"
+   "chars": 1500,
+   "hash": "60c8acc5d3c5",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "0歳から大歓迎！図書館デビューDAY（中央図書館）",
+   "type": "Event"
   },
   "1ae73lb": {
    "added": "2026-11-12",
-   "hash": "78597736fd1b",
-   "lastmod": "2026-11-17",
-   "name": "Winter Wonder Park Yokohama 2026-27（山下公園のスケートリンク）"
+   "chars": 1514,
+   "hash": "c8c6eb8b0f48",
+   "lastmod": "2026-11-19",
+   "links": 19,
+   "name": "Winter Wonder Park Yokohama 2026-27（山下公園のスケートリンク）",
+   "type": "Event"
   },
   "1agi05y": {
    "added": "2026-11-16",
-   "hash": "f8c991a14e18",
-   "lastmod": "2026-11-18",
-   "name": "あいすちゃんの子ども図書館（永谷地区センター）"
+   "chars": 890,
+   "hash": "64028108f7b5",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "あいすちゃんの子ども図書館（永谷地区センター）",
+   "type": "Event"
   },
   "1ajp8rb": {
    "added": "2026-11-16",
-   "hash": "dd50a4658898",
-   "lastmod": "2026-11-17",
-   "name": "みんなでワクワクパンづくり（瀬谷地区センター）"
+   "chars": 933,
+   "hash": "1cec0b487e19",
+   "lastmod": "2026-11-19",
+   "links": 14,
+   "name": "みんなでワクワクパンづくり（瀬谷地区センター）",
+   "type": "Event"
   },
   "1akcpig": {
    "added": "2026-11-17",
-   "hash": "918359fdc321",
-   "lastmod": "2026-11-17",
-   "name": "スライム・チョコボのアイロンビーズ体験（MARK IS）"
+   "chars": 1944,
+   "hash": "49d449de55ad",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "スライム・チョコボのアイロンビーズ体験（MARK IS）",
+   "type": "Event"
   },
   "1aptj4v": {
    "added": "2026-11-15",
-   "hash": "ee76f6f503ff",
-   "lastmod": "2026-11-18",
-   "name": "どんぐりおはなし会（港北図書館・0〜4歳）"
+   "chars": 779,
+   "hash": "4f19eb30e2d2",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "どんぐりおはなし会（港北図書館・0〜4歳）",
+   "type": "Event"
   },
   "1auxsci": {
    "added": "2026-11-17",
+   "chars": 748,
    "hash": "d824631e9f6a",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場「たんぽぽ」（金沢区）"
+   "links": 8,
+   "name": "親と子のつどいの広場「たんぽぽ」（金沢区）",
+   "type": "TouristAttraction"
   },
   "1awc48u": {
    "added": "2026-11-12",
-   "hash": "2a01e4c8f819",
-   "lastmod": "2026-11-18",
-   "name": "防災パーク2026（はしご車搭乗体験・消防車両展示）"
+   "chars": 1101,
+   "hash": "0fb72d7610c9",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "防災パーク2026（はしご車搭乗体験・消防車両展示）",
+   "type": "Event"
   },
   "1b02jh6": {
    "added": "2026-11-12",
-   "hash": "bd3ccb53e0bd",
-   "lastmod": "2026-11-17",
-   "name": "こどもの国 自然スタンプビンゴ＜紅葉バージョン＞"
+   "chars": 1057,
+   "hash": "e3036cbe06ce",
+   "lastmod": "2026-11-19",
+   "links": 19,
+   "name": "こどもの国 自然スタンプビンゴ＜紅葉バージョン＞",
+   "type": "Event"
   },
   "1b2g1wu": {
    "added": "2026-11-16",
+   "chars": 827,
    "hash": "7c63c6d50189",
    "lastmod": "2026-11-17",
-   "name": "おやこのおにぎり教室（阿久和地区センター）"
+   "links": 14,
+   "name": "おやこのおにぎり教室（阿久和地区センター）",
+   "type": "Event"
   },
   "1b9j6jd": {
    "added": "2026-11-17",
+   "chars": 694,
    "hash": "0dd0a75d569d",
    "lastmod": "2026-11-17",
-   "name": "鴨池公園こどもログハウス「かもいけランド」（都筑区）"
+   "links": 8,
+   "name": "鴨池公園こどもログハウス「かもいけランド」（都筑区）",
+   "type": "TouristAttraction"
   },
   "1btxqex": {
    "added": "2026-11-13",
+   "chars": 638,
    "hash": "f3c179870d3e",
    "lastmod": "2026-11-17",
-   "name": "ラフール（青葉区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "ラフール（青葉区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1bv7b42": {
    "added": "2026-11-17",
+   "chars": 798,
    "hash": "726e765e9650",
    "lastmod": "2026-11-17",
-   "name": "出張！奈良幼稚園〜ならたまぴよひろば〜（奈良地区センター）"
+   "links": 16,
+   "name": "出張！奈良幼稚園〜ならたまぴよひろば〜（奈良地区センター）",
+   "type": "Event"
   },
   "1c1xkor": {
    "added": "2026-11-17",
+   "chars": 675,
    "hash": "33a31ae8edf4",
    "lastmod": "2026-11-17",
-   "name": "さくらザウルス中里ひろば（南区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "さくらザウルス中里ひろば（南区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1c9v7bp": {
    "added": "2026-11-17",
+   "chars": 596,
    "hash": "122876021373",
    "lastmod": "2026-11-17",
-   "name": "上飯田地区センターのプレイルーム（泉区）"
+   "links": 6,
+   "name": "上飯田地区センターのプレイルーム（泉区）",
+   "type": "TouristAttraction"
   },
   "1cnd9ml": {
    "added": "2026-11-17",
-   "hash": "46eb55e13ec6",
-   "lastmod": "2026-11-18",
-   "name": "ときわ公園プレイパーク（保土ケ谷区）"
+   "chars": 967,
+   "hash": "aa44b9952f1f",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ときわ公園プレイパーク（保土ケ谷区）",
+   "type": "Event"
   },
   "1czplid": {
    "added": "2026-11-12",
-   "hash": "2042d988842e",
-   "lastmod": "2026-11-17",
-   "name": "野毛山動物園 キリン「バックヤードツアー」"
+   "chars": 1979,
+   "hash": "cc7484050de4",
+   "lastmod": "2026-11-19",
+   "links": 20,
+   "name": "野毛山動物園 キリン「バックヤードツアー」",
+   "type": "Event"
   },
   "1d6sxsa": {
    "added": "2026-11-17",
+   "chars": 696,
    "hash": "866e2111eb90",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場Kidsスペースルアナ（港南区）"
+   "links": 8,
+   "name": "親と子のつどいの広場Kidsスペースルアナ（港南区）",
+   "type": "TouristAttraction"
   },
   "1de5zg7": {
    "added": "2026-11-12",
-   "hash": "187ef5695108",
-   "lastmod": "2026-11-18",
-   "name": "読み聞かせ「クリスマスのふしぎなはこ」（宇宙科学館）"
+   "chars": 859,
+   "hash": "ea2cbcfeeded",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "読み聞かせ「クリスマスのふしぎなはこ」（宇宙科学館）",
+   "type": "Event"
   },
   "1dni3dz": {
    "added": "2026-11-17",
@@ -644,81 +944,120 @@
   },
   "1dnqew5": {
    "added": "2026-11-17",
-   "hash": "f82f64976b4d",
-   "lastmod": "2026-11-17",
-   "name": "クリスマス＆お正月の食器作り（根岸地区センター）"
+   "chars": 783,
+   "hash": "37cb3380822a",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "クリスマス＆お正月の食器作り（根岸地区センター）",
+   "type": "Event"
   },
   "1e01nm0": {
    "added": "2026-11-16",
+   "chars": 641,
    "hash": "8b6a441fd4f4",
    "lastmod": "2026-11-17",
-   "name": "十日市場地区センターのプレイルーム（緑区）"
+   "links": 8,
+   "name": "十日市場地区センターのプレイルーム（緑区）",
+   "type": "TouristAttraction"
   },
   "1eefcmb": {
    "added": "2026-11-17",
-   "hash": "a53c04145062",
-   "lastmod": "2026-11-17",
-   "name": "金沢はれはれプレイパーク（金沢区）"
+   "chars": 951,
+   "hash": "b5739ca12a76",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "金沢はれはれプレイパーク（金沢区）",
+   "type": "Event"
   },
   "1eh1egk": {
    "added": "2026-11-17",
+   "chars": 648,
    "hash": "ce6e6486a57f",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場夢ひろば（磯子区）"
+   "links": 4,
+   "name": "親と子のつどいの広場夢ひろば（磯子区）",
+   "type": "TouristAttraction"
   },
   "1elz5pv": {
    "added": "2026-11-17",
+   "chars": 652,
    "hash": "8fa698fc773e",
    "lastmod": "2026-11-17",
-   "name": "霧が丘公園こどもログハウス「きりっ子ランド」（緑区）"
+   "links": 8,
+   "name": "霧が丘公園こどもログハウス「きりっ子ランド」（緑区）",
+   "type": "TouristAttraction"
   },
   "1er290c": {
    "added": "2026-11-12",
-   "hash": "4028b2805a89",
+   "chars": 2752,
+   "hash": "adcbfa8d0384",
    "lastmod": "2026-11-19",
-   "name": "チョコクロ キッズ手作り体験教室（ワールドポーターズ）"
+   "links": 58,
+   "name": "チョコクロ キッズ手作り体験教室（ワールドポーターズ）",
+   "type": "Event"
   },
   "1f51s1e": {
    "added": "2026-11-14",
+   "chars": 1151,
    "hash": "c6ecccde811c",
    "lastmod": "2026-11-17",
-   "name": "新横浜公園の遊具広場（港北区）"
+   "links": 13,
+   "name": "新横浜公園の遊具広場（港北区）",
+   "type": "Park"
   },
   "1f8g2ou": {
    "added": "2026-11-12",
+   "chars": 2269,
    "hash": "0593154660ed",
    "lastmod": "2026-11-17",
-   "name": "放送30周年記念「名探偵コナン」展"
+   "links": 50,
+   "name": "放送30周年記念「名探偵コナン」展",
+   "type": "TouristAttraction"
   },
   "1fiacin": {
    "added": "2026-11-12",
+   "chars": 1680,
    "hash": "ecb40031445e",
    "lastmod": "2026-11-18",
-   "name": "サンタクロースがやってくる（横浜ベイクォーター）"
+   "links": 20,
+   "name": "サンタクロースがやってくる（横浜ベイクォーター）",
+   "type": "Event"
   },
   "1frng2q": {
    "added": "2026-11-18",
-   "hash": "120897f7b6b9",
-   "lastmod": "2026-11-18",
-   "name": "ステキなステッキをつくろう（横浜市民ギャラリー）"
+   "chars": 915,
+   "hash": "c7da125a513f",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ステキなステッキをつくろう（横浜市民ギャラリー）",
+   "type": "Event"
   },
   "1fvr5lv": {
    "added": "2026-11-17",
+   "chars": 1204,
    "hash": "0de186a41528",
    "lastmod": "2026-11-17",
-   "name": "京急百貨店 クリスマススタンプラリー＆エコキャップアート（上大岡）"
+   "links": 17,
+   "name": "京急百貨店 クリスマススタンプラリー＆エコキャップアート（上大岡）",
+   "type": "Event"
   },
   "1g0ktgl": {
    "added": "2026-11-12",
+   "chars": 2785,
    "hash": "a52a2829c7bc",
    "lastmod": "2026-11-18",
-   "name": "クリスマスリースづくり（ワールドポーターズ）"
+   "links": 58,
+   "name": "クリスマスリースづくり（ワールドポーターズ）",
+   "type": "Event"
   },
   "1g1kko4": {
    "added": "2026-11-12",
+   "chars": 1834,
    "hash": "b589e3bbc7ba",
    "lastmod": "2026-11-17",
-   "name": "シーバス（水上バスで横浜の海をおさんぽ）"
+   "links": 13,
+   "name": "シーバス（水上バスで横浜の海をおさんぽ）",
+   "type": "TouristAttraction"
   },
   "1g2neg3": {
    "added": "2026-11-12",
@@ -729,33 +1068,48 @@
   },
   "1ggrt1h": {
    "added": "2026-11-17",
-   "hash": "25ef66718014",
-   "lastmod": "2026-11-17",
-   "name": "みんなで飾ろう！クリスマスツリー（釜利谷地区センター）"
+   "chars": 784,
+   "hash": "349264defe80",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "みんなで飾ろう！クリスマスツリー（釜利谷地区センター）",
+   "type": "Event"
   },
   "1gl0zul": {
    "added": "2026-11-13",
-   "hash": "beee1833f782",
-   "lastmod": "2026-11-17",
-   "name": "GRANDSHIPちびっこ鉄道まつり（大船駅前）"
+   "chars": 858,
+   "hash": "084b5b27e0b4",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "GRANDSHIPちびっこ鉄道まつり（大船駅前）",
+   "type": "Event"
   },
   "1gmqb40": {
    "added": "2026-11-17",
+   "chars": 720,
    "hash": "2ec768b76ef2",
    "lastmod": "2026-11-17",
-   "name": "都田地区センターのプレイルーム（都筑区）"
+   "links": 8,
+   "name": "都田地区センターのプレイルーム（都筑区）",
+   "type": "TouristAttraction"
   },
   "1gn9jwt": {
    "added": "2026-11-17",
+   "chars": 748,
    "hash": "68b53c293575",
    "lastmod": "2026-11-17",
-   "name": "境之谷公園こどもログハウス「ちびっことりで」（西区）"
+   "links": 8,
+   "name": "境之谷公園こどもログハウス「ちびっことりで」（西区）",
+   "type": "TouristAttraction"
   },
   "1gz2zha": {
    "added": "2026-11-17",
+   "chars": 522,
    "hash": "7421b708bbb2",
    "lastmod": "2026-11-17",
-   "name": "桂山公園こどもログハウス「ロッキー」（栄区）"
+   "links": 4,
+   "name": "桂山公園こどもログハウス「ロッキー」（栄区）",
+   "type": "TouristAttraction"
   },
   "1gz5myq": {
    "added": "2026-11-12",
@@ -766,81 +1120,120 @@
   },
   "1gz8iqv": {
    "added": "2026-11-16",
+   "chars": 944,
    "hash": "fdbd597ac55e",
    "lastmod": "2026-11-17",
-   "name": "南地区センターのプレイルーム（南区）"
+   "links": 8,
+   "name": "南地区センターのプレイルーム（南区）",
+   "type": "TouristAttraction"
   },
   "1h1667i": {
    "added": "2026-11-17",
+   "chars": 1043,
    "hash": "74a3af0c8993",
    "lastmod": "2026-11-17",
-   "name": "ズーラシア「国際チーターの日」特別ガイド"
+   "links": 13,
+   "name": "ズーラシア「国際チーターの日」特別ガイド",
+   "type": "Event"
   },
   "1h1s5xj": {
    "added": "2026-11-17",
+   "chars": 760,
    "hash": "9821ce7ae384",
    "lastmod": "2026-11-17",
-   "name": "関東学院親と子のひろば「おりーぶ」（金沢区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "関東学院親と子のひろば「おりーぶ」（金沢区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1hap545": {
    "added": "2026-11-17",
+   "chars": 671,
    "hash": "59151ef431ef",
    "lastmod": "2026-11-17",
-   "name": "菅田地区センターのプレイルーム（神奈川区）"
+   "links": 8,
+   "name": "菅田地区センターのプレイルーム（神奈川区）",
+   "type": "TouristAttraction"
   },
   "1hjkgda": {
    "added": "2026-11-12",
+   "chars": 754,
    "hash": "13ec7faa0cd5",
    "lastmod": "2026-11-17",
-   "name": "こどもの国 フィールドゲーム＜冬バージョン＞"
+   "links": 9,
+   "name": "こどもの国 フィールドゲーム＜冬バージョン＞",
+   "type": "TouristAttraction"
   },
   "1hnod6o": {
    "added": "2026-11-17",
-   "hash": "c24bdb799fcc",
-   "lastmod": "2026-11-17",
-   "name": "マルシェ・ド・ノエル（トレッサ横浜のクリスマスマーケット）"
+   "chars": 1454,
+   "hash": "9a388d1b9190",
+   "lastmod": "2026-11-19",
+   "links": 14,
+   "name": "マルシェ・ド・ノエル（トレッサ横浜のクリスマスマーケット）",
+   "type": "Event"
   },
   "1hopkjs": {
    "added": "2026-11-17",
+   "chars": 887,
    "hash": "044a7eaaa73f",
    "lastmod": "2026-11-17",
-   "name": "子ども講座「星空イルミネーション工作教室」（白幡地区センター）"
+   "links": 16,
+   "name": "子ども講座「星空イルミネーション工作教室」（白幡地区センター）",
+   "type": "Event"
   },
   "1hosr95": {
    "added": "2026-11-17",
+   "chars": 1865,
    "hash": "3b17535d5c45",
    "lastmod": "2026-11-17",
-   "name": "ちびぐるみツリー（ぬいぐるみのクリスマスツリー）"
+   "links": 22,
+   "name": "ちびぐるみツリー（ぬいぐるみのクリスマスツリー）",
+   "type": "Event"
   },
   "1hruhiv": {
    "added": "2026-11-17",
+   "chars": 810,
    "hash": "3dcc44f27597",
    "lastmod": "2026-11-18",
-   "name": "たけのこリトミック（竹之丸地区センター）"
+   "links": 13,
+   "name": "たけのこリトミック（竹之丸地区センター）",
+   "type": "Event"
   },
   "1hrvp28": {
    "added": "2026-11-16",
-   "hash": "9cc2327ef986",
-   "lastmod": "2026-11-17",
-   "name": "コアラひろば（大岡地区センター）"
+   "chars": 753,
+   "hash": "d7579fea3c7e",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "コアラひろば（大岡地区センター）",
+   "type": "Event"
   },
   "1hv1pup": {
    "added": "2026-11-17",
+   "chars": 768,
    "hash": "f6f633f76d42",
    "lastmod": "2026-11-17",
-   "name": "窓にお絵かきしよう（瀬谷中央公園こどもログハウス）"
+   "links": 14,
+   "name": "窓にお絵かきしよう（瀬谷中央公園こどもログハウス）",
+   "type": "Event"
   },
   "1hz0gzt": {
    "added": "2026-11-17",
-   "hash": "07ea475899aa",
-   "lastmod": "2026-11-18",
-   "name": "クリスマス会 サイエンスマジックショー（下和泉地区センター）"
+   "chars": 836,
+   "hash": "4c7c5ec1d6f0",
+   "lastmod": "2026-11-19",
+   "links": 15,
+   "name": "クリスマス会 サイエンスマジックショー（下和泉地区センター）",
+   "type": "Event"
   },
   "1i577wq": {
    "added": "2026-11-12",
-   "hash": "b354ed350faf",
-   "lastmod": "2026-11-17",
-   "name": "スライム・チョコボの素焼き色ぬり体験（MARK IS）"
+   "chars": 1856,
+   "hash": "f4d5dd89ff48",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "スライム・チョコボの素焼き色ぬり体験（MARK IS）",
+   "type": "Event"
   },
   "1ibyxth": {
    "added": "2026-11-12",
@@ -851,111 +1244,165 @@
   },
   "1ic3bk2": {
    "added": "2026-11-14",
-   "hash": "933c94b96925",
-   "lastmod": "2026-11-17",
-   "name": "Winter Market Yokohama（MMテラスの冬のマーケット）"
+   "chars": 2588,
+   "hash": "893d1b48e3c5",
+   "lastmod": "2026-11-19",
+   "links": 21,
+   "name": "Winter Market Yokohama（MMテラスの冬のマーケット）",
+   "type": "Event"
   },
   "1id5y65": {
    "added": "2026-11-17",
-   "hash": "316b3301e7c7",
-   "lastmod": "2026-11-17",
-   "name": "こどもの国 秋のちびっこわくわくイベント（ウォーターバルーン・ふわふわ遊具・縁日）"
+   "chars": 1184,
+   "hash": "f4a1cfb53916",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "こどもの国 秋のちびっこわくわくイベント（ウォーターバルーン・ふわふわ遊具・縁日）",
+   "type": "Event"
   },
   "1ieq83j": {
    "added": "2026-11-17",
-   "hash": "6ed293bde169",
-   "lastmod": "2026-11-17",
-   "name": "ラインストーンで分子構造をデコろう！（宇宙科学館）"
+   "chars": 844,
+   "hash": "c73ea2a31b39",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "ラインストーンで分子構造をデコろう！（宇宙科学館）",
+   "type": "Event"
   },
   "1im7rdd": {
    "added": "2026-11-17",
-   "hash": "168b1d11876e",
-   "lastmod": "2026-11-17",
-   "name": "親子あそびとリトミック〜X'masイベント〜（上中里地区センター）"
+   "chars": 640,
+   "hash": "dbd5111fd54e",
+   "lastmod": "2026-11-19",
+   "links": 8,
+   "name": "親子あそびとリトミック〜X'masイベント〜（上中里地区センター）",
+   "type": "Event"
   },
   "1imqhxg": {
    "added": "2026-11-12",
+   "chars": 2229,
    "hash": "7a3de81c0025",
    "lastmod": "2026-11-17",
-   "name": "ヨコハマミライト2026（横浜駅東口〜みなとみらいのイルミネーション）"
+   "links": 36,
+   "name": "ヨコハマミライト2026（横浜駅東口〜みなとみらいのイルミネーション）",
+   "type": "TouristAttraction"
   },
   "1ipin62": {
    "added": "2026-11-17",
-   "hash": "a0f2da1b1b28",
-   "lastmod": "2026-11-17",
-   "name": "若葉台プレイパーク（旭区）"
+   "chars": 878,
+   "hash": "f2bb875291d1",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "若葉台プレイパーク（旭区）",
+   "type": "Event"
   },
   "1irqyw8": {
    "added": "2026-11-17",
-   "hash": "27a101c1f9d5",
-   "lastmod": "2026-11-17",
-   "name": "馬車道陽だまりコンサート Vol.57（クリスマスの曲・一緒に歌うコーナーも）"
+   "chars": 861,
+   "hash": "38a303b9d578",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "馬車道陽だまりコンサート Vol.57（クリスマスの曲・一緒に歌うコーナーも）",
+   "type": "Event"
   },
   "1is9yt": {
    "added": "2026-11-17",
-   "hash": "781e9231f4dd",
-   "lastmod": "2026-11-17",
-   "name": "おもちゃの病院（神大寺地区センター）"
+   "chars": 827,
+   "hash": "7beff6b8d93c",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "おもちゃの病院（神大寺地区センター）",
+   "type": "Event"
   },
   "1ivz1h3": {
    "added": "2026-11-12",
-   "hash": "ec4501674651",
-   "lastmod": "2026-11-17",
-   "name": "ヨルノヨ YOKOHAMA NIGHT FLOWERS 2026（夜景の光と音の演出）"
+   "chars": 1589,
+   "hash": "73aa2cde47e2",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "ヨルノヨ YOKOHAMA NIGHT FLOWERS 2026（夜景の光と音の演出）",
+   "type": "Event"
   },
   "1ixax73": {
    "added": "2026-11-17",
-   "hash": "c1e113965098",
-   "lastmod": "2026-11-17",
-   "name": "ちーさな人形劇場 ふーちゃんがやってくるよ！（杉田地区センター）"
+   "chars": 759,
+   "hash": "e6c90c4c25da",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "ちーさな人形劇場 ふーちゃんがやってくるよ！（杉田地区センター）",
+   "type": "Event"
   },
   "1j0m5fz": {
    "added": "2026-11-13",
+   "chars": 891,
    "hash": "804b8c34f301",
    "lastmod": "2026-11-17",
-   "name": "神奈川地区センターのプレイルーム（神奈川区）"
+   "links": 8,
+   "name": "神奈川地区センターのプレイルーム（神奈川区）",
+   "type": "TouristAttraction"
   },
   "1j0vdh5": {
    "added": "2026-11-16",
-   "hash": "93486ed86c43",
-   "lastmod": "2026-11-17",
-   "name": "さくらザウルスの出張おはなし会（永田地区センター）"
+   "chars": 778,
+   "hash": "37fb6d6277e5",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "さくらザウルスの出張おはなし会（永田地区センター）",
+   "type": "Event"
   },
   "1j5st1u": {
    "added": "2026-11-17",
+   "chars": 737,
    "hash": "70651cdd267e",
    "lastmod": "2026-11-17",
-   "name": "出張！奈良保育園 あそびのひろば〜保育士さんとクリスマス飾りを作ろう〜"
+   "links": 12,
+   "name": "出張！奈良保育園 あそびのひろば〜保育士さんとクリスマス飾りを作ろう〜",
+   "type": "Event"
   },
   "1j8fwwp": {
    "added": "2026-11-17",
-   "hash": "3ac33555d2e4",
-   "lastmod": "2026-11-17",
-   "name": "大さん橋 客船お見送りイベント（11月）"
+   "chars": 1636,
+   "hash": "7986fd46bb89",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "大さん橋 客船お見送りイベント（11月）",
+   "type": "Event"
   },
   "1jb1s1s": {
    "added": "2026-11-17",
+   "chars": 1473,
    "hash": "57c808a590dd",
    "lastmod": "2026-11-17",
-   "name": "縁（ゆかり）ハウス（都筑区・親と子のつどいの広場）"
+   "links": 11,
+   "name": "縁（ゆかり）ハウス（都筑区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1jdb6va": {
    "added": "2026-11-17",
+   "chars": 911,
    "hash": "db78080d57e6",
    "lastmod": "2026-11-18",
-   "name": "おはなし花束のおはなし会〜クリスマススペシャル〜（白幡地区センター）"
+   "links": 16,
+   "name": "おはなし花束のおはなし会〜クリスマススペシャル〜（白幡地区センター）",
+   "type": "Event"
   },
   "1jksbow": {
    "added": "2026-11-12",
+   "chars": 1633,
    "hash": "6572661a4d4f",
    "lastmod": "2026-11-17",
-   "name": "2027春節燈花（中華街イルミネーション）"
+   "links": 50,
+   "name": "2027春節燈花（中華街イルミネーション）",
+   "type": "TouristAttraction"
   },
   "1jnwbge": {
    "added": "2026-11-16",
+   "chars": 603,
    "hash": "31f10d1b3504",
    "lastmod": "2026-11-17",
-   "name": "上郷地区センターのプレイルーム（栄区）"
+   "links": 4,
+   "name": "上郷地区センターのプレイルーム（栄区）",
+   "type": "TouristAttraction"
   },
   "1joaak4": {
    "added": "2026-11-12",
@@ -966,33 +1413,48 @@
   },
   "1k8l80v": {
    "added": "2026-11-14",
+   "chars": 676,
    "hash": "85d2ebc4d3f3",
    "lastmod": "2026-11-17",
-   "name": "芝口果樹園 みかん食べ放題（戸塚区影取町）"
+   "links": 8,
+   "name": "芝口果樹園 みかん食べ放題（戸塚区影取町）",
+   "type": "TouristAttraction"
   },
   "1kizng3": {
    "added": "2026-11-12",
+   "chars": 1297,
    "hash": "1f13ad176116",
    "lastmod": "2026-11-17",
-   "name": "ノースポート・モール「のすぽひろば」（無料の遊び場）"
+   "links": 11,
+   "name": "ノースポート・モール「のすぽひろば」（無料の遊び場）",
+   "type": "TouristAttraction"
   },
   "1kkk95g": {
    "added": "2026-11-18",
-   "hash": "7b4327c15744",
-   "lastmod": "2026-11-18",
-   "name": "全国まわしよみ新聞サミット（ニュースパーク）"
+   "chars": 680,
+   "hash": "c38329f13583",
+   "lastmod": "2026-11-19",
+   "links": 11,
+   "name": "全国まわしよみ新聞サミット（ニュースパーク）",
+   "type": "Event"
   },
   "1kqgz5k": {
    "added": "2026-11-17",
+   "chars": 846,
    "hash": "db5ad1f759c2",
    "lastmod": "2026-11-17",
-   "name": "おやつのじかん クリスマス★スペシャル〜トナカイマフィン〜（奈良地区センター）"
+   "links": 16,
+   "name": "おやつのじかん クリスマス★スペシャル〜トナカイマフィン〜（奈良地区センター）",
+   "type": "Event"
   },
   "1kqo35r": {
    "added": "2026-11-17",
-   "hash": "18ca70beafed",
+   "chars": 851,
+   "hash": "1578e0c85732",
    "lastmod": "2026-11-19",
-   "name": "歩行ロボットを作ろう！（神之木地区センター）"
+   "links": 16,
+   "name": "歩行ロボットを作ろう！（神之木地区センター）",
+   "type": "Event"
   },
   "1kqo35r-2": {
    "added": "2026-11-18",
@@ -1003,219 +1465,327 @@
   },
   "1ktoiqq": {
    "added": "2026-11-17",
-   "hash": "f705fda5f667",
+   "chars": 1356,
+   "hash": "39a1c179690a",
    "lastmod": "2026-11-19",
-   "name": "はつらつキンダーフェスタYokohama in 横浜BUNTAI"
+   "links": 13,
+   "name": "はつらつキンダーフェスタYokohama in 横浜BUNTAI",
+   "type": "Event"
   },
   "1kyvg17": {
    "added": "2026-11-14",
+   "chars": 533,
    "hash": "b027537cf353",
    "lastmod": "2026-11-17",
-   "name": "日吉地区センターのプレイルーム（港北区）"
+   "links": 8,
+   "name": "日吉地区センターのプレイルーム（港北区）",
+   "type": "TouristAttraction"
   },
   "1l480ml": {
    "added": "2026-11-17",
+   "chars": 655,
    "hash": "d2315d5e70aa",
    "lastmod": "2026-11-17",
-   "name": "こんぺいとう（港北区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "こんぺいとう（港北区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1lamo7s": {
    "added": "2026-11-12",
+   "chars": 966,
    "hash": "2a5f65c7673a",
    "lastmod": "2026-11-17",
-   "name": "こどもの国 どんど焼き"
+   "links": 17,
+   "name": "こどもの国 どんど焼き",
+   "type": "Event"
   },
   "1lr6ok5": {
    "added": "2026-11-14",
+   "chars": 562,
    "hash": "02d4c92dd93c",
    "lastmod": "2026-11-17",
-   "name": "谷矢部池公園（戸塚区の公園）"
+   "links": 8,
+   "name": "谷矢部池公園（戸塚区の公園）",
+   "type": "Park"
   },
   "1lvhwnw": {
    "added": "2026-11-16",
+   "chars": 1091,
    "hash": "5d574e9e92a8",
    "lastmod": "2026-11-18",
-   "name": "こどもの国 ビジターセンター「みにおはなし会」"
+   "links": 17,
+   "name": "こどもの国 ビジターセンター「みにおはなし会」",
+   "type": "Event"
   },
   "1lw5qtx": {
    "added": "2026-11-16",
+   "chars": 799,
    "hash": "5ec3798784c6",
    "lastmod": "2026-11-17",
-   "name": "立体カード作り（今井地区センター・小学生向け）"
+   "links": 14,
+   "name": "立体カード作り（今井地区センター・小学生向け）",
+   "type": "Event"
   },
   "1lxbmt8": {
    "added": "2026-11-12",
+   "chars": 2039,
    "hash": "b87287a047c3",
    "lastmod": "2026-11-17",
-   "name": "高島水際線公園（貨物列車が見える橋）"
+   "links": 14,
+   "name": "高島水際線公園（貨物列車が見える橋）",
+   "type": "Park"
   },
   "1ma9mjw": {
    "added": "2026-11-16",
-   "hash": "ca2dd5598ca9",
-   "lastmod": "2026-11-17",
-   "name": "おはなし会（川島町公園こどもログハウス）"
+   "chars": 779,
+   "hash": "a72b71631fb4",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "おはなし会（川島町公園こどもログハウス）",
+   "type": "Event"
   },
   "1mfpjxx": {
    "added": "2026-11-17",
+   "chars": 539,
    "hash": "bbdb5c423a2b",
    "lastmod": "2026-11-17",
-   "name": "上中里地区センターのプレイルーム（磯子区）"
+   "links": 3,
+   "name": "上中里地区センターのプレイルーム（磯子区）",
+   "type": "TouristAttraction"
   },
   "1mg2y6m": {
    "added": "2026-11-16",
+   "chars": 787,
    "hash": "8e9f1a409069",
    "lastmod": "2026-11-18",
-   "name": "星のマカロニリース作り（今井地区センター・小学生向け）"
+   "links": 13,
+   "name": "星のマカロニリース作り（今井地区センター・小学生向け）",
+   "type": "Event"
   },
   "1miolwg": {
    "added": "2026-11-17",
-   "hash": "8e7320e3ccf8",
-   "lastmod": "2026-11-18",
-   "name": "洋光台駅前公園プレイパーク（磯子区）"
+   "chars": 824,
+   "hash": "0ae415cada00",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "洋光台駅前公園プレイパーク（磯子区）",
+   "type": "Event"
   },
   "1mx1u8s": {
    "added": "2026-11-17",
-   "hash": "451fd2fc2af0",
+   "chars": 841,
+   "hash": "d5167e0caecb",
    "lastmod": "2026-11-19",
-   "name": "わくわくポン！おはなしのとびら（竹之丸地区センター）"
+   "links": 13,
+   "name": "わくわくポン！おはなしのとびら（竹之丸地区センター）",
+   "type": "Event"
   },
   "1my3dk": {
    "added": "2026-11-12",
+   "chars": 1885,
    "hash": "a5ca5a7d7290",
    "lastmod": "2026-11-18",
-   "name": "原鉄道模型博物館（世界最大級の鉄道模型ジオラマ）"
+   "links": 14,
+   "name": "原鉄道模型博物館（世界最大級の鉄道模型ジオラマ）",
+   "type": "TouristAttraction"
   },
   "1n0avwt": {
    "added": "2026-11-17",
+   "chars": 645,
    "hash": "1224d3f439ab",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場Kidsスペースマカナ（磯子区）"
+   "links": 4,
+   "name": "親と子のつどいの広場Kidsスペースマカナ（磯子区）",
+   "type": "TouristAttraction"
   },
   "1n0yrie": {
    "added": "2026-11-17",
+   "chars": 762,
    "hash": "d5e2102b4e9f",
    "lastmod": "2026-11-17",
-   "name": "WITH（ウィズ）（青葉区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "WITH（ウィズ）（青葉区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1n1im9r": {
    "added": "2026-11-17",
+   "chars": 745,
    "hash": "48b09d3c0556",
    "lastmod": "2026-11-17",
-   "name": "つどいの広場ぽっけ新横浜（港北区）"
+   "links": 8,
+   "name": "つどいの広場ぽっけ新横浜（港北区）",
+   "type": "TouristAttraction"
   },
   "1n3gczd": {
    "added": "2026-11-12",
-   "hash": "733720c502b6",
-   "lastmod": "2026-11-17",
-   "name": "こどもの国 あそび広場"
+   "chars": 1088,
+   "hash": "51152989342c",
+   "lastmod": "2026-11-19",
+   "links": 19,
+   "name": "こどもの国 あそび広場",
+   "type": "Event"
   },
   "1n643jq": {
    "added": "2026-11-12",
+   "chars": 1176,
    "hash": "e75a1b6d1005",
    "lastmod": "2026-11-17",
-   "name": "TOYLO PARK サンドエリア（屋内の砂場）"
+   "links": 9,
+   "name": "TOYLO PARK サンドエリア（屋内の砂場）",
+   "type": "TouristAttraction"
   },
   "1nd4qim": {
    "added": "2026-11-17",
+   "chars": 771,
    "hash": "0be87269141a",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場つづき（都筑区）"
+   "links": 8,
+   "name": "親と子のつどいの広場つづき（都筑区）",
+   "type": "TouristAttraction"
   },
   "1nibyln": {
    "added": "2026-11-13",
+   "chars": 493,
    "hash": "1ab29621e108",
    "lastmod": "2026-11-17",
-   "name": "にこりんく（栄区の地域子育て支援拠点）"
+   "links": 4,
+   "name": "にこりんく（栄区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1nld3xt": {
    "added": "2026-11-12",
+   "chars": 817,
    "hash": "1660fcd45fc1",
    "lastmod": "2026-11-17",
-   "name": "ゆめが丘ソラトス 屋上広場（無料の遊具）"
+   "links": 7,
+   "name": "ゆめが丘ソラトス 屋上広場（無料の遊具）",
+   "type": "Park"
   },
   "1nn53m0": {
    "added": "2026-11-17",
-   "hash": "06700aa0ae00",
-   "lastmod": "2026-11-18",
-   "name": "浅間台みはらしプレイパーク（西区）"
+   "chars": 1029,
+   "hash": "ec7177b21301",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "浅間台みはらしプレイパーク（西区）",
+   "type": "Event"
   },
   "1nscgjn": {
    "added": "2026-11-17",
+   "chars": 834,
    "hash": "635a6084ee01",
    "lastmod": "2026-11-17",
-   "name": "シャーロックBABy（南軽井沢）（西区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "シャーロックBABy（南軽井沢）（西区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1nx64wh": {
    "added": "2026-11-12",
+   "chars": 648,
    "hash": "edb3980bc93f",
    "lastmod": "2026-11-17",
-   "name": "県立四季の森公園（ジャンボすべり台 約54m）"
+   "links": 8,
+   "name": "県立四季の森公園（ジャンボすべり台 約54m）",
+   "type": "Park"
   },
   "1o56l21": {
    "added": "2026-11-12",
+   "chars": 1228,
    "hash": "db5944fbbde6",
    "lastmod": "2026-11-17",
-   "name": "The Kids 横浜ノースポートモール店"
+   "links": 11,
+   "name": "The Kids 横浜ノースポートモール店",
+   "type": "TouristAttraction"
   },
   "1o74ajm": {
    "added": "2026-11-17",
-   "hash": "ac9166e35ace",
-   "lastmod": "2026-11-17",
-   "name": "ロクマル食堂パンじいちゃんのパン作り体験会（仲町台地区センター）"
+   "chars": 927,
+   "hash": "b9ec32390dfe",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ロクマル食堂パンじいちゃんのパン作り体験会（仲町台地区センター）",
+   "type": "Event"
   },
   "1o7nmsf": {
    "added": "2026-11-13",
+   "chars": 653,
    "hash": "633537b5a7ac",
    "lastmod": "2026-11-17",
-   "name": "はぐはぐの樹（南区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "はぐはぐの樹（南区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1ob7kk9": {
    "added": "2026-11-14",
+   "chars": 1957,
    "hash": "ce166e3226d3",
    "lastmod": "2026-11-17",
-   "name": "ムーミン MEET & GREET（BALLPARK Xmas・横浜公園）"
+   "links": 58,
+   "name": "ムーミン MEET & GREET（BALLPARK Xmas・横浜公園）",
+   "type": "Event"
   },
   "1okmc70": {
    "added": "2026-11-14",
+   "chars": 1577,
    "hash": "7b12aced20aa",
    "lastmod": "2026-11-17",
-   "name": "クイーンズスクエア横浜クリスマス2026（音と光のショータイム）"
+   "links": 14,
+   "name": "クイーンズスクエア横浜クリスマス2026（音と光のショータイム）",
+   "type": "TouristAttraction"
   },
   "1osx57s": {
    "added": "2026-11-18",
+   "chars": 847,
    "hash": "cd771a66c510",
    "lastmod": "2026-11-18",
-   "name": "上矢部こどもクリスマス会（上矢部地区センター）"
+   "links": 16,
+   "name": "上矢部こどもクリスマス会（上矢部地区センター）",
+   "type": "Event"
   },
   "1p0xl4i": {
    "added": "2026-11-13",
+   "chars": 650,
    "hash": "ebe376bdf754",
    "lastmod": "2026-11-17",
-   "name": "かなーちえ（神奈川区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "かなーちえ（神奈川区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1p3adlz": {
    "added": "2026-11-17",
+   "chars": 788,
    "hash": "2603408c3587",
    "lastmod": "2026-11-17",
-   "name": "瀬谷中央公園こどもログハウス「まるたのしろ」（瀬谷区）"
+   "links": 5,
+   "name": "瀬谷中央公園こどもログハウス「まるたのしろ」（瀬谷区）",
+   "type": "TouristAttraction"
   },
   "1p48qip": {
    "added": "2026-11-14",
+   "chars": 637,
    "hash": "97556528e7ef",
    "lastmod": "2026-11-17",
-   "name": "永田みなみ台公園こどもログハウス「わんぱくハウス」（南区）"
+   "links": 8,
+   "name": "永田みなみ台公園こどもログハウス「わんぱくハウス」（南区）",
+   "type": "TouristAttraction"
   },
   "1p6lofn": {
    "added": "2026-11-17",
-   "hash": "e7f297f90b90",
-   "lastmod": "2026-11-17",
-   "name": "はぐはぐクリスマス会（中川西地区センター）"
+   "chars": 884,
+   "hash": "ef51aeee105d",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "はぐはぐクリスマス会（中川西地区センター）",
+   "type": "Event"
   },
   "1p6rpyk": {
    "added": "2026-11-12",
+   "chars": 1099,
    "hash": "3023052f1350",
    "lastmod": "2026-11-17",
-   "name": "二俣川二丁目公園（目の前を新幹線が通る）"
+   "links": 9,
+   "name": "二俣川二丁目公園（目の前を新幹線が通る）",
+   "type": "Park"
   },
   "1p77y79": {
    "added": "2026-11-12",
@@ -1226,129 +1796,192 @@
   },
   "1p87nbe": {
    "added": "2026-11-12",
-   "hash": "c81de341dd46",
-   "lastmod": "2026-11-17",
-   "name": "本は港（日本大通りのブックマーケット・絵本の朗読会も）"
+   "chars": 2079,
+   "hash": "a5c1788d4b46",
+   "lastmod": "2026-11-19",
+   "links": 58,
+   "name": "本は港（日本大通りのブックマーケット・絵本の朗読会も）",
+   "type": "Event"
   },
   "1p8kks3": {
    "added": "2026-11-18",
-   "hash": "5b6597926540",
-   "lastmod": "2026-11-18",
-   "name": "横浜キヤノンイーグルス 横浜市民招待デー（ラグビー・日産スタジアム）"
+   "chars": 933,
+   "hash": "33b039a726ea",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "横浜キヤノンイーグルス 横浜市民招待デー（ラグビー・日産スタジアム）",
+   "type": "Event"
   },
   "1pbyhlj": {
    "added": "2026-11-12",
+   "chars": 725,
    "hash": "905b54d551a8",
    "lastmod": "2026-11-17",
-   "name": "寺家ふるさと村・四季の家（田んぼの散歩と自然の展示）"
+   "links": 8,
+   "name": "寺家ふるさと村・四季の家（田んぼの散歩と自然の展示）",
+   "type": "Park"
   },
   "1pcaldj": {
    "added": "2026-11-14",
+   "chars": 545,
    "hash": "a186be6441ea",
    "lastmod": "2026-11-17",
-   "name": "品濃中央公園（戸塚区の公園）"
+   "links": 8,
+   "name": "品濃中央公園（戸塚区の公園）",
+   "type": "Park"
   },
   "1pfrxpf": {
    "added": "2026-11-17",
-   "hash": "9529f50e1ed6",
-   "lastmod": "2026-11-17",
-   "name": "おもちゃの病院（神奈川地区センター）"
+   "chars": 770,
+   "hash": "301b512a6850",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "おもちゃの病院（神奈川地区センター）",
+   "type": "Event"
   },
   "1pkuhi5": {
    "added": "2026-11-17",
+   "chars": 835,
    "hash": "6a5c2c9617de",
    "lastmod": "2026-11-17",
-   "name": "放課後こどもくらぶ「プチお正月飾りを作ろう！」（美しが丘西地区センター）"
+   "links": 15,
+   "name": "放課後こどもくらぶ「プチお正月飾りを作ろう！」（美しが丘西地区センター）",
+   "type": "Event"
   },
   "1pl3v1l": {
    "added": "2026-11-17",
-   "hash": "95e76ec9849a",
-   "lastmod": "2026-11-18",
-   "name": "三保ねんじゅ坂プレイパーク（緑区）"
+   "chars": 1056,
+   "hash": "be54851e470f",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "三保ねんじゅ坂プレイパーク（緑区）",
+   "type": "Event"
   },
   "1ptdeth": {
    "added": "2026-11-13",
+   "chars": 627,
    "hash": "4c49c41108c3",
    "lastmod": "2026-11-17",
-   "name": "わっくんひろばサテライト（鶴見区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "わっくんひろばサテライト（鶴見区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1pwhjhj": {
    "added": "2026-11-16",
+   "chars": 595,
    "hash": "e2020a6b7849",
    "lastmod": "2026-11-17",
-   "name": "駒岡地区センターのプレイルーム（鶴見区）"
+   "links": 8,
+   "name": "駒岡地区センターのプレイルーム（鶴見区）",
+   "type": "TouristAttraction"
   },
   "1pwon0q": {
    "added": "2026-11-16",
-   "hash": "3639661c2566",
-   "lastmod": "2026-11-18",
-   "name": "べビリズムたいそう（永谷地区センター）"
+   "chars": 818,
+   "hash": "e272d866ec7c",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "べビリズムたいそう（永谷地区センター）",
+   "type": "Event"
   },
   "1pxznnx": {
    "added": "2026-11-12",
-   "hash": "2e4edfeeb160",
-   "lastmod": "2026-11-17",
-   "name": "お城EXPO 2026"
+   "chars": 2342,
+   "hash": "772ae38f32df",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "お城EXPO 2026",
+   "type": "Event"
   },
   "1pzmydy": {
    "added": "2026-11-12",
+   "chars": 1399,
    "hash": "88386e5bb9bd",
    "lastmod": "2026-11-17",
-   "name": "トレッサ横浜 無料キッズスペース（駐車場も無料）"
+   "links": 11,
+   "name": "トレッサ横浜 無料キッズスペース（駐車場も無料）",
+   "type": "TouristAttraction"
   },
   "1pzt0js": {
    "added": "2026-11-17",
+   "chars": 723,
    "hash": "b873f6d7754b",
    "lastmod": "2026-11-17",
-   "name": "てとてとあおば（青葉区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "てとてとあおば（青葉区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1q4rgsi": {
    "added": "2026-11-17",
+   "chars": 879,
    "hash": "425ca74c36c8",
    "lastmod": "2026-11-17",
-   "name": "お兄ちゃんとお姉ちゃんと遊ぼう！（美しが丘公園こどもログハウス）"
+   "links": 16,
+   "name": "お兄ちゃんとお姉ちゃんと遊ぼう！（美しが丘公園こどもログハウス）",
+   "type": "Event"
   },
   "1qdx141": {
    "added": "2026-11-12",
-   "hash": "5365fea63d10",
-   "lastmod": "2026-11-17",
-   "name": "みんなの庭 植物のクリスマスオーナメント作り（MARK IS）"
+   "chars": 2377,
+   "hash": "47f35341d80f",
+   "lastmod": "2026-11-19",
+   "links": 44,
+   "name": "みんなの庭 植物のクリスマスオーナメント作り（MARK IS）",
+   "type": "Event"
   },
   "1qniy5k": {
    "added": "2026-11-14",
+   "chars": 611,
    "hash": "5bf4edfa89b7",
    "lastmod": "2026-11-17",
-   "name": "川戸農園 さつまいも掘り（戸塚区東俣野町）"
+   "links": 8,
+   "name": "川戸農園 さつまいも掘り（戸塚区東俣野町）",
+   "type": "TouristAttraction"
   },
   "1qoibpt": {
    "added": "2026-11-13",
+   "chars": 878,
    "hash": "e0d80b8a460e",
    "lastmod": "2026-11-17",
-   "name": "横浜山手西洋館「世界のクリスマス2026」"
+   "links": 7,
+   "name": "横浜山手西洋館「世界のクリスマス2026」",
+   "type": "TouristAttraction"
   },
   "1qp369m": {
    "added": "2026-11-18",
+   "chars": 796,
    "hash": "844d9f823a7e",
    "lastmod": "2026-11-18",
-   "name": "金沢動物園 コアラ・オオカンガルー来園40周年 写真展・モザイクアート"
+   "links": 9,
+   "name": "金沢動物園 コアラ・オオカンガルー来園40周年 写真展・モザイクアート",
+   "type": "TouristAttraction"
   },
   "1qsn4xr": {
    "added": "2026-11-14",
+   "chars": 637,
    "hash": "1bc33cd97f93",
    "lastmod": "2026-11-17",
-   "name": "大正地区センターのプレイルーム（戸塚区）"
+   "links": 8,
+   "name": "大正地区センターのプレイルーム（戸塚区）",
+   "type": "TouristAttraction"
   },
   "1qtfd8e": {
    "added": "2026-11-12",
-   "hash": "dd93f72ac3fb",
-   "lastmod": "2026-11-17",
-   "name": "こどもの国 ミニかどまつ作り"
+   "chars": 981,
+   "hash": "fd227f067ef4",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "こどもの国 ミニかどまつ作り",
+   "type": "Event"
   },
   "1qu4zs4": {
    "added": "2026-11-18",
-   "hash": "1fd2b279c614",
-   "lastmod": "2026-11-18",
-   "name": "い草で作る正月飾り（日野中央公園）"
+   "chars": 821,
+   "hash": "e8ab067fb8ca",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "い草で作る正月飾り（日野中央公園）",
+   "type": "Event"
   },
   "1qw0osb": {
    "added": "2026-11-12",
@@ -1359,33 +1992,48 @@
   },
   "1qxaqxl": {
    "added": "2026-11-12",
+   "chars": 947,
    "hash": "de938deb39e3",
    "lastmod": "2026-11-17",
-   "name": "みんなのインクルーシブスポーツ（青葉区）"
+   "links": 16,
+   "name": "みんなのインクルーシブスポーツ（青葉区）",
+   "type": "Event"
   },
   "1r1l7s0": {
    "added": "2026-11-17",
-   "hash": "74d328ac1acf",
-   "lastmod": "2026-11-18",
-   "name": "きらきらプレイパーク（神奈川区）"
+   "chars": 921,
+   "hash": "617698584a6e",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "きらきらプレイパーク（神奈川区）",
+   "type": "Event"
   },
   "1r5phb7": {
    "added": "2026-11-13",
+   "chars": 618,
    "hash": "5372013aa8ff",
    "lastmod": "2026-11-17",
-   "name": "とっとの芽（戸塚区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "とっとの芽（戸塚区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1r5tqdj": {
    "added": "2026-11-17",
-   "hash": "1a99417c2243",
-   "lastmod": "2026-11-17",
-   "name": "マギー隆司マジック笑（立場地区センター）"
+   "chars": 727,
+   "hash": "73b049a3e99c",
+   "lastmod": "2026-11-19",
+   "links": 15,
+   "name": "マギー隆司マジック笑（立場地区センター）",
+   "type": "Event"
   },
   "1r8qu0w": {
    "added": "2026-11-13",
+   "chars": 615,
    "hash": "21ecd855530a",
    "lastmod": "2026-11-17",
-   "name": "菊名地区センターのプレイルーム（港北区）"
+   "links": 8,
+   "name": "菊名地区センターのプレイルーム（港北区）",
+   "type": "TouristAttraction"
   },
   "1r8utr6": {
    "added": "2026-11-12",
@@ -1396,57 +2044,84 @@
   },
   "1rulx6o": {
    "added": "2026-11-17",
-   "hash": "ee229bae1279",
-   "lastmod": "2026-11-17",
-   "name": "ヨコハマハンドメイドマルシェ秋"
+   "chars": 2227,
+   "hash": "60373c63d8ae",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "ヨコハマハンドメイドマルシェ秋",
+   "type": "Event"
   },
   "1ruom6l": {
    "added": "2026-11-13",
+   "chars": 1157,
    "hash": "87b045c35d32",
    "lastmod": "2026-11-17",
-   "name": "ひなたぼっこ（旭区の地域子育て支援拠点）"
+   "links": 9,
+   "name": "ひなたぼっこ（旭区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1rvpqs4": {
    "added": "2026-11-17",
-   "hash": "06b2ca9ccd8a",
-   "lastmod": "2026-11-18",
-   "name": "ドレミファぽぽ（富岡並木地区センター）"
+   "chars": 860,
+   "hash": "636c30248c3e",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ドレミファぽぽ（富岡並木地区センター）",
+   "type": "Event"
   },
   "1rw3390": {
    "added": "2026-11-17",
-   "hash": "0ee519c2aa92",
+   "chars": 840,
+   "hash": "ff246c118b8f",
    "lastmod": "2026-11-19",
-   "name": "白根おもちゃ病院（白根地区センター）"
+   "links": 16,
+   "name": "白根おもちゃ病院（白根地区センター）",
+   "type": "Event"
   },
   "1s2nms6": {
    "added": "2026-11-13",
+   "chars": 761,
    "hash": "1c9d412ad56c",
    "lastmod": "2026-11-17",
-   "name": "こっころサテライト（休館中・天王町駅南口の稲葉ビル4階で代わりのひろばを開設中）（保土ケ谷区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "こっころサテライト（休館中・天王町駅南口の稲葉ビル4階で代わりのひろばを開設中）（保土ケ谷区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1s6rde2": {
    "added": "2026-11-17",
-   "hash": "233d812f797b",
-   "lastmod": "2026-11-17",
-   "name": "えほんのへや（磯子地区センター）"
+   "chars": 574,
+   "hash": "8141adcb3fee",
+   "lastmod": "2026-11-19",
+   "links": 8,
+   "name": "えほんのへや（磯子地区センター）",
+   "type": "Event"
   },
   "1s72oeq": {
    "added": "2026-11-12",
-   "hash": "418a0dcee0b3",
-   "lastmod": "2026-11-18",
-   "name": "親子でちょっと早いクリスマス（ブランチ横浜南部市場）"
+   "chars": 1225,
+   "hash": "1724cbc5609f",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "親子でちょっと早いクリスマス（ブランチ横浜南部市場）",
+   "type": "Event"
   },
   "1shbm9m": {
    "added": "2026-11-18",
-   "hash": "e2b0e6f0a8a1",
-   "lastmod": "2026-11-18",
-   "name": "南区消防出初式（消防の体験コーナーあり）"
+   "chars": 748,
+   "hash": "70a593bd2f80",
+   "lastmod": "2026-11-19",
+   "links": 14,
+   "name": "南区消防出初式（消防の体験コーナーあり）",
+   "type": "Event"
   },
   "1snmxgb": {
    "added": "2026-11-17",
-   "hash": "6b112bf71ef0",
-   "lastmod": "2026-11-18",
-   "name": "子育て支援（神大寺地区センター）"
+   "chars": 753,
+   "hash": "9db2461c38ef",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "子育て支援（神大寺地区センター）",
+   "type": "Event"
   },
   "1so3w76": {
    "added": "2026-11-12",
@@ -1457,81 +2132,120 @@
   },
   "1sru37k": {
    "added": "2026-11-17",
+   "chars": 712,
    "hash": "b050d449a50b",
    "lastmod": "2026-11-17",
-   "name": "おやこの広場はないろ（青葉区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "おやこの広場はないろ（青葉区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1ssou74": {
    "added": "2026-11-17",
+   "chars": 653,
    "hash": "d6749a4f5b00",
    "lastmod": "2026-11-17",
-   "name": "山内地区センターのプレイルーム（青葉区）"
+   "links": 8,
+   "name": "山内地区センターのプレイルーム（青葉区）",
+   "type": "TouristAttraction"
   },
   "1sv4qea": {
    "added": "2026-11-18",
-   "hash": "691891330572",
-   "lastmod": "2026-11-18",
-   "name": "カンフーでなかよくなろう（横浜市民ギャラリー）"
+   "chars": 883,
+   "hash": "fa1759263246",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "カンフーでなかよくなろう（横浜市民ギャラリー）",
+   "type": "Event"
   },
   "1syzxea": {
    "added": "2026-11-17",
+   "chars": 569,
    "hash": "f241b783adec",
    "lastmod": "2026-11-17",
-   "name": "竹之丸地区センターのプレイルーム（中区）"
+   "links": 4,
+   "name": "竹之丸地区センターのプレイルーム（中区）",
+   "type": "TouristAttraction"
   },
   "1t3fmrz": {
    "added": "2026-11-12",
-   "hash": "8e4c10242b0b",
-   "lastmod": "2026-11-17",
-   "name": "こどもの国 お正月クイズラリー＆ジャンボ鏡もち"
+   "chars": 877,
+   "hash": "cbf301c55c39",
+   "lastmod": "2026-11-19",
+   "links": 10,
+   "name": "こどもの国 お正月クイズラリー＆ジャンボ鏡もち",
+   "type": "Event"
   },
   "1t5ei3e": {
    "added": "2026-11-17",
+   "chars": 680,
    "hash": "02393183bbd4",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場あしたひろば（金沢区）"
+   "links": 8,
+   "name": "親と子のつどいの広場あしたひろば（金沢区）",
+   "type": "TouristAttraction"
   },
   "1t86ax4": {
    "added": "2026-11-16",
+   "chars": 600,
    "hash": "5ab8d7d49ba5",
    "lastmod": "2026-11-17",
-   "name": "潮田地区センターのプレイルーム（鶴見区）"
+   "links": 8,
+   "name": "潮田地区センターのプレイルーム（鶴見区）",
+   "type": "TouristAttraction"
   },
   "1teviuz": {
    "added": "2026-11-16",
-   "hash": "cd6b866884e5",
-   "lastmod": "2026-11-17",
-   "name": "のりものペーパークラフト工作（三菱みなとみらい技術館）"
+   "chars": 1948,
+   "hash": "84dc3612fe1c",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "のりものペーパークラフト工作（三菱みなとみらい技術館）",
+   "type": "Event"
   },
   "1tg9nez": {
    "added": "2026-11-12",
+   "chars": 644,
    "hash": "6d5026d50967",
    "lastmod": "2026-11-17",
-   "name": "ふれ～ゆ（屋内温水プール・幼児プールあり）"
+   "links": 8,
+   "name": "ふれ～ゆ（屋内温水プール・幼児プールあり）",
+   "type": "TouristAttraction"
   },
   "1thslib": {
    "added": "2026-11-13",
+   "chars": 763,
    "hash": "3d23aa8913ed",
    "lastmod": "2026-11-17",
-   "name": "仲町台地区センターのプレイルーム（都筑区）"
+   "links": 8,
+   "name": "仲町台地区センターのプレイルーム（都筑区）",
+   "type": "TouristAttraction"
   },
   "1ti8nav": {
    "added": "2026-11-12",
-   "hash": "e9ca2e0bda53",
-   "lastmod": "2026-11-17",
-   "name": "しゅわシュワ手作りバスボム（宇宙科学館）"
+   "chars": 874,
+   "hash": "7fb016c3cf3c",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "しゅわシュワ手作りバスボム（宇宙科学館）",
+   "type": "Event"
   },
   "1tocsjo": {
    "added": "2026-11-17",
+   "chars": 742,
    "hash": "1cd5f80cabe2",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場マムマム（保土ケ谷区）"
+   "links": 8,
+   "name": "親と子のつどいの広場マムマム（保土ケ谷区）",
+   "type": "TouristAttraction"
   },
   "1tqjzv7": {
    "added": "2026-11-17",
-   "hash": "68d6901fd17e",
-   "lastmod": "2026-11-17",
-   "name": "ロビーdeコンサート ルロット・オーケストラ（根岸地区センター）"
+   "chars": 657,
+   "hash": "6646493f75d4",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "ロビーdeコンサート ルロット・オーケストラ（根岸地区センター）",
+   "type": "Event"
   },
   "1tw0cy3": {
    "added": "2026-11-12",
@@ -1542,15 +2256,21 @@
   },
   "1u5ik59": {
    "added": "2026-11-17",
+   "chars": 695,
    "hash": "940c0f3103cd",
    "lastmod": "2026-11-17",
-   "name": "ひだまり（港北区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "ひだまり（港北区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1u5ocvz": {
    "added": "2026-11-17",
-   "hash": "31f6f6ff79b2",
-   "lastmod": "2026-11-18",
-   "name": "インクルーシブなまちフェス in Yokohama 2026（補助犬のデモ・手話体験）"
+   "chars": 1907,
+   "hash": "75a96f9d9dad",
+   "lastmod": "2026-11-19",
+   "links": 21,
+   "name": "インクルーシブなまちフェス in Yokohama 2026（補助犬のデモ・手話体験）",
+   "type": "Event"
   },
   "1u6tw9u": {
    "added": "2026-11-12",
@@ -1561,243 +2281,363 @@
   },
   "1ubfhez": {
    "added": "2026-11-12",
-   "hash": "ff2c4344a68e",
-   "lastmod": "2026-11-17",
-   "name": "こどもの国 アイススケート（屋外リンク）"
+   "chars": 1184,
+   "hash": "fd3a5ca3bbb2",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "こどもの国 アイススケート（屋外リンク）",
+   "type": "Event"
   },
   "1ufdrdz": {
    "added": "2026-11-12",
+   "chars": 1618,
    "hash": "48901a257b69",
    "lastmod": "2026-11-17",
-   "name": "第19回 美食節 横濵中華街フードフェスティバル"
+   "links": 50,
+   "name": "第19回 美食節 横濵中華街フードフェスティバル",
+   "type": "TouristAttraction"
   },
   "1ugyflm": {
    "added": "2026-11-16",
+   "chars": 994,
    "hash": "2f21ff8781eb",
    "lastmod": "2026-11-17",
-   "name": "中山地区センターのプレイルーム（緑区）"
+   "links": 8,
+   "name": "中山地区センターのプレイルーム（緑区）",
+   "type": "TouristAttraction"
   },
   "1uqmp1z": {
    "added": "2026-11-17",
+   "chars": 681,
    "hash": "de8c68cfd637",
    "lastmod": "2026-11-17",
-   "name": "奈良地区センターのプレイルーム（青葉区）"
+   "links": 8,
+   "name": "奈良地区センターのプレイルーム（青葉区）",
+   "type": "TouristAttraction"
   },
   "1uxb0rq": {
    "added": "2026-11-17",
-   "hash": "c4f120080527",
-   "lastmod": "2026-11-17",
-   "name": "書初め教室（北山田地区センター）"
+   "chars": 842,
+   "hash": "2a2112e33664",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "書初め教室（北山田地区センター）",
+   "type": "Event"
   },
   "1v2d5mb": {
    "added": "2026-11-17",
+   "chars": 1059,
    "hash": "c032bf2d9f9e",
    "lastmod": "2026-11-17",
-   "name": "ウィンターワンダリア2026（ワンダリア横浜の冬のイベント）"
+   "links": 10,
+   "name": "ウィンターワンダリア2026（ワンダリア横浜の冬のイベント）",
+   "type": "TouristAttraction"
   },
   "1vvsi3b": {
    "added": "2026-11-17",
-   "hash": "2e8abf32f40f",
+   "chars": 748,
+   "hash": "8782f77b8787",
    "lastmod": "2026-11-19",
-   "name": "バルーンアートのプレゼント（洋光台駅前公園こどもログハウス）"
+   "links": 12,
+   "name": "バルーンアートのプレゼント（洋光台駅前公園こどもログハウス）",
+   "type": "Event"
   },
   "1w1stvm": {
    "added": "2026-11-17",
-   "hash": "052edfb39da0",
-   "lastmod": "2026-11-17",
-   "name": "英語でエンジョイ！クリスマス（金沢地区センター）"
+   "chars": 848,
+   "hash": "884cf53218a8",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "英語でエンジョイ！クリスマス（金沢地区センター）",
+   "type": "Event"
   },
   "1w3yj6l": {
    "added": "2026-11-12",
-   "hash": "4f535dc1c9e5",
-   "lastmod": "2026-11-17",
-   "name": "みんなのインクルーシブスポーツ（中区）"
+   "chars": 931,
+   "hash": "616332b525ef",
+   "lastmod": "2026-11-19",
+   "links": 9,
+   "name": "みんなのインクルーシブスポーツ（中区）",
+   "type": "Event"
   },
   "1wb1m9y": {
    "added": "2026-11-17",
+   "chars": 576,
    "hash": "68b766f12836",
    "lastmod": "2026-11-17",
-   "name": "中川地区センターのプレイルーム（泉区）"
+   "links": 6,
+   "name": "中川地区センターのプレイルーム（泉区）",
+   "type": "TouristAttraction"
   },
   "1wbgz7c": {
    "added": "2026-11-17",
-   "hash": "cf15b786d7f5",
-   "lastmod": "2026-11-17",
-   "name": "つるみプレイパーク（鶴見区）"
+   "chars": 900,
+   "hash": "7ef9528d5c8f",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "つるみプレイパーク（鶴見区）",
+   "type": "Event"
   },
   "1wbn6jy": {
    "added": "2026-11-17",
+   "chars": 715,
    "hash": "86a731e294f7",
    "lastmod": "2026-11-17",
-   "name": "たかたんのおうち（港北区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "たかたんのおうち（港北区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1wc71zn": {
    "added": "2026-11-17",
+   "chars": 882,
    "hash": "f11d9ba4ccb5",
    "lastmod": "2026-11-17",
-   "name": "親子で大根収穫祭（希望が丘地区センター）"
+   "links": 16,
+   "name": "親子で大根収穫祭（希望が丘地区センター）",
+   "type": "Event"
   },
   "1wet4e": {
    "added": "2026-11-17",
+   "chars": 711,
    "hash": "ea4bbdc93788",
    "lastmod": "2026-11-17",
-   "name": "ゆうゆうひろば（戸塚区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "ゆうゆうひろば（戸塚区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1whfp4t": {
    "added": "2026-11-17",
+   "chars": 759,
    "hash": "2e827bc88800",
    "lastmod": "2026-11-17",
-   "name": "kitsch（キッチュ）（鶴見区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "kitsch（キッチュ）（鶴見区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1wleufo": {
    "added": "2026-11-17",
-   "hash": "05bc784a3141",
-   "lastmod": "2026-11-17",
-   "name": "都筑冒険遊び場まんまるプレイパーク（都筑区）"
+   "chars": 1071,
+   "hash": "8826fc2a91cc",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "都筑冒険遊び場まんまるプレイパーク（都筑区）",
+   "type": "Event"
   },
   "1x5ivi4": {
    "added": "2026-11-15",
-   "hash": "9168120a7a68",
-   "lastmod": "2026-11-18",
-   "name": "2026クリスマスキャロルコンサート（ハマのJACK・横浜少年少女合唱団）"
+   "chars": 1098,
+   "hash": "bd9cdcef06f6",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "2026クリスマスキャロルコンサート（ハマのJACK・横浜少年少女合唱団）",
+   "type": "Event"
   },
   "1xbgbn6": {
    "added": "2026-11-12",
+   "chars": 514,
    "hash": "aefd4b3c4e00",
    "lastmod": "2026-11-17",
-   "name": "三溪園 菊花展2026"
+   "links": 7,
+   "name": "三溪園 菊花展2026",
+   "type": "TouristAttraction"
   },
   "1xbomyz": {
    "added": "2026-11-17",
+   "chars": 700,
    "hash": "7ff1f7217ef6",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場星の子（保土ケ谷区）"
+   "links": 8,
+   "name": "親と子のつどいの広場星の子（保土ケ谷区）",
+   "type": "TouristAttraction"
   },
   "1xc4qp2": {
    "added": "2026-11-17",
+   "chars": 724,
    "hash": "851ab09550bd",
    "lastmod": "2026-11-17",
-   "name": "つどいの広場きらきら（戸塚区）"
+   "links": 8,
+   "name": "つどいの広場きらきら（戸塚区）",
+   "type": "TouristAttraction"
   },
   "1xchodz": {
    "added": "2026-11-17",
-   "hash": "36450bd4ef7c",
-   "lastmod": "2026-11-17",
-   "name": "赤ちゃん教室（立場地区センターの子育て行事）"
+   "chars": 575,
+   "hash": "1f0a25da3caf",
+   "lastmod": "2026-11-19",
+   "links": 10,
+   "name": "赤ちゃん教室（立場地区センターの子育て行事）",
+   "type": "Event"
   },
   "1xe6iyj": {
    "added": "2026-11-17",
+   "chars": 599,
    "hash": "80a5c0fb5a33",
    "lastmod": "2026-11-17",
-   "name": "親と子のひろばだっこ（磯子区・親と子のつどいの広場）"
+   "links": 4,
+   "name": "親と子のひろばだっこ（磯子区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "1xlhpif": {
    "added": "2026-11-13",
+   "chars": 635,
    "hash": "77170b00e912",
    "lastmod": "2026-11-17",
-   "name": "ひなたぼっこサテライト（旭区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "ひなたぼっこサテライト（旭区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1xw94wt": {
    "added": "2026-11-18",
-   "hash": "45a04b4c108d",
-   "lastmod": "2026-11-18",
-   "name": "ひよこのおはなし会（港北図書館・0〜3歳）"
+   "chars": 736,
+   "hash": "aed1e67a6b76",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ひよこのおはなし会（港北図書館・0〜3歳）",
+   "type": "Event"
   },
   "1xww32q": {
    "added": "2026-11-13",
+   "chars": 636,
    "hash": "8cd1192fa563",
    "lastmod": "2026-11-17",
-   "name": "かなーちえサテライト（神奈川区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "かなーちえサテライト（神奈川区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1xzezf2": {
    "added": "2026-11-16",
+   "chars": 1252,
    "hash": "cffe236920f0",
    "lastmod": "2026-11-18",
-   "name": "ズーラシア オオアリクイの双子の赤ちゃん公開"
+   "links": 17,
+   "name": "ズーラシア オオアリクイの双子の赤ちゃん公開",
+   "type": "Event"
   },
   "1y1uzh9": {
    "added": "2026-11-18",
-   "hash": "bf83f6746b7e",
-   "lastmod": "2026-11-18",
-   "name": "こどもたちのクリスマスコンサート（平沼集会所）"
+   "chars": 895,
+   "hash": "cd2ab61c9747",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "こどもたちのクリスマスコンサート（平沼集会所）",
+   "type": "Event"
   },
   "1yb6kpu": {
    "added": "2026-11-17",
+   "chars": 736,
    "hash": "d9b33022f279",
    "lastmod": "2026-11-17",
-   "name": "こどもの国 秋の自然つめあわせ（木の実の宝箱づくり）"
+   "links": 9,
+   "name": "こどもの国 秋の自然つめあわせ（木の実の宝箱づくり）",
+   "type": "TouristAttraction"
   },
   "1yi43jv": {
    "added": "2026-11-17",
-   "hash": "f348c9438357",
-   "lastmod": "2026-11-18",
-   "name": "あそびの広場 俣野公園プレイパーク（戸塚区）"
+   "chars": 941,
+   "hash": "18a20fcc5511",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "あそびの広場 俣野公園プレイパーク（戸塚区）",
+   "type": "Event"
   },
   "1yjnkwo": {
    "added": "2026-11-16",
-   "hash": "150ba9a70a1c",
-   "lastmod": "2026-11-18",
-   "name": "親子料理講座（長津田地区センター）"
+   "chars": 784,
+   "hash": "ec9e054a94ce",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "親子料理講座（長津田地区センター）",
+   "type": "Event"
   },
   "1ymp1ii": {
    "added": "2026-11-12",
-   "hash": "6d429e510211",
-   "lastmod": "2026-11-17",
-   "name": "せやマルシェ With GREEN Fes."
+   "chars": 663,
+   "hash": "2cef0f529708",
+   "lastmod": "2026-11-19",
+   "links": 14,
+   "name": "せやマルシェ With GREEN Fes.",
+   "type": "Event"
   },
   "1yp0mnm": {
    "added": "2026-11-13",
+   "chars": 612,
    "hash": "6487839d1ad1",
    "lastmod": "2026-11-17",
-   "name": "はっち（港南区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "はっち（港南区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "1yxqd8y": {
    "added": "2026-11-17",
+   "chars": 689,
    "hash": "1a639b92c883",
    "lastmod": "2026-11-17",
-   "name": "能見台地区センターのプレイルーム（金沢区）"
+   "links": 8,
+   "name": "能見台地区センターのプレイルーム（金沢区）",
+   "type": "TouristAttraction"
   },
   "1zlwk4": {
    "added": "2026-11-17",
-   "hash": "e1edd307f4a6",
-   "lastmod": "2026-11-17",
-   "name": "かきぞめ講座（仲町台地区センター）"
+   "chars": 746,
+   "hash": "befcb488ff0c",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "かきぞめ講座（仲町台地区センター）",
+   "type": "Event"
   },
   "21nb8w": {
    "added": "2026-11-13",
+   "chars": 977,
    "hash": "3ebada660a43",
    "lastmod": "2026-11-17",
-   "name": "はっちサテライト（港南区の地域子育て支援拠点）"
+   "links": 9,
+   "name": "はっちサテライト（港南区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "21uqt": {
    "added": "2026-11-12",
-   "hash": "d9863bdefee6",
-   "lastmod": "2026-11-18",
-   "name": "日本丸「飾り毛布」作り体験"
+   "chars": 2679,
+   "hash": "7d476600fcaa",
+   "lastmod": "2026-11-19",
+   "links": 42,
+   "name": "日本丸「飾り毛布」作り体験",
+   "type": "Event"
   },
   "22kbhd": {
    "added": "2026-11-17",
+   "chars": 620,
    "hash": "80171d790aac",
    "lastmod": "2026-11-17",
-   "name": "親子のひろばにこにこパーク（泉区・親と子のつどいの広場）"
+   "links": 6,
+   "name": "親子のひろばにこにこパーク（泉区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "26vja4": {
    "added": "2026-11-13",
+   "chars": 737,
    "hash": "2e7bbb6aa16a",
    "lastmod": "2026-11-17",
-   "name": "藤が丘地区センターのプレイルーム（青葉区）"
+   "links": 8,
+   "name": "藤が丘地区センターのプレイルーム（青葉区）",
+   "type": "TouristAttraction"
   },
   "2a78ch": {
    "added": "2026-11-17",
-   "hash": "c69bfe99848f",
-   "lastmod": "2026-11-18",
-   "name": "クリスマス・ケーキ教室（富岡並木地区センター）"
+   "chars": 913,
+   "hash": "2b307539f90d",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "クリスマス・ケーキ教室（富岡並木地区センター）",
+   "type": "Event"
   },
   "2dbg1d": {
    "added": "2026-11-17",
+   "chars": 751,
    "hash": "809bb8156033",
    "lastmod": "2026-11-17",
-   "name": "おやこの広場びーのびーの（港北区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "おやこの広場びーのびーの（港北区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "2fr3cd": {
    "added": "2026-11-12",
@@ -1808,189 +2648,282 @@
   },
   "2h5q5a": {
    "added": "2026-11-18",
+   "chars": 758,
    "hash": "0089aead7ca3",
    "lastmod": "2026-11-18",
-   "name": "コミハのクリスマス会（影絵と音楽・中本牧コミュニティハウス）"
+   "links": 13,
+   "name": "コミハのクリスマス会（影絵と音楽・中本牧コミュニティハウス）",
+   "type": "Event"
   },
   "2njad4": {
    "added": "2026-11-14",
+   "chars": 645,
    "hash": "63719a7d2369",
    "lastmod": "2026-11-17",
-   "name": "風のファーム さつまいも収穫（戸塚区東俣野町）"
+   "links": 8,
+   "name": "風のファーム さつまいも収穫（戸塚区東俣野町）",
+   "type": "TouristAttraction"
   },
   "2t2y0v": {
    "added": "2026-11-15",
+   "chars": 1565,
    "hash": "3d057ace0d49",
    "lastmod": "2026-11-18",
-   "name": "20th Anniversary Sapphire Blue Christmas（横浜ベイクォーターのクリスマスツリー）"
+   "links": 12,
+   "name": "20th Anniversary Sapphire Blue Christmas（横浜ベイクォーターのクリスマスツリー）",
+   "type": "TouristAttraction"
   },
   "33twlb": {
    "added": "2026-11-13",
+   "chars": 493,
    "hash": "c4bbb23ec6b1",
    "lastmod": "2026-11-17",
-   "name": "いそピヨ（磯子区の地域子育て支援拠点）"
+   "links": 3,
+   "name": "いそピヨ（磯子区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "39k79t": {
    "added": "2026-11-17",
-   "hash": "6e177874dde3",
-   "lastmod": "2026-11-17",
-   "name": "おはなし会（藤が丘地区センター）"
+   "chars": 683,
+   "hash": "6e9dcbabf695",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "おはなし会（藤が丘地区センター）",
+   "type": "Event"
   },
   "3co2nr": {
    "added": "2026-11-14",
+   "chars": 1107,
    "hash": "c0f0a734b70c",
    "lastmod": "2026-11-17",
-   "name": "戸塚地区センターのプレイルーム（戸塚区）"
+   "links": 9,
+   "name": "戸塚地区センターのプレイルーム（戸塚区）",
+   "type": "TouristAttraction"
   },
   "3ljuqs": {
    "added": "2026-11-16",
+   "chars": 805,
    "hash": "bd54b87732cf",
    "lastmod": "2026-11-17",
-   "name": "親子リトミック教室（今井地区センター）"
+   "links": 12,
+   "name": "親子リトミック教室（今井地区センター）",
+   "type": "Event"
   },
   "3lrxx8": {
    "added": "2026-11-17",
+   "chars": 735,
    "hash": "ce24abb46d02",
    "lastmod": "2026-11-17",
-   "name": "ピッピおやこの広場はっぴぃ（青葉区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "ピッピおやこの広場はっぴぃ（青葉区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "3o5gtz": {
    "added": "2026-11-17",
-   "hash": "5cc7f11649ef",
-   "lastmod": "2026-11-18",
-   "name": "港南台生き生きプレイパーク（港南区）"
+   "chars": 1551,
+   "hash": "818f9bfb3a44",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "港南台生き生きプレイパーク（港南区）",
+   "type": "Event"
   },
   "3oh5y4": {
    "added": "2026-11-12",
-   "hash": "e66f117e754e",
-   "lastmod": "2026-11-18",
-   "name": "トーマスと出会う、ウィンターホリデー（原鉄道模型博物館）"
+   "chars": 2253,
+   "hash": "b67313215d9e",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "トーマスと出会う、ウィンターホリデー（原鉄道模型博物館）",
+   "type": "Event"
   },
   "3u5ltd": {
    "added": "2026-11-17",
-   "hash": "dbabcf1b10bd",
-   "lastmod": "2026-11-17",
-   "name": "あいちゃんのお話し会（神大寺地区センター）"
+   "chars": 643,
+   "hash": "52a7e25514a8",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "あいちゃんのお話し会（神大寺地区センター）",
+   "type": "Event"
   },
   "3ut6tl": {
    "added": "2026-11-17",
+   "chars": 673,
    "hash": "f0ac8fb9b5b1",
    "lastmod": "2026-11-17",
-   "name": "おやこの広場ぽっぽの家（泉区・親と子のつどいの広場）"
+   "links": 7,
+   "name": "おやこの広場ぽっぽの家（泉区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "3voq9c": {
    "added": "2026-11-17",
-   "hash": "45d2ffa0ea52",
-   "lastmod": "2026-11-17",
-   "name": "門松ワークショップ（中川西地区センター）"
+   "chars": 865,
+   "hash": "5a9f07893e7a",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "門松ワークショップ（中川西地区センター）",
+   "type": "Event"
   },
   "3wvgou": {
    "added": "2026-11-16",
-   "hash": "7c3864839826",
-   "lastmod": "2026-11-17",
-   "name": "キグちゃんの「親子であそぼ！」（本郷地区センター）"
+   "chars": 773,
+   "hash": "a6aba3e22ebf",
+   "lastmod": "2026-11-19",
+   "links": 9,
+   "name": "キグちゃんの「親子であそぼ！」（本郷地区センター）",
+   "type": "Event"
   },
   "41od4d": {
    "added": "2026-11-17",
-   "hash": "f744e665d3e1",
-   "lastmod": "2026-11-17",
-   "name": "よいこのクリスマス会 リトミックとパネルシアター（中川地区センター）"
+   "chars": 878,
+   "hash": "fb24f838f01f",
+   "lastmod": "2026-11-19",
+   "links": 15,
+   "name": "よいこのクリスマス会 リトミックとパネルシアター（中川地区センター）",
+   "type": "Event"
   },
   "423p1f": {
    "added": "2026-11-13",
+   "chars": 631,
    "hash": "9fb06cac97d4",
    "lastmod": "2026-11-17",
-   "name": "とっとの芽サテライト（戸塚区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "とっとの芽サテライト（戸塚区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "4cv5fu": {
    "added": "2026-11-12",
+   "chars": 1205,
    "hash": "3da4343146fb",
    "lastmod": "2026-11-17",
-   "name": "港北TOKYU S.C.「赤ちゃん休憩室」内キッズスペース"
+   "links": 11,
+   "name": "港北TOKYU S.C.「赤ちゃん休憩室」内キッズスペース",
+   "type": "TouristAttraction"
   },
   "4dkw7n": {
    "added": "2026-11-13",
+   "chars": 656,
    "hash": "95454dc9f6d0",
    "lastmod": "2026-11-17",
-   "name": "生麦地区センターのプレイルーム（鶴見区）"
+   "links": 8,
+   "name": "生麦地区センターのプレイルーム（鶴見区）",
+   "type": "TouristAttraction"
   },
   "4gyjho": {
    "added": "2026-11-13",
+   "chars": 514,
    "hash": "c63cba4e9ca4",
    "lastmod": "2026-11-17",
-   "name": "のんびりんこ（中区の地域子育て支援拠点）"
+   "links": 4,
+   "name": "のんびりんこ（中区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "4h2q09": {
    "added": "2026-11-13",
+   "chars": 1067,
    "hash": "3e3bc8086c4b",
    "lastmod": "2026-11-17",
-   "name": "港南台地区センターのプレイルーム（港南区）"
+   "links": 9,
+   "name": "港南台地区センターのプレイルーム（港南区）",
+   "type": "TouristAttraction"
   },
   "4hsel4": {
    "added": "2026-11-16",
-   "hash": "43776bfcc409",
-   "lastmod": "2026-11-17",
-   "name": "ファミリータイム遊び隊 ミニ運動会（大岡地区センター）"
+   "chars": 873,
+   "hash": "db206aad8c93",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ファミリータイム遊び隊 ミニ運動会（大岡地区センター）",
+   "type": "Event"
   },
   "4jm8mx": {
    "added": "2026-11-12",
+   "chars": 1975,
    "hash": "d2b889eb0ae3",
    "lastmod": "2026-11-18",
-   "name": "都市伝説解体センター×横浜マリンタワー 謎解きラリー"
+   "links": 50,
+   "name": "都市伝説解体センター×横浜マリンタワー 謎解きラリー",
+   "type": "TouristAttraction"
   },
   "4sl3lj": {
    "added": "2026-11-13",
+   "chars": 799,
    "hash": "b3e0700b2b60",
    "lastmod": "2026-11-17",
-   "name": "本牧地区センターのプレイルーム（中区）"
+   "links": 4,
+   "name": "本牧地区センターのプレイルーム（中区）",
+   "type": "TouristAttraction"
   },
   "4znxed": {
    "added": "2026-11-17",
-   "hash": "b1dfd2fc5ec2",
-   "lastmod": "2026-11-17",
-   "name": "おさるんリトミック3期（仲町台地区センター）"
+   "chars": 665,
+   "hash": "df108c2e3077",
+   "lastmod": "2026-11-19",
+   "links": 8,
+   "name": "おさるんリトミック3期（仲町台地区センター）",
+   "type": "Event"
   },
   "5hocv2": {
    "added": "2026-11-14",
+   "chars": 569,
    "hash": "e13c0ba8aeaf",
    "lastmod": "2026-11-17",
-   "name": "戸塚公園（戸塚区の公園）"
+   "links": 8,
+   "name": "戸塚公園（戸塚区の公園）",
+   "type": "Park"
   },
   "5l30nq": {
    "added": "2026-11-14",
+   "chars": 609,
    "hash": "cf893439cc15",
    "lastmod": "2026-11-17",
-   "name": "新田地区センター 2階の幼児の遊び場（港北区）"
+   "links": 8,
+   "name": "新田地区センター 2階の幼児の遊び場（港北区）",
+   "type": "TouristAttraction"
   },
   "5poo2x": {
    "added": "2026-11-16",
-   "hash": "d55296faf01b",
-   "lastmod": "2026-11-17",
-   "name": "子育て喫茶「げんき」クリスマスイベント（本郷地区センター）"
+   "chars": 855,
+   "hash": "d62ac7fb45bc",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "子育て喫茶「げんき」クリスマスイベント（本郷地区センター）",
+   "type": "Event"
   },
   "5twiho": {
    "added": "2026-11-16",
+   "chars": 687,
    "hash": "58443ddbeea2",
    "lastmod": "2026-11-17",
-   "name": "こどもの国 ジャンボクリスマスリース"
+   "links": 9,
+   "name": "こどもの国 ジャンボクリスマスリース",
+   "type": "TouristAttraction"
   },
   "63pqnc": {
    "added": "2026-11-17",
+   "chars": 684,
    "hash": "c8fec2cce014",
    "lastmod": "2026-11-17",
-   "name": "子育てひろばにっこにこ（旭区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "子育てひろばにっこにこ（旭区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "63tlzy": {
    "added": "2026-11-17",
+   "chars": 624,
    "hash": "84dbe4a5f354",
    "lastmod": "2026-11-17",
-   "name": "白根地区センターのプレイルーム（旭区）"
+   "links": 8,
+   "name": "白根地区センターのプレイルーム（旭区）",
+   "type": "TouristAttraction"
   },
   "67qvjl": {
    "added": "2026-11-12",
-   "hash": "19fadfc4adfb",
-   "lastmod": "2026-11-18",
-   "name": "工作ひろば（宇宙科学館）"
+   "chars": 797,
+   "hash": "4747dc8d1518",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "工作ひろば（宇宙科学館）",
+   "type": "Event"
   },
   "6bzd3f": {
    "added": "2026-11-12",
@@ -2001,63 +2934,93 @@
   },
   "6hmcvt": {
    "added": "2026-11-12",
-   "hash": "25a9f8c438c2",
-   "lastmod": "2026-11-17",
-   "name": "ふりこのカーテン（宇宙科学館）"
+   "chars": 799,
+   "hash": "c45dc0941b60",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "ふりこのカーテン（宇宙科学館）",
+   "type": "Event"
   },
   "6kifus": {
    "added": "2026-11-12",
+   "chars": 831,
    "hash": "372f57a2924e",
    "lastmod": "2026-11-17",
-   "name": "金沢自然公園 こども広場（ローラーすべり台 約100m）"
+   "links": 9,
+   "name": "金沢自然公園 こども広場（ローラーすべり台 約100m）",
+   "type": "Park"
   },
   "6sjo3c": {
    "added": "2026-11-13",
+   "chars": 564,
    "hash": "af899312e062",
    "lastmod": "2026-11-17",
-   "name": "すきっぷ（泉区の地域子育て支援拠点）"
+   "links": 6,
+   "name": "すきっぷ（泉区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "6udv5h": {
    "added": "2026-11-12",
+   "chars": 1877,
    "hash": "23a72d87bcbd",
    "lastmod": "2026-11-17",
-   "name": "日産グローバル本社ギャラリー（車の展示）"
+   "links": 11,
+   "name": "日産グローバル本社ギャラリー（車の展示）",
+   "type": "TouristAttraction"
   },
   "70q7rt": {
    "added": "2026-11-12",
+   "chars": 862,
    "hash": "098b79cac55e",
    "lastmod": "2026-11-17",
-   "name": "みんなのインクルーシブスポーツ（瀬谷区）"
+   "links": 14,
+   "name": "みんなのインクルーシブスポーツ（瀬谷区）",
+   "type": "Event"
   },
   "718lnb": {
    "added": "2026-11-13",
+   "chars": 616,
    "hash": "1d5161c77b3e",
    "lastmod": "2026-11-17",
-   "name": "どろっぷサテライト（港北区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "どろっぷサテライト（港北区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "774zm6": {
    "added": "2026-11-18",
-   "hash": "d0ef1a53a12f",
-   "lastmod": "2026-11-18",
-   "name": "チョット昔のお正月遊び（都筑民家園）"
+   "chars": 767,
+   "hash": "15c7a1566a2e",
+   "lastmod": "2026-11-19",
+   "links": 14,
+   "name": "チョット昔のお正月遊び（都筑民家園）",
+   "type": "Event"
   },
   "77dtdb": {
    "added": "2026-11-17",
+   "chars": 1133,
    "hash": "e117a82e2a94",
    "lastmod": "2026-11-17",
-   "name": "神之木地区センターのプレイルーム（神奈川区）"
+   "links": 8,
+   "name": "神之木地区センターのプレイルーム（神奈川区）",
+   "type": "TouristAttraction"
   },
   "7g0khi": {
    "added": "2026-11-12",
+   "chars": 2175,
    "hash": "f4671f3d3cb1",
    "lastmod": "2026-11-17",
-   "name": "マリー・アントワネット・スタイル"
+   "links": 36,
+   "name": "マリー・アントワネット・スタイル",
+   "type": "TouristAttraction"
   },
   "7jbl4a": {
    "added": "2026-11-12",
+   "chars": 2211,
    "hash": "5fa6b8c9f0bc",
    "lastmod": "2026-11-17",
-   "name": "ミナトノアート2026"
+   "links": 50,
+   "name": "ミナトノアート2026",
+   "type": "TouristAttraction"
   },
   "834e49": {
    "added": "2026-11-12",
@@ -2068,33 +3031,48 @@
   },
   "84f4xs": {
    "added": "2026-11-17",
+   "chars": 714,
    "hash": "c50ebc7f3f73",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場あそびんご（青葉区）"
+   "links": 8,
+   "name": "親と子のつどいの広場あそびんご（青葉区）",
+   "type": "TouristAttraction"
   },
   "84ypf4": {
    "added": "2026-11-17",
-   "hash": "0772c2521e4c",
-   "lastmod": "2026-11-18",
-   "name": "ファミリーおはなし会〜子育てのヒントになる〜（根岸地区センター）"
+   "chars": 582,
+   "hash": "b69710d195df",
+   "lastmod": "2026-11-19",
+   "links": 7,
+   "name": "ファミリーおはなし会〜子育てのヒントになる〜（根岸地区センター）",
+   "type": "Event"
   },
   "866l4c": {
    "added": "2026-11-16",
-   "hash": "c1f0944c2915",
-   "lastmod": "2026-11-17",
-   "name": "あそびにきてね☆おはなしのへや（港南台地区センター）"
+   "chars": 1208,
+   "hash": "b644427e1d35",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "あそびにきてね☆おはなしのへや（港南台地区センター）",
+   "type": "Event"
   },
   "8b24hd": {
    "added": "2026-11-17",
+   "chars": 656,
    "hash": "418a5226f7f5",
    "lastmod": "2026-11-17",
-   "name": "はじまりの木（中区・親と子のつどいの広場）"
+   "links": 4,
+   "name": "はじまりの木（中区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "8fmn7b": {
    "added": "2026-11-16",
-   "hash": "93c0a46b51e1",
-   "lastmod": "2026-11-17",
-   "name": "牛乳パックが大変身！Ecoワークショップ（中村地区センター）"
+   "chars": 910,
+   "hash": "f29aa7f99401",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "牛乳パックが大変身！Ecoワークショップ（中村地区センター）",
+   "type": "Event"
   },
   "8myawv": {
    "added": "2026-11-12",
@@ -2105,87 +3083,129 @@
   },
   "8pj1g7": {
    "added": "2026-11-13",
+   "chars": 1120,
    "hash": "2ed9a61d5439",
    "lastmod": "2026-11-17",
-   "name": "希望が丘地区センターのプレイルーム（旭区）"
+   "links": 8,
+   "name": "希望が丘地区センターのプレイルーム（旭区）",
+   "type": "TouristAttraction"
   },
   "8pj1g7-2": {
    "added": "2026-11-17",
+   "chars": 656,
    "hash": "097190f7e120",
    "lastmod": "2026-11-17",
-   "name": "希望が丘地区センターのプレイルーム（旭区）"
+   "links": 8,
+   "name": "希望が丘地区センターのプレイルーム（旭区）",
+   "type": "TouristAttraction"
   },
   "8ruore": {
    "added": "2026-11-12",
+   "chars": 884,
    "hash": "dd345269e32b",
    "lastmod": "2026-11-17",
-   "name": "こどもの国 紙芝居ライブ"
+   "links": 17,
+   "name": "こどもの国 紙芝居ライブ",
+   "type": "Event"
   },
   "95o4z": {
    "added": "2026-11-17",
-   "hash": "02cd5a863c43",
-   "lastmod": "2026-11-17",
-   "name": "帆船日本丸 満船飾（まんせんしょく）"
+   "chars": 2035,
+   "hash": "f458c9480c0d",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "帆船日本丸 満船飾（まんせんしょく）",
+   "type": "Event"
   },
   "95z95j": {
    "added": "2026-11-12",
+   "chars": 1874,
    "hash": "5c64aa2e14b1",
    "lastmod": "2026-11-17",
-   "name": "あそびパークPLUS みなとみらい東急スクエア店"
+   "links": 14,
+   "name": "あそびパークPLUS みなとみらい東急スクエア店",
+   "type": "TouristAttraction"
   },
   "961k3c": {
    "added": "2026-11-15",
+   "chars": 740,
    "hash": "fe2fa2eb0e33",
    "lastmod": "2026-11-17",
-   "name": "LICOPA鶴見 1階の「PARK」（芝生の遊び場）"
+   "links": 8,
+   "name": "LICOPA鶴見 1階の「PARK」（芝生の遊び場）",
+   "type": "TouristAttraction"
   },
   "9alpdz": {
    "added": "2026-11-17",
-   "hash": "563c9ab06330",
-   "lastmod": "2026-11-17",
-   "name": "クリスマス！こどもパン作り（釜利谷地区センター）"
+   "chars": 871,
+   "hash": "c5b3b054bbff",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "クリスマス！こどもパン作り（釜利谷地区センター）",
+   "type": "Event"
   },
   "9ib420": {
    "added": "2026-11-17",
+   "chars": 802,
    "hash": "7e0f676c212f",
    "lastmod": "2026-11-17",
-   "name": "joinT（ジョイント）ハウス（都筑区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "joinT（ジョイント）ハウス（都筑区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "9iya4n": {
    "added": "2026-11-13",
+   "chars": 609,
    "hash": "8095636deb81",
    "lastmod": "2026-11-17",
-   "name": "どろっぷ（港北区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "どろっぷ（港北区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "9ng0n0": {
    "added": "2026-11-17",
+   "chars": 893,
    "hash": "49c1cb4610b4",
    "lastmod": "2026-11-17",
-   "name": "緑園街マルシェ2026"
+   "links": 15,
+   "name": "緑園街マルシェ2026",
+   "type": "Event"
   },
   "9o9v1u": {
    "added": "2026-11-16",
+   "chars": 597,
    "hash": "1f7aa3f32296",
    "lastmod": "2026-11-17",
-   "name": "末吉地区センターのプレイルーム（鶴見区）"
+   "links": 8,
+   "name": "末吉地区センターのプレイルーム（鶴見区）",
+   "type": "TouristAttraction"
   },
   "9obwey": {
    "added": "2026-11-17",
-   "hash": "f4f3b47152e6",
-   "lastmod": "2026-11-17",
-   "name": "プログラミング教室～ゲームを作ろう（仲町台地区センター）"
+   "chars": 877,
+   "hash": "e9914af4fcd5",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "プログラミング教室～ゲームを作ろう（仲町台地区センター）",
+   "type": "Event"
   },
   "9p5cd7": {
    "added": "2026-11-17",
+   "chars": 726,
    "hash": "c5bd528373bf",
    "lastmod": "2026-11-17",
-   "name": "北山田地区センターのプレイルーム（都筑区）"
+   "links": 8,
+   "name": "北山田地区センターのプレイルーム（都筑区）",
+   "type": "TouristAttraction"
   },
   "9twgz2": {
    "added": "2026-11-12",
+   "chars": 1341,
    "hash": "bfffa8723bb8",
    "lastmod": "2026-11-17",
-   "name": "トレッサ横浜 遊Kids愛ランド／キンダープラッツ"
+   "links": 10,
+   "name": "トレッサ横浜 遊Kids愛ランド／キンダープラッツ",
+   "type": "TouristAttraction"
   },
   "9zcseb": {
    "added": "2026-11-12",
@@ -2196,93 +3216,138 @@
   },
   "a33732": {
    "added": "2026-11-17",
+   "chars": 684,
    "hash": "c2412ac9fc79",
    "lastmod": "2026-11-17",
-   "name": "上白根大池公園こどもログハウス「おおいけらんど」（旭区）"
+   "links": 8,
+   "name": "上白根大池公園こどもログハウス「おおいけらんど」（旭区）",
+   "type": "TouristAttraction"
   },
   "a3h2k0": {
    "added": "2026-11-17",
+   "chars": 690,
    "hash": "c491303067d5",
    "lastmod": "2026-11-17",
-   "name": "ひろば「おひさま」（港南区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "ひろば「おひさま」（港南区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "a5ip9e": {
    "added": "2026-11-17",
+   "chars": 656,
    "hash": "ad5efbe64ec2",
    "lastmod": "2026-11-17",
-   "name": "OYAKOCLUBチューリップおやこのひろば（栄区・親と子のつどいの広場）"
+   "links": 5,
+   "name": "OYAKOCLUBチューリップおやこのひろば（栄区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "a6m8e3": {
    "added": "2026-11-14",
+   "chars": 696,
    "hash": "9f40438cc505",
    "lastmod": "2026-11-17",
-   "name": "踊場公園こどもログハウス（戸塚区）"
+   "links": 8,
+   "name": "踊場公園こどもログハウス（戸塚区）",
+   "type": "TouristAttraction"
   },
   "a753yo": {
    "added": "2026-11-17",
+   "chars": 749,
    "hash": "1caa33fc75f7",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場こまーま（鶴見区）"
+   "links": 8,
+   "name": "親と子のつどいの広場こまーま（鶴見区）",
+   "type": "TouristAttraction"
   },
   "aao3m": {
    "added": "2026-11-17",
+   "chars": 722,
    "hash": "69769be3ec8d",
    "lastmod": "2026-11-17",
-   "name": "ちゅーりっぷカフェ（港南区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "ちゅーりっぷカフェ（港南区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "adgpgi": {
    "added": "2026-11-12",
+   "chars": 819,
    "hash": "aec9dfa7a486",
    "lastmod": "2026-11-17",
-   "name": "こどもの国 ジャンボカルタとり大会"
+   "links": 12,
+   "name": "こどもの国 ジャンボカルタとり大会",
+   "type": "Event"
   },
   "ahzz9t": {
    "added": "2026-11-17",
+   "chars": 802,
    "hash": "19962f13b967",
    "lastmod": "2026-11-17",
-   "name": "おもちゃの病院（野毛地区センター）"
+   "links": 13,
+   "name": "おもちゃの病院（野毛地区センター）",
+   "type": "Event"
   },
   "akns91": {
    "added": "2026-11-17",
+   "chars": 817,
    "hash": "c142492dc61a",
    "lastmod": "2026-11-17",
-   "name": "親子のフリースペース「ピア」（保土ケ谷区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "親子のフリースペース「ピア」（保土ケ谷区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "aopbjn": {
    "added": "2026-11-13",
+   "chars": 660,
    "hash": "d88545fc0282",
    "lastmod": "2026-11-17",
-   "name": "踊場地区センターのプレイルーム（戸塚区）"
+   "links": 8,
+   "name": "踊場地区センターのプレイルーム（戸塚区）",
+   "type": "TouristAttraction"
   },
   "aue6sv": {
    "added": "2026-11-12",
+   "chars": 536,
    "hash": "8e1fbbce5bcd",
    "lastmod": "2026-11-17",
-   "name": "横浜市電保存館（昔の路面電車に乗れる）"
+   "links": 5,
+   "name": "横浜市電保存館（昔の路面電車に乗れる）",
+   "type": "TouristAttraction"
   },
   "awe5vd": {
    "added": "2026-11-12",
-   "hash": "c5e378b3e475",
-   "lastmod": "2026-11-17",
-   "name": "こどもの国 冬のブラスフェス"
+   "chars": 1086,
+   "hash": "26d3e12e52e4",
+   "lastmod": "2026-11-19",
+   "links": 19,
+   "name": "こどもの国 冬のブラスフェス",
+   "type": "Event"
   },
   "axqg61": {
    "added": "2026-11-17",
+   "chars": 1083,
    "hash": "277e41364dfe",
    "lastmod": "2026-11-17",
-   "name": "港南台北公園こどもログハウス「どんぐりハウス」（港南区）"
+   "links": 9,
+   "name": "港南台北公園こどもログハウス「どんぐりハウス」（港南区）",
+   "type": "TouristAttraction"
   },
   "aymvrc": {
    "added": "2026-11-17",
-   "hash": "62e7d9fa0764",
-   "lastmod": "2026-11-17",
-   "name": "おひざの上のお話会（釜利谷地区センター）"
+   "chars": 686,
+   "hash": "e8b1a6fac14f",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "おひざの上のお話会（釜利谷地区センター）",
+   "type": "Event"
   },
   "azi3ew": {
    "added": "2026-11-12",
-   "hash": "8f5a2cab86bc",
-   "lastmod": "2026-11-17",
-   "name": "つづきでミニオペラ！〜歌と音楽でめぐる、クリスマスの物語〜"
+   "chars": 1569,
+   "hash": "fe1093edc939",
+   "lastmod": "2026-11-19",
+   "links": 19,
+   "name": "つづきでミニオペラ！〜歌と音楽でめぐる、クリスマスの物語〜",
+   "type": "Event"
   },
   "b35917": {
    "added": "2026-11-16",
@@ -2293,21 +3358,30 @@
   },
   "b8jts3": {
    "added": "2026-11-12",
+   "chars": 805,
    "hash": "df5b2cf5dcc0",
    "lastmod": "2026-11-17",
-   "name": "大道芸パフォーマンスショー（ブランチ横浜南部市場）"
+   "links": 9,
+   "name": "大道芸パフォーマンスショー（ブランチ横浜南部市場）",
+   "type": "TouristAttraction"
   },
   "b9avlg": {
    "added": "2026-11-12",
+   "chars": 1423,
    "hash": "68696aefe014",
    "lastmod": "2026-11-17",
-   "name": "わくわくアイスワールド（トレッサ横浜の屋内スケートリンク）"
+   "links": 10,
+   "name": "わくわくアイスワールド（トレッサ横浜の屋内スケートリンク）",
+   "type": "TouristAttraction"
   },
   "ba4bcr": {
    "added": "2026-11-17",
+   "chars": 667,
    "hash": "5d57c5c06ca4",
    "lastmod": "2026-11-17",
-   "name": "美しが丘公園こどもログハウス「ロケットハウス」（青葉区）"
+   "links": 8,
+   "name": "美しが丘公園こどもログハウス「ロケットハウス」（青葉区）",
+   "type": "TouristAttraction"
   },
   "baasl1": {
    "added": "2026-11-12",
@@ -2318,51 +3392,75 @@
   },
   "bbf519": {
    "added": "2026-11-17",
+   "chars": 822,
    "hash": "6b1ff83f8eb6",
    "lastmod": "2026-11-17",
-   "name": "今宿地区センターのプレイルーム（旭区）"
+   "links": 8,
+   "name": "今宿地区センターのプレイルーム（旭区）",
+   "type": "TouristAttraction"
   },
   "bh95d9": {
    "added": "2026-11-13",
+   "chars": 632,
    "hash": "9750bb778ecb",
    "lastmod": "2026-11-17",
-   "name": "立場地区センターのプレイルーム（泉区）"
+   "links": 6,
+   "name": "立場地区センターのプレイルーム（泉区）",
+   "type": "TouristAttraction"
   },
   "blnfrk": {
    "added": "2026-11-18",
-   "hash": "b99d0227b2a3",
-   "lastmod": "2026-11-18",
-   "name": "BASEBALL STREET（日本大通りの野球体験・B-SIDE HOLIDAYS 2026）"
+   "chars": 1255,
+   "hash": "5e14a691c1c5",
+   "lastmod": "2026-11-19",
+   "links": 19,
+   "name": "BASEBALL STREET（日本大通りの野球体験・B-SIDE HOLIDAYS 2026）",
+   "type": "Event"
   },
   "bmu2o5": {
    "added": "2026-11-12",
-   "hash": "1883d09a6baf",
-   "lastmod": "2026-11-17",
-   "name": "みんなの庭 秋のミニランタン作り（MARK IS）"
+   "chars": 2374,
+   "hash": "3fe2033dc998",
+   "lastmod": "2026-11-19",
+   "links": 42,
+   "name": "みんなの庭 秋のミニランタン作り（MARK IS）",
+   "type": "Event"
   },
   "borwmh": {
    "added": "2026-11-12",
+   "chars": 1155,
    "hash": "20797657b84d",
    "lastmod": "2026-11-17",
-   "name": "ジョイナステラス二俣川のキッズスペース（駅直結）"
+   "links": 9,
+   "name": "ジョイナステラス二俣川のキッズスペース（駅直結）",
+   "type": "TouristAttraction"
   },
   "bpd866": {
    "added": "2026-11-17",
+   "chars": 1052,
    "hash": "b7c7eef0c62c",
    "lastmod": "2026-11-17",
-   "name": "子育てのいえわっ！ふる（港南区・親と子のつどいの広場）"
+   "links": 9,
+   "name": "子育てのいえわっ！ふる（港南区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "bt5cf2": {
    "added": "2026-11-12",
+   "chars": 2695,
    "hash": "0afead47047f",
    "lastmod": "2026-11-17",
-   "name": "アンパンマンたちと楽しむクリスマス"
+   "links": 36,
+   "name": "アンパンマンたちと楽しむクリスマス",
+   "type": "TouristAttraction"
   },
   "buqggh": {
    "added": "2026-11-17",
+   "chars": 674,
    "hash": "81e5fd87eda3",
    "lastmod": "2026-11-17",
-   "name": "富岡並木地区センターのプレイルーム（金沢区）"
+   "links": 8,
+   "name": "富岡並木地区センターのプレイルーム（金沢区）",
+   "type": "TouristAttraction"
   },
   "c0lzcz": {
    "added": "2026-11-14",
@@ -2373,93 +3471,138 @@
   },
   "c21njq": {
    "added": "2026-11-17",
+   "chars": 701,
    "hash": "3f96f8ebb57c",
    "lastmod": "2026-11-17",
-   "name": "さくらザウルス蒔田ひろば（南区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "さくらザウルス蒔田ひろば（南区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "c5grk0": {
    "added": "2026-11-17",
-   "hash": "9722b2ee684d",
-   "lastmod": "2026-11-17",
-   "name": "ゆめチャレランウェイ（クイーンズスクエア横浜の子どもランウェイ）"
+   "chars": 1728,
+   "hash": "c3b09ab81aad",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "ゆめチャレランウェイ（クイーンズスクエア横浜の子どもランウェイ）",
+   "type": "Event"
   },
   "cdtda4": {
    "added": "2026-11-16",
+   "chars": 736,
    "hash": "96482a8f8fa8",
    "lastmod": "2026-11-17",
-   "name": "野庭地区センターのプレイルーム（港南区）"
+   "links": 8,
+   "name": "野庭地区センターのプレイルーム（港南区）",
+   "type": "TouristAttraction"
   },
   "cefzo3": {
    "added": "2026-11-17",
-   "hash": "cd99fe25b204",
-   "lastmod": "2026-11-18",
-   "name": "絵本はともだち（上中里地区センター）"
+   "chars": 597,
+   "hash": "30683fc89a09",
+   "lastmod": "2026-11-19",
+   "links": 7,
+   "name": "絵本はともだち（上中里地区センター）",
+   "type": "Event"
   },
   "cg4wx9": {
    "added": "2026-11-17",
+   "chars": 607,
    "hash": "f9d05e0ca318",
    "lastmod": "2026-11-17",
-   "name": "冬休み読書スタンプラリー（美しが丘西地区センター）"
+   "links": 8,
+   "name": "冬休み読書スタンプラリー（美しが丘西地区センター）",
+   "type": "TouristAttraction"
   },
   "cggudm": {
    "added": "2026-11-17",
+   "chars": 673,
    "hash": "ff2c2fbb1912",
    "lastmod": "2026-11-17",
-   "name": "釜利谷地区センターのプレイルーム（金沢区）"
+   "links": 8,
+   "name": "釜利谷地区センターのプレイルーム（金沢区）",
+   "type": "TouristAttraction"
   },
   "cisquo": {
    "added": "2026-11-17",
-   "hash": "e08dd15a0ffe",
-   "lastmod": "2026-11-17",
-   "name": "ぺんぎんおやこ広場（立場地区センター）"
+   "chars": 816,
+   "hash": "4b91e888f44b",
+   "lastmod": "2026-11-19",
+   "links": 15,
+   "name": "ぺんぎんおやこ広場（立場地区センター）",
+   "type": "Event"
   },
   "cjd5yp": {
    "added": "2026-11-17",
+   "chars": 597,
    "hash": "271e625b7025",
    "lastmod": "2026-11-17",
-   "name": "つどいの広場ほっとスペース（瀬谷区）"
+   "links": 5,
+   "name": "つどいの広場ほっとスペース（瀬谷区）",
+   "type": "TouristAttraction"
   },
   "cji862": {
    "added": "2026-11-17",
+   "chars": 1221,
    "hash": "f279246f6b84",
    "lastmod": "2026-11-18",
-   "name": "ふれあい広場（港南台北公園こどもログハウス）"
+   "links": 17,
+   "name": "ふれあい広場（港南台北公園こどもログハウス）",
+   "type": "Event"
   },
   "co138c": {
    "added": "2026-11-17",
+   "chars": 756,
    "hash": "4e0d536a3826",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場ぎんがむら（保土ケ谷区）"
+   "links": 8,
+   "name": "親と子のつどいの広場ぎんがむら（保土ケ谷区）",
+   "type": "TouristAttraction"
   },
   "cr2l24": {
    "added": "2026-11-16",
+   "chars": 760,
    "hash": "b6aa23dee480",
    "lastmod": "2026-11-18",
-   "name": "すきっぷす♪のクリスマスのおはなし会（瀬谷地区センター）"
+   "links": 14,
+   "name": "すきっぷす♪のクリスマスのおはなし会（瀬谷地区センター）",
+   "type": "Event"
   },
   "d1dgxr": {
    "added": "2026-11-12",
-   "hash": "2007d461849f",
-   "lastmod": "2026-11-18",
-   "name": "横浜ナイトフラワーズ（花火）"
+   "chars": 2666,
+   "hash": "17dd842ce33d",
+   "lastmod": "2026-11-19",
+   "links": 58,
+   "name": "横浜ナイトフラワーズ（花火）",
+   "type": "Event"
   },
   "dappap": {
    "added": "2026-11-15",
-   "hash": "bb1c68d8be33",
-   "lastmod": "2026-11-17",
-   "name": "めぐみ座のおはなし会（中図書館）"
+   "chars": 784,
+   "hash": "2206f4247559",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "めぐみ座のおはなし会（中図書館）",
+   "type": "Event"
   },
   "degqe0": {
    "added": "2026-11-16",
-   "hash": "c397e579e0c1",
-   "lastmod": "2026-11-17",
-   "name": "大人も子どもも楽しめる秋のおはなし会（永田地区センター）"
+   "chars": 904,
+   "hash": "d1112a7fb7a5",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "大人も子どもも楽しめる秋のおはなし会（永田地区センター）",
+   "type": "Event"
   },
   "dmcmn5": {
    "added": "2026-11-17",
+   "chars": 741,
    "hash": "8b251cb59d04",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場かわわ（都筑区）"
+   "links": 8,
+   "name": "親と子のつどいの広場かわわ（都筑区）",
+   "type": "TouristAttraction"
   },
   "dtyigt": {
    "added": "2026-11-14",
@@ -2470,81 +3613,120 @@
   },
   "dvajzg": {
    "added": "2026-11-13",
+   "chars": 800,
    "hash": "c8b94fd358b8",
    "lastmod": "2026-11-17",
-   "name": "スマイル・ポート（西区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "スマイル・ポート（西区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "dwhery": {
    "added": "2026-11-12",
+   "chars": 936,
    "hash": "1df40ef76f64",
    "lastmod": "2026-11-17",
-   "name": "横浜・八景島シーパラダイス（水族館・ふれあいラグーン）"
+   "links": 9,
+   "name": "横浜・八景島シーパラダイス（水族館・ふれあいラグーン）",
+   "type": "TouristAttraction"
   },
   "e0uw51": {
    "added": "2026-11-12",
+   "chars": 706,
    "hash": "2b4f839d05c4",
    "lastmod": "2026-11-17",
-   "name": "三ツ沢公園 わんぱく広場（ローラーすべり台 約44m）"
+   "links": 8,
+   "name": "三ツ沢公園 わんぱく広場（ローラーすべり台 約44m）",
+   "type": "Park"
   },
   "e62f4b": {
    "added": "2026-11-16",
+   "chars": 655,
    "hash": "7c5d08f88e5c",
    "lastmod": "2026-11-17",
-   "name": "港南地区センターのプレイルーム（港南区）"
+   "links": 8,
+   "name": "港南地区センターのプレイルーム（港南区）",
+   "type": "TouristAttraction"
   },
   "ecdr6o": {
    "added": "2026-11-12",
-   "hash": "15b07a00f730",
-   "lastmod": "2026-11-18",
-   "name": "ミーオ・イーオ！フェスタ2026（ごみ焼却工場の見学イベント）"
+   "chars": 798,
+   "hash": "10ac58ec9203",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ミーオ・イーオ！フェスタ2026（ごみ焼却工場の見学イベント）",
+   "type": "Event"
   },
   "edvmch": {
    "added": "2026-11-16",
+   "chars": 939,
    "hash": "37ca28b394ba",
    "lastmod": "2026-11-17",
-   "name": "豊田地区センターのプレイルーム（栄区）"
+   "links": 4,
+   "name": "豊田地区センターのプレイルーム（栄区）",
+   "type": "TouristAttraction"
   },
   "eecbay": {
    "added": "2026-11-17",
-   "hash": "74a6db215e51",
-   "lastmod": "2026-11-18",
-   "name": "白幡の森プレイパーク（神奈川区）"
+   "chars": 899,
+   "hash": "12073c1f341e",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "白幡の森プレイパーク（神奈川区）",
+   "type": "Event"
   },
   "eejgwn": {
    "added": "2026-11-17",
-   "hash": "6a2a203beca8",
-   "lastmod": "2026-11-17",
-   "name": "神奈川県警察音楽隊のスペシャルステージ（ドラクエ・FFの曲）"
+   "chars": 2001,
+   "hash": "3d8935010c73",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "神奈川県警察音楽隊のスペシャルステージ（ドラクエ・FFの曲）",
+   "type": "Event"
   },
   "eeldq4": {
    "added": "2026-11-17",
+   "chars": 985,
    "hash": "47cfa2b65fe2",
    "lastmod": "2026-11-17",
-   "name": "白幡地区センターのプレイルーム（神奈川区）"
+   "links": 8,
+   "name": "白幡地区センターのプレイルーム（神奈川区）",
+   "type": "TouristAttraction"
   },
   "egfang": {
    "added": "2026-11-14",
+   "chars": 772,
    "hash": "40ad45b62fb4",
    "lastmod": "2026-11-17",
-   "name": "川島町公園こどもログハウス「アドベンチャーハウス」（保土ケ谷区）"
+   "links": 8,
+   "name": "川島町公園こどもログハウス「アドベンチャーハウス」（保土ケ谷区）",
+   "type": "TouristAttraction"
   },
   "egma9n": {
    "added": "2026-11-14",
+   "chars": 536,
    "hash": "b463cf356429",
    "lastmod": "2026-11-17",
-   "name": "前田町公園（戸塚区の公園）"
+   "links": 8,
+   "name": "前田町公園（戸塚区の公園）",
+   "type": "Park"
   },
   "ei596h": {
    "added": "2026-11-16",
+   "chars": 586,
    "hash": "ad135182f10b",
    "lastmod": "2026-11-17",
-   "name": "鶴見花月園公園（鶴見区の公園）"
+   "links": 8,
+   "name": "鶴見花月園公園（鶴見区の公園）",
+   "type": "Park"
   },
   "f1durf": {
    "added": "2026-11-12",
+   "chars": 2213,
    "hash": "fa21e92e005b",
    "lastmod": "2026-11-17",
-   "name": "みなとみらいクリスマスマーケット2026"
+   "links": 36,
+   "name": "みなとみらいクリスマスマーケット2026",
+   "type": "TouristAttraction"
   },
   "f2xsuf": {
    "added": "2026-11-17",
@@ -2555,147 +3737,219 @@
   },
   "f3rco8": {
    "added": "2026-11-12",
+   "chars": 522,
    "hash": "d48fb3f04849",
    "lastmod": "2026-11-17",
-   "name": "キッズランドUS 横浜希望が丘店"
+   "links": 8,
+   "name": "キッズランドUS 横浜希望が丘店",
+   "type": "TouristAttraction"
   },
   "f559rq": {
    "added": "2026-11-17",
+   "chars": 1840,
    "hash": "e79e50da0524",
    "lastmod": "2026-11-17",
-   "name": "パンどろぼう展（横浜赤レンガ倉庫1号館）"
+   "links": 10,
+   "name": "パンどろぼう展（横浜赤レンガ倉庫1号館）",
+   "type": "TouristAttraction"
   },
   "f5n1ze": {
    "added": "2026-11-18",
-   "hash": "6eeb03190210",
-   "lastmod": "2026-11-18",
-   "name": "こども科学捜査・体験教室（磯子センター）"
+   "chars": 681,
+   "hash": "1577ed0a8abe",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "こども科学捜査・体験教室（磯子センター）",
+   "type": "Event"
   },
   "fbnnop": {
    "added": "2026-11-16",
+   "chars": 728,
    "hash": "b6b332c33a58",
    "lastmod": "2026-11-17",
-   "name": "東永谷地区センターのプレイルーム（港南区）"
+   "links": 8,
+   "name": "東永谷地区センターのプレイルーム（港南区）",
+   "type": "TouristAttraction"
   },
   "fbujnc": {
    "added": "2026-11-17",
+   "chars": 650,
    "hash": "fdae5417b89e",
    "lastmod": "2026-11-17",
-   "name": "若葉台地区センターのプレイルーム（旭区）"
+   "links": 8,
+   "name": "若葉台地区センターのプレイルーム（旭区）",
+   "type": "TouristAttraction"
   },
   "fcppph": {
    "added": "2026-11-17",
-   "hash": "bedba8211486",
-   "lastmod": "2026-11-17",
-   "name": "クリスマスこども英語deお菓子作り（市沢地区センター）"
+   "chars": 877,
+   "hash": "c42b058f4fdf",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "クリスマスこども英語deお菓子作り（市沢地区センター）",
+   "type": "Event"
   },
   "fi4kvf": {
    "added": "2026-11-12",
+   "chars": 1323,
    "hash": "a995202ddede",
    "lastmod": "2026-11-17",
-   "name": "のげやま子ども図書館「おやこフロア」（ねころべる絵本の部屋）"
+   "links": 11,
+   "name": "のげやま子ども図書館「おやこフロア」（ねころべる絵本の部屋）",
+   "type": "TouristAttraction"
   },
   "flhpsq": {
    "added": "2026-11-13",
+   "chars": 603,
    "hash": "ca4efa58259a",
    "lastmod": "2026-11-17",
-   "name": "いっぽ（緑区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "いっぽ（緑区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "fpsg4h": {
    "added": "2026-11-12",
-   "hash": "57a3ea6aeba6",
-   "lastmod": "2026-11-17",
-   "name": "イラストレーターと作るアドベントカレンダー（モザイクモール港北）"
+   "chars": 1533,
+   "hash": "30ed816cb78f",
+   "lastmod": "2026-11-19",
+   "links": 19,
+   "name": "イラストレーターと作るアドベントカレンダー（モザイクモール港北）",
+   "type": "Event"
   },
   "fq8ye7": {
    "added": "2026-11-13",
+   "chars": 676,
    "hash": "af0baf29086c",
    "lastmod": "2026-11-17",
-   "name": "上矢部地区センターのプレイルーム（戸塚区）"
+   "links": 8,
+   "name": "上矢部地区センターのプレイルーム（戸塚区）",
+   "type": "TouristAttraction"
   },
   "g0syo2": {
    "added": "2026-11-16",
-   "hash": "85e3880a7ed0",
-   "lastmod": "2026-11-17",
-   "name": "ヒップホップ スタート講座（長津田地区センター）"
+   "chars": 809,
+   "hash": "fb51b574d84f",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ヒップホップ スタート講座（長津田地区センター）",
+   "type": "Event"
   },
   "g0y547": {
    "added": "2026-11-17",
+   "chars": 1164,
    "hash": "03e23337c524",
    "lastmod": "2026-11-17",
-   "name": "六浦地区センターのプレイルーム（金沢区）"
+   "links": 8,
+   "name": "六浦地区センターのプレイルーム（金沢区）",
+   "type": "TouristAttraction"
   },
   "g3jz1j": {
    "added": "2026-11-12",
+   "chars": 1086,
    "hash": "1ddf3af9b7eb",
    "lastmod": "2026-11-17",
-   "name": "花火シンフォニア（八景島）"
+   "links": 17,
+   "name": "花火シンフォニア（八景島）",
+   "type": "Event"
   },
   "g616me": {
    "added": "2026-11-12",
+   "chars": 2153,
    "hash": "29965f6b2f16",
    "lastmod": "2026-11-18",
-   "name": "旧横ギャラリー 展示ガイド（中等客車に乗れる）"
+   "links": 39,
+   "name": "旧横ギャラリー 展示ガイド（中等客車に乗れる）",
+   "type": "Event"
   },
   "g7tm8a": {
    "added": "2026-11-13",
+   "chars": 713,
    "hash": "0c5aeed3b4ec",
    "lastmod": "2026-11-17",
-   "name": "白山地区センターのプレイルーム（緑区）"
+   "links": 8,
+   "name": "白山地区センターのプレイルーム（緑区）",
+   "type": "TouristAttraction"
   },
   "g90dms": {
    "added": "2026-11-17",
+   "chars": 634,
    "hash": "d42a3ea4388d",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場夢たま（磯子区）"
+   "links": 4,
+   "name": "親と子のつどいの広場夢たま（磯子区）",
+   "type": "TouristAttraction"
   },
   "gchz89": {
    "added": "2026-11-17",
-   "hash": "2f6f2f3997cf",
-   "lastmod": "2026-11-17",
-   "name": "みんなで書初め（中川西地区センター）"
+   "chars": 891,
+   "hash": "6090755c7313",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "みんなで書初め（中川西地区センター）",
+   "type": "Event"
   },
   "gclafd": {
    "added": "2026-11-12",
+   "chars": 781,
    "hash": "e224d3a26865",
    "lastmod": "2026-11-17",
-   "name": "横浜市民防災センター（防火服・地震体験）"
+   "links": 9,
+   "name": "横浜市民防災センター（防火服・地震体験）",
+   "type": "TouristAttraction"
   },
   "ghjq0p": {
    "added": "2026-11-12",
+   "chars": 873,
    "hash": "b6a5ccf22931",
    "lastmod": "2026-11-17",
-   "name": "よこはま動物園ズーラシア"
+   "links": 9,
+   "name": "よこはま動物園ズーラシア",
+   "type": "TouristAttraction"
   },
   "gsbgfi": {
    "added": "2026-11-17",
+   "chars": 789,
    "hash": "44dc5f0de2ac",
    "lastmod": "2026-11-17",
-   "name": "すくすくサロン（都筑区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "すくすくサロン（都筑区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "gvoxz1": {
    "added": "2026-11-17",
+   "chars": 827,
    "hash": "9fbeba8dcfbe",
    "lastmod": "2026-11-17",
-   "name": "こどもチャレンジ！バスソルト＆サシェ作り（山内地区センター）"
+   "links": 16,
+   "name": "こどもチャレンジ！バスソルト＆サシェ作り（山内地区センター）",
+   "type": "Event"
   },
   "gxz5un": {
    "added": "2026-11-12",
-   "hash": "605bc9d66574",
-   "lastmod": "2026-11-18",
-   "name": "まかどシーマリンパーク 一般公開（小学校の中の水族館）"
+   "chars": 851,
+   "hash": "1fb2b683788e",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "まかどシーマリンパーク 一般公開（小学校の中の水族館）",
+   "type": "Event"
   },
   "gz0lvf": {
    "added": "2026-11-16",
-   "hash": "9d416800bf90",
-   "lastmod": "2026-11-17",
-   "name": "こどもお菓子教室（豊田地区センター）"
+   "chars": 802,
+   "hash": "f57d254fb887",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "こどもお菓子教室（豊田地区センター）",
+   "type": "Event"
   },
   "h1le89": {
    "added": "2026-11-12",
+   "chars": 1090,
    "hash": "8e807395a198",
    "lastmod": "2026-11-17",
-   "name": "こどもの国 紙飛行機を飛ばそう"
+   "links": 22,
+   "name": "こどもの国 紙飛行機を飛ばそう",
+   "type": "Event"
   },
   "h1le89-2": {
    "added": "2026-11-12",
@@ -2706,321 +3960,480 @@
   },
   "h2j2vy": {
    "added": "2026-11-13",
-   "hash": "15b044b7b6fa",
-   "lastmod": "2026-11-18",
-   "name": "TOWERS Milight \"UP\"（みなとみらいのビルが一斉に点灯）"
+   "chars": 2420,
+   "hash": "71038d0b5157",
+   "lastmod": "2026-11-19",
+   "links": 44,
+   "name": "TOWERS Milight \"UP\"（みなとみらいのビルが一斉に点灯）",
+   "type": "Event"
   },
   "h71c3n": {
    "added": "2026-11-12",
+   "chars": 1204,
    "hash": "ac721da1e93f",
    "lastmod": "2026-11-17",
-   "name": "ちきゅうのにわ 港北店"
+   "links": 11,
+   "name": "ちきゅうのにわ 港北店",
+   "type": "TouristAttraction"
   },
   "h891v3": {
    "added": "2026-11-17",
+   "chars": 662,
    "hash": "bbc56aad5d20",
    "lastmod": "2026-11-17",
-   "name": "下和泉地区センターのキッズの部屋（泉区）"
+   "links": 6,
+   "name": "下和泉地区センターのキッズの部屋（泉区）",
+   "type": "TouristAttraction"
   },
   "haudxx": {
    "added": "2026-11-17",
+   "chars": 679,
    "hash": "7bc5d9b9c63d",
    "lastmod": "2026-11-17",
-   "name": "ひろばネスト（瀬谷区・親と子のつどいの広場）"
+   "links": 6,
+   "name": "ひろばネスト（瀬谷区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "hb65ta": {
    "added": "2026-11-17",
+   "chars": 704,
    "hash": "03acc166f260",
    "lastmod": "2026-11-17",
-   "name": "さくらザウルス六ツ川ひろば（南区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "さくらザウルス六ツ川ひろば（南区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "hppjhm": {
    "added": "2026-11-17",
-   "hash": "89a80d13e5b7",
-   "lastmod": "2026-11-17",
-   "name": "消防おはなし会（金沢図書館）"
+   "chars": 705,
+   "hash": "23b820507183",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "消防おはなし会（金沢図書館）",
+   "type": "Event"
   },
   "huzcn": {
    "added": "2026-11-17",
-   "hash": "881499bc1bd2",
-   "lastmod": "2026-11-17",
-   "name": "どんぐりころちゃんのおはなし会（金沢地区センター）"
+   "chars": 785,
+   "hash": "1e738a727fd5",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "どんぐりころちゃんのおはなし会（金沢地区センター）",
+   "type": "Event"
   },
   "hyblin": {
    "added": "2026-11-17",
-   "hash": "479ff1c806d8",
-   "lastmod": "2026-11-18",
-   "name": "すくすく子育て応援クラブ（竹之丸地区センター）"
+   "chars": 643,
+   "hash": "8a294dc57d66",
+   "lastmod": "2026-11-19",
+   "links": 8,
+   "name": "すくすく子育て応援クラブ（竹之丸地区センター）",
+   "type": "Event"
   },
   "hzpl4y": {
    "added": "2026-11-13",
+   "chars": 642,
    "hash": "b98689eb3525",
    "lastmod": "2026-11-17",
-   "name": "寺尾地区センターのプレイルーム（鶴見区）"
+   "links": 8,
+   "name": "寺尾地区センターのプレイルーム（鶴見区）",
+   "type": "TouristAttraction"
   },
   "i11bfl": {
    "added": "2026-11-17",
+   "chars": 730,
    "hash": "7b0fad9bbc59",
    "lastmod": "2026-11-17",
-   "name": "子育て支援スペースCOCOひよし（港北区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "子育て支援スペースCOCOひよし（港北区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "i4ptts": {
    "added": "2026-11-17",
-   "hash": "98a4c95d4af3",
-   "lastmod": "2026-11-18",
-   "name": "おもちゃ病院（釜利谷地区センター）"
+   "chars": 761,
+   "hash": "fa05b688dbdd",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "おもちゃ病院（釜利谷地区センター）",
+   "type": "Event"
   },
   "ibbsld": {
    "added": "2026-11-17",
-   "hash": "172a0b0939b3",
-   "lastmod": "2026-11-17",
-   "name": "おもちゃ病院（六浦地区センター）"
+   "chars": 758,
+   "hash": "f030177d5642",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "おもちゃ病院（六浦地区センター）",
+   "type": "Event"
   },
   "idfs1o": {
    "added": "2026-11-17",
-   "hash": "0e84be617d7b",
-   "lastmod": "2026-11-18",
-   "name": "絵本だいすき！読み聞かせ（立場地区センター）"
+   "chars": 701,
+   "hash": "8d5235a5a21a",
+   "lastmod": "2026-11-19",
+   "links": 15,
+   "name": "絵本だいすき！読み聞かせ（立場地区センター）",
+   "type": "Event"
   },
   "iea40r": {
    "added": "2026-11-17",
+   "chars": 2232,
    "hash": "aa5e04874dd9",
    "lastmod": "2026-11-18",
-   "name": "プラネタリウム「ドラえもん 時間のひみつ」（プラネタリアYOKOHAMA）"
+   "links": 12,
+   "name": "プラネタリウム「ドラえもん 時間のひみつ」（プラネタリアYOKOHAMA）",
+   "type": "TouristAttraction"
   },
   "igsi7k": {
    "added": "2026-11-16",
+   "chars": 1264,
    "hash": "a43330a1efa3",
    "lastmod": "2026-11-17",
-   "name": "藤棚地区センターのプレイルーム（西区）"
+   "links": 8,
+   "name": "藤棚地区センターのプレイルーム（西区）",
+   "type": "TouristAttraction"
   },
   "ikx95a": {
    "added": "2026-11-14",
+   "chars": 1088,
    "hash": "a76e934e42e4",
    "lastmod": "2026-11-17",
-   "name": "東戸塚地区センターのプレイルーム（戸塚区）"
+   "links": 9,
+   "name": "東戸塚地区センターのプレイルーム（戸塚区）",
+   "type": "TouristAttraction"
   },
   "ilazb7": {
    "added": "2026-11-12",
+   "chars": 1083,
    "hash": "948331bace65",
    "lastmod": "2026-11-17",
-   "name": "ズーラシア 折り紙でつくる熱帯林のどうぶつたち"
+   "links": 17,
+   "name": "ズーラシア 折り紙でつくる熱帯林のどうぶつたち",
+   "type": "Event"
   },
   "itv7nb": {
    "added": "2026-11-17",
+   "chars": 928,
    "hash": "fb4856b770bc",
    "lastmod": "2026-11-17",
-   "name": "クリスマス会（富岡八幡公園こどもログハウス）"
+   "links": 16,
+   "name": "クリスマス会（富岡八幡公園こどもログハウス）",
+   "type": "Event"
   },
   "iu258k": {
    "added": "2026-11-16",
-   "hash": "5b773b53e24a",
-   "lastmod": "2026-11-18",
-   "name": "大岡ウィンターフェスタ（大岡健康プラザ3館合同）"
+   "chars": 1046,
+   "hash": "20dee8c35889",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "大岡ウィンターフェスタ（大岡健康プラザ3館合同）",
+   "type": "Event"
   },
   "izfork": {
    "added": "2026-11-13",
+   "chars": 689,
    "hash": "89e81c89c4a7",
    "lastmod": "2026-11-17",
-   "name": "美しが丘西地区センターのプレイルーム（青葉区）"
+   "links": 8,
+   "name": "美しが丘西地区センターのプレイルーム（青葉区）",
+   "type": "TouristAttraction"
   },
   "j1m7no": {
    "added": "2026-11-17",
+   "chars": 728,
    "hash": "1fa88d20b642",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場ぶーぶーしえすた（青葉区）"
+   "links": 8,
+   "name": "親と子のつどいの広場ぶーぶーしえすた（青葉区）",
+   "type": "TouristAttraction"
   },
   "j45vh": {
    "added": "2026-11-12",
+   "chars": 566,
    "hash": "68037d0e08b4",
    "lastmod": "2026-11-17",
-   "name": "弘明寺公園（大型遊具と電車が見える陸橋）"
+   "links": 8,
+   "name": "弘明寺公園（大型遊具と電車が見える陸橋）",
+   "type": "Park"
   },
   "j4wymm": {
    "added": "2026-11-17",
+   "chars": 845,
    "hash": "a6cca8fed38c",
    "lastmod": "2026-11-17",
-   "name": "小学生のための習字教室（奈良地区センター）"
+   "links": 16,
+   "name": "小学生のための習字教室（奈良地区センター）",
+   "type": "Event"
   },
   "j5uc52": {
    "added": "2026-11-17",
+   "chars": 1042,
    "hash": "c480db3f002a",
    "lastmod": "2026-11-17",
-   "name": "都岡地区センターのプレイルーム（旭区）"
+   "links": 8,
+   "name": "都岡地区センターのプレイルーム（旭区）",
+   "type": "TouristAttraction"
   },
   "j9pyxa": {
    "added": "2026-11-17",
+   "chars": 784,
    "hash": "e948c0aedc63",
    "lastmod": "2026-11-18",
-   "name": "おやこリトミック（上飯田地区センター）"
+   "links": 15,
+   "name": "おやこリトミック（上飯田地区センター）",
+   "type": "Event"
   },
   "jeg8ox": {
    "added": "2026-11-17",
+   "chars": 671,
    "hash": "cfc057282deb",
    "lastmod": "2026-11-17",
-   "name": "親子サロンメダカ（旭区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "親子サロンメダカ（旭区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "ji11sv": {
    "added": "2026-11-16",
+   "chars": 763,
    "hash": "321cfacebcf5",
    "lastmod": "2026-11-17",
-   "name": "初音が丘地区センターのプレイルーム（保土ケ谷区）"
+   "links": 8,
+   "name": "初音が丘地区センターのプレイルーム（保土ケ谷区）",
+   "type": "TouristAttraction"
   },
   "jkp7kp": {
    "added": "2026-11-17",
-   "hash": "34bb59f40776",
-   "lastmod": "2026-11-17",
-   "name": "太尾公園つちのこプレイパーク（港北区）"
+   "chars": 833,
+   "hash": "8ac310d43a66",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "太尾公園つちのこプレイパーク（港北区）",
+   "type": "Event"
   },
   "jompaw": {
    "added": "2026-11-14",
+   "chars": 834,
    "hash": "5d1c1ebe065c",
    "lastmod": "2026-11-17",
-   "name": "the BERRY YOKOHAMA いちご狩り（戸塚区汲沢）"
+   "links": 8,
+   "name": "the BERRY YOKOHAMA いちご狩り（戸塚区汲沢）",
+   "type": "TouristAttraction"
   },
   "jp2dhf": {
    "added": "2026-11-17",
+   "chars": 644,
    "hash": "836bd1c8e3ed",
    "lastmod": "2026-11-17",
-   "name": "OYAKOCLUBチューリップおやこの駅ひろば（栄区・親と子のつどいの広場）"
+   "links": 5,
+   "name": "OYAKOCLUBチューリップおやこの駅ひろば（栄区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "jsw7ln": {
    "added": "2026-11-16",
-   "hash": "480765ffe91e",
-   "lastmod": "2026-11-17",
-   "name": "理科実験（三菱みなとみらい技術館）"
+   "chars": 2011,
+   "hash": "dacfc2b444be",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "理科実験（三菱みなとみらい技術館）",
+   "type": "Event"
   },
   "k098lw": {
    "added": "2026-11-13",
+   "chars": 1285,
    "hash": "54d3accc6c01",
    "lastmod": "2026-11-17",
-   "name": "ポポラサテライト（都筑区の地域子育て支援拠点）"
+   "links": 9,
+   "name": "ポポラサテライト（都筑区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "k234tf": {
    "added": "2026-11-12",
+   "chars": 590,
    "hash": "f0ba89064473",
    "lastmod": "2026-11-17",
-   "name": "各区の「こどもログハウス」（木の大型遊具の館）"
+   "links": 8,
+   "name": "各区の「こどもログハウス」（木の大型遊具の館）",
+   "type": "TouristAttraction"
   },
   "kalh48": {
    "added": "2026-11-17",
-   "hash": "925db1236854",
-   "lastmod": "2026-11-17",
-   "name": "おもちゃドクター（北山田地区センター）"
+   "chars": 920,
+   "hash": "d8b78a28ac9d",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "おもちゃドクター（北山田地区センター）",
+   "type": "Event"
   },
   "kkgen4": {
    "added": "2026-11-16",
+   "chars": 628,
    "hash": "64a29631d5c1",
    "lastmod": "2026-11-17",
-   "name": "阿久和地区センターのプレイルーム（瀬谷区）"
+   "links": 5,
+   "name": "阿久和地区センターのプレイルーム（瀬谷区）",
+   "type": "TouristAttraction"
   },
   "knt8ey": {
    "added": "2026-11-12",
+   "chars": 1688,
    "hash": "b0920f4ed767",
    "lastmod": "2026-11-17",
-   "name": "THE MOVEUM YOKOHAMA「印象派モネと浮世絵」"
+   "links": 50,
+   "name": "THE MOVEUM YOKOHAMA「印象派モネと浮世絵」",
+   "type": "TouristAttraction"
   },
   "kpbop": {
    "added": "2026-11-12",
+   "chars": 1087,
    "hash": "42a88c9ae1bc",
    "lastmod": "2026-11-17",
-   "name": "野毛山動物園（入園無料・なかよし広場でふれあい）"
+   "links": 9,
+   "name": "野毛山動物園（入園無料・なかよし広場でふれあい）",
+   "type": "Park"
   },
   "kr029f": {
    "added": "2026-11-12",
+   "chars": 1051,
    "hash": "645a2fab3639",
    "lastmod": "2026-11-17",
-   "name": "こども自然公園 とりでの森（ローラーすべり台 約40m）・ちびっこ動物園"
+   "links": 8,
+   "name": "こども自然公園 とりでの森（ローラーすべり台 約40m）・ちびっこ動物園",
+   "type": "Park"
   },
   "krcbn0": {
    "added": "2026-11-17",
+   "chars": 831,
    "hash": "3bab27edf33e",
    "lastmod": "2026-11-17",
-   "name": "富岡八幡公園こどもログハウス「なかよしカモメ」（金沢区）"
+   "links": 8,
+   "name": "富岡八幡公園こどもログハウス「なかよしカモメ」（金沢区）",
+   "type": "TouristAttraction"
   },
   "kuf2jo": {
    "added": "2026-11-17",
+   "chars": 1015,
    "hash": "f2c081af2c87",
    "lastmod": "2026-11-17",
-   "name": "市沢地区センターのプレイルーム（旭区）"
+   "links": 8,
+   "name": "市沢地区センターのプレイルーム（旭区）",
+   "type": "TouristAttraction"
   },
   "lau4ko": {
    "added": "2026-11-16",
+   "chars": 954,
    "hash": "0caabd4d658a",
    "lastmod": "2026-11-17",
-   "name": "中村地区センターのプレイルーム（南区）"
+   "links": 8,
+   "name": "中村地区センターのプレイルーム（南区）",
+   "type": "TouristAttraction"
   },
   "lf4ca3": {
    "added": "2026-11-14",
-   "hash": "a68ded8ef71e",
-   "lastmod": "2026-11-18",
-   "name": "はらっぱ祭り（本牧原地域ケアプラザ）"
+   "chars": 913,
+   "hash": "b2175fe2c304",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "はらっぱ祭り（本牧原地域ケアプラザ）",
+   "type": "Event"
   },
   "lsacis": {
    "added": "2026-11-17",
+   "chars": 799,
    "hash": "a9fc1facdde1",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場「ハッピーひろば」（都筑区）"
+   "links": 8,
+   "name": "親と子のつどいの広場「ハッピーひろば」（都筑区）",
+   "type": "TouristAttraction"
   },
   "m2aibh": {
    "added": "2026-11-13",
+   "chars": 597,
    "hash": "5e8e5f999b78",
    "lastmod": "2026-11-17",
-   "name": "杉田地区センターのプレイルーム（磯子区）"
+   "links": 3,
+   "name": "杉田地区センターのプレイルーム（磯子区）",
+   "type": "TouristAttraction"
   },
   "ma2ecn": {
    "added": "2026-11-13",
+   "chars": 714,
    "hash": "5a34bacbcb85",
    "lastmod": "2026-11-17",
-   "name": "金沢地区センターのプレイルーム（金沢区）"
+   "links": 8,
+   "name": "金沢地区センターのプレイルーム（金沢区）",
+   "type": "TouristAttraction"
   },
   "mhcae3": {
    "added": "2026-11-13",
+   "chars": 645,
    "hash": "e7a25b068f06",
    "lastmod": "2026-11-17",
-   "name": "瀬谷地区センターのプレイルーム（瀬谷区）"
+   "links": 5,
+   "name": "瀬谷地区センターのプレイルーム（瀬谷区）",
+   "type": "TouristAttraction"
   },
   "mowi0u": {
    "added": "2026-11-12",
+   "chars": 2571,
    "hash": "e36dcbc7a573",
    "lastmod": "2026-11-17",
-   "name": "よこはまコスモワールド（入園無料・キッズカーニバル・ゾーン）"
+   "links": 33,
+   "name": "よこはまコスモワールド（入園無料・キッズカーニバル・ゾーン）",
+   "type": "TouristAttraction"
   },
   "mr52nc": {
    "added": "2026-11-17",
-   "hash": "0c2a1c3f7475",
-   "lastmod": "2026-11-18",
-   "name": "おもちゃの病院（市沢地区センター）"
+   "chars": 829,
+   "hash": "7c433af0715b",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "おもちゃの病院（市沢地区センター）",
+   "type": "Event"
   },
   "n1wfiq": {
    "added": "2026-11-13",
+   "chars": 995,
    "hash": "02aef29a171f",
    "lastmod": "2026-11-17",
-   "name": "大岡地区センターのプレイルーム（南区）"
+   "links": 8,
+   "name": "大岡地区センターのプレイルーム（南区）",
+   "type": "TouristAttraction"
   },
   "n5fh6h": {
    "added": "2026-11-17",
+   "chars": 492,
    "hash": "a2009603a7b4",
    "lastmod": "2026-11-17",
-   "name": "洋光台駅前公園こどもログハウス「おもしろハウス」（磯子区）"
+   "links": 3,
+   "name": "洋光台駅前公園こどもログハウス「おもしろハウス」（磯子区）",
+   "type": "TouristAttraction"
   },
   "n8lv8i": {
    "added": "2026-11-12",
+   "chars": 1757,
    "hash": "e997d7951464",
    "lastmod": "2026-11-17",
-   "name": "開館40周年記念展「横浜人形の家 建築と記憶」"
+   "links": 50,
+   "name": "開館40周年記念展「横浜人形の家 建築と記憶」",
+   "type": "TouristAttraction"
   },
   "ng8g6k": {
    "added": "2026-11-17",
+   "chars": 1762,
    "hash": "8df50af729fd",
    "lastmod": "2026-11-17",
-   "name": "うんこミュージアム YOKOHAMA BAY（ワールドポーターズ2F）"
+   "links": 10,
+   "name": "うんこミュージアム YOKOHAMA BAY（ワールドポーターズ2F）",
+   "type": "TouristAttraction"
   },
   "njtjpy": {
    "added": "2026-11-12",
+   "chars": 718,
    "hash": "bca12045ac82",
    "lastmod": "2026-11-17",
-   "name": "あーすぷらざ こどもファンタジー展示室（雨の日OKの屋内遊び場）"
+   "links": 6,
+   "name": "あーすぷらざ こどもファンタジー展示室（雨の日OKの屋内遊び場）",
+   "type": "TouristAttraction"
   },
   "nllicx": {
    "added": "2026-11-12",
@@ -3031,321 +4444,480 @@
   },
   "no94l6": {
    "added": "2026-11-16",
-   "hash": "b77ce19fc14b",
-   "lastmod": "2026-11-18",
-   "name": "おはなし おもちゃばこ（中山地区センター）"
+   "chars": 983,
+   "hash": "cd207381148a",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "おはなし おもちゃばこ（中山地区センター）",
+   "type": "Event"
   },
   "ns7g25": {
    "added": "2026-11-17",
+   "chars": 728,
    "hash": "b600fab272c7",
    "lastmod": "2026-11-17",
-   "name": "ぴよぴよ おはなし会（下和泉地区センター）"
+   "links": 15,
+   "name": "ぴよぴよ おはなし会（下和泉地区センター）",
+   "type": "Event"
   },
   "nti3ce": {
    "added": "2026-11-12",
+   "chars": 623,
    "hash": "212c6bdfaef8",
    "lastmod": "2026-11-17",
-   "name": "金沢図書館 こどもフロア・戸塚図書館 こどもとしょしつ"
+   "links": 8,
+   "name": "金沢図書館 こどもフロア・戸塚図書館 こどもとしょしつ",
+   "type": "TouristAttraction"
   },
   "oc32ky": {
    "added": "2026-11-17",
-   "hash": "3e8c0ee1b883",
-   "lastmod": "2026-11-17",
-   "name": "しらとり台公園プレイパーク（青葉区）"
+   "chars": 929,
+   "hash": "8083014c1556",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "しらとり台公園プレイパーク（青葉区）",
+   "type": "Event"
   },
   "od9cm": {
    "added": "2026-11-17",
+   "chars": 727,
    "hash": "f6a0300a9c83",
    "lastmod": "2026-11-17",
-   "name": "ぐらんまのいえ（西区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "ぐらんまのいえ（西区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "odu70i": {
    "added": "2026-11-17",
+   "chars": 806,
    "hash": "7d7846a22827",
    "lastmod": "2026-11-17",
-   "name": "おやこの広場『ぷらっとカフェ』（都筑区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "おやこの広場『ぷらっとカフェ』（都筑区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "ogy1u0": {
    "added": "2026-11-13",
+   "chars": 645,
    "hash": "c97c9cf4b075",
    "lastmod": "2026-11-17",
-   "name": "舞岡地区センターのプレイルーム（戸塚区）"
+   "links": 8,
+   "name": "舞岡地区センターのプレイルーム（戸塚区）",
+   "type": "TouristAttraction"
   },
   "ojrnr1": {
    "added": "2026-11-17",
+   "chars": 713,
    "hash": "ed309266a370",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場ぴよぴよ（青葉区）"
+   "links": 8,
+   "name": "親と子のつどいの広場ぴよぴよ（青葉区）",
+   "type": "TouristAttraction"
   },
   "olckix": {
    "added": "2026-11-12",
+   "chars": 818,
    "hash": "bd297b8c0f37",
    "lastmod": "2026-11-17",
-   "name": "みんなのインクルーシブスポーツ（泉区）"
+   "links": 15,
+   "name": "みんなのインクルーシブスポーツ（泉区）",
+   "type": "Event"
   },
   "oo305l": {
    "added": "2026-11-12",
-   "hash": "9ad02cd1dbb4",
-   "lastmod": "2026-11-18",
-   "name": "こどもの国 工作教室「ヒツジをつくろう」"
+   "chars": 1161,
+   "hash": "e83e44d53945",
+   "lastmod": "2026-11-19",
+   "links": 20,
+   "name": "こどもの国 工作教室「ヒツジをつくろう」",
+   "type": "Event"
   },
   "oob9np": {
    "added": "2026-11-16",
-   "hash": "9dc76bd11504",
-   "lastmod": "2026-11-17",
-   "name": "プレイルームでお話会（藤棚地区センター）"
+   "chars": 743,
+   "hash": "4f1e8e3f7a81",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "プレイルームでお話会（藤棚地区センター）",
+   "type": "Event"
   },
   "opnnov": {
    "added": "2026-11-14",
-   "hash": "dc4f4b4aa1bc",
-   "lastmod": "2026-11-18",
-   "name": "YOKOHAMA STYLE FESTIVAL（日本大通りの歩行者天国・親子の体験も）"
+   "chars": 1215,
+   "hash": "9306283c14a3",
+   "lastmod": "2026-11-19",
+   "links": 19,
+   "name": "YOKOHAMA STYLE FESTIVAL（日本大通りの歩行者天国・親子の体験も）",
+   "type": "Event"
   },
   "pceh6i": {
    "added": "2026-11-17",
-   "hash": "dda7925677d7",
-   "lastmod": "2026-11-18",
-   "name": "きっと乗りたくなる！子どもクルーズツアー＠飛鳥Ⅱ"
+   "chars": 1499,
+   "hash": "fb9757673771",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "きっと乗りたくなる！子どもクルーズツアー＠飛鳥Ⅱ",
+   "type": "Event"
   },
   "pejk8i": {
    "added": "2026-11-17",
+   "chars": 660,
    "hash": "dc6712c30a33",
    "lastmod": "2026-11-17",
-   "name": "親子のひろばまんま（瀬谷区・親と子のつどいの広場）"
+   "links": 6,
+   "name": "親子のひろばまんま（瀬谷区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "po3rvu": {
    "added": "2026-11-12",
+   "chars": 1873,
    "hash": "ad5127b52832",
    "lastmod": "2026-11-17",
-   "name": "かえるのピクルス スタンプラリーin横浜 2026"
+   "links": 50,
+   "name": "かえるのピクルス スタンプラリーin横浜 2026",
+   "type": "TouristAttraction"
   },
   "pq5yhd": {
    "added": "2026-11-17",
+   "chars": 682,
    "hash": "91fe0593d1e9",
    "lastmod": "2026-11-17",
-   "name": "つどいの広場ぽっけ（港北区）"
+   "links": 8,
+   "name": "つどいの広場ぽっけ（港北区）",
+   "type": "TouristAttraction"
   },
   "ptcbwy": {
    "added": "2026-11-12",
+   "chars": 1166,
    "hash": "ecfc337be60a",
    "lastmod": "2026-11-17",
-   "name": "アドベンチャーアイランド ららぽーと横浜"
+   "links": 10,
+   "name": "アドベンチャーアイランド ららぽーと横浜",
+   "type": "TouristAttraction"
   },
   "pvmt8o": {
    "added": "2026-11-14",
+   "chars": 587,
    "hash": "8f017715052f",
    "lastmod": "2026-11-17",
-   "name": "綱島公園こどもログハウス（港北区）"
+   "links": 8,
+   "name": "綱島公園こどもログハウス（港北区）",
+   "type": "TouristAttraction"
   },
   "pxqj6b": {
    "added": "2026-11-16",
-   "hash": "fa954ed23320",
-   "lastmod": "2026-11-18",
-   "name": "「ぽっぽっぽっ」のおはなし会（西地区センター）"
+   "chars": 829,
+   "hash": "5977626a2865",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "「ぽっぽっぽっ」のおはなし会（西地区センター）",
+   "type": "Event"
   },
   "pxyixh": {
    "added": "2026-11-12",
+   "chars": 944,
    "hash": "d33de4ee299b",
    "lastmod": "2026-11-17",
-   "name": "109シネマズゆめが丘 キッズシネマ（子ども専用の映画館）"
+   "links": 8,
+   "name": "109シネマズゆめが丘 キッズシネマ（子ども専用の映画館）",
+   "type": "TouristAttraction"
   },
   "pxzwdk": {
    "added": "2026-11-12",
-   "hash": "bbd9ec43d10b",
-   "lastmod": "2026-11-18",
-   "name": "ANAの飛行機に色をぬろう！親子ワークショップ"
+   "chars": 2287,
+   "hash": "c92cd1968bfb",
+   "lastmod": "2026-11-19",
+   "links": 39,
+   "name": "ANAの飛行機に色をぬろう！親子ワークショップ",
+   "type": "Event"
   },
   "pyl6o6": {
    "added": "2026-11-17",
-   "hash": "ac80c5e2096d",
-   "lastmod": "2026-11-17",
-   "name": "小中学生の箏のお稽古と発表会（仲町台地区センター）"
+   "chars": 970,
+   "hash": "ab35ebc3244e",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "小中学生の箏のお稽古と発表会（仲町台地区センター）",
+   "type": "Event"
   },
   "pzqs5n": {
    "added": "2026-11-13",
+   "chars": 617,
    "hash": "22b0cc3686ca",
    "lastmod": "2026-11-17",
-   "name": "わっくんひろば（鶴見区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "わっくんひろば（鶴見区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "q2fktf": {
    "added": "2026-11-17",
+   "chars": 666,
    "hash": "70b47b2b94f5",
    "lastmod": "2026-11-17",
-   "name": "つどいの広場しゅーくるーむ（神奈川区）"
+   "links": 8,
+   "name": "つどいの広場しゅーくるーむ（神奈川区）",
+   "type": "TouristAttraction"
   },
   "q7muak": {
    "added": "2026-11-17",
+   "chars": 681,
    "hash": "d709ddde9709",
    "lastmod": "2026-11-17",
-   "name": "いずみ台公園こどもログハウス「げんきっこ」（泉区）"
+   "links": 7,
+   "name": "いずみ台公園こどもログハウス「げんきっこ」（泉区）",
+   "type": "TouristAttraction"
   },
   "qf81bo": {
    "added": "2026-11-15",
-   "hash": "606d82b513c9",
-   "lastmod": "2026-11-18",
-   "name": "ひろばのどんぐりおはなし会（港北図書館）"
+   "chars": 764,
+   "hash": "3c7d0221f751",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ひろばのどんぐりおはなし会（港北図書館）",
+   "type": "Event"
   },
   "qhsrm8": {
    "added": "2026-11-17",
-   "hash": "32f5c680dfd6",
-   "lastmod": "2026-11-17",
-   "name": "横浜美術館「みんなのフリーゾーン」（粘土・絵の具・紙で自由に作る）"
+   "chars": 1960,
+   "hash": "96daadd9efbc",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "横浜美術館「みんなのフリーゾーン」（粘土・絵の具・紙で自由に作る）",
+   "type": "Event"
   },
   "qi0w6a": {
    "added": "2026-11-12",
-   "hash": "114b2edded3e",
-   "lastmod": "2026-11-17",
-   "name": "Vintage & Artisan Market in みなとみらい（蚤の市）"
+   "chars": 2930,
+   "hash": "b30130fb0353",
+   "lastmod": "2026-11-19",
+   "links": 43,
+   "name": "Vintage & Artisan Market in みなとみらい（蚤の市）",
+   "type": "Event"
   },
   "qob13u": {
    "added": "2026-11-14",
+   "chars": 567,
    "hash": "9123388e62ac",
    "lastmod": "2026-11-17",
-   "name": "舞岡川遊水地公園（戸塚区の公園）"
+   "links": 8,
+   "name": "舞岡川遊水地公園（戸塚区の公園）",
+   "type": "Park"
   },
   "qouhae": {
    "added": "2026-11-17",
+   "chars": 821,
    "hash": "fc4a7982ec35",
    "lastmod": "2026-11-17",
-   "name": "神奈川地区センターまつり（神奈川宿フェスと同時開催）"
+   "links": 16,
+   "name": "神奈川地区センターまつり（神奈川宿フェスと同時開催）",
+   "type": "Event"
   },
   "qt9hzn": {
    "added": "2026-11-17",
-   "hash": "6f443ce469e5",
-   "lastmod": "2026-11-17",
-   "name": "わくわく真空実験教室（北山田地区センター）"
+   "chars": 827,
+   "hash": "a7088a2e8fac",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "わくわく真空実験教室（北山田地区センター）",
+   "type": "Event"
   },
   "quslkp": {
    "added": "2026-11-17",
+   "chars": 707,
    "hash": "6ca12d1fd55a",
    "lastmod": "2026-11-17",
-   "name": "ちゅーりっぷパーク（港南区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "ちゅーりっぷパーク（港南区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "r0tzwj": {
    "added": "2026-11-13",
+   "chars": 636,
    "hash": "17c216bad261",
    "lastmod": "2026-11-17",
-   "name": "ラフールサテライト（青葉区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "ラフールサテライト（青葉区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "r1k6tb": {
    "added": "2026-11-12",
+   "chars": 774,
    "hash": "d88d8f04af94",
    "lastmod": "2026-11-17",
-   "name": "金沢動物園（コアラ・オカピ）"
+   "links": 9,
+   "name": "金沢動物園（コアラ・オカピ）",
+   "type": "TouristAttraction"
   },
   "r528f": {
    "added": "2026-11-17",
+   "chars": 705,
    "hash": "f37f2d9641f3",
    "lastmod": "2026-11-17",
-   "name": "大場みすずが丘地区センターのプレイルーム（青葉区）"
+   "links": 8,
+   "name": "大場みすずが丘地区センターのプレイルーム（青葉区）",
+   "type": "TouristAttraction"
   },
   "rb4asd": {
    "added": "2026-11-13",
+   "chars": 790,
    "hash": "b3af95fc9299",
    "lastmod": "2026-11-17",
-   "name": "西谷地区センターのプレイルーム（保土ケ谷区）"
+   "links": 8,
+   "name": "西谷地区センターのプレイルーム（保土ケ谷区）",
+   "type": "TouristAttraction"
   },
   "rh7csv": {
    "added": "2026-11-17",
+   "chars": 705,
    "hash": "a4f118f74b9b",
    "lastmod": "2026-11-17",
-   "name": "ともとも（港北区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "ともとも（港北区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "rp9cxz": {
    "added": "2026-11-12",
+   "chars": 2123,
    "hash": "b59da685e95b",
    "lastmod": "2026-11-18",
-   "name": "京急ミュージアム（本物の電車・ジオラマ・運転シミュレーター）"
+   "links": 12,
+   "name": "京急ミュージアム（本物の電車・ジオラマ・運転シミュレーター）",
+   "type": "TouristAttraction"
   },
   "s2uckh": {
    "added": "2026-11-17",
-   "hash": "ea74ded130e0",
-   "lastmod": "2026-11-17",
-   "name": "中田子育てサロン（立場地区センターの子育て行事）"
+   "chars": 679,
+   "hash": "a3c70a86f0b6",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "中田子育てサロン（立場地区センターの子育て行事）",
+   "type": "Event"
   },
   "s5c503": {
    "added": "2026-11-12",
-   "hash": "929eec567933",
-   "lastmod": "2026-11-17",
-   "name": "ふるさと港北ふれあいまつり＆秋のヨコアリくんまつり"
+   "chars": 1164,
+   "hash": "d3078dcfc6f6",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "ふるさと港北ふれあいまつり＆秋のヨコアリくんまつり",
+   "type": "Event"
   },
   "s75uvk": {
    "added": "2026-11-12",
-   "hash": "ad3825e85663",
-   "lastmod": "2026-11-17",
-   "name": "市場探検隊（横浜市中央卸売市場の一般開放）"
+   "chars": 910,
+   "hash": "456be092c196",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "市場探検隊（横浜市中央卸売市場の一般開放）",
+   "type": "Event"
   },
   "sasoq8": {
    "added": "2026-11-14",
+   "chars": 564,
    "hash": "4da852148e82",
    "lastmod": "2026-11-17",
-   "name": "篠原地区センターのプレイルーム（港北区）"
+   "links": 8,
+   "name": "篠原地区センターのプレイルーム（港北区）",
+   "type": "TouristAttraction"
   },
   "sbzc73": {
    "added": "2026-11-12",
-   "hash": "2ae7b089c607",
-   "lastmod": "2026-11-17",
-   "name": "ディノグランプリ！（恐竜をぬって走らせるデジタル体験）"
+   "chars": 1502,
+   "hash": "3d7cc44e122e",
+   "lastmod": "2026-11-19",
+   "links": 18,
+   "name": "ディノグランプリ！（恐竜をぬって走らせるデジタル体験）",
+   "type": "Event"
   },
   "sdpfh0": {
    "added": "2026-11-16",
+   "chars": 628,
    "hash": "4cfd2d06b608",
    "lastmod": "2026-11-17",
-   "name": "白幡公園こどもログハウス「ピッコロ」（鶴見区）"
+   "links": 8,
+   "name": "白幡公園こどもログハウス「ピッコロ」（鶴見区）",
+   "type": "TouristAttraction"
   },
   "seejmk": {
    "added": "2026-11-12",
-   "hash": "3884c8cb25bf",
-   "lastmod": "2026-11-18",
-   "name": "ミニ実験「酸とアルカリ いろみずマジック」（宇宙科学館）"
+   "chars": 868,
+   "hash": "c0724ad7602c",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "ミニ実験「酸とアルカリ いろみずマジック」（宇宙科学館）",
+   "type": "Event"
   },
   "sepu9w": {
    "added": "2026-11-12",
+   "chars": 2517,
    "hash": "d6645929d302",
    "lastmod": "2026-11-17",
-   "name": "抱っこdeシネマ（赤ちゃん連れで見られる映画の回・MARK IS 5F）"
+   "links": 44,
+   "name": "抱っこdeシネマ（赤ちゃん連れで見られる映画の回・MARK IS 5F）",
+   "type": "Event"
   },
   "snh40y": {
    "added": "2026-11-16",
+   "chars": 954,
    "hash": "c76d4942a227",
    "lastmod": "2026-11-17",
-   "name": "永田地区センターのプレイルーム（南区）"
+   "links": 8,
+   "name": "永田地区センターのプレイルーム（南区）",
+   "type": "TouristAttraction"
   },
   "sozy7g": {
    "added": "2026-11-17",
-   "hash": "8c93ecff6ad1",
-   "lastmod": "2026-11-18",
-   "name": "はじめての造形あそび 粘土コース（横浜美術館）"
+   "chars": 1994,
+   "hash": "f2a41edd88c3",
+   "lastmod": "2026-11-19",
+   "links": 22,
+   "name": "はじめての造形あそび 粘土コース（横浜美術館）",
+   "type": "Event"
   },
   "t32krz": {
    "added": "2026-11-12",
+   "chars": 1228,
    "hash": "5a7cb84f3aae",
    "lastmod": "2026-11-17",
-   "name": "三井アウトレットパーク 横浜ベイサイド（ベビーラウンジ・中庭・くじらの広場）"
+   "links": 9,
+   "name": "三井アウトレットパーク 横浜ベイサイド（ベビーラウンジ・中庭・くじらの広場）",
+   "type": "TouristAttraction"
   },
   "t4o3l9": {
    "added": "2026-11-17",
+   "chars": 1760,
    "hash": "7dd987398ce4",
    "lastmod": "2026-11-17",
-   "name": "ウルトラマルチバース 地球防衛大作戦 in 横浜赤レンガ倉庫（ウルトラマン60周年）"
+   "links": 11,
+   "name": "ウルトラマルチバース 地球防衛大作戦 in 横浜赤レンガ倉庫（ウルトラマン60周年）",
+   "type": "TouristAttraction"
   },
   "tf02h0": {
    "added": "2026-11-17",
-   "hash": "1b30a74a3a1a",
-   "lastmod": "2026-11-17",
-   "name": "おはなしのゆりかご（藤が丘地区センター）"
+   "chars": 660,
+   "hash": "9c570820389b",
+   "lastmod": "2026-11-19",
+   "links": 12,
+   "name": "おはなしのゆりかご（藤が丘地区センター）",
+   "type": "Event"
   },
   "tfqpqi": {
    "added": "2026-11-16",
+   "chars": 822,
    "hash": "fb3a2b950663",
    "lastmod": "2026-11-17",
-   "name": "長津田地区センターのプレイルーム（緑区）"
+   "links": 8,
+   "name": "長津田地区センターのプレイルーム（緑区）",
+   "type": "TouristAttraction"
   },
   "to2c5y": {
    "added": "2026-11-17",
-   "hash": "21a98f2f300b",
-   "lastmod": "2026-11-17",
-   "name": "ほっこりんこ（藤が丘地区センター）"
+   "chars": 881,
+   "hash": "caff3876513d",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ほっこりんこ（藤が丘地区センター）",
+   "type": "Event"
   },
   "to47zh": {
    "added": "2026-11-13",
@@ -3356,207 +4928,309 @@
   },
   "tunm2u": {
    "added": "2026-11-17",
-   "hash": "2b8491ca85cf",
-   "lastmod": "2026-11-18",
-   "name": "ぐみょうじプレイパーク（南区）"
+   "chars": 996,
+   "hash": "01614d20cc54",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ぐみょうじプレイパーク（南区）",
+   "type": "Event"
   },
   "tz7ibc": {
    "added": "2026-11-13",
+   "chars": 763,
    "hash": "1de775be658a",
    "lastmod": "2026-11-17",
-   "name": "中川西地区センターのプレイルーム（都筑区）"
+   "links": 8,
+   "name": "中川西地区センターのプレイルーム（都筑区）",
+   "type": "TouristAttraction"
   },
   "u8hiwx": {
    "added": "2026-11-16",
-   "hash": "0ed143b359cc",
-   "lastmod": "2026-11-17",
-   "name": "子ども書初め教室（港南台地区センター）"
+   "chars": 1249,
+   "hash": "7d718c78cd33",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "子ども書初め教室（港南台地区センター）",
+   "type": "Event"
   },
   "ubovx8": {
    "added": "2026-11-12",
-   "hash": "fb22dd33f9e2",
-   "lastmod": "2026-11-18",
-   "name": "パウ・パトロール シールラリー＆ステージショー"
+   "chars": 1400,
+   "hash": "0646b64b5865",
+   "lastmod": "2026-11-19",
+   "links": 17,
+   "name": "パウ・パトロール シールラリー＆ステージショー",
+   "type": "Event"
   },
   "uktg1z": {
    "added": "2026-11-17",
+   "chars": 1296,
    "hash": "156ecb728994",
    "lastmod": "2026-11-17",
-   "name": "ズーラシア オリジナルポスターカレンダープレゼント"
+   "links": 17,
+   "name": "ズーラシア オリジナルポスターカレンダープレゼント",
+   "type": "Event"
   },
   "upxhuh": {
    "added": "2026-11-16",
-   "hash": "787129045bfd",
-   "lastmod": "2026-11-18",
-   "name": "一っぽ☆こそだてひろば〜もりのあそび〜（中屋敷地区センター）"
+   "chars": 837,
+   "hash": "20de6bd50132",
+   "lastmod": "2026-11-19",
+   "links": 14,
+   "name": "一っぽ☆こそだてひろば〜もりのあそび〜（中屋敷地区センター）",
+   "type": "Event"
   },
   "uqzy9y": {
    "added": "2026-11-17",
+   "chars": 886,
    "hash": "77291d728543",
    "lastmod": "2026-11-18",
-   "name": "ワクワク クリスマスフェスティバル（美しが丘公園こどもログハウス）"
+   "links": 16,
+   "name": "ワクワク クリスマスフェスティバル（美しが丘公園こどもログハウス）",
+   "type": "Event"
   },
   "v06ofb": {
    "added": "2026-11-17",
-   "hash": "2f3869d06382",
-   "lastmod": "2026-11-18",
-   "name": "フラダンスショー（ワールドポーターズ）"
+   "chars": 1981,
+   "hash": "47d7ed2d0d2c",
+   "lastmod": "2026-11-19",
+   "links": 19,
+   "name": "フラダンスショー（ワールドポーターズ）",
+   "type": "Event"
   },
   "v2uib7": {
    "added": "2026-11-17",
+   "chars": 790,
    "hash": "3b289b9f8cef",
    "lastmod": "2026-11-17",
-   "name": "こどもの国 フィールドゲーム＜秋バージョン＞"
+   "links": 9,
+   "name": "こどもの国 フィールドゲーム＜秋バージョン＞",
+   "type": "TouristAttraction"
   },
   "vfp5ha": {
    "added": "2026-11-12",
+   "chars": 1832,
    "hash": "d7f441e2b8c8",
    "lastmod": "2026-11-17",
-   "name": "BALLPARK Xmas YOKOHAMA KANNAI 2026"
+   "links": 50,
+   "name": "BALLPARK Xmas YOKOHAMA KANNAI 2026",
+   "type": "TouristAttraction"
   },
   "vfy871": {
    "added": "2026-11-13",
+   "chars": 963,
    "hash": "5c50e71e264b",
    "lastmod": "2026-11-17",
-   "name": "神大寺地区センターのプレイルーム（神奈川区）"
+   "links": 8,
+   "name": "神大寺地区センターのプレイルーム（神奈川区）",
+   "type": "TouristAttraction"
   },
   "vjjm8g": {
    "added": "2026-11-17",
-   "hash": "65c466120734",
-   "lastmod": "2026-11-18",
-   "name": "鯛ヶ崎公園プレイパーク（港北区）"
+   "chars": 1174,
+   "hash": "d5a6f0c5177f",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "鯛ヶ崎公園プレイパーク（港北区）",
+   "type": "Event"
   },
   "vy2g65": {
    "added": "2026-11-16",
-   "hash": "e7922079d4f6",
-   "lastmod": "2026-11-17",
-   "name": "こども書道教室（豊田地区センター）"
+   "chars": 888,
+   "hash": "808aaa95ad6d",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "こども書道教室（豊田地区センター）",
+   "type": "Event"
   },
   "w62d5a": {
    "added": "2026-11-18",
-   "hash": "cc007c51523a",
-   "lastmod": "2026-11-18",
-   "name": "大きな紙で白い森をつくろう（横浜市民ギャラリー）"
+   "chars": 761,
+   "hash": "ae07a14faa9f",
+   "lastmod": "2026-11-19",
+   "links": 14,
+   "name": "大きな紙で白い森をつくろう（横浜市民ギャラリー）",
+   "type": "Event"
   },
   "w80fqr": {
    "added": "2026-11-17",
+   "chars": 745,
    "hash": "b7a47510abf4",
    "lastmod": "2026-11-18",
-   "name": "本牧地区センターまつり（子ども縁日）"
+   "links": 13,
+   "name": "本牧地区センターまつり（子ども縁日）",
+   "type": "Event"
   },
   "wapqva": {
    "added": "2026-11-17",
+   "chars": 704,
    "hash": "714eb7bfbbb9",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場ままのわ（金沢区）"
+   "links": 8,
+   "name": "親と子のつどいの広場ままのわ（金沢区）",
+   "type": "TouristAttraction"
   },
   "whkos1": {
    "added": "2026-11-17",
+   "chars": 677,
    "hash": "d5731eafa437",
    "lastmod": "2026-11-17",
-   "name": "M-HOUSE（エムハウス）三春台（南区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "M-HOUSE（エムハウス）三春台（南区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "whrwrp": {
    "added": "2026-11-17",
+   "chars": 953,
    "hash": "43d195de6b29",
    "lastmod": "2026-11-19",
-   "name": "かみのき地区センまつり2026（神之木地区センター）"
+   "links": 16,
+   "name": "かみのき地区センまつり2026（神之木地区センター）",
+   "type": "Event"
   },
   "wk13oq": {
    "added": "2026-11-12",
+   "chars": 872,
    "hash": "2188d19f82d5",
    "lastmod": "2026-11-17",
-   "name": "アカチャンホンポ 港南台バース店のキッズスペース"
+   "links": 9,
+   "name": "アカチャンホンポ 港南台バース店のキッズスペース",
+   "type": "TouristAttraction"
   },
   "wll1xk": {
    "added": "2026-11-13",
+   "chars": 581,
    "hash": "0c97a38a132d",
    "lastmod": "2026-11-17",
-   "name": "本郷地区センターのプレイルーム（栄区）"
+   "links": 4,
+   "name": "本郷地区センターのプレイルーム（栄区）",
+   "type": "TouristAttraction"
   },
   "wmjpe8": {
    "added": "2026-11-17",
+   "chars": 681,
    "hash": "b65316e3cc04",
    "lastmod": "2026-11-17",
-   "name": "ピッコロひろば（泉区・親と子のつどいの広場）"
+   "links": 7,
+   "name": "ピッコロひろば（泉区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "wsiqgj": {
    "added": "2026-11-17",
-   "hash": "11a8706cc4cf",
-   "lastmod": "2026-11-17",
-   "name": "えいごであそぼう！（上飯田地区センター）"
+   "chars": 686,
+   "hash": "0a018863cab4",
+   "lastmod": "2026-11-19",
+   "links": 15,
+   "name": "えいごであそぼう！（上飯田地区センター）",
+   "type": "Event"
   },
   "wt4gku": {
    "added": "2026-11-17",
+   "chars": 907,
    "hash": "3489b8323782",
    "lastmod": "2026-11-17",
-   "name": "みんなで書き初め IN美しが丘西（美しが丘西地区センター）"
+   "links": 16,
+   "name": "みんなで書き初め IN美しが丘西（美しが丘西地区センター）",
+   "type": "Event"
   },
   "wz0uob": {
    "added": "2026-11-17",
+   "chars": 699,
    "hash": "72930b28f05a",
    "lastmod": "2026-11-17",
-   "name": "はなはなひろば（鶴見区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "はなはなひろば（鶴見区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "x0mfmo": {
    "added": "2026-11-14",
+   "chars": 2074,
    "hash": "23e41ca7aec5",
    "lastmod": "2026-11-17",
-   "name": "パウ・パトロールのクイズラリー＆マーシャルのグリーティング（BALLPARK Xmas）"
+   "links": 58,
+   "name": "パウ・パトロールのクイズラリー＆マーシャルのグリーティング（BALLPARK Xmas）",
+   "type": "Event"
   },
   "x4x5ar": {
    "added": "2026-11-17",
+   "chars": 681,
    "hash": "0f8793b0d0eb",
    "lastmod": "2026-11-17",
-   "name": "つどいの広場えの木（南区）"
+   "links": 8,
+   "name": "つどいの広場えの木（南区）",
+   "type": "TouristAttraction"
   },
   "x7ybjj": {
    "added": "2026-11-14",
+   "chars": 615,
    "hash": "efb2179cfd8b",
    "lastmod": "2026-11-17",
-   "name": "ちきゅうのにわ 東戸塚店（イオンスタイル東戸塚3F）"
+   "links": 8,
+   "name": "ちきゅうのにわ 東戸塚店（イオンスタイル東戸塚3F）",
+   "type": "TouristAttraction"
   },
   "x8q74w": {
    "added": "2026-11-12",
+   "chars": 2091,
    "hash": "1b7aff9636e9",
    "lastmod": "2026-11-17",
-   "name": "横浜アンパンマンこどもミュージアム 1階モール（無料エリア）"
+   "links": 11,
+   "name": "横浜アンパンマンこどもミュージアム 1階モール（無料エリア）",
+   "type": "TouristAttraction"
   },
   "xafpzy": {
    "added": "2026-11-17",
+   "chars": 731,
    "hash": "8a1ecd5082af",
    "lastmod": "2026-11-17",
-   "name": "親と子のつどいの広場「ふきのとう」（金沢区）"
+   "links": 8,
+   "name": "親と子のつどいの広場「ふきのとう」（金沢区）",
+   "type": "TouristAttraction"
   },
   "xc224v": {
    "added": "2026-11-16",
-   "hash": "d2129d6be26f",
-   "lastmod": "2026-11-17",
-   "name": "ベビーマッサージ（長津田地区センター）"
+   "chars": 825,
+   "hash": "c2f61395eff6",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "ベビーマッサージ（長津田地区センター）",
+   "type": "Event"
   },
   "xfgt96": {
    "added": "2026-11-14",
+   "chars": 707,
    "hash": "14431079b9c1",
    "lastmod": "2026-11-17",
-   "name": "イオンスタイル東戸塚 3Fのこどもの遊び場（かもめひろば ほか）"
+   "links": 8,
+   "name": "イオンスタイル東戸塚 3Fのこどもの遊び場（かもめひろば ほか）",
+   "type": "TouristAttraction"
   },
   "xinpqm": {
    "added": "2026-11-12",
-   "hash": "cd510d0dd08c",
-   "lastmod": "2026-11-18",
-   "name": "0歳からのわくわくコンサート「クリスマス★パーティ」"
+   "chars": 922,
+   "hash": "c055d9a5eb5d",
+   "lastmod": "2026-11-19",
+   "links": 13,
+   "name": "0歳からのわくわくコンサート「クリスマス★パーティ」",
+   "type": "Event"
   },
   "xkggpz": {
    "added": "2026-11-13",
+   "chars": 806,
    "hash": "6f1452488c20",
    "lastmod": "2026-11-17",
-   "name": "西地区センターのプレイルーム（西区）"
+   "links": 8,
+   "name": "西地区センターのプレイルーム（西区）",
+   "type": "TouristAttraction"
   },
   "xolurh": {
    "added": "2026-11-17",
+   "chars": 760,
    "hash": "9b6d4bd9835d",
    "lastmod": "2026-11-17",
-   "name": "とぴあ（保土ケ谷区・親と子のつどいの広場）"
+   "links": 8,
+   "name": "とぴあ（保土ケ谷区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "xxi7e8": {
    "added": "2026-11-15",
@@ -3567,27 +5241,39 @@
   },
   "xyejtu": {
    "added": "2026-11-13",
+   "chars": 685,
    "hash": "3478faec1298",
    "lastmod": "2026-11-17",
-   "name": "若草台地区センターのプレイルーム（青葉区）"
+   "links": 8,
+   "name": "若草台地区センターのプレイルーム（青葉区）",
+   "type": "TouristAttraction"
   },
   "y6e0qf": {
    "added": "2026-11-18",
-   "hash": "1f220ba1aaee",
-   "lastmod": "2026-11-18",
-   "name": "紙芝居の日（港北図書館）"
+   "chars": 754,
+   "hash": "82c4ee2873b3",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "紙芝居の日（港北図書館）",
+   "type": "Event"
   },
   "yax16u": {
    "added": "2026-11-17",
-   "hash": "dbbd1acfbc79",
-   "lastmod": "2026-11-18",
-   "name": "幼児向け歯科相談〜良い歯並びに育つ離乳食のあげかた〜（藤が丘地区センター）"
+   "chars": 805,
+   "hash": "7f0437a4b66e",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "幼児向け歯科相談〜良い歯並びに育つ離乳食のあげかた〜（藤が丘地区センター）",
+   "type": "Event"
   },
   "yjuoa9": {
    "added": "2026-11-17",
-   "hash": "64d6dd43ea43",
-   "lastmod": "2026-11-17",
-   "name": "子育て相談（磯子地区センター）"
+   "chars": 563,
+   "hash": "5955034bdd37",
+   "lastmod": "2026-11-19",
+   "links": 8,
+   "name": "子育て相談（磯子地区センター）",
+   "type": "Event"
   },
   "yk490u": {
    "added": "2026-11-12",
@@ -3598,63 +5284,93 @@
   },
   "yq7c00": {
    "added": "2026-11-14",
+   "chars": 1717,
    "hash": "f963405dd97b",
    "lastmod": "2026-11-17",
-   "name": "Pokémon Winter Party（ワールドポーターズのポケモンのクリスマス装飾）"
+   "links": 11,
+   "name": "Pokémon Winter Party（ワールドポーターズのポケモンのクリスマス装飾）",
+   "type": "TouristAttraction"
   },
   "yrn7wf": {
    "added": "2026-11-17",
+   "chars": 656,
    "hash": "9166e4bc808b",
    "lastmod": "2026-11-17",
-   "name": "「ぽっぽっぽっ」とあそぼう！（野毛地区センター）"
+   "links": 7,
+   "name": "「ぽっぽっぽっ」とあそぼう！（野毛地区センター）",
+   "type": "Event"
   },
   "z2sk0q": {
    "added": "2026-11-16",
-   "hash": "ea428bfeeee1",
-   "lastmod": "2026-11-17",
-   "name": "親子であそぼう！（豊田地区センター）"
+   "chars": 616,
+   "hash": "3d52afcd34e3",
+   "lastmod": "2026-11-19",
+   "links": 8,
+   "name": "親子であそぼう！（豊田地区センター）",
+   "type": "Event"
   },
   "z99p54": {
    "added": "2026-11-17",
-   "hash": "f80246257bcc",
-   "lastmod": "2026-11-17",
-   "name": "オリジナル デコ小物入れ作り（富岡並木地区センター）"
+   "chars": 872,
+   "hash": "73bcc03fc6a4",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "オリジナル デコ小物入れ作り（富岡並木地区センター）",
+   "type": "Event"
   },
   "zd9jj6": {
    "added": "2026-11-13",
+   "chars": 615,
    "hash": "63a1b5b2815f",
    "lastmod": "2026-11-17",
-   "name": "いっぽサテライト（緑区の地域子育て支援拠点）"
+   "links": 8,
+   "name": "いっぽサテライト（緑区の地域子育て支援拠点）",
+   "type": "TouristAttraction"
   },
   "zik3sq": {
    "added": "2026-11-17",
-   "hash": "52ac91d78045",
-   "lastmod": "2026-11-17",
-   "name": "土曜日のおはなし会（緑図書館）"
+   "chars": 747,
+   "hash": "7c5feda0669c",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "土曜日のおはなし会（緑図書館）",
+   "type": "Event"
   },
   "zl93s0": {
    "added": "2026-11-16",
+   "chars": 776,
    "hash": "e8bc33e82edc",
    "lastmod": "2026-11-17",
-   "name": "永谷地区センターのプレイルーム（港南区）"
+   "links": 8,
+   "name": "永谷地区センターのプレイルーム（港南区）",
+   "type": "TouristAttraction"
   },
   "zt84tz": {
    "added": "2026-11-16",
-   "hash": "e1d70e0ec663",
-   "lastmod": "2026-11-17",
-   "name": "クリスマスコンサート（長津田地区センター）"
+   "chars": 821,
+   "hash": "9efcdf9b44d8",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "クリスマスコンサート（長津田地区センター）",
+   "type": "Event"
   },
   "ztmgik": {
    "added": "2026-11-17",
+   "chars": 624,
    "hash": "4d5e356f3472",
    "lastmod": "2026-11-17",
-   "name": "シャーロックBABy本牧（中区・親と子のつどいの広場）"
+   "links": 5,
+   "name": "シャーロックBABy本牧（中区・親と子のつどいの広場）",
+   "type": "TouristAttraction"
   },
   "zxeeeh": {
    "added": "2026-11-12",
+   "chars": 2397,
    "hash": "2eed29513b06",
    "lastmod": "2026-11-17",
-   "name": "アートリンク in 横浜赤レンガ倉庫（屋外スケート）"
+   "links": 50,
+   "name": "アートリンク in 横浜赤レンガ倉庫（屋外スケート）",
+   "type": "TouristAttraction"
   }
  },
  "og": {
@@ -4360,765 +6076,1137 @@
  "spot": {
   "102eq2v": {
    "added": "2026-11-13",
+   "chars": 974,
    "hash": "e277d6b6466c",
    "lastmod": "2026-11-17",
-   "name": "Mulabo!（ムラーボ！）"
+   "links": 29,
+   "name": "Mulabo!（ムラーボ！）",
+   "type": "Place"
   },
   "10e4i64": {
    "added": "2026-11-12",
+   "chars": 1124,
    "hash": "a5b5eaa92da5",
    "lastmod": "2026-11-18",
-   "name": "港南台バース"
+   "links": 9,
+   "name": "港南台バース",
+   "type": "Place"
   },
   "11vekjp": {
    "added": "2026-11-14",
+   "chars": 486,
    "hash": "d5376caafb32",
    "lastmod": "2026-11-17",
-   "name": "戸塚区役所 子育て応援ルーム「とことこ」（戸塚区総合庁舎・戸塚駅直結）"
+   "links": 4,
+   "name": "戸塚区役所 子育て応援ルーム「とことこ」（戸塚区総合庁舎・戸塚駅直結）",
+   "type": "Place"
   },
   "11yqwmv": {
    "added": "2026-11-13",
+   "chars": 1825,
    "hash": "9d82b7ef6b69",
    "lastmod": "2026-11-17",
-   "name": "元町ショッピングストリート"
+   "links": 50,
+   "name": "元町ショッピングストリート",
+   "type": "Place"
   },
   "11zsskf": {
    "added": "2026-11-13",
+   "chars": 1749,
    "hash": "e17683b01c43",
    "lastmod": "2026-11-18",
-   "name": "横浜開港資料館"
+   "links": 54,
+   "name": "横浜開港資料館",
+   "type": "Place"
   },
   "1234fgp": {
    "added": "2026-11-13",
+   "chars": 433,
    "hash": "83da9eaf6692",
    "lastmod": "2026-11-18",
-   "name": "日産 グローバル本社ギャラリー"
+   "links": 12,
+   "name": "日産 グローバル本社ギャラリー",
+   "type": "Place"
   },
   "12pvzvc": {
    "added": "2026-11-13",
+   "chars": 1722,
    "hash": "012e7c651d17",
    "lastmod": "2026-11-17",
-   "name": "横浜博覧館（中華街）"
+   "links": 53,
+   "name": "横浜博覧館（中華街）",
+   "type": "Place"
   },
   "12zefgy": {
    "added": "2026-11-13",
+   "chars": 444,
    "hash": "93b5397a49ad",
    "lastmod": "2026-11-18",
-   "name": "横浜シティ・エア・ターミナル（YCAT）"
+   "links": 12,
+   "name": "横浜シティ・エア・ターミナル（YCAT）",
+   "type": "Place"
   },
   "13484hp": {
    "added": "2026-11-12",
+   "chars": 456,
    "hash": "c002f62fbb4a",
    "lastmod": "2026-11-17",
-   "name": "市営地下鉄 あざみ野駅・日吉本町駅のベビーケアスペース"
+   "links": 9,
+   "name": "市営地下鉄 あざみ野駅・日吉本町駅のベビーケアスペース",
+   "type": "Place"
   },
   "14cqotl": {
    "added": "2026-11-12",
+   "chars": 420,
    "hash": "8169143c9efa",
    "lastmod": "2026-11-17",
-   "name": "西武東戸塚S.C.（西武館・モール館）"
+   "links": 1,
+   "name": "西武東戸塚S.C.（西武館・モール館）",
+   "type": "Place"
   },
   "14ubomp": {
    "added": "2026-11-13",
+   "chars": 466,
    "hash": "13e7073cd73a",
    "lastmod": "2026-11-18",
-   "name": "CeeU Yokohama（エディオン横浜西口本店）"
+   "links": 12,
+   "name": "CeeU Yokohama（エディオン横浜西口本店）",
+   "type": "Place"
   },
   "14ws7oy": {
    "added": "2026-11-13",
+   "chars": 644,
    "hash": "79248135faca",
    "lastmod": "2026-11-18",
-   "name": "横浜市民防災センター"
+   "links": 14,
+   "name": "横浜市民防災センター",
+   "type": "Place"
   },
   "14xdm7p": {
    "added": "2026-11-13",
+   "chars": 414,
    "hash": "a83f8a71b090",
    "lastmod": "2026-11-18",
-   "name": "横浜モアーズ（横浜駅西口）"
+   "links": 12,
+   "name": "横浜モアーズ（横浜駅西口）",
+   "type": "Place"
   },
   "16gskoe": {
    "added": "2026-11-13",
+   "chars": 1120,
    "hash": "a84eab97515c",
    "lastmod": "2026-11-17",
-   "name": "神奈川県庁 本庁舎"
+   "links": 46,
+   "name": "神奈川県庁 本庁舎",
+   "type": "Place"
   },
   "16y1gb7": {
    "added": "2026-11-12",
+   "chars": 329,
    "hash": "7145deeaa142",
    "lastmod": "2026-11-17",
+   "links": 1,
    "name": "市営地下鉄 立場駅のベビーケアスペース",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "1762nsq": {
    "added": "2026-11-13",
+   "chars": 964,
    "hash": "9d305be60481",
    "lastmod": "2026-11-17",
-   "name": "横浜にぎわい座"
+   "links": 29,
+   "name": "横浜にぎわい座",
+   "type": "Place"
   },
   "17bif9m": {
    "added": "2026-11-12",
+   "chars": 1872,
    "hash": "bb2bc610929a",
    "lastmod": "2026-11-18",
-   "name": "高島屋横浜店 6F（子ども服売り場）"
+   "links": 19,
+   "name": "高島屋横浜店 6F（子ども服売り場）",
+   "type": "Place"
   },
   "184ayrj": {
    "added": "2026-11-17",
+   "chars": 1163,
    "hash": "38b818e2e0cd",
    "lastmod": "2026-11-17",
-   "name": "ドン・キホーテ（新山下）"
+   "links": 46,
+   "name": "ドン・キホーテ（新山下）",
+   "type": "Place"
   },
   "18ge06x": {
    "added": "2026-11-12",
+   "chars": 2324,
    "hash": "4314e9a74905",
    "lastmod": "2026-11-17",
-   "name": "横浜ランドマークプラザ"
+   "links": 33,
+   "name": "横浜ランドマークプラザ",
+   "type": "Place"
   },
   "18k2nx4": {
    "added": "2026-11-12",
+   "chars": 2832,
    "hash": "262835277895",
    "lastmod": "2026-11-17",
-   "name": "横浜ワールドポーターズ"
+   "links": 54,
+   "name": "横浜ワールドポーターズ",
+   "type": "Place"
   },
   "1bni2wb": {
    "added": "2026-11-13",
+   "chars": 1163,
    "hash": "23cbd0afb58a",
    "lastmod": "2026-11-17",
-   "name": "横浜スタジアム"
+   "links": 46,
+   "name": "横浜スタジアム",
+   "type": "Place"
   },
   "1bzh0zw": {
    "added": "2026-11-13",
+   "chars": 385,
    "hash": "aef2d20fd89f",
    "lastmod": "2026-11-17",
+   "links": 5,
    "name": "横浜国際プール（北山田）",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "1crbqs0": {
    "added": "2026-11-13",
+   "chars": 365,
    "hash": "d2ecf0a88ffe",
    "lastmod": "2026-11-17",
+   "links": 5,
    "name": "神奈川県立 金沢文庫",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "1d0x9al": {
    "added": "2026-11-13",
+   "chars": 636,
    "hash": "6ae787579823",
    "lastmod": "2026-11-17",
-   "name": "横浜アリーナ"
+   "links": 6,
+   "name": "横浜アリーナ",
+   "type": "Place"
   },
   "1ecb3d7": {
    "added": "2026-11-16",
+   "chars": 393,
    "hash": "6abe22e78f89",
    "lastmod": "2026-11-17",
+   "links": 1,
    "name": "LICOPA鶴見（鶴見駅から歩いて14分）",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "1fg72i8": {
    "added": "2026-11-13",
+   "chars": 1127,
    "hash": "155c014fd238",
    "lastmod": "2026-11-17",
-   "name": "山手111番館"
+   "links": 46,
+   "name": "山手111番館",
+   "type": "Place"
   },
   "1fi2psb": {
    "added": "2026-11-13",
+   "chars": 408,
    "hash": "e2d4b021dde5",
    "lastmod": "2026-11-17",
-   "name": "大本山總持寺"
+   "links": 9,
+   "name": "大本山總持寺",
+   "type": "Place"
   },
   "1fvfy18": {
    "added": "2026-11-13",
+   "chars": 334,
    "hash": "9683d93a8c96",
    "lastmod": "2026-11-17",
+   "links": 5,
    "name": "横浜市歴史博物館",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "1hgp91k": {
    "added": "2026-11-12",
+   "chars": 1523,
    "hash": "f803e1ba9643",
    "lastmod": "2026-11-17",
-   "name": "THE WHARF HOUSE 山下公園"
+   "links": 49,
+   "name": "THE WHARF HOUSE 山下公園",
+   "type": "Place"
   },
   "1hr0yvi": {
    "added": "2026-11-16",
+   "chars": 1326,
    "hash": "272eba5e3f5b",
    "lastmod": "2026-11-18",
-   "name": "CIAL鶴見（JR鶴見駅ビル）"
+   "links": 9,
+   "name": "CIAL鶴見（JR鶴見駅ビル）",
+   "type": "Place"
   },
   "1hwrv7w": {
    "added": "2026-11-13",
+   "chars": 2644,
    "hash": "4295f5cbcb3e",
    "lastmod": "2026-11-18",
-   "name": "コニカミノルタプラネタリアYOKOHAMA"
+   "links": 37,
+   "name": "コニカミノルタプラネタリアYOKOHAMA",
+   "type": "Place"
   },
   "1ikiitx": {
    "added": "2026-11-13",
+   "chars": 2444,
    "hash": "4689b4a2c5cc",
    "lastmod": "2026-11-17",
-   "name": "MARINE & WALK YOKOHAMA"
+   "links": 54,
+   "name": "MARINE & WALK YOKOHAMA",
+   "type": "Place"
   },
   "1iqrmsn": {
    "added": "2026-11-13",
+   "chars": 461,
    "hash": "f15642d5239e",
    "lastmod": "2026-11-17",
-   "name": "横浜市電保存館"
+   "links": 10,
+   "name": "横浜市電保存館",
+   "type": "Place"
   },
   "1ja0wse": {
    "added": "2026-11-13",
+   "chars": 478,
    "hash": "d69bc6bc5cff",
    "lastmod": "2026-11-17",
-   "name": "キリンビール横浜工場"
+   "links": 9,
+   "name": "キリンビール横浜工場",
+   "type": "Place"
   },
   "1jpsbg5": {
    "added": "2026-11-12",
+   "chars": 2360,
    "hash": "168e08645d5d",
    "lastmod": "2026-11-18",
-   "name": "象の鼻テラス"
+   "links": 54,
+   "name": "象の鼻テラス",
+   "type": "Place"
   },
   "1jydlv2": {
    "added": "2026-11-14",
+   "chars": 510,
    "hash": "a737bd1eeaa3",
    "lastmod": "2026-11-17",
-   "name": "イオンスタイル東戸塚（3F キッズとベビーのフロア「KIDS REPUBLIC」）"
+   "links": 1,
+   "name": "イオンスタイル東戸塚（3F キッズとベビーのフロア「KIDS REPUBLIC」）",
+   "type": "Place"
   },
   "1kec307": {
    "added": "2026-11-13",
+   "chars": 1178,
    "hash": "547323768312",
    "lastmod": "2026-11-17",
-   "name": "ロイヤルウイング（レストラン船）"
+   "links": 46,
+   "name": "ロイヤルウイング（レストラン船）",
+   "type": "Place"
   },
   "1kkyo59": {
    "added": "2026-11-12",
+   "chars": 1645,
    "hash": "d2c3f222d85d",
    "lastmod": "2026-11-18",
-   "name": "そごう横浜店"
+   "links": 20,
+   "name": "そごう横浜店",
+   "type": "Place"
   },
   "1m4z3z8": {
    "added": "2026-11-12",
+   "chars": 692,
    "hash": "d14e3a5f8cb7",
    "lastmod": "2026-11-17",
-   "name": "ゆめが丘ソラトス（ゆめが丘駅直結）"
+   "links": 3,
+   "name": "ゆめが丘ソラトス（ゆめが丘駅直結）",
+   "type": "Place"
   },
   "1n4x9nx": {
    "added": "2026-11-12",
+   "chars": 2644,
    "hash": "64f9e8375cc5",
    "lastmod": "2026-11-17",
-   "name": "MARK IS みなとみらい"
+   "links": 37,
+   "name": "MARK IS みなとみらい",
+   "type": "Place"
   },
   "1ncpds8": {
    "added": "2026-11-13",
+   "chars": 1155,
    "hash": "ceeb273f4a1a",
    "lastmod": "2026-11-17",
-   "name": "カップヌードルミュージアム 横浜"
+   "links": 46,
+   "name": "カップヌードルミュージアム 横浜",
+   "type": "Place"
   },
   "1nerc27": {
    "added": "2026-11-12",
+   "chars": 776,
    "hash": "249cbd2a5f88",
    "lastmod": "2026-11-17",
-   "name": "ブランチ横浜南部市場"
+   "links": 8,
+   "name": "ブランチ横浜南部市場",
+   "type": "Place"
   },
   "1pfhd5i": {
    "added": "2026-11-14",
+   "chars": 420,
    "hash": "4e9bef64b7a0",
    "lastmod": "2026-11-17",
-   "name": "戸塚モディ（戸塚駅前）"
+   "links": 4,
+   "name": "戸塚モディ（戸塚駅前）",
+   "type": "Place"
   },
   "1pgq843": {
    "added": "2026-11-13",
+   "chars": 1140,
    "hash": "e53647863875",
    "lastmod": "2026-11-17",
-   "name": "マリーンルージュ（レストラン船）"
+   "links": 46,
+   "name": "マリーンルージュ（レストラン船）",
+   "type": "Place"
   },
   "1qg4qi4": {
    "added": "2026-11-12",
+   "chars": 1955,
    "hash": "420f223bc109",
    "lastmod": "2026-11-18",
-   "name": "コレットマーレ（桜木町駅前）"
+   "links": 33,
+   "name": "コレットマーレ（桜木町駅前）",
+   "type": "Place"
   },
   "1qwljlp": {
    "added": "2026-11-13",
+   "chars": 728,
    "hash": "b3571dee3386",
    "lastmod": "2026-11-17",
-   "name": "はまぎん こども宇宙科学館（洋光台）"
+   "links": 9,
+   "name": "はまぎん こども宇宙科学館（洋光台）",
+   "type": "Place"
   },
   "1sptgqk": {
    "added": "2026-11-13",
+   "chars": 1146,
    "hash": "1753ba75a0d7",
    "lastmod": "2026-11-17",
-   "name": "神奈川県立歴史博物館"
+   "links": 46,
+   "name": "神奈川県立歴史博物館",
+   "type": "Place"
   },
   "1sx8mms": {
    "added": "2026-11-12",
+   "chars": 1139,
    "hash": "cdd6bbf3d40f",
    "lastmod": "2026-11-18",
-   "name": "ららぽーと横浜"
+   "links": 5,
+   "name": "ららぽーと横浜",
+   "type": "Place"
   },
   "1sxo28u": {
    "added": "2026-11-13",
+   "chars": 1140,
    "hash": "c95a4cbf1aad",
    "lastmod": "2026-11-17",
-   "name": "日本郵船氷川丸"
+   "links": 46,
+   "name": "日本郵船氷川丸",
+   "type": "Place"
   },
   "1t485qs": {
    "added": "2026-11-12",
+   "chars": 384,
    "hash": "59db3e75dd3a",
    "lastmod": "2026-11-17",
+   "links": 5,
    "name": "市営地下鉄 センター南駅のベビーケアスペース",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "1udotm9": {
    "added": "2026-11-13",
+   "chars": 1129,
    "hash": "eb300cfe21cc",
    "lastmod": "2026-11-17",
-   "name": "ニュースパーク（日本新聞博物館）"
+   "links": 46,
+   "name": "ニュースパーク（日本新聞博物館）",
+   "type": "Place"
   },
   "1vcco8d": {
    "added": "2026-11-12",
+   "chars": 1159,
    "hash": "e25ca6828797",
    "lastmod": "2026-11-17",
-   "name": "モザイクモール港北"
+   "links": 13,
+   "name": "モザイクモール港北",
+   "type": "Place"
   },
   "1wa9gix": {
    "added": "2026-11-13",
+   "chars": 971,
    "hash": "1046f51bba4a",
    "lastmod": "2026-11-17",
-   "name": "Shiseido Beauty Park"
+   "links": 29,
+   "name": "Shiseido Beauty Park",
+   "type": "Place"
   },
   "1wruy4z": {
    "added": "2026-11-13",
+   "chars": 1010,
    "hash": "1c8fd33e7029",
    "lastmod": "2026-11-17",
-   "name": "JICA横浜 海外移住資料館"
+   "links": 29,
+   "name": "JICA横浜 海外移住資料館",
+   "type": "Place"
   },
   "1xb9td9": {
    "added": "2026-11-13",
+   "chars": 378,
    "hash": "908ab77b145a",
    "lastmod": "2026-11-17",
+   "links": 0,
    "name": "イオン天王町ショッピングセンター",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "1xr99pd": {
    "added": "2026-11-12",
+   "chars": 1233,
    "hash": "1f2a184658a8",
    "lastmod": "2026-11-17",
-   "name": "ノースポート・モール"
+   "links": 13,
+   "name": "ノースポート・モール",
+   "type": "Place"
   },
   "1yijbwh": {
    "added": "2026-11-13",
+   "chars": 1561,
    "hash": "cbeef3bd7b6b",
    "lastmod": "2026-11-17",
-   "name": "外交官の家（山手イタリア山庭園）"
+   "links": 50,
+   "name": "外交官の家（山手イタリア山庭園）",
+   "type": "Place"
   },
   "20jxu4": {
    "added": "2026-11-13",
+   "chars": 435,
    "hash": "1342f84c51e2",
    "lastmod": "2026-11-17",
-   "name": "ニッパツ三ツ沢球技場"
+   "links": 9,
+   "name": "ニッパツ三ツ沢球技場",
+   "type": "Place"
   },
   "2ecfoj": {
    "added": "2026-11-13",
+   "chars": 1536,
    "hash": "43dabd4b2c22",
    "lastmod": "2026-11-18",
-   "name": "野毛山動物園"
+   "links": 33,
+   "name": "野毛山動物園",
+   "type": "Place"
   },
   "2xm8ap": {
    "added": "2026-11-12",
+   "chars": 405,
    "hash": "ea8b03f683bb",
    "lastmod": "2026-11-18",
-   "name": "ジョイナス（横浜駅西口）"
+   "links": 12,
+   "name": "ジョイナス（横浜駅西口）",
+   "type": "Place"
   },
   "3b9wwl": {
    "added": "2026-11-13",
+   "chars": 480,
    "hash": "2e6760e1e36a",
    "lastmod": "2026-11-17",
-   "name": "日産スタジアム"
+   "links": 5,
+   "name": "日産スタジアム",
+   "type": "Place"
   },
   "3i908c": {
    "added": "2026-11-12",
+   "chars": 356,
    "hash": "a63765d273a0",
    "lastmod": "2026-11-17",
+   "links": 5,
    "name": "新横浜プリンスペペ",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "3nvg5r": {
    "added": "2026-11-13",
+   "chars": 1125,
    "hash": "c7c8b8be5ded",
    "lastmod": "2026-11-17",
-   "name": "エリスマン邸"
+   "links": 46,
+   "name": "エリスマン邸",
+   "type": "Place"
   },
   "3uc3f9": {
    "added": "2026-11-13",
+   "chars": 976,
    "hash": "5fad78ad7301",
    "lastmod": "2026-11-17",
-   "name": "横浜みなとみらい万葉倶楽部"
+   "links": 29,
+   "name": "横浜みなとみらい万葉倶楽部",
+   "type": "Place"
   },
   "4tc2jy": {
    "added": "2026-11-13",
+   "chars": 2115,
    "hash": "89453a4b174c",
    "lastmod": "2026-11-17",
-   "name": "横浜みなとみらいホール"
+   "links": 37,
+   "name": "横浜みなとみらいホール",
+   "type": "Place"
   },
   "5ja5s4": {
    "added": "2026-11-13",
+   "chars": 2261,
    "hash": "b9ca6f6ebf9f",
    "lastmod": "2026-11-17",
-   "name": "横浜みなと博物館（帆船日本丸）"
+   "links": 36,
+   "name": "横浜みなと博物館（帆船日本丸）",
+   "type": "Place"
   },
   "68q4ac": {
    "added": "2026-11-13",
+   "chars": 2422,
    "hash": "ab2c08f9a324",
    "lastmod": "2026-11-17",
-   "name": "パシフィコ横浜"
+   "links": 37,
+   "name": "パシフィコ横浜",
+   "type": "Place"
   },
   "6rifv7": {
    "added": "2026-11-13",
+   "chars": 1120,
    "hash": "9af2d068955c",
    "lastmod": "2026-11-17",
-   "name": "横浜税関 資料室"
+   "links": 46,
+   "name": "横浜税関 資料室",
+   "type": "Place"
   },
   "7kour8": {
    "added": "2026-11-13",
+   "chars": 1690,
    "hash": "bbc51c5924cc",
    "lastmod": "2026-11-18",
-   "name": "横浜市開港記念会館"
+   "links": 54,
+   "name": "横浜市開港記念会館",
+   "type": "Place"
   },
   "86ef0f": {
    "added": "2026-11-12",
+   "chars": 1158,
    "hash": "386b47018547",
    "lastmod": "2026-11-17",
-   "name": "トレッサ横浜"
+   "links": 5,
+   "name": "トレッサ横浜",
+   "type": "Place"
   },
   "8bz9f5": {
    "added": "2026-11-12",
+   "chars": 531,
    "hash": "1746c101e984",
    "lastmod": "2026-11-17",
-   "name": "京急百貨店（上大岡駅直結）"
+   "links": 1,
+   "name": "京急百貨店（上大岡駅直結）",
+   "type": "Place"
   },
   "8g415g": {
    "added": "2026-11-13",
+   "chars": 669,
    "hash": "faa853f3d35b",
    "lastmod": "2026-11-17",
-   "name": "横浜・八景島シーパラダイス"
+   "links": 8,
+   "name": "横浜・八景島シーパラダイス",
+   "type": "Place"
   },
   "9hcer5": {
    "added": "2026-11-13",
+   "chars": 672,
    "hash": "e1ba8da89f0a",
    "lastmod": "2026-11-18",
-   "name": "横浜市立 金沢動物園"
+   "links": 8,
+   "name": "横浜市立 金沢動物園",
+   "type": "Place"
   },
   "9mohbc": {
    "added": "2026-11-13",
+   "chars": 428,
    "hash": "0ce74883a3d5",
    "lastmod": "2026-11-17",
-   "name": "フォレストアドベンチャー・よこはま"
+   "links": 9,
+   "name": "フォレストアドベンチャー・よこはま",
+   "type": "Place"
   },
   "9tryyg": {
    "added": "2026-11-12",
+   "chars": 1708,
    "hash": "185dc02b2592",
    "lastmod": "2026-11-17",
-   "name": "青葉台東急スクエア"
+   "links": 8,
+   "name": "青葉台東急スクエア",
+   "type": "Place"
   },
   "a9ewxh": {
    "added": "2026-11-13",
+   "chars": 960,
    "hash": "8e92aa4bff3d",
    "lastmod": "2026-11-17",
-   "name": "横浜能楽堂"
+   "links": 29,
+   "name": "横浜能楽堂",
+   "type": "Place"
   },
   "aa2xc0": {
    "added": "2026-11-13",
+   "chars": 1129,
    "hash": "37500b950b61",
    "lastmod": "2026-11-17",
-   "name": "横浜市イギリス館"
+   "links": 46,
+   "name": "横浜市イギリス館",
+   "type": "Place"
   },
   "atkn95": {
    "added": "2026-11-13",
+   "chars": 297,
    "hash": "cb7045a52324",
    "lastmod": "2026-11-17",
+   "links": 2,
    "name": "本牧市民・臨海公園",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "bbqkrs": {
    "added": "2026-11-14",
+   "chars": 268,
    "hash": "d55ff4065716",
    "lastmod": "2026-11-17",
+   "links": 0,
    "name": "日吉東急アベニュー（日吉駅直結）",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "bbqq7x": {
    "added": "2026-11-13",
+   "chars": 2175,
    "hash": "c93f01fedd7d",
    "lastmod": "2026-11-17",
-   "name": "三菱みなとみらい技術館"
+   "links": 37,
+   "name": "三菱みなとみらい技術館",
+   "type": "Place"
   },
   "buoer4": {
    "added": "2026-11-13",
+   "chars": 1127,
    "hash": "287aa06b5244",
    "lastmod": "2026-11-17",
-   "name": "山手234番館"
+   "links": 46,
+   "name": "山手234番館",
+   "type": "Place"
   },
   "co5mie": {
    "added": "2026-11-13",
+   "chars": 1769,
    "hash": "5b18b153d714",
    "lastmod": "2026-11-17",
-   "name": "横浜大世界（中華街）"
+   "links": 53,
+   "name": "横浜大世界（中華街）",
+   "type": "Place"
   },
   "csr15z": {
    "added": "2026-11-12",
+   "chars": 2619,
    "hash": "300bb2613afe",
    "lastmod": "2026-11-17",
-   "name": "クイーンズスクエア横浜（みなとみらい東急スクエア）"
+   "links": 37,
+   "name": "クイーンズスクエア横浜（みなとみらい東急スクエア）",
+   "type": "Place"
   },
   "dlyuk8": {
    "added": "2026-11-12",
+   "chars": 2517,
    "hash": "01682f4df45d",
    "lastmod": "2026-11-17",
-   "name": "みなとみらい東急スクエア"
+   "links": 37,
+   "name": "みなとみらい東急スクエア",
+   "type": "Place"
   },
   "eizyq4": {
    "added": "2026-11-12",
+   "chars": 2396,
    "hash": "fe6a62e3c832",
    "lastmod": "2026-11-17",
-   "name": "横浜赤レンガ倉庫"
+   "links": 54,
+   "name": "横浜赤レンガ倉庫",
+   "type": "Place"
   },
   "eoiyli": {
    "added": "2026-11-13",
+   "chars": 548,
    "hash": "0d47e5251977",
    "lastmod": "2026-11-17",
-   "name": "あーすぷらざ（本郷台）"
+   "links": 10,
+   "name": "あーすぷらざ（本郷台）",
+   "type": "Place"
   },
   "flese0": {
    "added": "2026-11-13",
+   "chars": 412,
    "hash": "185dccd9481b",
    "lastmod": "2026-11-17",
-   "name": "横浜ストロベリーパーク"
+   "links": 9,
+   "name": "横浜ストロベリーパーク",
+   "type": "Place"
   },
   "fm1cou": {
    "added": "2026-11-12",
+   "chars": 436,
    "hash": "d00e43472b57",
    "lastmod": "2026-11-17",
-   "name": "市営地下鉄 仲町台駅のベビーケアスペース"
+   "links": 9,
+   "name": "市営地下鉄 仲町台駅のベビーケアスペース",
+   "type": "Place"
   },
   "fpf3hr": {
    "added": "2026-11-13",
+   "chars": 1134,
    "hash": "92a2ca0f7d72",
    "lastmod": "2026-11-17",
-   "name": "シルク博物館"
+   "links": 46,
+   "name": "シルク博物館",
+   "type": "Place"
   },
   "ghjq0p": {
    "added": "2026-11-12",
+   "chars": 681,
    "hash": "ad67066c7cdc",
    "lastmod": "2026-11-18",
-   "name": "よこはま動物園ズーラシア"
+   "links": 6,
+   "name": "よこはま動物園ズーラシア",
+   "type": "Place"
   },
   "gue82u": {
    "added": "2026-11-13",
+   "chars": 1177,
    "hash": "9989dde8d86c",
    "lastmod": "2026-11-17",
-   "name": "アクアリウム宇宙旅行 UNDER WATER SPACE"
+   "links": 46,
+   "name": "アクアリウム宇宙旅行 UNDER WATER SPACE",
+   "type": "Place"
   },
   "h4ssx4": {
    "added": "2026-11-12",
+   "chars": 660,
    "hash": "8e2310730fa8",
    "lastmod": "2026-11-17",
-   "name": "こどもの国"
+   "links": 11,
+   "name": "こどもの国",
+   "type": "Place"
   },
   "hcpr7n": {
    "added": "2026-11-12",
+   "chars": 1001,
    "hash": "1f693b4ce7c6",
    "lastmod": "2026-11-17",
-   "name": "三井アウトレットパーク 横浜ベイサイド"
+   "links": 7,
+   "name": "三井アウトレットパーク 横浜ベイサイド",
+   "type": "Place"
   },
   "hilv0a": {
    "added": "2026-11-13",
+   "chars": 1906,
    "hash": "ef6505a7a17e",
    "lastmod": "2026-11-17",
-   "name": "横浜港 大さん橋国際客船ターミナル"
+   "links": 53,
+   "name": "横浜港 大さん橋国際客船ターミナル",
+   "type": "Place"
   },
   "id777t": {
    "added": "2026-11-14",
+   "chars": 385,
    "hash": "35f32c55117f",
    "lastmod": "2026-11-17",
+   "links": 4,
    "name": "アピタ戸塚店（戸塚駅東口）",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "if6r24": {
    "added": "2026-11-13",
+   "chars": 2005,
    "hash": "e3f345f739e3",
    "lastmod": "2026-11-17",
-   "name": "横浜美術館"
+   "links": 36,
+   "name": "横浜美術館",
+   "type": "Place"
   },
   "jlzno5": {
    "added": "2026-11-12",
+   "chars": 2794,
    "hash": "f739da4f3740",
    "lastmod": "2026-11-17",
-   "name": "横浜アンパンマンこどもミュージアム"
+   "links": 37,
+   "name": "横浜アンパンマンこどもミュージアム",
+   "type": "Place"
   },
   "jov9g8": {
    "added": "2026-11-13",
+   "chars": 1133,
    "hash": "7f0db60e4afb",
    "lastmod": "2026-11-17",
-   "name": "横浜ユーラシア文化館"
+   "links": 46,
+   "name": "横浜ユーラシア文化館",
+   "type": "Place"
   },
   "l5mpw3": {
    "added": "2026-11-13",
+   "chars": 334,
    "hash": "2267153274ae",
    "lastmod": "2026-11-17",
+   "links": 5,
    "name": "新横浜ラーメン博物館",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "lg4yuc": {
    "added": "2026-11-12",
+   "chars": 505,
    "hash": "26cd98fc29eb",
    "lastmod": "2026-11-18",
-   "name": "ニュウマン横浜"
+   "links": 12,
+   "name": "ニュウマン横浜",
+   "type": "Place"
   },
   "lw2ofl": {
    "added": "2026-11-14",
+   "chars": 930,
    "hash": "38cfffcefd80",
    "lastmod": "2026-11-17",
-   "name": "サクラス戸塚（戸塚駅西口）"
+   "links": 7,
+   "name": "サクラス戸塚（戸塚駅西口）",
+   "type": "Place"
   },
   "npxufp": {
    "added": "2026-11-12",
+   "chars": 1660,
    "hash": "21a051764ff9",
    "lastmod": "2026-11-18",
-   "name": "横浜ベイクォーター"
+   "links": 20,
+   "name": "横浜ベイクォーター",
+   "type": "Place"
   },
   "nsqtn": {
    "added": "2026-11-13",
+   "chars": 1655,
    "hash": "46e882072a7e",
    "lastmod": "2026-11-17",
-   "name": "横浜人形の家"
+   "links": 49,
+   "name": "横浜人形の家",
+   "type": "Place"
   },
   "omd360": {
    "added": "2026-11-12",
+   "chars": 1765,
    "hash": "3aed387159ff",
    "lastmod": "2026-11-17",
-   "name": "横浜中華街"
+   "links": 53,
+   "name": "横浜中華街",
+   "type": "Place"
   },
   "oskd4z": {
    "added": "2026-11-13",
+   "chars": 447,
    "hash": "80a503cb65c9",
    "lastmod": "2026-11-17",
-   "name": "横浜市大倉山記念館"
+   "links": 9,
+   "name": "横浜市大倉山記念館",
+   "type": "Place"
   },
   "pmldjs": {
    "added": "2026-11-12",
+   "chars": 1250,
    "hash": "0ce6c3406868",
    "lastmod": "2026-11-17",
-   "name": "港北TOKYU S.C.（センター南）"
+   "links": 13,
+   "name": "港北TOKYU S.C.（センター南）",
+   "type": "Place"
   },
   "q8papf": {
    "added": "2026-11-13",
+   "chars": 336,
    "hash": "733668b28e5e",
    "lastmod": "2026-11-17",
+   "links": 5,
    "name": "日産ウォーターパーク",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "qj2jy6": {
    "added": "2026-11-13",
+   "chars": 1145,
    "hash": "003b21463b78",
    "lastmod": "2026-11-17",
-   "name": "横浜都市発展記念館"
+   "links": 46,
+   "name": "横浜都市発展記念館",
+   "type": "Place"
   },
   "r2jkwf": {
    "added": "2026-11-13",
+   "chars": 1123,
    "hash": "0c0801b443e5",
    "lastmod": "2026-11-17",
-   "name": "山手資料館"
+   "links": 46,
+   "name": "山手資料館",
+   "type": "Place"
   },
   "su1u2h": {
    "added": "2026-11-12",
+   "chars": 1865,
    "hash": "ca71335db8c1",
    "lastmod": "2026-11-17",
-   "name": "横浜ハンマーヘッド"
+   "links": 54,
+   "name": "横浜ハンマーヘッド",
+   "type": "Place"
   },
   "svcp0u": {
    "added": "2026-11-13",
+   "chars": 1122,
    "hash": "a96028df8513",
    "lastmod": "2026-11-17",
-   "name": "放送ライブラリー"
+   "links": 46,
+   "name": "放送ライブラリー",
+   "type": "Place"
   },
   "t7377s": {
    "added": "2026-11-12",
+   "chars": 499,
    "hash": "66199cea4370",
    "lastmod": "2026-11-18",
-   "name": "ルミネ横浜"
+   "links": 12,
+   "name": "ルミネ横浜",
+   "type": "Place"
   },
   "ttyij6": {
    "added": "2026-11-13",
+   "chars": 517,
    "hash": "58592fe38e15",
    "lastmod": "2026-11-18",
-   "name": "アソビル（横浜駅みなみ東口直結）"
+   "links": 12,
+   "name": "アソビル（横浜駅みなみ東口直結）",
+   "type": "Place"
   },
   "u3gyv7": {
    "added": "2026-11-13",
+   "chars": 1211,
    "hash": "2ef05439ae6d",
    "lastmod": "2026-11-17",
-   "name": "神奈川近代文学館（港の見える丘公園）"
+   "links": 46,
+   "name": "神奈川近代文学館（港の見える丘公園）",
+   "type": "Place"
   },
   "u61k8u": {
    "added": "2026-11-13",
+   "chars": 2332,
    "hash": "238059c54175",
    "lastmod": "2026-11-17",
-   "name": "よこはまコスモワールド"
+   "links": 37,
+   "name": "よこはまコスモワールド",
+   "type": "Place"
   },
   "uxzm6a": {
    "added": "2026-11-13",
+   "chars": 1781,
    "hash": "d6820eec9432",
    "lastmod": "2026-11-18",
-   "name": "原鉄道模型博物館"
+   "links": 20,
+   "name": "原鉄道模型博物館",
+   "type": "Place"
   },
   "vhrq7z": {
    "added": "2026-11-12",
+   "chars": 405,
    "hash": "88151111981f",
    "lastmod": "2026-11-17",
-   "name": "東急プラザ戸塚・トツカーナ（戸塚駅直結）"
+   "links": 4,
+   "name": "東急プラザ戸塚・トツカーナ（戸塚駅直結）",
+   "type": "Place"
   },
   "wn0p1": {
    "added": "2026-11-12",
+   "chars": 253,
    "hash": "bfd0df96517d",
    "lastmod": "2026-11-17",
+   "links": 0,
    "name": "アピタテラス横浜綱島",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "xkhnmi": {
    "added": "2026-11-12",
+   "chars": 1730,
    "hash": "790236bad6d3",
    "lastmod": "2026-11-17",
-   "name": "横浜マリンタワー"
+   "links": 49,
+   "name": "横浜マリンタワー",
+   "type": "Place"
   },
   "xsvsqj": {
    "added": "2026-11-13",
+   "chars": 373,
    "hash": "0fbed30cc619",
    "lastmod": "2026-11-17",
+   "links": 5,
    "name": "野島公園",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "xumbkg": {
    "added": "2026-11-12",
+   "chars": 368,
    "hash": "655e6a6e2bab",
    "lastmod": "2026-11-17",
+   "links": 5,
    "name": "キュービックプラザ新横浜（新横浜駅直結）",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "yabbyg": {
    "added": "2026-11-12",
+   "chars": 388,
    "hash": "4de9b98fe280",
    "lastmod": "2026-11-17",
+   "links": 4,
    "name": "三溪園",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   },
   "ypztsv": {
    "added": "2026-11-12",
+   "chars": 1037,
    "hash": "641294a50d6d",
    "lastmod": "2026-11-17",
-   "name": "ジョイナステラス二俣川（二俣川駅直結）"
+   "links": 4,
+   "name": "ジョイナステラス二俣川（二俣川駅直結）",
+   "type": "Place"
   },
   "zvm9bi": {
    "added": "2026-11-12",
+   "chars": 288,
    "hash": "0ef722640c24",
    "lastmod": "2026-11-17",
+   "links": 0,
    "name": "たまプラーザ テラス",
-   "thin": true
+   "thin": true,
+   "type": "Place"
   }
  }
 }

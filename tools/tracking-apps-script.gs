@@ -8,6 +8,9 @@
  * - 全部の記録に、端末の言語と時間帯の設定（例：Asia/Tokyo）から出した「日本・海外」のめやすを付けます（位置は使いません）。
  * - 0件だった検索、カードの「くわしく」を開いた回数、「残りを見る」が押された回数もまとめに出します。
  * - ブラウザ情報（ユーザーエージェント）と「区分」（人／自分／ボット）も記録します。まとめは「人」だけで数えます。
+ *   ブラウザ情報を記録する前（2026/11/16 20:54 より前）の行は「不明」として別に数えます。同じ人の10秒以内の同じ記録は1回にします。
+ * - 「日別」シート（日ごとの表示回数）と「ページ別」シート（ページごとの表示回数と、ページの型・本文の字数。サイトの tools/pages.json を読む）も毎日作ります。
+ *   ページの情報を読むため、初めて実行するときに「外部のサービスへの接続」の許可を求められます。
  *   「自分」は、サイトを ?me=1 で開いた端末（訪問者IDが「自分_」で始まる）と、下の OWN_VIDS に入れたID。
  *   「ボット」は、ブラウザ情報に bot・crawler などが入っているものや、自動操作のブラウザ。
  * - 出発駅・近くで探すの駅から「地域」（例：神奈川県横浜市中区）と「横浜市内／神奈川県内／県外」を出します。
@@ -102,22 +105,55 @@ function monthSheet_(name) {
   return sh;
 }
 
+// 行の区分：区分の列があればそれ。ブラウザ情報（UA）がない行（11/16 20:54 より前）は、自分でなければ「不明」
+function rowKind_(r) {
+  const vid = String(r[7] || "");
+  if (/^自分_/.test(vid) || OWN_VIDS.indexOf(vid) >= 0) return "自分";
+  if (!r[14]) return "不明";
+  return r[15] || kindOf_(r[7], r[14], "");
+}
+// 同じ人が同じものを10秒以内にもう一度送った行（二重の記録・読み直し）は1回にする
+function dedupe_(rows) {
+  const last = {};
+  return rows.filter(r => {
+    const t = r[0] instanceof Date ? r[0].getTime() : new Date(String(r[0]).replace(/\//g, "-").replace(" ", "T") + "+09:00").getTime();
+    const k = [r[7], r[1], r[2], r[8]].join("|");
+    const dup = last[k] !== undefined && Math.abs(t - last[k]) <= 10000;
+    last[k] = t;
+    return !dup;
+  });
+}
+function dayOf_(v) { return v instanceof Date ? Utilities.formatDate(v, TZ, "yyyy-MM-dd") : String(v).slice(0, 10).replace(/\//g, "-"); }
+
 // 毎日1回「まとめ」シートを作り直す
 function updateSummary() {
   const ss = SpreadsheetApp.getActive();
   const months = ss.getSheets().map(s => s.getName()).filter(n => /^\d{4}-\d{2}$/.test(n)).sort();
-  const cols = ["ページ表示", "訪問者数", "検索", "公式サイト", "経路検索", "電話", "予約ページ", "LINEで送る", "絞り込み"];
+  const cols = ["ページ表示", "訪問者数", "1ページで帰った人", "1人あたりページ数", "検索", "公式サイト", "経路検索", "電話", "予約ページ", "LINEで送る", "絞り込み"];
   const rows = [["月"].concat(cols)];
   let latest = null;
-  const excluded = [["月", "除いた行", "うち自分", "うちボット"]];
+  const excluded = [["月", "除いた行", "うち自分", "うちボット", "うち不明（UA記録前）", "二重の記録"]];
+  const daily = {};
   months.forEach(m => {
-    const all = ss.getSheetByName(m).getDataRange().getValues().slice(1);
-    // 「人」だけで数える（区分の列がない古い行は、訪問者IDとブラウザ情報から判定）
-    const v = all.filter(r => (r[15] || kindOf_(r[7], r[14], "")) === "人");
-    excluded.push([m, all.length - v.length, all.filter(r => (r[15] || kindOf_(r[7], r[14], "")) === "自分").length, all.filter(r => (r[15] || kindOf_(r[7], r[14], "")) === "ボット").length]);
-    const c = {}; const vids = new Set();
-    v.forEach(r => { c[r[1]] = (c[r[1]] || 0) + 1; if (r[7]) vids.add(r[7]); });
-    rows.push([m].concat(cols.map(k => k === "訪問者数" ? vids.size : (c[k] || 0))));
+    const raw = ss.getSheetByName(m).getDataRange().getValues().slice(1);
+    const all = dedupe_(raw);
+    // 「人」だけで数える。UAを記録する前の行は「不明」として別に数える
+    const v = all.filter(r => rowKind_(r) === "人");
+    const n_ = k => all.filter(r => rowKind_(r) === k).length;
+    excluded.push([m, raw.length - v.length, n_("自分"), n_("ボット"), n_("不明"), raw.length - all.length]);
+    const c = {}; const vids = new Set(); const pv = {};
+    v.forEach(r => { c[r[1]] = (c[r[1]] || 0) + 1; if (r[7]) vids.add(r[7]); if (r[1] === "ページ表示" && r[7]) pv[r[7]] = (pv[r[7]] || 0) + 1; });
+    const pvs = Object.values(pv);
+    const one = pvs.length ? Math.round(pvs.filter(x => x === 1).length / pvs.length * 100) + "%" : "";
+    const per = pvs.length ? Math.round(pvs.reduce((a, b) => a + b, 0) / pvs.length * 100) / 100 : "";
+    rows.push([m].concat(cols.map(k => k === "訪問者数" ? vids.size : k === "1ページで帰った人" ? one : k === "1人あたりページ数" ? per : (c[k] || 0))));
+    // 日別（ページを直した日の前後で、見られ方が変わったかを見るため）
+    all.forEach(r => {
+      const d = dayOf_(r[0]), k = rowKind_(r);
+      const o = daily[d] || (daily[d] = { pv: 0, vids: {}, off: 0, se: 0, un: 0, me: 0, bot: 0 });
+      if (k === "人") { if (r[1] === "ページ表示") { o.pv++; if (/google|yahoo|bing/.test(String(r[6]))) o.se++; } if (r[7]) o.vids[r[7]] = 1; if (r[1] === "公式サイト") o.off++; }
+      else if (k === "不明") o.un++; else if (k === "自分") o.me++; else o.bot++;
+    });
     latest = { m, v };
   });
   let sum = ss.getSheetByName("まとめ") || ss.insertSheet("まとめ", 0);
@@ -127,9 +163,17 @@ function updateSummary() {
   sum.getRange(2, 1, 1, rows[0].length).setFontWeight("bold");
   const ec = rows[0].length + 2;
   sum.getRange(1, ec).setValue("集計から除いた行").setFontWeight("bold");
-  sum.getRange(2, ec, excluded.length, 4).setValues(excluded);
-  sum.getRange(2, ec, 1, 4).setFontWeight("bold");
+  sum.getRange(2, ec, excluded.length, excluded[0].length).setValues(excluded);
+  sum.getRange(2, ec, 1, excluded[0].length).setFontWeight("bold");
+  // 「日別」シート
+  const dsh = ss.getSheetByName("日別") || ss.insertSheet("日別", 1);
+  dsh.clear();
+  const drows = [["日付", "ページ表示（人）", "訪問者数（人）", "うち検索から", "公式サイト（人）", "不明（UA記録前）", "自分", "ボット"]].concat(
+    Object.keys(daily).sort().reverse().map(d => { const o = daily[d]; return ["'" + d, o.pv, Object.keys(o.vids).length, o.se, o.off, o.un, o.me, o.bot]; }));
+  dsh.getRange(1, 1, drows.length, drows[0].length).setValues(drows);
+  dsh.getRange(1, 1, 1, drows[0].length).setFontWeight("bold"); dsh.setFrozenRows(1);
   if (!latest) return;
+  pageSheet_(ss, latest);
   // 最新の月のランキング
   const txt_ = k => k instanceof Date ? Utilities.formatDate(k, TZ, "M月d日") : k;
   const top = (type, col) => { const c = {}; latest.v.filter(r => r[1] === type).forEach(r => { const k = txt_(r[col]); if (k) c[k] = (c[k] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); };
@@ -150,6 +194,42 @@ function updateSummary() {
     sum.getRange(r0, c0).setValue(title).setFontWeight("bold");
     if (list.length) sum.getRange(r0 + 1, c0, list.length, 2).setValues(list);
   });
+}
+
+// 「ページ別」シート：最新の月の、ページごとの表示回数（人）と、ページの型・本文の字数・個別ページへのリンク数を並べる
+// ページの情報はサイトの tools/pages.json から読む（表示0回のページも出す）
+function pageSheet_(ss, latest) {
+  const info = {};
+  try {
+    const res = UrlFetchApp.fetch("https://kidstrip.jp/tools/pages.json", { muteHttpExceptions: true });
+    if (res.getResponseCode() === 200) {
+      const man = JSON.parse(res.getContentText());
+      ["event", "spot"].forEach(k => Object.keys(man[k] || {}).forEach(id => {
+        const p = man[k][id];
+        info[k + "/" + id + "/"] = { name: p.name || "", type: p.type || "", chars: p.chars || "", links: p.links || "", state: p.ended ? "掲載終了" : p.thin ? "薄い（検索に出さない）" : "" };
+      }));
+    }
+  } catch (err) {}
+  const pv = {}, vis = {}, off = {}, title = {};
+  latest.v.forEach(r => {
+    let p = String(r[8] || "");
+    if (/^#|^$/.test(p)) p = "（トップ）";
+    if (r[1] === "ページ表示") { pv[p] = (pv[p] || 0) + 1; (vis[p] = vis[p] || {})[r[7]] = 1; if (!title[p]) title[p] = String(r[2]).slice(0, 60); }
+    if (r[1] === "公式サイト") off[p] = (off[p] || 0) + 1;
+  });
+  const paths = Object.keys(Object.assign({}, info, pv));
+  const list = paths.map(p => { const i = info[p] || {}; return ["'/" + p.replace(/^（トップ）$/, ""), i.name || title[p] || (p === "（トップ）" ? "トップ（一覧）" : ""), i.type || "", i.chars || "", i.links || "", i.state || "", pv[p] || 0, Object.keys(vis[p] || {}).length, off[p] || 0]; })
+    .sort((a, b) => b[6] - a[6] || (b[3] || 0) - (a[3] || 0));
+  const total = list.reduce((a, r) => a + r[6], 0);
+  const live = list.filter(r => !r[5] && r[0] !== "'/");
+  const top20 = list.slice(0, 20).reduce((a, r) => a + r[6], 0);
+  const sh = ss.getSheetByName("ページ別") || ss.insertSheet("ページ別", 2);
+  sh.clear();
+  sh.getRange(1, 1, 1, 6).setValues([[latest.m + " のページ別（人だけ）", "掲載中のページ " + live.length, "表示0回 " + live.filter(r => !r[6]).length, "上位20ページの割合 " + (total ? Math.round(top20 / total * 100) : 0) + "%", "本文800字未満で表示あり " + live.filter(r => r[3] && r[3] < 800 && r[6]).length + "／" + live.filter(r => r[3] && r[3] < 800).length, ""]]).setFontWeight("bold");
+  const head = [["パス", "名前", "型", "本文の字数（フッター除く）", "個別ページへのリンク", "状態", "表示回数", "訪問者数", "公式サイトを開いた"]];
+  sh.getRange(2, 1, 1, head[0].length).setValues(head).setFontWeight("bold");
+  if (list.length) sh.getRange(3, 1, list.length, head[0].length).setValues(list);
+  sh.setFrozenRows(2);
 }
 
 // 最初に1回だけ実行：まとめシートと、毎日の集計の予約を作る
