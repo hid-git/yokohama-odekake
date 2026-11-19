@@ -329,8 +329,12 @@ def circles_html(x):
 def event_page(e, d, spot_ids, track_url):
     path = f"event/{e['id']}/"
     ward1 = e["ward"].split("・")[0]
-    title = f"{e['t']}（{e['ward']}）｜横浜の子連れイベント｜KidsTrip"
-    desc = f"{when_text(e)[:60]}　{e['venue']}。{e['sum']}"[:120]
+    if e["kind"] == "ongoing":  # 通年の施設・遊び場：検索結果に「会期」ではなく中身が出るように
+        title = f"{e['t']}（{e['ward']}）｜横浜の子連れおでかけ｜KidsTrip"
+        desc = f"{e['sum']}（{e['venue']}・{re.sub(r'（.*?）', '', e.get('priceText', ''))[:30]}）"[:120]
+    else:
+        title = f"{e['t']}（{e['ward']}）｜横浜の子連れイベント｜KidsTrip"
+        desc = f"{when_text(e)[:60]}　{e['venue']}。{e['sum']}"[:120]
     area = e.get("area") or ""
     babies = d["baby"].get(area, [])
     ch, cld = crumbs([("トップ", "/"), ("イベント", "/"), (e["t"], "")])
@@ -423,8 +427,15 @@ def spot_page(b, area, d, spot_ids, track_url):
     sid = spot_ids[b["n"]]
     path = f"spot/{sid}/"
     has = [n for n, v in (("おむつ替え", b.get("d")), ("授乳室", b.get("f")), ("調乳のお湯", b.get("w")), ("離乳食のレンジ", b.get("mw"))) if v is True]
-    title = f"{short(b['n'])}の授乳室・おむつ替え・お湯｜KidsTrip"
-    desc = f"{short(b['n'])}（{d['areas'].get(area, '')}）の赤ちゃん設備。" + ("・".join(has) + "あり。" if has else "") + (b.get("where") or "")
+    # 検索する人は「何階？」を知りたいので、場所（○F・○階）が分かる施設は題名でそれを伝える
+    floor = re.search(r"\d\s*[FＦ階]", b.get("where") or "")
+    extra = "・電子レンジ" if b.get("mw") else ""
+    title = f"{short(b['n'])}の授乳室は何階？おむつ替え・お湯{extra}｜KidsTrip" if floor else f"{short(b['n'])}の授乳室・おむつ替え・お湯{extra}｜KidsTrip"
+    ar = d['areas'].get(area, '')
+    ar = "" if not ar or ar == short(b['n']) else f"（{ar}）"
+    # 検索結果で答え（どこにあるか）が先に見えるように、場所を先に書く
+    desc = (f"{short(b['n'])}{ar}の授乳室・おむつ替えの場所：{b['where']}。" if b.get("where") else f"{short(b['n'])}{ar}の赤ちゃん設備。") + ("・".join(has) + "あり。" if has else "")
+    desc = desc[:150]
     ch, cld = crumbs([("トップ", "/"), ("ごはん・おむつ", "/#foodall"), (short(b["n"]), "")])
     evs = [x for x in d["events"] if x.get("area") == area][:10]
     sx = d["extra"]["sp"].get(b["n"], {})
