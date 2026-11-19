@@ -291,8 +291,8 @@
   },
   "13npv30": {
    "added": "2026-11-12",
-   "chars": 1996,
-   "hash": "8cda95c9b89e",
+   "chars": 1999,
+   "hash": "162ecd1129a1",
    "lastmod": "2026-11-19",
    "links": 58,
    "name": "名探偵コナン 芸術花火2026",
@@ -507,8 +507,8 @@
   },
   "16t5vbc": {
    "added": "2026-11-18",
-   "chars": 1887,
-   "hash": "65d9de4bc6b3",
+   "chars": 1890,
+   "hash": "d0f6a4318e27",
    "lastmod": "2026-11-19",
    "links": 19,
    "name": "横浜北仲マルシェ（11月）",
@@ -1865,6 +1865,15 @@
    "links": 8,
    "name": "わっくんひろばサテライト（鶴見区の地域子育て支援拠点）",
    "type": "TouristAttraction"
+  },
+  "1ptqf9z": {
+   "added": "2026-11-19",
+   "chars": 1731,
+   "hash": "e1b0f2c0b378",
+   "lastmod": "2026-11-19",
+   "links": 19,
+   "name": "水辺ストリート♬ミニライブ in 横浜市役所",
+   "type": "Event"
   },
   "1pwhjhj": {
    "added": "2026-11-16",
@@ -3854,8 +3863,8 @@
   },
   "g616me": {
    "added": "2026-11-12",
-   "chars": 2172,
-   "hash": "352b91866c23",
+   "chars": 2175,
+   "hash": "58af58767d69",
    "lastmod": "2026-11-19",
    "links": 41,
    "name": "旧横ギャラリー 展示ガイド（中等客車に乗れる）",
@@ -4347,8 +4356,8 @@
   },
   "lf4ca3": {
    "added": "2026-11-14",
-   "chars": 913,
-   "hash": "f3f071f533b3",
+   "chars": 916,
+   "hash": "77b2afd6d32a",
    "lastmod": "2026-11-19",
    "links": 13,
    "name": "はらっぱ祭り（本牧原地域ケアプラザ）",
@@ -4642,8 +4651,8 @@
   },
   "pxzwdk": {
    "added": "2026-11-12",
-   "chars": 2306,
-   "hash": "246baee63517",
+   "chars": 2309,
+   "hash": "b3ac105d1104",
    "lastmod": "2026-11-19",
    "links": 41,
    "name": "ANAの飛行機に色をぬろう！親子ワークショップ",
@@ -5590,6 +5599,7 @@
   "1pkuhi5": "efc9f13eead9",
   "1pl3v1l": "f7178faa0baa",
   "1ptdeth": "6fbe4adbf420",
+  "1ptqf9z": "3d53088557a8",
   "1pwhjhj": "069aa90c4a98",
   "1pwon0q": "c26e537e0f7e",
   "1pxznnx": "e6f846b08002",
@@ -6378,8 +6388,8 @@
   },
   "1hr0yvi": {
    "added": "2026-11-16",
-   "chars": 1326,
-   "hash": "68b72fa43b0a",
+   "chars": 1313,
+   "hash": "8579e813383b",
    "lastmod": "2026-11-19",
    "links": 9,
    "name": "CIAL鶴見（JR鶴見駅ビル）",
@@ -6396,10 +6406,10 @@
   },
   "1icjes": {
    "added": "2026-11-19",
-   "chars": 2003,
-   "hash": "e8fe77caaf43",
+   "chars": 2034,
+   "hash": "1ce248278f4e",
    "lastmod": "2026-11-19",
-   "links": 36,
+   "links": 37,
    "name": "シァル桜木町（桜木町駅直結）",
    "type": "Place"
   },
@@ -6486,8 +6496,8 @@
   },
   "1l0g3g5": {
    "added": "2026-11-19",
-   "chars": 2274,
-   "hash": "bf2d77ce4e52",
+   "chars": 2265,
+   "hash": "7df531ed544a",
    "lastmod": "2026-11-19",
    "links": 38,
    "name": "横浜市役所（桜木町駅前）",
@@ -6549,10 +6559,10 @@
   },
   "1qg4qi4": {
    "added": "2026-11-12",
-   "chars": 1974,
-   "hash": "75b09e6e7448",
+   "chars": 2005,
+   "hash": "e94dea139e8b",
    "lastmod": "2026-11-19",
-   "links": 35,
+   "links": 36,
    "name": "コレットマーレ（桜木町駅前）",
    "type": "Place"
   },
