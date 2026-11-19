@@ -4318,6 +4318,15 @@
    "name": "市沢地区センターのプレイルーム（旭区）",
    "type": "TouristAttraction"
   },
+  "kur4nv": {
+   "added": "2026-11-19",
+   "chars": 1807,
+   "hash": "0a3fef6cd16a",
+   "lastmod": "2026-11-19",
+   "links": 11,
+   "name": "横浜・みなとみらいクリスマスミッションビンゴ",
+   "type": "TouristAttraction"
+  },
   "lau4ko": {
    "added": "2026-11-16",
    "chars": 954,
@@ -5832,6 +5841,7 @@
   "kr029f": "34e5bbda7792",
   "krcbn0": "98c2ae21008b",
   "kuf2jo": "978c7723b4b4",
+  "kur4nv": "98053bf58a95",
   "lau4ko": "fe4b8d0fb2ca",
   "lf4ca3": "ab1ff1a7297f",
   "lsacis": "44ea61de6747",
@@ -6360,8 +6370,8 @@
   },
   "1ikiitx": {
    "added": "2026-11-13",
-   "chars": 2444,
-   "hash": "0cfe2c8141be",
+   "chars": 2434,
+   "hash": "f7c76f9de94f",
    "lastmod": "2026-11-19",
    "links": 54,
    "name": "MARINE & WALK YOKOHAMA",
@@ -6387,8 +6397,8 @@
   },
   "1jpsbg5": {
    "added": "2026-11-12",
-   "chars": 2360,
-   "hash": "7532d2d867d7",
+   "chars": 2363,
+   "hash": "7aac212ec204",
    "lastmod": "2026-11-19",
    "links": 54,
    "name": "象の鼻テラス",
@@ -6842,8 +6852,8 @@
   },
   "eizyq4": {
    "added": "2026-11-12",
-   "chars": 2396,
-   "hash": "8b8bf92253d5",
+   "chars": 2376,
+   "hash": "847f59c33678",
    "lastmod": "2026-11-19",
    "links": 54,
    "name": "横浜赤レンガ倉庫",
@@ -6923,10 +6933,10 @@
   },
   "hilv0a": {
    "added": "2026-11-13",
-   "chars": 1906,
-   "hash": "e478f9dda30d",
+   "chars": 1942,
+   "hash": "0c549aff554f",
    "lastmod": "2026-11-19",
-   "links": 53,
+   "links": 54,
    "name": "横浜港 大さん橋国際客船ターミナル",
    "type": "Place"
   },
