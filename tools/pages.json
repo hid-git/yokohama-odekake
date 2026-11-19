@@ -4282,6 +4282,15 @@
    "name": "THE MOVEUM YOKOHAMA「印象派モネと浮世絵」",
    "type": "TouristAttraction"
   },
+  "kntu4a": {
+   "added": "2026-11-19",
+   "chars": 1015,
+   "hash": "7f3539d3287d",
+   "lastmod": "2026-11-19",
+   "links": 16,
+   "name": "第1回 南戸塚花火大会",
+   "type": "Event"
+  },
   "kpbop": {
    "added": "2026-11-12",
    "chars": 1087,
@@ -5837,6 +5846,7 @@
   "kalh48": "75b911282270",
   "kkgen4": "1f63b41f3cca",
   "knt8ey": "7099d69cac42",
+  "kntu4a": "f759f0f22012",
   "kpbop": "c36f6adbb089",
   "kr029f": "34e5bbda7792",
   "krcbn0": "98c2ae21008b",
