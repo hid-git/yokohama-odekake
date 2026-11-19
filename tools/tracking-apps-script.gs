@@ -8,7 +8,7 @@
  * - 全部の記録に、端末の言語と時間帯の設定（例：Asia/Tokyo）から出した「日本・海外」のめやすを付けます（位置は使いません）。
  * - 0件だった検索、カードの「くわしく」を開いた回数、「残りを見る」が押された回数もまとめに出します。
  * - ブラウザ情報（ユーザーエージェント）と「区分」（人／自分／ボット）も記録します。まとめは「人」だけで数えます。
- *   ブラウザ情報を記録する前（2026/11/16 20:54 より前）の行は「不明」として別に数えます。同じ人の10秒以内の同じ記録は1回にします。
+ *   ブラウザ情報がない古い行（2026/11/19 に新しくデプロイする前）は、ボットか分からないので「人」に入れたまま、その数を別に出します。同じ人の10秒以内の同じ記録は1回にします。
  * - 「日別」シート（日ごとの表示回数）と「ページ別」シート（ページごとの表示回数と、ページの型・本文の字数。サイトの tools/pages.json を読む）も毎日作ります。
  *   ページの情報を読むため、初めて実行するときに「外部のサービスへの接続」の許可を求められます。
  *   「自分」は、サイトを ?me=1 で開いた端末（訪問者IDが「自分_」で始まる）と、下の OWN_VIDS に入れたID。
@@ -105,11 +105,10 @@ function monthSheet_(name) {
   return sh;
 }
 
-// 行の区分：区分の列があればそれ。ブラウザ情報（UA）がない行（11/16 20:54 より前）は、自分でなければ「不明」
+// 行の区分：区分の列があればそれ。ブラウザ情報（UA）がない古い行は、訪問者IDだけで判定する（自分でなければ「人」。ボットかどうかは分からない）
 function rowKind_(r) {
   const vid = String(r[7] || "");
   if (/^自分_/.test(vid) || OWN_VIDS.indexOf(vid) >= 0) return "自分";
-  if (!r[14]) return "不明";
   return r[15] || kindOf_(r[7], r[14], "");
 }
 // 同じ人が同じものを10秒以内にもう一度送った行（二重の記録・読み直し）は1回にする
@@ -132,7 +131,7 @@ function updateSummary() {
   const cols = ["ページ表示", "訪問者数", "1ページで帰った人", "1人あたりページ数", "検索", "公式サイト", "経路検索", "電話", "予約ページ", "LINEで送る", "絞り込み"];
   const rows = [["月"].concat(cols)];
   let latest = null;
-  const excluded = [["月", "除いた行", "うち自分", "うちボット", "うち不明（UA記録前）", "二重の記録"]];
+  const excluded = [["月", "除いた行", "うち自分", "うちボット", "二重の記録", "「人」のうちブラウザ情報なし（ボットか分からない）"]];
   const daily = {};
   months.forEach(m => {
     const raw = ss.getSheetByName(m).getDataRange().getValues().slice(1);
@@ -140,7 +139,7 @@ function updateSummary() {
     // 「人」だけで数える。UAを記録する前の行は「不明」として別に数える
     const v = all.filter(r => rowKind_(r) === "人");
     const n_ = k => all.filter(r => rowKind_(r) === k).length;
-    excluded.push([m, raw.length - v.length, n_("自分"), n_("ボット"), n_("不明"), raw.length - all.length]);
+    excluded.push([m, raw.length - v.length, n_("自分"), n_("ボット"), raw.length - all.length, v.filter(r => !r[14]).length]);
     const c = {}; const vids = new Set(); const pv = {};
     v.forEach(r => { c[r[1]] = (c[r[1]] || 0) + 1; if (r[7]) vids.add(r[7]); if (r[1] === "ページ表示" && r[7]) pv[r[7]] = (pv[r[7]] || 0) + 1; });
     const pvs = Object.values(pv);
@@ -151,8 +150,8 @@ function updateSummary() {
     all.forEach(r => {
       const d = dayOf_(r[0]), k = rowKind_(r);
       const o = daily[d] || (daily[d] = { pv: 0, vids: {}, off: 0, se: 0, un: 0, me: 0, bot: 0 });
-      if (k === "人") { if (r[1] === "ページ表示") { o.pv++; if (/google|yahoo|bing/.test(String(r[6]))) o.se++; } if (r[7]) o.vids[r[7]] = 1; if (r[1] === "公式サイト") o.off++; }
-      else if (k === "不明") o.un++; else if (k === "自分") o.me++; else o.bot++;
+      if (k === "人") { if (r[1] === "ページ表示") { o.pv++; if (/google|yahoo|bing/.test(String(r[6]))) o.se++; if (!r[14]) o.un++; } if (r[7]) o.vids[r[7]] = 1; if (r[1] === "公式サイト") o.off++; }
+      else if (k === "自分") o.me++; else o.bot++;
     });
     latest = { m, v };
   });
@@ -168,7 +167,7 @@ function updateSummary() {
   // 「日別」シート
   const dsh = ss.getSheetByName("日別") || ss.insertSheet("日別", 1);
   dsh.clear();
-  const drows = [["日付", "ページ表示（人）", "訪問者数（人）", "うち検索から", "公式サイト（人）", "不明（UA記録前）", "自分", "ボット"]].concat(
+  const drows = [["日付", "ページ表示（人）", "訪問者数（人）", "うち検索から", "公式サイト（人）", "うちブラウザ情報なし（ページ表示）", "自分", "ボット"]].concat(
     Object.keys(daily).sort().reverse().map(d => { const o = daily[d]; return ["'" + d, o.pv, Object.keys(o.vids).length, o.se, o.off, o.un, o.me, o.bot]; }));
   dsh.getRange(1, 1, drows.length, drows[0].length).setValues(drows);
   dsh.getRange(1, 1, 1, drows[0].length).setFontWeight("bold"); dsh.setFrozenRows(1);
