@@ -728,14 +728,14 @@ def gakudo_pages(track_url):
 <div class="btns"><a class="btn main" href="/#gakudo">小学校名で探す・区分の目安を見る</a></div>
 <h2>区ごとの一覧</h2><ul>{links}</ul>
 {GAKUDO_FEES}
-<p class="small">情報の時点：{E(asof)}。空き状況・料金・時間は変わることがあるので、必ず各クラブ・区役所に確かめてください。緑区の放課後児童クラブは区の案内がPDFだけのため、まだ載せていません。</p></article>"""
+<p class="small">情報の時点：{E(asof)}。空き状況・料金・時間は変わることがあるので、必ず各クラブ・区役所に確かめてください。</p></article>"""
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜市の学童・放課後キッズクラブ一覧", "url": SITE + "gakudo/", "inLanguage": "ja"}
     out.append(("gakudo/", page(f"横浜市の学童・放課後キッズクラブ一覧（全{len(rows)}か所・区ごと）｜KidsTrip", f"横浜市18区の放課後キッズクラブ{cnt(rows,'kids')}か所と学童（放課後児童クラブ）{cnt(rows,'club')}か所の住所・電話・主な小学校。わくわく・ゆうやけ・ほしぞらの区分と料金も。", "gakudo/", body, [ld], track_url=track_url, tpage="gakudo/")))
     for w in wards:
         xs = [r for r in rows if r["ward"] == w]
         sec = "".join(f'<h2>{E(GTYPE[t])}（{n}）</h2><ul class="gk">' + "".join(gakudo_card(r) for r in xs if r["type"] == t) + "</ul>"
                       for t in ("kids", "club", "hamakko") for n in [cnt(xs, t)] if n)
-        miss = "<p class=\"small\">緑区の放課後児童クラブは、区の案内がPDFだけのため、まだ載せていません。<a href=\"https://www.city.yokohama.lg.jp/midori/kosodate_kyoiku/hokago/gakudoukurabu.html\" target=\"_blank\" rel=\"noopener\">緑区の案内</a>で見られます。</p>" if w == "緑区" else ""
+        miss = ""
         body = f"""<article class="ev"><p class="crumb"><a href="/">トップ</a> ＞ <a href="/gakudo/">学童・放課後キッズクラブ</a> ＞ {w}</p>
 <h1>{w}の学童・放課後キッズクラブ一覧</h1>
 <p>{w}の放課後キッズクラブ{cnt(xs,"kids")}か所と放課後児童クラブ（学童保育）{cnt(xs,"club")}か所です。キッズクラブはその小学校に通う子（学区に住んで私立に通う子も）が使えます。学童は学区の決まりがなく、「主な小学校」はそのクラブに通っている子の多い学校です。</p>

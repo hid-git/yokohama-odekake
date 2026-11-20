@@ -1361,7 +1361,7 @@ function renderGk(){
     ${r.schools && r.type === "club" ? `<div>🏫 主な小学校：${esc(r.schools)}</div>` : ""}${r.operator ? `<div>運営：${esc(r.operator)}</div>` : ""}${r.note ? `<div>📝 ${esc(r.note)}</div>` : ""}
     <div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=${mq}" target="_blank" rel="noopener" data-gk-out="map">地図</a><a href="/gakudo/${GK_SLUG[r.ward] || ""}/">${esc(r.ward)}の一覧</a><a href="${esc(r.src)}" target="_blank" rel="noopener" data-gk-out="src">区の案内 ↗</a></div>
     <div class="plw">出典：横浜市${esc(r.ward)}の案内（${esc(r.asof)}時点）</div></div></details></li>`; };
-  out.innerHTML = hit.length ? `<ul class="pl">${show.map(card).join("")}</ul>${hit.length > show.length ? `<p class="note">ほか${hit.length - show.length}か所。区や小学校名で絞ってください。</p>` : ""}${GK.ward === "緑区" ? `<p class="note">緑区の学童（放課後児童クラブ）は、区の案内がPDFだけのため、まだ載せていません。</p>` : ""}` : `<p class="note">見つかりませんでした。小学校名は「○○」だけ（「小学校」なし）でも探せます。</p>`;
+  out.innerHTML = hit.length ? `<ul class="pl">${show.map(card).join("")}</ul>${hit.length > show.length ? `<p class="note">ほか${hit.length - show.length}か所。区や小学校名で絞ってください。</p>` : ""}` : `<p class="note">見つかりませんでした。小学校名は「○○」だけ（「小学校」なし）でも探せます。</p>`;
 }
 function renderGkQuiz(){
   const a = GK.ans, el = document.getElementById("gk-result"); if (!el) return;
