@@ -71,6 +71,8 @@
 - 各拠点のイベント（トミカの日・ベビーマッサージなど）は「横浜市地域子育て支援拠点システム」 https://kosodatekyoten.city.yokohama.lg.jp/csm/ に載っている（横浜市のドメイン＝公式）。記事ページ（`?id=kb_article_view&sysparm_article=KB…`）を検索で見つけて、申込不要・自由参加のもの、または週末のものを中心に足す。
 - 地域子育て支援拠点（各区＋サテライト、28か所）：https://www.city.yokohama.lg.jp/kosodate-kyoiku/kosodateshien/asobiba/support.html 。休館・移転（こっころサテライトの代わりのひろばなど）が変わったら直す。
 - 地区センターのプレイルーム（2024年度にリニューアルした27館）：https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/chiikishisetsu/playroom.html 。プレイルームは市内79館にあるので、ほかの地区センターも区の公式で見つけたら足す。
+- 各拠点の公式サイトの月間カレンダーも見る（拠点システムのイベント一覧ページは読み込みが後からで読めない）。予約不要・自由参加の親子向け（おはなし会・パパの日・日曜開館・季節の催し）を足す。大人だけの会や登録者向けの説明会は入れない。カレンダーは毎月20日ごろに翌月分が出る。
+  - スマイル・ポート（西区）：https://smile-port.jp/calender/smile-port/
 - 各拠点の開館日・時間、授乳室・お湯は、拠点の公式サイトで確かめて `sum`・`time` に足していく（まだ「公式で確認」のまま）。
 
 ## 公園（遊具・広場。「会期中ずっと」の遊び場として載せる。公園のイベントも見る）
