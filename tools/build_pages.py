@@ -104,6 +104,7 @@ def when_text(e):
 
 
 CSS = """
+.gkcmp th[scope=row]{white-space:nowrap}.gkcmp td{font-size:.92em}
 .gk{list-style:none;padding:0}.gk li{border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;margin:8px 0;line-height:1.7}.gk h3{margin:0 0 2px;font-size:1.02em}
 :root{--paper:#f8fafc;--card:#fff;--ink:#18222e;--muted:#5b6875;--line:#dde3e9;--accent:#0a6f95;--accent-soft:#e2f0f6;--ok:#2e7d4f;--bad:#b3372b}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;line-height:1.7}
@@ -686,7 +687,19 @@ GAKUDO_JSON = os.path.join(ROOT, "tools", "gakudo.json")
 WARD_SLUG = {"鶴見区":"tsurumi","神奈川区":"kanagawa","西区":"nishi","中区":"naka","南区":"minami","港南区":"konan","保土ケ谷区":"hodogaya","旭区":"asahi","磯子区":"isogo","金沢区":"kanazawa","港北区":"kohoku","緑区":"midori","青葉区":"aoba","都筑区":"tsuzuki","戸塚区":"totsuka","栄区":"sakae","泉区":"izumi","瀬谷区":"seya"}
 GTYPE = {"kids": "放課後キッズクラブ（小学校の中）", "club": "放課後児童クラブ（学童保育・学校の外）", "hamakko": "はまっ子ふれあいスクール（特別支援学校）"}
 GAKUDO_SRC = "https://www.city.yokohama.lg.jp/kosodate-kyoiku/hokago/hokagokids/houkago-kids.html"
-GAKUDO_FEES = f"""<h2>放課後キッズクラブの区分と料金（市内共通）</h2>
+GAKUDO_FEES = f"""<h2>キッズクラブと学童のちがい</h2>
+<table class="bm gkcmp"><thead><tr><th></th><th>放課後キッズクラブ</th><th>放課後児童クラブ（学童保育）</th></tr></thead><tbody>
+<tr><th scope="row">場所</th><td>通っている小学校の中（市立小学校すべてにある）</td><td>学校の外（一軒家・マンションの一室など）</td></tr>
+<tr><th scope="row">使える子</th><td>その小学校に通う1〜6年生ならだれでも（16時までの「わくわく」）。17時・19時までの「すくすく」は、仕事などで放課後に家に大人がいない家庭の子だけ</td><td>仕事などで放課後に家に大人がいない家庭の子だけ</td></tr>
+<tr><th scope="row">学区</th><td>その小学校の子だけ（学区に住んで私立に通う子も）</td><td>決まりなし（どの学校からでも通える）</td></tr>
+<tr><th scope="row">時間</th><td>市内どこでも同じ。平日は放課後〜19時まで</td><td>クラブごとに違う。20時・21時まで開いているところも</td></tr>
+<tr><th scope="row">料金</th><td>市内どこでも同じ。無料・月2,000円・月5,000円の3つ</td><td>クラブごとに違う（キッズより高めのことが多い）</td></tr>
+<tr><th scope="row">運営</th><td>市が選んだ法人（会社・NPOなど）</td><td>保護者会（運営委員会）・NPO・会社など。保護者がお手伝いするクラブもある</td></tr>
+<tr><th scope="row">雰囲気</th><td>学校の中なので移動がなく安心。大勢で遊ぶ</td><td>少人数で家庭的なところが多い。送迎・お弁当があるクラブも</td></tr>
+<tr><th scope="row">申し込み</th><td colspan="2">どちらも区役所ではなく、各クラブへ直接</td></tr>
+</tbody></table>
+<p class="small">ざっくり言うと、キッズクラブは「学校の中の、みんなが使える放課後の場所」、学童は「学校の外の、働く家庭のための第二の家」です。出典：<a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/hokago/hokagokenzen/houkago.html" target="_blank" rel="noopener">横浜市「初めての人へ（放課後の居場所の概要）」</a>・<a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/hokago/hokagokids/houkago-kids.html" target="_blank" rel="noopener">横浜市「放課後キッズクラブ」</a></p>
+<h2>放課後キッズクラブの区分と料金（市内共通）</h2>
 <table class="bm"><thead><tr><th>区分</th><th>使える人</th><th>時間</th><th>料金（月）</th></tr></thead><tbody>
 <tr><th scope="row">わくわく（区分1）</th><td>その小学校に通う1〜6年生ならだれでも</td><td>平日 放課後〜16時（土曜なし・学校が休みの日は2時間ほど）</td><td>無料</td></tr>
 <tr><th scope="row">すくすく ゆうやけ（区分2A）</th><td>仕事などで放課後に家に大人がいない家庭の子</td><td>平日 放課後〜17時／土曜 8時30分〜17時／休みの日 8時〜17時</td><td>2,000円（7・8月は2,500円）</td></tr>
