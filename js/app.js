@@ -1240,6 +1240,9 @@ document.addEventListener("click", ev => {
 { const cb = document.getElementById("chains-body"); if (cb) cb.innerHTML = `<h3>離乳食・子ども無料のチェーン</h3><ul class="chains">${BABYFOOD_CHAINS.map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.src)}</a>` : esc(c.src)}）</span></li>`).join("")}</ul>
   <h3>ファミレスの子ども向けサービス</h3><ul class="chains">${CHAINS.filter(c => c.n !== "デニーズ").map(c => `<li><b>${esc(c.n)}</b>${esc(c.t)}<span class="src">（${esc(c.src)}）</span></li>`).join("")}</ul>`; }
 function showTab(name, scroll){
+  // 送られたリンクの後ろに「）」などが付いても開けるように（例：#gakudo%EF%BC%89）
+  try { name = decodeURIComponent(name || ""); } catch (e) {}
+  name = String(name).replace(/[^a-z].*$/, "");
   if (!TABS[name]) name = "events";
   for (const [k, sels] of Object.entries(TABS)) sels.forEach(sel => document.querySelectorAll(sel).forEach(el => { el.hidden = k !== name; }));
   document.querySelectorAll("#tabs a").forEach(a => { const on = a.dataset.tab === name; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
@@ -1397,7 +1400,7 @@ function renderGkQuiz(){
     const q = document.getElementById("gk-q");
     q.addEventListener("input", () => { GK.q = q.value.trim(); renderGk(); clearTimeout(tq); tq = setTimeout(() => { if (GK.q) track("gakudo", "検索：" + GK.q, document.getElementById("gk-n").textContent); }, 1500); });
     q.addEventListener("focus", gkLoad);
-    if (location.hash === "#gakudo") gkLoad();
+    if (/^#gakudo/.test(location.hash)) gkLoad();
   }
 }
 
