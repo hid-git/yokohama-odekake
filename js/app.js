@@ -1243,6 +1243,7 @@ function showTab(name, scroll){
   if (!TABS[name]) name = "events";
   for (const [k, sels] of Object.entries(TABS)) sels.forEach(sel => document.querySelectorAll(sel).forEach(el => { el.hidden = k !== name; }));
   document.querySelectorAll("#tabs a").forEach(a => { const on = a.dataset.tab === name; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  if (name === "gakudo" && typeof gkLoad === "function") gkLoad();
   if (name === "near" && typeof renderNear === "function" && near && near.c) renderNear();
   if (scroll) { const nav = document.getElementById("tabs"); const y = nav.getBoundingClientRect().top + window.scrollY; if (window.scrollY > y) window.scrollTo({ top: y }); }
 }
@@ -1323,6 +1324,80 @@ function renderPlay(){
     const q = document.getElementById("play-q");
     q.addEventListener("input", () => { PLAY.q = q.value.trim(); renderPlay(); clearTimeout(tq); tq = setTimeout(() => { if (PLAY.q) track("play", "検索：" + PLAY.q, document.getElementById("play-n").textContent); }, 1500); });
     renderPlay();
+  }
+}
+
+// ---- 学童・放課後（タブ「🎒 学童・放課後」）。データ tools/gakudo.json はタブを開いたときだけ読む ----
+var GK = { rows: null, q: "", ward: "", type: "", ans: {} };
+const GK_TYPE = { kids: "キッズクラブ", club: "学童（児童クラブ）", hamakko: "はまっ子" };
+const GK_SLUG = {"鶴見区":"tsurumi","神奈川区":"kanagawa","西区":"nishi","中区":"naka","南区":"minami","港南区":"konan","保土ケ谷区":"hodogaya","旭区":"asahi","磯子区":"isogo","金沢区":"kanazawa","港北区":"kohoku","緑区":"midori","青葉区":"aoba","都筑区":"tsuzuki","戸塚区":"totsuka","栄区":"sakae","泉区":"izumi","瀬谷区":"seya"};
+function gkLoad(){
+  const sec = document.getElementById("gakudo"); if (!sec || !GK || GK.rows || GK.loading) return;
+  GK.loading = true;
+  fetch(sec.dataset.src).then(r => r.json()).then(rows => { GK.rows = rows; renderGk(); }).catch(() => { document.getElementById("gk-out").innerHTML = '<p class="note">読み込めませんでした。<a href="/gakudo/">区ごとの一覧</a>をご覧ください。</p>'; });
+}
+function gkNorm(s){ return String(s || "").normalize("NFKC").replace(/[ヶケ]/g, "ケ").replace(/小学校|小$/g, "").toLowerCase(); }
+function gkMatch(r, skip){
+  if (skip !== "ward" && GK.ward && r.ward !== GK.ward) return false;
+  if (skip !== "type" && GK.type && r.type !== GK.type) return false;
+  if (GK.q) { const q = gkNorm(GK.q).replace(/小学校|小$/g, ""); if (!q) return true;
+    if (!gkNorm([r.name, r.schools, r.addr, r.ward, r.operator].join(" ")).includes(q)) return false; }
+  return true;
+}
+function renderGk(){
+  const rows = GK.rows; if (!rows) return;
+  const opt = (k, v, label, n) => `<button type="button" class="opt" data-gk="${k}" data-v="${esc(v)}" aria-pressed="${GK[k] === v}">${esc(label)}${n === undefined ? "" : ` <small>${n}</small>`}</button>`;
+  document.getElementById("gk-ward").innerHTML = opt("ward", "", "すべての区") + WARD_ORDER.map(w => { const n = rows.filter(r => r.ward === w && gkMatch(r, "ward")).length; return n ? opt("ward", w, w.replace(/区$/, ""), n) : ""; }).join("");
+  document.getElementById("gk-type").innerHTML = opt("type", "", "すべての種類") + Object.keys(GK_TYPE).map(t => { const n = rows.filter(r => r.type === t && gkMatch(r, "type")).length; return n ? opt("type", t, GK_TYPE[t], n) : ""; }).join("");
+  const hit = rows.filter(r => gkMatch(r));
+  const out = document.getElementById("gk-out"), nEl = document.getElementById("gk-n");
+  if (!GK.ward && !GK.q && !GK.type) { nEl.textContent = `全${rows.length}か所`; out.innerHTML = `<p class="note">区を選ぶか、小学校名で探してください。区ごとの一覧は<a href="/gakudo/">学童・放課後キッズクラブ一覧</a>でも見られます。</p>`; return; }
+  nEl.textContent = `${hit.length}か所`;
+  const show = hit.slice(0, 120);
+  const card = r => { const where = r.addr || (r.schools ? r.schools + (/(学園|学校)$/.test(r.schools) ? "" : "小学校") + "の中" : "");
+    const mq = encodeURIComponent(r.addr ? `横浜市${r.ward}${r.addr}` : `横浜市${r.ward} ${r.name.split("放課後")[0]}`);
+    return `<li><details><summary><b>${esc(r.name)}</b><span class="chip ${r.type === "kids" ? "free" : ""}">${esc(GK_TYPE[r.type])}</span><span class="chip">${esc(r.ward)}</span></summary>
+    <div class="pld">${where ? `<div>📍 ${esc(where)}</div>` : ""}${r.tel ? `<div>☎ <a href="tel:${esc(r.tel)}" data-gk-out="tel">${esc(r.tel)}</a></div>` : ""}${r.hours ? `<div>🕘 ${esc(r.hours)}</div>` : (r.type === "kids" ? `<div>🕘 平日 放課後〜19時・土曜 8時30分〜19時（区分で変わる。市の共通）</div>` : `<div>🕘 時間・料金はクラブに問い合わせ</div>`)}
+    ${r.schools && r.type === "club" ? `<div>🏫 主な小学校：${esc(r.schools)}</div>` : ""}${r.operator ? `<div>運営：${esc(r.operator)}</div>` : ""}${r.note ? `<div>📝 ${esc(r.note)}</div>` : ""}
+    <div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=${mq}" target="_blank" rel="noopener" data-gk-out="map">地図</a><a href="/gakudo/${GK_SLUG[r.ward] || ""}/">${esc(r.ward)}の一覧</a><a href="${esc(r.src)}" target="_blank" rel="noopener" data-gk-out="src">区の案内 ↗</a></div>
+    <div class="plw">出典：横浜市${esc(r.ward)}の案内（${esc(r.asof)}時点）</div></div></details></li>`; };
+  out.innerHTML = hit.length ? `<ul class="pl">${show.map(card).join("")}</ul>${hit.length > show.length ? `<p class="note">ほか${hit.length - show.length}か所。区や小学校名で絞ってください。</p>` : ""}${GK.ward === "緑区" ? `<p class="note">緑区の学童（放課後児童クラブ）は、区の案内がPDFだけのため、まだ載せていません。</p>` : ""}` : `<p class="note">見つかりませんでした。小学校名は「○○」だけ（「小学校」なし）でも探せます。</p>`;
+}
+function renderGkQuiz(){
+  const a = GK.ans, el = document.getElementById("gk-result"); if (!el) return;
+  document.querySelectorAll("#gk-quiz .gkq").forEach(q => q.querySelectorAll(".opt").forEach(b => b.setAttribute("aria-pressed", a[q.dataset.q] === b.dataset.v)));
+  if (!a.away || !a.until) { el.innerHTML = ""; return; }
+  const gen = a.gen === "yes", sat = a.sat === "yes";
+  let k, why = [];
+  if (a.away === "no") { k = "wk"; why.push("家に大人がいる場合は、すくすく（ゆうやけ・ほしぞら）は使えません。"); }
+  else if (a.until === "16" && !sat) k = "wk";
+  else if (a.until === "16" || a.until === "17") k = "yu";
+  else k = "ho";
+  const R = { wk: ["わくわく（区分1）", "無料", "平日の放課後〜16時。土曜はなく、夏休みなどは1日2時間ほど。"],
+    yu: ["すくすく ゆうやけ（区分2A）", gen ? "無料（減免）" : "月2,000円（7・8月は2,500円）", "平日 放課後〜17時・土曜 8時30分〜17時・休みの日 8時〜17時。"],
+    ho: ["すくすく ほしぞら（区分2B）", gen ? "月2,500円（7・8月は3,000円・減免）" : "月5,000円（7・8月は5,500円）", "平日 放課後〜19時・土曜 8時30分〜19時・休みの日 8時〜19時。"] }[k];
+  const tips = [];
+  if (k === "wk" && a.away === "yes") tips.push("たまに遅くなる日は、すくすくに空きがあれば「スポット利用」（1回800円＋おやつ代・19時まで）もあります。");
+  if (k === "wk" && a.away === "no" && (a.until !== "16" || sat)) tips.push("わくわくは16時まで・土曜なしです。たまに遅くなる日は、空きがあれば「スポット利用」（1回800円＋おやつ代・19時まで）ができます。");
+  if (k !== "wk") tips.push("すくすくに申し込むときは、就労証明書などが要ります。");
+  if (a.until === "late") tips.push("キッズクラブは19時までです。20時・21時まで開いている学童（放課後児童クラブ）もあるので、下の一覧で「学童（児童クラブ）」を選んで、時間の欄を見てください。");
+  if (a.away === "yes") tips.push("学校の外の学童（放課後児童クラブ）も選べます。学区の決まりがなく、送迎やお弁当があるクラブもあります（料金はクラブごと）。");
+  el.innerHTML = `<div class="gkres"><p><b>目安：${esc(R[0])}</b>　料金：${esc(R[1])}</p><p>${esc(R[2])}${why.map(esc).join("")}</p><ul>${tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+    <p class="note">ほかに、おやつ代（実費ほど）と保険料（年800円以下）がかかります。これは市の決まりから出した目安です。くわしくは各クラブ・区役所に確かめてください（申し込みは各クラブへ直接）。出典：<a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/hokago/hokagokids/houkago-kids.html" target="_blank" rel="noopener">横浜市「放課後キッズクラブ」</a></p></div>`;
+  track("gakudo_quiz", R[0]);
+}
+{ const sec = document.getElementById("gakudo");
+  if (sec) {
+    let tq = null;
+    sec.addEventListener("click", ev => {
+      const qb = ev.target.closest("#gk-quiz .gkq .opt"); if (qb) { const q = qb.closest(".gkq").dataset.q; GK.ans[q] = GK.ans[q] === qb.dataset.v ? undefined : qb.dataset.v; renderGkQuiz(); return; }
+      const b = ev.target.closest("button.opt[data-gk]"); if (b) { const k = b.dataset.gk, v = b.dataset.v; GK[k] = GK[k] === v ? "" : v; renderGk(); if (v) track("gakudo", k + "：" + v, document.getElementById("gk-n").textContent); return; }
+      const a = ev.target.closest("a[data-gk-out]"); if (a) track("gakudo_open", a.dataset.gkOut);
+    });
+    const q = document.getElementById("gk-q");
+    q.addEventListener("input", () => { GK.q = q.value.trim(); renderGk(); clearTimeout(tq); tq = setTimeout(() => { if (GK.q) track("gakudo", "検索：" + GK.q, document.getElementById("gk-n").textContent); }, 1500); });
+    q.addEventListener("focus", gkLoad);
+    if (location.hash === "#gakudo") gkLoad();
   }
 }
 

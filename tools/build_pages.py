@@ -104,6 +104,7 @@ def when_text(e):
 
 
 CSS = """
+.gk{list-style:none;padding:0}.gk li{border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;margin:8px 0;line-height:1.7}.gk h3{margin:0 0 2px;font-size:1.02em}
 :root{--paper:#f8fafc;--card:#fff;--ink:#18222e;--muted:#5b6875;--line:#dde3e9;--accent:#0a6f95;--accent-soft:#e2f0f6;--ok:#2e7d4f;--bad:#b3372b}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;line-height:1.7}
 .wrap{max-width:760px;margin:0 auto;padding:16px}
@@ -680,6 +681,71 @@ def about_page(track_url, form_url):
     return path, page("このサイトについて｜KidsTrip（キッズトリップ）", "KidsTrip（キッズトリップ）の運営方針。情報の集め方と出典、内容の扱い、使われ方の記録、お問い合わせについて。",
                       path, ABOUT_BODY.replace("FORM_URL", E(form_url)), [ld], track_url=track_url, tpage=path)
 
+# ---- 学童・放課後（tools/gakudo.json から gakudo/ と gakudo/区/ のページを作る）----
+GAKUDO_JSON = os.path.join(ROOT, "tools", "gakudo.json")
+WARD_SLUG = {"鶴見区":"tsurumi","神奈川区":"kanagawa","西区":"nishi","中区":"naka","南区":"minami","港南区":"konan","保土ケ谷区":"hodogaya","旭区":"asahi","磯子区":"isogo","金沢区":"kanazawa","港北区":"kohoku","緑区":"midori","青葉区":"aoba","都筑区":"tsuzuki","戸塚区":"totsuka","栄区":"sakae","泉区":"izumi","瀬谷区":"seya"}
+GTYPE = {"kids": "放課後キッズクラブ（小学校の中）", "club": "放課後児童クラブ（学童保育・学校の外）", "hamakko": "はまっ子ふれあいスクール（特別支援学校）"}
+GAKUDO_SRC = "https://www.city.yokohama.lg.jp/kosodate-kyoiku/hokago/hokagokids/houkago-kids.html"
+GAKUDO_FEES = f"""<h2>放課後キッズクラブの区分と料金（市内共通）</h2>
+<table class="bm"><thead><tr><th>区分</th><th>使える人</th><th>時間</th><th>料金（月）</th></tr></thead><tbody>
+<tr><th scope="row">わくわく（区分1）</th><td>その小学校に通う1〜6年生ならだれでも</td><td>平日 放課後〜16時（土曜なし・学校が休みの日は2時間ほど）</td><td>無料</td></tr>
+<tr><th scope="row">すくすく ゆうやけ（区分2A）</th><td>仕事などで放課後に家に大人がいない家庭の子</td><td>平日 放課後〜17時／土曜 8時30分〜17時／休みの日 8時〜17時</td><td>2,000円（7・8月は2,500円）</td></tr>
+<tr><th scope="row">すくすく ほしぞら（区分2B）</th><td>同上</td><td>平日 放課後〜19時／土曜 8時30分〜19時／休みの日 8時〜19時</td><td>5,000円（7・8月は5,500円）</td></tr>
+</tbody></table>
+<p class="small">ほかに、おやつ代（実費ほど）と保険料（年800円以下）がかかります。就学援助・市民税所得割の非課税・生活保護の世帯は、ゆうやけが無料、ほしぞらが2,500円（7・8月は3,000円）になります。わくわくの子が用事でたまに遅くなる日は、すくすくに空きがあれば「スポット利用」（1回800円＋おやつ代、19時まで）ができます。日曜・祝日・年末年始（12/29〜1/3）は休みです。すくすくに申し込むときは就労証明書などが要ります。申し込みは区役所ではなく、各クラブへ直接。出典：<a href="{GAKUDO_SRC}" target="_blank" rel="noopener">横浜市「放課後キッズクラブ」</a></p>
+<h2>放課後児童クラブ（学童保育）とは</h2>
+<p>一軒家やマンションの一室など学校の外にあり、保護者会・NPO・会社などが運営しています。仕事などで放課後に家に大人がいない家庭の小学生が対象で、学区の決まりはありません。時間・料金・送迎・お弁当などはクラブごとに違うので、各クラブに問い合わせてください（多くのクラブは平日の午後に電話がつながります）。</p>"""
+
+
+def gakudo_card(r):
+    from urllib.parse import quote
+    where = r["addr"] or (r["schools"] + ("" if r["schools"].endswith(("学園", "学校")) else "小学校") + "の中" if r["schools"] else "")
+    mq = quote(f'横浜市{r["ward"]}{r["addr"]}' if r["addr"] else f'横浜市{r["ward"]} {r["name"].split("放課後")[0]}')
+    tel = r["tel"]
+    bits = [f'<li><h3>{E(r["name"])}</h3><div class="small">{E(GTYPE[r["type"]])}</div>']
+    if where: bits.append(f'<div>📍 {E(where)}　<a href="https://www.google.com/maps/search/?api=1&amp;query={mq}" target="_blank" rel="noopener">地図</a></div>')
+    if tel: bits.append(f'<div>☎ <a href="tel:{E(tel)}">{E(tel)}</a></div>')
+    if r["hours"]: bits.append(f'<div>🕘 {E(r["hours"])}</div>')
+    if r["schools"] and r["type"] == "club": bits.append(f'<div>🏫 主な小学校：{E(r["schools"])}</div>')
+    if r["operator"]: bits.append(f'<div>運営：{E(r["operator"])}</div>')
+    if r.get("note"): bits.append(f'<div>📝 {E(r["note"])}</div>')
+    bits.append(f'<div class="small">出典：<a href="{E(r["src"])}" target="_blank" rel="noopener">横浜市{E(r["ward"])}の案内</a>（{E(r["asof"])}）</div></li>')
+    return "".join(bits)
+
+
+def gakudo_pages(track_url):
+    if not os.path.exists(GAKUDO_JSON):
+        return []
+    rows = json.load(open(GAKUDO_JSON, encoding="utf-8"))
+    out = []
+    wards = [w for w in WARD_SLUG if any(r["ward"] == w for r in rows)]
+    def cnt(xs, t): return sum(1 for r in xs if r["type"] == t)
+    links = "".join(f'<li><a href="/gakudo/{WARD_SLUG[w]}/">{w}</a>（キッズ{cnt(xs,"kids")}・学童{cnt(xs,"club")}）</li>' for w in wards for xs in [[r for r in rows if r["ward"] == w]])
+    asof = rows[0]["asof"] if rows else ""
+    body = f"""<article class="ev"><p class="crumb"><a href="/">トップ</a> ＞ 学童・放課後キッズクラブ</p>
+<h1>横浜市の学童・放課後キッズクラブ一覧</h1>
+<p>横浜市18区の放課後キッズクラブ（{cnt(rows,"kids")}か所）と放課後児童クラブ（学童保育・{cnt(rows,"club")}か所）を、各区役所の案内ページからまとめました。区を選ぶと、住所・電話・主な小学校が見られます。トップの「🎒 学童・放課後」では、小学校名で探したり、いくつかの質問に答えてどの区分が合いそうかの目安を見たりできます。</p>
+<div class="btns"><a class="btn main" href="/#gakudo">小学校名で探す・区分の目安を見る</a></div>
+<h2>区ごとの一覧</h2><ul>{links}</ul>
+{GAKUDO_FEES}
+<p class="small">情報の時点：{E(asof)}。空き状況・料金・時間は変わることがあるので、必ず各クラブ・区役所に確かめてください。緑区の放課後児童クラブは区の案内がPDFだけのため、まだ載せていません。</p></article>"""
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜市の学童・放課後キッズクラブ一覧", "url": SITE + "gakudo/", "inLanguage": "ja"}
+    out.append(("gakudo/", page(f"横浜市の学童・放課後キッズクラブ一覧（全{len(rows)}か所・区ごと）｜KidsTrip", f"横浜市18区の放課後キッズクラブ{cnt(rows,'kids')}か所と学童（放課後児童クラブ）{cnt(rows,'club')}か所の住所・電話・主な小学校。わくわく・ゆうやけ・ほしぞらの区分と料金も。", "gakudo/", body, [ld], track_url=track_url, tpage="gakudo/")))
+    for w in wards:
+        xs = [r for r in rows if r["ward"] == w]
+        sec = "".join(f'<h2>{E(GTYPE[t])}（{n}）</h2><ul class="gk">' + "".join(gakudo_card(r) for r in xs if r["type"] == t) + "</ul>"
+                      for t in ("kids", "club", "hamakko") for n in [cnt(xs, t)] if n)
+        miss = "<p class=\"small\">緑区の放課後児童クラブは、区の案内がPDFだけのため、まだ載せていません。<a href=\"https://www.city.yokohama.lg.jp/midori/kosodate_kyoiku/hokago/gakudoukurabu.html\" target=\"_blank\" rel=\"noopener\">緑区の案内</a>で見られます。</p>" if w == "緑区" else ""
+        body = f"""<article class="ev"><p class="crumb"><a href="/">トップ</a> ＞ <a href="/gakudo/">学童・放課後キッズクラブ</a> ＞ {w}</p>
+<h1>{w}の学童・放課後キッズクラブ一覧</h1>
+<p>{w}の放課後キッズクラブ{cnt(xs,"kids")}か所と放課後児童クラブ（学童保育）{cnt(xs,"club")}か所です。キッズクラブはその小学校に通う子（学区に住んで私立に通う子も）が使えます。学童は学区の決まりがなく、「主な小学校」はそのクラブに通っている子の多い学校です。</p>
+<div class="btns"><a class="btn main" href="/#gakudo">区分の目安を見る</a><a class="btn" href="/gakudo/">ほかの区</a></div>
+{sec}{miss}{GAKUDO_FEES}
+<p class="small">情報の時点：{E(asof)}（{w}の案内ページから）。空き状況・料金・時間は変わることがあるので、必ず各クラブに確かめてください。</p></article>"""
+        ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{w}の学童・放課後キッズクラブ一覧", "url": f"{SITE}gakudo/{WARD_SLUG[w]}/", "inLanguage": "ja"}
+        out.append((f"gakudo/{WARD_SLUG[w]}/", page(f"{w}の学童・放課後キッズクラブ一覧（{len(xs)}か所）｜KidsTrip", f"{w}の放課後キッズクラブ{cnt(xs,'kids')}か所と学童（放課後児童クラブ）{cnt(xs,'club')}か所の住所・電話・主な小学校・開所時間。区分（わくわく・ゆうやけ・ほしぞら）と料金も。", f"gakudo/{WARD_SLUG[w]}/", body, [ld], track_url=track_url, tpage=f"gakudo/{WARD_SLUG[w]}/")))
+    return out
+
 
 def main():
     d = load_data()
@@ -694,6 +760,13 @@ def main():
     os.makedirs(os.path.join(ROOT, pp), exist_ok=True)
     open(os.path.join(ROOT, pp, "index.html"), "w", encoding="utf-8").write(ph)
     man = json.load(open(MANIFEST, encoding="utf-8")) if os.path.exists(MANIFEST) else {"event": {}, "spot": {}}
+    gk_man = {}
+    for gp, gh in gakudo_pages(track_url):
+        os.makedirs(os.path.join(ROOT, gp), exist_ok=True)
+        open(os.path.join(ROOT, gp, "index.html"), "w", encoding="utf-8").write(gh)
+        hh = hashlib.sha1(gh.encode()).hexdigest()[:12]
+        old = man.get("gakudo", {}).get(gp, {})
+        gk_man[gp] = {"hash": hh, "lastmod": old.get("lastmod", TODAY.isoformat()) if old.get("hash") == hh else TODAY.isoformat()}
     # 施設（BABY）：名前ごとに1ページ。最初に出てきたエリアを使う
     spots, spot_ids = {}, {}
     for area, lst in d["baby"].items():
@@ -738,6 +811,7 @@ def main():
             os.makedirs(os.path.dirname(out), exist_ok=True)
             open(out, "w", encoding="utf-8").write(htmltext)
             new_man[kind][pid] = dict(old, ended=True, lastmod=old.get("lastmod", today) if old.get("ended") else today)
+    new_man["gakudo"] = gk_man
     new_man["og"], og_made = render_og(d["events"], man.get("og", {}))
     new_man["og_spot"], og_spot = render_og_spots(spots, spot_ids, d["areas"], man.get("og_spot", {}))
     og_made += og_spot
@@ -745,6 +819,8 @@ def main():
 
     # sitemap
     urls = [(SITE, today, "daily"), (SITE + "en/", man.get("_en", today), "weekly"), (SITE + "about/", "2026-11-16", "monthly"), (SITE + "privacy/", "2026-11-16", "yearly")]
+    for gp, v in sorted(gk_man.items()):
+        urls.append((SITE + gp, v["lastmod"], "monthly"))
     for kind in ("event", "spot"):
         for pid, v in sorted(new_man[kind].items()):
             if not v.get("ended") and not v.get("thin"):
@@ -793,6 +869,9 @@ def main():
     src = re.sub(r'src="js/app\.js\?v=[0-9a-f]*"', f'src="js/app.js?v={appv}"', src)
     datav = hashlib.sha1(open(os.path.join(ROOT, "js", "data.js"), "rb").read()).hexdigest()[:10]
     src = re.sub(r'src="js/data\.js\?v=[0-9a-f]*"', f'src="js/data.js?v={datav}"', src)
+    if os.path.exists(GAKUDO_JSON):
+        gkv = hashlib.sha1(open(GAKUDO_JSON, "rb").read()).hexdigest()[:10]
+        src = re.sub(r'data-src="/tools/gakudo\.json\?v=[0-9a-f]*"', f'data-src="/tools/gakudo.json?v={gkv}"', src)
     src = re.sub(r"<!--PLAY:START-->.*?<!--PLAY:END-->", lambda _: f"<!--PLAY:START-->{playhtml}<!--PLAY:END-->", src, flags=re.S)
     src = re.sub(r"<!--NEW:START-->.*?<!--NEW:END-->", lambda _: f"<!--NEW:START-->{newhtml}<!--NEW:END-->", src, flags=re.S)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (org, item_list))
