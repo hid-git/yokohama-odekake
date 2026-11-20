@@ -113,3 +113,10 @@
 
 ## 収穫体験（いちご狩り・みかん狩り・芋掘り）
 - JA横浜「やるじゃん横浜」の区×作物マップ：https://yarujan-yokohama.jp/vege-fruits-map/ （JA横浜の公式。各プランのページ plan/番号 に期間・料金・設備・予約リンクがある）。いちご狩り（平本農園・山本園芸・門倉農園・新川農園など）は12〜1月に始まったら足す。
+
+## 小学生の放課後（学童）— これから作る予定（利用者の希望、2026年11月）
+- 制度（放課後キッズクラブ・料金区分・時間）：https://www.city.yokohama.lg.jp/kosodate-kyoiku/hokago/hokagokids/houkago-kids.html
+- 制度（放課後児童クラブ＝学童保育）：https://www.city.yokohama.lg.jp/kosodate-kyoiku/hokago/hokagojido/houkago-club.html
+- 区別の一覧（各区のページへのリンク）：https://www.city.yokohama.lg.jp/kosodate-kyoiku/hokago/kubetsu-list/kubetsuichiran.html
+- 区のページの例（西区：学童8か所・キッズクラブ9校の名前・住所・電話、一覧PDFあり）：https://www.city.yokohama.lg.jp/nishi/kosodate_kyoiku/hokago/syoutyuu.html
+- 時間・料金・空きは各クラブで違うので、クラブの公式ページで確かめる。分からないものは「公式ページに記載なし」。
