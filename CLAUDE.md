@@ -41,7 +41,7 @@
 - データは `tools/gakudo.json`（1件：`type`（kids＝放課後キッズクラブ／club＝放課後児童クラブ／hamakko）・`ward`・`name`・`addr`（横浜市○区のあと）・`tel`・`hours`（区のページにあるものだけ）・`schools`（キッズは学校名、学童は主な小学校）・`operator`・`note`・`src`（区の案内ページ）・`asof`）。出どころは18区の区役所の案内だけ（`sources.md` の「小学生の放課後」）。民間学童（市の一覧外）は、利用者から聞いた・各社公式で確かめたものを `type:"private"` で足す予定（まだ表示の対応なし）。
 - タブを開いたときだけ `fetch` で読む（`index.html` の `#gakudo` の `data-src` の `?v=` は `tools/build_pages.py` が付け直す）。`tools/build_pages.py` が `gakudo/`（全体）と `gakudo/区/`（18区）の静的ページを作り、sitemap に入れる。
 - 区分の目安（わくわく・ゆうやけ・ほしぞら）と料金は `js/app.js` の `renderGkQuiz` と `tools/build_pages.py` の `GAKUDO_FEES` に書いてある。毎年4月に市の「放課後キッズクラブ」ページで料金・時間が変わっていないか確かめる。
-- 毎日の更新ではやらなくてよい。足りないもの：緑区の学童（PDFだけ）、住所がないキッズクラブ（学校の住所で埋める）、中区のキッズクラブ（9校しかないので確かめる）。
+- 毎日の更新ではやらなくてよい。足りないもの：緑区の学童（PDFだけ）、住所がないキッズクラブ（学校の住所で埋める）。中区のキッズクラブは9校で合っている（市の区別一覧PDF・令和8年4月1日時点で確認）。
 
 ## 守ること
 - `<head>` の `google-site-verification` のmetaタグ（2つ：古いアドレス用と kidstrip.jp 用）は Google Search Console の確認用。消さない。
