@@ -119,4 +119,5 @@
 - 制度（放課後児童クラブ＝学童保育）：https://www.city.yokohama.lg.jp/kosodate-kyoiku/hokago/hokagojido/houkago-club.html
 - 区別の一覧（各区のページへのリンク）：https://www.city.yokohama.lg.jp/kosodate-kyoiku/hokago/kubetsu-list/kubetsuichiran.html
 - 区のページの例（西区：学童8か所・キッズクラブ9校の名前・住所・電話、一覧PDFあり）：https://www.city.yokohama.lg.jp/nishi/kosodate_kyoiku/hokago/syoutyuu.html
+- 集めたもの：`tools/gakudo.json`・`tools/gakudo.csv`（2026年11月20日、18区の区ページから。キッズクラブ336・放課後児童クラブ215・はまっ子1）。緑区の学童は区ページにPDFしかなく未取得（gakudoukurabu.files/0031_20260924.pdf を利用者に送ってもらうか検索から開く）。住所がないキッズクラブは学校の住所で埋める。
 - 時間・料金・空きは各クラブで違うので、クラブの公式ページで確かめる。分からないものは「公式ページに記載なし」。
