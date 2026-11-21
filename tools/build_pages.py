@@ -369,6 +369,7 @@ def event_page(e, d, spot_ids, track_url):
     body = f"""{ch}
 <article class="card">
 <h1>{E(e['t'])}</h1>
+{('<p class="tip">主催から「公式の情報を見てほしい」とのお願いがあるため、ここでは概要だけ載せています。観覧場所・行き方・当日の開催は主催の公式ページで確認してください。</p><div class="btns"><a class="btn main" data-act="official" href="' + E(e['url']) + '" target="_blank" rel="noopener">' + E(e.get('officialLabel') or '主催の公式ページを開く') + '</a></div>') if e.get('officialOnly') else ''}
 <ul class="chips">{chips}</ul>
 <table class="info">
 <tr><th>日にち</th><td>{E(when_text(e))}</td></tr>
@@ -384,8 +385,7 @@ def event_page(e, d, spot_ids, track_url):
 <p class="small">{("情報の時点：" + E(e["asof"]) + "　") if e.get("asof") else ""}出典：{E(e['src'])}</p>
 <div class="btns"><a class="btn main" data-act="official" href="{E(e['url'])}" target="_blank" rel="noopener">公式ページで確認</a>{resv}
 <a class="btn" href="/?e={E(e['id'])}">一覧で見る（行き方・近くのごはん）</a>
-<button type="button" class="btn" data-share="1">🔗 リンクを送る・コピー</button>
-<a class="btn line" href="{E(line_url(share_text))}" target="_blank" rel="noopener">LINEで送る</a></div>
+{'' if e.get('officialOnly') else '<button type="button" class="btn" data-share="1">🔗 リンクを送る・コピー</button>\n<a class="btn line" href="' + E(line_url(share_text)) + '" target="_blank" rel="noopener">LINEで送る</a>'}</div>
 </article>
 {f'<h2>近くのおむつ替え・授乳室・お湯（{E(d["areas"].get(area, ""))}）</h2>' + matrix(babies, spot_ids) if babies else near_spots_html}
 {acc_html}
