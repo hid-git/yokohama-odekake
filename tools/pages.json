@@ -38,7 +38,7 @@
   },
   "10h18dd": {
    "added": "2026-11-16",
-   "chars": 744,
+   "chars": 767,
    "hash": "d778a5430705",
    "lastmod": "2026-11-21",
    "links": 10,
@@ -3214,7 +3214,7 @@
   },
   "8fmn7b": {
    "added": "2026-11-16",
-   "chars": 903,
+   "chars": 926,
    "hash": "b865bc9c7dec",
    "lastmod": "2026-11-21",
    "links": 16,
@@ -3803,6 +3803,15 @@
    "links": 8,
    "name": "港南地区センターのプレイルーム（港南区）",
    "type": "TouristAttraction"
+  },
+  "eae1s2": {
+   "added": "2026-11-21",
+   "chars": 973,
+   "hash": "72ed6122ff1a",
+   "lastmod": "2026-11-21",
+   "links": 16,
+   "name": "冬休み書初め教室（中村地区センター）",
+   "type": "Event"
   },
   "ecdr6o": {
    "added": "2026-11-12",
@@ -5276,8 +5285,8 @@
   },
   "vy2g65": {
    "added": "2026-11-16",
-   "chars": 888,
-   "hash": "6f46894b2a0c",
+   "chars": 886,
+   "hash": "78616d93ef0b",
    "lastmod": "2026-11-21",
    "links": 13,
    "name": "こども書道教室（豊田地区センター）",
@@ -6109,6 +6118,7 @@
   "e0uw51": "1964935b4b38",
   "e2rn71": "1b22ab6bd4e2",
   "e62f4b": "29b079f9e3d0",
+  "eae1s2": "c81a5f727f0f",
   "ecdr6o": "28409a50d466",
   "edvmch": "5045d48d1f4c",
   "eecbay": "c9f278e0474b",
