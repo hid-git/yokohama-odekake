@@ -163,6 +163,8 @@ def page(title, desc, path, body, ld, noindex=False, track_url="", tpage="", og=
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{E(og_alt) if og_alt else "KidsTrip（キッズトリップ）のロゴ。観覧車やお城を背景に、両手を広げて喜ぶ4人家族のイラスト"}">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="192x192" href="{up}img/favicon-192.png">
+<link rel="icon" type="image/png" sizes="48x48" href="{up}img/favicon-48.png">
 <link rel="icon" href="{up}img/favicon.png">
 <link rel="apple-touch-icon" href="{up}img/apple-touch-icon.png">
 {lds}<style>{CSS}</style>

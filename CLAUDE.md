@@ -1,7 +1,7 @@
 # KidsTrip（キッズトリップ）横浜の子連れおでかけ・イベント一覧 — 更新のしかた
 
 サイト名は「KidsTrip」（KとTは大文字、読みはキッズトリップ。全部小文字の「kidstrip」はアドレスだけ。kid strip と読まれないよう、表示では必ず KidsTrip と書く）。説明は「横浜の子連れおでかけ・イベント一覧」。
-ロゴは `img/logo.webp`（全地域で共通。景色は地域ごとの背景で出す）。ファビコンは `img/favicon.png`・`img/apple-touch-icon.png`、LINEなどで送ったときの画像は `img/ogp.jpg`。`img/` のファイルは消さない。
+ロゴは `img/logo.webp`（全地域で共通。景色は地域ごとの背景で出す）。ファビコンは `img/favicon.png`・`img/apple-touch-icon.png`（Googleの検索結果に出すため、48の倍数の大きさの `img/favicon-48.png`・`favicon-96.png`・`favicon-192.png` もトップと全ページの `<head>` に入れている。2026年11月）、LINEなどで送ったときの画像は `img/ogp.jpg`。`img/` のファイルは消さない。
 
 公開サイト：https://kidstrip.jp/ （GitHub Pages、main ブランチの直下。独自ドメイン kidstrip.jp。ドメインは Xserverドメインで管理、`CNAME` ファイルは消さない。古いアドレス https://hid-git.github.io/yokohama-odekake/ からは自動で移る）
 データ（`EVENTS`・`BABY`・`KIDS_SHOPS`・`ACCESS`・`CLOTHES`・`DATES`・`WEEKENDS`・`WX` など、毎日足したり直したりするもの）は **`js/data.js`** にある（2026年11月に `index.html` から分けた。`index.html` が重すぎるとAdSenseの審査で言われたため）。表示や絞り込みなどの動きのコード（関数）は `js/app.js` にある。`index.html` は画面のHTML（日にちボタン・冒頭の期間表記・情報収集日・各タブの要点など）と、`tools/build_pages.py` が書く静的な一覧・構造化データだけで、`js/data.js`→`js/app.js` の順に `defer` で読む（2回目からはブラウザのキャッシュで速く開く）。データを `index.html` に戻さない。毎日の更新で触るのは `js/data.js` と `index.html` の日付まわりのHTMLで、`js/app.js` は動きを変えるときだけ直す。`js/data.js` と `js/app.js` の `?v=` は `tools/build_pages.py` が中身に合わせて付け直す。イベントは `js/data.js` の「// ---- 区ごとの無料の室内遊び場」の行より上に足す（長期開催の展開などの処理は、データをすべて読んだあとに `js/app.js` で一度に行われる）。英語版（観光で来る子連れ家族向け）は `en/index.html` で、観光客が行きやすい場所と大きなイベントだけを英語で載せている。
