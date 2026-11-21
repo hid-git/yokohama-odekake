@@ -56,6 +56,7 @@ def load_data():
             EVENTS.forEach(e => {
               const k = accessKey(e), a = k ? ACCESS[k] : null, g = venueGeo(e);
               ev[e.id] = {
+                geo: g || null,
                 acc: strip(accPoints(e, k, a)),
                 food: kidsFoodNear(e).slice(0, 8).map(x => ({ n: x.sh.n, gen: x.sh.gen || "", min: x.min, tags: x.sh.tags.slice(0, 3) })),
                 courts: foodCourtNear(e).slice(0, 3).map(x => ({ n: x.c.n, min: x.min })),
@@ -330,18 +331,29 @@ def circles_html(x):
             f'<p class="small">活動日は団体の登録時の情報で、変わっていることがあります。入会・見学は施設に問い合わせてください（{link}・{E(x.get("circlesAsof", ""))}）。</p>')
 
 
+def split_venue(venue):
+    """会場の文字列から、施設名と住所を分ける（例：「立場地区センター（泉区中田北1-9-14）」→ 名前・区・番地）。住所がなければ番地は空。"""
+    m = re.search(r"（([^（）]*?・)?(?:横浜市)?([^（）・]{1,6}区)([^（）]*?\d[^（）]*)）", venue or "")
+    if not m:
+        return (venue or "").strip(), "", ""
+    keep = f"（{m.group(1).rstrip('・')}）" if m.group(1) else ""
+    name = re.sub(r"\s+", " ", (venue[:m.start()] + keep + venue[m.end():])).strip(" ・") or venue
+    return name, m.group(2), m.group(3).strip()
+
+
 def event_page(e, d, spot_ids, track_url):
     path = f"event/{e['id']}/"
     ward1 = e["ward"].split("・")[0]
+    wsuf = "" if (e.get("ward") or "").split("・")[0] in e["t"] else f"（{e['ward']}）"  # 名前に区名が入っていれば二重に付けない
     if e["kind"] == "ongoing":  # 通年の施設・遊び場：検索結果に「会期」ではなく中身が出るように
-        title = f"{e['t']}（{e['ward']}）｜横浜の子連れおでかけ｜KidsTrip"
+        title = f"{e['t']}{wsuf}｜横浜の子連れおでかけ｜KidsTrip"
         desc = f"{e['sum']}（{e['venue']}・{re.sub(r'（.*?）', '', e.get('priceText', ''))[:30]}）"[:120]
     else:
-        title = f"{e['t']}（{e['ward']}）｜横浜の子連れイベント｜KidsTrip"
+        title = f"{e['t']}{wsuf}｜横浜の子連れイベント｜KidsTrip"
         desc = f"{when_text(e)[:60]}　{e['venue']}。{e['sum']}"[:120]
     area = e.get("area") or ""
     babies = d["baby"].get(area, [])
-    ch, cld = crumbs([("トップ", "/"), ("イベント", "/"), (e["t"], "")])
+    ch, cld = crumbs([("トップ", "/"), ("施設・遊び場" if e["kind"] == "ongoing" else "イベント", "/#play" if e["kind"] == "ongoing" else "/"), (e["t"], "")])
     chips = "".join(f"<li>{E(x)}</li>" for x in [
         {"free": "無料", "admission": "入園料のみ", "paid": "有料"}.get(e["price"], "料金要確認"), e["ageText"], e["place"], d["rain"].get(e["rain"], "")] if x)
     resv = f'<a class="btn" data-act="resv" href="{E(e["resvUrl"])}" target="_blank" rel="noopener">予約ページへ</a>' if e.get("resvUrl") else ""
@@ -397,6 +409,10 @@ def event_page(e, d, spot_ids, track_url):
 {('<h2>近くのほかのイベント</h2><ul class="links">' + ''.join(f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(when_text(x)[:30])}）</li>' for x in others) + '</ul>') if others else ''}
 """
     ld = [cld]
+    vname, vward, vstreet = split_venue(e["venue"])
+    addr = {"@type": "PostalAddress", **({"streetAddress": vstreet} if vstreet else {}), "addressLocality": "横浜市" + (vward or ward1), "addressRegion": "神奈川県", "addressCountry": "JP"}
+    g = (ex or {}).get("geo")
+    geo = {"@type": "GeoCoordinates", "latitude": g[0], "longitude": g[1]} if g else None
     if e["kind"] == "limited" and e["days"]:
         days = sorted(iso(k) for k in e["days"])
         start = days[0].isoformat()
@@ -405,7 +421,7 @@ def event_page(e, d, spot_ids, track_url):
         ev = {"@context": "https://schema.org", "@type": "Event", "name": e["t"], "startDate": start, "endDate": days[-1].isoformat(),
               "eventStatus": "https://schema.org/EventCancelled" if e.get("cancelled") else "https://schema.org/EventScheduled",
               "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-              "location": {"@type": "Place", "name": e["venue"], "address": {"@type": "PostalAddress", "addressLocality": "横浜市" + ward1, "addressRegion": "神奈川県", "addressCountry": "JP"}},
+              "location": {"@type": "Place", "name": vname, "address": addr, **({"geo": geo} if geo else {})},
               "description": e["sum"], "image": [SITE + "img/ogp.jpg"], "url": url, "isAccessibleForFree": e["price"] == "free", "inLanguage": "ja"}
         # 料金（offers）：無料は0円、有料は料金の欄にある「○円」のいちばん安い金額。分からないものは入れない
         yen = [int(x.replace(",", "")) for x in re.findall(r"(\d[\d,]*)\s*円", e.get("priceText", ""))]
@@ -417,7 +433,7 @@ def event_page(e, d, spot_ids, track_url):
         # 通年の施設・遊び場・公園：Event ではなく場所として出す（公園は Park）
         typ = "Park" if re.search(r"公園|広場|ふるさと村", e["t"]) and e.get("place", "").startswith("屋外") else "TouristAttraction"
         pl = {"@context": "https://schema.org", "@type": typ, "name": e["t"], "description": e["sum"], "url": url, "image": [SITE + "img/ogp.jpg"],
-              "address": {"@type": "PostalAddress", "streetAddress": e["venue"], "addressLocality": "横浜市" + ward1, "addressRegion": "神奈川県", "addressCountry": "JP"},
+              "address": addr, **({"geo": geo} if geo else {}),
               "isAccessibleForFree": e["price"] == "free", "publicAccess": True, "touristType": "子ども連れの家族", "inLanguage": "ja"}
         ld.append(pl)
     og = f"og/{e['id']}.jpg"
@@ -745,7 +761,7 @@ def gakudo_pages(track_url):
 {GAKUDO_FEES}
 <p class="small">情報の時点：{E(asof)}。空き状況・料金・時間は変わることがあるので、必ず各クラブ・区役所に確かめてください。</p></article>"""
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜市の学童・放課後キッズクラブ一覧", "url": SITE + "gakudo/", "inLanguage": "ja"}
-    out.append(("gakudo/", page(f"横浜市の学童・放課後キッズクラブ一覧（全{len(rows)}か所・区ごと）｜KidsTrip", f"横浜市18区の放課後キッズクラブ{cnt(rows,'kids')}か所と学童（放課後児童クラブ）{cnt(rows,'club')}か所の住所・電話・主な小学校。わくわく・ゆうやけ・ほしぞらの区分と料金も。", "gakudo/", body, [ld], track_url=track_url, tpage="gakudo/")))
+    out.append(("gakudo/", page(f"横浜市の学童・放課後キッズクラブ一覧（全{len(rows)}か所・区ごと）｜KidsTrip", f"横浜市18区の放課後キッズクラブ{cnt(rows,'kids')}か所と学童（放課後児童クラブ）{cnt(rows,'club')}か所の住所・電話・主な小学校。わくわく・ゆうやけ・ほしぞらの区分と料金も。", "gakudo/", body, [ld, crumbs([("トップ", "/"), ("学童・放課後キッズクラブ", "")])[1]], track_url=track_url, tpage="gakudo/")))
     for w in wards:
         xs = [r for r in rows if r["ward"] == w]
         sec = "".join(f'<h2>{E(GTYPE[t])}（{n}）</h2><ul class="gk">' + "".join(gakudo_card(r) for r in xs if r["type"] == t) + "</ul>"
@@ -758,7 +774,7 @@ def gakudo_pages(track_url):
 {sec}{miss}{GAKUDO_FEES}
 <p class="small">情報の時点：{E(asof)}（{w}の案内ページから）。空き状況・料金・時間は変わることがあるので、必ず各クラブに確かめてください。</p></article>"""
         ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{w}の学童・放課後キッズクラブ一覧", "url": f"{SITE}gakudo/{WARD_SLUG[w]}/", "inLanguage": "ja"}
-        out.append((f"gakudo/{WARD_SLUG[w]}/", page(f"{w}の学童・放課後キッズクラブ一覧（{len(xs)}か所）｜KidsTrip", f"{w}の放課後キッズクラブ{cnt(xs,'kids')}か所と学童（放課後児童クラブ）{cnt(xs,'club')}か所の住所・電話・主な小学校・開所時間。区分（わくわく・ゆうやけ・ほしぞら）と料金も。", f"gakudo/{WARD_SLUG[w]}/", body, [ld], track_url=track_url, tpage=f"gakudo/{WARD_SLUG[w]}/")))
+        out.append((f"gakudo/{WARD_SLUG[w]}/", page(f"{w}の学童・放課後キッズクラブ一覧（{len(xs)}か所）｜KidsTrip", f"{w}の放課後キッズクラブ{cnt(xs,'kids')}か所と学童（放課後児童クラブ）{cnt(xs,'club')}か所の住所・電話・主な小学校・開所時間。区分（わくわく・ゆうやけ・ほしぞら）と料金も。", f"gakudo/{WARD_SLUG[w]}/", body, [ld, crumbs([("トップ", "/"), ("学童・放課後キッズクラブ", "/gakudo/"), (w, "")])[1], {"@context": "https://schema.org", "@type": "ItemList", "name": f"{w}の放課後キッズクラブ・学童", "numberOfItems": len(xs), "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": {"@type": "ChildCare", "name": r["name"], **({"telephone": r["tel"]} if r.get("tel") else {}), "address": {"@type": "PostalAddress", **({"streetAddress": r["addr"]} if r.get("addr") else {}), "addressLocality": "横浜市" + w, "addressRegion": "神奈川県", "addressCountry": "JP"}}} for i, r in enumerate(xs)]}], track_url=track_url, tpage=f"gakudo/{WARD_SLUG[w]}/")))
     return out
 
 
@@ -840,8 +856,20 @@ def main():
         for pid, v in sorted(new_man[kind].items()):
             if not v.get("ended") and not v.get("thin"):
                 urls.append((f"{SITE}{kind}/{pid}/", v["lastmod"], "weekly"))
-    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
-        f"  <url><loc>{u}</loc><lastmod>{lm}</lastmod><changefreq>{cf}</changefreq></url>\n" for u, lm, cf in urls) + "</urlset>\n"
+    # sitemap は種類ごとに分ける（URLは変えない）。sitemap.xml はそれらをまとめる索引
+    def urlset(us):
+        return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
+            f"  <url><loc>{u}</loc><lastmod>{lm}</lastmod><changefreq>{cf}</changefreq></url>\n" for u, lm, cf in us) + "</urlset>\n"
+    def is_event(u):
+        if "/event/" not in u: return False
+        return new_man["event"].get(u.rstrip("/").split("/")[-1], {}).get("type") == "Event"
+    groups = {"sitemap-events.xml": [x for x in urls if is_event(x[0])],
+              "sitemap-spots.xml": [x for x in urls if ("/event/" in x[0] and not is_event(x[0])) or "/spot/" in x[0]],
+              "sitemap-pages.xml": [x for x in urls if "/event/" not in x[0] and "/spot/" not in x[0]]}
+    for fn, us in groups.items():
+        open(os.path.join(ROOT, fn), "w", encoding="utf-8").write(urlset(us))
+    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
+        f"  <sitemap><loc>{SITE}{fn}</loc><lastmod>{max([x[1] for x in us] or [today])}</lastmod></sitemap>\n" for fn, us in groups.items()) + "</sitemapindex>\n"
     open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(sm)
 
     # 英語版：英語で載せている場所・イベント・赤ちゃん設備から、日本語の個別ページへのリンク（<!--JA:START-->〜<!--JA:END-->）
