@@ -381,8 +381,8 @@
   },
   "147tiu7": {
    "added": "2026-11-17",
-   "chars": 1942,
-   "hash": "7bb0aceca1ca",
+   "chars": 1933,
+   "hash": "3528ba3225d8",
    "lastmod": "2026-11-21",
    "links": 22,
    "name": "はじめての造形あそび 絵の具コース（横浜美術館）",
@@ -983,8 +983,8 @@
   },
   "1czplid": {
    "added": "2026-11-12",
-   "chars": 1967,
-   "hash": "102d419bd522",
+   "chars": 1958,
+   "hash": "2e69ae60bfe4",
    "lastmod": "2026-11-21",
    "links": 22,
    "name": "野毛山動物園 キリン「バックヤードツアー」",
@@ -1335,8 +1335,8 @@
   },
   "1ic3bk2": {
    "added": "2026-11-14",
-   "chars": 2565,
-   "hash": "26eac2f22d66",
+   "chars": 2556,
+   "hash": "682ef6d42b31",
    "lastmod": "2026-11-21",
    "links": 22,
    "name": "Winter Market Yokohama（MMテラスの冬のマーケット）",
@@ -4556,6 +4556,15 @@
    "name": "はらっぱ祭り（本牧原地域ケアプラザ）",
    "type": "Event"
   },
+  "lk26g9": {
+   "added": "2026-11-21",
+   "chars": 881,
+   "hash": "0bd9b706a32d",
+   "lastmod": "2026-11-21",
+   "links": 16,
+   "name": "毛糸でクリスマス工作（浅間コミュニティハウス）",
+   "type": "Event"
+  },
   "lsacis": {
    "added": "2026-11-17",
    "chars": 799,
@@ -4796,6 +4805,15 @@
    "lastmod": "2026-11-21",
    "links": 20,
    "name": "はっぴーまーち♪おはなし会（ノースポート・モール）",
+   "type": "Event"
+  },
+  "p6vqs7": {
+   "added": "2026-11-21",
+   "chars": 703,
+   "hash": "c5d901fa3785",
+   "lastmod": "2026-11-21",
+   "links": 11,
+   "name": "親子のおはなし会（浅間コミュニティハウス）",
    "type": "Event"
   },
   "pceh6i": {
@@ -5213,8 +5231,8 @@
   },
   "udskn7": {
    "added": "2026-11-20",
-   "chars": 1934,
-   "hash": "55dd2736f7bd",
+   "chars": 1925,
+   "hash": "4d1b1fe77a4a",
    "lastmod": "2026-11-21",
    "links": 22,
    "name": "スマイル・ポート「学生サンタがやってくる」",
@@ -6209,6 +6227,7 @@
   "kur4nv": "98053bf58a95",
   "lau4ko": "fe4b8d0fb2ca",
   "lf4ca3": "ab1ff1a7297f",
+  "lk26g9": "1406997cb6de",
   "lsacis": "44ea61de6747",
   "m2aibh": "4486db35d8dd",
   "ma2ecn": "ceb4567653d9",
@@ -6234,6 +6253,7 @@
   "oob9np": "84751807fc55",
   "opnnov": "c5d213cd979e",
   "oz0r2b": "6a3bd402f501",
+  "p6vqs7": "5cd8b3132f78",
   "pceh6i": "abd8b7a70781",
   "pejk8i": "d7c346655659",
   "po3rvu": "5d104b6e0a53",
