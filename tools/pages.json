@@ -552,8 +552,8 @@
   },
   "16t5vbc": {
    "added": "2026-11-18",
-   "chars": 1972,
-   "hash": "0bf69b5483f4",
+   "chars": 1988,
+   "hash": "c262c35b4a84",
    "lastmod": "2026-11-21",
    "links": 19,
    "name": "横浜北仲マルシェ（11月）",
@@ -1283,8 +1283,8 @@
   },
   "1hruhiv": {
    "added": "2026-11-17",
-   "chars": 810,
-   "hash": "bfd7b6152638",
+   "chars": 819,
+   "hash": "2ae913448373",
    "lastmod": "2026-11-21",
    "links": 13,
    "name": "たけのこリトミック（竹之丸地区センター）",
@@ -1835,8 +1835,8 @@
   },
   "1ob7kk9": {
    "added": "2026-11-14",
-   "chars": 1967,
-   "hash": "565aced135a6",
+   "chars": 1980,
+   "hash": "774c2519fbc3",
    "lastmod": "2026-11-21",
    "links": 59,
    "name": "ムーミン MEET & GREET（BALLPARK Xmas・横浜公園）",
@@ -2562,8 +2562,8 @@
   },
   "1x5ivi4": {
    "added": "2026-11-15",
-   "chars": 1108,
-   "hash": "0c62dd9598ab",
+   "chars": 1117,
+   "hash": "4156b4fb2358",
    "lastmod": "2026-11-21",
    "links": 17,
    "name": "2026クリスマスキャロルコンサート（ハマのJACK・横浜少年少女合唱団）",
@@ -2785,8 +2785,8 @@
   },
   "2h5q5a": {
    "added": "2026-11-18",
-   "chars": 758,
-   "hash": "35f8ab712c4d",
+   "chars": 767,
+   "hash": "59f9bbd0a86e",
    "lastmod": "2026-11-21",
    "links": 13,
    "name": "コミハのクリスマス会（影絵と音楽・中本牧コミュニティハウス）",
@@ -3143,10 +3143,10 @@
   },
   "774zm6": {
    "added": "2026-11-18",
-   "chars": 767,
-   "hash": "3f1d388b3f90",
+   "chars": 797,
+   "hash": "751c33d9b728",
    "lastmod": "2026-11-21",
-   "links": 14,
+   "links": 15,
    "name": "チョット昔のお正月遊び（都筑民家園）",
    "type": "Event"
   },
@@ -3435,8 +3435,8 @@
   },
   "ahzz9t": {
    "added": "2026-11-17",
-   "chars": 802,
-   "hash": "fa08b06b3a25",
+   "chars": 815,
+   "hash": "65603165954f",
    "lastmod": "2026-11-21",
    "links": 13,
    "name": "おもちゃの病院（野毛地区センター）",
@@ -3450,6 +3450,15 @@
    "links": 8,
    "name": "親子のフリースペース「ピア」（保土ケ谷区・親と子のつどいの広場）",
    "type": "TouristAttraction"
+  },
+  "alshgk": {
+   "added": "2026-11-21",
+   "chars": 1965,
+   "hash": "3f83b1d92f94",
+   "lastmod": "2026-11-21",
+   "links": 19,
+   "name": "横浜北仲マルシェ（1月 Gochisou Marche）",
+   "type": "Event"
   },
   "aopbjn": {
    "added": "2026-11-13",
@@ -3723,6 +3732,15 @@
    "lastmod": "2026-11-21",
    "links": 14,
    "name": "すきっぷす♪のクリスマスのおはなし会（瀬谷地区センター）",
+   "type": "Event"
+  },
+  "crc27b": {
+   "added": "2026-11-21",
+   "chars": 2057,
+   "hash": "9e57d6775eb6",
+   "lastmod": "2026-11-21",
+   "links": 19,
+   "name": "横浜北仲マルシェ（12月 Christmas Marche）",
    "type": "Event"
   },
   "d1dgxr": {
@@ -5321,10 +5339,10 @@
   },
   "w62d5a": {
    "added": "2026-11-18",
-   "chars": 782,
-   "hash": "991898e4e397",
+   "chars": 812,
+   "hash": "e527fc40c8c5",
    "lastmod": "2026-11-21",
-   "links": 15,
+   "links": 16,
    "name": "大きな紙で白い森をつくろう（横浜市民ギャラリー）",
    "type": "Event"
   },
@@ -5492,8 +5510,8 @@
   },
   "xinpqm": {
    "added": "2026-11-12",
-   "chars": 986,
-   "hash": "2c3b7b1139c2",
+   "chars": 995,
+   "hash": "82be45a26a9d",
    "lastmod": "2026-11-21",
    "links": 14,
    "name": "0歳からのわくわくコンサート「クリスマス★パーティ」",
@@ -5805,7 +5823,7 @@
   "16g1pne": "13134871d7f5",
   "16hcyb3": "7816c5235c49",
   "16m51px": "29a119438a56",
-  "16t5vbc": "aa19a8f57d53",
+  "16t5vbc": "5b75e9935c5b",
   "16uz2n1": "20778ef5ffc4",
   "16vbwil": "c840ead5e3ed",
   "178yppn": "1967b4508adc",
@@ -6110,6 +6128,7 @@
   "adgpgi": "8ee0a08ccca6",
   "ahzz9t": "c5294e9ebdbd",
   "akns91": "b3da5b6562e3",
+  "alshgk": "c20c0b94dcee",
   "aopbjn": "5157f308a6a0",
   "aue6sv": "1d15c5e95b9e",
   "awe5vd": "69ca2b601e9e",
@@ -6137,6 +6156,7 @@
   "cji862": "b38269be62fc",
   "co138c": "71036698e490",
   "cr2l24": "91222167a24e",
+  "crc27b": "3e8957476244",
   "d1dgxr": "3156ff29aec9",
   "dappap": "db3c63959dd2",
   "degqe0": "f79ba4803ff9",
@@ -6842,8 +6862,8 @@
   },
   "1jpsbg5": {
    "added": "2026-11-12",
-   "chars": 2373,
-   "hash": "1eb9e320ff9d",
+   "chars": 2385,
+   "hash": "d3ea25ef4e5a",
    "lastmod": "2026-11-21",
    "links": 55,
    "name": "象の鼻テラス",
@@ -6878,8 +6898,8 @@
   },
   "1l0g3g5": {
    "added": "2026-11-19",
-   "chars": 2270,
-   "hash": "1d924c4e97ec",
+   "chars": 2294,
+   "hash": "823b017b7934",
    "lastmod": "2026-11-21",
    "links": 39,
    "name": "横浜市役所（桜木町駅前）",
@@ -7178,8 +7198,8 @@
   },
   "7kour8": {
    "added": "2026-11-13",
-   "chars": 1696,
-   "hash": "e0c811b8de90",
+   "chars": 1683,
+   "hash": "be9b4be7af28",
    "lastmod": "2026-11-21",
    "links": 55,
    "name": "横浜市開港記念会館",
