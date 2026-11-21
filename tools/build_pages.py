@@ -353,7 +353,10 @@ def event_page(e, d, spot_ids, track_url):
         desc = f"{when_text(e)[:60]}　{e['venue']}。{e['sum']}"[:120]
     area = e.get("area") or ""
     babies = d["baby"].get(area, [])
-    ch, cld = crumbs([("トップ", "/"), ("施設・遊び場" if e["kind"] == "ongoing" else "イベント", "/#play" if e["kind"] == "ongoing" else "/"), (e["t"], "")])
+    if e["kind"] == "ongoing" and ward1 in WARD_SLUG:
+        ch, cld = crumbs([("トップ", "/"), ("区ごとの施設・遊び場", "/area/"), (ward1, f"/area/{WARD_SLUG[ward1]}/"), (e["t"], "")])
+    else:
+        ch, cld = crumbs([("トップ", "/"), ("施設・遊び場" if e["kind"] == "ongoing" else "イベント", "/area/" if e["kind"] == "ongoing" else "/"), (e["t"], "")])
     chips = "".join(f"<li>{E(x)}</li>" for x in [
         {"free": "無料", "admission": "入園料のみ", "paid": "有料"}.get(e["price"], "料金要確認"), e["ageText"], e["place"], d["rain"].get(e["rain"], "")] if x)
     resv = f'<a class="btn" data-act="resv" href="{E(e["resvUrl"])}" target="_blank" rel="noopener">予約ページへ</a>' if e.get("resvUrl") else ""
@@ -778,6 +781,67 @@ def gakudo_pages(track_url):
     return out
 
 
+def play_kind(x):
+    t = x["t"]
+    if "地区センター" in t: return "地区センターのプレイルーム"
+    if "子育て支援拠点" in t or "つどいの広場" in t or "親子の広場" in t: return "子育て支援拠点・親子の広場"
+    if "ログハウス" in t: return "こどもログハウス"
+    if "プレイパーク" in t or "公園" in t or str(x.get("place", "")).startswith("屋外"): return "公園・屋外の遊び場"
+    return "施設・モール・博物館など"
+
+
+def area_pages(d, track_url):
+    """区ごとの「子連れで行ける施設・遊び場」ページ（/area/区/）と、その入口（/area/）。通年の施設は /event/ のURLのまま、ここからつなぐ。"""
+    out = []
+    evs = d["events"]
+    def wards_of(e): return str(e.get("ward") or "").split("・")
+    ong = [e for e in evs if e.get("kind") == "ongoing" and not e["t"].startswith("各区")]
+    lim = [e for e in evs if e.get("kind") == "limited" and e.get("days")]
+    def li(e, extra=""):
+        price = {"free": "無料", "admission": "入園料のみ", "paid": "有料"}.get(e.get("price"), "料金は要確認")
+        return f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a>（{E(price)}{("・" + E(extra)) if extra else ""}）<div class="small">{E(e.get("sum", "")[:70])}</div></li>'
+    rows = []
+    for w, slug in WARD_SLUG.items():
+        xs = [e for e in ong if w in wards_of(e)]
+        ys = sorted([e for e in lim if w in wards_of(e)], key=lambda e: (iso(e["days"][0]), e.get("start") or 0))
+        if not xs and not ys: continue
+        rows.append((w, slug, len(xs), len(ys)))
+        kinds = ["地区センターのプレイルーム", "子育て支援拠点・親子の広場", "こどもログハウス", "公園・屋外の遊び場", "施設・モール・博物館など"]
+        free = [e for e in xs if e.get("price") == "free"]
+        paid = [e for e in xs if e.get("price") != "free"]
+        sec = "".join(f'<h2>{k}（{len(g)}）</h2><ul class="links">' + "".join(li(e, str(e.get("place", "")).split("（")[0]) for e in sorted(g, key=lambda e: e["t"])) + "</ul>"
+                      for k in kinds for g in [[e for e in free if play_kind(e) == k]] if g)
+        if paid:
+            sec += f'<h2>有料・入園料のいる施設（料金要確認のものも）（{len(paid)}）</h2><ul class="links">' + "".join(li(e, str(e.get("place", "")).split("（")[0]) for e in sorted(paid, key=lambda e: e["t"])) + "</ul>"
+        if ys:
+            sec += f'<h2>{w}でこれから開かれる親子イベント（{len(ys)}）</h2><ul class="links">' + "".join(
+                f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a>（{E(when_text(e)[:30])}）</li>' for e in ys[:20]) + "</ul>"
+            if len(ys) > 20: sec += f'<p class="small">ほか{len(ys) - 20}件は<a href="/">トップの一覧</a>で日にち・区を選ぶと見られます。</p>'
+        other = "".join(f'<a href="/area/{s2}/">{w2}</a> ' for w2, s2 in WARD_SLUG.items() if w2 != w)
+        path = f"area/{slug}/"
+        ch, cld = crumbs([("トップ", "/"), ("区ごとの施設・遊び場", "/area/"), (w, "")])
+        body = f"""{ch}
+<article class="card"><h1>{w}の子連れで行ける施設・遊び場</h1>
+<p>{w}で、0歳から小学生の子どもと行ける施設・遊び場を{len(xs)}か所まとめました。無料のものは{len(free)}か所です。雨の日は屋内のプレイルームや子育て支援拠点、晴れた日は公園やこどもログハウスへ。開館日・時間は施設ごとに違うので、名前を押して確かめてください。</p>
+<div class="btns"><a class="btn main" href="/#play">無料の遊び場を区で絞り込む</a>{f'<a class="btn" href="/gakudo/{slug}/">{w}の学童・キッズクラブ</a>' if os.path.exists(GAKUDO_JSON) else ''}</div>
+{sec}
+<h2>ほかの区</h2><p class="small">{other}</p></article>"""
+        items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(xs)]
+        ld = [{"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{w}の子連れで行ける施設・遊び場", "url": SITE + path, "inLanguage": "ja"}, cld,
+              {"@context": "https://schema.org", "@type": "ItemList", "name": f"{w}の子連れで行ける施設・遊び場", "numberOfItems": len(items), "itemListElement": items}]
+        out.append((path, page(f"{w}の子連れで行ける施設・遊び場（{len(xs)}か所・無料{len(free)}）｜KidsTrip",
+                               f"{w}で0歳〜小学生と行ける施設・遊び場{len(xs)}か所（地区センターのプレイルーム・子育て支援拠点・こどもログハウス・公園など）と、これから開かれる親子イベント。",
+                               path, body, ld, track_url=track_url, tpage=path)))
+    ch, cld = crumbs([("トップ", "/"), ("区ごとの施設・遊び場", "")])
+    body = f"""{ch}
+<article class="card"><h1>横浜市の区ごとの子連れで行ける施設・遊び場</h1>
+<p>横浜市18区の、子どもと行ける施設・遊び場（地区センターのプレイルーム・子育て支援拠点・こどもログハウス・公園・動物園など）を区ごとにまとめました。区を選ぶと一覧と、その区でこれから開かれる親子イベントが見られます。</p>
+<ul class="links">{"".join(f'<li><a href="/area/{slug}/">{w}</a>（施設・遊び場{n}・イベント{m}）</li>' for w, slug, n, m in rows)}</ul></article>"""
+    out.append(("area/", page("横浜市の区ごとの子連れで行ける施設・遊び場｜KidsTrip", "横浜市18区ごとに、子どもと行ける施設・遊び場と、これから開かれる親子イベントをまとめました。", "area/", body,
+                              [{"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜市の区ごとの子連れで行ける施設・遊び場", "url": SITE + "area/", "inLanguage": "ja"}, cld], track_url=track_url, tpage="area/")))
+    return out
+
+
 def main():
     d = load_data()
     src = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -792,7 +856,7 @@ def main():
     open(os.path.join(ROOT, pp, "index.html"), "w", encoding="utf-8").write(ph)
     man = json.load(open(MANIFEST, encoding="utf-8")) if os.path.exists(MANIFEST) else {"event": {}, "spot": {}}
     gk_man = {}
-    for gp, gh in gakudo_pages(track_url):
+    for gp, gh in gakudo_pages(track_url) + area_pages(d, track_url):
         os.makedirs(os.path.join(ROOT, gp), exist_ok=True)
         open(os.path.join(ROOT, gp, "index.html"), "w", encoding="utf-8").write(gh)
         hh = hashlib.sha1(gh.encode()).hexdigest()[:12]
@@ -878,7 +942,8 @@ def main():
     # index.html：ページへのリンク一覧と、構造化データ（ItemList・Organization）
     ev_live = [e for e in d["events"]]
     links = ('<details class="fold pagelinks"><summary>イベント・施設のページ一覧</summary><div class="fbody">'
-             '<h3 class="fsum-static">イベント</h3><ul class="plinks">' + "".join(f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a></li>' for e in ev_live) + "</ul>"
+             '<h3 class="fsum-static">イベント</h3><ul class="plinks">' + "".join(f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a></li>' for e in ev_live if e.get("kind") != "ongoing") + "</ul>"
+             '<h3 class="fsum-static">区ごとの施設・遊び場</h3><ul class="plinks">' + "".join(f'<li><a href="/area/{sl}/">{w}</a></li>' for w, sl in WARD_SLUG.items() if os.path.exists(os.path.join(ROOT, "area", sl))) + "</ul>"
              '<h3 class="fsum-static">赤ちゃん設備のある施設</h3><ul class="plinks">' + "".join(f'<li><a href="/spot/{spot_ids[n]}/">{E(short(n))}</a></li>' for n in spots) + "</ul></div></details>")
     item_list = {"@context": "https://schema.org", "@type": "ItemList", "name": "横浜の子連れイベント一覧", "numberOfItems": len(ev_live),
                  "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(ev_live)]}
@@ -904,9 +969,9 @@ def main():
     play = [e for e in ev_live if e.get("kind") == "ongoing" and e.get("price") == "free" and (e.get("freeplay") or e.get("animal") or e.get("ride"))]
     def pwards(e): return ["市内のまとめ"] if e["t"].startswith("各区") else str(e.get("ward") or "").split("・")
     def pname(e): return re.sub(r"（([^（）]*区)の地域子育て支援拠点）$", "（子育て支援拠点）", re.sub(r"（[^（）]*区）$", "", e["t"]))
-    playhtml = '<div id="play-static">' + "".join(
-        f'<h3>{w}（{len(xs)}）</h3><ul>' + "".join(f'<li><a href="/event/{e["id"]}/">{E(pname(e))}</a></li>' for e in sorted(xs, key=lambda e: e["t"])) + "</ul>"
-        for w in WARD_ORDER + ["市内のまとめ"] for xs in [[e for e in play if w in pwards(e)]] if xs) + "</div>"
+    playhtml = '<div id="play-static"><ul>' + "".join(
+        f'<li><a href="/area/{WARD_SLUG[w]}/">{w}の施設・遊び場</a>（無料の遊び場{len(xs)}か所）</li>'
+        for w in WARD_ORDER for xs in [[e for e in play if w in pwards(e)]] if xs) + "</ul></div>"
     # js/app.js の ?v= を中身のハッシュに合わせる（変えたときだけブラウザが読み直す）
     appv = hashlib.sha1(open(os.path.join(ROOT, "js", "app.js"), "rb").read()).hexdigest()[:10]
     src = re.sub(r'src="js/app\.js\?v=[0-9a-f]*"', f'src="js/app.js?v={appv}"', src)
