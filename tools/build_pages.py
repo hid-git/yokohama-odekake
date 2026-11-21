@@ -369,7 +369,7 @@ def event_page(e, d, spot_ids, track_url):
     body = f"""{ch}
 <article class="card">
 <h1>{E(e['t'])}</h1>
-{('<p class="tip">主催から「公式の情報を見てほしい」とのお願いがあるため、ここでは概要だけ載せています。観覧場所・行き方・当日の開催は主催の公式ページで確認してください。</p><div class="btns"><a class="btn main" data-act="official" href="' + E(e['url']) + '" target="_blank" rel="noopener">' + E(e.get('officialLabel') or '主催の公式ページを開く') + '</a></div>') if e.get('officialOnly') else ''}
+{('<p class="tip">主催から「公式の情報を見てほしい」とのお願いがあるため、くわしい行き方・交通規制・当日の開催などは主催の公式ページで確認してください。</p><div class="btns"><a class="btn main" data-act="official" href="' + E(e['url']) + '" target="_blank" rel="noopener">' + E(e.get('officialLabel') or '主催の公式ページを開く') + '</a></div>') if e.get('officialOnly') else ''}
 <ul class="chips">{chips}</ul>
 <table class="info">
 <tr><th>日にち</th><td>{E(when_text(e))}</td></tr>
