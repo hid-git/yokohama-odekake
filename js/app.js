@@ -760,7 +760,7 @@ function card(e, ctx){
     <p class="where">料金：${esc(e.priceText)}／予約：${telify(esc(e.resvText))}</p>
     <p class="asof">情報の時点：${esc(e.asof || "2026年11月9日")}</p>
     <div class="cardfoot"><a class="more" data-act="official" href="${esc(e.url)}" target="_blank" rel="noopener">${e.officialOnly ? esc(e.officialLabel || "主催の公式ページを開く") : `詳細はこちら（${esc(e.src)}）`}</a>${e.resvUrl ? `<a class="more" data-act="resv" href="${esc(e.resvUrl)}" target="_blank" rel="noopener">予約ページへ</a>` : ""}
-${e.officialOnly ? "" : `      <button type="button" class="sharebtn" data-share="${esc(e.id)}">🔗 リンクを送る・コピー</button>
+${e.noShare ? "" : `      <button type="button" class="sharebtn" data-share="${esc(e.id)}">🔗 リンクを送る・コピー</button>
       <a class="linebtn sm" href="${esc(lineUrl(eventText(e)))}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5 1.1-.5 5.9-3.5 8-5.9C21.4 14.4 22 12.8 22 11c0-4.4-4.5-8-10-8z"/></svg>LINEで送る</a>`}</div>
     ${routeHtml(e)}
     ${accessHtml(e)}
