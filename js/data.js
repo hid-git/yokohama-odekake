@@ -1045,7 +1045,7 @@ EVENTS.push(
     price:"paid", priceText:"探検隊200円（小学生以下無料）。買い物は有料", place:"屋内", rain:"ok", rainText:"屋内なので雨でも実施",
     resv:false, resvText:"当日受付・先着20名", age:[0,99], ageText:"対象年齢は公式ページに記載なし", kind:"limited", start:525,
     sum:"マイナス40度の冷蔵庫の見学や、せりのまねを体験できる市場の探検。同じ朝、仲卸のお店で魚も買える。",
-    tip:"11/28（土）も一般開放あり（探検隊はなし）。売り切れで早く閉まる店もあるので早めに", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13199", src:"横浜市観光情報（公式）", asof:"2026年11月20日" },
+    tip:"11/28（土）も一般開放あり（探検隊はなし）。売り切れで早く閉まる店もあるので早めに", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw13199", src:"横浜市観光情報（公式。11/21に利用者が送った画面でも、11/7〜11/28の土曜に一般開放・第3土曜に市場探検隊と確認）", asof:"2026年11月21日" },
   { t:"つづきでミニオペラ！〜歌と音楽でめぐる、クリスマスの物語〜", days:["12/6"], time:"14:00開演（13:30開場）", ward:"都筑区", venue:"ボッシュ ホール（都筑区民文化センター）",
     price:"paid", priceText:"990円（全席指定）。2歳以下はひざの上なら無料", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
     resv:true, resvText:"チケット制（窓口・電話045-530-5084）", age:[0,99], ageText:"未就学児も入場できる", kind:"limited", start:840,
