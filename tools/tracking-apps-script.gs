@@ -149,8 +149,8 @@ function updateSummary() {
     // 日別（ページを直した日の前後で、見られ方が変わったかを見るため）
     all.forEach(r => {
       const d = dayOf_(r[0]), k = rowKind_(r);
-      const o = daily[d] || (daily[d] = { pv: 0, vids: {}, off: 0, se: 0, un: 0, me: 0, bot: 0 });
-      if (k === "人") { if (r[1] === "ページ表示") { o.pv++; if (/google|yahoo|bing/.test(String(r[6]))) o.se++; if (!r[14]) o.un++; } if (r[7]) o.vids[r[7]] = 1; if (r[1] === "公式サイト") o.off++; }
+      const o = daily[d] || (daily[d] = { pv: 0, vids: {}, off: 0, se: 0, sev: {}, un: 0, me: 0, bot: 0 });
+      if (k === "人") { if (r[1] === "ページ表示") { o.pv++; if (/google|yahoo|bing/.test(String(r[6]))) { o.se++; if (r[7]) o.sev[r[7]] = 1; } if (!r[14]) o.un++; } if (r[7]) o.vids[r[7]] = 1; if (r[1] === "公式サイト") o.off++; }
       else if (k === "自分") o.me++; else o.bot++;
     });
     latest = { m, v };
@@ -167,8 +167,8 @@ function updateSummary() {
   // 「日別」シート
   const dsh = ss.getSheetByName("日別") || ss.insertSheet("日別", 1);
   dsh.clear();
-  const drows = [["日付", "ページ表示（人）", "訪問者数（人）", "うち検索から", "公式サイト（人）", "うちブラウザ情報なし（ページ表示）", "自分", "ボット"]].concat(
-    Object.keys(daily).sort().reverse().map(d => { const o = daily[d]; return ["'" + d, o.pv, Object.keys(o.vids).length, o.se, o.off, o.un, o.me, o.bot]; }));
+  const drows = [["日付", "ページ表示（人）", "訪問者数（人）", "うち検索から（ページ表示）", "検索から来た人", "公式サイト（人）", "うちブラウザ情報なし（ページ表示）", "自分", "ボット"]].concat(
+    Object.keys(daily).sort().reverse().map(d => { const o = daily[d]; return ["'" + d, o.pv, Object.keys(o.vids).length, o.se, Object.keys(o.sev).length, o.off, o.un, o.me, o.bot]; }));
   dsh.getRange(1, 1, drows.length, drows[0].length).setValues(drows);
   dsh.getRange(1, 1, 1, drows[0].length).setFontWeight("bold"); dsh.setFrozenRows(1);
   if (!latest) return;
