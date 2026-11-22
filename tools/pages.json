@@ -2652,8 +2652,8 @@
   },
   "1xzezf2": {
    "added": "2026-11-16",
-   "chars": 1266,
-   "hash": "63cd127dd24f",
+   "chars": 1280,
+   "hash": "2810f43e723d",
    "lastmod": "2026-11-22",
    "links": 17,
    "name": "ズーラシア オオアリクイの双子の赤ちゃん公開",
@@ -4607,6 +4607,15 @@
    "name": "親と子のつどいの広場「ハッピーひろば」（都筑区）",
    "type": "TouristAttraction"
   },
+  "lsmjls": {
+   "added": "2026-11-22",
+   "chars": 1251,
+   "hash": "62aadcdad90a",
+   "lastmod": "2026-11-22",
+   "links": 17,
+   "name": "ズーラシアどうぶつ教室「どこにすんでる？ミニマップゲーム」",
+   "type": "Event"
+  },
   "m2aibh": {
    "added": "2026-11-13",
    "chars": 607,
@@ -5706,7 +5715,7 @@
  },
  "gakudo": {
   "area/": {
-   "hash": "e57ad3a59d3f",
+   "hash": "bdfdca2b210a",
    "lastmod": "2026-11-22"
   },
   "area/aoba/": {
@@ -5714,7 +5723,7 @@
    "lastmod": "2026-11-22"
   },
   "area/asahi/": {
-   "hash": "853fc9833c35",
+   "hash": "c6068174b79f",
    "lastmod": "2026-11-22"
   },
   "area/hodogaya/": {
@@ -6328,6 +6337,7 @@
   "lau4ko": "fe4b8d0fb2ca",
   "lk26g9": "1406997cb6de",
   "lsacis": "44ea61de6747",
+  "lsmjls": "7d7cd4ead2f8",
   "m2aibh": "4486db35d8dd",
   "ma2ecn": "ceb4567653d9",
   "mhcae3": "db1abf275f2f",
@@ -7483,10 +7493,10 @@
   },
   "ghjq0p": {
    "added": "2026-11-12",
-   "chars": 692,
-   "hash": "326654846ddf",
+   "chars": 742,
+   "hash": "f71b0f9809fc",
    "lastmod": "2026-11-22",
-   "links": 6,
+   "links": 7,
    "name": "よこはま動物園ズーラシア",
    "type": "Place"
   },
