@@ -79,10 +79,10 @@
   },
   "111mmkz": {
    "added": "2026-11-12",
-   "chars": 845,
-   "hash": "eb1ad3f767f2",
+   "chars": 914,
+   "hash": "fc120e2f6c64",
    "lastmod": "2026-11-22",
-   "links": 16,
+   "links": 17,
    "name": "0歳からのクリスマスコンサート「星の音楽絵本」",
    "type": "Event"
   },
@@ -321,10 +321,10 @@
   },
   "13rwldt": {
    "added": "2026-11-18",
-   "chars": 723,
-   "hash": "74c80920de15",
+   "chars": 792,
+   "hash": "fa8dd05a6581",
    "lastmod": "2026-11-22",
-   "links": 13,
+   "links": 14,
    "name": "0歳からのよちよちコンサート（かなっくホール）",
    "type": "Event"
   },
@@ -1869,10 +1869,10 @@
   },
   "1p0xl4i": {
    "added": "2026-11-13",
-   "chars": 661,
-   "hash": "0c20edec26a8",
+   "chars": 730,
+   "hash": "e31fa52ee085",
    "lastmod": "2026-11-22",
-   "links": 8,
+   "links": 9,
    "name": "かなーちえ（神奈川区の地域子育て支援拠点）",
    "type": "TouristAttraction"
   },
@@ -6478,6 +6478,7 @@
   "1crbqs0": "6ccac0401efe",
   "1d0x9al": "77138b657f17",
   "1d8dynq": "9122a78c0991",
+  "1ds32d3": "8d1e8ae282be",
   "1ecb3d7": "b20270ecd1a7",
   "1fg72i8": "1df39cccdab4",
   "1fi2psb": "3b0f9e096a60",
@@ -6664,10 +6665,10 @@
   },
   "13484hp": {
    "added": "2026-11-12",
-   "chars": 470,
-   "hash": "7430bf4a3805",
-   "lastmod": "2026-11-21",
-   "links": 10,
+   "chars": 485,
+   "hash": "06482031e500",
+   "lastmod": "2026-11-22",
+   "links": 11,
    "name": "市営地下鉄 あざみ野駅・日吉本町駅のベビーケアスペース",
    "type": "Place"
   },
@@ -6827,6 +6828,15 @@
    "name": "スマイル・ポート（西区の地域子育て支援拠点・KDX横浜みなとみらいタワー3F）",
    "type": "Place"
   },
+  "1ds32d3": {
+   "added": "2026-11-22",
+   "chars": 813,
+   "hash": "a1a88a3bee7a",
+   "lastmod": "2026-11-22",
+   "links": 14,
+   "name": "シァルプラット東神奈川（JR東神奈川駅ビル）",
+   "type": "Place"
+  },
   "1ecb3d7": {
    "added": "2026-11-16",
    "chars": 393,
@@ -6848,10 +6858,10 @@
   },
   "1fi2psb": {
    "added": "2026-11-13",
-   "chars": 422,
-   "hash": "a25b6a45607b",
-   "lastmod": "2026-11-21",
-   "links": 10,
+   "chars": 437,
+   "hash": "e877dbe7f5eb",
+   "lastmod": "2026-11-22",
+   "links": 11,
    "name": "大本山總持寺",
    "type": "Place"
   },
@@ -6912,10 +6922,10 @@
   },
   "1iqrmsn": {
    "added": "2026-11-13",
-   "chars": 475,
-   "hash": "35d504db2708",
-   "lastmod": "2026-11-21",
-   "links": 11,
+   "chars": 490,
+   "hash": "9da2d703c5e4",
+   "lastmod": "2026-11-22",
+   "links": 12,
    "name": "横浜市電保存館",
    "type": "Place"
   },
@@ -6939,10 +6949,10 @@
   },
   "1ja0wse": {
    "added": "2026-11-13",
-   "chars": 492,
-   "hash": "9a48ff59aa1e",
-   "lastmod": "2026-11-21",
-   "links": 10,
+   "chars": 507,
+   "hash": "5883e4243f3f",
+   "lastmod": "2026-11-22",
+   "links": 11,
    "name": "キリンビール横浜工場",
    "type": "Place"
   },
@@ -7184,10 +7194,10 @@
   },
   "20jxu4": {
    "added": "2026-11-13",
-   "chars": 449,
-   "hash": "c4ad00d7a997",
-   "lastmod": "2026-11-21",
-   "links": 10,
+   "chars": 464,
+   "hash": "6df1ccef6ef5",
+   "lastmod": "2026-11-22",
+   "links": 11,
    "name": "ニッパツ三ツ沢球技場",
    "type": "Place"
   },
@@ -7329,10 +7339,10 @@
   },
   "9mohbc": {
    "added": "2026-11-13",
-   "chars": 442,
-   "hash": "cdafb73f370a",
-   "lastmod": "2026-11-21",
-   "links": 10,
+   "chars": 457,
+   "hash": "fdc25a0e3905",
+   "lastmod": "2026-11-22",
+   "links": 11,
    "name": "フォレストアドベンチャー・よこはま",
    "type": "Place"
   },
@@ -7448,28 +7458,28 @@
   },
   "eoiyli": {
    "added": "2026-11-13",
-   "chars": 562,
-   "hash": "8f03cad812a8",
-   "lastmod": "2026-11-21",
-   "links": 11,
+   "chars": 577,
+   "hash": "c382272256e1",
+   "lastmod": "2026-11-22",
+   "links": 12,
    "name": "あーすぷらざ（本郷台）",
    "type": "Place"
   },
   "flese0": {
    "added": "2026-11-13",
-   "chars": 426,
-   "hash": "39a2088a990f",
-   "lastmod": "2026-11-21",
-   "links": 10,
+   "chars": 441,
+   "hash": "297bb1e9540f",
+   "lastmod": "2026-11-22",
+   "links": 11,
    "name": "横浜ストロベリーパーク",
    "type": "Place"
   },
   "fm1cou": {
    "added": "2026-11-12",
-   "chars": 450,
-   "hash": "d9b43f44e8d6",
-   "lastmod": "2026-11-21",
-   "links": 10,
+   "chars": 465,
+   "hash": "2b315be6ac96",
+   "lastmod": "2026-11-22",
+   "links": 11,
    "name": "市営地下鉄 仲町台駅のベビーケアスペース",
    "type": "Place"
   },
@@ -7639,10 +7649,10 @@
   },
   "oskd4z": {
    "added": "2026-11-13",
-   "chars": 535,
-   "hash": "f816ca68ce90",
-   "lastmod": "2026-11-21",
-   "links": 11,
+   "chars": 550,
+   "hash": "70e30973dd24",
+   "lastmod": "2026-11-22",
+   "links": 12,
    "name": "横浜市大倉山記念館",
    "type": "Place"
   },
@@ -7685,10 +7695,10 @@
   },
   "r9xh0x": {
    "added": "2026-11-19",
-   "chars": 501,
-   "hash": "7950750db4fb",
-   "lastmod": "2026-11-21",
-   "links": 10,
+   "chars": 516,
+   "hash": "15a3162af7a2",
+   "lastmod": "2026-11-22",
+   "links": 11,
    "name": "カエデウォーク長津田（緑区長津田みなみ台）",
    "type": "Place"
   },
