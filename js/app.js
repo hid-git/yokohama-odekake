@@ -389,7 +389,6 @@ for (const e of EVENTS) {
 for (const e of EVENTS) if (YEAREND_CLOSED[e.t]) e.closed = (e.closed || []).concat(YEAREND_CLOSED[e.t]);
 for (const e of EVENTS) {
   if (e.t === "THE MOVEUM YOKOHAMA「印象派モネと浮世絵」") { e.kind = "ongoing"; e.period = "2026/10/24〜2027/3/31（11/15・11/21・12/13休館、ほかに不定休）"; e.closed = ["11/15","11/21","12/13"]; e.sum = "モネの絵画と浮世絵を大画面の映像で体験する没入型の展示。"; e.tip = "11/15・11/21・12/13は休館（横浜市観光情報サイト）。開館は平日・日祝10:30〜18:30、土・祝前日は19:30まで。チケットはオンライン3,000円・会場3,800円（現金不可）、中学生以下無料"; }
-  if (e.t === "こどもの国 あそび広場") e.days = ["11/21"];
   if (e.t === "こどもの国牧場 乳しぼり体験") { e.kind = "ongoing"; e.period = "毎週土日祝"; }
   if (e.t === "こどもの国牧場 バター作り教室") { e.kind = "ongoing"; e.period = "毎週日曜"; e.only = DATES.filter(d => d.w === "日").map(d => d.k); }
   if (e.kind === "ongoing") {
