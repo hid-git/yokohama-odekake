@@ -596,6 +596,11 @@ details.ledemore .lede { margin-top: 4px; }
 .helprow #theme-btn { font-size: 12.5px; padding: 4px 12px; }
 #ev-points .pchip { white-space: nowrap; }
 @media (max-width: 400px) { #ev-points .pchip { font-size: 12.5px; padding-left: 9px; padding-right: 9px; } }
+/* 天気は毎日ぶんを1行で横にスクロール（2026年11月） */
+.weather .wxrow, .wxrow { display: flex !important; flex-wrap: nowrap; overflow-x: auto; gap: 6px; padding-bottom: 4px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.wxrow .wx { flex: 0 0 auto; scroll-snap-align: start; }
+.weather { min-width: 0; max-width: 100%; } .wrap > .weather { min-width: 0; }
+.wx .d.wd { color: var(--muted); }
 </style>
 </head>
 <body>
@@ -848,7 +853,7 @@ details.ledemore .lede { margin-top: 4px; }
   </footer>
 </div>
 
-<script src="js/data.js?v=53ea5fb28b" defer></script>
-<script src="js/app.js?v=e81dfcc6df" defer></script>
+<script src="js/data.js?v=adba8ad789" defer></script>
+<script src="js/app.js?v=2b6bf10ff1" defer></script>
 </body>
 </html>

@@ -137,9 +137,11 @@ function skyIcons(sky){
   return parts.map(x => x === "のち" ? "→" : (x === "時々" || x === "一時") ? "/" : (SKY_ICON[x[0]] || "")).join("");
 }
 function isRainy(w){ return /雨|雪/.test(w.sky) || w.pop >= 50; }
+// 天気の日付の色：土＝青、日・祝＝赤、平日＝ふつう（DATES に祝日として入っている日は祝日）
+function wxCls(w){ const d = (typeof DATES !== "undefined") && DATES.find(x => x.k === w.d); if (d && d.c === "hol") return "hol"; return w.w === "土" ? "sat" : w.w === "日" ? "sun" : w.w === "祝" ? "hol" : "wd"; }
 function renderWeather(){
   const row = document.getElementById("wxrow"); if (!row) return;
-  row.innerHTML = WX.map((w, i) => `<div class="wx${isRainy(w) ? " rainy" : ""}" data-i="${i}" title="この日の服装を見る"><span class="d ${w.w === "土" ? "sat" : w.w === "日" ? "sun" : "hol"}">${w.d} ${w.w}</span><span class="sky"><span class="ic" aria-hidden="true">${skyIcons(w.sky)}</span><span class="st">${esc(w.sky.replace(/晴/g,"晴れ").replace(/曇/g,"くもり"))}</span></span><span class="t"><b>${w.max}</b><span class="u">℃</span>/${w.min}℃</span><span class="p${w.pop >= 50 ? " hi" : ""}"><span class="pl">降水 </span>${w.pop}%</span></div>`).join("");
+  row.innerHTML = WX.map((w, i) => `<div class="wx${isRainy(w) ? " rainy" : ""}" data-i="${i}" title="この日の服装を見る"><span class="d ${wxCls(w)}">${w.d} ${w.w}</span><span class="sky"><span class="ic" aria-hidden="true">${skyIcons(w.sky)}</span><span class="st">${esc(w.sky.replace(/晴/g,"晴れ").replace(/曇/g,"くもり"))}</span></span><span class="t"><b>${w.max}</b><span class="u">℃</span>/${w.min}℃</span><span class="p${w.pop >= 50 ? " hi" : ""}"><span class="pl">降水 </span>${w.pop}%</span></div>`).join("");
   const wk = WX.filter(w => WEEKENDS[0].ds.includes(w.d));
   const base = wk.length ? wk : WX.slice(0, 2);
   const hi = Math.max(...base.map(w => w.max)), lo = Math.min(...base.map(w => w.min));
