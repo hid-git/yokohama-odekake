@@ -69,6 +69,7 @@ def load_data():
               if (seen.has(b.n)) return; seen.add(b.n);
               const g = SPOT_GEO[b.n] || (VENUE_GEO.find(([re]) => re.test(b.n)) || [])[1]; const p = PAPA[b.n];
               sp[b.n] = {
+                geo: g || null,
                 papa: p ? { label: PAPA_LABEL[p.v] || "", t: p.t || "" } : null,
                 food: g ? KIDS_SHOPS.map(sh => ({ n: sh.n, gen: sh.gen || "", min: mins(g, sh.g), tags: sh.tags.slice(0, 3) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 8) : [],
                 courts: g ? FOOD_COURTS.map(c => ({ n: c.n, min: mins(g, c.g) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 3) : [],
@@ -176,7 +177,7 @@ def page(title, desc, path, body, ld, noindex=False, track_url="", tpage="", og=
 {body}
 <footer><p>KidsTrip（キッズトリップ）横浜の子連れおでかけ・イベント一覧。施設・主催者の公式情報などをもとに要約しています。内容は変わることがあるので、出かける前に必ず公式ページで確認してください。</p>
 <p>サイトをよくするため、押されたボタン・リンクの回数を、名前などの個人情報なしで記録しています。</p>
-<p class="small"><a href="/about/">このサイトについて</a>　<a href="/privacy/">プライバシーポリシー</a></p></footer>
+<p class="small"><a href="/event/">イベント一覧</a>　<a href="/area/">区ごとの施設・遊び場</a>　<a href="/spot/">授乳室・おむつ替えのある施設</a><br><a href="/about/">このサイトについて</a>　<a href="/contact/">お問い合わせ</a>　<a href="/privacy/">プライバシーポリシー</a></p></footer>
 </div>
 <script>{SHARE_JS}{track_js(track_url, tpage)}</script>
 </body>
@@ -356,7 +357,7 @@ def event_page(e, d, spot_ids, track_url):
     if e["kind"] == "ongoing" and ward1 in WARD_SLUG:
         ch, cld = crumbs([("トップ", "/"), ("区ごとの施設・遊び場", "/area/"), (ward1, f"/area/{WARD_SLUG[ward1]}/"), (e["t"], "")])
     else:
-        ch, cld = crumbs([("トップ", "/"), ("施設・遊び場" if e["kind"] == "ongoing" else "イベント", "/area/" if e["kind"] == "ongoing" else "/"), (e["t"], "")])
+        ch, cld = crumbs([("トップ", "/"), ("施設・遊び場" if e["kind"] == "ongoing" else "イベント一覧", "/area/" if e["kind"] == "ongoing" else "/event/"), (e["t"], "")])
     chips = "".join(f"<li>{E(x)}</li>" for x in [
         {"free": "無料", "admission": "入園料のみ", "paid": "有料"}.get(e["price"], "料金要確認"), e["ageText"], e["place"], d["rain"].get(e["rain"], "")] if x)
     resv = f'<a class="btn" data-act="resv" href="{E(e["resvUrl"])}" target="_blank" rel="noopener">予約ページへ</a>' if e.get("resvUrl") else ""
@@ -373,6 +374,8 @@ def event_page(e, d, spot_ids, track_url):
     plays.sort(key=lambda x: (not str(x.get("place", "")).startswith("屋内"), x["t"]))
     play_html = (f'<h2>{E(w1)}の無料で遊べる場所（雨の日は屋内から）</h2><ul class="links">' + "".join(
         f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(str(x.get("place", "")).replace("（", "・").split("・")[0])}）</li>' for x in plays[:8]) + "</ul>") if plays else ""
+    sn = d.get("_spot_of_ev", {}).get(e["id"])
+    same_spot = (f'<p class="tip">👶 {E(short(sn))}の授乳室・おむつ替え・お湯の場所（何階のどこか・パパも使えるか）は、<a href="/spot/{spot_ids[sn]}/">{E(short(sn))}の授乳室・おむつ替えのページ</a>にまとめています。</p>') if sn else ""
     sameday_html = ""
     if e["kind"] == "limited" and e.get("days"):
         d0 = e["days"][0]
@@ -402,6 +405,7 @@ def event_page(e, d, spot_ids, track_url):
 <a class="btn" href="/?e={E(e['id'])}">一覧で見る（行き方・近くのごはん）</a>
 {'' if e.get('noShare') else '<button type="button" class="btn" data-share="1">🔗 リンクを送る・コピー</button>\n<a class="btn line" href="' + E(line_url(share_text)) + '" target="_blank" rel="noopener">LINEで送る</a>'}</div>
 </article>
+{same_spot}
 {f'<h2>近くのおむつ替え・授乳室・お湯（{E(d["areas"].get(area, ""))}）</h2>' + matrix(babies, spot_ids) if babies else near_spots_html}
 {acc_html}
 {food_html}
@@ -459,7 +463,9 @@ def spot_page(b, area, d, spot_ids, track_url):
     # 検索結果で答え（どこにあるか）が先に見えるように、場所を先に書く
     desc = (f"{short(b['n'])}{ar}の授乳室・おむつ替えの場所：{b['where']}。" if b.get("where") else f"{short(b['n'])}{ar}の赤ちゃん設備。") + ("・".join(has) + "あり。" if has else "")
     desc = desc[:150]
-    ch, cld = crumbs([("トップ", "/"), ("ごはん・おむつ", "/#foodall"), (short(b["n"]), "")])
+    ch, cld = crumbs([("トップ", "/"), ("授乳室・おむつ替えのある施設", "/spot/"), (short(b["n"]), "")])
+    se = d.get("_ev_of_spot", {}).get(b["n"])
+    same_ev = (f'<p class="tip">🎟 {E(short(b["n"]))}の料金・開いている時間・遊び方・行き方は、<a href="/event/{se["id"]}/">{E(se["t"])}のページ</a>にまとめています。</p>') if se else ""
     evs = [x for x in d["events"] if x.get("area") == area][:10]
     sx = d["extra"]["sp"].get(b["n"], {})
     pp = sx.get("papa")
@@ -483,6 +489,7 @@ def spot_page(b, area, d, spot_ids, track_url):
 <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query={E(short(b['n']))}" target="_blank" rel="noopener">地図で見る</a>
 <button type="button" class="btn" data-share="1">🔗 リンクを送る・コピー</button></div>
 </article>
+{same_ev}
 {papa_html}
 {food_list(sx.get("food", []), sx.get("courts", []))}
 {clothes_list(sx.get("clothes", []))}
@@ -492,13 +499,46 @@ def spot_page(b, area, d, spot_ids, track_url):
 """
     feats = [{"@type": "LocationFeatureSpecification", "name": n, "value": v} for n, v in (("おむつ替え", b.get("d")), ("授乳室", b.get("f")), ("調乳のお湯", b.get("w")), ("離乳食用の電子レンジ", b.get("mw"))) if isinstance(v, bool)]
     og = f"og/spot-{sid}.jpg"
-    place = {"@context": "https://schema.org", "@type": "Place", "name": short(b["n"]), "description": desc, "url": SITE + path, "image": [SITE + og],
+    place = {"@context": "https://schema.org", "@type": spot_type(b["n"]), "name": short(b["n"]), "description": desc, "url": SITE + path, "image": [SITE + og],
              "address": {"@type": "PostalAddress", "addressLocality": "横浜市", "addressRegion": "神奈川県", "addressCountry": "JP"},
              "amenityFeature": feats, "publicAccess": True}
     if b.get("url"): place["sameAs"] = b["url"]
+    if sx.get("geo"): place["geo"] = {"@type": "GeoCoordinates", "latitude": sx["geo"][0], "longitude": sx["geo"][1]}
     if b.get("where"): place["hasMap"] = "https://www.google.com/maps/search/?api=1&query=" + short(b["n"])
     return path, page(title, desc, path, body, [cld, place], track_url=track_url, tpage=path, og=og,
                       og_alt=f"{short(b['n'])}の赤ちゃん設備（おむつ替え・授乳室・お湯）"), b["n"]
+
+
+# 施設ページの構造化データの型（名前から。合わないものは Place のまま）。上から順に見る
+SPOT_TYPES = [
+    (r"セブン-イレブン|ローソン|デイリーヤマザキ|ファミリーマート", "ConvenienceStore"),
+    (r"ホテル|宿|海員会館", "Hotel"), (r"映画館|シネマ", "MovieTheater"), (r"カラオケ|万葉倶楽部", "EntertainmentBusiness"),
+    (r"薬局|クリエイトエス・ディー", "Pharmacy"), (r"クリニック", "MedicalClinic"), (r"デンタル|歯科", "Dentist"), (r"一時預かり", "ChildCare"),
+    (r"美容室|美容院|ヘアサロン|理容", "HairSalon"), (r"ネイル", "NailSalon"),
+    (r"POLA|ノエビア|整体|鍼灸|治療院|アロマ|Luce", "HealthAndBeautyBusiness"),
+    (r"チャイナドレス", "Store"),
+    (r"子育て支援拠点|とことこ|地区センター|コミュニティハウス|ケアプラザ|あーすぷらざ|防災センター", "CivicStructure"),
+    (r"ベビーケアスペース", "TrainStation"), (r"YCAT|エア・ターミナル", "BusStation"), (r"客船ターミナル", "BoatTerminal"),
+    (r"動物園|ズーラシア", "Zoo"), (r"シーパラダイス|アクアリウム|水族館", "Aquarium"), (r"図書館", "Library"),
+    (r"象の鼻テラス|中華街|大世界|マリンタワー|レストラン船|キリンビール|ストロベリーパーク|フォレストアドベンチャー|ウォーターパーク", "TouristAttraction"),
+    (r"コスモワールド", "AmusementPark"),
+    (r"外交官の家|イギリス館|番館|エリスマン邸|開港記念会館|大倉山記念館", "LandmarksOrHistoricalBuildings"), (r"總持寺", "BuddhistTemple"),
+    (r"博物館|美術館|資料館|記念館|資料室|ミュージアム|文学館|科学館|保存館|技術館|文化館|ギャラリー|ニュースパーク|プラネタリア|博覧館|人形の家|文庫|氷川丸|日本丸|ライブラリー|Mulabo|Beauty Park", "Museum"),
+    (r"公園|三溪園|こどもの国", "Park"),
+    (r"スタジアム|アリーナ|球技場", "StadiumOrArena"), (r"プール|武道館|スポーツセンター", "SportsActivityLocation"),
+    (r"能楽堂|にぎわい座|ホール", "PerformingArtsTheater"), (r"パシフィコ", "EventVenue"),
+    (r"区役所|市役所|県庁|赤十字", "GovernmentBuilding"),
+    (r"百貨店|高島屋|そごう", "DepartmentStore"),
+    (r"モール|ららぽーと|ワールドポーターズ|クイーンズスクエア|ランドマークプラザ|MARK IS|ルミネ|ジョイナス|モアーズ|ポルタ|シァル|CIAL|トレッサ|アウトレット|東急スクエア|ニュウマン|コレットマーレ|ベイクォーター|ソラトス|ミオカ|みなも|TOKYU S\.C|カエデウォーク|テラス|ビブレ|スカイビル|アソビル|BASEGATE|モディ|サクラス|トツカーナ|アベニュー|LICOPA|イオン|アピタ|S\.C\.|MARINE & WALK|赤レンガ倉庫|ハンマーヘッド|HOME'S|キュービックプラザ|プリンスペペ|港南台バース|ブランチ|ショッピングストリート|元町スカイビル", "ShoppingCenter"),
+    (r"スーパー|パルケ", "GroceryStore"), (r"ドン・キホーテ|ヨドバシ|ノジマ|CeeU|眼鏡|文具|履物|自然食品|さゆり堂|杉本家|タッチまいはぁと|チャイナドレス", "Store"),
+]
+
+
+def spot_type(n):
+    for rx, t in SPOT_TYPES:
+        if re.search(rx, n):
+            return t
+    return "Place"
 
 
 MIN_CHARS = 400  # 本文（タグ・スクリプトを除いた文字数）がこれより少ないページは noindex・sitemapから外す
@@ -842,6 +882,63 @@ def area_pages(d, track_url):
     return out
 
 
+def index_pages(d, spots, spot_ids, track_url, form_url):
+    """一覧ページ：/event/（日にちのあるイベント）・/spot/（赤ちゃん設備のある施設）・/contact/（お問い合わせ）"""
+    out = []
+    lim = sorted([e for e in d["events"] if e.get("kind") == "limited" and e.get("days")], key=lambda e: (iso(e["days"][0]), e.get("start") or 0, e["t"]))
+    months = []
+    for e in lim:
+        mo = iso(e["days"][0]).strftime("%Y年%-m月")
+        if not months or months[-1][0] != mo: months.append((mo, []))
+        months[-1][1].append(e)
+    sec = "".join(f'<h2>{mo}から始まるイベント（{len(xs)}件）</h2><ul class="links">' + "".join(
+        f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a>（{E(when_text(e)[:30])}・{E(e.get("ward", ""))}）</li>' for e in xs) + "</ul>" for mo, xs in months)
+    ch, cld = crumbs([("トップ", "/"), ("イベント一覧", "")])
+    body = f"""{ch}
+<article class="card"><h1>横浜の子連れイベント一覧（日にち順）</h1>
+<p>横浜市内で、これから開かれる0歳〜小学生の親子向けイベント{len(lim)}件を、始まる日の順に並べました。名前を押すと、日にち・時間・料金・予約・雨の日の扱いと、近くの授乳室・ごはんが見られます。日にち・区・無料かどうかで絞り込むときは<a href="/">トップの一覧</a>から。いつでも行ける施設・公園は<a href="/area/">区ごとの施設・遊び場</a>にまとめています。</p>
+<div class="btns"><a class="btn main" href="/">日にち・区で絞り込む</a><a class="btn" href="/area/">区ごとの施設・遊び場</a></div>
+{sec}
+<p class="small">内容は変わることがあるので、出かける前に必ず各イベントの公式ページで確かめてください。</p></article>"""
+    items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(lim)]
+    out.append(("event/", page(f"横浜の子連れイベント一覧（{len(lim)}件・日にち順）｜KidsTrip", f"横浜市内でこれから開かれる0歳〜小学生の親子向けイベント{len(lim)}件を日にち順に。クリスマス・お正月のイベントや区のおはなし会、無料の工作など。",
+                               "event/", body, [{"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜の子連れイベント一覧", "url": SITE + "event/", "inLanguage": "ja"}, cld,
+                                                {"@context": "https://schema.org", "@type": "ItemList", "name": "横浜の子連れイベント一覧", "numberOfItems": len(items), "itemListElement": items}],
+                               track_url=track_url, tpage="event/")))
+    # 赤ちゃん設備のある施設（エリアごと。いちばん最初に出てくるエリアに入れる）
+    by_area = {}
+    for n, (b, area) in spots.items():
+        by_area.setdefault(area, []).append(b)
+    order = list(d["baby"].keys())
+    sec = "".join(f'<h2>{E(d["areas"].get(a, "") or "そのほか")}（{len(by_area[a])}か所）</h2>' + matrix(by_area[a], spot_ids) for a in order if by_area.get(a))
+    nw = sum(1 for b, _ in spots.values() if b.get("w") is True)
+    nmw = sum(1 for b, _ in spots.values() if b.get("mw") is True)
+    ch, cld = crumbs([("トップ", "/"), ("授乳室・おむつ替えのある施設", "")])
+    body = f"""{ch}
+<article class="card"><h1>横浜の授乳室・おむつ替えのある施設一覧（エリア別）</h1>
+<p>横浜市内の、おむつ替え・授乳室・調乳のお湯・離乳食を温める電子レンジがある施設{len(spots)}か所を、エリアごとにまとめました（お湯が確かめられた施設は{nw}か所、電子レンジは{nmw}か所）。施設の名前を押すと、何階のどこにあるか、パパも使えるか、近くのごはん・子ども服のお店が見られます。○×は施設の公式ページなどで確かめたもので、「？」は調べた範囲で確認できなかったものです。</p>
+<div class="btns"><a class="btn main" href="/#foodall">近くのごはん・おむつを地図で探す</a></div>
+{sec}
+<p class="small">設備は工事などで変わることがあります。間違いに気づいたら<a href="/contact/">お問い合わせ</a>から教えてください。</p></article>"""
+    items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}spot/{spot_ids[n]}/", "name": short(n)} for i, n in enumerate(spots)]
+    out.append(("spot/", page(f"横浜の授乳室・おむつ替えのある施設一覧（{len(spots)}か所・エリア別）｜KidsTrip", f"横浜市内の授乳室・おむつ替え・調乳のお湯・電子レンジがある施設{len(spots)}か所をエリア別に。みなとみらい・横浜駅・中華街・新横浜などのモール・駅・博物館の何階にあるか、パパも使えるか。",
+                              "spot/", body, [{"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜の授乳室・おむつ替えのある施設一覧", "url": SITE + "spot/", "inLanguage": "ja"}, cld,
+                                              {"@context": "https://schema.org", "@type": "ItemList", "name": "横浜の授乳室・おむつ替えのある施設", "numberOfItems": len(items), "itemListElement": items}],
+                              track_url=track_url, tpage="spot/")))
+    ch, cld = crumbs([("トップ", "/"), ("お問い合わせ", "")])
+    body = f"""{ch}
+<article class="card"><h1>お問い合わせ</h1>
+<p>KidsTrip（キッズトリップ）へのお問い合わせは、下のお問い合わせフォーム（Googleフォーム）からお送りください。</p>
+<h2>こんなときにどうぞ</h2>
+<ul class="links"><li>イベントの日にち・時間・料金などが公式と違っていた</li><li>授乳室・おむつ替え・お湯・電子レンジの場所や有無が違っていた、なくなっていた</li><li>主催者・施設の方で、掲載内容を直したい・掲載をやめてほしい</li><li>サイトの使い方で分かりにくいところがある</li></ul>
+<p>いただいた内容は、施設・主催者の公式ページで確かめてから直します。いただいた情報の扱いは<a href="/privacy/">プライバシーポリシー</a>のとおりです。</p>
+<div class="btns"><a class="btn main" href="{E(form_url)}" target="_blank" rel="noopener">お問い合わせフォームを開く</a><a class="btn" href="/about/">このサイトについて</a></div></article>"""
+    out.append(("contact/", page("お問い合わせ｜KidsTrip（キッズトリップ）", "KidsTrip（キッズトリップ）へのお問い合わせ。イベント・授乳室などの情報の間違い、掲載内容の修正・掲載の取りやめの依頼は、お問い合わせフォームからどうぞ。",
+                                 "contact/", body, [{"@context": "https://schema.org", "@type": "ContactPage", "name": "お問い合わせ｜KidsTrip", "url": SITE + "contact/", "inLanguage": "ja"}, cld],
+                                 track_url=track_url, tpage="contact/")))
+    return out
+
+
 def main():
     d = load_data()
     src = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -855,13 +952,6 @@ def main():
     os.makedirs(os.path.join(ROOT, pp), exist_ok=True)
     open(os.path.join(ROOT, pp, "index.html"), "w", encoding="utf-8").write(ph)
     man = json.load(open(MANIFEST, encoding="utf-8")) if os.path.exists(MANIFEST) else {"event": {}, "spot": {}}
-    gk_man = {}
-    for gp, gh in gakudo_pages(track_url) + area_pages(d, track_url):
-        os.makedirs(os.path.join(ROOT, gp), exist_ok=True)
-        open(os.path.join(ROOT, gp, "index.html"), "w", encoding="utf-8").write(gh)
-        hh = hashlib.sha1(gh.encode()).hexdigest()[:12]
-        old = man.get("gakudo", {}).get(gp, {})
-        gk_man[gp] = {"hash": hh, "lastmod": old.get("lastmod", TODAY.isoformat()) if old.get("hash") == hh else TODAY.isoformat()}
     # 施設（BABY）：名前ごとに1ページ。最初に出てきたエリアを使う
     spots, spot_ids = {}, {}
     for area, lst in d["baby"].items():
@@ -870,6 +960,21 @@ def main():
                 spots[b["n"]] = (b, area)
                 spot_ids[b["n"]] = hash_id(b["n"])
     d["_spot_by_name"] = {n: b for n, (b, area) in spots.items()}
+    # 同じ施設が /event/（料金・時間・遊び方）と /spot/（授乳室・おむつ替え）の両方にあるとき、互いにリンクする
+    ong = {_norm(short(e["t"])): e for e in d["events"] if e.get("kind") == "ongoing"}
+    d["_ev_of_spot"], d["_spot_of_ev"] = {}, {}
+    for n in spots:
+        e = ong.get(_norm(short(n)))
+        if e and len(_norm(short(n))) >= 3:
+            d["_ev_of_spot"][n] = e
+            d["_spot_of_ev"][e["id"]] = n
+    gk_man = {}
+    for gp, gh in gakudo_pages(track_url) + area_pages(d, track_url) + index_pages(d, spots, spot_ids, track_url, fm.group(1) if fm else "/"):
+        os.makedirs(os.path.join(ROOT, gp), exist_ok=True)
+        open(os.path.join(ROOT, gp, "index.html"), "w", encoding="utf-8").write(gh)
+        hh = hashlib.sha1(gh.encode()).hexdigest()[:12]
+        old = man.get("gakudo", {}).get(gp, {})
+        gk_man[gp] = {"hash": hh, "lastmod": old.get("lastmod", TODAY.isoformat()) if old.get("hash") == hh else TODAY.isoformat()}
     built = {"event": {}, "spot": {}}
     for e in d["events"]:
         path, htmltext, name = event_page(e, d, spot_ids, track_url)
@@ -889,7 +994,7 @@ def main():
             lm = old.get("lastmod", today) if old.get("hash") == h and not old.get("ended") else today
             new_man[kind][pid] = {"name": name, "hash": h, "lastmod": lm, "added": old.get("added") or (old.get("lastmod") if old else today)}
             # 記録のスプレッドシートで、ページ別の表示回数と並べるための情報（型・本文の字数・ほかの個別ページへのリンク数）
-            tm = re.search(r'"@type": "(Event|TouristAttraction|Park|Place|LocalBusiness|ShoppingCenter)"', htmltext)
+            tm = re.search(r'"@type": "(?!BreadcrumbList|ListItem|PostalAddress|GeoCoordinates|LocationFeatureSpecification|Offer|Place"|Organization)(\w+)"', htmltext) or re.search(r'"@type": "(Place)"', htmltext)
             new_man[kind][pid].update({"type": tm.group(1) if tm else "", "chars": body_chars(htmltext),
                                        "links": len(set(re.findall(r'href="/(?:event|spot)/[^"/]+/"', htmltext)))})
             if thin:
@@ -924,12 +1029,13 @@ def main():
     def urlset(us):
         return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
             f"  <url><loc>{u}</loc><lastmod>{lm}</lastmod><changefreq>{cf}</changefreq></url>\n" for u, lm, cf in us) + "</urlset>\n"
+    IDX = {SITE + "event/", SITE + "spot/"}  # 一覧ページはふつうのページとして扱う
     def is_event(u):
-        if "/event/" not in u: return False
+        if "/event/" not in u or u in IDX: return False
         return new_man["event"].get(u.rstrip("/").split("/")[-1], {}).get("type") == "Event"
     groups = {"sitemap-events.xml": [x for x in urls if is_event(x[0])],
-              "sitemap-spots.xml": [x for x in urls if ("/event/" in x[0] and not is_event(x[0])) or "/spot/" in x[0]],
-              "sitemap-pages.xml": [x for x in urls if "/event/" not in x[0] and "/spot/" not in x[0]]}
+              "sitemap-spots.xml": [x for x in urls if x[0] not in IDX and (("/event/" in x[0] and not is_event(x[0])) or "/spot/" in x[0])],
+              "sitemap-pages.xml": [x for x in urls if x[0] in IDX or ("/event/" not in x[0] and "/spot/" not in x[0])]}
     for fn, us in groups.items():
         open(os.path.join(ROOT, fn), "w", encoding="utf-8").write(urlset(us))
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
@@ -942,11 +1048,13 @@ def main():
     # index.html：ページへのリンク一覧と、構造化データ（ItemList・Organization）
     ev_live = [e for e in d["events"]]
     links = ('<details class="fold pagelinks"><summary>イベント・施設のページ一覧</summary><div class="fbody">'
+             '<p><a href="/event/">イベント一覧（日にち順）</a>　<a href="/area/">区ごとの施設・遊び場</a>　<a href="/spot/">授乳室・おむつ替えのある施設</a></p>'
              '<h3 class="fsum-static">イベント</h3><ul class="plinks">' + "".join(f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a></li>' for e in ev_live if e.get("kind") != "ongoing") + "</ul>"
              '<h3 class="fsum-static">区ごとの施設・遊び場</h3><ul class="plinks">' + "".join(f'<li><a href="/area/{sl}/">{w}</a></li>' for w, sl in WARD_SLUG.items() if os.path.exists(os.path.join(ROOT, "area", sl))) + "</ul>"
              '<h3 class="fsum-static">赤ちゃん設備のある施設</h3><ul class="plinks">' + "".join(f'<li><a href="/spot/{spot_ids[n]}/">{E(short(n))}</a></li>' for n in spots) + "</ul></div></details>")
-    item_list = {"@context": "https://schema.org", "@type": "ItemList", "name": "横浜の子連れイベント一覧", "numberOfItems": len(ev_live),
-                 "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(ev_live)]}
+    ev_lim = [e for e in ev_live if e.get("kind") != "ongoing"]  # ページ一覧の「イベント」と同じもの
+    item_list = {"@context": "https://schema.org", "@type": "ItemList", "name": "横浜の子連れイベント一覧", "numberOfItems": len(ev_lim),
+                 "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(ev_lim)]}
     org = {"@context": "https://schema.org", "@type": "Organization", "name": "KidsTrip", "alternateName": "キッズトリップ", "url": SITE, "logo": SITE + "img/logo.webp"}
     # 新着イベント（載せた日が新しい順に20件）：トップから個別ページへの静的リンク
     def dlabel(e):
