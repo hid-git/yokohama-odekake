@@ -690,10 +690,10 @@
   },
   "18ol764": {
    "added": "2026-11-23",
-   "chars": 669,
-   "hash": "0b53b6f6c2a2",
+   "chars": 1003,
+   "hash": "d8927655091a",
    "lastmod": "2026-11-23",
-   "links": 12,
+   "links": 18,
    "name": "すいようびのおはなし会（中図書館）",
    "type": "Event"
   },
@@ -2532,10 +2532,10 @@
   },
   "1w3yj6l": {
    "added": "2026-11-12",
-   "chars": 998,
-   "hash": "3ac3240c4a64",
+   "chars": 1031,
+   "hash": "6aa80800bd23",
    "lastmod": "2026-11-23",
-   "links": 10,
+   "links": 12,
    "name": "みんなのインクルーシブスポーツ（中区）",
    "type": "Event"
   },
@@ -2622,10 +2622,10 @@
   },
   "1xbgbn6": {
    "added": "2026-11-12",
-   "chars": 523,
-   "hash": "575683f29bc6",
-   "lastmod": "2026-11-22",
-   "links": 7,
+   "chars": 986,
+   "hash": "96502f0c7a18",
+   "lastmod": "2026-11-23",
+   "links": 28,
    "name": "三溪園 菊花展2026",
    "type": "TouristAttraction"
   },
@@ -3143,10 +3143,10 @@
   },
   "6k5zc9": {
    "added": "2026-11-23",
-   "chars": 583,
-   "hash": "a06fec682cfc",
+   "chars": 917,
+   "hash": "f352562df485",
    "lastmod": "2026-11-23",
-   "links": 9,
+   "links": 15,
    "name": "おひざにだっこのおはなし会（中図書館・0〜2歳）",
    "type": "Event"
   },
@@ -3820,10 +3820,10 @@
   },
   "dappap": {
    "added": "2026-11-15",
-   "chars": 783,
-   "hash": "8cbe65bade8f",
-   "lastmod": "2026-11-22",
-   "links": 13,
+   "chars": 1117,
+   "hash": "a253b1c9578b",
+   "lastmod": "2026-11-23",
+   "links": 19,
    "name": "めぐみ座のおはなし会（中図書館）",
    "type": "Event"
   },
@@ -6544,6 +6544,7 @@
  "og_spot": {
   "102eq2v": "00da918975de",
   "10e4i64": "748d0a545fda",
+  "11hk0oh": "dae1868ffc0a",
   "11vekjp": "555dfdfdac6f",
   "11yqwmv": "640ba5777117",
   "11zsskf": "21b94204f79b",
@@ -6553,6 +6554,7 @@
   "13484hp": "b63099299afb",
   "14cqotl": "9041a16927dd",
   "14ivco7": "bdd260380b19",
+  "14kb91d": "77c1066d35cb",
   "14ubomp": "359f358113f8",
   "14uic51": "6f18b1b94933",
   "14ws7oy": "409874a5d75f",
@@ -6568,8 +6570,10 @@
   "18ge06x": "9d31a7cd1a28",
   "18k2nx4": "dfcd364c08b4",
   "18kwe75": "bd3a43c726d0",
+  "18oli3m": "7a46f90b7f4f",
   "19are3y": "c967f2a3ace3",
   "1a5j8ji": "f98159be3bc0",
+  "1acjo35": "a0d8ea8cdc75",
   "1as3aor": "4a8fe23fac38",
   "1b4sz2f": "95f4e6c0977d",
   "1bjwbnk": "b7a2e5318c6c",
@@ -6582,11 +6586,15 @@
   "1d8dynq": "9122a78c0991",
   "1ds32d3": "8d1e8ae282be",
   "1dsid6h": "545baf068a27",
+  "1e00jkn": "bb0480e64194",
   "1ecb3d7": "b20270ecd1a7",
+  "1eytbpp": "acaa9004e990",
   "1fba7ke": "d751970196d1",
   "1fg72i8": "1df39cccdab4",
   "1fi2psb": "3b0f9e096a60",
+  "1foghqo": "aa6aadc30d80",
   "1fvfy18": "9f8dd6e4f7f5",
+  "1g6k9vu": "fc13d44874b4",
   "1h96vr8": "e8ff58b691b9",
   "1hgf5kn": "34aecc9777f3",
   "1hgp91k": "4998bfb1fa15",
@@ -6609,6 +6617,7 @@
   "1l0g3g5": "f435fa399a62",
   "1l1r9ml": "f22dd73f7eec",
   "1m4z3z8": "698357502bc1",
+  "1menr45": "bf1f4654eb66",
   "1mxkz1g": "ab46777278b9",
   "1n21shp": "836f0ce251df",
   "1n3zykx": "bf6c8bdae874",
@@ -6625,6 +6634,7 @@
   "1qg4qi4": "91b896d5672e",
   "1qtyf97": "82dddec31eba",
   "1qwljlp": "cccedf8dc46c",
+  "1retrjv": "3c6395945854",
   "1rkdk6a": "aec3bab05011",
   "1sptgqk": "2eae592e2e26",
   "1sx8mms": "d473eeccf3ed",
@@ -6633,6 +6643,7 @@
   "1t485qs": "2e89f7ed2d99",
   "1t4cre0": "5d5ff3607795",
   "1taz5rj": "9863e3eacf98",
+  "1tu0i12": "96c4d5df75a7",
   "1udotm9": "4758b97c32b1",
   "1uq4uv4": "f6d761fdb56f",
   "1vcco8d": "26518d4d02e1",
@@ -6644,6 +6655,7 @@
   "1wdfrx0": "0d427c630459",
   "1womlqw": "fe468cb117bb",
   "1wruy4z": "935ac7590074",
+  "1x4hjij": "41d2c788a8f1",
   "1xb9td9": "58393b9db444",
   "1xr99pd": "ead17df3acc3",
   "1xuclsb": "12d25c735cae",
@@ -6667,10 +6679,12 @@
   "6rifv7": "e4974d2b663a",
   "6xpari": "d66c778e05b9",
   "7kour8": "2cab3dc885a4",
+  "7qg9t0": "49d8e0cc2211",
   "7srsea": "4b17177ee029",
   "86ef0f": "8ab88257b2c3",
   "8bz9f5": "c6ecd6639794",
   "8g415g": "fdbf1809793a",
+  "8kk2m5": "455e4d06f997",
   "8q9res": "70923791a4bb",
   "8spscs": "3db5ab088491",
   "8xe02h": "1224a826dd29",
@@ -6691,6 +6705,7 @@
   "cvsdxj": "564e05878397",
   "cwv5hg": "5d2a9f0923a9",
   "cydgfi": "9efa1bc9428b",
+  "d5u06k": "df727ddf0778",
   "d63d8s": "9335c0bdd148",
   "ddmagg": "72ad014d583a",
   "di7xjz": "c5e28935a0b5",
@@ -6703,6 +6718,7 @@
   "flese0": "836717c7576c",
   "fm1cou": "d86f2c1b22d3",
   "fpf3hr": "e703104c2639",
+  "ftuevt": "f9501d7dcf76",
   "fviw25": "9919a5cc102c",
   "ghjq0p": "6194f3525f20",
   "gue82u": "37b67c2dedaa",
@@ -6718,6 +6734,7 @@
   "jlzno5": "bf09dbd6f5d4",
   "jov9g8": "849a4ff6a4c1",
   "k0vtjn": "39ac6785fb77",
+  "kxot6k": "01a1c182e537",
   "l5mpw3": "a4cd0b0ce10f",
   "lg4yuc": "c1af9ac8615d",
   "lw2ofl": "e402062ed0c5",
@@ -6741,6 +6758,8 @@
   "r2jkwf": "08970c30a956",
   "r90frm": "11d3189c330e",
   "r9xh0x": "2d207c36261b",
+  "ri7qax": "ec73c2b77080",
+  "rlczi9": "b2f16dd14d0f",
   "ruk7ap": "355650fedea5",
   "su1u2h": "f75e68cc86c6",
   "svcp0u": "4086454a5b52",
@@ -6755,12 +6774,14 @@
   "vhrq7z": "e720739c768f",
   "w1ck99": "c01587b04790",
   "wn0p1": "a25b2854c43d",
+  "xdq4pb": "3ca89d49f684",
   "xkhnmi": "491294915471",
   "xkkvy6": "58f372051869",
   "xsvsqj": "70bb3e096840",
   "xumbkg": "126d02b0e2c6",
   "y1wtbi": "cd32c501fdde",
-  "yabbyg": "f29b7746912b",
+  "yabbyg": "7aecaa1321ae",
+  "yghspw": "85ee5b7b76fc",
   "ypztsv": "0020d335d923",
   "zgi032": "299a4339e2cf",
   "zp2rar": "03c99a426c59",
@@ -6783,6 +6804,15 @@
    "lastmod": "2026-11-22",
    "links": 9,
    "name": "港南台バース",
+   "type": "Place"
+  },
+  "11hk0oh": {
+   "added": "2026-11-23",
+   "chars": 687,
+   "hash": "9f2ee5f800cd",
+   "lastmod": "2026-11-23",
+   "links": 23,
+   "name": "セブン-イレブン 横浜根岸3丁目店",
    "type": "Place"
   },
   "11vekjp": {
@@ -6864,6 +6894,15 @@
    "lastmod": "2026-11-23",
    "links": 62,
    "name": "POLA THE BEAUTY 馬車道",
+   "type": "Place"
+  },
+  "14kb91d": {
+   "added": "2026-11-23",
+   "chars": 817,
+   "hash": "efffa0343294",
+   "lastmod": "2026-11-23",
+   "links": 23,
+   "name": "セブン-イレブン 横浜本牧三渓園店",
    "type": "Place"
   },
   "14ubomp": {
@@ -7002,6 +7041,15 @@
    "name": "Kアリーナ横浜（公演の来場者向け）",
    "type": "Place"
   },
+  "18oli3m": {
+   "added": "2026-11-23",
+   "chars": 1208,
+   "hash": "633109fa4097",
+   "lastmod": "2026-11-23",
+   "links": 26,
+   "name": "イオン本牧店",
+   "type": "Place"
+  },
   "19are3y": {
    "added": "2026-11-23",
    "chars": 3000,
@@ -7018,6 +7066,15 @@
    "lastmod": "2026-11-23",
    "links": 62,
    "name": "セブン-イレブン 横浜桜木町駅前店（中区花咲町2-64）",
+   "type": "Place"
+  },
+  "1acjo35": {
+   "added": "2026-11-23",
+   "chars": 1174,
+   "hash": "d463cbb891a6",
+   "lastmod": "2026-11-23",
+   "links": 28,
+   "name": "横浜市中スポーツセンター",
    "type": "Place"
   },
   "1as3aor": {
@@ -7130,6 +7187,15 @@
    "name": "Hair & Make Passo（伊勢佐木長者町の美容室）",
    "type": "Place"
   },
+  "1e00jkn": {
+   "added": "2026-11-23",
+   "chars": 1039,
+   "hash": "30d58d0aa867",
+   "lastmod": "2026-11-23",
+   "links": 26,
+   "name": "本牧原地域ケアプラザ",
+   "type": "Place"
+  },
   "1ecb3d7": {
    "added": "2026-11-16",
    "chars": 393,
@@ -7138,6 +7204,15 @@
    "links": 1,
    "name": "LICOPA鶴見（鶴見駅から歩いて14分）",
    "thin": true,
+   "type": "Place"
+  },
+  "1eytbpp": {
+   "added": "2026-11-23",
+   "chars": 863,
+   "hash": "174c4bb91ecd",
+   "lastmod": "2026-11-23",
+   "links": 24,
+   "name": "杉本家（山手駅前・着物のお手入れ）",
    "type": "Place"
   },
   "1fba7ke": {
@@ -7167,6 +7242,15 @@
    "name": "大本山總持寺",
    "type": "Place"
   },
+  "1foghqo": {
+   "added": "2026-11-23",
+   "chars": 689,
+   "hash": "00c4eb2c0d07",
+   "lastmod": "2026-11-23",
+   "links": 23,
+   "name": "セブン-イレブン 横浜本牧2丁目店",
+   "type": "Place"
+  },
   "1fvfy18": {
    "added": "2026-11-13",
    "chars": 343,
@@ -7175,6 +7259,15 @@
    "links": 6,
    "name": "横浜市歴史博物館",
    "thin": true,
+   "type": "Place"
+  },
+  "1g6k9vu": {
+   "added": "2026-11-23",
+   "chars": 702,
+   "hash": "09b0e7f3c661",
+   "lastmod": "2026-11-23",
+   "links": 23,
+   "name": "簑沢地域ケアプラザ",
    "type": "Place"
   },
   "1h96vr8": {
@@ -7375,6 +7468,15 @@
    "name": "ゆめが丘ソラトス（ゆめが丘駅直結）",
    "type": "Place"
   },
+  "1menr45": {
+   "added": "2026-11-23",
+   "chars": 926,
+   "hash": "5ff2ad590bc5",
+   "lastmod": "2026-11-23",
+   "links": 24,
+   "name": "ノジマ本牧店（家電）",
+   "type": "Place"
+  },
   "1mxkz1g": {
    "added": "2026-11-23",
    "chars": 2503,
@@ -7519,6 +7621,15 @@
    "name": "はまぎん こども宇宙科学館（洋光台）",
    "type": "Place"
   },
+  "1retrjv": {
+   "added": "2026-11-23",
+   "chars": 1188,
+   "hash": "28f903042de4",
+   "lastmod": "2026-11-23",
+   "links": 26,
+   "name": "本牧プラウド（美容院）",
+   "type": "Place"
+  },
   "1rkdk6a": {
    "added": "2026-11-22",
    "chars": 3037,
@@ -7590,6 +7701,15 @@
    "lastmod": "2026-11-23",
    "links": 62,
    "name": "デイリーヤマザキ 関内仲通り店",
+   "type": "Place"
+  },
+  "1tu0i12": {
+   "added": "2026-11-23",
+   "chars": 797,
+   "hash": "37e9ebead782",
+   "lastmod": "2026-11-23",
+   "links": 23,
+   "name": "セブン-イレブン 横浜山手駅前店",
    "type": "Place"
   },
   "1udotm9": {
@@ -7689,6 +7809,15 @@
    "lastmod": "2026-11-23",
    "links": 54,
    "name": "JICA横浜 海外移住資料館",
+   "type": "Place"
+  },
+  "1x4hjij": {
+   "added": "2026-11-23",
+   "chars": 1174,
+   "hash": "e31494fb1c93",
+   "lastmod": "2026-11-23",
+   "links": 26,
+   "name": "横浜市中図書館（本牧）",
    "type": "Place"
   },
   "1xb9td9": {
@@ -7900,6 +8029,15 @@
    "name": "横浜市開港記念会館",
    "type": "Place"
   },
+  "7qg9t0": {
+   "added": "2026-11-23",
+   "chars": 870,
+   "hash": "b5f23e52f559",
+   "lastmod": "2026-11-23",
+   "links": 23,
+   "name": "中本牧コミュニティハウス",
+   "type": "Place"
+  },
   "7srsea": {
    "added": "2026-11-23",
    "chars": 2890,
@@ -7934,6 +8072,15 @@
    "lastmod": "2026-11-23",
    "links": 7,
    "name": "横浜・八景島シーパラダイス",
+   "type": "Place"
+  },
+  "8kk2m5": {
+   "added": "2026-11-23",
+   "chars": 853,
+   "hash": "bc6e6dec2840",
+   "lastmod": "2026-11-23",
+   "links": 24,
+   "name": "さゆり堂（山手駅前・タオルと印刷）",
    "type": "Place"
   },
   "8q9res": {
@@ -8019,12 +8166,11 @@
   },
   "atkn95": {
    "added": "2026-11-13",
-   "chars": 297,
-   "hash": "317cd40c0019",
-   "lastmod": "2026-11-21",
-   "links": 2,
+   "chars": 586,
+   "hash": "0741960ba320",
+   "lastmod": "2026-11-23",
+   "links": 23,
    "name": "本牧市民・臨海公園",
-   "thin": true,
    "type": "Place"
   },
   "b5zzid": {
@@ -8116,6 +8262,15 @@
    "lastmod": "2026-11-23",
    "links": 62,
    "name": "三井ホーム Visual Presentation Center 横浜（横浜三井ビルディング27階）",
+   "type": "Place"
+  },
+  "d5u06k": {
+   "added": "2026-11-23",
+   "chars": 837,
+   "hash": "cd0898ecd0a7",
+   "lastmod": "2026-11-23",
+   "links": 24,
+   "name": "トップ パルケ 山手店（スーパー）",
    "type": "Place"
   },
   "d63d8s": {
@@ -8224,6 +8379,15 @@
    "lastmod": "2026-11-23",
    "links": 89,
    "name": "シルク博物館",
+   "type": "Place"
+  },
+  "ftuevt": {
+   "added": "2026-11-23",
+   "chars": 1036,
+   "hash": "c386d05acabd",
+   "lastmod": "2026-11-23",
+   "links": 26,
+   "name": "大鳥中学校コミュニティハウス（本牧原）",
    "type": "Place"
   },
   "fviw25": {
@@ -8360,6 +8524,15 @@
    "lastmod": "2026-11-23",
    "links": 60,
    "name": "セブン-イレブン 横浜みなとみらいパークビル店",
+   "type": "Place"
+  },
+  "kxot6k": {
+   "added": "2026-11-23",
+   "chars": 730,
+   "hash": "6bf9cd6045b5",
+   "lastmod": "2026-11-23",
+   "links": 24,
+   "name": "POLA 本牧",
    "type": "Place"
   },
   "l5mpw3": {
@@ -8571,6 +8744,24 @@
    "name": "カエデウォーク長津田（緑区長津田みなみ台）",
    "type": "Place"
   },
+  "ri7qax": {
+   "added": "2026-11-23",
+   "chars": 901,
+   "hash": "c7ba44bd249a",
+   "lastmod": "2026-11-23",
+   "links": 23,
+   "name": "タッチまいはぁと（伊勢佐木町のアロマのお店）",
+   "type": "Place"
+  },
+  "rlczi9": {
+   "added": "2026-11-23",
+   "chars": 1212,
+   "hash": "66be5680e887",
+   "lastmod": "2026-11-23",
+   "links": 26,
+   "name": "Ash 本牧店（美容室）",
+   "type": "Place"
+  },
   "ruk7ap": {
    "added": "2026-11-23",
    "chars": 2770,
@@ -8698,6 +8889,15 @@
    "thin": true,
    "type": "Place"
   },
+  "xdq4pb": {
+   "added": "2026-11-23",
+   "chars": 1076,
+   "hash": "02414a2f0553",
+   "lastmod": "2026-11-23",
+   "links": 28,
+   "name": "ファーマライズ薬局 新山下店",
+   "type": "Place"
+  },
   "xkhnmi": {
    "added": "2026-11-12",
    "chars": 2818,
@@ -8746,11 +8946,20 @@
   },
   "yabbyg": {
    "added": "2026-11-12",
-   "chars": 461,
-   "hash": "eec9da2a9387",
+   "chars": 1052,
+   "hash": "bcb5b58a2541",
    "lastmod": "2026-11-23",
-   "links": 5,
+   "links": 26,
    "name": "三溪園",
+   "type": "Place"
+  },
+  "yghspw": {
+   "added": "2026-11-23",
+   "chars": 1008,
+   "hash": "c69e0b4a1734",
+   "lastmod": "2026-11-23",
+   "links": 26,
+   "name": "本牧和田地域ケアプラザ",
    "type": "Place"
   },
   "ypztsv": {
