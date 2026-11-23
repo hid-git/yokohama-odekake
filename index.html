@@ -500,6 +500,20 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 .bikes .note { font-size: 12px; margin: 6px 0 0; }
 .flist { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: 13.5px; }
 .flist .m { font-size: 12px; color: var(--muted); }
+/* 天気は小さく（日にち→区→天気の順に並べる。2026年11月） */
+.weather { display: block; margin: 10px 0; }
+.wxrow { display: flex; flex-wrap: wrap; gap: 6px; }
+.wx { padding: 4px 10px; gap: 6px; border-radius: 999px; flex-wrap: nowrap; font-size: 12.5px; }
+.wx .d { font-size: 13px; min-width: 0; }
+.wx .sky { font-size: 12.5px; min-width: 0; }
+.wx .sky .ic { font-size: 13px; }
+.wx .t { font-size: 12px; } .wx .t b { font-size: 14px; }
+.wx .p { margin-left: 0; font-size: 11.5px; padding: 1px 7px; }
+.wx.rainy { box-shadow: none; }
+.weather .outfitfold { margin-top: 8px; }
+.weather .wear { margin: 0 0 8px; }
+.weather .wx-note { margin-top: 8px; }
+@media (max-width: 520px) { .wx .sky .st, .wx .p .pl { display: none; } .wxrow { display: grid; grid-template-columns: 1fr 1fr; } .wxrow .wx { gap: 3px; padding: 4px 7px; justify-content: space-between; min-width: 0; white-space: nowrap; } .wx .t .u { display: none; } .wx .d { letter-spacing: -0.3px; } .wx .d, .wx .sky .ic { font-size: 12px; } .wx .t { font-size: 11px; } .wx .t b { font-size: 13px; } .wx .p { font-size: 11px; padding: 1px 5px; } }
 </style>
 </head>
 <body>
@@ -548,15 +562,6 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <li><span class="pi">🍼</span><span>各イベントに、近くのおむつ替え・授乳室・調乳のお湯と、子連れで入りやすいごはんを付けています。</span></li>
   </ul>
   <!--NEW:START--><section class="newev" id="newev" aria-label="新着イベント"><h2>🆕 新しく載せたイベント</h2><ul><li><a href="/event/18ol764/">すいようびのおはなし会（中図書館）</a><span class="d">12/2〜</span></li><li><a href="/event/px9o9g/">休日おはなし会（瀬谷図書館）</a><span class="d">12/6〜</span></li><li><a href="/event/6k5zc9/">おひざにだっこのおはなし会（中図書館・0〜2歳）</a><span class="d">12/8〜</span></li><li><a href="/event/148go4w/">ひよこのおはなし会（瀬谷図書館・0〜3歳）</a><span class="d">12/10〜</span></li><li><a href="/event/epmi8j/">Colors of HOPE 希望の彩り 難病チャリティーフェス（象の鼻テラス）</a><span class="d">12/12</span></li></ul><details class="fold"><summary>ほかの新着（あと15件）</summary><div class="fbody"><ul><li><a href="/event/ubl0o8/">土曜日のおはなし会（神奈川図書館）</a><span class="d">12/12〜</span></li><li><a href="/event/1lky5h/">ひろばおはなし会（港北図書館・3〜6歳）</a><span class="d">12/16</span></li><li><a href="/event/wcvooa/">親子おはなし会（神奈川図書館・0〜2歳）</a><span class="d">12/22</span></li><li><a href="/event/1ijxwn6/">はらぺこあおむしの没入型展示「WORLD OF ERIC CARLE&#x27;S VERY IMMERSIVE EXPERIENCE」</a><span class="d">12/26〜</span></li><li><a href="/event/lsmjls/">ズーラシアどうぶつ教室「どこにすんでる？ミニマップゲーム」</a><span class="d">11/29</span></li><li><a href="/event/1id01ow/">しあわせベビーヨガ（根岸地区センター・助産師さんと一緒に）</a><span class="d">11/26〜</span></li><li><a href="/event/1wphrwf/">松ぼっくりで作るクリスマスリース（モザイクモール港北 インナチュラル）</a><span class="d">11/28</span></li><li><a href="/event/wsp6ha/">コトコト あそびの学校「みんな大好き クリスマスツリー」（モザイクモール港北）</a><span class="d">11/28</span></li><li><a href="/event/lk26g9/">毛糸でクリスマス工作（浅間コミュニティハウス）</a><span class="d">12/5</span></li><li><a href="/event/p6vqs7/">親子のおはなし会（浅間コミュニティハウス）</a><span class="d">12/8</span></li><li><a href="/event/crc27b/">横浜北仲マルシェ（12月 Christmas Marche）</a><span class="d">12/19〜</span></li><li><a href="/event/1emojmd/">HAPPY！ファミリークリスマス（ヨコハマ グランド インターコンチネンタル ホテル）</a><span class="d">12/25</span></li><li><a href="/event/eae1s2/">冬休み書初め教室（中村地区センター）</a><span class="d">12/26</span></li><li><a href="/event/152j8zt/">マジカルおじさんの冬休みマジック教室（かながわアートホール）</a><span class="d">1/10</span></li><li><a href="/event/alshgk/">横浜北仲マルシェ（1月 Gochisou Marche）</a><span class="d">1/16〜</span></li></ul></div></details></section><!--NEW:END-->
-  <div class="areabar evarea" id="evarea" role="group" aria-label="エリアでイベントを絞る"></div>
-  <div class="weather" aria-label="週末の天気予報">
-    <div class="wxrow" id="wxrow"></div>
-    <p class="wear" id="wear"></p>
-    <details class="fold outfitfold"><summary>服装イメージ（天気から自動で）</summary><div class="fbody"><div class="outfit" id="outfit"></div></div></details>
-    <p class="wx-note" id="wxnote"></p>
-  </div>
-
-
   <div class="filters" id="events" role="group" aria-label="絞り込み">
     <div class="frow"><span class="flabel">日にち</span><div class="opts" data-key="day">
       <button class="opt" id="f-day-all" data-v="all" aria-pressed="true">すべて</button>
@@ -590,6 +595,12 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
     <div class="frow"><label class="flabel" for="origin">出発駅</label><div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input class="search" id="origin" type="search" placeholder="例：二俣川、センター南" style="flex:1;min-width:9em"><label class="arrl">着きたい時間 <input type="time" id="arrive" step="300"></label><button class="reset" id="arrive-clear" type="button">開始20分前に戻す</button></div><p class="note" style="margin:4px 0 0;font-size:12px;color:var(--muted)">各カードの「行き方」に乗換案内が出ます。着きたい時間はカードごとにも変えられます（空欄ならイベント開始の20分前）。</p></div></div>
     </div></details>
     <div class="frow"><label class="flabel" for="q">キーワード</label><div><input class="search" id="q" type="search" placeholder="例：花火、工作、動物"></div></div>
+  </div>
+
+  <div class="areabar evarea" id="evarea" role="group" aria-label="エリアでイベントを絞る"></div>
+  <div class="weather" aria-label="週末の天気予報">
+    <div class="wxrow" id="wxrow"></div>
+    <details class="fold outfitfold"><summary>服装の目安・服装イメージ（天気から自動で）</summary><div class="fbody"><p class="wear" id="wear"></p><div class="outfit" id="outfit"></div><p class="wx-note" id="wxnote"></p></div></details>
   </div>
 
   <div class="count"><span><b id="n">0</b> 件を表示（全 <span id="total">0</span> 件）</span><button class="reset" id="reset" type="button">条件をリセット</button></div>
@@ -756,6 +767,6 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 </div>
 
 <script src="js/data.js?v=53ea5fb28b" defer></script>
-<script src="js/app.js?v=1e28e73a7b" defer></script>
+<script src="js/app.js?v=6ebb51a60e" defer></script>
 </body>
 </html>

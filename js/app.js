@@ -139,7 +139,7 @@ function skyIcons(sky){
 function isRainy(w){ return /雨|雪/.test(w.sky) || w.pop >= 50; }
 function renderWeather(){
   const row = document.getElementById("wxrow"); if (!row) return;
-  row.innerHTML = WX.map((w, i) => `<div class="wx${isRainy(w) ? " rainy" : ""}" data-i="${i}" title="この日の服装を見る"><span class="d ${w.w === "土" ? "sat" : w.w === "日" ? "sun" : "hol"}">${w.d} ${w.w}</span><span class="sky"><span class="ic" aria-hidden="true">${skyIcons(w.sky)}</span>${esc(w.sky.replace(/晴/g,"晴れ").replace(/曇/g,"くもり"))}</span><span class="t"><b>${w.max}</b>℃ / ${w.min}℃</span><span class="p${w.pop >= 50 ? " hi" : ""}">降水 ${w.pop}%</span></div>`).join("");
+  row.innerHTML = WX.map((w, i) => `<div class="wx${isRainy(w) ? " rainy" : ""}" data-i="${i}" title="この日の服装を見る"><span class="d ${w.w === "土" ? "sat" : w.w === "日" ? "sun" : "hol"}">${w.d} ${w.w}</span><span class="sky"><span class="ic" aria-hidden="true">${skyIcons(w.sky)}</span><span class="st">${esc(w.sky.replace(/晴/g,"晴れ").replace(/曇/g,"くもり"))}</span></span><span class="t"><b>${w.max}</b><span class="u">℃</span>/${w.min}℃</span><span class="p${w.pop >= 50 ? " hi" : ""}"><span class="pl">降水 </span>${w.pop}%</span></div>`).join("");
   const wk = WX.filter(w => WEEKENDS[0].ds.includes(w.d));
   const base = wk.length ? wk : WX.slice(0, 2);
   const hi = Math.max(...base.map(w => w.max)), lo = Math.min(...base.map(w => w.min));
@@ -148,7 +148,7 @@ function renderWeather(){
   if (rainy.length) txt += `<br><b>☔ ${rainy.map(w => w.d + "(" + w.w + ")").join("・")}は雨の予報：</b>折りたたみ傘か子どものレインコート、ベビーカーのレインカバー、足元が濡れたときの替えの靴下とタオルがあると安心。雨の日は屋内のイベントや「雨でもOK」で絞り込むのがおすすめです。`;
   else if (base.some(w => /曇/.test(w.sky))) txt += `くもりの時間は日差しがなく、予報の気温より肌寒く感じやすいので、羽織りものを一枚多めに。`;
   document.getElementById("wear").innerHTML = txt;
-  row.querySelectorAll(".wx").forEach(d => d.addEventListener("click", () => { OUTFIT_DAY = +d.dataset.i; renderOutfit(); document.getElementById("outfit").scrollIntoView({ behavior: "smooth", block: "nearest" }); }));
+  row.querySelectorAll(".wx").forEach(d => d.addEventListener("click", () => { OUTFIT_DAY = +d.dataset.i; renderOutfit(); const of = document.getElementById("outfit").closest("details"); if (of) of.open = true; document.getElementById("outfit").scrollIntoView({ behavior: "smooth", block: "nearest" }); }));
   document.getElementById("wxnote").textContent = `${WX_ASOF}の予報です。予報は毎日の更新で新しくします。変わることがあるので、出かける前にも確認してください。赤い印の「雨天中止」イベントは当日の天気を確認してから出かけてください。`;
 }
 let OUTFIT_DAY = 0;
