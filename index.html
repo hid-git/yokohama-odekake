@@ -572,6 +572,13 @@ details.iconhelp .sharenote { margin: 4px 0 0; }
 details.iconhelp > summary::before { content: "▸ "; } details.iconhelp[open] > summary::before { content: "▾ "; } details.iconhelp > summary::-webkit-details-marker { display: none; }
 .newev .newcnt { display: block; font-size: 12.5px; font-weight: 500; color: var(--muted); margin-top: 2px; }
 .newev > details > summary h2 { margin: 0; }
+/* 日にちボタンを月ごとにたたむ（2026年11月） */
+.mrow .mlab { cursor: pointer; }
+.mrow .mlab::after { content: " ▾"; font-size: 10px; }
+.mrow.closed .mlab::after { content: " ▸"; }
+.mrow.closed > .opt { display: none; }
+.mrow .mhint { display: none; }
+.mrow.closed .mhint { display: inline-flex; align-items: center; min-height: 31px; font: inherit; font-size: 12.5px; color: var(--accent); background: none; border: 1px dashed var(--line); border-radius: 999px; padding: 2px 12px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -825,6 +832,6 @@ details.iconhelp > summary::before { content: "▸ "; } details.iconhelp[open] >
 </div>
 
 <script src="js/data.js?v=53ea5fb28b" defer></script>
-<script src="js/app.js?v=7f07574258" defer></script>
+<script src="js/app.js?v=4810a9446b" defer></script>
 </body>
 </html>
