@@ -468,6 +468,13 @@ footer p { margin: 0; max-width: 70ch; }
   h1 { font-size: 22px; }
   .frow { grid-template-columns: 1fr; gap: 4px; }
   .flabel { padding-top: 0; }
+  /* 日にち・年齢などの見出しも、月の表示と同じ左の列に置いて、ボタンを右にそろえる */
+  .frow.inl { grid-template-columns: 46px 1fr; gap: 6px; }
+  .frow.inl > .flabel, .frow.dayrow > .flabel { min-height: 31px; display: flex; align-items: center; }
+  .frow.dayrow { position: relative; }
+  .frow.dayrow > .flabel { position: absolute; left: 0; top: 0; }
+  .frow.dayrow #f-day-all { margin-left: 52px; }
+  .frow.inl > .opts { padding-left: 0; }
   .list { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -566,13 +573,13 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
   </ul>
   <!--NEW:START--><section class="newev" id="newev" aria-label="新着イベント"><h2>🆕 新しく載せたイベント</h2><ul><li><a href="/event/18ol764/">すいようびのおはなし会（中図書館）</a><span class="d">12/2〜</span></li><li><a href="/event/px9o9g/">休日おはなし会（瀬谷図書館）</a><span class="d">12/6〜</span></li><li><a href="/event/6k5zc9/">おひざにだっこのおはなし会（中図書館・0〜2歳）</a><span class="d">12/8〜</span></li><li><a href="/event/148go4w/">ひよこのおはなし会（瀬谷図書館・0〜3歳）</a><span class="d">12/10〜</span></li><li><a href="/event/epmi8j/">Colors of HOPE 希望の彩り 難病チャリティーフェス（象の鼻テラス）</a><span class="d">12/12</span></li></ul><details class="fold"><summary>ほかの新着（あと15件）</summary><div class="fbody"><ul><li><a href="/event/ubl0o8/">土曜日のおはなし会（神奈川図書館）</a><span class="d">12/12〜</span></li><li><a href="/event/1lky5h/">ひろばおはなし会（港北図書館・3〜6歳）</a><span class="d">12/16</span></li><li><a href="/event/wcvooa/">親子おはなし会（神奈川図書館・0〜2歳）</a><span class="d">12/22</span></li><li><a href="/event/1ijxwn6/">はらぺこあおむしの没入型展示「WORLD OF ERIC CARLE&#x27;S VERY IMMERSIVE EXPERIENCE」</a><span class="d">12/26〜</span></li><li><a href="/event/lsmjls/">ズーラシアどうぶつ教室「どこにすんでる？ミニマップゲーム」</a><span class="d">11/29</span></li><li><a href="/event/1id01ow/">しあわせベビーヨガ（根岸地区センター・助産師さんと一緒に）</a><span class="d">11/26〜</span></li><li><a href="/event/1wphrwf/">松ぼっくりで作るクリスマスリース（モザイクモール港北 インナチュラル）</a><span class="d">11/28</span></li><li><a href="/event/wsp6ha/">コトコト あそびの学校「みんな大好き クリスマスツリー」（モザイクモール港北）</a><span class="d">11/28</span></li><li><a href="/event/lk26g9/">毛糸でクリスマス工作（浅間コミュニティハウス）</a><span class="d">12/5</span></li><li><a href="/event/p6vqs7/">親子のおはなし会（浅間コミュニティハウス）</a><span class="d">12/8</span></li><li><a href="/event/crc27b/">横浜北仲マルシェ（12月 Christmas Marche）</a><span class="d">12/19〜</span></li><li><a href="/event/1emojmd/">HAPPY！ファミリークリスマス（ヨコハマ グランド インターコンチネンタル ホテル）</a><span class="d">12/25</span></li><li><a href="/event/eae1s2/">冬休み書初め教室（中村地区センター）</a><span class="d">12/26</span></li><li><a href="/event/152j8zt/">マジカルおじさんの冬休みマジック教室（かながわアートホール）</a><span class="d">1/10</span></li><li><a href="/event/alshgk/">横浜北仲マルシェ（1月 Gochisou Marche）</a><span class="d">1/16〜</span></li></ul></div></details></section><!--NEW:END-->
   <div class="filters" id="events" role="group" aria-label="絞り込み">
-    <div class="frow"><span class="flabel">日にち</span><div class="opts" data-key="day">
+    <div class="frow dayrow"><span class="flabel">日にち</span><div class="opts" data-key="day">
       <button class="opt" id="f-day-all" data-v="all" aria-pressed="true">すべて</button>
       <span class="mrow"><span class="mlab">11月</span><button class="opt" id="f-day-11-23" data-v="11/23" aria-pressed="false">23(月・祝)</button><button class="opt" id="f-day-11-28" data-v="11/28" aria-pressed="false">28(土)</button><button class="opt" id="f-day-11-29" data-v="11/29" aria-pressed="false">29(日)</button></span>
       <span class="mrow"><span class="mlab">12月</span><button class="opt" id="f-day-12-5" data-v="12/5" aria-pressed="false">5(土)</button><button class="opt" id="f-day-12-6" data-v="12/6" aria-pressed="false">6(日)</button><button class="opt" id="f-day-12-12" data-v="12/12" aria-pressed="false">12(土)</button><button class="opt" id="f-day-12-13" data-v="12/13" aria-pressed="false">13(日)</button><button class="opt" id="f-day-12-19" data-v="12/19" aria-pressed="false">19(土)</button><button class="opt" id="f-day-12-20" data-v="12/20" aria-pressed="false">20(日)</button><button class="opt" id="f-day-12-26" data-v="12/26" aria-pressed="false">26(土)</button><button class="opt" id="f-day-12-27" data-v="12/27" aria-pressed="false">27(日)</button></span>
       <span class="mrow"><span class="mlab">2027年<br>1月</span><button class="opt" id="f-day-1-1" data-v="1/1" aria-pressed="false">1(金・祝)</button><button class="opt" id="f-day-1-2" data-v="1/2" aria-pressed="false">2(土)</button><button class="opt" id="f-day-1-3" data-v="1/3" aria-pressed="false">3(日)</button><button class="opt" id="f-day-1-9" data-v="1/9" aria-pressed="false">9(土)</button><button class="opt" id="f-day-1-10" data-v="1/10" aria-pressed="false">10(日)</button><button class="opt" id="f-day-1-11" data-v="1/11" aria-pressed="false">11(月・祝)</button><button class="opt" id="f-day-1-16" data-v="1/16" aria-pressed="false">16(土)</button><button class="opt" id="f-day-1-17" data-v="1/17" aria-pressed="false">17(日)</button></span>
     </div></div>
-    <div class="frow"><span class="flabel">年齢</span><div class="opts" data-key="age">
+    <div class="frow inl"><span class="flabel">年齢</span><div class="opts" data-key="age">
       <button class="opt" id="f-age-all" data-v="all" aria-pressed="true">すべて</button>
       <button class="opt" id="f-age-0" data-v="0-2" aria-pressed="false">0〜2歳</button>
       <button class="opt" id="f-age-3" data-v="3-5" aria-pressed="false">3〜5歳</button>
@@ -580,7 +587,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
       <button class="opt" id="f-age-13" data-v="13-99" aria-pressed="false">中高生・大人</button>
     </div></div>
     <details class="fold" id="more-filters"><summary>もっと絞る（無料・雨・のりもの・エリア・出発駅など）<span class="sel" id="more-sel"></span></summary><div class="fbody">
-    <div class="frow"><span class="flabel">条件</span><div class="opts" data-key="flags" data-multi="1">
+    <div class="frow inl"><span class="flabel">条件</span><div class="opts" data-key="flags" data-multi="1">
       <button class="opt" id="f-fav" data-v="fav" aria-pressed="false">★ お気に入り</button>
       <button class="opt" id="f-free" data-v="free" aria-pressed="false">完全無料</button>
       <button class="opt" id="f-rain" data-v="rain" aria-pressed="false">雨でも行ける</button>
@@ -594,7 +601,7 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
       <button class="opt" id="f-hot" data-v="hot" aria-pressed="false">近くで調乳のお湯がもらえる</button>
       <button class="opt" id="f-papa" data-v="papa" aria-pressed="false">👨 パパひとりで連れていく</button>
     </div></div>
-    <div class="frow"><span class="flabel">エリア</span><div class="opts" data-key="area" id="area-opts"></div></div>
+    <div class="frow inl"><span class="flabel">エリア</span><div class="opts" data-key="area" id="area-opts"></div></div>
     <div class="frow"><label class="flabel" for="origin">出発駅</label><div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input class="search" id="origin" type="search" placeholder="例：二俣川、センター南" style="flex:1;min-width:9em"><label class="arrl">着きたい時間 <input type="time" id="arrive" step="300"></label><button class="reset" id="arrive-clear" type="button">開始20分前に戻す</button></div><p class="note" style="margin:4px 0 0;font-size:12px;color:var(--muted)">各カードの「行き方」に乗換案内が出ます。着きたい時間はカードごとにも変えられます（空欄ならイベント開始の20分前）。</p></div></div>
     </div></details>
     <div class="frow"><label class="flabel" for="q">キーワード</label><div><input class="search" id="q" type="search" placeholder="例：花火、工作、動物"></div></div>
