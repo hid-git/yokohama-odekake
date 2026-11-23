@@ -1083,8 +1083,12 @@ def main():
     def nli(e):
         dl = dlabel(e)
         return f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a>' + (f'<span class="d">{E(dl)}</span>' if dl else "") + "</li>"
-    newhtml = ('<section class="newev" id="newev" aria-label="新着イベント"><h2>🆕 新しく載せたイベント</h2><ul>' + "".join(nli(e) for e in newest[:5]) + "</ul>"
-               '<details class="fold"><summary>ほかの新着（あと' + str(len(newest[5:])) + '件）</summary><div class="fbody"><ul>' + "".join(nli(e) for e in newest[5:]) + "</ul></div></details></section>")
+    # 新着はたたんでおき、「いつの更新で何件増えたか」だけ見せる
+    last_add = max((new_man["event"][e["id"]]["added"] for e in ev_live), default=TODAY.isoformat())
+    n_last = sum(1 for e in ev_live if new_man["event"][e["id"]]["added"] == last_add)
+    ly, lm_, ld_ = map(int, last_add.split("-"))
+    newhtml = ('<section class="newev" id="newev" aria-label="新着イベント"><details class="fold"><summary><h2 class="fsum">🆕 新しく載せたイベント'
+               f'<span class="newcnt">{lm_}月{ld_}日の更新で{n_last}件</span></h2></summary><div class="fbody"><ul>' + "".join(nli(e) for e in newest) + "</ul></div></details></section>")
     # 区ごとの無料の遊び場（タブ「🛝 無料の遊び場」）：JSが動く前・検索エンジン向けの静的な一覧。js/app.js の playOk と同じ条件
     WARD_ORDER = ["鶴見区","神奈川区","西区","中区","南区","港南区","保土ケ谷区","旭区","磯子区","金沢区","港北区","緑区","青葉区","都筑区","戸塚区","栄区","泉区","瀬谷区"]
     play = [e for e in ev_live if e.get("kind") == "ongoing" and e.get("price") == "free" and (e.get("freeplay") or e.get("animal") or e.get("ride"))]
