@@ -12,7 +12,7 @@
    日付に関係する場所はすべて合わせて直す：
    - `js/data.js` の `const DATES`（日付のチップ。k:"11/14", s:"14", w:"土", c:"sat"/"sun"/"hol"）
    - `const WEEKENDS`（見出しと日付のまとまり）
-   - `index.html` の日にちボタン（`id="f-day-..."` の `<button>` 群）
+   - `index.html` の日にちボタン（`id="f-day-..."` の `<button>` 群）。月ごとに `<span class="mrow"><span class="mlab">12月</span>…</span>` でまとめ、年が変わる月は `<span class="mlab">2027年<br>1月</span>` と2行にする（2行目以降のボタンも月の表示の右にそろう）
    - `index.html` 冒頭の `<p class="lede">` の期間表記、情報収集日の行（「情報収集日：」）
    - `js/data.js` の `RANGE` と、長期開催を展開する処理の既定値（"11/14"・"11/29" など）
    - `const WX` と `WX_ASOF`（天気。対象期間の週末・祝日のうち予報が出ている日だけ。形式：`{ d:"11/14", w:"土", sky:"晴のち曇", max:20, min:11, pop:40 }`。`sky` は「晴」「曇」「雨」「雪」と「のち」「時々」「一時」の組み合わせで書く。出典は日本気象協会 tenki.jp の横浜市の予報など。`WX_ASOF` に発表日時と出典を書く。分からない日は入れない）
