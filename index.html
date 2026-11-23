@@ -601,6 +601,13 @@ details.ledemore .lede { margin-top: 4px; }
 .wxrow .wx { flex: 0 0 auto; scroll-snap-align: start; }
 .weather { min-width: 0; max-width: 100%; } .wrap > .weather { min-width: 0; }
 .wx .d.wd { color: var(--muted); }
+.farnote { margin: 14px 0 4px; font-size: 13px; color: var(--muted); background: var(--card); border: 1px dashed var(--line); border-radius: 10px; padding: 8px 12px; }
+/* 1週間より先の日：見出しと「○件を見る」を1行に */
+#results .group.far { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0; padding: 8px 0; border-bottom: 1px solid var(--line); }
+#results .group.far > h2 { font-size: 15px; margin: 0; }
+#results .group.far > h2 small { display: block !important; margin: 2px 0 0 !important; font-size: 12px; }
+#results .group.far > .list { display: none; }
+#results .group.far > .morebtn { width: auto; flex: 0 0 auto; margin: 0; padding: 6px 12px; font-size: 13px; }
 </style>
 </head>
 <body>
@@ -854,6 +861,6 @@ details.ledemore .lede { margin-top: 4px; }
 </div>
 
 <script src="js/data.js?v=adba8ad789" defer></script>
-<script src="js/app.js?v=2b6bf10ff1" defer></script>
+<script src="js/app.js?v=a8f74b823a" defer></script>
 </body>
 </html>

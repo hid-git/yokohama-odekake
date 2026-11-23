@@ -891,7 +891,7 @@ function render(){
     if (!ds.length) continue;
     const list = hit.filter(e => e.kind === "limited" && e.days.some(d => ds.includes(d))).sort((a,b) => sortKey(a,ds) - sortKey(b,ds));
     if (!list.length) continue;
-    secs.push([dkey(ds[0]), `<section class="group"><h2>${w.h}<small>${list.length}件・この日だけのイベント</small></h2><div class="list">${list.map(e => card(e, ds)).join("")}</div></section>`]);
+    secs.push([dkey(ds[0]), `<section class="group" data-k="${dkey(ds[0])}" data-nd="${ds.length}"><h2>${w.h}<small>${list.length}件・この日だけのイベント</small></h2><div class="list">${list.map(e => card(e, ds)).join("")}</div></section>`]);
   }
   if (state.day === "all") {
     const wkAll = WEEKENDS.flatMap(w => w.ds);
@@ -900,7 +900,7 @@ function render(){
     for (const d of Object.keys(byDay)) {
       const [m, dd] = d.split("/").map(Number); const dow = new Date(dyear(m), m - 1, dd).getDay(); const yb = "日月火水木金土"[dow];
       const isWe = dow === 0 || dow === 6;
-      secs.push([dkey(d), `<section class="group"><h2>${isWe ? "" : "平日 "}${m}月${dd}日(${yb})<small>${byDay[d].length}件・${isWe ? "この日のイベント" : "平日だけのイベント"}</small></h2><div class="list">${byDay[d].map(e => card(e, [d])).join("")}</div></section>`]);
+      secs.push([dkey(d), `<section class="group" data-k="${dkey(d)}"><h2>${isWe ? "" : "平日 "}${m}月${dd}日(${yb})<small>${byDay[d].length}件・${isWe ? "この日のイベント" : "平日だけのイベント"}</small></h2><div class="list">${byDay[d].map(e => card(e, [d])).join("")}</div></section>`]);
     }
   }
   if (["12/26","12/27","1/1","1/2","1/3"].includes(state.day)) html += `<p class="note">年末年始は休館・休園や営業時間の変更が多い時期です。分かっている休みの日は外していますが、出かける前に各施設の公式ページで確認してください。</p>`;
@@ -908,14 +908,24 @@ function render(){
   const on = hit.filter(e => e.kind === "ongoing").sort((a,b) => sortKey(a) - sortKey(b));
   if (on.length) html += `<section class="group"><h2>会期中ずっとやっているもの<small>${on.length}件・選んだ日も開催中</small></h2><div class="list">${on.map(card).join("")}</div></section>`;
   document.getElementById("results").innerHTML = html || `<div class="empty">条件に合うイベントがありません。条件を減らしてみてください。</div>`;
-  const SHOW = 6;
+  // 「すべて」のとき：各日4件まで出して残りはたたむ。1週間より先の日は件数だけ出して全部たたむ（日にちボタンで選んでもらう）
+  const ALL = state.day === "all";
+  const SHOW = ALL ? 4 : 6;
+  const t0 = new Date(); t0.setDate(t0.getDate() + 7);
+  const limitK = t0.getFullYear() * 10000 + (t0.getMonth() + 1) * 100 + t0.getDate();
+  let farNoted = false;
   document.querySelectorAll("#results .group").forEach(g => {
     const cards = [...g.querySelectorAll(".list > .card")];
-    if (cards.length <= SHOW + 2) return;
-    cards.slice(SHOW).forEach(c => c.classList.add("more-hidden"));
+    const k = +g.dataset.k || 0;
+    const far = ALL && k && k > limitK;
+    const show = far ? 0 : (ALL && +g.dataset.nd > 1 ? 5 : SHOW);
+    if (!far && cards.length <= show + (ALL ? 1 : 2)) return;
+    cards.slice(show).forEach(c => c.classList.add("more-hidden"));
+    if (far) g.classList.add("far");
+    if (far && !farNoted) { farNoted = true; g.insertAdjacentHTML("beforebegin", `<p class="farnote">ここから先（1週間より後）は件数だけ出しています。上の「日にち」で日を選ぶと、その日のイベントだけが出ます。</p>`); }
     const b = document.createElement("button");
-    b.type = "button"; b.className = "morebtn"; b.textContent = `残り${cards.length - SHOW}件を見る`;
-    b.addEventListener("click", () => { cards.forEach(c => c.classList.remove("more-hidden")); b.remove(); });
+    b.type = "button"; b.className = "morebtn"; b.textContent = far ? `${cards.length}件を見る` : `残り${cards.length - show}件を見る`;
+    b.addEventListener("click", () => { cards.forEach(c => c.classList.remove("more-hidden")); g.classList.remove("far"); b.remove(); track("more", far ? "1週間より先を開く" : "残りを見る", (g.querySelector("h2") || {}).textContent || ""); });
     g.appendChild(b);
   });
 }
