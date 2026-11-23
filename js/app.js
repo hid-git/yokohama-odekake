@@ -1449,6 +1449,8 @@ document.addEventListener("toggle", ev => { const d = ev.target; if (d && d.clas
     lab.setAttribute("role", "button"); lab.tabIndex = 0;
     const hint = document.createElement("button"); hint.type = "button"; hint.className = "mhint"; hint.textContent = `${n}日を見る ▸`;
     r.appendChild(hint);
+    const cl = document.createElement("button"); cl.type = "button"; cl.className = "mclose"; cl.textContent = "閉じる ▴"; cl.setAttribute("aria-label", `${lab.textContent}を閉じる`);
+    r.appendChild(cl);
     const set = open => { r.classList.toggle("closed", !open); lab.setAttribute("aria-expanded", open ? "true" : "false"); };
     const sel = r.querySelector('.opt[aria-pressed="true"]');
     set(i === 0 || !!sel);
@@ -1456,5 +1458,6 @@ document.addEventListener("toggle", ev => { const d = ev.target; if (d && d.clas
     lab.addEventListener("click", toggle);
     lab.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); toggle(); } });
     hint.addEventListener("click", () => set(true));
+    cl.addEventListener("click", () => set(false));
   });
 })();

@@ -578,6 +578,9 @@ details.iconhelp > summary::before { content: "▸ "; } details.iconhelp[open] >
 .mrow.closed .mlab::after { content: " ▸"; }
 .mrow.closed > .opt { display: none; }
 .mrow .mhint { display: none; }
+.mrow .mclose { display: inline-flex; align-items: center; min-height: 31px; font: inherit; font-size: 12px; color: var(--muted); background: none; border: 1px dashed var(--line); border-radius: 999px; padding: 2px 10px; cursor: pointer; }
+.mrow.closed .mclose { display: none; }
+.mrow .mlab::after { font-size: 12px; }
 .mrow.closed .mhint { display: inline-flex; align-items: center; min-height: 31px; font: inherit; font-size: 12.5px; color: var(--accent); background: none; border: 1px dashed var(--line); border-radius: 999px; padding: 2px 12px; cursor: pointer; }
 </style>
 </head>
@@ -832,6 +835,6 @@ details.iconhelp > summary::before { content: "▸ "; } details.iconhelp[open] >
 </div>
 
 <script src="js/data.js?v=53ea5fb28b" defer></script>
-<script src="js/app.js?v=4810a9446b" defer></script>
+<script src="js/app.js?v=15d48c0361" defer></script>
 </body>
 </html>
