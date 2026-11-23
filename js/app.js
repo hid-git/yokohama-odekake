@@ -519,7 +519,7 @@ function renderEvPoints(){
   const n = f => wk.filter(f).length;
   const chip = (v, label, c) => `<button type="button" class="pchip" data-flag="${v}" aria-pressed="${state.flags.has(v)}">${label} ${c}件</button>`;
   box.innerHTML = `<li><span class="pi">📅</span><span>直近の週末（${esc(W.h.replace(/\s.*$/, ""))}）は <b>${wk.length}件</b>。<br>下の日にちボタンで日を選べます。</span></li>
-    <li><span class="pi">👆</span><span>よく使う条件（全期間で絞ります）<span class="pchips">${FAVS.size ? chip("fav", "★ お気に入り", EVENTS.filter(e => FAVS.has(e.id)).length) : ""}${chip("rain", "☔ 雨でもOK", EVENTS.filter(e => e.rain === "ok").length)}${chip("free", "🆓 完全無料", EVENTS.filter(e => e.price === "free").length)}${chip("noresv", "🎟 予約なし", EVENTS.filter(e => e.resv === false).length)}</span></span></li>
+    <li><span class="pi">👆</span><span>よく使う条件（全期間で絞ります）<span class="pchips">${(n => n ? chip("fav", "★ お気に入り", n) : "")(EVENTS.filter(e => FAVS.has(e.id)).length)}${chip("rain", "☔ 雨でもOK", EVENTS.filter(e => e.rain === "ok").length)}${chip("free", "🆓 完全無料", EVENTS.filter(e => e.price === "free").length)}${chip("noresv", "🎟 予約なし", EVENTS.filter(e => e.resv === false).length)}</span></span></li>
     <li><span class="pi">🍼</span><span>各カードの「くわしく」に、近くのおむつ替え・授乳室・ごはんがあります。</span></li>`;
   const sel = document.getElementById("more-sel"); if (sel) { const k = state.flags.size + (state.area !== "all" ? 1 : 0); sel.textContent = k ? `（${k}個選択中）` : ""; }
 }
