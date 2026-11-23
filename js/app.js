@@ -454,7 +454,7 @@ document.addEventListener("click", async ev => {
   try { await navigator.clipboard.writeText(url); ok = true; } catch (_) {
     try { const ta = document.createElement("textarea"); ta.value = url; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); ta.remove(); } catch (_) {}
   }
-  const old = sh.textContent; sh.textContent = ok ? "コピーしました" : url; setTimeout(() => { sh.textContent = old; }, 2000);
+  const old = sh.innerHTML; sh.textContent = ok ? "コピーしました" : url; setTimeout(() => { sh.innerHTML = old; }, 2000);
   if (typeof track === "function") track("copy_link", "コピー", title);
 });
 // ?e=ID で開いたとき：条件をリセットして、そのイベントのカードまで移動して目立たせる
@@ -749,7 +749,7 @@ function card(e, ctx){
   const inSec = Array.isArray(ctx) ? e.days.filter(k => ctx.includes(k)) : e.days;
   const allStop = stops.length && inSec.length && inSec.every(k => e.stop[k]);
   return `<article class="card r-${e.rain}${allStop ? " allstop" : ""}" data-eid="${esc(e.id)}" data-ev="${esc(e.t)}">
-    <div class="when">${days}<span>${esc(e.time)}</span>${favBtn(e)}</div>
+    <div class="when">${days}<span>${esc(e.time)}</span><span class="acts">${favBtn(e)}${e.noShare ? "" : `<button type="button" class="sharebtn ic" data-share="${esc(e.id)}" aria-label="リンクを送る・コピー" title="リンクを送る・コピー">🔗<span>送る</span></button><a class="linebtn ic" href="${esc(lineUrl(eventText(e)))}" target="_blank" rel="noopener" aria-label="LINEで送る" title="LINEで送る"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5 1.1-.5 5.9-3.5 8-5.9C21.4 14.4 22 12.8 22 11c0-4.4-4.5-8-10-8z"/></svg><span>LINE</span></a>`}</span></div>
     ${stopNote}<h3>${e.officialOnly ? `<a data-act="official" href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.t)}</a>` : esc(e.t)}</h3>
     ${e.officialOnly ? `<p class="offonly">主催から「公式の情報を見てほしい」とのお願いがあります。くわしくは<a data-act="official" href="${esc(e.url)}" target="_blank" rel="noopener">主催の公式ページ</a>で確認してください。</p>` : ""}
     <p class="where">${esc(e.ward)}・${esc(e.venue)}</p>
@@ -761,8 +761,7 @@ function card(e, ctx){
     <p class="tip" style="display:${e.tip ? "block" : "none"}">${telify(esc(e.tip || ""))}</p>
     <p class="asof">情報の時点：${esc(e.asof || "2026年11月9日")}</p>
     <div class="cardfoot"><a class="more" data-act="official" href="${esc(e.url)}" target="_blank" rel="noopener">${e.officialOnly ? esc(e.officialLabel || "主催の公式ページを開く") : `詳細はこちら（${esc(e.src)}）`}</a>${e.resvUrl ? `<a class="more" data-act="resv" href="${esc(e.resvUrl)}" target="_blank" rel="noopener">予約ページへ</a>` : ""}
-${e.noShare ? "" : `      <button type="button" class="sharebtn" data-share="${esc(e.id)}">🔗 リンクを送る・コピー</button>
-      <a class="linebtn sm" href="${esc(lineUrl(eventText(e)))}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5 1.1-.5 5.9-3.5 8-5.9C21.4 14.4 22 12.8 22 11c0-4.4-4.5-8-10-8z"/></svg>LINEで送る</a>`}</div>
+</div>
     ${routeHtml(e)}
     ${accessHtml(e)}
     ${packHtml(e)}

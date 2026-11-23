@@ -531,6 +531,32 @@ details.evmore > summary::-webkit-details-marker { display: none; }
 details.evmore > summary::before { content: "＋ "; }
 details.evmore[open] > summary::before { content: "－ "; }
 details.evmore > .evbody { padding-top: 6px; display: grid; gap: 10px; }
+/* カードの右上：お気に入り・リンクを送る・LINE（2026年11月） */
+.when .acts { margin-left: auto; display: inline-flex; gap: 5px; align-items: center; }
+.when .acts .favbtn { margin-left: 0; }
+.acts .sharebtn.ic, .acts .linebtn.ic { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; padding: 2px 9px; border-radius: 999px; line-height: 1.5; }
+.acts .linebtn.ic svg { width: 14px; height: 14px; }
+/* スマホ1画面に2〜3件見えるように、カードを詰める */
+@media (max-width: 520px) {
+  .card { gap: 5px; padding: 10px 12px 10px 14px; }
+  .card h3 { font-size: 15.5px; line-height: 1.4; }
+  .card .where { font-size: 12.5px; }
+  .card .chip { font-size: 11.5px; padding: 0 7px; }
+  .card .rain { font-size: 12px; padding: 3px 8px; }
+  .card .sum { font-size: 13.5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .card:has(details.evmore[open]) .sum { display: block; -webkit-line-clamp: unset; overflow: visible; }
+  .when { font-size: 12.5px; }
+  .acts .favbtn span, .acts .sharebtn.ic span, .acts .linebtn.ic span { display: none; }
+  .acts .favbtn, .acts .sharebtn.ic, .acts .linebtn.ic { padding: 2px 8px; min-height: 28px; }
+  .card .when { padding-right: 118px; min-height: 28px; }
+  .card .when .acts { position: absolute; top: 9px; right: 10px; }
+  .card { grid-template-columns: minmax(0, 1fr); } .card > * { min-width: 0; }
+  .card .chip { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card .sum + .tip + .where, .card .sum ~ .where { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .card:has(details.evmore[open]) .where { display: block; overflow: visible; }
+  details.evmore { margin-top: 2px; }
+  details.evmore > summary { padding: 6px 0 0; font-size: 13px; }
+}
 </style>
 </head>
 <body>
@@ -784,6 +810,6 @@ details.evmore > .evbody { padding-top: 6px; display: grid; gap: 10px; }
 </div>
 
 <script src="js/data.js?v=53ea5fb28b" defer></script>
-<script src="js/app.js?v=6f5b1f5008" defer></script>
+<script src="js/app.js?v=a7b802b0b1" defer></script>
 </body>
 </html>
