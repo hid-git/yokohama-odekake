@@ -804,7 +804,9 @@ def gakudo_pages(track_url):
 {GAKUDO_FEES}
 <p class="small">情報の時点：{E(asof)}。空き状況・料金・時間は変わることがあるので、必ず各クラブ・区役所に確かめてください。</p></article>"""
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜市の学童・放課後キッズクラブ一覧", "url": SITE + "gakudo/", "inLanguage": "ja"}
-    out.append(("gakudo/", page(f"横浜市の学童・放課後キッズクラブ一覧（全{len(rows)}か所・区ごと）｜KidsTrip", f"横浜市18区の放課後キッズクラブ{cnt(rows,'kids')}か所と学童（放課後児童クラブ）{cnt(rows,'club')}か所の住所・電話・主な小学校。わくわく・ゆうやけ・ほしぞらの区分と料金も。", "gakudo/", body, [ld, crumbs([("トップ", "/"), ("学童・放課後キッズクラブ", "")])[1]], track_url=track_url, tpage="gakudo/")))
+    gitems = {"@context": "https://schema.org", "@type": "ItemList", "name": "横浜市の区ごとの学童・放課後キッズクラブ一覧", "numberOfItems": len(wards),
+              "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}gakudo/{WARD_SLUG[w]}/", "name": f"{w}の学童・放課後キッズクラブ一覧"} for i, w in enumerate(wards)]}
+    out.append(("gakudo/", page(f"横浜市の学童・放課後キッズクラブ一覧（全{len(rows)}か所・区ごと）｜KidsTrip", f"横浜市18区の放課後キッズクラブ{cnt(rows,'kids')}か所と学童（放課後児童クラブ）{cnt(rows,'club')}か所の住所・電話・主な小学校。わくわく・ゆうやけ・ほしぞらの区分と料金も。", "gakudo/", body, [ld, crumbs([("トップ", "/"), ("学童・放課後キッズクラブ", "")])[1], gitems], track_url=track_url, tpage="gakudo/")))
     for w in wards:
         xs = [r for r in rows if r["ward"] == w]
         sec = "".join(f'<h2>{E(GTYPE[t])}（{n}）</h2><ul class="gk">' + "".join(gakudo_card(r) for r in xs if r["type"] == t) + "</ul>"
@@ -845,7 +847,8 @@ def area_pages(d, track_url):
         xs = [e for e in ong if w in wards_of(e)]
         ys = sorted([e for e in lim if w in wards_of(e)], key=lambda e: (iso(e["days"][0]), e.get("start") or 0))
         if not xs and not ys: continue
-        rows.append((w, slug, len(xs), len(ys)))
+        rows.append((w, slug, len(xs), len(ys), len([e for e in xs if e.get("price") == "free"]), {k: sum(1 for e in xs if e.get("price") == "free" and play_kind(e) == k) for k in ["地区センターのプレイルーム", "子育て支援拠点・親子の広場", "こどもログハウス", "公園・屋外の遊び場", "施設・モール・博物館など"]},
+                     ys[0] if ys else None))
         kinds = ["地区センターのプレイルーム", "子育て支援拠点・親子の広場", "こどもログハウス", "公園・屋外の遊び場", "施設・モール・博物館など"]
         free = [e for e in xs if e.get("price") == "free"]
         paid = [e for e in xs if e.get("price") != "free"]
@@ -866,19 +869,29 @@ def area_pages(d, track_url):
 <div class="btns"><a class="btn main" href="/#play">無料の遊び場を区で絞り込む</a>{f'<a class="btn" href="/gakudo/{slug}/">{w}の学童・キッズクラブ</a>' if os.path.exists(GAKUDO_JSON) else ''}</div>
 {sec}
 <h2>ほかの区</h2><p class="small">{other}</p></article>"""
-        items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(xs)]
+        items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(sorted(free, key=lambda e: (kinds.index(play_kind(e)), e["t"])) + sorted(paid, key=lambda e: e["t"]) + ys[:20])]
         ld = [{"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{w}の子連れで行ける施設・遊び場", "url": SITE + path, "inLanguage": "ja"}, cld,
               {"@context": "https://schema.org", "@type": "ItemList", "name": f"{w}の子連れで行ける施設・遊び場", "numberOfItems": len(items), "itemListElement": items}]
         out.append((path, page(f"{w}の子連れで行ける施設・遊び場（{len(xs)}か所・無料{len(free)}）｜KidsTrip",
                                f"{w}で0歳〜小学生と行ける施設・遊び場{len(xs)}か所（地区センターのプレイルーム・子育て支援拠点・こどもログハウス・公園など）と、これから開かれる親子イベント。",
                                path, body, ld, track_url=track_url, tpage=path)))
     ch, cld = crumbs([("トップ", "/"), ("区ごとの施設・遊び場", "")])
+    tn = sum(r[2] for r in rows); tf = sum(r[4] for r in rows); te = len(lim)
+    def wline(w, slug, n, m, nf, kc, ny):
+        parts = "・".join(f"{k.replace('地区センターの', '').replace('・親子の広場', '').replace('・屋外の遊び場', '').replace('・モール・博物館など', '')}{c}" for k, c in kc.items() if c)
+        nxt = f"いちばん近いイベントは{when_text(ny)[:20]}の「{ny['t'][:30]}」。" if ny else "いまはこの区で日にちの決まったイベントを載せていません。"
+        return (f'<li><a href="/area/{slug}/"><b>{w}</b></a>：施設・遊び場{n}か所（うち無料{nf}か所{("：" + parts) if parts else ""}）、これからの親子イベント{m}件。{E(nxt)}</li>')
     body = f"""{ch}
 <article class="card"><h1>横浜市の区ごとの子連れで行ける施設・遊び場</h1>
-<p>横浜市18区の、子どもと行ける施設・遊び場（地区センターのプレイルーム・子育て支援拠点・こどもログハウス・公園・動物園など）を区ごとにまとめました。区を選ぶと一覧と、その区でこれから開かれる親子イベントが見られます。</p>
-<ul class="links">{"".join(f'<li><a href="/area/{slug}/">{w}</a>（施設・遊び場{n}・イベント{m}）</li>' for w, slug, n, m in rows)}</ul></article>"""
-    out.append(("area/", page("横浜市の区ごとの子連れで行ける施設・遊び場｜KidsTrip", "横浜市18区ごとに、子どもと行ける施設・遊び場と、これから開かれる親子イベントをまとめました。", "area/", body,
-                              [{"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜市の区ごとの子連れで行ける施設・遊び場", "url": SITE + "area/", "inLanguage": "ja"}, cld], track_url=track_url, tpage="area/")))
+<p>横浜市18区の、子どもと行ける施設・遊び場（地区センターのプレイルーム・子育て支援拠点・こどもログハウス・公園・動物園など）を区ごとにまとめました。いま載せているのは施設・遊び場{tn}か所（うち無料{tf}か所）と、これから開かれる親子イベント{te}件です。区を選ぶと、種類ごとの一覧と、その区でこれから開かれるイベントが見られます。</p>
+<p>雨の日は屋内の地区センターのプレイルームや子育て支援拠点、晴れた日は公園やこどもログハウスが便利です。開館日・時間は施設ごとに違うので、各施設のページから公式ページで確かめてください。</p>
+<h2>区ごとの件数と特徴</h2>
+<ul class="links">{"".join(wline(*r) for r in rows)}</ul>
+<p class="small">情報の時点：{TODAY.year}年{TODAY.month}月{TODAY.day}日（毎日更新）。件数はこのサイトに載せているものだけで、区内のすべての施設ではありません。</p></article>"""
+    items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}area/{r[1]}/", "name": f"{r[0]}の子連れで行ける施設・遊び場"} for i, r in enumerate(rows)]
+    out.append(("area/", page(f"横浜市の区ごとの子連れで行ける施設・遊び場（{len(rows)}区・{tn}か所）｜KidsTrip", f"横浜市18区ごとに、子どもと行ける施設・遊び場{tn}か所（無料{tf}か所）と、これから開かれる親子イベントをまとめました。", "area/", body,
+                              [{"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜市の区ごとの子連れで行ける施設・遊び場", "url": SITE + "area/", "inLanguage": "ja"}, cld,
+                               {"@context": "https://schema.org", "@type": "ItemList", "name": "横浜市の区ごとの子連れで行ける施設・遊び場", "numberOfItems": len(items), "itemListElement": items}], track_url=track_url, tpage="area/")))
     return out
 
 
