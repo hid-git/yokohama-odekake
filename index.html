@@ -572,15 +572,17 @@ details.iconhelp .sharenote { margin: 4px 0 0; }
 details.iconhelp > summary::before { content: "▸ "; } details.iconhelp[open] > summary::before { content: "▾ "; } details.iconhelp > summary::-webkit-details-marker { display: none; }
 .newev .newcnt { display: block; font-size: 12.5px; font-weight: 500; color: var(--muted); margin-top: 2px; }
 .newev > details > summary h2 { margin: 0; }
-/* 日にちボタンを月ごとにたたむ（2026年11月） */
-.mrow .mlab { cursor: pointer; }
-.mrow .mlab::after { content: " ▾"; font-size: 10px; }
-.mrow.closed .mlab::after { content: " ▸"; }
-.mrow.closed > .opt { display: none; }
-.mrow .mhint { display: none; }
-.mrow .mclose { display: inline-flex; align-items: center; min-height: 31px; font: inherit; font-size: 12px; color: var(--muted); background: none; border: 1px dashed var(--line); border-radius: 999px; padding: 2px 10px; cursor: pointer; }
-.mrow.closed .mclose { display: none; }
-.mrow .mlab::after { font-size: 12px; }
+/* 日にち：「すべて」の隣に月のボタン、押した月の日にちだけ下に出す（2026年11月） */
+.opts[data-key="day"] .mrow .mlab { display: none; }
+.opts[data-key="day"] .mrow { padding-left: 0; }
+.mrow.closed { display: none; }
+.mtabs { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.mtab { font: inherit; font-size: 13px; min-height: 31px; padding: 2px 12px; border-radius: 999px; border: 1px dashed var(--line); background: none; color: var(--accent); cursor: pointer; }
+.mtab::after { content: " ▾"; font-size: 10px; }
+.mtab[aria-expanded="true"] { border-style: solid; border-color: var(--accent); font-weight: 700; }
+.mtab[aria-expanded="true"]::after { content: " ▴"; }
+.mtab.has::before { content: "● "; font-size: 8px; vertical-align: middle; }
+@media (max-width: 520px) { .frow.dayrow .opts[data-key="day"] .mrow { padding-left: 52px; } }
 .mrow.closed .mhint { display: inline-flex; align-items: center; min-height: 31px; font: inherit; font-size: 12.5px; color: var(--accent); background: none; border: 1px dashed var(--line); border-radius: 999px; padding: 2px 12px; cursor: pointer; }
 details.ledemore { margin-top: 4px; font-size: 13px; }
 details.ledemore > summary { cursor: pointer; display: inline-block; color: var(--heroInk, var(--muted)); opacity: .8; padding: 2px 0; }
@@ -847,6 +849,6 @@ details.ledemore .lede { margin-top: 4px; }
 </div>
 
 <script src="js/data.js?v=53ea5fb28b" defer></script>
-<script src="js/app.js?v=3bafb5465c" defer></script>
+<script src="js/app.js?v=e81dfcc6df" defer></script>
 </body>
 </html>

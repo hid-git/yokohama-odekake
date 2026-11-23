@@ -1440,24 +1440,22 @@ function mwListHtml(){
 // カードの「くわしく見る」を開いた回数（どのイベントが気になられたか）
 document.addEventListener("toggle", ev => { const d = ev.target; if (d && d.classList && d.classList.contains("evmore") && d.open) { const c = d.closest(".card"); track("card_open", "くわしく見る", c ? c.dataset.ev : ""); } }, true);
 
-// 日にちボタン：月ごとにたたむ（はじめは最初の月だけ開く。選んでいる日がある月も開く）
+// 日にちボタン：「すべて」の隣に月のボタンを並べ、押した月の日にちだけ下に出す（はじめは最初の月）
 (function(){
-  const rows = [...document.querySelectorAll('.opts[data-key="day"] .mrow')]; if (!rows.length) return;
-  rows.forEach((r, i) => {
-    const lab = r.querySelector(".mlab"); if (!lab) return;
-    const n = r.querySelectorAll(".opt").length;
-    lab.setAttribute("role", "button"); lab.tabIndex = 0;
-    const hint = document.createElement("button"); hint.type = "button"; hint.className = "mhint"; hint.textContent = `${n}日を見る ▸`;
-    r.appendChild(hint);
-    const cl = document.createElement("button"); cl.type = "button"; cl.className = "mclose"; cl.textContent = "閉じる ▴"; cl.setAttribute("aria-label", `${lab.textContent}を閉じる`);
-    r.appendChild(cl);
-    const set = open => { r.classList.toggle("closed", !open); lab.setAttribute("aria-expanded", open ? "true" : "false"); };
-    const sel = r.querySelector('.opt[aria-pressed="true"]');
-    set(i === 0 || !!sel);
-    const toggle = () => set(r.classList.contains("closed"));
-    lab.addEventListener("click", toggle);
-    lab.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); toggle(); } });
-    hint.addEventListener("click", () => set(true));
-    cl.addEventListener("click", () => set(false));
+  const box = document.querySelector('.opts[data-key="day"]'); if (!box) return;
+  const rows = [...box.querySelectorAll(".mrow")]; if (!rows.length) return;
+  const all = document.getElementById("f-day-all");
+  const bar = document.createElement("span"); bar.className = "mtabs";
+  const tabs = rows.map((r, i) => {
+    const lab = r.querySelector(".mlab"); const name = ((lab && lab.textContent) || "").match(/\d+月/);
+    const t = document.createElement("button"); t.type = "button"; t.className = "mtab"; t.textContent = name ? name[0] : `${i + 1}`;
+    t.setAttribute("aria-expanded", "false"); bar.appendChild(t); return t;
   });
+  if (all) all.after(bar); else box.prepend(bar);
+  const show = k => rows.forEach((r, i) => { const on = i === k; r.classList.toggle("closed", !on); tabs[i].setAttribute("aria-expanded", on ? "true" : "false"); });
+  const mark = () => rows.forEach((r, i) => tabs[i].classList.toggle("has", !!r.querySelector('.opt[aria-pressed="true"]')));
+  tabs.forEach((t, i) => t.addEventListener("click", () => { show(t.getAttribute("aria-expanded") === "true" ? -1 : i); }));
+  box.addEventListener("click", () => setTimeout(mark, 0));
+  const sel = rows.findIndex(r => r.querySelector('.opt[aria-pressed="true"]'));
+  show(sel >= 0 ? sel : 0); mark();
 })();
