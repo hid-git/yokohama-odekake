@@ -582,6 +582,11 @@ details.iconhelp > summary::before { content: "▸ "; } details.iconhelp[open] >
 .mrow.closed .mclose { display: none; }
 .mrow .mlab::after { font-size: 12px; }
 .mrow.closed .mhint { display: inline-flex; align-items: center; min-height: 31px; font: inherit; font-size: 12.5px; color: var(--accent); background: none; border: 1px dashed var(--line); border-radius: 999px; padding: 2px 12px; cursor: pointer; }
+details.ledemore { margin-top: 4px; font-size: 13px; }
+details.ledemore > summary { cursor: pointer; display: inline-block; color: var(--heroInk, var(--muted)); opacity: .8; padding: 2px 0; }
+details.ledemore > summary::-webkit-details-marker { display: none; }
+details.ledemore > summary::before { content: "▸ "; } details.ledemore[open] > summary::before { content: "▾ "; }
+details.ledemore .lede { margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -609,7 +614,8 @@ details.iconhelp > summary::before { content: "▸ "; } details.iconhelp[open] >
     <div class="brand"><img class="logo" src="img/logo.webp" width="640" height="191" alt="KidsTrip（キッズトリップ）"><span class="yomi">キッズトリップ</span></div>
     <h1 class="tagline"><span class="nw">横浜の子連れおでかけ・</span><span class="nw">イベント一覧</span></h1>
     <p class="enlink"><a href="en/" hreflang="en" lang="en">English (for visitors)</a></p>
-    <p class="lede"><strong>2026年11月23日〜2027年1月23日の週末・祝日（クリスマス・年末年始の平日も）</strong>　横浜市内のイベントを0歳から大人まで横断して集めました。各イベントに、近くのおむつ替え・授乳室・調乳のお湯がある場所と、子連れで入りやすいごはん処も付けています。概要だけ載せているので、詳しくは各リンク先で確認してください。</p>
+    <p class="lede"><strong>2026年11月23日〜2027年1月23日の週末・祝日（クリスマス・年末年始の平日も）</strong></p>
+    <details class="ledemore"><summary>このサイトについて</summary><p class="lede">横浜市内のイベントを0歳から大人まで横断して集めました。各イベントに、近くのおむつ替え・授乳室・調乳のお湯がある場所と、子連れで入りやすいごはん処も付けています。概要だけ載せているので、詳しくは各リンク先で確認してください。</p></details>
       </div>
     </div>
     <div class="share">
