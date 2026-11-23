@@ -396,7 +396,7 @@ def event_page(e, d, spot_ids, track_url):
 <tr><th>料金</th><td>{E(e['priceText'])}</td></tr>
 <tr><th>対象</th><td>{E(e['ageText'])}</td></tr>
 <tr><th>予約</th><td>{E(e['resvText'])}</td></tr>
-<tr><th>雨の日</th><td>{E(d['rain'].get(e['rain'], ''))}（{E(e['rainText'])}）</td></tr>
+<tr><th>雨の日</th><td>{E(d['rain'].get(e['rain'], ''))}{'' if (e.get('rainText') or '').strip() in ('', d['rain'].get(e['rain'], '')) else '（' + E(e['rainText']) + '）'}</td></tr>
 </table>
 <p class="sum">{E(e['sum'])}</p>
 {f'<p class="tip">💡 {E(e["tip"])}</p>' if e.get('tip') else ''}

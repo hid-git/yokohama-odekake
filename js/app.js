@@ -736,6 +736,14 @@ function routeHtml(e){
 
 // 電話番号を押せるリンクにする（例：045-251-0119）
 function telify(h){ return h.replace(/(^|[^\d-])(0\d{1,4}-\d{1,4}-\d{3,4})(?![\d-])/g, (m, pre, num) => `${pre}<a href="tel:${num.replace(/-/g, "")}" class="tel">${num}</a>`); }
+// 雨の日の説明が見出し（「雨天中止」など）と同じなら、二重に出さない
+function rainRest(e){
+  const lab = RAIN_LABEL[e.rain] || "", t = String(e.rainText || "").trim();
+  if (!t || t === lab) return "";
+  const rest = t.startsWith(lab) ? t.slice(lab.length).replace(/^[\s　、。：:（(]+/, "").replace(/[）)]$/, "") : t;
+  if (/^[とがはの]/.test(rest)) return "　" + esc(t);
+  return rest ? "　" + esc(rest) : "";
+}
 function card(e, ctx){
   const days = dayChips(e);
   const priceChip = e.price === "free" ? `<li class="chip free">無料</li>`
@@ -754,7 +762,7 @@ function card(e, ctx){
     ${e.officialOnly ? `<p class="offonly">主催から「公式の情報を見てほしい」とのお願いがあります。くわしくは<a data-act="official" href="${esc(e.url)}" target="_blank" rel="noopener">主催の公式ページ</a>で確認してください。</p>` : ""}
     <p class="where">${esc(e.ward)}・${esc(e.venue)}</p>
     <ul class="chips">${priceChip}<li class="chip">${esc(e.ageText)}</li><li class="chip">${esc(e.place)}</li>${resvChip}</ul>
-    <p class="rain ${e.rain}">${RAIN_ICON[e.rain]}<span><b>${RAIN_LABEL[e.rain]}</b>　${esc(e.rainText)}</span></p>
+    <p class="rain ${e.rain}">${RAIN_ICON[e.rain]}<span><b>${RAIN_LABEL[e.rain]}</b>${rainRest(e)}</span></p>
     <p class="sum">${esc(e.sum)}</p>
     <p class="where">料金：${esc(e.priceText)}／予約：${telify(esc(e.resvText))}</p>
     <details class="evmore"><summary>くわしく見る（公式・行き方・おむつ・ごはん）</summary><div class="evbody">
