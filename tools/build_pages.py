@@ -107,6 +107,7 @@ def when_text(e):
 
 CSS = """
 .gkcmp th[scope=row]{white-space:nowrap}.gkcmp td{font-size:.92em}
+.fac li{padding:8px 10px;margin:6px 0}
 .gk{list-style:none;padding:0}.gk li{border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;margin:8px 0;line-height:1.7}.gk h3{margin:0 0 2px;font-size:1.02em}
 :root{--paper:#f8fafc;--card:#fff;--ink:#18222e;--muted:#5b6875;--line:#dde3e9;--accent:#0a6f95;--accent-soft:#e2f0f6;--ok:#2e7d4f;--bad:#b3372b}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;line-height:1.7}
@@ -833,6 +834,51 @@ def play_kind(x):
     return "施設・モール・博物館など"
 
 
+FAC_JSON = os.path.join(ROOT, "tools", "facilities.json")
+FAC_TYPE = {"park": "公園", "library": "図書館", "community": "コミュニティハウス", "sports": "スポーツセンター", "pool": "屋内プール", "outdoor": "野外活動センター", "careplaza": "地域ケアプラザ", "pool_summer": "屋外プール（夏だけ）"}
+FAC_ORDER = ["park", "library", "community", "sports", "pool", "outdoor", "careplaza", "pool_summer"]
+
+
+def fac_rows():
+    return json.load(open(FAC_JSON, encoding="utf-8")) if os.path.exists(FAC_JSON) else []
+
+
+def fac_li(r, ev=None):
+    from urllib.parse import quote
+    mq = quote(f'横浜市{r["ward"]}{r["addr"]}' if r.get("addr") else f'横浜市{r["ward"]} {r["name"]}')
+    bits = [f'<li><b>{E(r["name"])}</b>']
+    if ev: bits.append(f'（<a href="/event/{ev["id"]}/">くわしいページ</a>）')
+    if r.get("kind") and r["type"] == "park": bits.append(f'<span class="small">（{E(r["kind"])}・{r["area"]:,}㎡）</span>')
+    sub = []
+    if r.get("addr"): sub.append(f'📍 {E(r["addr"])} <a href="https://www.google.com/maps/search/?api=1&amp;query={mq}" target="_blank" rel="noopener">地図</a>')
+    if r.get("tel"): sub.append(f'☎ <a href="tel:{E(r["tel"])}">{E(r["tel"])}</a>')
+    if r.get("hours"): sub.append(f'🕘 {E(r["hours"])}')
+    if r.get("closed"): sub.append(f'休み：{E(r["closed"])}')
+    if r.get("kids"): sub.append(f'👶 {E(r["kids"])}')
+    if r.get("note"): sub.append(f'📝 {E(r["note"])}')
+    if sub: bits.append('<div class="small">' + "　".join(sub) + "</div>")
+    bits.append("</li>")
+    return "".join(bits)
+
+
+def fac_sections(w, ong):
+    """区のページに足す、市の施設の一覧（公園・図書館・コミュニティハウスなど）。tools/facilities.json から"""
+    rows = [r for r in fac_rows() if r["ward"] == w]
+    if not rows: return "", 0
+    out, n = [], 0
+    for t in FAC_ORDER:
+        xs = [r for r in rows if r["type"] == t]
+        if not xs: continue
+        n += len(xs)
+        lis = "".join(fac_li(r, next((e for e in ong if r["name"] in e["t"]), None)) for r in xs)
+        note = {"park": "市の公園一覧表（令和8年3月31日現在）から、近隣公園より大きい公園と5,000㎡以上の公園。遊具・トイレは各公園で確かめてください。",
+                "careplaza": "高齢の方の相談が中心の施設ですが、子育てサロンや親子の集まりを開いている館もあります。各館に確かめてください。",
+                "community": "小・中学校の中などにある、図書コーナーや研修室のある施設。だれでも無料で使えます（開館日は館ごと）。"}.get(t, "")
+        out.append(f'<h2>{FAC_TYPE[t]}（{len(xs)}）</h2>' + (f'<p class="small">{note}</p>' if note else "") + f'<ul class="gk fac">{lis}</ul>')
+    src = '<p class="small">出典：横浜市の公園一覧表・図書館一覧・地域ケアプラザ紹介、各区役所のコミュニティハウスの案内、はまスポ（横浜市スポーツ施設案内）。2026年11月24日時点。住所・電話・時間が空いているものは、各施設のページで確かめてください。</p>'
+    return "".join(out) + src, n
+
+
 def area_pages(d, track_url):
     """区ごとの「子連れで行ける施設・遊び場」ページ（/area/区/）と、その入口（/area/）。通年の施設は /event/ のURLのまま、ここからつなぐ。"""
     out = []
@@ -857,6 +903,8 @@ def area_pages(d, track_url):
                       for k in kinds for g in [[e for e in free if play_kind(e) == k]] if g)
         if paid:
             sec += f'<h2>有料・入園料のいる施設（料金要確認のものも）（{len(paid)}）</h2><ul class="links">' + "".join(li(e, str(e.get("place", "")).split("（")[0]) for e in sorted(paid, key=lambda e: e["t"])) + "</ul>"
+        fsec, fn = fac_sections(w, xs)
+        sec += fsec
         if ys:
             sec += f'<h2>{w}でこれから開かれる親子イベント（{len(ys)}）</h2><ul class="links">' + "".join(
                 f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a>（{E(when_text(e)[:30])}）</li>' for e in ys[:20]) + "</ul>"
@@ -866,14 +914,14 @@ def area_pages(d, track_url):
         ch, cld = crumbs([("トップ", "/"), ("区ごとの施設・遊び場", "/area/"), (w, "")])
         body = f"""{ch}
 <article class="card"><h1>{w}の子連れで行ける施設・遊び場</h1>
-<p>{w}で、0歳から小学生の子どもと行ける施設・遊び場を{len(xs)}か所まとめました。無料のものは{len(free)}か所です。雨の日は屋内のプレイルームや子育て支援拠点、晴れた日は公園やこどもログハウスへ。開館日・時間は施設ごとに違うので、名前を押して確かめてください。</p>
-<div class="btns"><a class="btn main" href="/#play">無料の遊び場を区で絞り込む</a>{f'<a class="btn" href="/gakudo/{slug}/">{w}の学童・キッズクラブ</a>' if os.path.exists(GAKUDO_JSON) else ''}</div>
+<p>{w}で、0歳から小学生の子どもと行ける施設・遊び場を{len(xs)}か所まとめました。無料のものは{len(free)}か所です。{f"そのほか、市の公園・図書館・コミュニティハウス・スポーツセンター・地域ケアプラザなど{fn}か所も下に並べています（タブ「🏛 施設をさがす」でも探せます）。" if fn else ""}雨の日は屋内のプレイルームや子育て支援拠点、晴れた日は公園やこどもログハウスへ。開館日・時間は施設ごとに違うので、名前を押して確かめてください。</p>
+<div class="btns"><a class="btn main" href="/#play">無料の遊び場を区で絞り込む</a><a class="btn" href="/#shisetsu">施設を名前で探す</a>{f'<a class="btn" href="/gakudo/{slug}/">{w}の学童・キッズクラブ</a>' if os.path.exists(GAKUDO_JSON) else ''}</div>
 {sec}
 <h2>ほかの区</h2><p class="small">{other}</p></article>"""
         items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(sorted(free, key=lambda e: (kinds.index(play_kind(e)), e["t"])) + sorted(paid, key=lambda e: e["t"]) + ys[:20])]
         ld = [{"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{w}の子連れで行ける施設・遊び場", "url": SITE + path, "inLanguage": "ja"}, cld,
               {"@context": "https://schema.org", "@type": "ItemList", "name": f"{w}の子連れで行ける施設・遊び場", "numberOfItems": len(items), "itemListElement": items}]
-        out.append((path, page(f"{w}の子連れで行ける施設・遊び場（{len(xs)}か所・無料{len(free)}）｜KidsTrip",
+        out.append((path, page(f"{w}の子連れで行ける施設・遊び場・公園（{len(xs) + fn}か所）｜KidsTrip",
                                f"{w}で0歳〜小学生と行ける施設・遊び場{len(xs)}か所（地区センターのプレイルーム・子育て支援拠点・こどもログハウス・公園など）と、これから開かれる親子イベント。",
                                path, body, ld, track_url=track_url, tpage=path)))
     ch, cld = crumbs([("トップ", "/"), ("区ごとの施設・遊び場", "")])
@@ -1106,6 +1154,9 @@ def main():
     if os.path.exists(GAKUDO_JSON):
         gkv = hashlib.sha1(open(GAKUDO_JSON, "rb").read()).hexdigest()[:10]
         src = re.sub(r'data-src="/tools/gakudo\.json\?v=[0-9a-f]*"', f'data-src="/tools/gakudo.json?v={gkv}"', src)
+    if os.path.exists(FAC_JSON):
+        fcv = hashlib.sha1(open(FAC_JSON, "rb").read()).hexdigest()[:10]
+        src = re.sub(r'data-src="/tools/facilities\.json\?v=[0-9a-f]*"', f'data-src="/tools/facilities.json?v={fcv}"', src)
     src = re.sub(r"<!--PLAY:START-->.*?<!--PLAY:END-->", lambda _: f"<!--PLAY:START-->{playhtml}<!--PLAY:END-->", src, flags=re.S)
     src = re.sub(r"<!--NEW:START-->.*?<!--NEW:END-->", lambda _: f"<!--NEW:START-->{newhtml}<!--NEW:END-->", src, flags=re.S)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (org, item_list))

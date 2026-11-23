@@ -648,7 +648,7 @@ details.ledemore .lede { margin-top: 4px; }
   </header>
 
   <nav class="jump tabs" id="tabs" aria-label="ページの切り替え">
-    <a href="#events" data-tab="events">📅 イベント</a><a href="#play" data-tab="play">🛝 無料の遊び場</a><a href="#gakudo" data-tab="gakudo">🎒 学童・放課後</a><a href="#near" data-tab="near">📍 近くで探す</a><a href="#foodall" data-tab="foodall">🍽 ごはん・おむつ</a><a href="#life" data-tab="life">🧺 くらし</a><a href="#chains" data-tab="chains">🥣 チェーン店の子ども特典</a><a href="#help" data-tab="help">🏥 困ったとき</a><a href="#contact" data-tab="contact">✉️ お問い合わせ</a>
+    <a href="#events" data-tab="events">📅 イベント</a><a href="#play" data-tab="play">🛝 無料の遊び場</a><a href="#gakudo" data-tab="gakudo">🎒 学童・放課後</a><a href="#shisetsu" data-tab="shisetsu">🏛 施設をさがす</a><a href="#near" data-tab="near">📍 近くで探す</a><a href="#foodall" data-tab="foodall">🍽 ごはん・おむつ</a><a href="#life" data-tab="life">🧺 くらし</a><a href="#chains" data-tab="chains">🥣 チェーン店の子ども特典</a><a href="#help" data-tab="help">🏥 困ったとき</a><a href="#contact" data-tab="contact">✉️ お問い合わせ</a>
   </nav>
 
   <ul class="points" id="ev-points" aria-label="イベントの要点">
@@ -745,6 +745,17 @@ details.ledemore .lede { margin-top: 4px; }
     <div class="opts" id="gk-type" role="group" aria-label="種類で絞る"></div>
     <p class="note" id="gk-n"></p>
     <div id="gk-out"><p class="note">区を選ぶか、小学校名で探してください。区ごとの一覧は<a href="/gakudo/">学童・放課後キッズクラブ一覧</a>でも見られます。</p></div>
+  </section>
+  <section class="near shisetsu" id="shisetsu" aria-label="施設をさがす" data-src="/tools/facilities.json?v=2a89c61b71">
+    <h2>施設をさがす</h2>
+    <ul class="points"><li><span class="pi">🏛</span><span>横浜市内の公園・図書館・地区センター・コミュニティハウス・子育て支援拠点・スポーツセンター・プール・地域ケアプラザなどを、区や名前・町名で探せます。</span></li>
+      <li><span class="pi">📍</span><span>住所・電話・地図のリンクを出します。開館日や時間は施設ごとに違うので、出かける前に各施設に確かめてください。</span></li>
+      <li><span class="pi">🗺</span><span>区ごとの一覧は<a href="/area/">区ごとの施設・遊び場</a>のページでも見られます。</span></li></ul>
+    <div class="nctl"><input class="search" id="fc-q" type="search" placeholder="例：公園の名前、図書館、町名" aria-label="施設を探す"></div>
+    <div class="opts" id="fc-ward" role="group" aria-label="区で絞る"></div>
+    <div class="opts" id="fc-type" role="group" aria-label="種類で絞る"></div>
+    <p class="note" id="fc-n"></p>
+    <div id="fc-out"><p class="note">区か種類を選ぶか、名前で探してください。区ごとの一覧は<a href="/area/">区ごとの施設・遊び場</a>でも見られます。</p></div>
   </section>
   <section class="near" id="near" aria-label="近くで探す">
     <h2>近くで探す</h2>
@@ -860,7 +871,7 @@ details.ledemore .lede { margin-top: 4px; }
   </footer>
 </div>
 
-<script src="js/data.js?v=adba8ad789" defer></script>
-<script src="js/app.js?v=a8f74b823a" defer></script>
+<script src="js/data.js?v=a98c509ae4" defer></script>
+<script src="js/app.js?v=5941c3ecd4" defer></script>
 </body>
 </html>

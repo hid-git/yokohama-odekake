@@ -2575,4 +2575,4 @@ const DM_OPTS = [["men","男性トイレにあった"],["nomen","男性トイレ
 // TRACK_URL は Apps Script の「ウェブアプリ」のURL（tools/tracking-apps-script.gs を参照）。空なら何も送らない。
 const TRACK_URL = "https://script.google.com/macros/s/AKfycbz-8TJu_2Yef6T5p4cB1GSJIDknuU3wyFDDJB8X34TLUm-PQu12v2B5rGiGugMV_2U/exec";
 // ---- ページの切り替え（タブ） ----
-const TABS = { play:["#play"], gakudo:["#gakudo"], events:["#ev-points","#newev","#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], life:["#life"], chains:["#chains"], help:["#help"], contact:["#contact"] };
+const TABS = { play:["#play"], gakudo:["#gakudo"], shisetsu:["#shisetsu"], events:["#ev-points","#newev","#evarea",".weather","#events",".count","#results"], near:["#near"], foodall:["#foodall"], life:["#life"], chains:["#chains"], help:["#help"], contact:["#contact"] };

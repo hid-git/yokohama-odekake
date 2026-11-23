@@ -1282,6 +1282,7 @@ function showTab(name, scroll){
   for (const [k, sels] of Object.entries(TABS)) sels.forEach(sel => document.querySelectorAll(sel).forEach(el => { el.hidden = k !== name; }));
   document.querySelectorAll("#tabs a").forEach(a => { const on = a.dataset.tab === name; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   if (name === "gakudo" && typeof gkLoad === "function") gkLoad();
+  if (name === "shisetsu" && typeof fcLoad === "function") fcLoad();
   if (name === "near" && typeof renderNear === "function" && near && near.c) renderNear();
   if (scroll) { const nav = document.getElementById("tabs"); const y = nav.getBoundingClientRect().top + window.scrollY; if (window.scrollY > y) window.scrollTo({ top: y }); }
 }
@@ -1436,6 +1437,58 @@ function renderGkQuiz(){
     q.addEventListener("input", () => { GK.q = q.value.trim(); renderGk(); clearTimeout(tq); tq = setTimeout(() => { if (GK.q) track("gakudo", "検索：" + GK.q, document.getElementById("gk-n").textContent); }, 1500); });
     q.addEventListener("focus", gkLoad);
     if (/^#gakudo/.test(location.hash)) gkLoad();
+  }
+}
+
+// ---- 施設をさがす（タブ「🏛 施設をさがす」）。tools/facilities.json（市の公園・図書館など）と、EVENTS の通年施設（地区センター・子育て支援拠点など）をまとめて探す ----
+var FC = { rows: null, q: "", ward: "", type: "" };
+const FC_TYPE = { park: "公園", chiku: "地区センター", kyoten: "子育て支援拠点・親子の広場", log: "こどもログハウス", library: "図書館", community: "コミュニティハウス", sports: "スポーツセンター", pool: "屋内プール", outdoor: "野外活動センター", careplaza: "地域ケアプラザ", spot: "博物館・動物園など", pool_summer: "屋外プール（夏）" };
+function fcEvType(e){ const t = e.t; if (/地区センター/.test(t)) return "chiku"; if (/子育て支援拠点|つどいの広場|親子の広場|おやこの広場|子育てひろば/.test(t)) return "kyoten"; if (/ログハウス/.test(t)) return "log"; if (/公園|プレイパーク/.test(t)) return "park"; return "spot"; }
+function fcLoad(){
+  const sec = document.getElementById("shisetsu"); if (!sec || !FC || FC.rows || FC.loading) return;
+  FC.loading = true;
+  fetch(sec.dataset.src).then(r => r.json()).then(rows => {
+    const ev = (typeof EVENTS !== "undefined" ? EVENTS : []).filter(e => e.kind === "ongoing" && !/^各区/.test(e.t) && (e.freeplay || e.paidplay || e.animal || e.ride) && !/スタンプラリー|＜|づくり|リース|ゲーム|展$|フェア/.test(e.t));
+    const evRows = ev.map(e => ({ type: fcEvType(e), ward: String(e.ward || "").split("・")[0], name: e.t, addr: "", tel: "", hours: e.time || "", closed: "", kids: (e.sum || "").slice(0, 60), ev: e.id, price: e.price }));
+    rows.forEach(r => { const m = ev.find(e => e.t.indexOf(r.name) >= 0); if (m) r.ev = m.id; });
+    const names = new Set(rows.filter(r => r.ev).map(r => r.ev));
+    FC.rows = rows.concat(evRows.filter(r => !names.has(r.ev)));
+    renderFc();
+  }).catch(() => { document.getElementById("fc-out").innerHTML = '<p class="note">読み込めませんでした。<a href="/area/">区ごとの施設・遊び場</a>をご覧ください。</p>'; });
+}
+function fcMatch(r, skip){
+  if (skip !== "ward" && FC.ward && r.ward !== FC.ward) return false;
+  if (skip !== "type" && FC.type && r.type !== FC.type) return false;
+  if (FC.q) { const q = gkNorm(FC.q); if (q && !gkNorm([r.name, r.addr, r.ward, FC_TYPE[r.type], r.kind].join(" ")).includes(q)) return false; }
+  return true;
+}
+function renderFc(){
+  const rows = FC.rows; if (!rows) return;
+  const opt = (k, v, label, n) => `<button type="button" class="opt" data-fc="${k}" data-v="${esc(v)}" aria-pressed="${FC[k] === v}">${esc(label)}${n === undefined ? "" : ` <small>${n}</small>`}</button>`;
+  document.getElementById("fc-ward").innerHTML = opt("ward", "", "すべての区") + WARD_ORDER.map(w => { const n = rows.filter(r => r.ward === w && fcMatch(r, "ward")).length; return n ? opt("ward", w, w.replace(/区$/, ""), n) : ""; }).join("");
+  document.getElementById("fc-type").innerHTML = opt("type", "", "すべての種類") + Object.keys(FC_TYPE).map(t => { const n = rows.filter(r => r.type === t && fcMatch(r, "type")).length; return n ? opt("type", t, FC_TYPE[t], n) : ""; }).join("");
+  const out = document.getElementById("fc-out"), nEl = document.getElementById("fc-n");
+  if (!FC.ward && !FC.q && !FC.type) { nEl.textContent = `全${rows.length}か所`; out.innerHTML = `<p class="note">区か種類を選ぶか、名前で探してください。区ごとの一覧は<a href="/area/">区ごとの施設・遊び場</a>でも見られます。</p>`; return; }
+  const hit = rows.filter(r => fcMatch(r)); nEl.textContent = `${hit.length}か所`;
+  const show = hit.slice(0, 120);
+  const card = r => { const mq = encodeURIComponent(r.addr ? `横浜市${r.ward}${r.addr}` : `横浜市${r.ward} ${r.name.replace(/（.*$/, "")}`);
+    return `<li><details><summary><b>${esc(r.name)}</b><span class="chip ${r.price === "free" ? "free" : ""}">${esc(FC_TYPE[r.type] || "")}</span>${r.ward ? `<span class="chip">${esc(r.ward)}</span>` : ""}</summary>
+    <div class="pld">${r.kind ? `<div>🌳 ${esc(r.kind)}・${Number(r.area || 0).toLocaleString()}㎡</div>` : ""}${r.addr ? `<div>📍 ${esc(r.addr)}</div>` : ""}${r.tel ? `<div>☎ <a href="tel:${esc(r.tel)}" data-fc-out="tel">${esc(r.tel)}</a></div>` : ""}${r.hours ? `<div>🕘 ${esc(r.hours)}</div>` : ""}${r.closed ? `<div>休み：${esc(r.closed)}</div>` : ""}${r.kids ? `<div>👶 ${esc(r.kids)}</div>` : ""}${r.note ? `<div>📝 ${esc(r.note)}</div>` : ""}
+    <div class="lk">${r.ev ? `<a href="/event/${esc(r.ev)}/" data-fc-out="page">くわしいページ</a>` : ""}<a href="https://www.google.com/maps/search/?api=1&query=${mq}" target="_blank" rel="noopener" data-fc-out="map">地図</a>${r.ward && GK_SLUG[r.ward] ? `<a href="/area/${GK_SLUG[r.ward]}/">${esc(r.ward)}の一覧</a>` : ""}${r.src ? `<a href="${esc(r.src)}" target="_blank" rel="noopener" data-fc-out="src">出典 ↗</a>` : ""}</div>
+    ${r.asof ? `<div class="plw">出典の時点：${esc(r.asof)}</div>` : ""}</div></details></li>`; };
+  out.innerHTML = hit.length ? `<ul class="pl">${show.map(card).join("")}</ul>${hit.length > show.length ? `<p class="note">ほか${hit.length - show.length}か所。区や種類で絞ってください。</p>` : ""}` : `<p class="note">見つかりませんでした。名前の一部や町名でも探せます。</p>`;
+}
+{ const sec = document.getElementById("shisetsu");
+  if (sec) {
+    let tq = null;
+    sec.addEventListener("click", ev => {
+      const b = ev.target.closest("button.opt[data-fc]"); if (b) { const k = b.dataset.fc, v = b.dataset.v; FC[k] = FC[k] === v ? "" : v; renderFc(); if (v) track("shisetsu", k + "：" + v, document.getElementById("fc-n").textContent); return; }
+      const a = ev.target.closest("a[data-fc-out]"); if (a) track("shisetsu_open", a.dataset.fcOut);
+    });
+    const q = document.getElementById("fc-q");
+    q.addEventListener("input", () => { FC.q = q.value.trim(); renderFc(); clearTimeout(tq); tq = setTimeout(() => { if (FC.q) track("shisetsu", "検索：" + FC.q, document.getElementById("fc-n").textContent); }, 1500); });
+    q.addEventListener("focus", fcLoad);
+    if (/^#shisetsu/.test(location.hash)) fcLoad();
   }
 }
 
