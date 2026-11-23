@@ -524,6 +524,13 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 .weather .wear { margin: 0 0 8px; }
 .weather .wx-note { margin-top: 8px; }
 @media (max-width: 520px) { .wx .sky .st, .wx .p .pl { display: none; } .wxrow { display: grid; grid-template-columns: 1fr 1fr; } .wxrow .wx { gap: 3px; padding: 4px 7px; justify-content: space-between; min-width: 0; white-space: nowrap; } .wx .t .u { display: none; } .wx .d { letter-spacing: -0.3px; } .wx .d, .wx .sky .ic { font-size: 12px; } .wx .t { font-size: 11px; } .wx .t b { font-size: 13px; } .wx .p { font-size: 11px; padding: 1px 5px; } }
+/* イベントのカード：要点だけ出して、くわしくは開いて見る（2026年11月） */
+details.evmore { margin-top: 8px; border-top: 1px dashed var(--line); }
+details.evmore > summary { cursor: pointer; list-style: none; padding: 10px 0 2px; font-size: 14px; font-weight: 700; color: var(--accent, #4fb3d9); }
+details.evmore > summary::-webkit-details-marker { display: none; }
+details.evmore > summary::before { content: "＋ "; }
+details.evmore[open] > summary::before { content: "－ "; }
+details.evmore > .evbody { padding-top: 6px; display: grid; gap: 10px; }
 </style>
 </head>
 <body>
@@ -777,6 +784,6 @@ section[id], div[id="events"] { scroll-margin-top: 56px; }
 </div>
 
 <script src="js/data.js?v=53ea5fb28b" defer></script>
-<script src="js/app.js?v=6ebb51a60e" defer></script>
+<script src="js/app.js?v=6f5b1f5008" defer></script>
 </body>
 </html>

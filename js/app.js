@@ -470,6 +470,7 @@ function openFromLink(){
   }
   const c = document.querySelector(`#results .card[data-eid="${e.id}"]`); if (!c) return;
   c.classList.remove("more-hidden"); c.classList.add("linked");
+  const dm = c.querySelector("details.evmore"); if (dm) dm.open = true;
   c.insertAdjacentHTML("afterbegin", `<p class="linkflag">🔗 送られたイベント</p>`);
   setTimeout(() => { const y = c.getBoundingClientRect().top + window.scrollY - 70; window.scrollTo({ top: y }); }, 50);
   setTimeout(() => track("open_link", "開いた", e.t), 0);
@@ -755,8 +756,9 @@ function card(e, ctx){
     <ul class="chips">${priceChip}<li class="chip">${esc(e.ageText)}</li><li class="chip">${esc(e.place)}</li>${resvChip}</ul>
     <p class="rain ${e.rain}">${RAIN_ICON[e.rain]}<span><b>${RAIN_LABEL[e.rain]}</b>　${esc(e.rainText)}</span></p>
     <p class="sum">${esc(e.sum)}</p>
-    <p class="tip" style="display:${e.tip ? "block" : "none"}">${telify(esc(e.tip || ""))}</p>
     <p class="where">料金：${esc(e.priceText)}／予約：${telify(esc(e.resvText))}</p>
+    <details class="evmore"><summary>くわしく見る（公式・行き方・おむつ・ごはん）</summary><div class="evbody">
+    <p class="tip" style="display:${e.tip ? "block" : "none"}">${telify(esc(e.tip || ""))}</p>
     <p class="asof">情報の時点：${esc(e.asof || "2026年11月9日")}</p>
     <div class="cardfoot"><a class="more" data-act="official" href="${esc(e.url)}" target="_blank" rel="noopener">${e.officialOnly ? esc(e.officialLabel || "主催の公式ページを開く") : `詳細はこちら（${esc(e.src)}）`}</a>${e.resvUrl ? `<a class="more" data-act="resv" href="${esc(e.resvUrl)}" target="_blank" rel="noopener">予約ページへ</a>` : ""}
 ${e.noShare ? "" : `      <button type="button" class="sharebtn" data-share="${esc(e.id)}">🔗 リンクを送る・コピー</button>
@@ -768,6 +770,7 @@ ${e.noShare ? "" : `      <button type="button" class="sharebtn" data-share="${e
     ${foodHtml(e)}
     ${famiresHtml(e)}
     ${clothesHtml(e)}
+    </div></details>
   </article>`;
 }
 
@@ -1413,3 +1416,6 @@ function mwListHtml(){
     ${no.length ? `<p class="small">電子レンジがないと分かっている所：${no.map(b => esc(b.n.replace(/[（(].*$/, "").trim())).join("・")}</p>` : ""}
     <p class="small">表の「レンジ」が「？」の施設は、まだ確かめられていません。順番に公式の情報で確かめて足していきます。</p></div></details>`;
 }
+
+// カードの「くわしく見る」を開いた回数（どのイベントが気になられたか）
+document.addEventListener("toggle", ev => { const d = ev.target; if (d && d.classList && d.classList.contains("evmore") && d.open) { const c = d.closest(".card"); track("card_open", "くわしく見る", c ? c.dataset.ev : ""); } }, true);
