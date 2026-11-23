@@ -6571,6 +6571,7 @@
   "1bni2wb": "96c52e17e958",
   "1bzh0zw": "8535e18d4d57",
   "1crbqs0": "6ccac0401efe",
+  "1d099gd": "e9243cbf7e86",
   "1d0x9al": "77138b657f17",
   "1d8dynq": "9122a78c0991",
   "1ds32d3": "8d1e8ae282be",
@@ -6597,9 +6598,11 @@
   "1m4z3z8": "698357502bc1",
   "1mxkz1g": "ab46777278b9",
   "1n4x9nx": "3a4c742fd316",
+  "1n7udwk": "27b4c086c2e2",
   "1nai5cn": "200c7c8456c1",
   "1ncpds8": "3987eea4f122",
   "1nerc27": "61d178e7cbed",
+  "1os10i4": "508e32808df7",
   "1pfhd5i": "83b76a7c7e41",
   "1pgq843": "a25601517de6",
   "1qg4qi4": "91b896d5672e",
@@ -6609,12 +6612,14 @@
   "1sx8mms": "d473eeccf3ed",
   "1sxo28u": "1437f790c38b",
   "1t485qs": "2e89f7ed2d99",
+  "1t4cre0": "5d5ff3607795",
   "1taz5rj": "9863e3eacf98",
   "1udotm9": "4758b97c32b1",
   "1vcco8d": "26518d4d02e1",
   "1vvbt2": "fbbf8e2f61cf",
   "1wa9gix": "667d3f12bbbc",
   "1wazjhw": "74cb824735f0",
+  "1wdfrx0": "0d427c630459",
   "1wruy4z": "935ac7590074",
   "1xb9td9": "58393b9db444",
   "1xr99pd": "ead17df3acc3",
@@ -6623,6 +6628,7 @@
   "2ecfoj": "f402537b6e9b",
   "2xm8ap": "f9740c1361d9",
   "3b9wwl": "e55918245f16",
+  "3f9zdp": "190bbaee2a5e",
   "3i908c": "44ef7830c25f",
   "3nvg5r": "6a04173409ac",
   "3uc3f9": "903fcd7b7ba7",
@@ -6671,6 +6677,7 @@
   "l5mpw3": "a4cd0b0ce10f",
   "lg4yuc": "c1af9ac8615d",
   "lw2ofl": "e402062ed0c5",
+  "nabvus": "e12f348c0977",
   "npxufp": "916f3fc3291f",
   "nsqtn": "e1fd78e10821",
   "okyb79": "834908ce55cb",
@@ -6750,10 +6757,10 @@
   },
   "1234fgp": {
    "added": "2026-11-13",
-   "chars": 481,
-   "hash": "c744d42e5c45",
-   "lastmod": "2026-11-21",
-   "links": 17,
+   "chars": 592,
+   "hash": "59de3dbd54b7",
+   "lastmod": "2026-11-23",
+   "links": 24,
    "name": "日産 グローバル本社ギャラリー",
    "type": "Place"
   },
@@ -6768,10 +6775,10 @@
   },
   "12zefgy": {
    "added": "2026-11-13",
-   "chars": 492,
-   "hash": "41cc40e7273b",
-   "lastmod": "2026-11-21",
-   "links": 17,
+   "chars": 603,
+   "hash": "3408d5c54c12",
+   "lastmod": "2026-11-23",
+   "links": 24,
    "name": "横浜シティ・エア・ターミナル（YCAT）",
    "type": "Place"
   },
@@ -6804,28 +6811,28 @@
   },
   "14ubomp": {
    "added": "2026-11-13",
-   "chars": 514,
-   "hash": "caaae82cebe3",
-   "lastmod": "2026-11-21",
-   "links": 17,
+   "chars": 625,
+   "hash": "7edb0cf2b5ae",
+   "lastmod": "2026-11-23",
+   "links": 24,
    "name": "CeeU Yokohama（エディオン横浜西口本店）",
    "type": "Place"
   },
   "14ws7oy": {
    "added": "2026-11-13",
-   "chars": 692,
-   "hash": "88f503e60f3d",
-   "lastmod": "2026-11-21",
-   "links": 19,
+   "chars": 803,
+   "hash": "398e9863fcd7",
+   "lastmod": "2026-11-23",
+   "links": 26,
    "name": "横浜市民防災センター",
    "type": "Place"
   },
   "14xdm7p": {
    "added": "2026-11-13",
-   "chars": 462,
-   "hash": "34110b1ab765",
-   "lastmod": "2026-11-21",
-   "links": 17,
+   "chars": 573,
+   "hash": "19f63d2b2a93",
+   "lastmod": "2026-11-23",
+   "links": 24,
    "name": "横浜モアーズ（横浜駅西口）",
    "type": "Place"
   },
@@ -6868,10 +6875,10 @@
   },
   "17bif9m": {
    "added": "2026-11-12",
-   "chars": 2001,
-   "hash": "dae1e46da03b",
+   "chars": 2112,
+   "hash": "4cbb9343038a",
    "lastmod": "2026-11-23",
-   "links": 25,
+   "links": 32,
    "name": "高島屋横浜店 6F（子ども服売り場）",
    "type": "Place"
   },
@@ -6931,10 +6938,10 @@
   },
   "1blkzom": {
    "added": "2026-11-19",
-   "chars": 1618,
-   "hash": "1b2bb182effd",
+   "chars": 1729,
+   "hash": "bc2aa00a8a5d",
    "lastmod": "2026-11-23",
-   "links": 25,
+   "links": 32,
    "name": "シァル横浜（横浜駅ビル）",
    "type": "Place"
   },
@@ -6965,6 +6972,15 @@
    "links": 5,
    "name": "神奈川県立 金沢文庫",
    "thin": true,
+   "type": "Place"
+  },
+  "1d099gd": {
+   "added": "2026-11-23",
+   "chars": 1491,
+   "hash": "1bde81d3559e",
+   "lastmod": "2026-11-23",
+   "links": 29,
+   "name": "理容たていし（戸部・子どもカット）",
    "type": "Place"
   },
   "1d0x9al": {
@@ -7106,19 +7122,19 @@
   },
   "1iwprnc": {
    "added": "2026-11-19",
-   "chars": 1830,
-   "hash": "f3a371c3ec50",
+   "chars": 1941,
+   "hash": "e6dd37ff5c66",
    "lastmod": "2026-11-23",
-   "links": 25,
+   "links": 32,
    "name": "横浜ビブレ（横浜駅西口）",
    "type": "Place"
   },
   "1ixhw31": {
    "added": "2026-11-19",
-   "chars": 1720,
-   "hash": "8b3b8039f4a9",
+   "chars": 1831,
+   "hash": "9c24e6da1519",
    "lastmod": "2026-11-23",
-   "links": 25,
+   "links": 32,
    "name": "ヨドバシ横浜（横浜駅西口）",
    "type": "Place"
   },
@@ -7160,10 +7176,10 @@
   },
   "1kkyo59": {
    "added": "2026-11-12",
-   "chars": 1854,
-   "hash": "dc371e2e191f",
+   "chars": 1965,
+   "hash": "430b2f7c4822",
    "lastmod": "2026-11-23",
-   "links": 25,
+   "links": 32,
    "name": "そごう横浜店",
    "type": "Place"
   },
@@ -7203,6 +7219,15 @@
    "name": "MARK IS みなとみらい",
    "type": "Place"
   },
+  "1n7udwk": {
+   "added": "2026-11-23",
+   "chars": 703,
+   "hash": "c91024887a59",
+   "lastmod": "2026-11-23",
+   "links": 24,
+   "name": "藤棚調剤薬局",
+   "type": "Place"
+  },
   "1nai5cn": {
    "added": "2026-11-23",
    "chars": 2970,
@@ -7228,6 +7253,15 @@
    "lastmod": "2026-11-21",
    "links": 7,
    "name": "ブランチ横浜南部市場",
+   "type": "Place"
+  },
+  "1os10i4": {
+   "added": "2026-11-23",
+   "chars": 1112,
+   "hash": "7d6278c77a68",
+   "lastmod": "2026-11-23",
+   "links": 25,
+   "name": "セブン-イレブン 横浜平沼橋駅前店",
    "type": "Place"
   },
   "1pfhd5i": {
@@ -7312,6 +7346,15 @@
    "thin": true,
    "type": "Place"
   },
+  "1t4cre0": {
+   "added": "2026-11-23",
+   "chars": 813,
+   "hash": "5fe88067836f",
+   "lastmod": "2026-11-23",
+   "links": 24,
+   "name": "セブン-イレブン 横浜戸部店",
+   "type": "Place"
+  },
   "1taz5rj": {
    "added": "2026-11-23",
    "chars": 2123,
@@ -7359,11 +7402,20 @@
   },
   "1wazjhw": {
    "added": "2026-11-19",
-   "chars": 1798,
-   "hash": "a623bf2c720d",
+   "chars": 1909,
+   "hash": "c09fe22f8d60",
    "lastmod": "2026-11-23",
-   "links": 25,
+   "links": 32,
    "name": "横浜ポルタ（横浜駅東口の地下街）",
+   "type": "Place"
+  },
+  "1wdfrx0": {
+   "added": "2026-11-23",
+   "chars": 1328,
+   "hash": "6a69697b9bb0",
+   "lastmod": "2026-11-23",
+   "links": 27,
+   "name": "セブン-イレブン 横浜平沼中央店",
    "type": "Place"
   },
   "1wruy4z": {
@@ -7423,10 +7475,10 @@
   },
   "2xm8ap": {
    "added": "2026-11-12",
-   "chars": 662,
-   "hash": "5720176d3fc8",
-   "lastmod": "2026-11-21",
-   "links": 17,
+   "chars": 773,
+   "hash": "22b7739ac703",
+   "lastmod": "2026-11-23",
+   "links": 24,
    "name": "ジョイナス（横浜駅西口）",
    "type": "Place"
   },
@@ -7437,6 +7489,15 @@
    "lastmod": "2026-11-21",
    "links": 5,
    "name": "日産スタジアム",
+   "type": "Place"
+  },
+  "3f9zdp": {
+   "added": "2026-11-23",
+   "chars": 806,
+   "hash": "a41b7a5e2245",
+   "lastmod": "2026-11-23",
+   "links": 27,
+   "name": "セブン-イレブン 横浜西戸部店",
    "type": "Place"
   },
   "3i908c": {
@@ -7741,10 +7802,10 @@
   },
   "fviw25": {
    "added": "2026-11-19",
-   "chars": 2095,
-   "hash": "1bd78a8c6969",
+   "chars": 2206,
+   "hash": "1feb76044692",
    "lastmod": "2026-11-23",
-   "links": 25,
+   "links": 32,
    "name": "横浜スカイビル（横浜駅東口）",
    "type": "Place"
   },
@@ -7860,10 +7921,10 @@
   },
   "lg4yuc": {
    "added": "2026-11-12",
-   "chars": 553,
-   "hash": "a6d47b7aaa3f",
-   "lastmod": "2026-11-21",
-   "links": 17,
+   "chars": 664,
+   "hash": "ea9c3e40ade7",
+   "lastmod": "2026-11-23",
+   "links": 24,
    "name": "ニュウマン横浜",
    "type": "Place"
   },
@@ -7876,12 +7937,21 @@
    "name": "サクラス戸塚（戸塚駅西口）",
    "type": "Place"
   },
+  "nabvus": {
+   "added": "2026-11-23",
+   "chars": 1064,
+   "hash": "d613d3a1da92",
+   "lastmod": "2026-11-23",
+   "links": 26,
+   "name": "tvkハウジングプラザ横浜（住宅展示場）",
+   "type": "Place"
+  },
   "npxufp": {
    "added": "2026-11-12",
-   "chars": 1862,
-   "hash": "18fe1b01adfa",
+   "chars": 1973,
+   "hash": "d522c5de2ed2",
    "lastmod": "2026-11-23",
-   "links": 25,
+   "links": 32,
    "name": "横浜ベイクォーター",
    "type": "Place"
   },
@@ -8014,19 +8084,19 @@
   },
   "t7377s": {
    "added": "2026-11-12",
-   "chars": 651,
-   "hash": "52eb6a49478f",
-   "lastmod": "2026-11-21",
-   "links": 17,
+   "chars": 762,
+   "hash": "7749a56379d4",
+   "lastmod": "2026-11-23",
+   "links": 24,
    "name": "ルミネ横浜",
    "type": "Place"
   },
   "ttyij6": {
    "added": "2026-11-13",
-   "chars": 1710,
-   "hash": "e349fa4c008d",
+   "chars": 1821,
+   "hash": "8a9affdb9aa1",
    "lastmod": "2026-11-23",
-   "links": 25,
+   "links": 32,
    "name": "アソビル（横浜駅みなみ東口直結）",
    "type": "Place"
   },
@@ -8059,10 +8129,10 @@
   },
   "uxzm6a": {
    "added": "2026-11-13",
-   "chars": 2137,
-   "hash": "123c0e195e34",
+   "chars": 2248,
+   "hash": "58a1f8f44eb6",
    "lastmod": "2026-11-23",
-   "links": 25,
+   "links": 32,
    "name": "原鉄道模型博物館",
    "type": "Place"
   },
