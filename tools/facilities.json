@@ -1,5 +1,18 @@
 [
 {
+"type": "library",
+"ward": "鶴見区",
+"name": "鶴見図書館",
+"addr": "鶴見中央2-10-7",
+"tel": "045-502-4416",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/tsurumi/index.html",
+"asof": "2026年11月24日",
+"note": ""
+},
+{
 "type": "community",
 "ward": "鶴見区",
 "name": "新鶴見小学校コミュニティハウス",
@@ -84,6 +97,19 @@
 "asof": "2026年11月24日"
 },
 {
+"type": "library",
+"ward": "神奈川区",
+"name": "神奈川図書館",
+"addr": "立町20-1",
+"tel": "045-434-4339",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/kanagawa/index.html",
+"asof": "2026年11月24日",
+"note": ""
+},
+{
 "type": "community",
 "ward": "神奈川区",
 "name": "浦島丘中学校コミュニティハウス",
@@ -130,6 +156,19 @@
 "kids": "",
 "src": "https://www.city.yokohama.lg.jp/kanagawa/madoguchi-shisetsu/riyoshisetsu/shisetsu.html",
 "asof": "2026年11月24日"
+},
+{
+"type": "library",
+"ward": "西区",
+"name": "中央図書館",
+"addr": "老松町1",
+"tel": "045-262-0050",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/central/index.html",
+"asof": "2026年11月24日",
+"note": ""
 },
 {
 "type": "community",
@@ -204,6 +243,19 @@
 "asof": "2026年11月24日"
 },
 {
+"type": "library",
+"ward": "中区",
+"name": "中図書館",
+"addr": "本牧原16-1",
+"tel": "045-621-6621",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/naka/index.html",
+"asof": "2026年11月24日",
+"note": ""
+},
+{
 "type": "community",
 "ward": "中区",
 "name": "本牧中学校コミュニティハウス",
@@ -274,6 +326,19 @@
 "kids": "プレイルーム（幼児と保護者）・図書室（約20,000冊）",
 "src": "https://www.city.yokohama.lg.jp/naka/madoguchi-shisetsu/riyoshisetsu/community/ad-nakahonmoku-com.html",
 "asof": "2026年11月24日"
+},
+{
+"type": "library",
+"ward": "南区",
+"name": "南図書館",
+"addr": "弘明寺町265-1",
+"tel": "045-715-7200",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/minami/index.html",
+"asof": "2026年11月24日",
+"note": "電話は2026年10月30日〜11月30日は不通（市の一覧）"
 },
 {
 "type": "community",
@@ -348,6 +413,19 @@
 "asof": "2026年11月24日"
 },
 {
+"type": "library",
+"ward": "港南区",
+"name": "港南図書館",
+"addr": "野庭町125",
+"tel": "045-841-5577",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/konan/index.html",
+"asof": "2026年11月24日",
+"note": ""
+},
+{
 "type": "community",
 "ward": "港南区",
 "name": "港南台コミュニティハウス",
@@ -406,6 +484,19 @@
 "kids": "",
 "src": "https://coconavi.city.yokohama.lg.jp/?p=1293",
 "asof": "2026年11月24日"
+},
+{
+"type": "library",
+"ward": "保土ケ谷区",
+"name": "保土ケ谷図書館",
+"addr": "星川1-2-1",
+"tel": "045-333-1336",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/hodogaya/index.html",
+"asof": "2026年11月24日",
+"note": ""
 },
 {
 "type": "community",
@@ -478,6 +569,19 @@
 "kids": "",
 "src": "https://www.city.yokohama.lg.jp/hodogaya/madoguchi-shisetsu/shisetu.html",
 "asof": "2026年11月24日"
+},
+{
+"type": "library",
+"ward": "旭区",
+"name": "旭図書館",
+"addr": "白根4-6-2",
+"tel": "045-953-1166",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/asahi/index.html",
+"asof": "2026年11月24日",
+"note": ""
 },
 {
 "type": "community",
@@ -576,6 +680,19 @@
 "asof": "2026年11月24日"
 },
 {
+"type": "library",
+"ward": "磯子区",
+"name": "磯子図書館",
+"addr": "磯子3-5-1",
+"tel": "045-753-2864",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/isogo/index.html",
+"asof": "2026年11月24日",
+"note": ""
+},
+{
 "type": "community",
 "ward": "磯子区",
 "name": "浜小学校コミュニティハウス",
@@ -658,6 +775,19 @@
 "kids": "",
 "src": "https://www.city.yokohama.lg.jp/isogo/madoguchi-shisetsu/riyoshisetsu/s-tikusen.html",
 "asof": "2026年11月24日"
+},
+{
+"type": "library",
+"ward": "金沢区",
+"name": "金沢図書館",
+"addr": "泥亀2-14-5",
+"tel": "045-784-5861",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/kanazawa/index.html",
+"asof": "2026年11月24日",
+"note": ""
 },
 {
 "type": "community",
@@ -780,6 +910,19 @@
 "asof": "2026年11月24日"
 },
 {
+"type": "library",
+"ward": "港北区",
+"name": "港北図書館",
+"addr": "菊名6-18-10",
+"tel": "045-421-1211",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/kohoku/index.html",
+"asof": "2026年11月24日",
+"note": ""
+},
+{
 "type": "community",
 "ward": "港北区",
 "name": "菊名コミュニティハウス",
@@ -864,6 +1007,19 @@
 "asof": "2026年11月24日"
 },
 {
+"type": "library",
+"ward": "緑区",
+"name": "緑図書館",
+"addr": "十日市場町825-1",
+"tel": "045-985-6331",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/midori/index.html",
+"asof": "2026年11月24日",
+"note": ""
+},
+{
 "type": "community",
 "ward": "緑区",
 "name": "霧が丘コミュニティハウス",
@@ -934,6 +1090,19 @@
 "kids": "",
 "src": "https://www.city.yokohama.lg.jp/midori/madoguchi-shisetsu/riyoshisetsu/default20220.html",
 "asof": "2026年11月24日"
+},
+{
+"type": "library",
+"ward": "青葉区",
+"name": "山内図書館",
+"addr": "あざみ野2-3-2",
+"tel": "045-901-1225",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://yamauchi-lib.jp/",
+"asof": "2026年11月24日",
+"note": ""
 },
 {
 "type": "community",
@@ -1044,6 +1213,19 @@
 "asof": "2026年11月24日"
 },
 {
+"type": "library",
+"ward": "都筑区",
+"name": "都筑図書館",
+"addr": "茅ケ崎中央32-1",
+"tel": "045-948-2424",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/tsuzuki/index.html",
+"asof": "2026年11月24日",
+"note": ""
+},
+{
 "type": "community",
 "ward": "都筑区",
 "name": "中川中学校コミュニティハウス",
@@ -1126,6 +1308,19 @@
 "kids": "",
 "src": "https://www.city.yokohama.lg.jp/tsuzuki/madoguchi-shisetsu/riyoshisetsu/communityhouse.html",
 "asof": "2026年11月24日"
+},
+{
+"type": "library",
+"ward": "戸塚区",
+"name": "戸塚図書館",
+"addr": "戸塚町127",
+"tel": "045-862-9411",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/totsuka/index.html",
+"asof": "2026年11月24日",
+"note": ""
 },
 {
 "type": "community",
@@ -1224,6 +1419,19 @@
 "asof": "2026年11月24日"
 },
 {
+"type": "library",
+"ward": "栄区",
+"name": "栄図書館",
+"addr": "公田町634-9",
+"tel": "045-891-2801",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/sakae/index.html",
+"asof": "2026年11月24日",
+"note": ""
+},
+{
 "type": "community",
 "ward": "栄区",
 "name": "飯島コミュニティハウス",
@@ -1270,6 +1478,19 @@
 "kids": "",
 "src": "https://www.city.yokohama.lg.jp/sakae/madoguchi-shisetsu/riyoshisetsu/shisetsu.html",
 "asof": "2026年11月24日"
+},
+{
+"type": "library",
+"ward": "泉区",
+"name": "泉図書館",
+"addr": "和泉町6207-5",
+"tel": "045-801-2251",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/izumi/index.html",
+"asof": "2026年11月24日",
+"note": ""
 },
 {
 "type": "community",
@@ -1366,6 +1587,19 @@
 "kids": "",
 "src": "https://www.city.yokohama.lg.jp/izumi/kosodate_kyoiku/kosodateshien/tyokottomap.files/0006_20260427.pdf",
 "asof": "2026年11月24日"
+},
+{
+"type": "library",
+"ward": "瀬谷区",
+"name": "瀬谷図書館",
+"addr": "本郷3-22-1",
+"tel": "045-301-7911",
+"hours": "",
+"closed": "",
+"kids": "",
+"src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/seya/index.html",
+"asof": "2026年11月24日",
+"note": ""
 },
 {
 "type": "community",
