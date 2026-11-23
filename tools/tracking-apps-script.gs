@@ -37,7 +37,7 @@ function kindOf_(vid, ua, bot) {
   if (bot === "1" || BOT_RE.test(String(ua || ""))) return "ボット";
   return "人";
 }
-const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク", origin:"出発駅", near:"近くで探す", detail:"くわしくを開いた", more:"残りを見る", fav:"お気に入り", copy_link:"リンクを送る・コピー", open_link:"送られたリンクから来た" };
+const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク", origin:"出発駅", near:"近くで探す", detail:"くわしくを開いた", more:"残りを見る", fav:"お気に入り", copy_link:"リンクを送る・コピー", open_link:"送られたリンクから来た", play:"遊び場で探す", play_open:"遊び場のリンク", gakudo:"学童で探す", gakudo_open:"学童のリンク", gakudo_quiz:"学童の区分の目安", restore:"前回の続き" };
 
 function doPost(e) {
   try {
@@ -185,7 +185,7 @@ function updateSummary() {
   const perVisitor_ = col => { const seen = {}; latest.v.forEach(r => { if (r[7] && r[col] && !seen[r[7]]) seen[r[7]] = r[col]; }); return count_(Object.values(seen)); };
   // 出発駅・近くで探すから地域が分かった訪問者だけ、訪問者ごとに1回数える
   const visitorArea_ = () => { const seen = {}; latest.v.forEach(r => { if (r[7] && r[10] && r[10] !== "分からない") seen[r[7]] = r[10]; }); return count_(Object.values(seen)); };
-  const blocks = [["日本・海外（訪問者数・端末の時間帯の設定から）", perVisitor_(13)], ["訪問者の地域（出発駅・近くで探すを使った人）", visitorArea_()], ["言語（訪問者数）", perVisitor_(11)], ["0件だった検索（載せていないもの）", zero_()], ["よく開かれた「くわしく」", top("くわしくを開いた", 2)], ["「残りを見る」が押された見出し", top("残りを見る", 2)], ["よく検索された言葉", top("検索", 2)], ["公式サイトがよく開かれたイベント", top("公式サイト", 3)], ["経路検索が多いイベント", top("経路検索", 3)], ["よく使われた絞り込み", top("絞り込み", 2)], ["入力された出発駅", top("出発駅", 2)], ["近くで探す（駅・現在地）", top("近くで探す", 2)], ["見ている人の地域の区分（出発駅・近くで探すから）", top2_()], ["見ている人の地域（市区町村）", top3_()], ["来た場所", top("ページ表示", 6)], ["端末", top("ページ表示", 4)], ["アプリ", top("ページ表示", 5)]];
+  const blocks = [["日本・海外（訪問者数・端末の時間帯の設定から）", perVisitor_(13)], ["訪問者の地域（出発駅・近くで探すを使った人）", visitorArea_()], ["言語（訪問者数）", perVisitor_(11)], ["0件だった検索（載せていないもの）", zero_()], ["よく開かれた「くわしく」", top("くわしくを開いた", 2)], ["「残りを見る」が押された見出し", top("残りを見る", 2)], ["よく検索された言葉", top("検索", 2)], ["公式サイトがよく開かれたイベント", top("公式サイト", 3)], ["経路検索が多いイベント", top("経路検索", 3)], ["よく使われた絞り込み", top("絞り込み", 2)], ["学童：よく使われた探し方（区・種類・検索）", top("学童で探す", 2)], ["学童：区分の目安の結果", top("学童の区分の目安", 2)], ["遊び場：よく使われた探し方", top("遊び場で探す", 2)], ["入力された出発駅", top("出発駅", 2)], ["近くで探す（駅・現在地）", top("近くで探す", 2)], ["見ている人の地域の区分（出発駅・近くで探すから）", top2_()], ["見ている人の地域（市区町村）", top3_()], ["来た場所", top("ページ表示", 6)], ["端末", top("ページ表示", 4)], ["アプリ", top("ページ表示", 5)]];
   let r0 = rows.length + 4;
   sum.getRange(r0 - 1, 1).setValue(latest.m + " のランキング").setFontWeight("bold");
   blocks.forEach(([title, list], i) => {
