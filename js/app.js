@@ -1442,7 +1442,7 @@ function renderGkQuiz(){
 
 // ---- 施設をさがす（タブ「🏛 施設をさがす」）。tools/facilities.json（市の公園・図書館など）と、EVENTS の通年施設（地区センター・子育て支援拠点など）をまとめて探す ----
 var FC = { rows: null, q: "", ward: "", type: "" };
-const FC_TYPE = { park: "公園", chiku: "地区センター", kyoten: "子育て支援拠点・親子の広場", log: "こどもログハウス", library: "図書館", community: "コミュニティハウス", sports: "スポーツセンター", pool: "屋内プール", outdoor: "野外活動センター", careplaza: "地域ケアプラザ", spot: "博物館・動物園など", pool_summer: "屋外プール（夏）" };
+const FC_TYPE = { park: "公園", chiku: "地区センター", kyoten: "子育て支援拠点・親子の広場", log: "こどもログハウス", library: "図書館", community: "コミュニティハウス", sports: "スポーツセンター", pool: "屋内プール", outdoor: "野外活動センター", careplaza: "地域ケアプラザ", spot: "博物館・動物園など", baby: "授乳室・おむつ替えのある施設・お店", pool_summer: "屋外プール（夏）" };
 function fcEvType(e){ const t = e.t; if (/地区センター/.test(t)) return "chiku"; if (/子育て支援拠点|つどいの広場|親子の広場|おやこの広場|子育てひろば/.test(t)) return "kyoten"; if (/ログハウス/.test(t)) return "log"; if (/公園|プレイパーク/.test(t)) return "park"; return "spot"; }
 function fcLoad(){
   const sec = document.getElementById("shisetsu"); if (!sec || !FC || FC.rows || FC.loading) return;
@@ -1452,14 +1452,21 @@ function fcLoad(){
     const evRows = ev.map(e => ({ type: fcEvType(e), ward: String(e.ward || "").split("・")[0], name: e.t, addr: "", tel: "", hours: e.time || "", closed: "", kids: (e.sum || "").slice(0, 60), ev: e.id, price: e.price }));
     rows.forEach(r => { const m = ev.find(e => e.t.indexOf(r.name) >= 0); if (m) r.ev = m.id; });
     const names = new Set(rows.filter(r => r.ev).map(r => r.ev));
-    FC.rows = rows.concat(evRows.filter(r => !names.has(r.ev)));
+    const all = rows.concat(evRows.filter(r => !names.has(r.ev)));
+    // 赤ちゃん設備の一覧（BABY）の施設・お店も、名前やエリアで探せるように足す（区は持っていないので、エリア名で出す）
+    const areaName = k => { const a = (typeof FOOD_AREAS !== "undefined" ? FOOD_AREAS : []).find(a => a.k === k); return a ? ((typeof FOOD !== "undefined" && FOOD[k] && FOOD[k].name) || a.name || "") : ""; };
+    const seen = new Set(all.map(r => r.name));
+    if (typeof BABY !== "undefined") Object.entries(BABY).forEach(([k, list]) => list.forEach(x => { if (seen.has(x.n)) return; seen.add(x.n);
+      const has = [x.d && "おむつ替え", x.f && "授乳室", x.w && "お湯", x.mw && "電子レンジ"].filter(Boolean).join("・");
+      all.push({ type: "baby", ward: "", area: areaName(k), name: x.n, addr: "", tel: "", hours: "", closed: "", kids: has ? has + "あり" : "", note: x.where || "", spot: hashId(x.n), src: x.url || "" }); }));
+    FC.rows = all;
     renderFc();
   }).catch(() => { document.getElementById("fc-out").innerHTML = '<p class="note">読み込めませんでした。<a href="/area/">区ごとの施設・遊び場</a>をご覧ください。</p>'; });
 }
 function fcMatch(r, skip){
   if (skip !== "ward" && FC.ward && r.ward !== FC.ward) return false;
   if (skip !== "type" && FC.type && r.type !== FC.type) return false;
-  if (FC.q) { const q = gkNorm(FC.q); if (q && !gkNorm([r.name, r.addr, r.ward, FC_TYPE[r.type], r.kind].join(" ")).includes(q)) return false; }
+  if (FC.q) { const q = gkNorm(FC.q); if (q && !gkNorm([r.name, r.addr, r.ward, r.area, FC_TYPE[r.type], r.kind].join(" ")).includes(q)) return false; }
   return true;
 }
 function renderFc(){
@@ -1472,9 +1479,9 @@ function renderFc(){
   const hit = rows.filter(r => fcMatch(r)); nEl.textContent = `${hit.length}か所`;
   const show = hit.slice(0, 120);
   const card = r => { const mq = encodeURIComponent(r.addr ? `横浜市${r.ward}${r.addr}` : `横浜市${r.ward} ${r.name.replace(/（.*$/, "")}`);
-    return `<li><details><summary><b>${esc(r.name)}</b><span class="chip ${r.price === "free" ? "free" : ""}">${esc(FC_TYPE[r.type] || "")}</span>${r.ward ? `<span class="chip">${esc(r.ward)}</span>` : ""}</summary>
+    return `<li><details><summary><b>${esc(r.name)}</b><span class="chip ${r.price === "free" ? "free" : ""}">${esc(FC_TYPE[r.type] || "")}</span>${r.ward ? `<span class="chip">${esc(r.ward)}</span>` : r.area ? `<span class="chip">${esc(r.area)}</span>` : ""}</summary>
     <div class="pld">${r.kind ? `<div>🌳 ${esc(r.kind)}・${Number(r.area || 0).toLocaleString()}㎡</div>` : ""}${r.addr ? `<div>📍 ${esc(r.addr)}</div>` : ""}${r.tel ? `<div>☎ <a href="tel:${esc(r.tel)}" data-fc-out="tel">${esc(r.tel)}</a></div>` : ""}${r.hours ? `<div>🕘 ${esc(r.hours)}</div>` : ""}${r.closed ? `<div>休み：${esc(r.closed)}</div>` : ""}${r.kids ? `<div>👶 ${esc(r.kids)}</div>` : ""}${r.note ? `<div>📝 ${esc(r.note)}</div>` : ""}
-    <div class="lk">${r.ev ? `<a href="/event/${esc(r.ev)}/" data-fc-out="page">くわしいページ</a>` : ""}<a href="https://www.google.com/maps/search/?api=1&query=${mq}" target="_blank" rel="noopener" data-fc-out="map">地図</a>${r.ward && GK_SLUG[r.ward] ? `<a href="/area/${GK_SLUG[r.ward]}/">${esc(r.ward)}の一覧</a>` : ""}${r.src ? `<a href="${esc(r.src)}" target="_blank" rel="noopener" data-fc-out="src">出典 ↗</a>` : ""}</div>
+    <div class="lk">${r.ev ? `<a href="/event/${esc(r.ev)}/" data-fc-out="page">くわしいページ</a>` : ""}${r.spot ? `<a href="/spot/${esc(r.spot)}/" data-fc-out="spot">授乳室・おむつ替えのページ</a>` : ""}<a href="https://www.google.com/maps/search/?api=1&query=${mq}" target="_blank" rel="noopener" data-fc-out="map">地図</a>${r.ward && GK_SLUG[r.ward] ? `<a href="/area/${GK_SLUG[r.ward]}/">${esc(r.ward)}の一覧</a>` : ""}${r.src ? `<a href="${esc(r.src)}" target="_blank" rel="noopener" data-fc-out="src">出典 ↗</a>` : ""}</div>
     ${r.asof ? `<div class="plw">出典の時点：${esc(r.asof)}</div>` : ""}</div></details></li>`; };
   out.innerHTML = hit.length ? `<ul class="pl">${show.map(card).join("")}</ul>${hit.length > show.length ? `<p class="note">ほか${hit.length - show.length}か所。区や種類で絞ってください。</p>` : ""}` : `<p class="note">見つかりませんでした。名前の一部や町名でも探せます。</p>`;
 }
