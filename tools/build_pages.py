@@ -586,9 +586,10 @@ def en_links(d, spots, spot_ids):
             seen.add((best[1], best[2]))
             found.append((en, best[1], best[2], best[3]))
     items = "".join(f'<li><a href="/{k}/{pid}/" hreflang="ja">{E(en)}</a> <span class="ja" lang="ja">{E(name)}</span></li>' for en, k, pid, name in found)
-    block = ('<!--JA:START--><section id="ja-pages"><h2>More details (in Japanese)</h2>'
+    block = ('<!--JA:START--><section id="ja-pages"><details class="fold"><summary><h2 class="fsum">More details (in Japanese)'
+             f'<span class="sub">{len(found)} pages — tap to open</span></h2></summary>'
              '<p>Each page below has the official link, access, nearby family restaurants, and nursing rooms / diaper changing within walking distance. Use your browser\'s translate feature.</p>'
-             f'<ul class="jalinks">{items}</ul></section><!--JA:END-->')
+             f'<ul class="jalinks">{items}</ul></details></section><!--JA:END-->')
     if "<!--JA:START-->" in src:
         src = re.sub(r"(?s)<!--JA:START-->.*?<!--JA:END-->", lambda _: block, src)
     else:
