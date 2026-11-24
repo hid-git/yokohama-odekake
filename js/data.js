@@ -1309,7 +1309,7 @@ EVENTS.push(
     price:"paid", priceText:"子ども（3歳〜小学生）1,300円・大人1,500円・親子ペア2,600円（貸し靴込み）", place:"屋内", rain:"ok", rainText:"館内のリンク",
     resv:false, resvText:"予約なし。混むと入場制限あり", age:[3,12], ageText:"3歳から（未就学児は保護者が付き添い）", kind:"ongoing", start:660,
     sum:"冬だけ館内にできるスケートリンク。土日祝は45分ずつの入れ替え制。",
-    tip:"指先まで覆う手袋と靴下が必要。1/1の営業は公式で確認を", url:"https://www.tressa-yokohama.jp/event/item_eventnews.jsp?id=764", src:"トレッサ横浜 公式", asof:"2026年11月12日" }
+    tip:"指先まで覆う手袋と靴下が必要（手袋は200円で買える）。12/20（日）はスケートショーのため14:00ごろから。再入場はできない。1/1の営業は公式で確認を", url:"https://www.tressa-yokohama.jp/event/item_eventnews.jsp?id=764", src:"トレッサ横浜 公式", asof:"2026年11月24日" }
 );
 const DATES = [
   { k:"11/28", s:"11/28", w:"土", c:"sat" }, { k:"11/29", s:"11/29", w:"日", c:"sun" },
