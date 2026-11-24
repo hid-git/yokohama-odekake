@@ -1001,6 +1001,15 @@
    "name": "出張！奈良幼稚園〜ならたまぴよひろば〜（奈良地区センター）",
    "type": "Event"
   },
+  "1bxocmz": {
+   "added": "2026-11-24",
+   "chars": 1968,
+   "hash": "47fed2562ebf",
+   "lastmod": "2026-11-24",
+   "links": 14,
+   "name": "ちびぐるみ1,000体のクリスマスツリー（クイーンズスクエア横浜）",
+   "type": "TouristAttraction"
+  },
   "1c1xkor": {
    "added": "2026-11-17",
    "chars": 684,
@@ -5690,7 +5699,7 @@
   "x0mfmo": {
    "added": "2026-11-14",
    "chars": 3146,
-   "hash": "358dd22f8f75",
+   "hash": "16a4d8b09eaa",
    "lastmod": "2026-11-24",
    "links": 101,
    "name": "パウ・パトロールのクイズラリー＆マーシャルのグリーティング（BALLPARK Xmas）",
@@ -5930,7 +5939,7 @@
  },
  "gakudo": {
   "area/": {
-   "hash": "a5761f8bfba2",
+   "hash": "456a4a268c9b",
    "lastmod": "2026-11-24"
   },
   "area/aoba/": {
@@ -5982,7 +5991,7 @@
    "lastmod": "2026-11-24"
   },
   "area/nishi/": {
-   "hash": "d422f17bfa23",
+   "hash": "a321657b7e05",
    "lastmod": "2026-11-24"
   },
   "area/sakae/": {
@@ -6189,6 +6198,7 @@
   "1bfcvsn": "5d2e12be5e70",
   "1btxqex": "4c4fa0edd6cd",
   "1bv7b42": "5a8bc850adba",
+  "1bxocmz": "274bd167d23d",
   "1c1xkor": "1d75e20e3a67",
   "1c9v7bp": "cd74f821cb71",
   "1cnd9ml": "7a18f8a30413",
@@ -7293,8 +7303,8 @@
   },
   "1d8dynq": {
    "added": "2026-11-20",
-   "chars": 3086,
-   "hash": "6aa40917a0a9",
+   "chars": 3105,
+   "hash": "bb6513ed90b9",
    "lastmod": "2026-11-24",
    "links": 61,
    "name": "スマイル・ポート（西区の地域子育て支援拠点・KDX横浜みなとみらいタワー3F）",
@@ -8124,8 +8134,8 @@
   },
   "68q4ac": {
    "added": "2026-11-13",
-   "chars": 3335,
-   "hash": "31700be03f5e",
+   "chars": 3329,
+   "hash": "7fe20d483693",
    "lastmod": "2026-11-24",
    "links": 61,
    "name": "パシフィコ横浜",
@@ -8323,8 +8333,8 @@
   },
   "bbqq7x": {
    "added": "2026-11-13",
-   "chars": 2826,
-   "hash": "b3394dc37419",
+   "chars": 2845,
+   "hash": "472fd040eec6",
    "lastmod": "2026-11-24",
    "links": 61,
    "name": "三菱みなとみらい技術館",
@@ -8775,8 +8785,8 @@
   },
   "phixwh": {
    "added": "2026-11-23",
-   "chars": 2837,
-   "hash": "ef1fe833fdb7",
+   "chars": 2831,
+   "hash": "6f4cd879c90f",
    "lastmod": "2026-11-24",
    "links": 61,
    "name": "デイリーヤマザキ パシフィコ横浜店",
@@ -8974,8 +8984,8 @@
   },
   "ubsrwe": {
    "added": "2026-11-22",
-   "chars": 2371,
-   "hash": "b1281eb11875",
+   "chars": 2365,
+   "hash": "0fa38209dccf",
    "lastmod": "2026-11-24",
    "links": 61,
    "name": "横浜ティンバーワーフ（臨港パーク内）",
