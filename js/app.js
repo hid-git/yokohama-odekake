@@ -179,7 +179,7 @@ function babyFoodNear(e){
 }
 function kidsFoodNear(e){
   const g = venueGeo(e); if (!g) return [];
-  return KIDS_SHOPS.map(sh => ({ sh, min: Math.max(1, Math.round(distM(g, sh.g) * 1.3 / 70)) })).filter(x => x.min <= 10).sort((a, b) => a.min - b.min);
+  return KIDS_SHOPS.filter(sh => sh.g).map(sh => ({ sh, min: Math.max(1, Math.round(distM(g, sh.g) * 1.3 / 70)) })).filter(x => x.min <= 10).sort((a, b) => a.min - b.min);
 }
 // お店の一覧：基本はお店で食べる。テイクアウトできるかは印で出す。多いときは店名とジャンルだけにして「くわしく」で開く
 function isTO(sh){ return sh.tags.some(t => /テイクアウト/.test(t)); }
@@ -256,7 +256,7 @@ let FOOD_PICK = "all";
 function renderFoodAll(){
   const areas = FOOD_AREAS.map(A => {
     const f = FOOD[A.k] || {};
-    const kids = typeof KIDS_SHOPS !== "undefined" ? KIDS_SHOPS.filter(x => nearestArea(x.g) === A.k) : [];
+    const kids = typeof KIDS_SHOPS !== "undefined" ? KIDS_SHOPS.filter(x => x.g && nearestArea(x.g) === A.k) : [];
     const courts = typeof FOOD_COURTS !== "undefined" ? FOOD_COURTS.filter(x => nearestArea(x.g) === A.k) : [];
     const free = typeof BABYFOOD_SHOPS !== "undefined" ? BABYFOOD_SHOPS.filter(x => x.g && nearestArea(x.g) === A.k) : [];
     return { k:A.k, name: f.name || A.name, note: f.note || A.note || "", shops: f.shops || [], baby: BABY[A.k] || [], kids, courts, free };
@@ -1530,4 +1530,55 @@ document.addEventListener("toggle", ev => { const d = ev.target; if (d && d.clas
   box.addEventListener("click", () => setTimeout(mark, 0));
   const sel = rows.findIndex(r => r.querySelector('.opt[aria-pressed="true"]'));
   show(sel >= 0 ? sel : 0); mark();
+})();
+
+// ---- 🍙 食事の目安（月齢・年齢を選ぶと、その時期の目安・注意と、合うお店・施設を出す。選んだ年齢はこの端末に保存） ----
+const MEAL_FLAGS = {
+  bring: { l:"🥣 離乳食の持ち込みOK", t:/離乳食(の)?持ち込み|持ち込みOK|離乳食持込/ },
+  warm:  { l:"♨️ 離乳食を温めてもらえる", t:/温め/ },
+  free:  { l:"🎁 離乳食がもらえる", t:/離乳食(が)?(無料|もらえる|提供)/ },
+  water: { l:"🍼 ミルク用のお湯", t:/お湯/ },
+  mw:    { l:"🍲 電子レンジ（施設）" },
+  kids:  { l:"🍝 キッズメニュー", t:/キッズメニュー|お子様メニュー|お子さまメニュー|子どもメニュー|キッズプレート|お子様ランチ/ },
+  share: { l:"🍽 取り分けしやすい", t:/取り分け|ハーフサイズ/ },
+  chair: { l:"🪑 子ども用いす・食器", t:/ベビーチェア|子ども用(食器|いす)|お子さまシート|キッズチェア|子ども用の(食器|いす)/ },
+  zash:  { l:"🧸 座敷・小上がり", t:/小上がり|お座敷|座敷/ },
+  aller: { l:"⚕️ アレルギー表示・低アレルゲン", t:/アレルゲン|アレルギー/ }
+};
+const MEAL_STAGE_FLAGS = { s0:["water"], s1:["bring","warm","mw","water"], s2:["bring","warm","free","mw","water"], s3:["bring","warm","free","mw","chair"],
+  s4:["share","kids","chair","bring","zash"], s5:["kids","share","chair","zash"], s6:["kids","aller","zash"], s7:["kids","aller"] };
+const MEAL_LABEL = { s0:"〜4か月", s1:"5〜6か月", s2:"7〜8か月", s3:"9〜11か月", s4:"1歳〜1歳半", s5:"1歳半〜2歳", s6:"3〜5歳", s7:"小学生" };
+let mealSt = "", mealQ = "";
+function mealShopFlags(sh){ const txt = (sh.tags || []).join(" ") + " " + (sh.k || ""); return Object.keys(MEAL_FLAGS).filter(f => MEAL_FLAGS[f].t && MEAL_FLAGS[f].t.test(txt)); }
+function renderMeal(){
+  const box = document.getElementById("meal-shops"); if (!box) return;
+  document.querySelectorAll("#meal-age .opt").forEach(b => b.setAttribute("aria-pressed", b.dataset.st === mealSt ? "true" : "false"));
+  document.querySelectorAll("#meal-stages .mstage").forEach(d => { const on = d.dataset.st === mealSt; d.hidden = !!mealSt && !on; if (on) d.open = true; });
+  const sv = document.getElementById("meal-saved"); if (sv) sv.textContent = mealSt ? `「${MEAL_LABEL[mealSt]}」で表示中（この端末に覚えておきます。ほかのボタンで変えられます）` : "ボタンを押すと、その時期の目安と、合うお店・施設が出ます。";
+  if (!mealSt) { box.innerHTML = ""; return; }
+  const want = MEAL_STAGE_FLAGS[mealSt] || [];
+  const q = mealQ.trim().toLowerCase();
+  const shops = (typeof KIDS_SHOPS !== "undefined" ? KIDS_SHOPS : []).map(sh => ({ sh, fs: mealShopFlags(sh).filter(f => want.includes(f)) }))
+    .filter(x => x.fs.length && (!q || ((x.sh.n || "") + (x.sh.k || "") + (x.sh.gen || "")).toLowerCase().includes(q)))
+    .sort((a, b) => b.fs.length - a.fs.length || String(a.sh.n).localeCompare(String(b.sh.n), "ja"));
+  const mws = want.includes("mw") && typeof BABY !== "undefined" ? Object.entries(BABY).flatMap(([ak, xs]) => xs.filter(b => b.mw === true).map(b => ({ b, area: (() => { const a = (typeof FOOD_AREAS !== "undefined" ? FOOD_AREAS : []).find(a => a.k === ak); return a ? ((typeof FOOD !== "undefined" && FOOD[ak] && FOOD[ak].name) || a.name || a.l || "") : ""; })() })))
+    .filter(x => !q || (x.b.n + x.area).toLowerCase().includes(q)) : [];
+  const flagsHtml = `<div class="mflags">${want.map(f => `<span class="mflag">${MEAL_FLAGS[f].l}</span>`).join("")}</div>`;
+  const shopLiM = x => `<details class="mshop"><summary><b>${esc(x.sh.n)}</b>${x.sh.gen ? `<span class="small">（${esc(x.sh.gen)}）</span>` : ""}<br>${x.fs.map(f => `<span class="mbadge">${MEAL_FLAGS[f].l}</span>`).join("")}</summary><p class="small">${esc(x.sh.k || "")}</p><p class="small">（${esc(x.sh.src || "")}）</p></details>`;
+  const mwHtml = mws.length ? `<h3>🍲 電子レンジがある施設（${mws.length}か所）</h3><ul class="small">${mws.slice(0, 60).map(x => `<li><b>${esc(x.b.n)}</b>${x.area ? `（${esc(x.area)}）` : ""}${x.b.mwText ? `：${esc(x.b.mwText)}` : ""}</li>`).join("")}</ul>` : "";
+  box.innerHTML = `<h3>${esc(MEAL_LABEL[mealSt])}の子とのおでかけに便利なお店・施設</h3>${flagsHtml}
+    <input id="meal-q" type="search" placeholder="店名・駅名・区・ジャンルで絞り込む（例：中華街、ラーメン、港北）" value="${esc(mealQ)}" autocomplete="off">
+    <p class="small">${shops.length}店（印はお店の掲載・公式などにもとづきます。サービスは変わることがあるので、行く前にお店で確かめてください）</p>
+    ${shops.slice(0, 80).map(shopLiM).join("") || '<p class="small">条件に合うお店がまだありません。</p>'}${shops.length > 80 ? `<p class="small">ほか${shops.length - 80}店は、ことばで絞り込むと出ます。</p>` : ""}
+    ${mwHtml}
+    <p class="small">チェーン店の離乳食・キッズメニューのサービスは「🥣 チェーン店の子ども特典」のタブにまとめています。</p>`;
+  const qi = document.getElementById("meal-q");
+  if (qi) qi.addEventListener("input", () => { mealQ = qi.value; const pos = qi.selectionStart; renderMeal(); const n = document.getElementById("meal-q"); if (n) { n.focus(); try { n.setSelectionRange(pos, pos); } catch (_) {} } });
+}
+(function(){
+  const box = document.getElementById("meal-age"); if (!box) return;
+  try { mealSt = localStorage.getItem("mealAge") || ""; } catch (_) {}
+  if (!MEAL_LABEL[mealSt]) mealSt = "";
+  box.addEventListener("click", ev => { const b = ev.target.closest(".opt[data-st]"); if (!b) return; mealSt = b.dataset.st; try { localStorage.setItem("mealAge", mealSt); } catch (_) {} renderMeal(); track("filter", "食事の目安:" + MEAL_LABEL[mealSt]); });
+  renderMeal();
 })();

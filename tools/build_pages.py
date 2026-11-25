@@ -71,7 +71,7 @@ def load_data():
               sp[b.n] = {
                 geo: g || null,
                 papa: p ? { label: PAPA_LABEL[p.v] || "", t: p.t || "" } : null,
-                food: g ? KIDS_SHOPS.map(sh => ({ n: sh.n, gen: sh.gen || "", min: mins(g, sh.g), tags: sh.tags.slice(0, 3) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 8) : [],
+                food: g ? KIDS_SHOPS.filter(sh => sh.g).map(sh => ({ n: sh.n, gen: sh.gen || "", min: mins(g, sh.g), tags: sh.tags.slice(0, 3) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 8) : [],
                 courts: g ? FOOD_COURTS.map(c => ({ n: c.n, min: mins(g, c.g) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 3) : [],
                 clothes: g ? CLOTHES.filter(c => c.g).map(c => ({ n: c.n, url: c.url, hours: c.hours, kinds: c.kinds || [], min: mins(g, c.g) })).filter(x => x.min <= 15).sort((p, q) => p.min - q.min).slice(0, 5) : [],
                 events: g ? EVENTS.map(e => ({ e, g2: venueGeo(e) })).filter(x => x.g2 && mins(g, x.g2) <= 15).map(x => ({ id: x.e.id, min: mins(g, x.g2) })).sort((p, q) => p.min - q.min).slice(0, 10) : [],
