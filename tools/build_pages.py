@@ -590,15 +590,15 @@ def en_links(d, spots, spot_ids):
     jas = []
     ev0 = src.find("const EVENTS")
     ev1 = src.find("];", ev0) if ev0 >= 0 else -1
-    for m in re.finditer(r'\bn:\s*"((?:[^"\\]|\\.)*)",\s*ja:\s*"((?:[^"\\]|\\.)*)"', src):
+    for m in re.finditer(r'\bn:\s*"((?:[^"\\]|\\.)*)",\s*ja:\s*"((?:[^"\\]|\\.)*)"(?:,\s*a:\s*"(\w+)")?', src):
         is_ev = ev0 <= m.start() <= ev1
-        jas.append((m.group(1).replace('\\"', '"'), m.group(2), "event" if is_ev else "spot"))
-    for m in re.finditer(r'"n": "((?:[^"\\]|\\.)*)", "ja": "((?:[^"\\]|\\.)*)"', src):
-        jas.append((m.group(1).replace('\\"', '"'), m.group(2), "spot"))
+        jas.append((m.group(1).replace('\\"', '"'), m.group(2), "event" if is_ev else "spot", "events" if is_ev else (m.group(3) or "other")))
+    for m in re.finditer(r'"a": "(\w+)", "n": "((?:[^"\\]|\\.)*)", "ja": "((?:[^"\\]|\\.)*)"', src):
+        jas.append((m.group(2).replace('\\"', '"'), m.group(3), "spot", m.group(1)))
     ev_keys = [(_norm(re.split(r"[（(]", e["t"])[0]), _norm(e["t"]), "event", e["id"], e["t"]) for e in d["events"]]
     sp_keys = [(_norm(re.split(r"[（(]", n)[0]), _norm(n), "spot", spot_ids[n], short(n)) for n in spots]
     found, seen = [], set()
-    for en, ja, prefer in jas:
+    for en, ja, prefer, area in jas:
         j = _norm(ja)
         if len(j) < 3:
             continue
@@ -606,18 +606,32 @@ def en_links(d, spots, spot_ids):
         for core, full, kind, pid, name in sp_keys + ev_keys:
             if len(core) < 3:
                 continue
-            if j == core or j == full or (len(j) >= 4 and (j in full or core in j)):
+            # かっこの中だけに名前が出てくるもの（例：「キッズガーデン（ヨルノヨ × …）」）には結びつけない
+            if j == core or j == full or (len(j) >= 4 and (j in core or core in j)):
                 score = (0 if kind == prefer else 1, abs(len(core) - len(j)))
                 if best is None or score < best[0]:
                     best = (score, kind, pid, name)
         if best and (best[1], best[2]) not in seen:
             seen.add((best[1], best[2]))
-            found.append((en, best[1], best[2], best[3]))
-    items = "".join(f'<li><a href="/{k}/{pid}/" hreflang="ja">{E(en)}</a> <span class="ja" lang="ja">{E(name)}</span></li>' for en, k, pid, name in found)
+            found.append((en, best[1], best[2], best[3], area))
+    # 同じ場所が「案内ページ（/event/）」と「授乳室・おむつのページ（/spot/）」の両方に出るときは、/spot/ の方に印を付けて区別する
+    def base(x): return re.split(r"\s+(?:&|—|-|\()", x)[0].strip().lower()
+    ev_bases = {base(f[0]) for f in found if f[1] == "event"}
+    AREA_ORDER = [("mm", "Minato Mirai & Yokohama Station"), ("kannai", "Chinatown, Yamashita & Kannai"), ("north", "North Yokohama (Shin-Yokohama)"),
+                  ("zoo", "Zoos & aquariums"), ("park", "Big parks & suburbs"), ("south", "Big parks & suburbs"), ("other", "Big parks & suburbs"), ("events", "Seasonal events")]
+    groups = {}
+    for en, k, pid, name, area in found:
+        label = dict(AREA_ORDER).get(area, "Big parks & suburbs")
+        extra = ' <span class="ja">· nursing rooms &amp; diapers</span>' if k == "spot" and base(en) in ev_bases else ""
+        groups.setdefault(label, []).append(f'<li><a href="/{k}/{pid}/" hreflang="ja">{E(en)}</a> <span class="jp">JP</span>{extra} <span class="ja" lang="ja">{E(name)}</span></li>')
+    order = []
+    for _, lab in AREA_ORDER:
+        if lab not in order: order.append(lab)
+    items = "".join(f'<details class="jagrp"><summary>{E(lab)} ({len(groups[lab])})</summary><ul class="jalinks">{"".join(groups[lab])}</ul></details>' for lab in order if lab in groups)
     block = ('<!--JA:START--><section id="ja-pages"><details class="fold"><summary><h2 class="fsum">More details (in Japanese)'
-             f'<span class="sub">{len(found)} pages — tap to open</span></h2></summary>'
-             '<p>Each page below has the official link, access, nearby family restaurants, and nursing rooms / diaper changing within walking distance. Use your browser\'s translate feature.</p>'
-             f'<ul class="jalinks">{items}</ul></details></section><!--JA:END-->')
+             f'<span class="sub">{len(found)} pages by area — tap to open</span></h2></summary>'
+             '<p>Each page below (marked <span class="jp">JP</span>) is in Japanese, with the official link, access, nearby family restaurants, and nursing rooms / diaper changing within walking distance. Use your browser\'s translate feature.</p>'
+             f'{items}</details></section><!--JA:END-->')
     if "<!--JA:START-->" in src:
         src = re.sub(r"(?s)<!--JA:START-->.*?<!--JA:END-->", lambda _: block, src)
     else:
