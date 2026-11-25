@@ -1191,7 +1191,7 @@ EVENTS.push(
     price:"unknown", priceText:"料金は公式ページに記載なし（BALLPARK Xmasの入場は無料）", place:"屋外", rain:"check", rainText:"雨天決行（荒天時は休業の場合あり）",
     resv:null, resvText:"参加方法は公式ページに記載なし", age:[0,12], ageText:"幼児〜小学生", kind:"limited", start:660,
     sum:"横浜公園のクリスマスイベントで、パウ・パトロールのクイズラリーと、マーシャルとのグリーティングがある2日間。11/30〜12/6は限定ショップ・おもちゃ広場も。",
-    tip:"11/24時点で公式サイトにはまだパウ・パトロールの企画の時間が載っていない。グリーティングの時間・整理券の有無は公式サイトで確認を", url:"https://ballparkxmas.com/2026/", src:"実行委員会のプレスリリース（2026年11月4日）・横浜市観光情報サイト", asof:"2026年11月24日" },
+    tip:"11/25昼に見直したときも、公式サイトにはパウ・パトロールの企画（時間・整理券）がまだ載っていない。行く前に公式サイト・公式SNSで確認を", url:"https://ballparkxmas.com/2026/", src:"実行委員会のプレスリリース（2026年11月4日）・横浜市観光情報サイト", asof:"2026年11月25日" },
   { t:"ムーミン MEET & GREET（BALLPARK Xmas・横浜公園）", days:["12/20"], time:"11:00・13:00・15:00の3回", ward:"中区", venue:"横浜公園（BALLPARK Xmas YOKOHAMA KANNAI 会場）",
     price:"unknown", priceText:"料金は公式ページに記載なし（BALLPARK Xmasの入場は無料）", place:"屋外", rain:"check", rainText:"雨の日の扱いは公式ページに記載なし",
     resv:null, resvText:"予約・整理券は公式ページに記載なし", age:[0,99], ageText:"全年齢", kind:"limited", start:660,
