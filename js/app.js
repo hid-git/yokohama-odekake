@@ -184,13 +184,29 @@ function kidsFoodNear(e){
 // お店の一覧：基本はお店で食べる。テイクアウトできるかは印で出す。多いときは店名とジャンルだけにして「くわしく」で開く
 function isTO(sh){ return sh.tags.some(t => /テイクアウト/.test(t)); }
 function isTOonly(sh){ return sh.tags.some(t => /テイクアウトのみ/.test(t)); }
+const MEAL_FLAGS = {
+  bring: { l:"🥣 離乳食の持ち込みOK", t:/離乳食(の)?持ち込み|持ち込みOK|離乳食持込/ },
+  warm:  { l:"♨️ 離乳食を温めてもらえる", t:/温め/ },
+  free:  { l:"🎁 離乳食がもらえる", t:/離乳食(が)?(無料|もらえる|提供)/ },
+  water: { l:"🍼 ミルク用のお湯", t:/お湯/ },
+  mw:    { l:"🍲 電子レンジ（施設）" },
+  kids:  { l:"🍝 キッズメニュー", t:/キッズメニュー|お子様メニュー|お子さまメニュー|子どもメニュー|キッズプレート|お子様ランチ/ },
+  share: { l:"🍽 取り分けしやすい", t:/取り分け|ハーフサイズ/ },
+  chair: { l:"🪑 子ども用いす・食器", t:/ベビーチェア|子ども用(食器|いす)|お子さまシート|キッズチェア|子ども用の(食器|いす)/ },
+  zash:  { l:"🧸 座敷・小上がり", t:/小上がり|お座敷|座敷/ },
+  aller: { l:"⚕️ アレルギー表示・低アレルゲン", t:/アレルゲン|アレルギー/ }
+};
 function featBadges(sh){
   const t = sh.tags.join(" "), k = sh.k || "";
   const out = [];
   if (!/記載なし|お店に確認/.test(k) && /キッズ|お子様|お子さま|子ども用ワンプレート|ハーフサイズ|子ばんざい/.test(k + " " + t)) out.push("🧒 キッズメニュー");
   if (/ベビーカー(OK|のまま|で入|ごと)/.test(t)) out.push("👶 ベビーカーOK");
   if (/お子さまシート|子ども用(の)?(いす|椅子)|キッズチェア|ベビーチェア|チャイルドシート/.test(t)) out.push("🪑 子ども用いす");
-  if (/離乳食/.test(t + " " + k)) out.push("🥣 離乳食OK");
+  const bf = [];
+  if (MEAL_FLAGS.bring.t.test(t + " " + k)) bf.push("🥣 離乳食持ち込みOK");
+  if (MEAL_FLAGS.warm.t.test(t + " " + k)) bf.push("♨️ 離乳食を温めてもらえる");
+  if (MEAL_FLAGS.free.t.test(t + " " + k) && !/休止|終了|終わ/.test(k)) bf.push("🎁 離乳食がもらえる");
+  out.unshift(...bf);
   return out.map(x => `<span class="fb">${x}</span>`).join("");
 }
 function toBadge(sh){ return isTOonly(sh) ? `<span class="tob only">🥡 テイクアウトのみ</span>` : isTO(sh) ? `<span class="tob">🥡 テイクアウトもOK</span>` : ""; }
@@ -202,7 +218,9 @@ function shopSort(list, key){ return list.slice().sort((a, b) => (isTOonly(key ?
 function kidsFoodHtml(e){
   const near = kidsFoodNear(e);
   if (!near.length) { const g = venueGeo(e); if (!g) return ""; const u = `https://www.google.com/maps/search/${encodeURIComponent("キッズメニュー")}/@${g[0]},${g[1]},16z`; return `<div class="bfood kfood"><b>🍽 子連れで入りやすいお店</b><p class="note">このあたりはまだ調べ中です。会場の中のレストランやフードコートも見てみてください。<a href="${esc(u)}" target="_blank" rel="noopener">会場のまわりの「キッズメニュー」を地図で探す</a>　行ったお店の情報をお問い合わせから送ってもらえると、確かめて載せます。</p></div>`; }
-  const cp = near.length > SHOP_COMPACT, list = shopSort(near, x => x.sh);
+  let list = shopSort(near, x => x.sh); const cp = near.length > SHOP_COMPACT;
+  let ageSt = ""; try { ageSt = localStorage.getItem("mealAge") || ""; } catch (_) {}
+  if (["s1","s2","s3"].includes(ageSt)) { const bfs = x => (MEAL_FLAGS.bring.t.test(x.sh.tags.join(" ") + " " + (x.sh.k || "")) || MEAL_FLAGS.warm.t.test(x.sh.tags.join(" ") + " " + (x.sh.k || ""))) ? 0 : 1; list = list.slice().sort((a, b) => bfs(a) - bfs(b)); }
   return `<div class="bfood kfood"><b>🍽 歩いて10分以内の子連れで入りやすいお店（${near.length}店）</b><ul>${list.map(x => shopLi(x.sh, `${esc(x.sh.k)}<br>${x.sh.tags.map(t=>`<span class="ktag">${esc(t)}</span>`).join("")}<br>会場からベビーカーで約${x.min}分（目安）（${esc(x.sh.src)}）`, cp)).join("")}</ul><div class="note">メニュー・値段は記事掲載時点のものです。行く前にお店の情報を確認してください。</div></div>`;
 }
 function foodCourtNear(e){
@@ -1533,18 +1551,6 @@ document.addEventListener("toggle", ev => { const d = ev.target; if (d && d.clas
 })();
 
 // ---- 🍙 食事の目安（月齢・年齢を選ぶと、その時期の目安・注意と、合うお店・施設を出す。選んだ年齢はこの端末に保存） ----
-const MEAL_FLAGS = {
-  bring: { l:"🥣 離乳食の持ち込みOK", t:/離乳食(の)?持ち込み|持ち込みOK|離乳食持込/ },
-  warm:  { l:"♨️ 離乳食を温めてもらえる", t:/温め/ },
-  free:  { l:"🎁 離乳食がもらえる", t:/離乳食(が)?(無料|もらえる|提供)/ },
-  water: { l:"🍼 ミルク用のお湯", t:/お湯/ },
-  mw:    { l:"🍲 電子レンジ（施設）" },
-  kids:  { l:"🍝 キッズメニュー", t:/キッズメニュー|お子様メニュー|お子さまメニュー|子どもメニュー|キッズプレート|お子様ランチ/ },
-  share: { l:"🍽 取り分けしやすい", t:/取り分け|ハーフサイズ/ },
-  chair: { l:"🪑 子ども用いす・食器", t:/ベビーチェア|子ども用(食器|いす)|お子さまシート|キッズチェア|子ども用の(食器|いす)/ },
-  zash:  { l:"🧸 座敷・小上がり", t:/小上がり|お座敷|座敷/ },
-  aller: { l:"⚕️ アレルギー表示・低アレルゲン", t:/アレルゲン|アレルギー/ }
-};
 const MEAL_STAGE_FLAGS = { s0:["water"], s1:["bring","warm","mw","water"], s2:["bring","warm","free","mw","water"], s3:["bring","warm","free","mw","chair"],
   s4:["share","kids","chair","bring","zash"], s5:["kids","share","chair","zash"], s6:["kids","aller","zash"], s7:["kids","aller"] };
 const MEAL_LABEL = { s0:"〜4か月", s1:"5〜6か月", s2:"7〜8か月", s3:"9〜11か月", s4:"1歳〜1歳半", s5:"1歳半〜2歳", s6:"3〜5歳", s7:"小学生" };
