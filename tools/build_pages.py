@@ -106,6 +106,8 @@ def when_text(e):
 
 
 CSS = """
+.finder{margin:12px 0 6px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}.finder label{font-weight:700;font-size:.95em;width:100%}.finder input{flex:1;min-width:0;font-size:16px;padding:8px 10px;border:1px solid #c9d3dc;border-radius:8px}
+.toc{margin:6px 0 12px;font-size:.9em;line-height:2}.toc a{display:inline-block;margin:0 8px 0 0;white-space:nowrap}
 .gkcmp th[scope=row]{white-space:nowrap}.gkcmp td{font-size:.92em}
 .fac li{padding:8px 10px;margin:6px 0}
 .gk{list-style:none;padding:0}.gk li{border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;margin:8px 0;line-height:1.7}.gk h3{margin:0 0 2px;font-size:1.02em}
@@ -143,7 +145,32 @@ t("pageview",document.title);document.addEventListener("click",function(ev){var 
 if(a.hasAttribute("data-share"))return t("copy_link","個別ページ",n);if(a.dataset.act)return t(a.dataset.act,a.href,n);if(/line\\.me\\/R\\/share/.test(h))return t("line_share","個別ページ",n);if(/^https?:/.test(h)&&h.indexOf(location.hostname)<0)return t("outlink",a.href,n)})})();""" % (json.dumps(track_url), json.dumps(page))
 
 
+FINDER_JS = r"""(function(){var q=document.getElementById('kf');if(!q)return;var art=q.closest('article');var hs=[].slice.call(art.querySelectorAll('h2[id^="s"]'));
+function rows(b){var a=[],us=[];if(b.matches('ul,ol'))us.push(b);us=us.concat([].slice.call(b.querySelectorAll('ul,ol')));us.forEach(function(u){a=a.concat([].slice.call(u.children))});[].slice.call(b.querySelectorAll('tr')).forEach(function(r){if(r.querySelector('td'))a.push(r)});return a}
+function blk(h){var a=[],el=h.nextElementSibling;while(el&&el.tagName!=='H2'){a.push(el);el=el.nextElementSibling}return a}
+q.addEventListener('input',function(){var v=q.value.trim().toLowerCase(),tot=0;hs.forEach(function(h){var n=0,bs=blk(h);bs.forEach(function(b){rows(b).forEach(function(r){var ok=!v||r.textContent.toLowerCase().indexOf(v)>=0;r.style.display=ok?'':'none';if(ok)n++})});var sh=!v||n>0;h.style.display=sh?'':'none';bs.forEach(function(b){b.style.display=sh?'':'none'});tot+=n});
+document.getElementById('kfn').textContent=v?(tot?tot+'件見つかりました':'見つかりませんでした（ことばを短くしてみてください）'):'';document.getElementById('ktoc').style.display=v?'none':''})})();"""
+
+
+def add_finder(body, label, ph):
+    """長い一覧ページ（区ごとの施設・/event/・/spot/）に、目次と「ことばで絞り込む」欄を入れる。JSが動かなくても一覧はそのまま読める"""
+    heads = []
+    def sub(m):
+        txt = re.sub(r"<[^>]+>", "", m.group(1))
+        if txt.startswith("ほかの区"): return m.group(0)
+        heads.append(txt); return f'<h2 id="s{len(heads)}">{m.group(1)}</h2>'
+    body = re.sub(r"<h2>(.*?)</h2>", sub, body)
+    if len(heads) < 3: return body
+    toc = '<nav class="toc" id="ktoc" aria-label="もくじ"><b>もくじ：</b>' + "".join(f'<a href="#s{i + 1}">{E(h)}</a>' for i, h in enumerate(heads)) + "</nav>"
+    box = (f'<div class="finder"><label for="kf">{E(label)}</label><input id="kf" type="search" placeholder="{E(ph)}" autocomplete="off">'
+           '<span id="kfn" class="small" aria-live="polite"></span></div>')
+    i = body.find('<h2 id="s1">')
+    return body[:i] + box + toc + body[i:] + f"<script>{FINDER_JS}</script>"
+
+
 def page(title, desc, path, body, ld, noindex=False, track_url="", tpage="", og=None, og_alt=None):
+    if path in ("event/", "spot/") or (path.startswith("area/") and path.count("/") == 2):
+        body = add_finder(body, *{"event/": ("イベント名・会場・区で絞り込む", "例：クリスマス、動物園、中区"), "spot/": ("施設の名前・駅で絞り込む", "例：ららぽーと、横浜駅、そごう")}.get(path, ("施設の名前・種類・町名で絞り込む", "例：プレイルーム、公園、町の名前")))
     url = SITE + path
     up = "../" * path.strip("/").count("/") + "../"
     robots = '<meta name="robots" content="noindex">\n' if noindex else ""
