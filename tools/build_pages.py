@@ -129,6 +129,13 @@ td.y{color:var(--ok);text-align:center;font-weight:700}td.n{color:var(--bad);tex
 .legend,.small{font-size:12px;color:var(--muted)}ul.food .tag{font-size:11.5px;margin-left:6px;padding:1px 7px;border-radius:999px;background:#f1f4f7;color:#3b5266}ul.links{padding-left:1.2em}ul.links li{margin:4px 0}
 .chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:8px 0}.chips li{font-size:12.5px;padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700}
 footer{margin:28px 0 8px;font-size:12px;color:var(--muted)}
+.mlead{margin:4px 0 8px}.mlead summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:14px}.mlead[open] summary{margin-bottom:4px}
+a{color:var(--link)}
+:root{--link:#0b57b5;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#11171e;--card:#19212b;--ink:#e8edf2;--muted:#9aa8b5;--line:#2a3542;--accent:#5cb8dc;--accent-soft:#15303d;--ok:#6cc690;--bad:#f08a7e;--link:#8cc4ff;color-scheme:dark}
+:root:not([data-theme="light"]) .ended{background:#382c14;color:#ffd9a8}:root:not([data-theme="light"]) ul.food .tag{background:#243140;color:#c5d3e0}:root:not([data-theme="light"]) .gk li{border-color:var(--line)}:root:not([data-theme="light"]) .finder input{background:var(--card);color:var(--ink);border-color:var(--line)}:root:not([data-theme="light"]) .btn.main{color:#0c1a22}}
+:root[data-theme="dark"]{--paper:#11171e;--card:#19212b;--ink:#e8edf2;--muted:#9aa8b5;--line:#2a3542;--accent:#5cb8dc;--accent-soft:#15303d;--ok:#6cc690;--bad:#f08a7e;--link:#8cc4ff;color-scheme:dark}
+:root[data-theme="dark"] .ended{background:#382c14;color:#ffd9a8}:root[data-theme="dark"] ul.food .tag{background:#243140;color:#c5d3e0}:root[data-theme="dark"] .gk li{border-color:var(--line)}:root[data-theme="dark"] .finder input{background:var(--card);color:var(--ink);border-color:var(--line)}:root[data-theme="dark"] .btn.main{color:#0c1a22}
 """
 
 SHARE_JS = """document.addEventListener("click",async ev=>{const b=ev.target.closest("[data-share]");if(!b)return;const url=location.href.split("?")[0],title=document.title;
@@ -181,6 +188,7 @@ def page(title, desc, path, body, ld, noindex=False, track_url="", tpage="", og=
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}}catch(_){{}}</script>
 <title>{E(title)}</title>
 <meta name="description" content="{E(desc)}">
 {robots}<link rel="canonical" href="{url}">
@@ -1046,7 +1054,7 @@ def matome_pages(d, track_url):
         ch, cld = crumbs([("トップ", "/"), ("特集・まとめ", "/matome/"), (h1, "")])
         body = f"""{ch}
 <article class="card"><h1>{E(h1)}</h1>
-{lead}
+<details class="mlead"><summary>この特集について</summary>{lead}</details>
 <div class="btns"><a class="btn main" href="/">日にち・区で絞り込む</a><a class="btn" href="/matome/">ほかの特集</a></div>
 {sec}{extra}
 {note}</article>"""
