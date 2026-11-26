@@ -45,6 +45,7 @@ def load_data():
           baby: BABY,
           areas: Object.fromEntries(FOOD_AREAS.map(a => [a.k, (FOOD[a.k] && FOOD[a.k].name) || a.name || ""])),
           rain: RAIN_LABEL,
+          weekends: WEEKENDS,
           // 個別ページを厚くするための、データから出せる周りの情報（推測はしない）
           extra: (() => {
             const strip = h => (h || "").split(/<[^>]+>/).map(x => x.trim()).filter(Boolean);
@@ -205,7 +206,7 @@ def page(title, desc, path, body, ld, noindex=False, track_url="", tpage="", og=
 {body}
 <footer><p>KidsTrip（キッズトリップ）横浜の子連れおでかけ・イベント一覧。施設・主催者の公式情報などをもとに要約しています。内容は変わることがあるので、出かける前に必ず公式ページで確認してください。</p>
 <p>サイトをよくするため、押されたボタン・リンクの回数を、名前などの個人情報なしで記録しています。</p>
-<p class="small"><a href="/event/">イベント一覧</a>　<a href="/area/">区ごとの施設・遊び場</a>　<a href="/spot/">授乳室・おむつ替えのある施設</a><br><a href="/about/">このサイトについて</a>　<a href="/contact/">お問い合わせ</a>　<a href="/privacy/">プライバシーポリシー</a></p></footer>
+<p class="small"><a href="/event/">イベント一覧</a>　<a href="/area/">区ごとの施設・遊び場</a>　<a href="/spot/">授乳室・おむつ替えのある施設</a>　<a href="/matome/">特集・まとめ</a><br><a href="/about/">このサイトについて</a>　<a href="/contact/">お問い合わせ</a>　<a href="/privacy/">プライバシーポリシー</a></p></footer>
 </div>
 <script>{SHARE_JS}{track_js(track_url, tpage)}</script>
 </body>
@@ -985,6 +986,156 @@ def area_pages(d, track_url):
     return out
 
 
+# ---- 特集・まとめ記事（/matome/）：毎日 EVENTS から自動で作り直す。文は決まった形で、データにないことは書かない（2026年11月）
+MATOME_LINKS = []  # (path, 題名)。matome_pages が埋め、index.html のページ一覧に使う
+PRICE_JA = {"free": "無料", "admission": "入園料・入館料のみ", "paid": "有料", "unknown": "料金は要確認"}
+
+
+def _up_days(e):
+    return [k for k in (e.get("days") or []) if iso(k) >= TODAY]
+
+
+def _hm(m):
+    return f"{m // 60}:{m % 60:02d}" if isinstance(m, int) and m > 0 else ""
+
+
+def matome_item(e, day=None):
+    st = (e.get("stop") or {}).get(day) if day else None
+    ds = _up_days(e)
+    when = "" if day else (("・".join(jp_date(k) for k in ds[:4]) + ("ほか" if len(ds) > 4 else "")) if ds else when_text(e))
+    bits = [x for x in [when, E(e.get("ward", "")), E(PRICE_JA.get(e.get("price"), "料金は要確認")), "雨でもOK" if e.get("rain") == "ok" else "", E(e.get("ageText", ""))] if x]
+    venue = split_venue(e.get("venue", ""))[0] if e.get("venue") else ""
+    return (f'<li><a href="/event/{e["id"]}/"><b>{E(e["t"])}</b></a>' + (f' <b style="color:var(--bad)">⛔ {E(st)}</b>' if st else "") +
+            f'<div class="small">{" ・ ".join(bits)}{("　会場：" + E(venue)) if venue else ""}</div>'
+            f'<div>{E(e.get("sum", ""))}</div></li>')
+
+
+def _by_day(evs, days):
+    sec, n = "", 0
+    for k in days:
+        xs = sorted([e for e in evs if k in (e.get("days") or [])], key=lambda e: (e.get("start") or 9999, e["t"]))
+        if not xs: continue
+        n += len(xs)
+        sec += f'<h2 id="s{k.replace("/", "-")}">{jp_date(k)}（{len(xs)}件）</h2><ul class="links">' + "".join(matome_item(e, k) for e in xs) + "</ul>"
+    return sec, n
+
+
+def _by_first(evs):
+    xs = sorted(evs, key=lambda e: (iso(_up_days(e)[0]), e.get("start") or 9999, e["t"]))
+    months = []
+    for e in xs:
+        mo = f"{iso(_up_days(e)[0]).month}月"
+        if not months or months[-1][0] != mo: months.append((mo, []))
+        months[-1][1].append(e)
+    return "".join(f'<h2 id="s{mo}">{mo}（{len(g)}件）</h2><ul class="links">' + "".join(matome_item(e) for e in g) + "</ul>" for mo, g in months)
+
+
+def matome_pages(d, track_url):
+    MATOME_LINKS.clear()
+    evs = d["events"]
+    lim = [e for e in evs if e.get("kind") == "limited" and _up_days(e)]
+    ong = [e for e in evs if e.get("kind") == "ongoing" and not e["t"].startswith("各区")]
+    seasonal = [e for e in ong if re.search(r"\d+/\d+", str(e.get("period") or ""))]  # 会期のある期間イベント（イルミネーションなど）
+    asof = f"{TODAY.year}年{TODAY.month}月{TODAY.day}日"
+    out, cards = [], []
+    note = '<p class="small">情報の時点：' + asof + '（毎日、施設・主催者の公式ページをもとに自動で作り直しています）。中止・変更があることもあるので、出かける前に必ず各イベントの公式ページで確かめてください。</p>'
+
+    def emit(slug, h1, title, desc, lead, sec, items, extra=""):
+        path = f"matome/{slug}/"
+        ch, cld = crumbs([("トップ", "/"), ("特集・まとめ", "/matome/"), (h1, "")])
+        body = f"""{ch}
+<article class="card"><h1>{E(h1)}</h1>
+{lead}
+<div class="btns"><a class="btn main" href="/">日にち・区で絞り込む</a><a class="btn" href="/matome/">ほかの特集</a></div>
+{sec}{extra}
+{note}</article>"""
+        ld = [{"@context": "https://schema.org", "@type": "CollectionPage", "name": h1, "url": SITE + path, "inLanguage": "ja", "dateModified": TODAY.isoformat()}, cld,
+              {"@context": "https://schema.org", "@type": "ItemList", "name": h1, "numberOfItems": len(items),
+               "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(items)]}]
+        out.append((path, page(title, desc, path, body, ld, noindex=not items, track_url=track_url, tpage=path)))
+        MATOME_LINKS.append((path, h1))
+        cards.append((path, h1, desc, len(items)))
+
+    def count_line(xs):
+        nf = sum(1 for e in xs if e.get("price") == "free"); nr = sum(1 for e in xs if e.get("rain") == "ok")
+        return f"無料のものは{nf}件、雨でも開かれるものは{nr}件です。"
+
+    # 1) 今週末
+    wk = next((w for w in d.get("weekends") or [] if iso(w["ds"][-1]) >= TODAY), None)
+    if wk:
+        days = [k for k in wk["ds"] if iso(k) >= TODAY]
+        sec, n = _by_day(lim, days)
+        items = [e for e in lim if set(days) & set(e.get("days") or [])]
+        sea = [e for e in seasonal if e not in items][:15]
+        extra = (f'<h2 id="sseason">期間中ならいつでも行けるイベント（{len(sea)}件）</h2><ul class="links">' + "".join(matome_item(e) for e in sea) + "</ul>") if sea else ""
+        lead = (f"<p>{E(wk['h'])}に、横浜市内で開かれる0歳〜小学生の親子向けイベントを{n}件、日にちごと・始まる時間の順にまとめました。{count_line(items)}"
+                "名前を押すと、時間・料金・予約・雨の日の扱いと、近くの授乳室・ごはんが見られます。</p><p>クリスマスの時期はモールの工作やサンタのグリーティング、地区センターのおはなし会なども多く、整理券や予約がいるものもあります。気になるものは早めに公式ページを見ておくと安心です。</p>")
+        emit("weekend", f"今週末（{wk['h']}）の横浜 子連れおでかけ・イベントまとめ", f"今週末の横浜 子連れイベントまとめ（{wk['h']}・{n}件）｜KidsTrip",
+             f"{wk['h']}に横浜市内で開かれる親子向けイベント{n}件を、日にち・時間順に。無料・雨でもOK・対象年齢も一目で。", lead, sec, items, extra)
+
+    def kw(e, pat): return re.search(pat, e["t"] + " " + str(e.get("sum", "")))
+    # 2) クリスマス
+    xm = [e for e in lim if kw(e, r"クリスマス|Xmas|X'mas|サンタ|ツリー|ノエル|リース")]
+    xs_on = [e for e in seasonal if kw(e, r"クリスマス|Xmas|X'mas|サンタ|ツリー|イルミネーション|ノエル")]
+    extra = (f'<h2 id="sillumi">期間中ずっと楽しめるクリスマスツリー・イルミネーション（{len(xs_on)}件）</h2><ul class="links">' + "".join(matome_item(e) for e in xs_on) + "</ul>") if xs_on else ""
+    lead = (f"<p>横浜市内で開かれる、子どもと楽しめるクリスマスのイベントを{len(xm)}件、日にち順にまとめました。サンタクロースやキャラクターのグリーティング、リースやツリーの工作、クリスマスのおはなし会など。{count_line(xm)}"
+            f"{'下のほうには、期間中ならいつでも見られるツリー・イルミネーション' + str(len(xs_on)) + '件も並べています。' if xs_on else ''}</p>"
+            "<p>工作やグリーティングは整理券・事前申込みのものが多く、すぐに定員になることもあります。12/24・25の平日に開かれるものもあるので、日にちを確かめてください。</p>")
+    emit("christmas", "横浜のクリスマスイベントまとめ【子連れ・親子向け】", f"横浜のクリスマスイベント 子連れ・親子向けまとめ（{len(xm)}件）｜KidsTrip",
+         f"横浜市内の子ども・親子向けクリスマスイベント{len(xm)}件。サンタのグリーティング、リース・ツリーの工作、おはなし会、イルミネーションなど。", lead, _by_first(xm), xm + xs_on, extra)
+
+    # 3) 雨の日
+    rn = [e for e in lim if e.get("rain") == "ok" and re.search(r"屋内|館内|室内", str(e.get("place", "")))]
+    rp = [e for e in ong if e.get("price") == "free" and play_ok(e) and re.search(r"屋内|館内|室内", str(e.get("place", "")))]
+    extra = (f'<h2 id="splay">雨の日の無料の室内遊び場</h2><p>地区センターのプレイルームや子育て支援拠点など、無料の室内遊び場を{len(rp)}か所載せています。区ごとの一覧から探せます：' +
+             " ".join(f'<a href="/area/{sl}/">{w}</a>' for w, sl in WARD_SLUG.items() if os.path.exists(os.path.join(ROOT, "area", sl))) + "</p>") if rp else ""
+    lead = (f"<p>雨の日でも開かれる、屋内の親子向けイベントを{len(rn)}件まとめました（会場が屋内で、公式に雨でも開くと書いてあるもの）。モールの工作・体験や、地区センター・図書館のおはなし会など。{count_line(rn)}</p>"
+            "<p>いつでも行ける無料の室内遊び場（地区センターのプレイルーム・子育て支援拠点）は、下の区ごとの一覧からどうぞ。</p>")
+    emit("rainy", "雨の日も行ける 横浜の屋内 子連れイベントまとめ", f"雨の日も行ける 横浜の屋内 子連れイベント（{len(rn)}件）｜KidsTrip",
+         f"雨でも開かれる横浜市内の屋内の親子向けイベント{len(rn)}件と、無料の室内遊び場{len(rp)}か所。モールの工作、おはなし会など。", lead, _by_first(rn), rn, extra)
+
+    # 4) 無料
+    fr = [e for e in lim if e.get("price") == "free"]
+    lead = (f"<p>参加費のいらない、横浜市内の親子向けイベントを{len(fr)}件、日にち順にまとめました。区の地区センター・図書館のおはなし会、モールのワークショップ、公園のイベントなど。雨でも開かれるものは{sum(1 for e in fr if e.get('rain') == 'ok')}件です。</p>"
+            "<p>無料でも、事前の申込み・整理券がいるものや、材料がなくなりしだい終わるものがあります。名前を押して、予約の欄を確かめてください。</p>")
+    emit("free", "無料で参加できる 横浜の子連れイベントまとめ", f"無料の横浜 子連れイベントまとめ（{len(fr)}件）｜KidsTrip",
+         f"参加無料の横浜市内の親子向けイベント{len(fr)}件。おはなし会、モールの工作、公園のイベントなどを日にち順に。", lead, _by_first(fr), fr)
+
+    # 5) 赤ちゃん（0〜2歳）
+    def baby_ok(e):
+        a = e.get("age") or [0, 99]
+        return a[0] == 0 and a[1] <= 3 or kw(e, r"赤ちゃん|0歳|ベビー|乳幼児|親子ふれあい")
+    bb = [e for e in lim if baby_ok(e)]
+    lead = (f"<p>0歳〜2歳くらいの赤ちゃん・小さな子と行ける、横浜市内の親子向けイベントを{len(bb)}件まとめました（対象が0歳から3歳くらいまでのものと、赤ちゃん向けと書いてあるもの）。わらべうた・リトミック・おはなし会・親子の広場など。{count_line(bb)}</p>"
+            '<p>授乳室・おむつ替えの場所は、各イベントのページの「近くのおむつ替え」や、<a href="/spot/">授乳室・おむつ替えのある施設一覧</a>で確かめられます。</p>')
+    emit("baby", "赤ちゃん（0〜2歳）と行ける 横浜の親子イベントまとめ", f"赤ちゃん・0〜2歳と行ける横浜の親子イベント（{len(bb)}件）｜KidsTrip",
+         f"0〜2歳の赤ちゃんと行ける横浜市内の親子イベント{len(bb)}件。わらべうた、リトミック、おはなし会など。近くの授乳室も。", lead, _by_first(bb), bb)
+
+    # 6) 年末年始・お正月
+    ny = [e for e in lim if kw(e, r"お正月|正月|書き初め|書初|餅つき|もちつき|初詣|凧|たこあげ|門松|しめ縄|干支|新春|新年|年末|カウントダウン")]
+    if ny:
+        lead = (f"<p>年末年始・お正月に、横浜市内で子どもと楽しめるイベントを{len(ny)}件まとめました。お正月飾りの工作、書き初め、もちつき、新春のイベントなど。{count_line(ny)}</p>"
+                "<p>年末年始は施設の休館日が多く、開館日もふだんと違うことがあります。出かける前に公式ページで開館日を確かめてください。</p>")
+        emit("newyear", "年末年始・お正月の横浜 子連れイベントまとめ", f"年末年始・お正月の横浜 子連れイベント（{len(ny)}件）｜KidsTrip",
+             f"横浜市内の年末年始・お正月の親子イベント{len(ny)}件。お正月飾りの工作、書き初め、もちつき、新春イベントなど。", lead, _by_first(ny), ny)
+
+    # 入口 /matome/
+    ch, cld = crumbs([("トップ", "/"), ("特集・まとめ", "")])
+    lis = "".join(f'<li><a href="/{p_}"><b>{E(h)}</b></a>（{n}件）<div class="small">{E(ds)}</div></li>' for p_, h, ds, n in cards)
+    body = f"""{ch}
+<article class="card"><h1>横浜の子連れおでかけ 特集・まとめ</h1>
+<p>KidsTripに載せている横浜市内の親子向けイベントを、テーマごとにまとめた特集です。今週末のイベント、クリスマス、雨の日、無料、赤ちゃんと行けるものなど。どの特集も毎日の更新に合わせて自動で作り直すので、いつ開いてもこれから開かれるものだけが並びます。</p>
+<p>日にち・区・無料かどうかなどで自由に絞り込むときは<a href="/">トップの一覧</a>、いつでも行ける施設・公園は<a href="/area/">区ごとの施設・遊び場</a>からどうぞ。</p>
+<h2>特集の一覧</h2><ul class="links">{lis}</ul>
+{note}</article>"""
+    out.append(("matome/", page("横浜の子連れおでかけ 特集・まとめ｜KidsTrip", "横浜の親子向けイベントをテーマ別に。今週末のイベント、クリスマス、雨の日、無料、赤ちゃんと行けるイベントなど。毎日更新。", "matome/", body,
+                                [{"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜の子連れおでかけ 特集・まとめ", "url": SITE + "matome/", "inLanguage": "ja"}, cld,
+                                 {"@context": "https://schema.org", "@type": "ItemList", "name": "特集・まとめ", "numberOfItems": len(cards),
+                                  "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": SITE + c[0], "name": c[1]} for i, c in enumerate(cards)]}],
+                                track_url=track_url, tpage="matome/")))
+    return out
+
+
 def index_pages(d, spots, spot_ids, track_url, form_url):
     """一覧ページ：/event/（日にちのあるイベント）・/spot/（赤ちゃん設備のある施設）・/contact/（お問い合わせ）"""
     out = []
@@ -1072,7 +1223,7 @@ def main():
             d["_ev_of_spot"][n] = e
             d["_spot_of_ev"][e["id"]] = n
     gk_man = {}
-    for gp, gh in gakudo_pages(track_url) + area_pages(d, track_url) + index_pages(d, spots, spot_ids, track_url, fm.group(1) if fm else "/"):
+    for gp, gh in gakudo_pages(track_url) + area_pages(d, track_url) + matome_pages(d, track_url) + index_pages(d, spots, spot_ids, track_url, fm.group(1) if fm else "/"):
         os.makedirs(os.path.join(ROOT, gp), exist_ok=True)
         open(os.path.join(ROOT, gp, "index.html"), "w", encoding="utf-8").write(gh)
         hh = hashlib.sha1(gh.encode()).hexdigest()[:12]
@@ -1132,7 +1283,7 @@ def main():
     def urlset(us):
         return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
             f"  <url><loc>{u}</loc><lastmod>{lm}</lastmod><changefreq>{cf}</changefreq></url>\n" for u, lm, cf in us) + "</urlset>\n"
-    IDX = {SITE + "event/", SITE + "spot/"}  # 一覧ページはふつうのページとして扱う
+    IDX = {SITE + "event/", SITE + "spot/"}  # /matome/ は /event/ を含まないので、ふつうのページ（sitemap-pages）に入る  # 一覧ページはふつうのページとして扱う
     def is_event(u):
         if "/event/" not in u or u in IDX: return False
         return new_man["event"].get(u.rstrip("/").split("/")[-1], {}).get("type") == "Event"
@@ -1151,7 +1302,8 @@ def main():
     # index.html：ページへのリンク一覧と、構造化データ（ItemList・Organization）
     ev_live = [e for e in d["events"]]
     links = ('<details class="fold pagelinks"><summary>イベント・施設のページ一覧</summary><div class="fbody">'
-             '<p><a href="/event/">イベント一覧（日にち順）</a>　<a href="/area/">区ごとの施設・遊び場</a>　<a href="/spot/">授乳室・おむつ替えのある施設</a></p>'
+             '<p><a href="/event/">イベント一覧（日にち順）</a>　<a href="/area/">区ごとの施設・遊び場</a>　<a href="/spot/">授乳室・おむつ替えのある施設</a>　<a href="/matome/">特集・まとめ</a></p>'
+             '<h3 class="fsum-static">特集・まとめ</h3><ul class="plinks">' + "".join(f'<li><a href="/{mp}">{E(mt)}</a></li>' for mp, mt in MATOME_LINKS) + "</ul>"
              '<h3 class="fsum-static">イベント</h3><ul class="plinks">' + "".join(f'<li><a href="/event/{e["id"]}/">{E(e["t"])}</a></li>' for e in ev_live if e.get("kind") != "ongoing") + "</ul>"
              '<h3 class="fsum-static">区ごとの施設・遊び場</h3><ul class="plinks">' + "".join(f'<li><a href="/area/{sl}/">{w}</a></li>' for w, sl in WARD_SLUG.items() if os.path.exists(os.path.join(ROOT, "area", sl))) + "</ul>"
              '<h3 class="fsum-static">赤ちゃん設備のある施設</h3><ul class="plinks">' + "".join(f'<li><a href="/spot/{spot_ids[n]}/">{E(short(n))}</a></li>' for n in spots) + "</ul></div></details>")
