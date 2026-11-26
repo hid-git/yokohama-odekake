@@ -987,6 +987,7 @@ def area_pages(d, track_url):
 
 
 # ---- 特集・まとめ記事（/matome/）：毎日 EVENTS から自動で作り直す。文は決まった形で、データにないことは書かない（2026年11月）
+MATOME_COUNT = {}  # path → 件数（トップの「📰 特集」に出す）
 MATOME_LINKS = []  # (path, 題名)。matome_pages が埋め、index.html のページ一覧に使う
 PRICE_JA = {"free": "無料", "admission": "入園料・入館料のみ", "paid": "有料", "unknown": "料金は要確認"}
 
@@ -1055,6 +1056,7 @@ def matome_pages(d, track_url):
         out.append((path, page(title, desc, path, body, ld, noindex=not items, track_url=track_url, tpage=path)))
         MATOME_LINKS.append((path, h1))
         cards.append((path, h1, desc, len(items) if count is None else count))
+        MATOME_COUNT[path] = cards[-1][3]
 
     def count_line(xs):
         nf = sum(1 for e in xs if e.get("price") == "free"); nr = sum(1 for e in xs if e.get("rain") == "ok")
@@ -1352,6 +1354,11 @@ def main():
         fcv = hashlib.sha1(open(FAC_JSON, "rb").read()).hexdigest()[:10]
         src = re.sub(r'data-src="/tools/facilities\.json\?v=[0-9a-f]*"', f'data-src="/tools/facilities.json?v={fcv}"', src)
     src = re.sub(r"<!--PLAY:START-->.*?<!--PLAY:END-->", lambda _: f"<!--PLAY:START-->{playhtml}<!--PLAY:END-->", src, flags=re.S)
+    # トップの「📰 特集」：まとめ記事への入口（横にスクロールする丸いボタン）
+    MSHORT = {"weekend": "今週末", "christmas": "クリスマス", "rainy": "雨の日", "free": "無料", "baby": "赤ちゃんと", "newyear": "お正月"}
+    mhtml = ('<section class="matome" aria-label="特集・まとめ"><h2>📰 特集<a href="/matome/" data-act="matome">すべての特集</a></h2><ul>' + "".join(
+        f'<li><a href="/{c}" data-act="matome">{E(MSHORT.get(c.split("/")[1], t))}' + (f'<span>{MATOME_COUNT[c]}件</span>' if MATOME_COUNT.get(c) else "") + "</a></li>" for c, t in MATOME_LINKS) + "</ul></section>")
+    src = re.sub(r"<!--MATOME:START-->.*?<!--MATOME:END-->", lambda _: f"<!--MATOME:START-->{mhtml}<!--MATOME:END-->", src, flags=re.S)
     src = re.sub(r"<!--NEW:START-->.*?<!--NEW:END-->", lambda _: f"<!--NEW:START-->{newhtml}<!--NEW:END-->", src, flags=re.S)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (org, item_list))
     src = re.sub(r"<!--PAGES:START-->.*?<!--PAGES:END-->", lambda _: f"<!--PAGES:START-->{links}<!--PAGES:END-->", src, flags=re.S)

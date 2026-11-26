@@ -1275,6 +1275,7 @@ document.addEventListener("click", ev => {
   const href = a.getAttribute("href") || "";
   if (a.dataset.act === "official") return track("official", a.href, name);
   if (a.dataset.act === "resv") return track("resv", a.href, name);
+  if (a.dataset.act === "matome") return track("matome", href);
   if (/^tel:/.test(href)) return track("tel", href.slice(4), name);
   if (/google\.[^/]+\/maps|transit\.yahoo/.test(href)) {
     const kind = /transit\.yahoo/.test(href) ? "Yahoo!乗換案内" : /travelmode=walking/.test(href) ? "徒歩ルート" : "Googleマップ";
