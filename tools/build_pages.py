@@ -1040,7 +1040,7 @@ def matome_pages(d, track_url):
     out, cards = [], []
     note = '<p class="small">情報の時点：' + asof + '（毎日、施設・主催者の公式ページをもとに自動で作り直しています）。中止・変更があることもあるので、出かける前に必ず各イベントの公式ページで確かめてください。</p>'
 
-    def emit(slug, h1, title, desc, lead, sec, items, extra=""):
+    def emit(slug, h1, title, desc, lead, sec, items, extra="", count=None):
         path = f"matome/{slug}/"
         ch, cld = crumbs([("トップ", "/"), ("特集・まとめ", "/matome/"), (h1, "")])
         body = f"""{ch}
@@ -1054,7 +1054,7 @@ def matome_pages(d, track_url):
                "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(items)]}]
         out.append((path, page(title, desc, path, body, ld, noindex=not items, track_url=track_url, tpage=path)))
         MATOME_LINKS.append((path, h1))
-        cards.append((path, h1, desc, len(items)))
+        cards.append((path, h1, desc, len(items) if count is None else count))
 
     def count_line(xs):
         nf = sum(1 for e in xs if e.get("price") == "free"); nr = sum(1 for e in xs if e.get("rain") == "ok")
@@ -1064,14 +1064,15 @@ def matome_pages(d, track_url):
     wk = next((w for w in d.get("weekends") or [] if iso(w["ds"][-1]) >= TODAY), None)
     if wk:
         days = [k for k in wk["ds"] if iso(k) >= TODAY]
-        sec, n = _by_day(lim, days)
+        sec, _ = _by_day(lim, days)
         items = [e for e in lim if set(days) & set(e.get("days") or [])]
+        n = len(items)
         sea = [e for e in seasonal if e not in items][:15]
         extra = (f'<h2 id="sseason">期間中ならいつでも行けるイベント（{len(sea)}件）</h2><ul class="links">' + "".join(matome_item(e) for e in sea) + "</ul>") if sea else ""
-        lead = (f"<p>{E(wk['h'])}に、横浜市内で開かれる0歳〜小学生の親子向けイベントを{n}件、日にちごと・始まる時間の順にまとめました。{count_line(items)}"
+        lead = (f"<p>{E(wk['h'])}に、横浜市内で開かれる0歳〜小学生の親子向けイベントを{n}件、日にちごと・始まる時間の順にまとめました（2日とも開かれるものは両方の日に出ています）。{count_line(items)}"
                 "名前を押すと、時間・料金・予約・雨の日の扱いと、近くの授乳室・ごはんが見られます。</p><p>クリスマスの時期はモールの工作やサンタのグリーティング、地区センターのおはなし会なども多く、整理券や予約がいるものもあります。気になるものは早めに公式ページを見ておくと安心です。</p>")
         emit("weekend", f"今週末（{wk['h']}）の横浜 子連れおでかけ・イベントまとめ", f"今週末の横浜 子連れイベントまとめ（{wk['h']}・{n}件）｜KidsTrip",
-             f"{wk['h']}に横浜市内で開かれる親子向けイベント{n}件を、日にち・時間順に。無料・雨でもOK・対象年齢も一目で。", lead, sec, items, extra)
+             f"{wk['h']}に横浜市内で開かれる親子向けイベント{n}件を、日にち・時間順に。無料・雨でもOK・対象年齢も一目で。", lead, sec, items, extra, count=n)
 
     def kw(e, pat): return re.search(pat, e["t"] + " " + str(e.get("sum", "")))
     # 2) クリスマス
@@ -1082,7 +1083,7 @@ def matome_pages(d, track_url):
             f"{'下のほうには、期間中ならいつでも見られるツリー・イルミネーション' + str(len(xs_on)) + '件も並べています。' if xs_on else ''}</p>"
             "<p>工作やグリーティングは整理券・事前申込みのものが多く、すぐに定員になることもあります。12/24・25の平日に開かれるものもあるので、日にちを確かめてください。</p>")
     emit("christmas", "横浜のクリスマスイベントまとめ【子連れ・親子向け】", f"横浜のクリスマスイベント 子連れ・親子向けまとめ（{len(xm)}件）｜KidsTrip",
-         f"横浜市内の子ども・親子向けクリスマスイベント{len(xm)}件。サンタのグリーティング、リース・ツリーの工作、おはなし会、イルミネーションなど。", lead, _by_first(xm), xm + xs_on, extra)
+         f"横浜市内の子ども・親子向けクリスマスイベント{len(xm)}件。サンタのグリーティング、リース・ツリーの工作、おはなし会、イルミネーションなど。", lead, _by_first(xm), xm + xs_on, extra, count=len(xm))
 
     # 3) 雨の日
     rn = [e for e in lim if e.get("rain") == "ok" and re.search(r"屋内|館内|室内", str(e.get("place", "")))]
