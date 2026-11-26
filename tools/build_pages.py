@@ -71,6 +71,9 @@ def load_data():
               const g = SPOT_GEO[b.n] || (VENUE_GEO.find(([re]) => re.test(b.n)) || [])[1]; const p = PAPA[b.n];
               sp[b.n] = {
                 geo: g || null,
+                // 座標の出どころ：own＝施設の名前で登録（未確認）、borrowed＝会場の名前のパターンで借りた、official＝公式で確かめた
+                geoSrc: !g ? "" : (typeof GEO_SRC !== "undefined" && GEO_SRC[b.n] === "official") ? "official" : SPOT_GEO[b.n] ? "own" : "borrowed",
+                addr: (typeof SPOT_ADDR !== "undefined" && SPOT_ADDR[b.n]) || null,
                 papa: p ? { label: PAPA_LABEL[p.v] || "", t: p.t || "" } : null,
                 food: g ? KIDS_SHOPS.filter(sh => sh.g).map(sh => ({ n: sh.n, gen: sh.gen || "", min: mins(g, sh.g), tags: sh.tags.slice().sort((p, q) => (/離乳食|温め/.test(q) ? 1 : 0) - (/離乳食|温め/.test(p) ? 1 : 0)).slice(0, 3) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 8) : [],
                 courts: g ? FOOD_COURTS.map(c => ({ n: c.n, min: mins(g, c.g) })).filter(x => x.min <= 10).sort((p, q) => p.min - q.min).slice(0, 3) : [],
@@ -513,17 +516,25 @@ def spot_page(b, area, d, spot_ids, track_url):
         f'<li><a href="/event/{x["id"]}/">{E(x["t"])}</a>（{E(when_text(x)[:30])}）</li>' for x in geo_ev[:8]) + "</ul>") if geo_ev else ""
     near = [x for x in d["baby"].get(area, []) if x["n"] != b["n"]]
     ex = "".join(f"<li>{E(x)}</li>" for x in b.get("ex") or [])
+    ad = sx.get("addr")
+    from urllib.parse import quote
+    if sx.get("geoSrc") == "official":
+        map_url = f"https://www.google.com/maps/search/?api=1&query={sx['geo'][0]},{sx['geo'][1]}"
+    else:  # 座標が確かめられていないときは名前（＋公式の住所）で探す
+        map_url = "https://www.google.com/maps/search/?api=1&query=" + quote(short(b["n"]) + (f" 横浜市{ad['ward']}{ad['st']}" if ad else " 横浜"))
+    addr_row = (f'<tr><th>住所</th><td>{("〒" + E(ad["zip"]) + " ") if ad.get("zip") else ""}神奈川県横浜市{E(ad["ward"])}{E(ad["st"])}'
+                f'<div class="small">（<a href="{E(ad["src"])}" target="_blank" rel="noopener">公式ページ</a>・{E(ad["checked"])}確認）</div></td></tr>') if ad else ""
     body = f"""{ch}
 <article class="card">
 <h1>{E(b['n'])}の授乳室・おむつ替え・お湯</h1>
 <table class="bm"><thead><tr><th>場所</th><th>おむつ替え</th><th>授乳室</th><th>お湯</th><th>レンジ</th></tr></thead><tbody><tr><th>{E(short(b['n']))}</th>{mark(b.get('d'))}{mark(b.get('f'))}{mark(b.get('w'))}{mark(b.get('mw'))}</tr></tbody></table>
 <p class="legend">○ あり　× なし　？ 調べた範囲で確認できず</p>
-<table class="info"><tr><th>場所</th><td>{E(b.get('where'))}</td></tr><tr><th>エリア</th><td>{E(d['areas'].get(area, ''))}</td></tr>{('<tr><th>電子レンジ</th><td>' + E(b.get('mwText')) + '</td></tr>') if b.get('mwText') else ''}</table>
+<table class="info"><tr><th>場所</th><td>{E(b.get('where'))}</td></tr><tr><th>エリア</th><td>{E(d['areas'].get(area, ''))}</td></tr>{addr_row}{('<tr><th>電子レンジ</th><td>' + E(b.get('mwText')) + '</td></tr>') if b.get('mwText') else ''}</table>
 {f'<ul class="chips">{ex}</ul>' if ex else ''}
 <p class="sum">{E(b.get('note'))}</p>
 <p class="small">出典：{E(b.get('src'))}</p>
 <div class="btns"><a class="btn main" data-act="official" href="{E(b.get('url'))}" target="_blank" rel="noopener">公式ページで確認</a>
-<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query={E(short(b['n']))}" target="_blank" rel="noopener">地図で見る</a>
+<a class="btn" href="{E(map_url)}" target="_blank" rel="noopener">地図で見る</a>
 <button type="button" class="btn" data-share="1">🔗 リンクを送る・コピー</button></div>
 </article>
 {same_ev}
@@ -537,11 +548,13 @@ def spot_page(b, area, d, spot_ids, track_url):
     feats = [{"@type": "LocationFeatureSpecification", "name": n, "value": v} for n, v in (("おむつ替え", b.get("d")), ("授乳室", b.get("f")), ("調乳のお湯", b.get("w")), ("離乳食用の電子レンジ", b.get("mw"))) if isinstance(v, bool)]
     og = f"og/spot-{sid}.jpg"
     place = {"@context": "https://schema.org", "@type": spot_type(b["n"]), "name": short(b["n"]), "description": desc, "url": SITE + path, "image": [SITE + og],
-             "address": {"@type": "PostalAddress", "addressLocality": "横浜市", "addressRegion": "神奈川県", "addressCountry": "JP"},
+             "address": {"@type": "PostalAddress", **({"streetAddress": ad["st"]} if ad else {}), "addressLocality": "横浜市" + (ad["ward"] if ad else ""),
+                         "addressRegion": "神奈川県", **({"postalCode": ad["zip"]} if ad and ad.get("zip") else {}), "addressCountry": "JP"},
              "amenityFeature": feats, "publicAccess": True}
     if b.get("url"): place["sameAs"] = b["url"]
-    if sx.get("geo"): place["geo"] = {"@type": "GeoCoordinates", "latitude": sx["geo"][0], "longitude": sx["geo"][1]}
-    if b.get("where"): place["hasMap"] = "https://www.google.com/maps/search/?api=1&query=" + short(b["n"])
+    # 借りた座標（会場の名前のパターンから）は構造化データに出さない。地図リンクに座標を使うのは公式で確かめたものだけ
+    if sx.get("geo") and sx.get("geoSrc") != "borrowed": place["geo"] = {"@type": "GeoCoordinates", "latitude": sx["geo"][0], "longitude": sx["geo"][1]}
+    place["hasMap"] = map_url
     return path, page(title, desc, path, body, [cld, place], track_url=track_url, tpage=path, og=og,
                       og_alt=f"{short(b['n'])}の赤ちゃん設備（おむつ替え・授乳室・お湯）"), b["n"]
 
@@ -1277,6 +1290,15 @@ def main():
             open(out, "w", encoding="utf-8").write(htmltext)
             new_man[kind][pid] = dict(old, ended=True, lastmod=old.get("lastmod", today) if old.get("ended") else today)
     new_man["gakudo"] = gk_man
+    # 同じ座標を2つ以上の施設が使っている組（片方は借り物かもしれない。公式で確かめるまで official にしない）
+    pts = {}
+    for n in spots:
+        g = d["extra"]["sp"].get(n, {}).get("geo")
+        if g: pts.setdefault(f"{g[0]:.4f},{g[1]:.4f}", []).append(n)
+    new_man["geo_dup"] = {k: v for k, v in sorted(pts.items()) if len(v) > 1}
+    for v in new_man["geo_dup"].values():
+        for n in v:
+            if d["extra"]["sp"][n].get("geoSrc") == "official": print("注意：同じ座標の組に official があります →", " / ".join(v))
     new_man["og"], og_made = render_og(d["events"], man.get("og", {}))
     new_man["og_spot"], og_spot = render_og_spots(spots, spot_ids, d["areas"], man.get("og_spot", {}))
     og_made += og_spot
@@ -1372,6 +1394,7 @@ def main():
     src = re.sub(r"<!--PAGES:START-->.*?<!--PAGES:END-->", lambda _: f"<!--PAGES:START-->{links}<!--PAGES:END-->", src, flags=re.S)
     src = re.sub(r"<!--LD:START-->.*?<!--LD:END-->", lambda _: f"<!--LD:START-->{ld}<!--LD:END-->", src, flags=re.S)
     open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(src)
+    print(f"住所 {sum(1 for n in spots if d['extra']['sp'].get(n, {}).get('addr'))}/{len(spots)}  同じ座標の組 {len(new_man['geo_dup'])}")
     print(f"og {og_made}  event {len(built['event'])}  spot {len(built['spot'])}  ended {sum(1 for k in ('event','spot') for v in new_man[k].values() if v.get('ended'))}  sitemap {len(urls)}")
 
 
