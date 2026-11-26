@@ -4960,6 +4960,15 @@
    "name": "太尾公園つちのこプレイパーク（港北区）",
    "type": "Event"
   },
+  "jnsv9f": {
+   "added": "2026-11-27",
+   "chars": 2185,
+   "hash": "8bb43241103d",
+   "lastmod": "2026-11-27",
+   "links": 20,
+   "name": "子どもから家族へ贈るブーケ作り（横浜ハンマーヘッド・無料）",
+   "type": "Event"
+  },
   "jompaw": {
    "added": "2026-11-14",
    "chars": 844,
@@ -6412,7 +6421,7 @@
  },
  "gakudo": {
   "area/": {
-   "hash": "51e8d6b17844",
+   "hash": "2ca6ad95d571",
    "lastmod": "2026-11-27"
   },
   "area/aoba/": {
@@ -6460,8 +6469,8 @@
    "lastmod": "2026-11-27"
   },
   "area/naka/": {
-   "hash": "e5ef8fe87c9d",
-   "lastmod": "2026-11-26"
+   "hash": "50c38cd523da",
+   "lastmod": "2026-11-27"
   },
   "area/nishi/": {
    "hash": "b62b2ecf41df",
@@ -6492,7 +6501,7 @@
    "lastmod": "2026-11-26"
   },
   "event/": {
-   "hash": "c4a1f65f30fc",
+   "hash": "00f4a4d7ea01",
    "lastmod": "2026-11-27"
   },
   "gakudo/": {
@@ -6572,7 +6581,7 @@
    "lastmod": "2026-11-26"
   },
   "matome/": {
-   "hash": "8a63b88e29bd",
+   "hash": "2d50467660e0",
    "lastmod": "2026-11-27"
   },
   "matome/baby/": {
@@ -6584,7 +6593,7 @@
    "lastmod": "2026-11-27"
   },
   "matome/free/": {
-   "hash": "868565fd2376",
+   "hash": "c96493ce6fb8",
    "lastmod": "2026-11-27"
   },
   "matome/newyear/": {
@@ -6596,7 +6605,7 @@
    "lastmod": "2026-11-27"
   },
   "matome/weekend/": {
-   "hash": "e9a10aa173d8",
+   "hash": "7eb7eaa716be",
    "lastmod": "2026-11-27"
   },
   "spot/": {
@@ -7137,6 +7146,7 @@
   "jeg8ox": "404f2247519e",
   "ji11sv": "0c50fb81da18",
   "jkp7kp": "80292819c1db",
+  "jnsv9f": "e27c99d061b8",
   "jompaw": "9e6e9bad92d8",
   "jp2dhf": "9ca4b724686b",
   "jsw7ln": "5e19576d253a",
@@ -9531,8 +9541,8 @@
   },
   "su1u2h": {
    "added": "2026-11-12",
-   "chars": 2817,
-   "hash": "6c92e6db34da",
+   "chars": 2815,
+   "hash": "bbb3aa74418d",
    "lastmod": "2026-11-27",
    "links": 96,
    "name": "横浜ハンマーヘッド",
