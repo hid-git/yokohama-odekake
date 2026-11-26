@@ -2892,6 +2892,15 @@
    "name": "こどもの国 秋の自然つめあわせ（木の実の宝箱づくり）",
    "type": "TouristAttraction"
   },
+  "1yg1iyd": {
+   "added": "2026-11-26",
+   "chars": 1593,
+   "hash": "0fa2354cdf16",
+   "lastmod": "2026-11-26",
+   "links": 12,
+   "name": "レゴプール・レゴブロックのキッズエリア（BALLPARK Xmas・横浜公園）",
+   "type": "Park"
+  },
   "1yi43jv": {
    "added": "2026-11-17",
    "chars": 1003,
@@ -3274,9 +3283,9 @@
   },
   "5iy5bg": {
    "added": "2026-11-19",
-   "chars": 1865,
-   "hash": "aa38f2b24b0c",
-   "lastmod": "2026-11-25",
+   "chars": 2223,
+   "hash": "04f89a06b7cf",
+   "lastmod": "2026-11-26",
    "links": 20,
    "name": "レゴのサンタグリーティング＆ブロック組み立て（BALLPARK Xmas）",
    "type": "Event"
@@ -6257,7 +6266,7 @@
  },
  "gakudo": {
   "area/": {
-   "hash": "fb3c2241fac6",
+   "hash": "1a67735c033f",
    "lastmod": "2026-11-26"
   },
   "area/aoba/": {
@@ -6305,7 +6314,7 @@
    "lastmod": "2026-11-25"
   },
   "area/naka/": {
-   "hash": "f6358e9c8c7d",
+   "hash": "021ed7ae0ec6",
    "lastmod": "2026-11-26"
   },
   "area/nishi/": {
@@ -6699,6 +6708,7 @@
   "1xzezf2": "540ba06423a8",
   "1y1uzh9": "8b43dd53fbad",
   "1yb6kpu": "cc043a3ba899",
+  "1yg1iyd": "fc23e53f22eb",
   "1yi43jv": "124aaa40f6fc",
   "1ymp1ii": "c51cca03eddf",
   "1yp0mnm": "ff9f297c213b",
@@ -6736,7 +6746,7 @@
   "4sl3lj": "1b79acf075f4",
   "4znxed": "577a94b64cb0",
   "5hocv2": "9ae6f26993b6",
-  "5iy5bg": "88cf963406b0",
+  "5iy5bg": "a5dd9401b6c7",
   "5l30nq": "33932782e7e5",
   "5l8j58": "14cace4c2637",
   "5poo2x": "59df74c5f977",
@@ -8122,8 +8132,8 @@
   },
   "1rkdk6a": {
    "added": "2026-11-22",
-   "chars": 3080,
-   "hash": "5281ab3a9957",
+   "chars": 3071,
+   "hash": "6092a1bb6538",
    "lastmod": "2026-11-26",
    "links": 96,
    "name": "BASEGATE横浜関内（関内駅前）",
@@ -8446,10 +8456,10 @@
   },
   "4edchx": {
    "added": "2026-11-23",
-   "chars": 2779,
-   "hash": "968e2405b604",
+   "chars": 2832,
+   "hash": "4d402cc19272",
    "lastmod": "2026-11-26",
-   "links": 94,
+   "links": 95,
    "name": "不老町地域ケアプラザ",
    "type": "CivicStructure"
   },
@@ -8698,10 +8708,10 @@
   },
   "c6a7kv": {
    "added": "2026-11-23",
-   "chars": 2808,
-   "hash": "efadbf0a3787",
+   "chars": 2861,
+   "hash": "7c28988fb71f",
    "lastmod": "2026-11-26",
-   "links": 95,
+   "links": 96,
    "name": "ローソン ダイワロイネットホテル横浜公園店",
    "type": "ConvenienceStore"
   },
@@ -8734,8 +8744,8 @@
   },
   "cwv5hg": {
    "added": "2026-11-23",
-   "chars": 2721,
-   "hash": "075c57589760",
+   "chars": 2726,
+   "hash": "c78ed929ebe7",
    "lastmod": "2026-11-26",
    "links": 96,
    "name": "横浜武道館（関内）",
@@ -9058,8 +9068,8 @@
   },
   "m8ab5h": {
    "added": "2026-11-23",
-   "chars": 2748,
-   "hash": "ed06dc46e645",
+   "chars": 2753,
+   "hash": "85bf60a1f60b",
    "lastmod": "2026-11-26",
    "links": 96,
    "name": "Ash 関内店（美容室）",
