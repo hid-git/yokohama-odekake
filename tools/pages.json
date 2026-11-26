@@ -6600,8 +6600,8 @@
    "lastmod": "2026-11-27"
   },
   "spot/": {
-   "hash": "7727a3c3ed99",
-   "lastmod": "2026-11-26"
+   "hash": "d6ec10f91c5f",
+   "lastmod": "2026-11-27"
   }
  },
  "geo_dup": {
@@ -7403,6 +7403,7 @@
   "2wui6t": "08fa5791f9d3",
   "2xm8ap": "f9740c1361d9",
   "382458": "6ff132abb007",
+  "3b0ibf": "555f839189c0",
   "3b9wwl": "e55918245f16",
   "3f9zdp": "190bbaee2a5e",
   "3i908c": "44ef7830c25f",
@@ -7871,10 +7872,10 @@
   },
   "1bzh0zw": {
    "added": "2026-11-13",
-   "chars": 401,
-   "hash": "9ab8f0806527",
+   "chars": 411,
+   "hash": "d7d130d3fda4",
    "lastmod": "2026-11-27",
-   "links": 6,
+   "links": 7,
    "name": "横浜国際プール（北山田）",
    "type": "SportsActivityLocation"
   },
@@ -7998,10 +7999,10 @@
   },
   "1fvfy18": {
    "added": "2026-11-13",
-   "chars": 1263,
-   "hash": "4593c17d355d",
+   "chars": 1273,
+   "hash": "8652dc40297e",
    "lastmod": "2026-11-27",
-   "links": 14,
+   "links": 15,
    "name": "横浜市歴史博物館",
    "type": "Museum"
   },
@@ -8421,10 +8422,10 @@
   },
   "1t485qs": {
    "added": "2026-11-12",
-   "chars": 400,
-   "hash": "dbad63fe9a83",
+   "chars": 410,
+   "hash": "ee6d7ec5b757",
    "lastmod": "2026-11-27",
-   "links": 6,
+   "links": 7,
    "name": "市営地下鉄 センター南駅のベビーケアスペース",
    "type": "TrainStation"
   },
@@ -8475,10 +8476,10 @@
   },
   "1vcco8d": {
    "added": "2026-11-12",
-   "chars": 1663,
-   "hash": "c5b154285b0c",
+   "chars": 1673,
+   "hash": "3844ffde120c",
    "lastmod": "2026-11-27",
-   "links": 14,
+   "links": 15,
    "name": "モザイクモール港北",
    "type": "ShoppingCenter"
   },
@@ -8574,10 +8575,10 @@
   },
   "1xr99pd": {
    "added": "2026-11-12",
-   "chars": 1599,
-   "hash": "a20d08b1ec2a",
+   "chars": 1609,
+   "hash": "d8816d327f79",
    "lastmod": "2026-11-27",
-   "links": 14,
+   "links": 15,
    "name": "ノースポート・モール",
    "type": "ShoppingCenter"
   },
@@ -8652,6 +8653,15 @@
    "links": 91,
    "name": "セブン-イレブン 横浜上野町店",
    "type": "ConvenienceStore"
+  },
+  "3b0ibf": {
+   "added": "2026-11-27",
+   "chars": 1059,
+   "hash": "ea50dfdd35f9",
+   "lastmod": "2026-11-27",
+   "links": 7,
+   "name": "IKEA横浜（旧IKEA港北）",
+   "type": "Place"
   },
   "3b9wwl": {
    "added": "2026-11-13",
@@ -9367,10 +9377,10 @@
   },
   "okyb79": {
    "added": "2026-11-19",
-   "chars": 1290,
-   "hash": "1fe11d13cdaf",
+   "chars": 1300,
+   "hash": "6b9f29f19197",
    "lastmod": "2026-11-27",
-   "links": 14,
+   "links": 15,
    "name": "港北みなも（センター南）",
    "type": "ShoppingCenter"
   },
@@ -9412,10 +9422,10 @@
   },
   "pmldjs": {
    "added": "2026-11-12",
-   "chars": 1282,
-   "hash": "d684fe1ec8ab",
+   "chars": 1292,
+   "hash": "d158d30d011f",
    "lastmod": "2026-11-27",
-   "links": 14,
+   "links": 15,
    "name": "港北TOKYU S.C.（センター南）",
    "type": "ShoppingCenter"
   },
