@@ -523,7 +523,7 @@ def spot_page(b, area, d, spot_ids, track_url):
     else:  # 座標が確かめられていないときは名前（＋公式の住所）で探す
         map_url = "https://www.google.com/maps/search/?api=1&query=" + quote(short(b["n"]) + (f" 横浜市{ad['ward']}{ad['st']}" if ad else " 横浜"))
     addr_row = (f'<tr><th>住所</th><td>{("〒" + E(ad["zip"]) + " ") if ad.get("zip") else ""}神奈川県横浜市{E(ad["ward"])}{E(ad["st"])}'
-                f'<div class="small">（<a href="{E(ad["src"])}" target="_blank" rel="noopener">公式ページ</a>・{E(ad["checked"])}確認）</div></td></tr>') if ad else ""
+                f'<div class="small">（<a href="{E(ad["src"])}" target="_blank" rel="noopener">公式ページ</a>{("・" + E(ad["via"])) if ad.get("via") else ""}・{E(ad["checked"])}確認）</div></td></tr>') if ad else ""
     body = f"""{ch}
 <article class="card">
 <h1>{E(b['n'])}の授乳室・おむつ替え・お湯</h1>

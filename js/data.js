@@ -1080,7 +1080,7 @@ const VENUE_GEO = [
 ];
 // 施設の住所（spot/ の構造化データと「住所」の行に出す）：施設の公式ページ（または横浜市の公式サイト）で確かめたものだけ。
 // 番地まで揃ったときだけ書く（「みなとみらい2-3」のような途中までの住所は入れない）。名前で自動に突き合わせない（1件ずつ目で確かめる）。郵便番号も公式にあるものだけ。
-// ward＝区、st＝区より後ろ（番地・建物名）、zip＝郵便番号、src＝確かめたページ、checked＝確かめた日
+// ward＝区、st＝区より後ろ（番地・建物名）、zip＝郵便番号、src＝確かめたページ、checked＝確かめた日、via＝利用者が送ってくれた内容のときに書く
 const SPOT_ADDR = {
   "BASEGATE横浜関内（関内駅前）": { zip:"231-0017", ward:"中区", st:"港町1丁目1番1", src:"https://www.basegate-yokohama-kannai.com/service/", checked:"2026-11-27" },
   "横浜マリンタワー": { zip:"231-0023", ward:"中区", st:"山下町14番地1", src:"https://marinetower.yokohama/", checked:"2026-11-27" },
@@ -1090,6 +1090,8 @@ const SPOT_ADDR = {
   "横浜ベイクォーター": { zip:"221-0056", ward:"神奈川区", st:"金港町1-10", src:"https://www.yokohama-bayquarter.com/guidance/", checked:"2026-11-27" },
   "横浜ハンマーヘッド": { ward:"中区", st:"新港2丁目14番1", src:"https://www.hammerhead.co.jp/facility/", checked:"2026-11-27" },
   "ジョイナステラス二俣川（二俣川駅直結）": { ward:"旭区", st:"二俣川2丁目50番地14", src:"https://joinus-terrace.com/feature2/?cd=000012", checked:"2026-11-27" },
+  "MARK IS みなとみらい": { zip:"220-0012", ward:"西区", st:"みなとみらい三丁目5番1号", src:"https://www.mec-markis.jp/mm/", via:"利用者が送った公式ページの内容", checked:"2026-11-27" },
+  "ニュウマン横浜": { zip:"220-0005", ward:"西区", st:"南幸1-1-1", src:"https://www.newoman.jp/yokohama/information/", via:"利用者が送った公式ページの内容", checked:"2026-11-27" },
   "青葉台東急スクエア": { zip:"227-8555", ward:"青葉区", st:"青葉台2-1-1", src:"https://www.aobadai-square.com/shopblog/detail/?cd=013241&scd=000394", checked:"2026-11-27" },
 };
 // 座標の出どころ：施設の公式の住所・地図で確かめた座標だけ "official" と書く。書いていないものは unknown（地図リンクには使わない）
