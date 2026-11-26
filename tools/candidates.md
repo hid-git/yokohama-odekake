@@ -15,10 +15,13 @@
 
 - 12/11・12/12／大通り公園で、あそんでみよう。／大通り公園（中区）／市の12月イベントカレンダー／詳細ページ https://www.city.yokohama.lg.jp/kanko-bunka/kanko-event/eventannai/kyoku-sagasu/kankyo/oodoori_ws.html が開けず（11/25）
 - 12/27・28 トレッサ横浜 千本引き、1/2・3 ズーラシアでお正月、野毛山動物園「新春！のげモルくじ」、各モールの獅子舞、横浜人形の家「新春人形劇まつり」、あーすぷらざ「日本のお正月スタンプラリー」／2026年に開かれたもの。2027年分が公式に出たら載せる（11/25）
-- 12/1〜12/25 のるるん＆てるまるのクリスマス大作戦／たまプラーザ テラス／詳細ページ https://www.tamaplaza-terrace.com/event/detail/?cd=002421 がサイト側のエラー（11/25）
 
-- 12/12・13 たまプラーザ テラス CHRISTMAS FOOD FESTIVAL（詳細 cd=002460 がサイトのエラー、11/26）
 - 12/13 ノースポート・モール ポンポンのクリスマスリース（detail/1424 が開けず、11/26）
 - 12/16・12/22 あーすぷらざ パンくんシリーズ（未就学児・前日WEB予約。時間が画像のみ）、12/25 ふゆの工作 お正月飾り（/event/winter-art2026/）、12/25・1/5 冬休み子ども上映（/event/wintercinema/）／詳細ページが開けず（11/26）
-- 11/30〜12/25 ららぽーと横浜「ドラえもん CHRISTMAS FOR YOU」（https://mitsui-shopping-park.com/lalaport/yokohama/event/3666426.html 、中身未確認 11/26）
-- 12/6 南区・12/15 旭区・12/19 磯子区 のインクルーシブスポーツ（12月の一覧に名前あり。各回の詳細を確かめて載せる、11/26）
+
+- 11/14〜12/25 シーパラダイスのクリスマス（夜のショー・ペンギンのパレード・クリスマスのイルカショー）／八景島シーパラダイス（金沢区）／横浜市観光情報（yw12760）／公式 https://www.seaparadise.co.jp/event/xmas2026.html が開けず、時間・料金を確かめられない（11/27）
+- 12/5 上瀬谷みんなの灯りプロジェクト 16:30〜17:30／上瀬谷公園（瀬谷区）／asahi-sanpo.com／公式 https://seya-hokubu-rengo.com/1276/ ・ https://www.city.yokohama.lg.jp/seya/event-bosyu/kanko/20261123kagayaki.html が開けず（11/27）
+- 12/6 ハッピークリスマス・コンサート（11:30・14:30）／神奈川公会堂／asahi-sanpo.com／公式 https://classic-concert.info/xmas/ が開けず（11/27）
+- 12/6 天王森もちつき 10:00〜12:00／天王森泉公園（泉区）／asahi-sanpo.com／公式 https://www.tennoumori.net/ の行事案内が開けず（11/27）
+- 12/12・13 SUN＆mama+papa おやこFESTIVAL／横浜市歴史博物館（都筑区）／asahi-sanpo.com／公式 https://kdato.hp.peraichi.com/ が開けず（11/27）
+- 12/13 クリスマスおはなし会／港北区民文化センター ミズキーホール／asahi-sanpo.com（元はInstagramの投稿）／会場の公式で確かめる（11/27）
