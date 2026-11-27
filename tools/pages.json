@@ -21,8 +21,8 @@
   "109zabu": {
    "added": "2026-11-12",
    "chars": 1092,
-   "hash": "b97571315d6a",
-   "lastmod": "2026-11-26",
+   "hash": "186dedd5abaa",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "こども縁日（ブランチ横浜南部市場）",
    "type": "Event"
@@ -116,8 +116,8 @@
   "11ka8v": {
    "added": "2026-11-24",
    "chars": 1014,
-   "hash": "6330a1b753f4",
-   "lastmod": "2026-11-26",
+   "hash": "b89ab5582add",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "土曜日のおはなし会（保土ケ谷図書館）",
    "type": "Event"
@@ -349,10 +349,10 @@
   },
   "13rwldt": {
    "added": "2026-11-18",
-   "chars": 822,
-   "hash": "ee64fcf03b5d",
-   "lastmod": "2026-11-26",
-   "links": 15,
+   "chars": 837,
+   "hash": "cc70ebd5d7ae",
+   "lastmod": "2026-11-28",
+   "links": 16,
    "name": "0歳からのよちよちコンサート（かなっくホール）",
    "type": "Event"
   },
@@ -728,9 +728,9 @@
   },
   "189htdg": {
    "added": "2026-11-17",
-   "chars": 1130,
-   "hash": "196bef3247ca",
-   "lastmod": "2026-11-27",
+   "chars": 1133,
+   "hash": "453b0dfadfbb",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "片倉うさぎ山プレイパーク（神奈川区）",
    "type": "Event"
@@ -744,11 +744,20 @@
    "name": "おもちゃの病院（立場地区センター）",
    "type": "Event"
   },
+  "18bwxvl": {
+   "added": "2026-11-28",
+   "chars": 658,
+   "hash": "4c44b23746cd",
+   "lastmod": "2026-11-28",
+   "links": 12,
+   "name": "おはなし会（栄図書館）",
+   "type": "Event"
+  },
   "18fawo1": {
    "added": "2026-11-17",
-   "chars": 787,
-   "hash": "d263185cb141",
-   "lastmod": "2026-11-26",
+   "chars": 790,
+   "hash": "0a75424acf58",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "おはなし会（白根地区センター）",
    "type": "Event"
@@ -1039,9 +1048,9 @@
   },
   "1bfcvsn": {
    "added": "2026-11-19",
-   "chars": 747,
-   "hash": "74f4123c5e00",
-   "lastmod": "2026-11-26",
+   "chars": 750,
+   "hash": "6eb6ae2a9fd2",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "上永谷コミュニティまつり",
    "type": "Event"
@@ -1254,9 +1263,9 @@
   },
   "1fvr5lv": {
    "added": "2026-11-17",
-   "chars": 1217,
-   "hash": "2ce58b4bc5d4",
-   "lastmod": "2026-11-26",
+   "chars": 1220,
+   "hash": "89e4cf8d3a3d",
+   "lastmod": "2026-11-28",
    "links": 18,
    "name": "京急百貨店 クリスマススタンプラリー＆エコキャップアート（上大岡）",
    "type": "Event"
@@ -1387,9 +1396,9 @@
   },
   "1hchrk8": {
    "added": "2026-11-24",
-   "chars": 1266,
-   "hash": "aba67d724a88",
-   "lastmod": "2026-11-26",
+   "chars": 1293,
+   "hash": "5c8a9744759e",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "ズーラシア オカピの赤ちゃん公開",
    "type": "Event"
@@ -1405,9 +1414,9 @@
   },
   "1hnod6o": {
    "added": "2026-11-17",
-   "chars": 1526,
-   "hash": "568f5de0a65c",
-   "lastmod": "2026-11-26",
+   "chars": 1517,
+   "hash": "deb96d51cf01",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "マルシェ・ド・ノエル（トレッサ横浜のクリスマスマーケット）",
    "type": "Event"
@@ -1423,9 +1432,9 @@
   },
   "1hosr95": {
    "added": "2026-11-17",
-   "chars": 2137,
-   "hash": "101ca13dd609",
-   "lastmod": "2026-11-27",
+   "chars": 2148,
+   "hash": "aa0959c4f2e5",
+   "lastmod": "2026-11-28",
    "links": 22,
    "name": "ちびぐるみツリー（ぬいぐるみのクリスマスツリー）",
    "type": "Event"
@@ -1451,8 +1460,9 @@
   "1hrvp28": {
    "added": "2026-11-16",
    "chars": 848,
+   "ended": true,
    "hash": "b19fb11df862",
-   "lastmod": "2026-11-26",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "コアラひろば（大岡地区センター）",
    "type": "Event"
@@ -1567,9 +1577,9 @@
   },
   "1ipin62": {
    "added": "2026-11-17",
-   "chars": 890,
-   "hash": "6a210dd719c0",
-   "lastmod": "2026-11-26",
+   "chars": 893,
+   "hash": "c88978e1e753",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "若葉台プレイパーク（旭区）",
    "type": "Event"
@@ -1746,9 +1756,9 @@
   },
   "1kpqygw": {
    "added": "2026-11-25",
-   "chars": 1319,
-   "hash": "c7cf64b819ad",
-   "lastmod": "2026-11-27",
+   "chars": 1314,
+   "hash": "6a90b5a039c4",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "PiCNiC KiDS FES（たまプラーザ テラス）",
    "type": "Event"
@@ -1880,10 +1890,10 @@
   },
   "1mg2y6m": {
    "added": "2026-11-16",
-   "chars": 817,
-   "hash": "466e356b2e17",
-   "lastmod": "2026-11-26",
-   "links": 14,
+   "chars": 832,
+   "hash": "44c47dd93435",
+   "lastmod": "2026-11-28",
+   "links": 15,
    "name": "星のマカロニリース作り（今井地区センター・小学生向け）",
    "type": "Event"
   },
@@ -1958,6 +1968,15 @@
    "lastmod": "2026-11-22",
    "links": 19,
    "name": "こどもの国 あそび広場",
+   "type": "Event"
+  },
+  "1n5vv7m": {
+   "added": "2026-11-28",
+   "chars": 762,
+   "hash": "4c29f6f68d14",
+   "lastmod": "2026-11-28",
+   "links": 13,
+   "name": "紙芝居の会（栄図書館）",
    "type": "Event"
   },
   "1n643jq": {
@@ -2185,9 +2204,9 @@
   },
   "1pfrxpf": {
    "added": "2026-11-17",
-   "chars": 782,
-   "hash": "7bd53f697597",
-   "lastmod": "2026-11-26",
+   "chars": 785,
+   "hash": "df6b366e92f3",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "おもちゃの病院（神奈川地区センター）",
    "type": "Event"
@@ -2787,8 +2806,8 @@
   "1wbgz7c": {
    "added": "2026-11-17",
    "chars": 909,
-   "hash": "2be7f9e2b09a",
-   "lastmod": "2026-11-26",
+   "hash": "98f3267055d4",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "つるみプレイパーク（鶴見区）",
    "type": "Event"
@@ -2895,10 +2914,10 @@
   },
   "1xchodz": {
    "added": "2026-11-17",
-   "chars": 600,
-   "hash": "e4408cdce61a",
-   "lastmod": "2026-11-27",
-   "links": 11,
+   "chars": 618,
+   "hash": "088d5599d5e1",
+   "lastmod": "2026-11-28",
+   "links": 12,
    "name": "赤ちゃん教室（立場地区センターの子育て行事）",
    "type": "Event"
   },
@@ -2941,8 +2960,9 @@
   "1xzezf2": {
    "added": "2026-11-16",
    "chars": 1219,
+   "ended": true,
    "hash": "701959d3198d",
-   "lastmod": "2026-11-26",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "ズーラシア オオアリクイの双子の赤ちゃん公開",
    "type": "Event"
@@ -3005,8 +3025,8 @@
   "1ymp1ii": {
    "added": "2026-11-12",
    "chars": 798,
-   "hash": "9209a3279b30",
-   "lastmod": "2026-11-26",
+   "hash": "fad747a40c12",
+   "lastmod": "2026-11-28",
    "links": 14,
    "name": "せやマルシェ With GREEN Fes.",
    "type": "Event"
@@ -3634,9 +3654,9 @@
   },
   "8fmn7b": {
    "added": "2026-11-16",
-   "chars": 932,
-   "hash": "f1a9d8b46d3d",
-   "lastmod": "2026-11-27",
+   "chars": 927,
+   "hash": "8d9c3e516e40",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "牛乳パックが大変身！Ecoワークショップ（中村地区センター）",
    "type": "Event"
@@ -4350,9 +4370,9 @@
   },
   "eecbay": {
    "added": "2026-11-17",
-   "chars": 971,
-   "hash": "07164ca1c181",
-   "lastmod": "2026-11-26",
+   "chars": 956,
+   "hash": "5a5df1b994e8",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "白幡の森プレイパーク（神奈川区）",
    "type": "Event"
@@ -4404,9 +4424,9 @@
   },
   "eoo9go": {
    "added": "2026-11-20",
-   "chars": 2311,
-   "hash": "d04ae5aaa9ce",
-   "lastmod": "2026-11-26",
+   "chars": 2320,
+   "hash": "5b10e7b7ae91",
+   "lastmod": "2026-11-28",
    "links": 22,
    "name": "スマイル・ポートの読み聞かせ・おはなし会",
    "type": "Event"
@@ -4646,6 +4666,15 @@
    "name": "すくすくサロン（都筑区・親と子のつどいの広場）",
    "type": "TouristAttraction"
   },
+  "gv2i4a": {
+   "added": "2026-11-28",
+   "chars": 700,
+   "hash": "19d776a3179c",
+   "lastmod": "2026-11-28",
+   "links": 13,
+   "name": "かながわこどもひろば おはなし会（栄図書館）",
+   "type": "Event"
+  },
   "gvoxz1": {
    "added": "2026-11-17",
    "chars": 837,
@@ -4666,9 +4695,9 @@
   },
   "gz0lvf": {
    "added": "2026-11-16",
-   "chars": 818,
-   "hash": "68295b2c8792",
-   "lastmod": "2026-11-26",
+   "chars": 820,
+   "hash": "8e16dae0a365",
+   "lastmod": "2026-11-28",
    "links": 13,
    "name": "こどもお菓子教室（豊田地区センター）",
    "type": "Event"
@@ -4801,8 +4830,8 @@
   "ibbsld": {
    "added": "2026-11-17",
    "chars": 769,
-   "hash": "253ec4af8ba6",
-   "lastmod": "2026-11-26",
+   "hash": "72ff326cfe2e",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "おもちゃ病院（六浦地区センター）",
    "type": "Event"
@@ -4814,6 +4843,15 @@
    "lastmod": "2026-11-27",
    "links": 15,
    "name": "絵本だいすき！読み聞かせ（立場地区センター）",
+   "type": "Event"
+  },
+  "ido4bn": {
+   "added": "2026-11-28",
+   "chars": 606,
+   "hash": "253b24a76aee",
+   "lastmod": "2026-11-28",
+   "links": 10,
+   "name": "親子のおはなし会（栄図書館）",
    "type": "Event"
   },
   "iea40r": {
@@ -4845,9 +4883,9 @@
   },
   "ilazb7": {
    "added": "2026-11-12",
-   "chars": 1095,
-   "hash": "fe77fb5ca71a",
-   "lastmod": "2026-11-26",
+   "chars": 1098,
+   "hash": "ab8c1966ae8e",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "ズーラシア 折り紙でつくる熱帯林のどうぶつたち",
    "type": "Event"
@@ -4953,10 +4991,10 @@
   },
   "jkp7kp": {
    "added": "2026-11-17",
-   "chars": 905,
-   "hash": "8df03f3c5b24",
-   "lastmod": "2026-11-27",
-   "links": 16,
+   "chars": 833,
+   "hash": "97dfe4a45432",
+   "lastmod": "2026-11-28",
+   "links": 13,
    "name": "太尾公園つちのこプレイパーク（港北区）",
    "type": "Event"
   },
@@ -5244,10 +5282,10 @@
   },
   "nhvun1": {
    "added": "2026-11-27",
-   "chars": 655,
-   "hash": "616cbf3455cf",
-   "lastmod": "2026-11-27",
-   "links": 12,
+   "chars": 673,
+   "hash": "7c9bb95026b2",
+   "lastmod": "2026-11-28",
+   "links": 13,
    "name": "みんなのインクルーシブスポーツ（旭区）",
    "type": "Event"
   },
@@ -5370,8 +5408,8 @@
   "olckix": {
    "added": "2026-11-12",
    "chars": 1052,
-   "hash": "1801d4018e2b",
-   "lastmod": "2026-11-26",
+   "hash": "8f234756f5f3",
+   "lastmod": "2026-11-28",
    "links": 15,
    "name": "みんなのインクルーシブスポーツ（泉区）",
    "type": "Event"
@@ -5801,8 +5839,8 @@
   "taypql": {
    "added": "2026-11-24",
    "chars": 992,
-   "hash": "80ba39015881",
-   "lastmod": "2026-11-26",
+   "hash": "d39971a2ef05",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "金沢動物園 ののはな館のおはなし会",
    "type": "Event"
@@ -5998,9 +6036,9 @@
   },
   "vjjm8g": {
    "added": "2026-11-17",
-   "chars": 1134,
-   "hash": "16e8794d002b",
-   "lastmod": "2026-11-27",
+   "chars": 1129,
+   "hash": "6664f7555d54",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "鯛ヶ崎公園プレイパーク（港北区）",
    "type": "Event"
@@ -6118,8 +6156,8 @@
   "wsiqgj": {
    "added": "2026-11-17",
    "chars": 710,
-   "hash": "5dace3712773",
-   "lastmod": "2026-11-27",
+   "hash": "122f2f3f6df2",
+   "lastmod": "2026-11-28",
    "links": 15,
    "name": "えいごであそぼう！（上飯田地区センター）",
    "type": "Event"
@@ -6339,9 +6377,9 @@
   },
   "z5ticf": {
    "added": "2026-11-20",
-   "chars": 1218,
-   "hash": "ce2f72bcca90",
-   "lastmod": "2026-11-26",
+   "chars": 1209,
+   "hash": "dacf4a152cfc",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "第15回 でんしゃであそぼう！in 大倉山記念館",
    "type": "Event"
@@ -6421,16 +6459,16 @@
  },
  "gakudo": {
   "area/": {
-   "hash": "2ca6ad95d571",
-   "lastmod": "2026-11-27"
+   "hash": "f2e43927ecfe",
+   "lastmod": "2026-11-28"
   },
   "area/aoba/": {
    "hash": "3ef13394a403",
    "lastmod": "2026-11-27"
   },
   "area/asahi/": {
-   "hash": "280954079d2e",
-   "lastmod": "2026-11-27"
+   "hash": "24ff1c281777",
+   "lastmod": "2026-11-28"
   },
   "area/hodogaya/": {
    "hash": "ab18491e7871",
@@ -6445,16 +6483,16 @@
    "lastmod": "2026-11-27"
   },
   "area/kanagawa/": {
-   "hash": "bcb0a7fd6529",
-   "lastmod": "2026-11-27"
+   "hash": "768e1188a608",
+   "lastmod": "2026-11-28"
   },
   "area/kanazawa/": {
    "hash": "8015899ae698",
    "lastmod": "2026-11-27"
   },
   "area/kohoku/": {
-   "hash": "053a2010d62c",
-   "lastmod": "2026-11-27"
+   "hash": "c3f5b03c974c",
+   "lastmod": "2026-11-28"
   },
   "area/konan/": {
    "hash": "1781bb3f098e",
@@ -6465,20 +6503,20 @@
    "lastmod": "2026-11-27"
   },
   "area/minami/": {
-   "hash": "750e9da6582c",
-   "lastmod": "2026-11-27"
+   "hash": "b8f977171f1e",
+   "lastmod": "2026-11-28"
   },
   "area/naka/": {
    "hash": "50c38cd523da",
    "lastmod": "2026-11-27"
   },
   "area/nishi/": {
-   "hash": "b62b2ecf41df",
-   "lastmod": "2026-11-27"
+   "hash": "f71d34848cc0",
+   "lastmod": "2026-11-28"
   },
   "area/sakae/": {
-   "hash": "e2fc1061b6bd",
-   "lastmod": "2026-11-26"
+   "hash": "480652371f63",
+   "lastmod": "2026-11-28"
   },
   "area/seya/": {
    "hash": "cb5617604f7d",
@@ -6501,8 +6539,8 @@
    "lastmod": "2026-11-26"
   },
   "event/": {
-   "hash": "00f4a4d7ea01",
-   "lastmod": "2026-11-27"
+   "hash": "d3107c246ba0",
+   "lastmod": "2026-11-28"
   },
   "gakudo/": {
    "hash": "8df27b8bf4b3",
@@ -6581,32 +6619,32 @@
    "lastmod": "2026-11-26"
   },
   "matome/": {
-   "hash": "2d50467660e0",
-   "lastmod": "2026-11-27"
+   "hash": "18f0cf9fd0e3",
+   "lastmod": "2026-11-28"
   },
   "matome/baby/": {
-   "hash": "a9cf506c2fd9",
-   "lastmod": "2026-11-27"
+   "hash": "e5fe4086e735",
+   "lastmod": "2026-11-28"
   },
   "matome/christmas/": {
-   "hash": "2562f2e32d71",
-   "lastmod": "2026-11-27"
+   "hash": "fa372cd789ba",
+   "lastmod": "2026-11-28"
   },
   "matome/free/": {
-   "hash": "c96493ce6fb8",
-   "lastmod": "2026-11-27"
+   "hash": "7809b5376c3d",
+   "lastmod": "2026-11-28"
   },
   "matome/newyear/": {
-   "hash": "183c5417c570",
-   "lastmod": "2026-11-27"
+   "hash": "ea283a513ef1",
+   "lastmod": "2026-11-28"
   },
   "matome/rainy/": {
-   "hash": "a8f81e7926af",
-   "lastmod": "2026-11-27"
+   "hash": "4ea57b7663fa",
+   "lastmod": "2026-11-28"
   },
   "matome/weekend/": {
-   "hash": "7eb7eaa716be",
-   "lastmod": "2026-11-27"
+   "hash": "45256dcf690b",
+   "lastmod": "2026-11-28"
   },
   "spot/": {
    "hash": "d6ec10f91c5f",
@@ -6741,6 +6779,7 @@
   "187q16l": "d5e4a84dce80",
   "189htdg": "675790ca7ce2",
   "18agcb5": "8aa5b6b6b711",
+  "18bwxvl": "b71b2486ca21",
   "18fawo1": "665bbd663cc1",
   "18ol764": "57a740b058a5",
   "18p7z4": "51b829413494",
@@ -6801,14 +6840,13 @@
   "1h1667i": "5241a68704c6",
   "1h1s5xj": "8b330aa0e2a4",
   "1hap545": "d7080aa52731",
-  "1hchrk8": "7544e5a7bc4f",
+  "1hchrk8": "829854d00bb8",
   "1hjkgda": "c0caaf448f45",
-  "1hnod6o": "396a2f33fa18",
+  "1hnod6o": "3b65db4c42e9",
   "1hopkjs": "4f9ac150a50e",
-  "1hosr95": "7692ff09a561",
+  "1hosr95": "89addc333f43",
   "1hqo1q2": "b489a86dc457",
   "1hruhiv": "c0cfad50d8e4",
-  "1hrvp28": "0c4d37847143",
   "1hv2j4d": "8f8005efab9b",
   "1hz0gzt": "fb1b97ae0403",
   "1i577wq": "32eb529315eb",
@@ -6857,6 +6895,7 @@
   "1n0yrie": "670f58036b45",
   "1n1im9r": "908c7edd98a9",
   "1n1numf": "d1ca97eb987e",
+  "1n5vv7m": "74b5a8de84b8",
   "1n643jq": "bbdc5c9513b3",
   "1nd4qim": "efbca682f9d6",
   "1nibyln": "921c5fe23f2f",
@@ -6951,7 +6990,6 @@
   "1xlhpif": "cd04a2083520",
   "1xw94wt": "4ad2b723ee26",
   "1xww32q": "6f78ffd54b68",
-  "1xzezf2": "540ba06423a8",
   "1y1uzh9": "8b43dd53fbad",
   "1yb6kpu": "cc043a3ba899",
   "1yck6o9": "7e8346139570",
@@ -7084,13 +7122,13 @@
   "eae1s2": "c81a5f727f0f",
   "edgty0": "233840dbe921",
   "edvmch": "5045d48d1f4c",
-  "eecbay": "c9f278e0474b",
+  "eecbay": "498605942cc9",
   "eejgwn": "0c1ecd78764b",
   "eeldq4": "07a0eeeae486",
   "egfang": "7a38839fd029",
   "egma9n": "dd6f58e2390d",
   "ei596h": "d1825cd4fabb",
-  "eoo9go": "389049da99a5",
+  "eoo9go": "aae2b97a8c6b",
   "epmi8j": "429245f36cba",
   "f1durf": "18c9abfd6b03",
   "f3rco8": "982570e7466c",
@@ -7113,6 +7151,7 @@
   "gdecd3": "da8ac5c2d270",
   "ghjq0p": "ef672d0d8493",
   "gsbgfi": "3bd6f2d93321",
+  "gv2i4a": "c960642d69dc",
   "gvoxz1": "de6e49e59289",
   "gxz5un": "25e259004aa8",
   "gz0lvf": "ec1a07d06cdb",
@@ -7130,6 +7169,7 @@
   "i7ypwd": "531586cbc1fa",
   "ibbsld": "d4bd048780c6",
   "idfs1o": "99f40822568d",
+  "ido4bn": "2582ab3b55b7",
   "iea40r": "8e34ef7c18cf",
   "igsi7k": "765fbe60f5a3",
   "ikx95a": "d80dd0cf97fa",
@@ -7145,7 +7185,7 @@
   "jecsap": "18cfcf67788e",
   "jeg8ox": "404f2247519e",
   "ji11sv": "0c50fb81da18",
-  "jkp7kp": "80292819c1db",
+  "jkp7kp": "6e0a4946b519",
   "jnsv9f": "e27c99d061b8",
   "jompaw": "9e6e9bad92d8",
   "jp2dhf": "9ca4b724686b",
@@ -7277,7 +7317,7 @@
   "yjuoa9": "dd9522c29d01",
   "yq7c00": "f5cef1e27018",
   "yrn7wf": "414159bb9949",
-  "z5ticf": "c59f9e509e36",
+  "z5ticf": "8f4fdd478d22",
   "z99p54": "11fa722ba32e",
   "zd9jj6": "9ae303945609",
   "zduzpf": "e2fccb8e844e",
@@ -7919,9 +7959,9 @@
   },
   "1d8dynq": {
    "added": "2026-11-20",
-   "chars": 3122,
-   "hash": "599df5b4d572",
-   "lastmod": "2026-11-27",
+   "chars": 3112,
+   "hash": "7320a419c7c6",
+   "lastmod": "2026-11-28",
    "links": 62,
    "name": "スマイル・ポート（西区の地域子育て支援拠点・KDX横浜みなとみらいタワー3F）",
    "type": "CivicStructure"
@@ -8261,9 +8301,9 @@
   },
   "1n4x9nx": {
    "added": "2026-11-12",
-   "chars": 3419,
-   "hash": "873a1ef37d22",
-   "lastmod": "2026-11-27",
+   "chars": 3409,
+   "hash": "9baec9f19716",
+   "lastmod": "2026-11-28",
    "links": 62,
    "name": "MARK IS みなとみらい",
    "type": "ShoppingCenter"
@@ -8729,9 +8769,9 @@
   },
   "4tc2jy": {
    "added": "2026-11-13",
-   "chars": 2970,
-   "hash": "58ec88df6c7d",
-   "lastmod": "2026-11-27",
+   "chars": 2960,
+   "hash": "6f4dc1bdbc45",
+   "lastmod": "2026-11-28",
    "links": 62,
    "name": "横浜みなとみらいホール",
    "type": "PerformingArtsTheater"
@@ -8756,9 +8796,9 @@
   },
   "68q4ac": {
    "added": "2026-11-13",
-   "chars": 3357,
-   "hash": "211fcfbad59a",
-   "lastmod": "2026-11-27",
+   "chars": 3347,
+   "hash": "37a6d3f24bd0",
+   "lastmod": "2026-11-28",
    "links": 62,
    "name": "パシフィコ横浜",
    "type": "EventVenue"
@@ -8810,9 +8850,9 @@
   },
   "86ef0f": {
    "added": "2026-11-12",
-   "chars": 1619,
-   "hash": "94cd9f791f1b",
-   "lastmod": "2026-11-27",
+   "chars": 1609,
+   "hash": "81b58633e421",
+   "lastmod": "2026-11-28",
    "links": 5,
    "name": "トレッサ横浜",
    "type": "ShoppingCenter"
@@ -8955,9 +8995,9 @@
   },
   "bbqq7x": {
    "added": "2026-11-13",
-   "chars": 2862,
-   "hash": "9a3f0c3b4448",
-   "lastmod": "2026-11-27",
+   "chars": 2852,
+   "hash": "fcf7ec94420f",
+   "lastmod": "2026-11-28",
    "links": 62,
    "name": "三菱みなとみらい技術館",
    "type": "Museum"
@@ -9171,9 +9211,9 @@
   },
   "ghjq0p": {
    "added": "2026-11-12",
-   "chars": 824,
-   "hash": "80f5efb4557c",
-   "lastmod": "2026-11-27",
+   "chars": 833,
+   "hash": "11821dc0d044",
+   "lastmod": "2026-11-28",
    "links": 8,
    "name": "よこはま動物園ズーラシア",
    "type": "Zoo"
@@ -9261,9 +9301,9 @@
   },
   "javyeq": {
    "added": "2026-11-23",
-   "chars": 2972,
-   "hash": "f9b516441f56",
-   "lastmod": "2026-11-27",
+   "chars": 2962,
+   "hash": "0dba53536711",
+   "lastmod": "2026-11-28",
    "links": 62,
    "name": "横浜ベイホテル東急",
    "type": "Hotel"
@@ -9405,18 +9445,18 @@
   },
   "oskd4z": {
    "added": "2026-11-13",
-   "chars": 663,
-   "hash": "b09beb544526",
-   "lastmod": "2026-11-27",
+   "chars": 653,
+   "hash": "694f7bfa8b9a",
+   "lastmod": "2026-11-28",
    "links": 15,
    "name": "横浜市大倉山記念館",
    "type": "LandmarksOrHistoricalBuildings"
   },
   "phixwh": {
    "added": "2026-11-23",
-   "chars": 2859,
-   "hash": "8d41abc24186",
-   "lastmod": "2026-11-27",
+   "chars": 2849,
+   "hash": "b1282db145a1",
+   "lastmod": "2026-11-28",
    "links": 62,
    "name": "デイリーヤマザキ パシフィコ横浜店",
    "type": "ConvenienceStore"
@@ -9613,9 +9653,9 @@
   },
   "ubsrwe": {
    "added": "2026-11-22",
-   "chars": 2403,
-   "hash": "1dcaa2c53f61",
-   "lastmod": "2026-11-27",
+   "chars": 2393,
+   "hash": "1f78f11bac7d",
+   "lastmod": "2026-11-28",
    "links": 62,
    "name": "横浜ティンバーワーフ（臨港パーク内）",
    "type": "Place"
