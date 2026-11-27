@@ -79,9 +79,9 @@
   },
   "10v520v": {
    "added": "2026-11-27",
-   "chars": 1075,
-   "hash": "5d6e4d93c123",
-   "lastmod": "2026-11-27",
+   "chars": 1061,
+   "hash": "0fd6b0228f29",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "こどもの国 フープマン・ユーヤのフラフープ教室",
    "type": "Event"
@@ -502,9 +502,9 @@
   },
   "152j8zt": {
    "added": "2026-11-21",
-   "chars": 902,
-   "hash": "caecc9349bac",
-   "lastmod": "2026-11-26",
+   "chars": 901,
+   "hash": "11d627664ce5",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "マジカルおじさんの冬休みマジック教室（かながわアートホール）",
    "type": "Event"
@@ -647,11 +647,20 @@
    "name": "赤ちゃん教室（西区役所・0歳の赤ちゃんと保護者）",
    "type": "Event"
   },
+  "173g27v": {
+   "added": "2026-11-28",
+   "chars": 802,
+   "hash": "f268781cab30",
+   "lastmod": "2026-11-28",
+   "links": 15,
+   "name": "新春 百人一首 こども遊び（天王森泉公園）",
+   "type": "Event"
+  },
   "178yppn": {
    "added": "2026-11-12",
-   "chars": 1006,
-   "hash": "a267adab0afa",
-   "lastmod": "2026-11-27",
+   "chars": 992,
+   "hash": "a8e072b937db",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "こどもの国 工作教室「スノードーム」",
    "type": "Event"
@@ -746,8 +755,8 @@
   },
   "18bwxvl": {
    "added": "2026-11-28",
-   "chars": 658,
-   "hash": "4c44b23746cd",
+   "chars": 695,
+   "hash": "151d0fd94241",
    "lastmod": "2026-11-28",
    "links": 12,
    "name": "おはなし会（栄図書館）",
@@ -856,9 +865,9 @@
   },
   "19ish9u": {
    "added": "2026-11-13",
-   "chars": 3445,
-   "hash": "35f7ac5af068",
-   "lastmod": "2026-11-26",
+   "chars": 3444,
+   "hash": "6fed01ed1eb7",
+   "lastmod": "2026-11-28",
    "links": 102,
    "name": "横浜消防出初式2027（パウパトロールのステージ・消防車の展示）",
    "type": "Event"
@@ -945,6 +954,15 @@
    "name": "0歳から大歓迎！図書館デビューDAY（中央図書館）",
    "type": "Event"
   },
+  "1ackb96": {
+   "added": "2026-11-28",
+   "chars": 1129,
+   "hash": "b295f8f42b8e",
+   "lastmod": "2026-11-28",
+   "links": 16,
+   "name": "0歳からのハッピー・クリスマス・コンサート（神奈川公会堂）",
+   "type": "Event"
+  },
   "1ae73lb": {
    "added": "2026-11-12",
    "chars": 1818,
@@ -966,9 +984,9 @@
   },
   "1ajp8rb": {
    "added": "2026-11-16",
-   "chars": 974,
-   "hash": "b85180278749",
-   "lastmod": "2026-11-26",
+   "chars": 983,
+   "hash": "d061ba300c50",
+   "lastmod": "2026-11-28",
    "links": 14,
    "name": "みんなでワクワクパンづくり（瀬谷地区センター）",
    "type": "Event"
@@ -1030,9 +1048,9 @@
   },
   "1b2g1wu": {
    "added": "2026-11-16",
-   "chars": 858,
-   "hash": "ccc7dcf64151",
-   "lastmod": "2026-11-26",
+   "chars": 867,
+   "hash": "0aa2253fb502",
+   "lastmod": "2026-11-28",
    "links": 14,
    "name": "おやこのおにぎり教室（阿久和地区センター）",
    "type": "Event"
@@ -1154,9 +1172,9 @@
   },
   "1dnqew5": {
    "added": "2026-11-17",
-   "chars": 821,
-   "hash": "e163fc5e3136",
-   "lastmod": "2026-11-26",
+   "chars": 830,
+   "hash": "21d909f709ad",
+   "lastmod": "2026-11-28",
    "links": 12,
    "name": "クリスマス＆お正月の食器作り（根岸地区センター）",
    "type": "Event"
@@ -1756,8 +1774,8 @@
   },
   "1kpqygw": {
    "added": "2026-11-25",
-   "chars": 1314,
-   "hash": "6a90b5a039c4",
+   "chars": 1331,
+   "hash": "adf796dbbf9c",
    "lastmod": "2026-11-28",
    "links": 17,
    "name": "PiCNiC KiDS FES（たまプラーザ テラス）",
@@ -1774,9 +1792,9 @@
   },
   "1kqo35r": {
    "added": "2026-11-17",
-   "chars": 882,
-   "hash": "d17d2e9a4cfb",
-   "lastmod": "2026-11-26",
+   "chars": 891,
+   "hash": "9b2dd38e33b9",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "歩行ロボットを作ろう！（神之木地区センター）",
    "type": "Event"
@@ -1818,9 +1836,9 @@
   },
   "1lamo7s": {
    "added": "2026-11-12",
-   "chars": 976,
-   "hash": "d543ecf87bf1",
-   "lastmod": "2026-11-26",
+   "chars": 975,
+   "hash": "f369eb8bfb70",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "こどもの国 どんど焼き",
    "type": "Event"
@@ -1906,6 +1924,15 @@
    "name": "洋光台駅前公園プレイパーク（磯子区）",
    "type": "Event"
   },
+  "1mlvc4x": {
+   "added": "2026-11-28",
+   "chars": 989,
+   "hash": "030b4051212f",
+   "lastmod": "2026-11-28",
+   "links": 15,
+   "name": "天王森もちつき（天王森泉公園の収穫感謝祭）",
+   "type": "Event"
+  },
   "1mx1u8s": {
    "added": "2026-11-17",
    "chars": 913,
@@ -1972,8 +1999,8 @@
   },
   "1n5vv7m": {
    "added": "2026-11-28",
-   "chars": 762,
-   "hash": "4c29f6f68d14",
+   "chars": 799,
+   "hash": "c11ac6bf5ac0",
    "lastmod": "2026-11-28",
    "links": 13,
    "name": "紙芝居の会（栄図書館）",
@@ -2195,9 +2222,9 @@
   },
   "1peb21d": {
    "added": "2026-11-25",
-   "chars": 1988,
-   "hash": "7cbc1107b94a",
-   "lastmod": "2026-11-26",
+   "chars": 2086,
+   "hash": "9e8a64ede86e",
+   "lastmod": "2026-11-28",
    "links": 20,
    "name": "かながわ木づかいフェア（象の鼻パーク・象の鼻テラス）",
    "type": "Event"
@@ -2399,6 +2426,15 @@
    "links": 16,
    "name": "きらきらプレイパーク（神奈川区）",
    "type": "Event"
+  },
+  "1r378zd": {
+   "added": "2026-11-28",
+   "chars": 583,
+   "hash": "986ac37937fa",
+   "lastmod": "2026-11-28",
+   "links": 6,
+   "name": "瀬谷駅前 冬のライトアップ",
+   "type": "TouristAttraction"
   },
   "1r5phb7": {
    "added": "2026-11-13",
@@ -3266,9 +3302,9 @@
   },
   "41od4d": {
    "added": "2026-11-17",
-   "chars": 917,
-   "hash": "39edcf6cf2c5",
-   "lastmod": "2026-11-26",
+   "chars": 924,
+   "hash": "9b76dbb1dfc7",
+   "lastmod": "2026-11-28",
    "links": 15,
    "name": "よいこのクリスマス会 リトミックとパネルシアター（中川地区センター）",
    "type": "Event"
@@ -3527,18 +3563,18 @@
   },
   "70kq26": {
    "added": "2026-11-25",
-   "chars": 828,
-   "hash": "6ad787b12cfd",
-   "lastmod": "2026-11-26",
+   "chars": 937,
+   "hash": "6f7aa77e8fc5",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "三ツ沢公園オータムフェス2026",
    "type": "Event"
   },
   "70q7rt": {
    "added": "2026-11-12",
-   "chars": 1005,
-   "hash": "db037cc1cd24",
-   "lastmod": "2026-11-26",
+   "chars": 1014,
+   "hash": "e1f9e0dbb27d",
+   "lastmod": "2026-11-28",
    "links": 14,
    "name": "みんなのインクルーシブスポーツ（瀬谷区）",
    "type": "Event"
@@ -3958,9 +3994,9 @@
   },
   "azi3ew": {
    "added": "2026-11-12",
-   "chars": 1650,
-   "hash": "d16bd0b8ea05",
-   "lastmod": "2026-11-26",
+   "chars": 1659,
+   "hash": "ad316111ff2e",
+   "lastmod": "2026-11-28",
    "links": 21,
    "name": "つづきでミニオペラ！〜歌と音楽でめぐる、クリスマスの物語〜",
    "type": "Event"
@@ -4218,9 +4254,9 @@
   },
   "d02svp": {
    "added": "2026-11-26",
-   "chars": 1194,
-   "hash": "6265f961a8f4",
-   "lastmod": "2026-11-27",
+   "chars": 1180,
+   "hash": "841b7f1f1466",
+   "lastmod": "2026-11-28",
    "links": 17,
    "name": "横浜市消防音楽隊おでかけコンサート（たまプラーザ テラス）",
    "type": "Event"
@@ -4245,9 +4281,9 @@
   },
   "dc2w5z": {
    "added": "2026-11-27",
-   "chars": 877,
-   "hash": "6e641dc0e0d8",
-   "lastmod": "2026-11-27",
+   "chars": 871,
+   "hash": "7aca6893aba4",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "みんなのインクルーシブスポーツ（南区）",
    "type": "Event"
@@ -4521,9 +4557,9 @@
   },
   "fkbdm7": {
    "added": "2026-11-19",
-   "chars": 1605,
-   "hash": "e3d8d3a7aba2",
-   "lastmod": "2026-11-26",
+   "chars": 1614,
+   "hash": "8cd6e6549668",
+   "lastmod": "2026-11-28",
    "links": 21,
    "name": "クリスマスキャンディボトル作り（ノースポート・モール）",
    "type": "Event"
@@ -4668,8 +4704,8 @@
   },
   "gv2i4a": {
    "added": "2026-11-28",
-   "chars": 700,
-   "hash": "19d776a3179c",
+   "chars": 737,
+   "hash": "445239335833",
    "lastmod": "2026-11-28",
    "links": 13,
    "name": "かながわこどもひろば おはなし会（栄図書館）",
@@ -4847,8 +4883,8 @@
   },
   "ido4bn": {
    "added": "2026-11-28",
-   "chars": 606,
-   "hash": "253b24a76aee",
+   "chars": 643,
+   "hash": "0d4b23e79821",
    "lastmod": "2026-11-28",
    "links": 10,
    "name": "親子のおはなし会（栄図書館）",
@@ -5307,9 +5343,9 @@
   },
   "no83gs": {
    "added": "2026-11-19",
-   "chars": 908,
-   "hash": "b32a24f9372a",
-   "lastmod": "2026-11-26",
+   "chars": 917,
+   "hash": "bb6876b9633b",
+   "lastmod": "2026-11-28",
    "links": 16,
    "name": "クリスマス ハンドベルコンサート（港南地区センター）",
    "type": "Event"
@@ -5507,9 +5543,9 @@
   },
   "pq6bvg": {
    "added": "2026-11-26",
-   "chars": 2091,
-   "hash": "6c25a05c5e5b",
-   "lastmod": "2026-11-26",
+   "chars": 2250,
+   "hash": "270aa2247a29",
+   "lastmod": "2026-11-28",
    "links": 22,
    "name": "すたぁ☆ふぇす横浜2026（パシフィコ横浜 芝生広場）",
    "type": "Event"
@@ -5534,9 +5570,9 @@
   },
   "px9o9g": {
    "added": "2026-11-23",
-   "chars": 795,
-   "hash": "1d3b2f4ad09b",
-   "lastmod": "2026-11-26",
+   "chars": 804,
+   "hash": "3c870f8e915a",
+   "lastmod": "2026-11-28",
    "links": 14,
    "name": "休日おはなし会（瀬谷図書館）",
    "type": "Event"
@@ -5835,6 +5871,15 @@
    "links": 12,
    "name": "ウルトラマルチバース 地球防衛大作戦 in 横浜赤レンガ倉庫（ウルトラマン60周年）",
    "type": "TouristAttraction"
+  },
+  "t5ejhu": {
+   "added": "2026-11-28",
+   "chars": 1048,
+   "hash": "1835d7ce2859",
+   "lastmod": "2026-11-28",
+   "links": 14,
+   "name": "上瀬谷 みんなの灯りプロジェクト（ランタンの点灯・サンタさん）",
+   "type": "Event"
   },
   "taypql": {
    "added": "2026-11-24",
@@ -6459,7 +6504,7 @@
  },
  "gakudo": {
   "area/": {
-   "hash": "f2e43927ecfe",
+   "hash": "6db464956a9c",
    "lastmod": "2026-11-28"
   },
   "area/aoba/": {
@@ -6479,11 +6524,11 @@
    "lastmod": "2026-11-27"
   },
   "area/izumi/": {
-   "hash": "b3d58ba3fdb2",
-   "lastmod": "2026-11-27"
+   "hash": "14b29956adfe",
+   "lastmod": "2026-11-28"
   },
   "area/kanagawa/": {
-   "hash": "768e1188a608",
+   "hash": "5a6eb73f55c6",
    "lastmod": "2026-11-28"
   },
   "area/kanazawa/": {
@@ -6519,8 +6564,8 @@
    "lastmod": "2026-11-28"
   },
   "area/seya/": {
-   "hash": "cb5617604f7d",
-   "lastmod": "2026-11-27"
+   "hash": "edb00ff8bffa",
+   "lastmod": "2026-11-28"
   },
   "area/totsuka/": {
    "hash": "2dc1d800566b",
@@ -6539,7 +6584,7 @@
    "lastmod": "2026-11-26"
   },
   "event/": {
-   "hash": "d3107c246ba0",
+   "hash": "79ed21fa1178",
    "lastmod": "2026-11-28"
   },
   "gakudo/": {
@@ -6619,31 +6664,31 @@
    "lastmod": "2026-11-26"
   },
   "matome/": {
-   "hash": "18f0cf9fd0e3",
+   "hash": "b132ba47213b",
    "lastmod": "2026-11-28"
   },
   "matome/baby/": {
-   "hash": "e5fe4086e735",
+   "hash": "2c719092fba8",
    "lastmod": "2026-11-28"
   },
   "matome/christmas/": {
-   "hash": "fa372cd789ba",
+   "hash": "50c202478da5",
    "lastmod": "2026-11-28"
   },
   "matome/free/": {
-   "hash": "7809b5376c3d",
+   "hash": "e8f638eb80d1",
    "lastmod": "2026-11-28"
   },
   "matome/newyear/": {
-   "hash": "ea283a513ef1",
+   "hash": "70d229336451",
    "lastmod": "2026-11-28"
   },
   "matome/rainy/": {
-   "hash": "4ea57b7663fa",
+   "hash": "b5975ffd6fc6",
    "lastmod": "2026-11-28"
   },
   "matome/weekend/": {
-   "hash": "45256dcf690b",
+   "hash": "4b05886e4daa",
    "lastmod": "2026-11-28"
   },
   "spot/": {
@@ -6769,6 +6814,7 @@
   "16uz2n1": "20778ef5ffc4",
   "16vbwil": "c840ead5e3ed",
   "16wv6we": "1906d936cb02",
+  "173g27v": "6ba180720832",
   "178yppn": "1967b4508adc",
   "17cg7if": "6b524248c2fd",
   "17fzsbq": "d9f7097d5a0a",
@@ -6798,6 +6844,7 @@
   "19yms9r": "bddab6a73b51",
   "1a02n43": "2755d0795ce3",
   "1a8qgue": "9e83d1eea1d4",
+  "1ackb96": "1e6d2dc2d9e8",
   "1ae73lb": "21fee0057752",
   "1ajp8rb": "6264b0340cea",
   "1akcpig": "9db58d491214",
@@ -6889,6 +6936,7 @@
   "1mfpjxx": "cd0129c1e91e",
   "1mg2y6m": "294b86ae55cd",
   "1miolwg": "a096d22076ba",
+  "1mlvc4x": "bfeaf25275d7",
   "1mx1u8s": "c43e88bebf85",
   "1my3dk": "2e8e97b9e41a",
   "1n0avwt": "4ef6c66e1a8a",
@@ -6939,6 +6987,7 @@
   "1qu4zs4": "5486793a5554",
   "1qxaqxl": "7dae16800f62",
   "1r1l7s0": "cb64a6b445e8",
+  "1r378zd": "ebb7cd7179e1",
   "1r5phb7": "bad598036636",
   "1r8qu0w": "0aeb0cfb50b4",
   "1ruom6l": "c6c7939a2521",
@@ -7265,6 +7314,7 @@
   "sozy7g": "e808b9b76159",
   "t32krz": "ce558fad42ea",
   "t4o3l9": "f871eedff542",
+  "t5ejhu": "857adafd01e3",
   "taypql": "d9486760e49d",
   "td510n": "e347d794013d",
   "tdj31e": "d557c8bfb2a9",
