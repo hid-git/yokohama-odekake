@@ -1855,11 +1855,11 @@ EVENTS.push(
     tip:"雨の日の行き先に。図書館なので休館日は行く前に確認を", url:"https://yokohamacity-edu.note.jp/n/nc0e77c69b237", src:"横浜市「みんなのいいね」（2026年11月）・横浜市教育委員会", asof:"2026年11月11日" }
 );
 EVENTS.push(
-  { t:"シーバス（水上バスで横浜の海をおさんぽ）", days:[], time:"毎日運航（時刻は公式ページで確認）", ward:"西区・中区", venue:"横浜駅東口（ベイクォーター）・ハンマーヘッド・赤レンガ倉庫・山下公園の乗り場",
+  { t:"シーバス（水上バスで横浜の海をおさんぽ）", days:[], time:"ほぼ毎日運航（月に3〜4日ほど運休日あり。年末年始は運航。毎年1月はドック点検で長い運休期間があるので公式の運航情報で。時刻は公式で）", ward:"西区・中区", venue:"横浜駅東口（ベイクォーター）・ハンマーヘッド・赤レンガ倉庫・山下公園の乗り場",
     price:"paid", priceText:"運賃は公式ページで確認", place:"屋内外", rain:"check", rainText:"荒天のときは運休・行き先変更あり",
     resv:false, resvText:"予約不要（乗り場で乗船券を購入）", age:[0,99], ageText:"全年齢", kind:"ongoing", start:600, ride:true,
     sum:"横浜駅〜山下公園を約20〜45分で結ぶ船。ベビーカー・飲食物の持ち込みOKで船内トイレあり（おむつ替えはなし）。横浜駅東口の乗り場近くに船員の制服を着られるコーナー。",
-    tip:"冬はクリスマス・カウントダウンのクルーズもある（要予約）。船の上は風が冷たいので上着を", url:"https://www.yokohama-cruising.jp/contents/seabass.html", src:"横浜市「みんなのいいね」（2026年2月）", asof:"2026年11月11日" },
+    tip:"年末は「SEABASS YEAR END CRUISES 2026」（11/4販売開始、要予約。中身・料金は公式の案内ページで）。船の上は風が冷たいので上着を。乗り場：横浜駅東口はベイクォーター2階（横浜駅きた東口から徒歩5分）、山下公園は元町・中華街駅4番出口から徒歩5分", url:"https://yokohama-cruising.jp/seabass/", src:"横浜クルージング公式（シーバス・運航情報・よくある質問）・横浜市「みんなのいいね」（2026年2月）", asof:"2026年11月28日" },
   { t:"弘明寺公園（大型遊具と電車が見える陸橋）", days:[], time:"いつでも", ward:"南区", venue:"弘明寺公園（京急 弘明寺駅すぐ）",
     price:"free", priceText:"無料", place:"屋外", rain:"cancel", rainText:"屋外の公園",
     resv:false, resvText:"予約不要", age:[1,12], ageText:"1歳〜小学生", kind:"ongoing", start:600, freeplay:true, ride:true,
