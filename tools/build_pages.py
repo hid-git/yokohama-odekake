@@ -1065,6 +1065,43 @@ def yearend_note(texts, closed=None, period=None):
     kind = "closed" if any(YE_CORE.search(c) and YE_CLOSED.search(c) for c in clauses) else ("check" if "確認" in txt else "open")
     return kind, txt
 
+def yearend_days(txt):
+    """「12/28〜1/4以外は開館」「12/26〜31休み」「1/1は休業」「12/31・1/1休み」「休み：1/1」から、年末年始（12/24〜1/7）に休む日を取り出す。
+    日にちのすぐ後ろに「休」「以外は開」が続くものだけ（会期の「12/12〜1/17（年末年始の休館をのぞく）」などは数えない）。読めないときは空"""
+    import datetime as _dt
+    def od(m, d):
+        try: return _dt.date(2026 if m == 12 else 2027, m, d)
+        except ValueError: return None
+    lo, hi = _dt.date(2026, 12, 24), _dt.date(2027, 1, 7)
+    D = r"(?<![\d/])(1[12]|[1-9])/(\d{1,2})(?:\s*[〜~～\-]\s*(?:(1[12]|[1-9])/)?(\d{1,2}))?(?![\d/])"
+    TAIL = re.compile(r"^(?:\s*[・、]\s*(?:1[12]|[1-9])/\d{1,2}(?:\s*[〜~～\-]\s*(?:(?:1[12]|[1-9])/)?\d{1,2})?)*\s*(?:は|が|も)?\s*(?:休|お休み|以外は開|閉)")
+    out = set()
+    for c in re.split(r"[、，／]", txt):
+        if not YE_CLOSED.search(c):
+            continue
+        head = bool(re.match(r"\s*(?:休み|休館日?|休園日?)\s*[：:は]", c))
+        for m in re.finditer(D, c):
+            if not (head or TAIL.match(c[m.end():])):
+                continue
+            m1, d1 = int(m.group(1)), int(m.group(2))
+            a, b = od(m1, d1), (od(int(m.group(3) or m.group(1)), int(m.group(4))) if m.group(4) else None)
+            b = b or a
+            if a and b and a <= b:
+                x = a
+                while x <= b:
+                    if lo <= x <= hi: out.add(x)
+                    x += _dt.timedelta(days=1)
+    return sorted(out)
+
+
+def yearend_label(days):
+    if not days: return "年末年始に休み（日にちは各施設で確かめてください）"
+    f = lambda x: f"{x.month}/{x.day}"
+    if len(days) == 1: return f"{f(days[0])}だけ休み"
+    if (days[-1] - days[0]).days == len(days) - 1: return f"{f(days[0])}〜{f(days[-1])}休み"
+    return "・".join(f(x) for x in days) + "休み"
+
+
 def _by_day(evs, days):
     sec, n = "", 0
     for k in days:
@@ -1173,7 +1210,7 @@ def matome_pages(d, track_url):
     # 年末年始に休む・時間が変わる施設（通年の施設・遊び場と、授乳室・おむつ替えのある施設。データに書いてあるものだけ）
     ye = {"closed": [], "open": [], "check": []}
     for e in ong:
-        k, txt = yearend_note([e.get("time"), e.get("tip"), e.get("rainText")], e.get("closed"), e.get("period"))
+        k, txt = yearend_note([e.get("time"), e.get("tip"), e.get("sum"), e.get("rainText")], e.get("closed"), e.get("period"))
         if k:
             ye[k].append((e.get("ward") or "区の記載なし", e["t"], f'/event/{e["id"]}/', txt))
     seen_sp = set(); sids = d.get("_spot_ids") or {}
@@ -1185,6 +1222,7 @@ def matome_pages(d, track_url):
             k, txt = yearend_note([v for v in b.values() if isinstance(v, str)])
             if k:
                 ye[k].append((d["areas"].get(area, area) or area, b["n"], f'/spot/{sids[b["n"]]}/' if b["n"] in sids else "", txt))
+    ye = {k: list({r[1]: r for r in v}.values()) for k, v in ye.items()}  # 同じ名前は1つに
     n_ye = sum(len(v) for v in ye.values())
 
     def ye_list(rows, nav=False):
@@ -1205,8 +1243,23 @@ def matome_pages(d, track_url):
         return html + ("</ul>" if cur is not None else "")
     ye_html = ""
     if n_ye:
-        ye_html = (f'<h2 id="sclosed">年末年始に休む施設・遊び場（{len(ye["closed"])}か所）</h2>'
-                   '<p class="small">各施設の公式ページに書いてある年末年始の休みを、そのまま載せています。書いていない施設は、ここに出ていなくても休むことがあります。</p>' + ye_list(ye["closed"], nav=True))
+        wl = list(WARD_SLUG)
+        grp = {}
+        for r in {r[1]: r for r in ye["closed"]}.values():
+            ds = yearend_days(r[3])
+            grp.setdefault(tuple(ds), []).append(r)
+        keys = sorted(grp, key=lambda k: (not k, k[0] if k else None, -len(k)))
+        nav = '<p class="small">' + " ".join(f'<a href="#yc{i}">{E(yearend_label(list(k)))}（{len(grp[k])}）</a>' for i, k in enumerate(keys)) + "</p>"
+        body_c = ""
+        for i, k in enumerate(keys):
+            rows = sorted(grp[k], key=lambda r: (wl.index(r[0]) if r[0] in wl else len(wl), r[0], r[1]))
+            body_c += f'<h3 id="yc{i}">{E(yearend_label(list(k)))}（{len(rows)}か所）</h3><ul class="links">'
+            for w, n, href, txt in rows:
+                nm = f'<a href="{href}"><b>{E(n)}</b></a>' if href else f"<b>{E(n)}</b>"
+                body_c += f'<li>{nm}<span class="small">（{E(w)}）</span><div class="small">{E(txt)}</div></li>'
+            body_c += "</ul>"
+        ye_html = (f'<h2 id="sclosed">年末年始に休む施設・遊び場（{sum(len(v) for v in grp.values())}か所）</h2>'
+                   '<p class="small">各施設の公式ページに書いてある年末年始の休みを、休む日ごとに分けて載せています（休む日はふだんの休館日を除いた年末年始の分だけ）。書いていない施設は、ここに出ていなくても休むことがあります。</p>' + nav + body_c)
         if ye["open"]:
             ye_html += f'<h2 id="sopen">年末年始に時間が変わる・営業の日が書いてある施設（{len(ye["open"])}か所）</h2>' + ye_list(ye["open"])
         if ye["check"]:
