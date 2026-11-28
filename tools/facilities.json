@@ -7643,14 +7643,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "遊具：健康遊具",
+  "kids": "健康遊具：腹筋ベンチ・背伸ばしベンチ・スプリングバー・ストレッチフープ",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "行き方：港南台西公園バス停から徒歩1分",
+  "note": "行き方：神奈中バス「港南台西公園」から徒歩1分",
   "kind": "近隣公園",
   "area": 26016,
   "no": "0057",
-  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/01.html",
   "asof2": "2026年11月28日",
   "yugu": [
    "健康遊具"
@@ -7721,14 +7721,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "遊具：健康遊具",
+  "kids": "健康遊具：腹筋ベンチ・背伸ばしベンチ・ぶら下がりバー",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "行き方：野庭中央公園バス停から徒歩3分",
+  "note": "行き方：市営バス「野庭中央公園」から徒歩3分",
   "kind": "近隣公園",
   "area": 20064,
   "no": "0059",
-  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/01.html",
   "asof2": "2026年11月28日",
   "yugu": [
    "健康遊具"
@@ -7742,14 +7742,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "遊具：健康遊具",
+  "kids": "健康遊具：背伸ばしベンチ・背伸ばしバー",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "行き方：日野南小学校から徒歩5分。隣は遊具がたくさんある港南ふれあい公園",
+  "note": "行き方：日野南小学校から徒歩5分",
   "kind": "近隣公園",
   "area": 20008,
   "no": "0488",
-  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/01.html",
   "asof2": "2026年11月28日",
   "yugu": [
    "健康遊具"
@@ -7799,14 +7799,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "遊具：健康遊具",
+  "kids": "健康遊具：背伸ばしベンチ・懸垂平行棒・上体ひねり・ステップ",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "行き方：つつじヶ丘バス停から徒歩3分",
+  "note": "行き方：神奈中バス「つつじヶ丘」から徒歩3分",
   "kind": "近隣公園",
   "area": 10576,
   "no": "0056",
-  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/01.html",
   "asof2": "2026年11月28日",
   "yugu": [
    "健康遊具"
@@ -7820,14 +7820,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "遊具：健康遊具",
+  "kids": "健康遊具：背伸ばしベンチ・背伸ばしポール・あん馬ベンチ・上体ひねり",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "行き方：港南中央駅、港南区総合庁舎前バス停",
+  "note": "行き方：地下鉄港南中央駅から徒歩5分",
   "kind": "近隣公園",
   "area": 9701,
   "no": "2490",
-  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/01.html",
   "asof2": "2026年11月28日",
   "yugu": [
    "健康遊具"
@@ -7941,15 +7941,17 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "遊具：健康遊具",
+  "kids": "健康遊具：背伸ばしベンチ・ぶら下がり懸垂・上体ひねり",
   "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
   "asof": "2026年11月28日",
-  "note": "行き方：港南台入口バス停から徒歩5分",
+  "note": "行き方：市営バス「港南台入口」から徒歩5分",
   "yugu": [
    "健康遊具"
   ],
   "area": 4084,
-  "kind": "街区公園"
+  "kind": "街区公園",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/01.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -7959,15 +7961,17 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "遊具：健康遊具",
+  "kids": "健康遊具：腹筋ベンチ・背伸ばしベンチ・ぶら下がり懸垂",
   "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
   "asof": "2026年11月28日",
-  "note": "行き方：バイパス下バス停",
+  "note": "行き方：市営バス「バイパス下」から徒歩3分",
   "yugu": [
    "健康遊具"
   ],
   "area": 2700,
-  "kind": "街区公園"
+  "kind": "街区公園",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/01.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -7977,15 +7981,17 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "遊具：健康遊具",
+  "kids": "健康遊具：背伸ばしベンチ・ストレッチフープ・スプリングバー",
   "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
   "asof": "2026年11月28日",
-  "note": "行き方：グリーンタウン中央バス停から徒歩1分",
+  "note": "行き方：江ノ電バス「グリーンタウン中央」から徒歩1分",
   "yugu": [
    "健康遊具"
   ],
   "area": 1678,
-  "kind": "街区公園"
+  "kind": "街区公園",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/01.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -37596,5 +37602,20 @@
   "src": "https://www.hamaspo.com/search/institution_result?inst_id=129",
   "asof": "2026年11月24日",
   "note": "夏だけ開く屋外プール。区・住所は未確認"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "芹が谷台公園",
+  "addr": "芹が谷一丁目11",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：腹筋ベンチ・背伸ばしベンチ・ぶら下がり懸垂・足伸ばしステーション",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/01.html",
+  "asof": "2026年11月28日",
+  "note": "行き方：神奈中バス「芹が谷山谷」バス停前",
+  "area": 2505,
+  "kind": "街区公園"
  }
 ]
