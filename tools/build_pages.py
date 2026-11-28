@@ -738,7 +738,7 @@ ABOUT_BODY = """<p class="crumb"><a href="/">トップ</a> ＞ このサイト�
 <h2>内容について</h2>
 <p>各ページの文章は、元のページをもとにこのサイトが短くまとめたものです。必ず元のページへのリンクを付けています。内容は予告なく変わったり、中止になったりすることがあります。出かける前に、必ず公式ページで最新の情報を確かめてください。免責については<a href="/privacy/">プライバシーポリシー</a>の「5. 免責」をご覧ください。</p>
 <h2>運営者</h2>
-<p>KidsTrip は個人で運営しています（会社や団体ではありません）。ご連絡はお問い合わせフォームからお願いします。</p>
+<p>KidsTrip は個人で運営しています（会社や団体ではありません）。ご連絡はお問い合わせフォームか、メール（<a href="mailto:info@kidstrip.jp">info@kidstrip.jp</a>）でお願いします。</p>
 <h2>文章と画像の扱い</h2>
 <p>他のサイトの文章を長く写したり、写真を転載したりはしていません。このサイトの文章・イラストを使いたいときは、お問い合わせからご連絡ください。</p>
 <h2>投稿の扱い</h2>
@@ -746,7 +746,7 @@ ABOUT_BODY = """<p class="crumb"><a href="/">トップ</a> ＞ このサイト�
 <h2>使われ方の記録</h2>
 <p>サイトをよくするため、表示されたページ、検索した言葉、押されたボタン・リンク、端末とブラウザの種類（スマホ・PCなど。機械による自動アクセスを分けるため）、どのサイトから来たか、日本からのアクセスかどうか（時間帯の設定から判定）を記録しています。名前・メールアドレス・正確な位置などの個人情報は記録しません。Cookieは使わず、同じ人の訪問をまとめて数えるために、ランダムな番号だけをブラウザに保存しています。「近くで探す」の現在地は、画面の中で距離を計算するためだけに使い、記録するのは「横浜市のあたり」などの大まかな区分だけです。広告とCookieの扱いを含め、くわしくは<a href="/privacy/">プライバシーポリシー</a>をご覧ください。</p>
 <h2>お問い合わせ・掲載のご相談</h2>
-<p>イベント情報の追加・訂正、掲載や協賛のご相談、サイトへのご質問は、お問い合わせフォームからどうぞ（Googleアカウントでのログインが必要です）。</p>
+<p>イベント情報の追加・訂正、掲載や協賛のご相談、サイトへのご質問は、お問い合わせフォーム（Googleアカウントでのログインが必要です）か、メール（<a href="mailto:info@kidstrip.jp">info@kidstrip.jp</a>）でどうぞ。</p>
 <div class="btns"><a class="btn main" href="FORM_URL" target="_blank" rel="noopener">お問い合わせフォーム</a><a class="btn" href="/">イベント一覧へ</a><a class="btn" href="/en/">English</a></div>
 </article>"""
 
@@ -787,7 +787,7 @@ PRIVACY_BODY = """<p class="crumb"><a href="/">トップ</a> ＞ プライバシ
 <h2>7. このポリシーの変更</h2>
 <p>このポリシーは、必要に応じて予告なく変えることがあります。変えたときは、このページでお知らせします。</p>
 <h2>8. お問い合わせ</h2>
-<p>このポリシーについてのお問い合わせは、お問い合わせフォームからどうぞ。</p>
+<p>このポリシーについてのお問い合わせは、お問い合わせフォームか、メール（<a href="mailto:info@kidstrip.jp">info@kidstrip.jp</a>）でどうぞ。</p>
 <p class="small">制定日：2026年11月16日</p>
 <div class="btns"><a class="btn main" href="FORM_URL" target="_blank" rel="noopener">お問い合わせフォーム</a><a class="btn" href="/about/">このサイトについて</a><a class="btn" href="/">イベント一覧へ</a></div>
 </article>"""
@@ -1342,11 +1342,11 @@ def index_pages(d, spots, spot_ids, track_url, form_url):
     ch, cld = crumbs([("トップ", "/"), ("お問い合わせ", "")])
     body = f"""{ch}
 <article class="card"><h1>お問い合わせ</h1>
-<p>KidsTrip（キッズトリップ）へのお問い合わせは、下のお問い合わせフォーム（Googleフォーム）からお送りください。</p>
+<p>KidsTrip（キッズトリップ）へのお問い合わせは、下のお問い合わせフォーム（Googleフォーム）か、メール（<a href="mailto:info@kidstrip.jp">info@kidstrip.jp</a>）でお送りください。フォームはGoogleアカウントでのログインが必要なので、アカウントをお持ちでない方はメールをお使いください。</p>
 <h2>こんなときにどうぞ</h2>
 <ul class="links"><li>イベントの日にち・時間・料金などが公式と違っていた</li><li>授乳室・おむつ替え・お湯・電子レンジの場所や有無が違っていた、なくなっていた</li><li>主催者・施設の方で、掲載内容を直したい・掲載をやめてほしい</li><li>サイトの使い方で分かりにくいところがある</li></ul>
 <p>いただいた内容は、施設・主催者の公式ページで確かめてから直します。いただいた情報の扱いは<a href="/privacy/">プライバシーポリシー</a>のとおりです。</p>
-<div class="btns"><a class="btn main" href="{E(form_url)}" target="_blank" rel="noopener">お問い合わせフォームを開く</a><a class="btn" href="/about/">このサイトについて</a></div></article>"""
+<div class="btns"><a class="btn main" href="{E(form_url)}" target="_blank" rel="noopener">お問い合わせフォームを開く</a><a class="btn" href="mailto:info@kidstrip.jp">メールで送る</a><a class="btn" href="/about/">このサイトについて</a></div></article>"""
     out.append(("contact/", page("お問い合わせ｜KidsTrip（キッズトリップ）", "KidsTrip（キッズトリップ）へのお問い合わせ。イベント・授乳室などの情報の間違い、掲載内容の修正・掲載の取りやめの依頼は、お問い合わせフォームからどうぞ。",
                                  "contact/", body, [{"@context": "https://schema.org", "@type": "ContactPage", "name": "お問い合わせ｜KidsTrip", "url": SITE + "contact/", "inLanguage": "ja"}, cld],
                                  track_url=track_url, tpage="contact/")))
