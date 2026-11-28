@@ -1314,7 +1314,7 @@ def index_pages(d, spots, spot_ids, track_url, form_url):
 <div class="btns"><a class="btn main" href="/">日にち・区で絞り込む</a><a class="btn" href="/area/">区ごとの施設・遊び場</a></div>
 {sec}
 <p class="small">内容は変わることがあるので、出かける前に必ず各イベントの公式ページで確かめてください。</p></article>"""
-    items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate(lim)]
+    items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}event/{e['id']}/", "name": e["t"]} for i, e in enumerate([e for e in lim if e["id"] not in d.get("_thin", {}).get("event", set())])]
     out.append(("event/", page(f"横浜の子連れイベント一覧（{len(lim)}件・日にち順）｜KidsTrip", f"横浜市内でこれから開かれる0歳〜小学生の親子向けイベント{len(lim)}件を日にち順に。クリスマス・お正月のイベントや区のおはなし会、無料の工作など。",
                                "event/", body, [{"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜の子連れイベント一覧", "url": SITE + "event/", "inLanguage": "ja"}, cld,
                                                 {"@context": "https://schema.org", "@type": "ItemList", "name": "横浜の子連れイベント一覧", "numberOfItems": len(items), "itemListElement": items}],
@@ -1334,7 +1334,7 @@ def index_pages(d, spots, spot_ids, track_url, form_url):
 <div class="btns"><a class="btn main" href="/#foodall">近くのごはん・おむつを地図で探す</a></div>
 {sec}
 <p class="small">設備は工事などで変わることがあります。間違いに気づいたら<a href="/contact/">お問い合わせ</a>から教えてください。</p></article>"""
-    items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}spot/{spot_ids[n]}/", "name": short(n)} for i, n in enumerate(spots)]
+    items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}spot/{spot_ids[n]}/", "name": short(n)} for i, n in enumerate([n for n in spots if spot_ids[n] not in d.get("_thin", {}).get("spot", set())])]
     out.append(("spot/", page(f"横浜の授乳室・おむつ替えのある施設一覧（{len(spots)}か所・エリア別）｜KidsTrip", f"横浜市内の授乳室・おむつ替え・調乳のお湯・電子レンジがある施設{len(spots)}か所をエリア別に。みなとみらい・横浜駅・中華街・新横浜などのモール・駅・博物館の何階にあるか、パパも使えるか。",
                               "spot/", body, [{"@context": "https://schema.org", "@type": "CollectionPage", "name": "横浜の授乳室・おむつ替えのある施設一覧", "url": SITE + "spot/", "inLanguage": "ja"}, cld,
                                               {"@context": "https://schema.org", "@type": "ItemList", "name": "横浜の授乳室・おむつ替えのある施設", "numberOfItems": len(items), "itemListElement": items}],
@@ -1383,6 +1383,15 @@ def main():
             d["_ev_of_spot"][n] = e
             d["_spot_of_ev"][e["id"]] = n
     d["_spot_ids"] = spot_ids
+    built = {"event": {}, "spot": {}}
+    for e in d["events"]:
+        path, htmltext, name = event_page(e, d, spot_ids, track_url)
+        built["event"][e["id"]] = (path, htmltext, name)
+    for n, (b, area) in spots.items():
+        path, htmltext, name = spot_page(b, area, d, spot_ids, track_url)
+        built["spot"][spot_ids[n]] = (path, htmltext, name)
+    # 本文が薄くて noindex になるページ（sitemap から外すもの）。一覧ページの ItemList からも外して、sitemap と数を揃える
+    d["_thin"] = {k: {pid for pid, (_, h, _) in built[k].items() if body_chars(h) < MIN_CHARS} for k in built}
     gk_man = {}
     for gp, gh in gakudo_pages(track_url) + area_pages(d, track_url) + matome_pages(d, track_url) + index_pages(d, spots, spot_ids, track_url, fm.group(1) if fm else "/"):
         os.makedirs(os.path.join(ROOT, gp), exist_ok=True)
@@ -1395,13 +1404,6 @@ def main():
         tm = re.search(r'"@type": "(?!BreadcrumbList|ListItem|PostalAddress|GeoCoordinates|Offer|Organization)(\w+)"', gh)
         gk_man[gp].update({"name": re.sub(r"<[^>]+>", "", h1.group(1)).strip()[:60] if h1 else "", "type": tm.group(1) if tm else "",
                            "chars": body_chars(gh), "links": len(set(re.findall(r'href="/(?:event|spot)/[^"/]+/"', gh)))})
-    built = {"event": {}, "spot": {}}
-    for e in d["events"]:
-        path, htmltext, name = event_page(e, d, spot_ids, track_url)
-        built["event"][e["id"]] = (path, htmltext, name)
-    for n, (b, area) in spots.items():
-        path, htmltext, name = spot_page(b, area, d, spot_ids, track_url)
-        built["spot"][spot_ids[n]] = (path, htmltext, name)
     today = TODAY.isoformat()
     new_man = {"event": {}, "spot": {}}
     for kind in ("event", "spot"):
