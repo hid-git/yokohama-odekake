@@ -1062,7 +1062,7 @@ def yearend_note(texts, closed=None, period=None):
         return None, ""
     txt = "／".join(segs[:2])
     clauses = re.split(r"[、，／]", txt)
-    kind = "closed" if any(YE_CORE.search(c) and YE_CLOSED.search(c) for c in clauses) else ("check" if "確認" in txt else "open")
+    kind = "closed" if any(YE_CORE.search(c) and YE_CLOSED.search(c) for c in clauses) else ("check" if "確認" in re.sub(r"（[^（）]*\d+年\d+月\d+日確認）", "", txt) else "open")
     return kind, txt
 
 def yearend_days(txt):
@@ -1241,7 +1241,16 @@ def matome_pages(d, track_url):
             nm = f'<a href="{href}"><b>{E(n)}</b></a>' if href else f"<b>{E(n)}</b>"
             html += f'<li>{nm}<div class="small">{E(txt)}</div></li>'
         return html + ("</ul>" if cur is not None else "")
+    # 年明けから長く休む施設（リニューアル工事など。データに「○年1月○日から…休園」とあるもの）
+    long_cl = []
+    for e in ong:
+        for seg in re.split(r"。", str(e.get("sum", "")) + "。" + str(e.get("tip", ""))):
+            if re.search(r"(?:20\d\d年)?1月\d+日から[^。]*休(?:園|館)|(?<![\d/])1/\d{1,2}から[^。]*休(?:園|館)", seg):
+                long_cl.append((e, seg.strip())); break
     ye_html = ""
+    if long_cl:
+        ye_html += ('<h2 id="slong">年明けから長く休む施設</h2><ul class="links">' + "".join(
+            f'<li><a href="/event/{e["id"]}/"><b>{E(e["t"])}</b></a><span class="small">（{E(e.get("ward", ""))}）</span><div class="small">{E(seg)}</div></li>' for e, seg in long_cl) + "</ul>")
     if n_ye:
         wl = list(WARD_SLUG)
         grp = {}
@@ -1258,7 +1267,7 @@ def matome_pages(d, track_url):
                 nm = f'<a href="{href}"><b>{E(n)}</b></a>' if href else f"<b>{E(n)}</b>"
                 body_c += f'<li>{nm}<span class="small">（{E(w)}）</span><div class="small">{E(txt)}</div></li>'
             body_c += "</ul>"
-        ye_html = (f'<h2 id="sclosed">年末年始に休む施設・遊び場（{sum(len(v) for v in grp.values())}か所）</h2>'
+        ye_html += (f'<h2 id="sclosed">年末年始に休む施設・遊び場（{sum(len(v) for v in grp.values())}か所）</h2>'
                    '<p class="small">各施設の公式ページに書いてある年末年始の休みを、休む日ごとに分けて載せています（休む日はふだんの休館日を除いた年末年始の分だけ）。書いていない施設は、ここに出ていなくても休むことがあります。</p>' + nav + body_c)
         if ye["open"]:
             ye_html += f'<h2 id="sopen">年末年始に時間が変わる・営業の日が書いてある施設（{len(ye["open"])}か所）</h2>' + ye_list(ye["open"])
