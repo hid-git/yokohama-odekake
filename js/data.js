@@ -29,7 +29,7 @@ const EVENTS = [
     price:"free", priceText:"無料", place:"屋外", rain:"check", rainText:"天候により変更の場合あり",
     resv:false, resvText:"予約不要", age:[0,99], ageText:"全年齢", kind:"limited", start:1140,
     sum:"横浜港の夜景と一緒に約5分間の花火が楽しめる定期開催の企画。クリスマスイブと大みそかにも上がる（次は2027年1月30日）。",
-    tip:"5分間だけなので、少し早めに見る場所を決めておくと安心", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw11005", src:"横浜市観光情報サイト（公式サイト https://www.yokohama-nightflowers.com/ ）", asof:"2026年11月15日" },
+    tip:"5分間だけなので、少し早めに見る場所を決めておくと安心。船から見るならシーバスの「横浜ナイトフラワーズクルーズ」（ピア赤レンガ18:45発・60分、大人5,000円・小人（3歳〜小学生）3,000円、予約制。運航日は公式で。花火が中止でも船が出れば夜景クルーズになり、払い戻しの代わりに次回の夜景クルーズの乗船券がもらえる）", url:"https://www.welcome.city.yokohama.jp/eventinfo/ev_detail.php?bid=yw11005", src:"横浜市観光情報サイト（公式サイト https://www.yokohama-nightflowers.com/ ）・シーバス公式「横浜ナイトフラワーズクルーズ」（利用者が送った本文、2026年11月）", asof:"2026年11月28日" },
   { t:"THE MOVEUM YOKOHAMA「印象派モネと浮世絵」", days:[], time:"毎時00分スタート", ward:"中区", venue:"横浜山下ふ頭4号上屋",
     price:"paid", priceText:"一般3,000円〜（中学生以下無料）", place:"屋内", rain:"ok", rainText:"屋内なので雨でもOK",
     resv:null, resvText:"オンライン券あり", age:[13,99], ageText:"大人向け（小学生以下は保護者同伴）", kind:"limited", start:600,
