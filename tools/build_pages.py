@@ -911,7 +911,7 @@ def fac_li(r, ev=None):
     mq = quote(f'横浜市{r["ward"]}{r["addr"]}' if r.get("addr") else f'横浜市{r["ward"]} {r["name"]}')
     bits = [f'<li><b>{E(r["name"])}</b>']
     if ev: bits.append(f'（<a href="/event/{ev["id"]}/">くわしいページ</a>）')
-    if r.get("kind") and r["type"] == "park": bits.append(f'<span class="small">（{E(r["kind"])}・{r["area"]:,}㎡）</span>')
+    if r["type"] == "park" and (r.get("kind") or r.get("area")): bits.append('<span class="small">（' + "・".join(x for x in [E(r.get("kind") or ""), f'{r["area"]:,}㎡' if r.get("area") else ""] if x) + '）</span>')
     sub = []
     if r.get("addr"): sub.append(f'📍 {E(r["addr"])} <a href="https://www.google.com/maps/search/?api=1&amp;query={mq}" target="_blank" rel="noopener">地図</a>')
     if r.get("tel"): sub.append(f'☎ <a href="tel:{E(r["tel"])}">{E(r["tel"])}</a>')
@@ -934,11 +934,11 @@ def fac_sections(w, ong):
         if not xs: continue
         n += len(xs)
         lis = "".join(fac_li(r, next((e for e in ong if r["name"] in e["t"]), None)) for r in xs)
-        note = {"park": "市の公園一覧表（令和8年3月31日現在）から、近隣公園より大きい公園と5,000㎡以上の公園。遊具・トイレは各公園で確かめてください。",
+        note = {"park": "市の公園一覧表（令和8年3月31日現在）の大きな公園と、区役所の公園紹介ページに載っている公園。トイレ・遊具は区のページに書いてあるものだけ載せています（書いていない公園は空欄）。",
                 "careplaza": "高齢の方の相談が中心の施設ですが、子育てサロンや親子の集まりを開いている館もあります。各館に確かめてください。",
                 "community": "小・中学校の中などにある、図書コーナーや研修室のある施設。だれでも無料で使えます（開館日は館ごと）。"}.get(t, "")
         out.append(f'<h2>{FAC_TYPE[t]}（{len(xs)}）</h2>' + (f'<p class="small">{note}</p>' if note else "") + f'<ul class="gk fac">{lis}</ul>')
-    src = '<p class="small">出典：横浜市の公園一覧表・図書館一覧・地域ケアプラザ紹介、各区役所のコミュニティハウスの案内、はまスポ（横浜市スポーツ施設案内）。2026年11月24日時点。住所・電話・時間が空いているものは、各施設のページで確かめてください。</p>'
+    src = '<p class="small">出典：横浜市の公園一覧表・図書館一覧・地域ケアプラザ紹介、各区役所の公園紹介・コミュニティハウスの案内、はまスポ（横浜市スポーツ施設案内）、横浜市の屋内プールの案内。2026年11月時点。住所・電話・時間が空いているものは、各施設のページで確かめてください。</p>'
     return "".join(out) + src, n
 
 

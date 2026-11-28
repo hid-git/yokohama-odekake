@@ -1460,7 +1460,7 @@ function renderGkQuiz(){
 }
 
 // ---- 施設をさがす（タブ「🏛 施設をさがす」）。tools/facilities.json（市の公園・図書館など）と、EVENTS の通年施設（地区センター・子育て支援拠点など）をまとめて探す ----
-var FC = { rows: null, q: "", ward: "", type: "" };
+var FC = { rows: null, q: "", ward: "", type: "", toilet: false };
 const FC_TYPE = { park: "公園", chiku: "地区センター", kyoten: "子育て支援拠点・親子の広場", log: "こどもログハウス", library: "図書館", community: "コミュニティハウス", sports: "スポーツセンター", pool: "屋内プール", outdoor: "野外活動センター", careplaza: "地域ケアプラザ", spot: "博物館・動物園など", baby: "授乳室・おむつ替えのある施設・お店", pool_summer: "屋外プール（夏）" };
 function fcEvType(e){ const t = e.t; if (/地区センター/.test(t)) return "chiku"; if (/子育て支援拠点|つどいの広場|親子の広場|おやこの広場|子育てひろば/.test(t)) return "kyoten"; if (/ログハウス/.test(t)) return "log"; if (/公園|プレイパーク/.test(t)) return "park"; return "spot"; }
 function fcLoad(){
@@ -1485,6 +1485,7 @@ function fcLoad(){
 function fcMatch(r, skip){
   if (skip !== "ward" && FC.ward && r.ward !== FC.ward) return false;
   if (skip !== "type" && FC.type && r.type !== FC.type) return false;
+  if (FC.toilet && r.toilet !== true) return false;
   if (FC.q) { const q = gkNorm(FC.q); if (q && !gkNorm([r.name, r.addr, r.ward, r.area, FC_TYPE[r.type], r.kind].join(" ")).includes(q)) return false; }
   return true;
 }
@@ -1493,14 +1494,15 @@ function renderFc(){
   const opt = (k, v, label, n) => `<button type="button" class="opt" data-fc="${k}" data-v="${esc(v)}" aria-pressed="${FC[k] === v}">${esc(label)}${n === undefined ? "" : ` <small>${n}</small>`}</button>`;
   document.getElementById("fc-ward").innerHTML = opt("ward", "", "すべての区") + WARD_ORDER.map(w => { const n = rows.filter(r => r.ward === w && fcMatch(r, "ward")).length; return n ? opt("ward", w, w.replace(/区$/, ""), n) : ""; }).join("");
   document.getElementById("fc-type").innerHTML = opt("type", "", "すべての種類") + Object.keys(FC_TYPE).map(t => { const n = rows.filter(r => r.type === t && fcMatch(r, "type")).length; return n ? opt("type", t, FC_TYPE[t], n) : ""; }).join("");
+  { document.getElementById("fc-type").insertAdjacentHTML("beforeend", (FC.type === "park" || FC.toilet) ? `<button type="button" class="opt" data-fctoilet="1" aria-pressed="${FC.toilet}">🚻 トイレがある所だけ</button>` : ""); }
   const out = document.getElementById("fc-out"), nEl = document.getElementById("fc-n");
-  if (!FC.ward && !FC.q && !FC.type) { nEl.textContent = `全${rows.length}か所`; out.innerHTML = `<p class="note">区か種類を選ぶか、名前で探してください。区ごとの一覧は<a href="/area/">区ごとの施設・遊び場</a>でも見られます。</p>`; return; }
+  if (!FC.ward && !FC.q && !FC.type && !FC.toilet) { nEl.textContent = `全${rows.length}か所`; out.innerHTML = `<p class="note">区か種類を選ぶか、名前で探してください。区ごとの一覧は<a href="/area/">区ごとの施設・遊び場</a>でも見られます。</p>`; return; }
   const hit = rows.filter(r => fcMatch(r)); nEl.textContent = `${hit.length}か所`;
   const show = hit.slice(0, 120);
   const card = r => { const mq = encodeURIComponent(r.addr ? `横浜市${r.ward}${r.addr}` : `横浜市${r.ward} ${r.name.replace(/（.*$/, "")}`);
     return `<li><details><summary><b>${esc(r.name)}</b><span class="chip ${r.price === "free" ? "free" : ""}">${esc(FC_TYPE[r.type] || "")}</span>${r.ward ? `<span class="chip">${esc(r.ward)}</span>` : r.area ? `<span class="chip">${esc(r.area)}</span>` : ""}</summary>
-    <div class="pld">${r.kind ? `<div>🌳 ${esc(r.kind)}・${Number(r.area || 0).toLocaleString()}㎡</div>` : ""}${r.addr ? `<div>📍 ${esc(r.addr)}</div>` : ""}${r.tel ? `<div>☎ <a href="tel:${esc(r.tel)}" data-fc-out="tel">${esc(r.tel)}</a></div>` : ""}${r.hours ? `<div>🕘 ${esc(r.hours)}</div>` : ""}${r.closed ? `<div>休み：${esc(r.closed)}</div>` : ""}${r.kids ? `<div>👶 ${esc(r.kids)}</div>` : ""}${r.note ? `<div>📝 ${esc(r.note)}</div>` : ""}
-    <div class="lk">${r.ev ? `<a href="/event/${esc(r.ev)}/" data-fc-out="page">くわしいページ</a>` : ""}${r.spot ? `<a href="/spot/${esc(r.spot)}/" data-fc-out="spot">授乳室・おむつ替えのページ</a>` : ""}<a href="https://www.google.com/maps/search/?api=1&query=${mq}" target="_blank" rel="noopener" data-fc-out="map">地図</a>${r.ward && GK_SLUG[r.ward] ? `<a href="/area/${GK_SLUG[r.ward]}/">${esc(r.ward)}の一覧</a>` : ""}${r.src ? `<a href="${esc(r.src)}" target="_blank" rel="noopener" data-fc-out="src">出典 ↗</a>` : ""}</div>
+    <div class="pld">${(r.kind || r.area) ? `<div>🌳 ${[r.kind ? esc(r.kind) : "", r.area ? Number(r.area).toLocaleString() + "㎡" : ""].filter(Boolean).join("・")}</div>` : ""}${r.addr ? `<div>📍 ${esc(r.addr)}</div>` : ""}${r.tel ? `<div>☎ <a href="tel:${esc(r.tel)}" data-fc-out="tel">${esc(r.tel)}</a></div>` : ""}${r.hours ? `<div>🕘 ${esc(r.hours)}</div>` : ""}${r.closed ? `<div>休み：${esc(r.closed)}</div>` : ""}${r.kids ? `<div>👶 ${esc(r.kids)}</div>` : ""}${r.note ? `<div>📝 ${esc(r.note)}</div>` : ""}
+    <div class="lk">${r.ev ? `<a href="/event/${esc(r.ev)}/" data-fc-out="page">くわしいページ</a>` : ""}${r.spot ? `<a href="/spot/${esc(r.spot)}/" data-fc-out="spot">授乳室・おむつ替えのページ</a>` : ""}<a href="https://www.google.com/maps/search/?api=1&query=${mq}" target="_blank" rel="noopener" data-fc-out="map">地図</a>${r.ward && GK_SLUG[r.ward] ? `<a href="/area/${GK_SLUG[r.ward]}/">${esc(r.ward)}の一覧</a>` : ""}${r.src ? `<a href="${esc(r.src)}" target="_blank" rel="noopener" data-fc-out="src">出典 ↗</a>` : ""}${r.src2 ? `<a href="${esc(r.src2)}" target="_blank" rel="noopener" data-fc-out="src">設備の出典 ↗</a>` : ""}</div>
     ${r.asof ? `<div class="plw">出典の時点：${esc(r.asof)}</div>` : ""}</div></details></li>`; };
   out.innerHTML = hit.length ? `<ul class="pl">${show.map(card).join("")}</ul>${hit.length > show.length ? `<p class="note">ほか${hit.length - show.length}か所。区や種類で絞ってください。</p>` : ""}` : `<p class="note">見つかりませんでした。名前の一部や町名でも探せます。</p>`;
 }
@@ -1508,6 +1510,7 @@ function renderFc(){
   if (sec) {
     let tq = null;
     sec.addEventListener("click", ev => {
+      const tb = ev.target.closest("button.opt[data-fctoilet]"); if (tb) { FC.toilet = !FC.toilet; renderFc(); if (FC.toilet) track("shisetsu", "トイレあり", document.getElementById("fc-n").textContent); return; }
       const b = ev.target.closest("button.opt[data-fc]"); if (b) { const k = b.dataset.fc, v = b.dataset.v; FC[k] = FC[k] === v ? "" : v; renderFc(); if (v) track("shisetsu", k + "：" + v, document.getElementById("fc-n").textContent); return; }
       const a = ev.target.closest("a[data-fc-out]"); if (a) track("shisetsu_open", a.dataset.fcOut);
     });
