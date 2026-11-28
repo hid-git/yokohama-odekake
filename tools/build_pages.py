@@ -195,7 +195,7 @@ def page(title, desc, path, body, ld, noindex=False, track_url="", tpage="", og=
 <title>{E(title)}</title>
 <meta name="description" content="{E(desc)}">
 {robots}<link rel="canonical" href="{url}">
-<meta property="og:type" content="{"website" if path == "about/" else "article"}">
+<meta property="og:type" content="{"article" if re.match(r"(event|spot)/[^/]+/$", path) else "website"}">
 <meta property="og:site_name" content="KidsTrip">
 <meta property="og:title" content="{E(title)}">
 <meta property="og:description" content="{E(desc)}">
@@ -392,6 +392,12 @@ def event_page(e, d, spot_ids, track_url):
     else:
         title = f"{e['t']}{wsuf}｜横浜の子連れイベント｜KidsTrip"
         desc = f"{when_text(e)[:60]}　{e['venue']}。{e['sum']}"[:120]
+    if len(title) > 60:  # 長い名前は、検索結果で切れないよう真ん中の「横浜の子連れ…」を省く
+        title = f"{e['t']}{wsuf}｜KidsTrip"
+    if len(desc) < 60:  # 短い説明は、データにある料金・対象・雨の日を足して2行ぶんにする（データにないことは書かない）
+        extra = "・".join(x for x in [re.sub(r"（.*?）", "", e.get("priceText") or "")[:30], "対象：" + e["ageText"] if e.get("ageText") else "", (e.get("rainText") or "")[:25]] if x)
+        if extra:
+            desc = f"{desc.rstrip('。')}。{extra}。"[:120]
     area = e.get("area") or ""
     babies = d["baby"].get(area, [])
     if e["kind"] == "ongoing" and ward1 in WARD_SLUG:
@@ -1426,6 +1432,16 @@ def main():
             open(out, "w", encoding="utf-8").write(htmltext)
         for pid, old in man.get(kind, {}).items():  # 一覧から外れたもの
             if pid in built[kind]:
+                continue
+            base = re.sub(r"-\d+$", "", pid)
+            if base != pid and base in built[kind]:  # 同じものが二重に入ってできた「-2」などは、元のページへ移す（重複ページにしない）
+                path = f"{kind}/{pid}/"
+                to = f"{SITE}{kind}/{base}/"
+                htmltext = f'<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="{to}"><meta http-equiv="refresh" content="0; url={to}"><title>移動しました｜KidsTrip</title></head><body><p><a href="{to}">こちらのページに移動しました</a></p></body></html>'
+                out = os.path.join(ROOT, path, "index.html")
+                os.makedirs(os.path.dirname(out), exist_ok=True)
+                open(out, "w", encoding="utf-8").write(htmltext)
+                new_man[kind][pid] = dict(old, ended=True, moved=base, lastmod=old.get("lastmod", today))
                 continue
             save_ended_body(kind, pid)
             path, htmltext = ended_page(kind, pid, old.get("name", ""), d)
