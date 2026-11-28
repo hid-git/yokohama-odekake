@@ -536,6 +536,15 @@
    "name": "こっころ（保土ケ谷区の地域子育て支援拠点）",
    "type": "TouristAttraction"
   },
+  "157kgpx": {
+   "added": "2026-11-28",
+   "chars": 1802,
+   "hash": "0c04752eca17",
+   "lastmod": "2026-11-28",
+   "links": 12,
+   "name": "YOKOHAMA AIR CABIN（ロープウェイ）",
+   "type": "TouristAttraction"
+  },
   "15w4yl7": {
    "added": "2026-11-17",
    "chars": 656,
@@ -3237,6 +3246,15 @@
    "name": "20th Anniversary Sapphire Blue Christmas（横浜ベイクォーターのクリスマスツリー）",
    "type": "TouristAttraction"
   },
+  "2vzk63": {
+   "added": "2026-11-28",
+   "chars": 1245,
+   "hash": "8350a5faf437",
+   "lastmod": "2026-11-28",
+   "links": 12,
+   "name": "新横浜ラーメン博物館（昭和の街並み・ラーメン作り体験）",
+   "type": "TouristAttraction"
+  },
   "33twlb": {
    "added": "2026-11-13",
    "chars": 503,
@@ -4908,6 +4926,15 @@
    "name": "子育て支援スペースCOCOひよし（港北区・親と子のつどいの広場）",
    "type": "TouristAttraction"
   },
+  "i1ra7n": {
+   "added": "2026-11-28",
+   "chars": 2199,
+   "hash": "18804f4d6250",
+   "lastmod": "2026-11-28",
+   "links": 14,
+   "name": "コニカミノルタプラネタリアYOKOHAMA（プラネタリウム）",
+   "type": "TouristAttraction"
+  },
   "i4ptts": {
    "added": "2026-11-17",
    "chars": 831,
@@ -5086,6 +5113,15 @@
    "lastmod": "2026-11-28",
    "links": 8,
    "name": "初音が丘地区センターのプレイルーム（保土ケ谷区）",
+   "type": "TouristAttraction"
+  },
+  "jjh59n": {
+   "added": "2026-11-28",
+   "chars": 1868,
+   "hash": "249b4f0a99fa",
+   "lastmod": "2026-11-28",
+   "links": 12,
+   "name": "横浜赤レンガ倉庫（ショップ・カフェ・広場）",
    "type": "TouristAttraction"
   },
   "jkp7kp": {
@@ -6288,6 +6324,15 @@
    "name": "えいごであそぼう！（上飯田地区センター）",
    "type": "Event"
   },
+  "wsmvfd": {
+   "added": "2026-11-28",
+   "chars": 1624,
+   "hash": "de94e9859b25",
+   "lastmod": "2026-11-28",
+   "links": 12,
+   "name": "横浜マリンタワー（展望フロア）",
+   "type": "TouristAttraction"
+  },
   "wsp6ha": {
    "added": "2026-11-21",
    "chars": 1613,
@@ -6323,6 +6368,15 @@
    "links": 102,
    "name": "パウ・パトロールのクイズラリー＆マーシャルのグリーティング（BALLPARK Xmas）",
    "type": "Event"
+  },
+  "x39yby": {
+   "added": "2026-11-28",
+   "chars": 2442,
+   "hash": "c2e4134aa8a9",
+   "lastmod": "2026-11-28",
+   "links": 14,
+   "name": "横浜アンパンマンこどもミュージアム（有料ミュージアム）",
+   "type": "TouristAttraction"
   },
   "x4x5ar": {
    "added": "2026-11-17",
@@ -6586,7 +6640,7 @@
  "gakudo": {
   "area/": {
    "chars": 2560,
-   "hash": "bc18195f91c0",
+   "hash": "fabad894ff73",
    "lastmod": "2026-11-28",
    "links": 0,
    "name": "横浜市の区ごとの子連れで行ける施設・遊び場",
@@ -6649,10 +6703,10 @@
    "type": "CollectionPage"
   },
   "area/kohoku/": {
-   "chars": 10871,
-   "hash": "254b3b71881f",
+   "chars": 10980,
+   "hash": "c30110158d08",
    "lastmod": "2026-11-28",
-   "links": 38,
+   "links": 39,
    "name": "港北区の子連れで行ける施設・遊び場",
    "type": "CollectionPage"
   },
@@ -6681,18 +6735,18 @@
    "type": "CollectionPage"
   },
   "area/naka/": {
-   "chars": 14588,
-   "hash": "13b0384ad752",
+   "chars": 14885,
+   "hash": "381d302e63e4",
    "lastmod": "2026-11-28",
-   "links": 50,
+   "links": 53,
    "name": "中区の子連れで行ける施設・遊び場",
    "type": "CollectionPage"
   },
   "area/nishi/": {
-   "chars": 9647,
-   "hash": "fcd14fd47462",
+   "chars": 9833,
+   "hash": "656517404add",
    "lastmod": "2026-11-28",
-   "links": 55,
+   "links": 57,
    "name": "西区の子連れで行ける施設・遊び場",
    "type": "CollectionPage"
   },
@@ -6906,7 +6960,7 @@
   },
   "matome/": {
    "chars": 875,
-   "hash": "6cf7b5bfe2ce",
+   "hash": "78a9aef78385",
    "lastmod": "2026-11-28",
    "links": 0,
    "name": "横浜の子連れおでかけ 特集・まとめ",
@@ -6937,10 +6991,10 @@
    "type": "CollectionPage"
   },
   "matome/newyear/": {
-   "chars": 14649,
-   "hash": "698d874706ca",
+   "chars": 14676,
+   "hash": "43312ef6db2f",
    "lastmod": "2026-11-28",
-   "links": 221,
+   "links": 222,
    "name": "年末年始・お正月の横浜 子連れイベントと休館日まとめ",
    "type": "CollectionPage"
   },
@@ -7078,6 +7132,7 @@
   "152ws5g": "c141d8ffad9e",
   "154i32r": "cb94efa55a33",
   "156nmc3": "0f85d99816f7",
+  "157kgpx": "12fe8cd0be7f",
   "15w4yl7": "0a0afa08f3eb",
   "163drg": "d186c72574eb",
   "166laq": "65813beb195a",
@@ -7335,6 +7390,7 @@
   "2j3mn1": "934be37f99a0",
   "2njad4": "3eb45c192464",
   "2t2y0v": "8c3677919958",
+  "2vzk63": "d8538c722f2d",
   "33twlb": "71360820e4cb",
   "39k79t": "875bf34c68b7",
   "3co2nr": "45c573d29ad4",
@@ -7494,6 +7550,7 @@
   "hyblin": "5c5b45f2a493",
   "hzpl4y": "5c91ae2f2cdf",
   "i11bfl": "d415ac32a170",
+  "i1ra7n": "e7dcf102e6b6",
   "i4ptts": "8819cd4b6b3a",
   "i7ypwd": "531586cbc1fa",
   "ibbsld": "d4bd048780c6",
@@ -7514,6 +7571,7 @@
   "jecsap": "18cfcf67788e",
   "jeg8ox": "404f2247519e",
   "ji11sv": "0c50fb81da18",
+  "jjh59n": "7e8c0bcf7380",
   "jkp7kp": "6e0a4946b519",
   "jnsv9f": "e27c99d061b8",
   "jompaw": "9e6e9bad92d8",
@@ -7628,10 +7686,12 @@
   "wll1xk": "ef6923aa3498",
   "wmjpe8": "0b44aef99a16",
   "wsiqgj": "8f100fbb83c1",
+  "wsmvfd": "51cd41a4d3d2",
   "wsp6ha": "1e812901d25d",
   "wt4gku": "c8e593f72b49",
   "wz0uob": "9a75b789bb61",
   "x0mfmo": "d194c53ccbc8",
+  "x39yby": "0d75ad149b48",
   "x4x5ar": "fa1ffe729b6a",
   "x7ybjj": "be2fdd42d709",
   "x8q74w": "7b7f9d0de9c9",
@@ -7911,8 +7971,8 @@
  "spot": {
   "102eq2v": {
    "added": "2026-11-13",
-   "chars": 3024,
-   "hash": "b3876a046cda",
+   "chars": 3012,
+   "hash": "aefc391d3d61",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "Mulabo!（ムラーボ！）",
@@ -7947,8 +8007,8 @@
   },
   "11yqwmv": {
    "added": "2026-11-13",
-   "chars": 3080,
-   "hash": "a66fdf9bdcb9",
+   "chars": 3045,
+   "hash": "f24ed8c307a7",
    "lastmod": "2026-11-28",
    "links": 94,
    "name": "元町ショッピングストリート",
@@ -7974,8 +8034,8 @@
   },
   "12pvzvc": {
    "added": "2026-11-13",
-   "chars": 2599,
-   "hash": "0b0b125fa952",
+   "chars": 2586,
+   "hash": "87fb5801cdfc",
    "lastmod": "2026-11-28",
    "links": 94,
    "name": "横浜博覧館（中華街）",
@@ -7983,8 +8043,8 @@
   },
   "12zefgy": {
    "added": "2026-11-13",
-   "chars": 2451,
-   "hash": "9d6138eb0f57",
+   "chars": 2457,
+   "hash": "460c31b7c163",
    "lastmod": "2026-11-28",
    "links": 47,
    "name": "横浜シティ・エア・ターミナル（YCAT）",
@@ -8101,8 +8161,8 @@
   },
   "1762nsq": {
    "added": "2026-11-13",
-   "chars": 2816,
-   "hash": "66120e67bc74",
+   "chars": 2821,
+   "hash": "c5e013104edd",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "横浜にぎわい座",
@@ -8182,8 +8242,8 @@
   },
   "1a5j8ji": {
    "added": "2026-11-23",
-   "chars": 2649,
-   "hash": "d24b68633c26",
+   "chars": 2664,
+   "hash": "90a03b29c363",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "セブン-イレブン 横浜桜木町駅前店（中区花咲町2-64）",
@@ -8236,8 +8296,8 @@
   },
   "1blkzom": {
    "added": "2026-11-19",
-   "chars": 2032,
-   "hash": "cf9460933a27",
+   "chars": 2026,
+   "hash": "c95d3aa46c51",
    "lastmod": "2026-11-28",
    "links": 47,
    "name": "シァル横浜（横浜駅ビル）",
@@ -8273,19 +8333,19 @@
   },
   "1d099gd": {
    "added": "2026-11-23",
-   "chars": 1879,
-   "hash": "83d476ce4898",
+   "chars": 1927,
+   "hash": "492245f6fd39",
    "lastmod": "2026-11-28",
-   "links": 45,
+   "links": 46,
    "name": "理容たていし（戸部・子どもカット）",
    "type": "HairSalon"
   },
   "1d0x9al": {
    "added": "2026-11-13",
-   "chars": 664,
-   "hash": "7acff166a090",
+   "chars": 709,
+   "hash": "a7c43d244cd8",
    "lastmod": "2026-11-28",
-   "links": 6,
+   "links": 7,
    "name": "横浜アリーナ",
    "type": "StadiumOrArena"
   },
@@ -8345,8 +8405,8 @@
   },
   "1fba7ke": {
    "added": "2026-11-23",
-   "chars": 2784,
-   "hash": "29d9e2177a3e",
+   "chars": 2789,
+   "hash": "8ada4ef1b08f",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "野毛地区センター（ちぇるる野毛3F）",
@@ -8417,8 +8477,8 @@
   },
   "1hgp91k": {
    "added": "2026-11-12",
-   "chars": 2932,
-   "hash": "10e427ceeea0",
+   "chars": 2894,
+   "hash": "2d27c4e95b26",
    "lastmod": "2026-11-28",
    "links": 95,
    "name": "THE WHARF HOUSE 山下公園",
@@ -8435,17 +8495,17 @@
   },
   "1hsv2a5": {
    "added": "2026-11-23",
-   "chars": 2954,
-   "hash": "184c34ac2bd8",
+   "chars": 2987,
+   "hash": "008ab94deeb7",
    "lastmod": "2026-11-28",
-   "links": 94,
+   "links": 95,
    "name": "ヘアサロン イランイラン（元町・石川町）",
    "type": "HairSalon"
   },
   "1hwrv7w": {
    "added": "2026-11-13",
-   "chars": 2925,
-   "hash": "6acbce283284",
+   "chars": 3017,
+   "hash": "d07cf8d37b67",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "コニカミノルタプラネタリアYOKOHAMA",
@@ -8453,8 +8513,8 @@
   },
   "1icjes": {
    "added": "2026-11-19",
-   "chars": 2729,
-   "hash": "85c0d3527a88",
+   "chars": 2728,
+   "hash": "8a394e7951af",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "シァル桜木町（桜木町駅直結）",
@@ -8462,8 +8522,8 @@
   },
   "1ikiitx": {
    "added": "2026-11-13",
-   "chars": 3303,
-   "hash": "1512220e027a",
+   "chars": 3296,
+   "hash": "0fe9c4c94b66",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "MARINE & WALK YOKOHAMA",
@@ -8489,8 +8549,8 @@
   },
   "1ixhw31": {
    "added": "2026-11-19",
-   "chars": 2144,
-   "hash": "358e1a799c28",
+   "chars": 2159,
+   "hash": "9d7575ef2520",
    "lastmod": "2026-11-28",
    "links": 47,
    "name": "ヨドバシ横浜（横浜駅西口）",
@@ -8507,8 +8567,8 @@
   },
   "1jausgz": {
    "added": "2026-11-23",
-   "chars": 2784,
-   "hash": "76052840a4bd",
+   "chars": 2782,
+   "hash": "b329747a2e8c",
    "lastmod": "2026-11-28",
    "links": 95,
    "name": "コート・ダジュール 元町・中華街店（カラオケ）",
@@ -8552,8 +8612,8 @@
   },
   "1kkyo59": {
    "added": "2026-11-12",
-   "chars": 2307,
-   "hash": "f0c6cc8e803d",
+   "chars": 2301,
+   "hash": "a0ffbe9104d1",
    "lastmod": "2026-11-28",
    "links": 47,
    "name": "そごう横浜店",
@@ -8570,8 +8630,8 @@
   },
   "1l0g3g5": {
    "added": "2026-11-19",
-   "chars": 2954,
-   "hash": "4490ff73679b",
+   "chars": 2940,
+   "hash": "cd5686511de1",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "横浜市役所（桜木町駅前）",
@@ -8651,8 +8711,8 @@
   },
   "1nai5cn": {
    "added": "2026-11-23",
-   "chars": 2989,
-   "hash": "7d39cff68258",
+   "chars": 2982,
+   "hash": "3909e9b51b3e",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "ヨコハマ グランド インターコンチネンタル ホテル",
@@ -8714,8 +8774,8 @@
   },
   "1qdpflt": {
    "added": "2026-11-23",
-   "chars": 2905,
-   "hash": "8285595190cd",
+   "chars": 2892,
+   "hash": "b325f184ed91",
    "lastmod": "2026-11-28",
    "links": 95,
    "name": "エスカル横浜（公共の宿 横浜海員会館）",
@@ -8723,8 +8783,8 @@
   },
   "1qg4qi4": {
    "added": "2026-11-12",
-   "chars": 2683,
-   "hash": "7f2a182ebeea",
+   "chars": 2697,
+   "hash": "16a92268814f",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "コレットマーレ（桜木町駅前）",
@@ -8867,8 +8927,8 @@
   },
   "1vhefma": {
    "added": "2026-11-23",
-   "chars": 2825,
-   "hash": "ff8a509a477b",
+   "chars": 2823,
+   "hash": "a1143bf322f0",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "ローズホテル横浜（中華街・重慶飯店 新館）",
@@ -8903,8 +8963,8 @@
   },
   "1wazjhw": {
    "added": "2026-11-19",
-   "chars": 2212,
-   "hash": "1780d15a85a0",
+   "chars": 2206,
+   "hash": "0176e9bad2d9",
    "lastmod": "2026-11-28",
    "links": 47,
    "name": "横浜ポルタ（横浜駅東口の地下街）",
@@ -8975,10 +9035,10 @@
   },
   "1yijbwh": {
    "added": "2026-11-13",
-   "chars": 2712,
-   "hash": "36bb39d0a03d",
+   "chars": 2745,
+   "hash": "678352381136",
    "lastmod": "2026-11-28",
-   "links": 95,
+   "links": 96,
    "name": "外交官の家（山手イタリア山庭園）",
    "type": "LandmarksOrHistoricalBuildings"
   },
@@ -8993,8 +9053,8 @@
   },
   "2de9w6": {
    "added": "2026-11-23",
-   "chars": 2716,
-   "hash": "593f5df16258",
+   "chars": 2714,
+   "hash": "bc2ff17d38b1",
    "lastmod": "2026-11-28",
    "links": 95,
    "name": "セブン-イレブン 横浜中華街東門店",
@@ -9002,10 +9062,10 @@
   },
   "2ecfoj": {
    "added": "2026-11-13",
-   "chars": 2393,
-   "hash": "e9d6c8b80182",
+   "chars": 2435,
+   "hash": "80e1cf352b29",
    "lastmod": "2026-11-28",
-   "links": 61,
+   "links": 62,
    "name": "野毛山動物園",
    "type": "Zoo"
   },
@@ -9065,10 +9125,10 @@
   },
   "3i908c": {
    "added": "2026-11-12",
-   "chars": 697,
-   "hash": "9b18cd721d2a",
+   "chars": 742,
+   "hash": "fcccd30a3443",
    "lastmod": "2026-11-28",
-   "links": 6,
+   "links": 7,
    "name": "新横浜プリンスペペ",
    "type": "ShoppingCenter"
   },
@@ -9146,8 +9206,8 @@
   },
   "6xpari": {
    "added": "2026-11-23",
-   "chars": 2809,
-   "hash": "42b5ef3de273",
+   "chars": 2774,
+   "hash": "3b6e0183449a",
    "lastmod": "2026-11-28",
    "links": 95,
    "name": "Lily チャイナドレス・漢服レンタル（中華街）",
@@ -9227,10 +9287,10 @@
   },
   "8spscs": {
    "added": "2026-11-23",
-   "chars": 2870,
-   "hash": "5e12e056ed00",
+   "chars": 2903,
+   "hash": "5c5339ab32ee",
    "lastmod": "2026-11-28",
-   "links": 94,
+   "links": 95,
    "name": "セブン-イレブン 横浜山下町店",
    "type": "ConvenienceStore"
   },
@@ -9245,8 +9305,8 @@
   },
   "8ytnft": {
    "added": "2026-11-23",
-   "chars": 2480,
-   "hash": "d9faa2f4262c",
+   "chars": 2485,
+   "hash": "186e4b2342c4",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "横浜マンダリンホテル（野毛）",
@@ -9282,8 +9342,8 @@
   },
   "a9ewxh": {
    "added": "2026-11-13",
-   "chars": 2719,
-   "hash": "e35114d6d818",
+   "chars": 2721,
+   "hash": "edc2daa24f0d",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "横浜能楽堂",
@@ -9309,8 +9369,8 @@
   },
   "b5zzid": {
    "added": "2026-11-23",
-   "chars": 2788,
-   "hash": "9d1f7647e6b7",
+   "chars": 2790,
+   "hash": "0302d35fa57e",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "横浜市中央図書館",
@@ -9354,8 +9414,8 @@
   },
   "co5mie": {
    "added": "2026-11-13",
-   "chars": 2804,
-   "hash": "eca160eec629",
+   "chars": 2791,
+   "hash": "a9eab912887b",
    "lastmod": "2026-11-28",
    "links": 94,
    "name": "横浜大世界（中華街）",
@@ -9390,8 +9450,8 @@
   },
   "cydgfi": {
    "added": "2026-11-22",
-   "chars": 3350,
-   "hash": "d75070524972",
+   "chars": 3352,
+   "hash": "0ca1086ddda1",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "三井ホーム Visual Presentation Center 横浜（横浜三井ビルディング27階）",
@@ -9453,10 +9513,10 @@
   },
   "eizyq4": {
    "added": "2026-11-12",
-   "chars": 3445,
-   "hash": "70508ecbbdfc",
+   "chars": 3509,
+   "hash": "8d91a21cef7e",
    "lastmod": "2026-11-28",
-   "links": 97,
+   "links": 98,
    "name": "横浜赤レンガ倉庫",
    "type": "ShoppingCenter"
   },
@@ -9471,8 +9531,8 @@
   },
   "erzqq": {
    "added": "2026-11-23",
-   "chars": 2095,
-   "hash": "c03ed4b9ad63",
+   "chars": 2089,
+   "hash": "46fee31ad131",
    "lastmod": "2026-11-28",
    "links": 47,
    "name": "ローソン 横浜駅東口店",
@@ -9489,8 +9549,8 @@
   },
   "fe7673": {
    "added": "2026-11-25",
-   "chars": 2988,
-   "hash": "0a4c89c2e625",
+   "chars": 2990,
+   "hash": "02724fa21daf",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "オーケー みなとみらい店（スーパー）",
@@ -9534,8 +9594,8 @@
   },
   "fviw25": {
    "added": "2026-11-19",
-   "chars": 2269,
-   "hash": "191edb9c66ab",
+   "chars": 2275,
+   "hash": "adec61e9aaf0",
    "lastmod": "2026-11-28",
    "links": 47,
    "name": "横浜スカイビル（横浜駅東口）",
@@ -9597,8 +9657,8 @@
   },
   "i9e75y": {
    "added": "2026-11-23",
-   "chars": 2879,
-   "hash": "b98080ea6621",
+   "chars": 2850,
+   "hash": "1b632de9f1f8",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "鍼灸指圧マッサージ レスト（中華街）",
@@ -9624,8 +9684,8 @@
   },
   "inrof": {
    "added": "2026-11-23",
-   "chars": 2106,
-   "hash": "26b15c65116a",
+   "chars": 2083,
+   "hash": "6e349d195353",
    "lastmod": "2026-11-28",
    "links": 47,
    "name": "セブン-イレブン 横浜駅東口店",
@@ -9642,8 +9702,8 @@
   },
   "jlzno5": {
    "added": "2026-11-12",
-   "chars": 3488,
-   "hash": "fe9dab20aed8",
+   "chars": 3552,
+   "hash": "836646c709b6",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "横浜アンパンマンこどもミュージアム",
@@ -9678,10 +9738,10 @@
   },
   "l5mpw3": {
    "added": "2026-11-13",
-   "chars": 675,
-   "hash": "42aa73f83966",
+   "chars": 792,
+   "hash": "5c12fe9335ee",
    "lastmod": "2026-11-28",
-   "links": 6,
+   "links": 7,
    "name": "新横浜ラーメン博物館",
    "type": "Museum"
   },
@@ -9714,10 +9774,10 @@
   },
   "m91q3x": {
    "added": "2026-11-23",
-   "chars": 2553,
-   "hash": "f64c43162289",
+   "chars": 2586,
+   "hash": "38ee7d44984d",
    "lastmod": "2026-11-28",
-   "links": 93,
+   "links": 94,
    "name": "麦田地域ケアプラザ",
    "type": "CivicStructure"
   },
@@ -9741,8 +9801,8 @@
   },
   "nsqtn": {
    "added": "2026-11-13",
-   "chars": 2831,
-   "hash": "ee858189f22f",
+   "chars": 2835,
+   "hash": "d1de90db462f",
    "lastmod": "2026-11-28",
    "links": 95,
    "name": "横浜人形の家",
@@ -9768,8 +9828,8 @@
   },
   "omd360": {
    "added": "2026-11-12",
-   "chars": 2642,
-   "hash": "cc70ae195934",
+   "chars": 2629,
+   "hash": "6dcaf5ac2db9",
    "lastmod": "2026-11-28",
    "links": 94,
    "name": "横浜中華街",
@@ -9904,8 +9964,8 @@
   },
   "ruk7ap": {
    "added": "2026-11-23",
-   "chars": 2746,
-   "hash": "ae7a93c881e9",
+   "chars": 2760,
+   "hash": "59303e4657b7",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "宮崎地域ケアプラザ（西区宮崎町）",
@@ -9913,8 +9973,8 @@
   },
   "su1u2h": {
    "added": "2026-11-12",
-   "chars": 2815,
-   "hash": "82a924eec03e",
+   "chars": 2811,
+   "hash": "5f810a0fc1bb",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "横浜ハンマーヘッド",
@@ -9949,8 +10009,8 @@
   },
   "ttyij6": {
    "added": "2026-11-13",
-   "chars": 2322,
-   "hash": "2ecf1d9741e0",
+   "chars": 2316,
+   "hash": "afca3b5841ac",
    "lastmod": "2026-11-28",
    "links": 47,
    "name": "アソビル（横浜駅みなみ東口直結）",
@@ -9958,10 +10018,10 @@
   },
   "ty2zv2": {
    "added": "2026-11-23",
-   "chars": 2402,
-   "hash": "50e05bb98140",
+   "chars": 2435,
+   "hash": "a286486d2440",
    "lastmod": "2026-11-28",
-   "links": 93,
+   "links": 94,
    "name": "HOME'S 新山下（ホームズ新山下）",
    "type": "ShoppingCenter"
   },
@@ -9994,8 +10054,8 @@
   },
   "uxzm6a": {
    "added": "2026-11-13",
-   "chars": 2457,
-   "hash": "5d381025fd28",
+   "chars": 2453,
+   "hash": "d9b38fdef874",
    "lastmod": "2026-11-28",
    "links": 47,
    "name": "原鉄道模型博物館",
@@ -10012,10 +10072,10 @@
   },
   "w1ck99": {
    "added": "2026-11-23",
-   "chars": 2084,
-   "hash": "6c440b38955c",
+   "chars": 2132,
+   "hash": "d53a25be2450",
    "lastmod": "2026-11-28",
-   "links": 46,
+   "links": 47,
    "name": "セブン-イレブン 横浜平沼1丁目店",
    "type": "ConvenienceStore"
   },
@@ -10040,8 +10100,8 @@
   },
   "xkhnmi": {
    "added": "2026-11-12",
-   "chars": 3090,
-   "hash": "870b5d71bcb6",
+   "chars": 3135,
+   "hash": "593c4f351b5d",
    "lastmod": "2026-11-28",
    "links": 95,
    "name": "横浜マリンタワー",
@@ -10068,10 +10128,10 @@
   },
   "xumbkg": {
    "added": "2026-11-12",
-   "chars": 980,
-   "hash": "69cb18405685",
+   "chars": 1025,
+   "hash": "730431428231",
    "lastmod": "2026-11-28",
-   "links": 6,
+   "links": 7,
    "name": "キュービックプラザ新横浜（新横浜駅直結）",
    "type": "ShoppingCenter"
   },
