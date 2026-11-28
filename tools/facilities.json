@@ -46,14 +46,14 @@
   "tel": "045-501-2343",
   "hours": "",
   "closed": "",
-  "kids": "野球場・テニスコート・多目的広場",
+  "kids": "野球場・テニスコート・多目的広場／テニス・野球・ローラースケート・ジョギングができる",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "行き方：JR鶴見線浅野駅から徒歩3分",
   "kind": "地区公園",
   "area": 54158,
   "no": "0020",
-  "src2": "https://www.city.yokohama.lg.jp/business/kyoso/public-facility/kaku-katsuyou/kankyo/park/keikakuhoukoku/jigyokeikakuhoukoku.files/2020_keikaku_irifunehoka.pdf",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/shokai/odekake/miryoku/koen_shizen/n5.html",
   "asof2": "2026年11月28日"
  },
  {
@@ -136,16 +136,16 @@
   "name": "白幡公園",
   "addr": "東寺尾二丁目12",
   "tel": "045-582-9944",
-  "hours": "",
+  "hours": "こどもログハウス「ピッコロ」9:00〜17:00（利用は16:40まで）、第2・4月曜と年末年始休み",
   "closed": "",
   "kids": "こどもログハウス「ピッコロ」あり（区のページ）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "",
+  "note": "行き方：JR鶴見駅西口から市営バス38・41系統「宝蔵院前」から徒歩3分",
   "kind": "近隣公園",
   "area": 18533,
   "no": "0039",
-  "src2": "https://www.city.yokohama.lg.jp/tsurumi/kurashi/machizukuri_kankyo/midori_eco/park.html",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/shokai/odekake/miryoku/koen_shizen/n3.html",
   "asof2": "2026年11月28日"
  },
  {
@@ -300,14 +300,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "向かいに鶴見川の漕艇場（区のページ）",
+  "kids": "向かいに鶴見川の漕艇場（区のページ）／鶴見川沿い。夏はいかだフェスティバル",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "行き方：JR鶴見駅西口から徒歩15分",
   "kind": "街区公園",
   "area": 7393,
   "no": "0143",
-  "src2": "https://www.city.yokohama.lg.jp/tsurumi/kurashi/machizukuri_kankyo/midori_eco/park.html",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/shokai/odekake/miryoku/koen_shizen/n4.html",
   "asof2": "2026年11月28日"
  },
  {
@@ -481,7 +481,9 @@
   "kids": "",
   "src": "https://www.city.yokohama.lg.jp/tsurumi/kurashi/machizukuri_kankyo/midori_eco/park.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "行き方：臨港バス鶴02・03・04系統「橘女学校前」から徒歩5分",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/shokai/odekake/miryoku/koen_shizen/n2.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "community",
@@ -37944,10 +37946,12 @@
   "tel": "045-581-0287",
   "hours": "",
   "closed": "",
-  "kids": "神奈川県の公園",
+  "kids": "神奈川県の公園／約30万㎡の県立公園。3つの池、子どもの遊び場（遊具あり）、スポーツ施設、桜の名所",
   "src": "https://www.city.yokohama.lg.jp/tsurumi/kurashi/machizukuri_kankyo/midori_eco/park.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "行き方：臨港バス鶴07系統「公園正門」すぐ／市営バス「三ツ池公園北門」から徒歩3分",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/shokai/odekake/miryoku/koen_shizen/n1.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -37955,11 +37959,43 @@
   "name": "大黒海づり公園",
   "addr": "大黒ふ頭20番地先",
   "tel": "045-506-3539",
-  "hours": "",
+  "hours": "7:00〜17:00（11〜3月）、6:00〜19:00（4〜10月）。年末年始休み",
   "closed": "",
-  "kids": "海づり施設（横浜港ターミナル運営協会）",
+  "kids": "海づり施設（横浜港ターミナル運営協会）／有料の海づり施設（大人900円・中学生450円・小学生300円、貸しざおあり）。となりの海浜公園に遊具あり",
   "src": "https://www.city.yokohama.lg.jp/tsurumi/kurashi/machizukuri_kankyo/midori_eco/park.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "行き方：JR鶴見駅東口から市営バス17系統「大黒海づり公園」",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/shokai/odekake/miryoku/koen_shizen/n5.html",
+  "asof2": "2026年11月28日"
+ },
+ {
+  "type": "park",
+  "ward": "鶴見区",
+  "name": "海芝公園",
+  "addr": "末広町2（東芝京浜事業所内）",
+  "tel": "",
+  "hours": "9:00〜20:30",
+  "closed": "",
+  "kids": "海と鶴見つばさ橋が見える。車では入れない",
+  "src": "https://www.city.yokohama.lg.jp/tsurumi/shokai/odekake/miryoku/koen_shizen/n5.html",
+  "asof": "2026年11月28日",
+  "note": "行き方：JR鶴見線海芝浦駅すぐ",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/shokai/odekake/miryoku/koen_shizen/n5.html",
+  "asof2": "2026年11月28日"
+ },
+ {
+  "type": "park",
+  "ward": "鶴見区",
+  "name": "獅子ケ谷市民の森",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "野鳥や昆虫が多い市民の森",
+  "src": "https://www.city.yokohama.lg.jp/tsurumi/shokai/odekake/miryoku/koen_shizen/n2.html",
+  "asof": "2026年11月28日",
+  "note": "行き方：臨港バス「獅子ケ谷」「二ツ池」から徒歩5分",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/shokai/odekake/miryoku/koen_shizen/n2.html",
+  "asof2": "2026年11月28日"
  }
 ]
