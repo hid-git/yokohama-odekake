@@ -153,7 +153,7 @@ def track_js(track_url, page):
 var ua=navigator.userAgent,dev=/iPhone|iPod/.test(ua)?"iPhone":/iPad/.test(ua)?"iPad":/Android/.test(ua)?(/Mobile/.test(ua)?"Androidスマホ":"Androidタブレット"):"PC",app=/\\bLine\\//i.test(ua)?"LINEアプリ内":/Instagram/.test(ua)?"Instagramアプリ内":/FBAN|FBAV/.test(ua)?"Facebookアプリ内":"ブラウザ",tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(_){}
 function t(type,value,target){var ref="";try{ref=document.referrer?new URL(document.referrer).hostname:""}catch(_){}var body=JSON.stringify({type:type,value:String(value||"").slice(0,200),target:String(target||"").slice(0,200),dev:dev,app:app,ref:ref.slice(0,100),vid:v,page:%s,lang:(navigator.language||"").slice(0,10),tz:tz.slice(0,40),jp:tz?(tz==="Asia/Tokyo"?"日本":"海外"):"",ua:ua.slice(0,160),bot:navigator.webdriver?"1":""});try{navigator.sendBeacon?navigator.sendBeacon(U,new Blob([body],{type:"text/plain"})):fetch(U,{method:"POST",body:body,mode:"no-cors",keepalive:true})}catch(_){}}
 t("pageview",document.title);document.addEventListener("click",function(ev){var a=ev.target.closest("a,[data-share]");if(!a)return;var h=a.getAttribute("href")||"",n=document.querySelector("h1")?document.querySelector("h1").textContent:"";
-if(a.hasAttribute("data-share"))return t("copy_link","個別ページ",n);if(a.dataset.act)return t(a.dataset.act,a.href,n);if(/line\\.me\\/R\\/share/.test(h))return t("line_share","個別ページ",n);if(/^https?:/.test(h)&&h.indexOf(location.hostname)<0)return t("outlink",a.href,n)})})();""" % (json.dumps(track_url), json.dumps(page))
+if(a.hasAttribute("data-share"))return t("copy_link","個別ページ",n);if(a.dataset.act)return t(a.dataset.act,a.href,n);if(/line\\.me\\/R\\/share/.test(h))return t("line_share","個別ページ",n);if(/^matome\\//.test(%s)&&/^\\/(event|spot)\\/[^\\/]+\\/$/.test(h))return t("matome_item",h,n);if(/^https?:/.test(h)&&h.indexOf(location.hostname)<0)return t("outlink",a.href,n)})})();""" % (json.dumps(track_url), json.dumps(page), json.dumps(page))
 
 
 FINDER_JS = r"""(function(){var q=document.getElementById('kf');if(!q)return;var art=q.closest('article');var hs=[].slice.call(art.querySelectorAll('h2[id^="s"]'));
@@ -1253,6 +1253,11 @@ def main():
         hh = hashlib.sha1(gh.encode()).hexdigest()[:12]
         old = man.get("gakudo", {}).get(gp, {})
         gk_man[gp] = {"hash": hh, "lastmod": old.get("lastmod", TODAY.isoformat()) if old.get("hash") == hh else TODAY.isoformat()}
+        # 記録のスプレッドシートの「ページ別」で、まとめ記事・一覧・区のページも型・字数を並べられるように
+        h1 = re.search(r"<h1[^>]*>(.*?)</h1>", gh, re.S)
+        tm = re.search(r'"@type": "(?!BreadcrumbList|ListItem|PostalAddress|GeoCoordinates|Offer|Organization)(\w+)"', gh)
+        gk_man[gp].update({"name": re.sub(r"<[^>]+>", "", h1.group(1)).strip()[:60] if h1 else "", "type": tm.group(1) if tm else "",
+                           "chars": body_chars(gh), "links": len(set(re.findall(r'href="/(?:event|spot)/[^"/]+/"', gh)))})
     built = {"event": {}, "spot": {}}
     for e in d["events"]:
         path, htmltext, name = event_page(e, d, spot_ids, track_url)

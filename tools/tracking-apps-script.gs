@@ -37,7 +37,7 @@ function kindOf_(vid, ua, bot) {
   if (bot === "1" || BOT_RE.test(String(ua || ""))) return "ボット";
   return "人";
 }
-const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク", origin:"出発駅", near:"近くで探す", detail:"くわしくを開いた", more:"残りを見る", fav:"お気に入り", copy_link:"リンクを送る・コピー", open_link:"送られたリンクから来た", play:"遊び場で探す", play_open:"遊び場のリンク", gakudo:"学童で探す", gakudo_open:"学童のリンク", gakudo_quiz:"学童の区分の目安", restore:"前回の続き", shisetsu:"施設で探す", shisetsu_open:"施設のリンク" };
+const TYPES = { pageview:"ページ表示", search:"検索", filter:"絞り込み", tab:"タブ", official:"公式サイト", route:"経路検索", tel:"電話", resv:"予約ページ", line_share:"LINEで送る", outlink:"ほかのリンク", origin:"出発駅", near:"近くで探す", detail:"くわしくを開いた", more:"残りを見る", fav:"お気に入り", copy_link:"リンクを送る・コピー", open_link:"送られたリンクから来た", play:"遊び場で探す", play_open:"遊び場のリンク", gakudo:"学童で探す", gakudo_open:"学童のリンク", gakudo_quiz:"学童の区分の目安", restore:"前回の続き", shisetsu:"施設で探す", shisetsu_open:"施設のリンク", matome:"特集を開いた（トップから）", matome_item:"特集から個別ページへ" };
 
 function doPost(e) {
   try {
@@ -207,17 +207,23 @@ function pageSheet_(ss, latest) {
         const p = man[k][id];
         info[k + "/" + id + "/"] = { name: p.name || "", type: p.type || "", chars: p.chars || "", links: p.links || "", state: p.ended ? "掲載終了" : p.thin ? "薄い（検索に出さない）" : "" };
       }));
+      // まとめ記事（/matome/）・一覧・区のページ・学童のページ（pages.json の "gakudo" に、パスをキーにして入っている）
+      Object.keys(man.gakudo || {}).forEach(path => {
+        const p = man.gakudo[path];
+        info[path] = { name: p.name || "", type: (/^matome\//.test(path) ? "特集・" : "") + (p.type || ""), chars: p.chars || "", links: p.links || "", state: "" };
+      });
     }
   } catch (err) {}
-  const pv = {}, vis = {}, off = {}, title = {};
+  const pv = {}, vis = {}, off = {}, title = {}, toItem = {};
   latest.v.forEach(r => {
     let p = String(r[8] || "");
     if (/^#|^$/.test(p)) p = "（トップ）";
     if (r[1] === "ページ表示") { pv[p] = (pv[p] || 0) + 1; (vis[p] = vis[p] || {})[r[7]] = 1; if (!title[p]) title[p] = String(r[2]).slice(0, 60); }
     if (r[1] === "公式サイト") off[p] = (off[p] || 0) + 1;
+    if (r[1] === "特集から個別ページへ") toItem[p] = (toItem[p] || 0) + 1;
   });
   const paths = Object.keys(Object.assign({}, info, pv));
-  const list = paths.map(p => { const i = info[p] || {}; return ["'/" + p.replace(/^（トップ）$/, ""), i.name || title[p] || (p === "（トップ）" ? "トップ（一覧）" : ""), i.type || "", i.chars || "", i.links || "", i.state || "", pv[p] || 0, Object.keys(vis[p] || {}).length, off[p] || 0]; })
+  const list = paths.map(p => { const i = info[p] || {}; return ["'/" + p.replace(/^（トップ）$/, ""), i.name || title[p] || (p === "（トップ）" ? "トップ（一覧）" : ""), i.type || "", i.chars || "", i.links || "", i.state || "", pv[p] || 0, Object.keys(vis[p] || {}).length, off[p] || 0, toItem[p] || ""]; })
     .sort((a, b) => b[6] - a[6] || (b[3] || 0) - (a[3] || 0));
   const total = list.reduce((a, r) => a + r[6], 0);
   const live = list.filter(r => !r[5] && r[0] !== "'/");
@@ -225,7 +231,7 @@ function pageSheet_(ss, latest) {
   const sh = ss.getSheetByName("ページ別") || ss.insertSheet("ページ別", 2);
   sh.clear();
   sh.getRange(1, 1, 1, 6).setValues([[latest.m + " のページ別（人だけ）", "掲載中のページ " + live.length, "表示0回 " + live.filter(r => !r[6]).length, "上位20ページの割合 " + (total ? Math.round(top20 / total * 100) : 0) + "%", "本文800字未満で表示あり " + live.filter(r => r[3] && r[3] < 800 && r[6]).length + "／" + live.filter(r => r[3] && r[3] < 800).length, ""]]).setFontWeight("bold");
-  const head = [["パス", "名前", "型", "本文の字数（フッター除く）", "個別ページへのリンク", "状態", "表示回数", "訪問者数", "公式サイトを開いた"]];
+  const head = [["パス", "名前", "型", "本文の字数（フッター除く）", "個別ページへのリンク", "状態", "表示回数", "訪問者数", "公式サイトを開いた", "特集から個別ページへ"]];
   sh.getRange(2, 1, 1, head[0].length).setValues(head).setFontWeight("bold");
   if (list.length) sh.getRange(3, 1, list.length, head[0].length).setValues(list);
   sh.setFrozenRows(2);
