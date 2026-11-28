@@ -1272,10 +1272,10 @@
   },
   "1f51s1e": {
    "added": "2026-11-14",
-   "chars": 1546,
-   "hash": "bc14e7bd2570",
+   "chars": 963,
+   "hash": "75dc94df7a7a",
    "lastmod": "2026-11-28",
-   "links": 14,
+   "links": 10,
    "name": "新横浜公園の遊具広場（港北区）",
    "type": "Park"
   },
@@ -1501,6 +1501,15 @@
    "links": 22,
    "name": "青少年のためのロボフェスタ2026（神奈川県立青少年センター）",
    "type": "Event"
+  },
+  "1hqsurz": {
+   "added": "2026-11-28",
+   "chars": 867,
+   "hash": "4ddaab42e4a4",
+   "lastmod": "2026-11-28",
+   "links": 9,
+   "name": "フォレストアドベンチャー・よこはま（森のアスレチック）",
+   "type": "TouristAttraction"
   },
   "1hruhiv": {
    "added": "2026-11-17",
@@ -2258,10 +2267,10 @@
   },
   "1p8kks3": {
    "added": "2026-11-18",
-   "chars": 984,
-   "hash": "37dec80245be",
+   "chars": 1063,
+   "hash": "487e7112c330",
    "lastmod": "2026-11-28",
-   "links": 16,
+   "links": 18,
    "name": "横浜キヤノンイーグルス 横浜市民招待デー（ラグビー・日産スタジアム）",
    "type": "Event"
   },
@@ -2608,6 +2617,15 @@
    "links": 19,
    "name": "助産師さんに相談しよう！赤ちゃん保健室（ノースポート・モール）",
    "type": "Event"
+  },
+  "1s8r75o": {
+   "added": "2026-11-28",
+   "chars": 1036,
+   "hash": "a57f1b67beff",
+   "lastmod": "2026-11-28",
+   "links": 12,
+   "name": "KOSÉ新横浜スケートセンター",
+   "type": "TouristAttraction"
   },
   "1shbm9m": {
    "added": "2026-11-18",
@@ -3579,6 +3597,15 @@
    "lastmod": "2026-11-28",
    "links": 9,
    "name": "こどもの国 ジャンボクリスマスリース",
+   "type": "TouristAttraction"
+  },
+  "636gk6": {
+   "added": "2026-11-28",
+   "chars": 843,
+   "hash": "167e859ec906",
+   "lastmod": "2026-11-28",
+   "links": 10,
+   "name": "日産ウォーターパーク（温水プール・ウォータースライダー）",
    "type": "TouristAttraction"
   },
   "63pqnc": {
@@ -6685,7 +6712,7 @@
  "gakudo": {
   "area/": {
    "chars": 2560,
-   "hash": "cd25c64e9a60",
+   "hash": "4cdddc76a925",
    "lastmod": "2026-11-28",
    "links": 0,
    "name": "横浜市の区ごとの子連れで行ける施設・遊び場",
@@ -6700,10 +6727,10 @@
    "type": "CollectionPage"
   },
   "area/asahi/": {
-   "chars": 13942,
-   "hash": "f609836d06c8",
+   "chars": 14041,
+   "hash": "8c8329c3553a",
    "lastmod": "2026-11-28",
-   "links": 37,
+   "links": 38,
    "name": "旭区の子連れで行ける施設・遊び場",
    "type": "CollectionPage"
   },
@@ -6748,10 +6775,10 @@
    "type": "CollectionPage"
   },
   "area/kohoku/": {
-   "chars": 10980,
-   "hash": "c30110158d08",
+   "chars": 11183,
+   "hash": "de7061833eb6",
    "lastmod": "2026-11-28",
-   "links": 39,
+   "links": 41,
    "name": "港北区の子連れで行ける施設・遊び場",
    "type": "CollectionPage"
   },
@@ -7005,7 +7032,7 @@
   },
   "matome/": {
    "chars": 875,
-   "hash": "78a9aef78385",
+   "hash": "cae7bf6bb045",
    "lastmod": "2026-11-28",
    "links": 0,
    "name": "横浜の子連れおでかけ 特集・まとめ",
@@ -7036,10 +7063,10 @@
    "type": "CollectionPage"
   },
   "matome/newyear/": {
-   "chars": 14665,
-   "hash": "6e401cac2ef7",
+   "chars": 14864,
+   "hash": "e8f5f97b8d4f",
    "lastmod": "2026-11-28",
-   "links": 222,
+   "links": 225,
    "name": "年末年始・お正月の横浜 子連れイベントと休館日まとめ",
    "type": "CollectionPage"
   },
@@ -7117,6 +7144,10 @@
   "35.4675,139.6180": [
    "セブン-イレブン 横浜STビル店",
    "ノエビア ビューティ・スタジオ 横浜"
+  ],
+  "35.5118,139.6052": [
+   "日産スタジアム",
+   "日産ウォーターパーク"
   ]
  },
  "og": {
@@ -7264,6 +7295,7 @@
   "1hopkjs": "4f9ac150a50e",
   "1hosr95": "89addc333f43",
   "1hqo1q2": "b489a86dc457",
+  "1hqsurz": "0c980b1ece65",
   "1hruhiv": "c0cfad50d8e4",
   "1hv2j4d": "8f8005efab9b",
   "1hz0gzt": "fb1b97ae0403",
@@ -7369,6 +7401,7 @@
   "1s2nms6": "9f9893aca4b2",
   "1s6rde2": "fc4399b754ea",
   "1s7o8xm": "0ed9a297b3f3",
+  "1s8r75o": "565030a1800b",
   "1shbm9m": "b276207a5f51",
   "1snx6ku": "1a37f4208811",
   "1sp91y": "208eca2e17c1",
@@ -7465,6 +7498,7 @@
   "5poo2x": "59df74c5f977",
   "5ptqu5": "cb85afbf91a1",
   "5twiho": "ee7267667679",
+  "636gk6": "977ffecc152b",
   "63pqnc": "560e4f988d1d",
   "63tlzy": "38998bb84d14",
   "67qvjl": "864437e169ee",
@@ -8260,8 +8294,8 @@
   },
   "18kwe75": {
    "added": "2026-11-22",
-   "chars": 1870,
-   "hash": "e013cee4689e",
+   "chars": 1922,
+   "hash": "d4a095a730f3",
    "lastmod": "2026-11-28",
    "links": 54,
    "name": "Kアリーナ横浜（公演の来場者向け）",
@@ -8305,8 +8339,8 @@
   },
   "1as3aor": {
    "added": "2026-11-23",
-   "chars": 2668,
-   "hash": "1ce3c1ee1973",
+   "chars": 2690,
+   "hash": "c8bb2d9ace20",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "コート・ダジュール 横浜関内店（カラオケ）",
@@ -8314,8 +8348,8 @@
   },
   "1at2hy8": {
    "added": "2026-11-23",
-   "chars": 2890,
-   "hash": "35d21ad206c0",
+   "chars": 2941,
+   "hash": "75bb2479b494",
    "lastmod": "2026-11-28",
    "links": 60,
    "name": "ぴあアリーナMM（公演の来場者向け）",
@@ -8350,8 +8384,8 @@
   },
   "1bni2wb": {
    "added": "2026-11-13",
-   "chars": 1912,
-   "hash": "e66e32b37ccd",
+   "chars": 1981,
+   "hash": "8114b26ad116",
    "lastmod": "2026-11-28",
    "links": 89,
    "name": "横浜スタジアム",
@@ -8387,10 +8421,10 @@
   },
   "1d0x9al": {
    "added": "2026-11-13",
-   "chars": 709,
-   "hash": "a7c43d244cd8",
+   "chars": 854,
+   "hash": "154eabe81b84",
    "lastmod": "2026-11-28",
-   "links": 7,
+   "links": 8,
    "name": "横浜アリーナ",
    "type": "StadiumOrArena"
   },
@@ -8504,8 +8538,8 @@
   },
   "1h96vr8": {
    "added": "2026-11-23",
-   "chars": 2823,
-   "hash": "bf6c9211f9f5",
+   "chars": 2840,
+   "hash": "f6dd3b4b6454",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "眼鏡市場 伊勢佐木モール店",
@@ -8711,8 +8745,8 @@
   },
   "1mxkz1g": {
    "added": "2026-11-23",
-   "chars": 2511,
-   "hash": "f75adc07b4e0",
+   "chars": 2528,
+   "hash": "16f4f17ab495",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "パセラリゾーツ 横浜関内店（カラオケ）",
@@ -8864,8 +8898,8 @@
   },
   "1rkdk6a": {
    "added": "2026-11-22",
-   "chars": 3119,
-   "hash": "1b3718378ceb",
+   "chars": 3150,
+   "hash": "5e1707f08f4d",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "BASEGATE横浜関内（関内駅前）",
@@ -9152,10 +9186,10 @@
   },
   "3b9wwl": {
    "added": "2026-11-13",
-   "chars": 487,
-   "hash": "a7fe60fb5740",
+   "chars": 766,
+   "hash": "ac64b0369a6a",
    "lastmod": "2026-11-28",
-   "links": 5,
+   "links": 8,
    "name": "日産スタジアム",
    "type": "StadiumOrArena"
   },
@@ -9170,10 +9204,10 @@
   },
   "3i908c": {
    "added": "2026-11-12",
-   "chars": 742,
-   "hash": "fcccd30a3443",
+   "chars": 770,
+   "hash": "ee0a959af647",
    "lastmod": "2026-11-28",
-   "links": 7,
+   "links": 8,
    "name": "新横浜プリンスペペ",
    "type": "ShoppingCenter"
   },
@@ -9197,10 +9231,10 @@
   },
   "4edchx": {
    "added": "2026-11-23",
-   "chars": 2832,
-   "hash": "d3d3a647a93d",
+   "chars": 2801,
+   "hash": "fe256299b0a7",
    "lastmod": "2026-11-28",
-   "links": 95,
+   "links": 94,
    "name": "不老町地域ケアプラザ",
    "type": "CivicStructure"
   },
@@ -9233,8 +9267,8 @@
   },
   "68q4ac": {
    "added": "2026-11-13",
-   "chars": 3355,
-   "hash": "d5c0f8271318",
+   "chars": 3406,
+   "hash": "192d82546cd4",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "パシフィコ横浜",
@@ -9368,10 +9402,10 @@
   },
   "9mohbc": {
    "added": "2026-11-13",
-   "chars": 464,
-   "hash": "e3a5ef9b0491",
+   "chars": 594,
+   "hash": "854a117d64c1",
    "lastmod": "2026-11-28",
-   "links": 11,
+   "links": 12,
    "name": "フォレストアドベンチャー・よこはま",
    "type": "TouristAttraction"
   },
@@ -9450,8 +9484,8 @@
   },
   "c6a7kv": {
    "added": "2026-11-23",
-   "chars": 2850,
-   "hash": "69bdee6ced24",
+   "chars": 2872,
+   "hash": "1b2d983238ad",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "ローソン ダイワロイネットホテル横浜公園店",
@@ -9486,8 +9520,8 @@
   },
   "cwv5hg": {
    "added": "2026-11-23",
-   "chars": 2726,
-   "hash": "de3005edc9ca",
+   "chars": 2743,
+   "hash": "8d8d38661578",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "横浜武道館（関内）",
@@ -9513,8 +9547,8 @@
   },
   "d63d8s": {
    "added": "2026-11-20",
-   "chars": 2960,
-   "hash": "da1310d0cf12",
+   "chars": 2982,
+   "hash": "97b577ef9df2",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "のんびりんこ（中区の地域子育て支援拠点・belle横浜3F）",
@@ -9603,8 +9637,8 @@
   },
   "flese0": {
    "added": "2026-11-13",
-   "chars": 448,
-   "hash": "878cf58442ea",
+   "chars": 507,
+   "hash": "3b6bd9714506",
    "lastmod": "2026-11-28",
    "links": 11,
    "name": "横浜ストロベリーパーク",
@@ -9693,8 +9727,8 @@
   },
   "hn1ug1": {
    "added": "2026-11-23",
-   "chars": 2313,
-   "hash": "a4f39dbbcfec",
+   "chars": 2330,
+   "hash": "9da434776ad3",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "セブン-イレブン 横浜羽衣町2丁目店",
@@ -9783,10 +9817,10 @@
   },
   "l5mpw3": {
    "added": "2026-11-13",
-   "chars": 792,
-   "hash": "5c12fe9335ee",
+   "chars": 820,
+   "hash": "fb3b4b2a5642",
    "lastmod": "2026-11-28",
-   "links": 7,
+   "links": 8,
    "name": "新横浜ラーメン博物館",
    "type": "Museum"
   },
@@ -9810,8 +9844,8 @@
   },
   "m8ab5h": {
    "added": "2026-11-23",
-   "chars": 2753,
-   "hash": "d0cbf2e99c5b",
+   "chars": 2770,
+   "hash": "66ce9b504f06",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "Ash 関内店（美容室）",
@@ -9927,12 +9961,11 @@
   },
   "q8papf": {
    "added": "2026-11-13",
-   "chars": 343,
-   "hash": "06373e4b8057",
+   "chars": 619,
+   "hash": "833351cc94e8",
    "lastmod": "2026-11-28",
-   "links": 5,
+   "links": 8,
    "name": "日産ウォーターパーク",
-   "thin": true,
    "type": "TouristAttraction"
   },
   "qgpiht": {
@@ -9973,8 +10006,8 @@
   },
   "r90frm": {
    "added": "2026-11-23",
-   "chars": 2801,
-   "hash": "2a17c124df64",
+   "chars": 2818,
+   "hash": "3e6c69033d5f",
    "lastmod": "2026-11-28",
    "links": 96,
    "name": "NOB Hair Design 伊勢佐木町（美容室）",
@@ -10173,10 +10206,10 @@
   },
   "xumbkg": {
    "added": "2026-11-12",
-   "chars": 1025,
-   "hash": "730431428231",
+   "chars": 1053,
+   "hash": "6c9fab1c3b9f",
    "lastmod": "2026-11-28",
-   "links": 7,
+   "links": 8,
    "name": "キュービックプラザ新横浜（新横浜駅直結）",
    "type": "ShoppingCenter"
   },
