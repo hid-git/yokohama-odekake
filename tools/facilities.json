@@ -7671,7 +7671,7 @@
   "kind": "近隣公園",
   "area": 23597,
   "no": "0061",
-  "src2": "https://www.city.yokohama.lg.jp/konan/madoguchi-shisetsu/kuyakusho/list/s-hiroba.html",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
   "asof2": "2026年11月28日"
  },
  {
@@ -7931,7 +7931,9 @@
    "健康遊具"
   ],
   "area": 4342,
-  "kind": "街区公園"
+  "kind": "街区公園",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -8009,7 +8011,9 @@
    "健康遊具"
   ],
   "area": 1480,
-  "kind": "街区公園"
+  "kind": "街区公園",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "community",
@@ -37617,5 +37621,200 @@
   "note": "行き方：神奈中バス「芹が谷山谷」バス停前",
   "area": 2505,
   "kind": "街区公園"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "野庭表町公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：マッサージベンチ・スプリングバー・ステップ",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：日野南（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "日野町原第一公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ・ぶら下がり懸垂・上体ひねり",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：日野南（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "日の峰第一公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ・ぶら下がり懸垂・上体ひねり",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：港南台（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "日野町原第二公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：腹筋ベンチ",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：日野南（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "下永谷松原第二公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：下永谷（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "芹が谷第二公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：芹が谷（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "芹が谷第六公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：芹が谷（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "日限山港南プラザ公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：ぶら下がり懸垂",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：日限山（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "東永谷二丁目公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：ぶら下がり懸垂",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：東永谷（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "東永谷三丁目第二公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ・ジャンプリターン",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：東永谷（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "立野第一公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：笹下（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "六反田公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：丸山台（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "下永谷第三公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：下永谷（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "日野町清水公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：日野（番地は公式ページに記載なし）"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "日野下根第三公園",
+  "addr": "",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "健康遊具：背伸ばしベンチ・ぶら下がり懸垂",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "場所：日野（番地は公式ページに記載なし）"
  }
 ]
