@@ -2667,13 +2667,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／健康器具あり／桜が見られる／見晴らしの丘（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "総合公園",
   "area": 227031,
-  "no": "1788"
+  "no": "1788",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -2683,13 +2689,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／桜が見られる／日本初の洋式競馬場の跡、桜の名所（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "総合公園",
   "area": 193102,
-  "no": "0010"
+  "no": "0010",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -2699,13 +2711,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／健康器具あり／運動広場・テニスコート・スケートボードひろば・SL展示・上海横浜友好園（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "総合公園",
   "area": 103190,
-  "no": "0011"
+  "no": "0011",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -2715,13 +2733,17 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具なし／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "風致公園",
   "area": 74121,
-  "no": "0006"
+  "no": "0006",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": []
  },
  {
   "type": "park",
@@ -2731,13 +2753,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／桜が見られる／横浜スタジアム・日本庭園（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "総合公園",
   "area": 63787,
-  "no": "0012"
+  "no": "0012",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -2747,13 +2775,17 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具なし／水飲み場あり／展望台からベイブリッジ（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "風致公園",
   "area": 59949,
-  "no": "0005"
+  "no": "0005",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": []
  },
  {
   "type": "park",
@@ -2778,13 +2810,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／八聖殿郷土資料館（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "風致公園",
   "area": 40998,
-  "no": "0004"
+  "no": "0004",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -2794,13 +2832,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "地区公園",
   "area": 35718,
-  "no": "0023"
+  "no": "0023",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -2825,13 +2869,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／健康器具あり／桜が見られる／日本のテニス発祥の地（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "近隣公園",
   "area": 27753,
-  "no": "0054"
+  "no": "0054",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -2841,13 +2891,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／桜が見られる／市営プール・弓道場（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "近隣公園",
   "area": 23389,
-  "no": "0053"
+  "no": "0053",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -2894,13 +2950,17 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具なし／開園9:30〜17:00（7・8月は18:00まで）（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "近隣公園",
   "area": 13286,
-  "no": "1950"
+  "no": "1950",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": []
  },
  {
   "type": "park",
@@ -2955,13 +3015,17 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具なし／グラウンドとテニスコート（要予約、夜は閉まる）（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "近隣公園",
   "area": 9215,
-  "no": "0107"
+  "no": "0107",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": []
  },
  {
   "type": "park",
@@ -2971,15 +3035,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "健康遊具：ジワジワ前屈・ぶら下がり・筋肉伸ばし・背伸ばしベンチ",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／健康器具あり／桜が見られる／こどもログハウス・グラウンド（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "近隣公園",
   "area": 8471,
   "no": "0052",
-  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
-  "asof2": "2026年11月28日"
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -2989,15 +3057,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／大きな複合遊具（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "街区公園",
   "area": 8171,
   "no": "1689",
-  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
-  "asof2": "2026年11月28日"
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3007,13 +3079,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／桜が見られる／大きなすべり台（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "近隣公園",
   "area": 7953,
-  "no": "1900"
+  "no": "1900",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3023,15 +3101,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "街区公園",
   "area": 5657,
   "no": "2057",
-  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
-  "asof2": "2026年11月28日"
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3041,13 +3123,17 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレあり／遊具なし／水飲み場あり／元町・中華街駅の屋上、エレベーターで元町と山手を結ぶ（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "風致公園",
   "area": 5519,
-  "no": "2573"
+  "no": "2573",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true,
+  "yugu": []
  },
  {
   "type": "park",
@@ -3057,15 +3143,17 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具なし／水飲み場あり／小川が流れる（5〜11月）（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "街区公園",
   "area": 5279,
   "no": "1690",
-  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
-  "asof2": "2026年11月28日"
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": []
  },
  {
   "type": "park",
@@ -3090,10 +3178,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／根岸湾が見える（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3103,13 +3197,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "トイレなし／健康器具：コンビラムダ（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "kids": "トイレなし／遊具なし／水飲み場あり／健康器具あり／海が見える、四阿（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
   "note": "",
   "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
   "asof2": "2026年11月28日",
-  "toilet": false
+  "toilet": false,
+  "yugu": []
  },
  {
   "type": "park",
@@ -3119,10 +3214,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／高鉄棒（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3145,10 +3246,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "健康遊具：背伸ばしベンチ",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／健康器具あり／桜が見られる／夜は閉まる（9〜17時）（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3158,10 +3265,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／斜面のすべり台（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3171,10 +3284,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3237,10 +3356,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3250,10 +3375,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3263,10 +3394,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具なし／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": []
  },
  {
   "type": "park",
@@ -3276,10 +3411,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／広いグラウンド（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3289,10 +3430,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3302,10 +3449,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具なし／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": []
  },
  {
   "type": "park",
@@ -3315,7 +3466,7 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "トイレなし／遊具：遊具あり／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／小さな子ども向けの遊具（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
   "note": "",
@@ -3334,10 +3485,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3347,10 +3504,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "マップ（令和5年11月）には「工事中のため全面閉鎖（2021年1月現在）」とある。いまの状況は区に確かめてください",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3360,10 +3523,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／ターザンロープ（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3373,10 +3542,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる／藤棚（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3386,10 +3561,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "マップ（令和5年11月）には「工事中のため全面閉鎖（2021年1月現在）」とある。いまの状況は区に確かめてください",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3399,12 +3580,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "トイレなし／遊具なし／ベンチと水飲み場",
+  "kids": "トイレなし／遊具なし／水飲み場あり／ベンチと水飲み場（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
   "note": "",
   "toilet": false,
-  "yugu": []
+  "yugu": [],
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -3414,10 +3597,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3427,10 +3616,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "健康遊具：アスレチックベンチ・バックボウベンチ・ロッキングボード",
+  "kids": "トイレなし／遊具：遊具あり／健康器具あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3440,10 +3635,14 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具なし／桜が見られる／日本近代水道最古の水道管の展示（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": []
  },
  {
   "type": "park",
@@ -3470,10 +3669,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／子神社の隣（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3483,10 +3688,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "トイレなし／遊具：遊具あり／桜が見られる／大岡川沿い、通称「西公園」（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "park",
@@ -3496,13 +3707,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "遊具：すべり台／健康遊具：スプリングバー・ツイストボード・背伸ばしベンチ",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／健康器具あり／斜面の長いすべり台（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
   "note": "",
   "yugu": [
-   "すべり台"
-  ]
+   "遊具あり"
+  ],
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": true
  },
  {
   "type": "park",
@@ -3512,7 +3726,7 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "トイレなし／遊具：遊具あり／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／藤棚（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
   "note": "",
@@ -3624,12 +3838,12 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "トイレなし／遊具：宇宙船をモチーフにした遊具／健康遊具：ツイスト・ぶら下がり懸垂・ペア懸垂・背伸ばしベンチ（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "kids": "トイレなし／遊具：遊具あり／健康器具あり／桜が見られる／通称「ロケット公園」（宇宙船をモチーフにした遊具）（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
   "note": "",
   "yugu": [
-   "宇宙船をモチーフにした遊具"
+   "遊具あり"
   ],
   "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
   "asof2": "2026年11月28日",
@@ -3643,13 +3857,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "遊具：船の形の大型遊具／健康遊具：ツイスト・ぶら下がり懸垂・背伸ばしベンチ",
+  "kids": "トイレなし／遊具：遊具あり／健康器具あり／船の形の大きな遊具（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
   "note": "",
   "yugu": [
-   "船の形の大型遊具"
-  ]
+   "遊具あり"
+  ],
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false
  },
  {
   "type": "park",
@@ -3659,10 +3876,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "健康遊具：背伸ばしベンチ",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／健康器具あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/satuei_kouenn.html",
   "asof": "2026年11月28日",
-  "note": ""
+  "note": "",
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
  },
  {
   "type": "community",
@@ -35782,7 +36005,9 @@
   "toilet": false,
   "yugu": [
    "遊具あり"
-  ]
+  ],
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -35799,7 +36024,9 @@
   "toilet": false,
   "yugu": [
    "遊具あり"
-  ]
+  ],
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -35809,14 +36036,16 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる／通称「ぞうさん公園」（すべり台・ゲートがぞうの形）（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる／通称「ぞうさん公園」（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
   "asof": "2026年11月28日",
   "note": "",
   "toilet": false,
   "yugu": [
    "遊具あり"
-  ]
+  ],
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -35833,7 +36062,9 @@
   "toilet": false,
   "yugu": [
    "遊具あり"
-  ]
+  ],
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -35850,7 +36081,9 @@
   "toilet": false,
   "yugu": [
    "遊具あり"
-  ]
+  ],
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -35865,7 +36098,9 @@
   "asof": "2026年11月28日",
   "note": "",
   "toilet": false,
-  "yugu": []
+  "yugu": [],
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -35875,7 +36110,431 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／海が見える（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ],
+  "src2": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof2": "2026年11月28日"
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "開港広場公園",
+  "addr": "山下町1",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレあり／遊具なし（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": true,
+  "yugu": []
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "山下町公園",
+  "addr": "山下町135-1",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる／中華街の中、中国風の四阿「會芳亭」（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "山下町風の広場公園",
+  "addr": "山下町168-3",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具なし／小さな休憩所（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": []
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "吉浜町公園",
+  "addr": "吉浜町2-19",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／夜は閉まる（9〜17時）（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "地蔵坂公園",
+  "addr": "山手町225-5",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "元町百段公園",
+  "addr": "山手町56-1",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具なし／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": []
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "キリン園",
+  "addr": "千代崎町1丁目25-3",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる／麒麟麦酒開源記念碑（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "山手町公園",
+  "addr": "山手町126-7",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／小さな子ども向けの遊具（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "聖坂公園",
+  "addr": "山手町143-7",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具なし／水飲み場あり／西洋風の四阿（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": []
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "ワシン坂上公園",
+  "addr": "山手町149-3",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "ワシン坂公園",
+  "addr": "山手町166-4",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具なし／水飲み場あり／富士山が見える（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": []
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "新山下二丁目ベイサイド公園",
+  "addr": "新山下2丁目7",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる／ワニの形のすべり台（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "本牧町二丁目公園",
+  "addr": "本牧町2丁目315",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／小さな子ども向けの複合遊具・平均台（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "本牧十二天緑地",
+  "addr": "本牧十二天2",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具なし（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": []
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "本牧たき公園",
+  "addr": "本牧原4-1",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具なし／水飲み場あり／壁泉と池（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": []
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "本牧くすのき公園",
+  "addr": "本牧原7-7",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具なし／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": []
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "本牧荒井公園",
+  "addr": "本牧荒井97",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレあり／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": true,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "矢口台公園",
+  "addr": "矢口台91-5",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "山元町五丁目公園",
+  "addr": "山元町5丁目208-1",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "簑沢公園",
+  "addr": "簑沢13-8",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる／簑沢地域ケアプラザの隣（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "豆口台公園",
+  "addr": "豆口台118-36",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／桜が見られる（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "豆口台第二公園",
+  "addr": "豆口台155-19",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具なし（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": []
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "豆口台第三公園",
+  "addr": "豆口台158-5",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具なし／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": []
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "豆口台第四公園",
+  "addr": "豆口台82-3",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／すべり台・ブランコ・砂場・鉄棒（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "日ノ出川公園",
+  "addr": "万代町3丁目6",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり／テニスコート・芝生広場（中区公園マップ（令和5年11月）より。利用者が送った画面）",
+  "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
+  "asof": "2026年11月28日",
+  "note": "",
+  "toilet": false,
+  "yugu": [
+   "遊具あり"
+  ]
+ },
+ {
+  "type": "park",
+  "ward": "中区",
+  "name": "山吹公園",
+  "addr": "山吹町2-1",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "トイレなし／遊具：遊具あり／水飲み場あり（中区公園マップ（令和5年11月）より。利用者が送った画面）",
   "src": "https://www.city.yokohama.lg.jp/naka/kurashi/machizukuri_kankyo/jimusho/",
   "asof": "2026年11月28日",
   "note": "",
