@@ -1345,8 +1345,8 @@
   },
   "1g1kko4": {
    "added": "2026-11-12",
-   "chars": 2424,
-   "hash": "84ed98d2c287",
+   "chars": 2565,
+   "hash": "39ceedcab2d3",
    "lastmod": "2026-11-28",
    "links": 14,
    "name": "シーバス（水上バスで横浜の海をおさんぽ）",
@@ -5975,6 +5975,7 @@
   "rqtmz6": {
    "added": "2026-11-28",
    "chars": 2021,
+   "ended": true,
    "hash": "eaedcd37c70b",
    "lastmod": "2026-11-28",
    "links": 12,
@@ -6761,7 +6762,7 @@
  "gakudo": {
   "area/": {
    "chars": 2560,
-   "hash": "c4cb593311d7",
+   "hash": "0e1100a74728",
    "lastmod": "2026-11-28",
    "links": 0,
    "name": "横浜市の区ごとの子連れで行ける施設・遊び場",
@@ -6856,10 +6857,10 @@
    "type": "CollectionPage"
   },
   "area/naka/": {
-   "chars": 15285,
-   "hash": "b3f3d46513cf",
+   "chars": 15170,
+   "hash": "d98cb015fe0e",
    "lastmod": "2026-11-28",
-   "links": 57,
+   "links": 56,
    "name": "中区の子連れで行ける施設・遊び場",
    "type": "CollectionPage"
   },
@@ -7774,7 +7775,6 @@
   "rb4asd": "de0f390a9fbd",
   "rh7csv": "c9298aa817e1",
   "rp9cxz": "8511aec63bb2",
-  "rqtmz6": "84d2c47b43aa",
   "ruteih": "52e9357189ad",
   "s2uckh": "0352caf8c130",
   "sasoq8": "6a541877339a",
@@ -8843,8 +8843,8 @@
   },
   "1nai5cn": {
    "added": "2026-11-23",
-   "chars": 2986,
-   "hash": "6b5586ce98df",
+   "chars": 2982,
+   "hash": "3909e9b51b3e",
    "lastmod": "2026-11-28",
    "links": 62,
    "name": "ヨコハマ グランド インターコンチネンタル ホテル",
@@ -10104,10 +10104,10 @@
   },
   "su1u2h": {
    "added": "2026-11-12",
-   "chars": 2865,
-   "hash": "1346ccbe0219",
+   "chars": 2810,
+   "hash": "763bb365ee4b",
    "lastmod": "2026-11-28",
-   "links": 97,
+   "links": 96,
    "name": "横浜ハンマーヘッド",
    "type": "ShoppingCenter"
   },
