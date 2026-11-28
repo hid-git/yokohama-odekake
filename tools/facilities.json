@@ -49,10 +49,12 @@
   "kids": "",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "",
+  "note": "行き方：JR鶴見線浅野駅から徒歩3分",
   "kind": "地区公園",
   "area": 54158,
-  "no": "0020"
+  "no": "0020",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/kurashi/machizukuri_kankyo/midori_eco/park.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -62,13 +64,19 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "遊具：遊具広場・健康器具／芝生の原っぱ（大原っぱ）・ゾウさん広場（区のページ）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "地区公園",
   "area": 44208,
-  "no": "2816"
+  "no": "2816",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/kurashi/machizukuri_kankyo/midori_eco/park.html",
+  "asof2": "2026年11月28日",
+  "yugu": [
+   "遊具広場",
+   "健康器具"
+  ]
  },
  {
   "type": "park",
@@ -126,13 +134,15 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "こどもログハウス「ピッコロ」あり（区のページ）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "近隣公園",
   "area": 18533,
-  "no": "0039"
+  "no": "0039",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/kurashi/machizukuri_kankyo/midori_eco/park.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -286,13 +296,15 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "向かいに鶴見川の漕艇場（区のページ）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "",
+  "note": "行き方：JR鶴見駅西口から徒歩15分",
   "kind": "街区公園",
   "area": 7393,
-  "no": "0143"
+  "no": "0143",
+  "src2": "https://www.city.yokohama.lg.jp/tsurumi/kurashi/machizukuri_kankyo/midori_eco/park.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -421,6 +433,19 @@
   "kind": "歴史公園",
   "area": 1898,
   "no": "2241"
+ },
+ {
+  "type": "park",
+  "ward": "鶴見区",
+  "name": "渋沢金井公園",
+  "addr": "北寺尾6-24",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "",
+  "src": "https://www.city.yokohama.lg.jp/tsurumi/kurashi/machizukuri_kankyo/midori_eco/park.html",
+  "asof": "2026年11月28日",
+  "note": ""
  },
  {
   "type": "community",
@@ -6208,13 +6233,18 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "遊具：健康遊具",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "",
+  "note": "行き方：港南台西公園バス停から徒歩1分",
   "kind": "近隣公園",
   "area": 26016,
-  "no": "0057"
+  "no": "0057",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof2": "2026年11月28日",
+  "yugu": [
+   "健康遊具"
+  ]
  },
  {
   "type": "park",
@@ -6240,13 +6270,18 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "遊具：健康遊具",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "",
+  "note": "行き方：清水橋バス停から徒歩5分",
   "kind": "近隣公園",
   "area": 21801,
-  "no": "1671"
+  "no": "1671",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof2": "2026年11月28日",
+  "yugu": [
+   "健康遊具"
+  ]
  },
  {
   "type": "park",
@@ -6272,13 +6307,18 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "遊具：健康遊具",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "",
+  "note": "行き方：野庭中央公園バス停から徒歩3分",
   "kind": "近隣公園",
   "area": 20064,
-  "no": "0059"
+  "no": "0059",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof2": "2026年11月28日",
+  "yugu": [
+   "健康遊具"
+  ]
  },
  {
   "type": "park",
@@ -6288,13 +6328,18 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "遊具：健康遊具",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "",
+  "note": "行き方：日野南小学校から徒歩5分。隣は遊具がたくさんある港南ふれあい公園",
   "kind": "近隣公園",
   "area": 20008,
-  "no": "0488"
+  "no": "0488",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof2": "2026年11月28日",
+  "yugu": [
+   "健康遊具"
+  ]
  },
  {
   "type": "park",
@@ -6336,13 +6381,18 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "遊具：健康遊具",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "",
+  "note": "行き方：つつじヶ丘バス停から徒歩3分",
   "kind": "近隣公園",
   "area": 10576,
-  "no": "0056"
+  "no": "0056",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof2": "2026年11月28日",
+  "yugu": [
+   "健康遊具"
+  ]
  },
  {
   "type": "park",
@@ -6352,13 +6402,18 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "遊具：健康遊具",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
-  "note": "",
+  "note": "行き方：港南中央駅、港南区総合庁舎前バス停",
   "kind": "近隣公園",
   "area": 9701,
-  "no": "2490"
+  "no": "2490",
+  "src2": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof2": "2026年11月28日",
+  "yugu": [
+   "健康遊具"
+  ]
  },
  {
   "type": "park",
@@ -6439,6 +6494,96 @@
   "kind": "街区公園",
   "area": 5024,
   "no": "1842"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "西洗公園",
+  "addr": "日限山四丁目34",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "遊具：健康遊具",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "行き方：西洗バス停から徒歩5分",
+  "yugu": [
+   "健康遊具"
+  ],
+  "area": 4342,
+  "kind": "街区公園"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "四ッ切公園",
+  "addr": "港南台二丁目17",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "遊具：健康遊具",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "行き方：港南台入口バス停から徒歩5分",
+  "yugu": [
+   "健康遊具"
+  ],
+  "area": 4084,
+  "kind": "街区公園"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "港南台宮田公園",
+  "addr": "港南台七丁目5",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "遊具：健康遊具",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "行き方：バイパス下バス停",
+  "yugu": [
+   "健康遊具"
+  ],
+  "area": 2700,
+  "kind": "街区公園"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "笹下明ケ沢公園",
+  "addr": "笹下六丁目31",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "遊具：健康遊具",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "行き方：グリーンタウン中央バス停から徒歩1分",
+  "yugu": [
+   "健康遊具"
+  ],
+  "area": 1678,
+  "kind": "街区公園"
+ },
+ {
+  "type": "park",
+  "ward": "港南区",
+  "name": "日野御所ヶ谷公園",
+  "addr": "日野七丁目32",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "遊具：健康遊具",
+  "src": "https://www.city.yokohama.lg.jp/konan/kurashi/machizukuri_kankyo/jimusho/koen/kouen-yugu.html",
+  "asof": "2026年11月28日",
+  "note": "行き方：公務員住宅入り口バス停から徒歩5分",
+  "yugu": [
+   "健康遊具"
+  ],
+  "area": 1480,
+  "kind": "街区公園"
  },
  {
   "type": "community",
@@ -12573,13 +12718,15 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "プレイパークを開いている（市のプレイパークの案内）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "近隣公園",
   "area": 12333,
-  "no": "0070"
+  "no": "0070",
+  "src2": "https://www.city.yokohama.lg.jp/isogo/kurashi/machizukuri_kankyo/jimusho/koen-shokai/20120312112747.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -12621,13 +12768,15 @@
   "tel": "",
   "hours": "",
   "closed": "",
-  "kids": "",
+  "kids": "ポンプ場の屋上の公園で根岸湾が見える（区の公園紹介）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/midori-koen/koen/kouen.html",
   "asof": "2026年11月24日",
   "note": "",
   "kind": "近隣公園",
   "area": 8306,
-  "no": "2643"
+  "no": "2643",
+  "src2": "https://www.city.yokohama.lg.jp/isogo/kurashi/machizukuri_kankyo/jimusho/koen-shokai/20120312112747.html",
+  "asof2": "2026年11月28日"
  },
  {
   "type": "park",
@@ -12676,6 +12825,48 @@
   "kind": "街区公園",
   "area": 6000,
   "no": "0962"
+ },
+ {
+  "type": "park",
+  "ward": "磯子区",
+  "name": "磯子谷第一公園",
+  "addr": "磯子五丁目1",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "",
+  "src": "https://www.city.yokohama.lg.jp/isogo/kurashi/machizukuri_kankyo/jimusho/koen-shokai/20120312112747.html",
+  "asof": "2026年11月28日",
+  "note": "",
+  "area": 2379
+ },
+ {
+  "type": "park",
+  "ward": "磯子区",
+  "name": "磯子谷第二公園",
+  "addr": "磯子五丁目7",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "",
+  "src": "https://www.city.yokohama.lg.jp/isogo/kurashi/machizukuri_kankyo/jimusho/koen-shokai/20120312112747.html",
+  "asof": "2026年11月28日",
+  "note": "",
+  "area": 2212
+ },
+ {
+  "type": "park",
+  "ward": "磯子区",
+  "name": "森五丁目公園",
+  "addr": "森五丁目24",
+  "tel": "",
+  "hours": "",
+  "closed": "",
+  "kids": "",
+  "src": "https://www.city.yokohama.lg.jp/isogo/kurashi/machizukuri_kankyo/jimusho/koen-shokai/20120312112747.html",
+  "asof": "2026年11月28日",
+  "note": "",
+  "area": 651
  },
  {
   "type": "community",
