@@ -1276,7 +1276,7 @@ def matome_pages(d, track_url):
     if ny or n_ye:
         lead = (f"<p>年末年始・お正月に、横浜市内で子どもと楽しめるイベントを{len(ny)}件まとめました。お正月飾りの工作、書き初め、もちつき、新春のイベントなど。{count_line(ny)}</p>"
                 f"<p>年末年始は施設の休館日が多く、開館日もふだんと違うことがあります。下のほうに、年末年始に休む施設・遊び場（{len(ye['closed'])}か所）と、時間が変わる施設を区ごとに並べています。出かける前に公式ページでも確かめてください。</p>")
-        emit("newyear", "年末年始・お正月の横浜 子連れイベントまとめ", f"年末年始・お正月の横浜 子連れイベント（{len(ny)}件）｜KidsTrip",
+        emit("newyear", "年末年始・お正月の横浜 子連れイベントと休館日まとめ", f"年末年始・お正月の横浜 子連れイベントと休館日（{len(ny)}件・休む施設{len(ye['closed'])}か所）｜KidsTrip",
              f"横浜市内の年末年始・お正月の親子イベント{len(ny)}件と、年末年始に休む施設・遊び場{len(ye['closed'])}か所。お正月飾りの工作、書き初め、もちつきなど。", lead, _by_first(ny), ny, ye_html, count=len(ny))
 
     # 入口 /matome/
@@ -1527,7 +1527,7 @@ def main():
         src = re.sub(r'data-src="/tools/facilities\.json\?v=[0-9a-f]*"', f'data-src="/tools/facilities.json?v={fcv}"', src)
     src = re.sub(r"<!--PLAY:START-->.*?<!--PLAY:END-->", lambda _: f"<!--PLAY:START-->{playhtml}<!--PLAY:END-->", src, flags=re.S)
     # トップの「📰 特集」：まとめ記事への入口（横にスクロールする丸いボタン）
-    MSHORT = {"weekend": "今週末", "christmas": "クリスマス", "rainy": "雨の日", "free": "無料", "baby": "赤ちゃんと", "newyear": "お正月"}
+    MSHORT = {"weekend": "今週末", "christmas": "クリスマス", "rainy": "雨の日", "free": "無料", "baby": "赤ちゃんと", "newyear": "お正月・休館日"}
     mhtml = ('<section class="matome" aria-label="特集・まとめ"><h2>📰 特集<a href="/matome/" data-act="matome">すべての特集</a></h2><ul>' + "".join(
         f'<li><a href="/{c}" data-act="matome">{E(MSHORT.get(c.split("/")[1], t))}' + (f'<span>{MATOME_COUNT[c]}件</span>' if MATOME_COUNT.get(c) else "") + "</a></li>" for c, t in MATOME_LINKS) + "</ul></section>")
     src = re.sub(r"<!--MATOME:START-->.*?<!--MATOME:END-->", lambda _: f"<!--MATOME:START-->{mhtml}<!--MATOME:END-->", src, flags=re.S)
