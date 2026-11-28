@@ -2636,7 +2636,7 @@
   "tel": "045-621-6621",
   "hours": "火〜金 9:30〜19:00（中央・山内は20:30まで。中央のおやこフロアは17:00まで）、土日月・祝日・12/28は9:30〜17:00、1/4は12:00〜17:00",
   "closed": "月1回の施設点検日、12/29〜1/3、図書特別整理日（年3日まで）。日にちは市の図書館カレンダーで",
-  "kids": "おはなし会：0〜2歳と保護者「おひざにだっこ」月2回ほど、主に火曜11:00〜11:30／3歳〜小学生「すいようびのおはなし会」月2回ほど水曜",
+  "kids": "おはなし会：0〜2歳と保護者「おひざにだっこ」月2回ほど 主に火曜11:00〜11:30（12/8・12/22）／3歳〜小学生「すいようびのおはなし会」月2回ほど 水曜15:30（12/2・12/16）、「めぐみ座のおはなし会」月1回 土曜15:00（12/5）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/naka/index.html",
   "asof": "2026年11月24日",
   "note": "開館時間・休館日は市の図書館の案内から（臨時休館もあるので市の図書館カレンダーで確かめてください）",
@@ -10949,11 +10949,11 @@
   "tel": "045-953-1166",
   "hours": "火〜金 9:30〜19:00（中央・山内は20:30まで。中央のおやこフロアは17:00まで）、土日月・祝日・12/28は9:30〜17:00、1/4は12:00〜17:00",
   "closed": "月1回の施設点検日、12/29〜1/3、図書特別整理日（年3日まで）。日にちは市の図書館カレンダーで",
-  "kids": "子ども向けのおはなし会あり（日程は市立図書館の「子ども向けイベント」のページで）",
+  "kids": "おはなし会：0〜2歳と保護者「親子で楽しむおはなし会」原則 毎月第1・2・3木曜10:30〜11:00（当日参加、1階会議室）／3歳〜小学生「子どもおはなし会」原則 毎月第3日曜11:00〜11:30",
   "src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/asahi/index.html",
   "asof": "2026年11月24日",
   "note": "開館時間・休館日は市の図書館の案内から（臨時休館もあるので市の図書館カレンダーで確かめてください）",
-  "src2": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/lib-event/kodomo/",
+  "src2": "https://www.city.yokohama.lg.jp/asahi/event-bosyu/sonota/oyakodetanosimu.html",
   "asof2": "2026年11月28日"
  },
  {
@@ -14579,11 +14579,11 @@
   "tel": "045-784-5861",
   "hours": "火〜金 9:30〜19:00（中央・山内は20:30まで。中央のおやこフロアは17:00まで）、土日月・祝日・12/28は9:30〜17:00、1/4は12:00〜17:00",
   "closed": "月1回の施設点検日、12/29〜1/3、図書特別整理日（年3日まで）。日にちは市の図書館カレンダーで",
-  "kids": "子ども向けのおはなし会あり（日程は市立図書館の「子ども向けイベント」のページで）",
+  "kids": "おはなし会：0〜2歳と保護者「おひざにだっこのおはなし会」毎月第1水曜10:30〜11:00（申込あり。リノベーション工事で中止のことがあるので図書館のページで）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/kanazawa/index.html",
   "asof": "2026年11月24日",
   "note": "開館時間・休館日は市の図書館の案内から（臨時休館もあるので市の図書館カレンダーで確かめてください）",
-  "src2": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/lib-event/kodomo/",
+  "src2": "https://www.city.yokohama.lg.jp/kanazawa/event-bosyu/sonota/ohizanidaxtuko.html",
   "asof2": "2026年11月28日"
  },
  {
@@ -17627,11 +17627,11 @@
   "tel": "045-421-1211",
   "hours": "火〜金 9:30〜19:00（中央・山内は20:30まで。中央のおやこフロアは17:00まで）、土日月・祝日・12/28は9:30〜17:00、1/4は12:00〜17:00",
   "closed": "月1回の施設点検日、12/29〜1/3、図書特別整理日（年3日まで）。日にちは市の図書館カレンダーで",
-  "kids": "子ども向けのおはなし会あり（日程は市立図書館の「子ども向けイベント」のページで）",
+  "kids": "おはなし会：0〜3歳と保護者「ひよこのおはなし会」毎月第2・4木曜11:20〜11:50（当日先着15組）／0〜4歳と保護者「どんぐりおはなし会」毎月第2日曜11:00〜11:30（当日先着10組）／3〜6歳「ひろばのどんぐりおはなし会」毎月第2土曜15:30、小学生以上「一土のおはなし会」",
   "src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/kohoku/index.html",
   "asof": "2026年11月24日",
   "note": "開館時間・休館日は市の図書館の案内から（臨時休館もあるので市の図書館カレンダーで確かめてください）",
-  "src2": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/lib-event/kodomo/",
+  "src2": "https://www.city.yokohama.lg.jp/kohoku/event-bosyu/sonota/hiyokonoohanashikai.html",
   "asof2": "2026年11月28日"
  },
  {
@@ -29546,11 +29546,11 @@
   "tel": "045-948-2424",
   "hours": "火〜金 9:30〜19:00（中央・山内は20:30まで。中央のおやこフロアは17:00まで）、土日月・祝日・12/28は9:30〜17:00、1/4は12:00〜17:00",
   "closed": "月1回の施設点検日、12/29〜1/3、図書特別整理日（年3日まで）。日にちは市の図書館カレンダーで。11/29（日）は臨時休館",
-  "kids": "子ども向けのおはなし会あり（日程は市立図書館の「子ども向けイベント」のページで）",
+  "kids": "おはなし会：「くまさんのおはなし会」毎月第2木曜 0・1歳10:00、1〜3歳10:45（8月・1月は休み。2週間前の木曜9:30から申込）／ひとりで聞ける子「みゃーごとちゅーずのおはなし会」毎月第3水曜15:30（令和7年度の案内）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/tsuzuki/index.html",
   "asof": "2026年11月24日",
   "note": "開館時間・休館日は市の図書館の案内から（臨時休館もあるので市の図書館カレンダーで確かめてください）",
-  "src2": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/lib-event/kodomo/",
+  "src2": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/tsuzuki/event/ohanashikai.html",
   "asof2": "2026年11月28日"
  },
  {
@@ -31930,11 +31930,11 @@
   "tel": "045-862-9411",
   "hours": "火〜金 9:30〜19:00（中央・山内は20:30まで。中央のおやこフロアは17:00まで）、土日月・祝日・12/28は9:30〜17:00、1/4は12:00〜17:00",
   "closed": "月1回の施設点検日、12/29〜1/3、図書特別整理日（年3日まで）。日にちは市の図書館カレンダーで",
-  "kids": "子ども向けのおはなし会あり（日程は市立図書館の「子ども向けイベント」のページで）",
+  "kids": "おはなし会：0〜3歳と保護者「ちっちゃなおはなし会」毎月第4火曜（9・11・2・3月は第3火曜）10:30〜11:00、戸塚地区センター和室（当日先着20組）。12/22・1/26もあり／小学生（未就学児もOK）「土曜ニコニコおはなし会」毎月第2土曜14:00〜14:30（12/12・1/9）",
   "src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/totsuka/index.html",
   "asof": "2026年11月24日",
   "note": "開館時間・休館日は市の図書館の案内から（臨時休館もあるので市の図書館カレンダーで確かめてください）",
-  "src2": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/lib-event/kodomo/",
+  "src2": "https://www.city.yokohama.lg.jp/totsuka/event-bosyu/sonota/chicchanaohanashikai.html",
   "asof2": "2026年11月28日"
  },
  {
@@ -34208,11 +34208,11 @@
   "tel": "045-801-2251",
   "hours": "火〜金 9:30〜19:00（中央・山内は20:30まで。中央のおやこフロアは17:00まで）、土日月・祝日・12/28は9:30〜17:00、1/4は12:00〜17:00",
   "closed": "月1回の施設点検日、12/29〜1/3、図書特別整理日（年3日まで）。日にちは市の図書館カレンダーで",
-  "kids": "子ども向けのおはなし会あり（日程は市立図書館の「子ども向けイベント」のページで）",
+  "kids": "おはなし会：0〜3歳と保護者「ひよこのおはなし会」毎月1回 第4水曜（6・9月は第3水曜）10:30（先着8組、その月の第1水曜9:30から窓口か電話で申込）。12/23・1/27もあり／4歳ごろから「日曜おはなし会」、5歳ごろから「土曜おはなし会」",
   "src": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/tshokan/izumi/index.html",
   "asof": "2026年11月24日",
   "note": "開館時間・休館日は市の図書館の案内から（臨時休館もあるので市の図書館カレンダーで確かめてください）",
-  "src2": "https://www.city.yokohama.lg.jp/kurashi/kyodo-manabi/library/lib-event/kodomo/",
+  "src2": "https://www.city.yokohama.lg.jp/izumi/event-bosyu/sonota/2026hiyokoohanashi.html",
   "asof2": "2026年11月28日"
  },
  {
