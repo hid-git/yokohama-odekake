@@ -522,7 +522,7 @@ def spot_page(b, area, d, spot_ids, track_url):
         map_url = f"https://www.google.com/maps/search/?api=1&query={sx['geo'][0]},{sx['geo'][1]}"
     else:  # 座標が確かめられていないときは名前（＋公式の住所）で探す
         map_url = "https://www.google.com/maps/search/?api=1&query=" + quote(short(b["n"]) + (f" 横浜市{ad['ward']}{ad['st']}" if ad else " 横浜"))
-    addr_row = (f'<tr><th>住所</th><td>{("〒" + E(ad["zip"]) + " ") if ad.get("zip") else ""}神奈川県横浜市{E(ad["ward"])}{E(ad["st"])}'
+    addr_row = (f'<tr><th>住所</th><td>{("〒" + E(ad["zip"]) + " ") if ad.get("zip") else ""}神奈川県横浜市{E(ad["ward"])}{E(ad["st"])}{("（" + E(ad["sub"]) + "）") if ad.get("sub") else ""}'
                 f'<div class="small">（<a href="{E(ad["src"])}" target="_blank" rel="noopener">公式ページ</a>{("・" + E(ad["via"])) if ad.get("via") else ""}・{E(ad["checked"])}確認）</div></td></tr>') if ad else ""
     body = f"""{ch}
 <article class="card">
